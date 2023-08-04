@@ -1,15 +1,13 @@
 import numpy as np
 
 from Basilisk.simulation.gravityEffector import loadPolyFromFileToList
+from Basilisk.utilities import RigidBodyKinematics as rbk
 from Basilisk import __path__
 
 bsk_path = __path__[0]
 
 
 class Parameters:
-    """
-    Class that sets up the simulation configuration.
-    """
     def __init__(self, configuration):
         # Set sampling times
         self.dyn_rate = 1
@@ -64,6 +62,7 @@ class Parameters:
             self.dec = 17.227 * np.pi/180
             self.lst0 = 0 * np.pi/180
             self.rot_period = 5.27 * 3600
+            self.dcm_N1N0 = rbk.euler3232C([self.ra, np.pi/2 - self.dec, self.lst0])
 
             # Set ejecta properties
             self.n_ejecta = 100
@@ -88,45 +87,72 @@ class Parameters:
 
     class Sensors:
         def __init__(self, configuration):
+            def landmark_distribution(type_lmk):
+                # Place random seed
+                np.random.seed(0)
+                if type_lmk == 'poly':
+                    # Set
+                    poly_file = bsk_path + '/supportData/LocalGravData/EROS856Vert1708Fac.txt'
+                    vert_list, face_list, n_vert, n_face = loadPolyFromFileToList(poly_file)
+                    xyz_vert = np.array(vert_list)
+                    order_face = np.array(face_list) - 1
+
+                    # Randomly choose landmarks
+                    idx_lmk = np.random.choice(n_vert, n_lmk, replace=False)
+                    idx_lmk.sort()
+                    for i in range(n_lmk):
+                        idx = idx_lmk[i]
+                        v1 = order_face[idx, 0]
+                        v2 = order_face[idx, 1]
+                        v3 = order_face[idx, 2]
+                        xyz1 = xyz_vert[v1, 0:3]
+                        xyz2 = xyz_vert[v2, 0:3]
+                        xyz3 = xyz_vert[v3, 0:3]
+                        xyz_lmk[i, 0:3] = (xyz1 + xyz2 + xyz3) / 3
+                        xyz21 = xyz2 - xyz1
+                        xyz31 = xyz3 - xyz1
+                        normal_lmk[i, 0:3] = np.cross(xyz21, xyz31) \
+                                             / np.linalg.norm(np.cross(xyz21, xyz31))
+                elif type_lmk == 'ellipsoid':
+                    # Set ellipsoid axes
+                    axes = np.array([17.5781, 8.43072, 6.01272])*1e3
+
+                    # Set random longitude and latitude for landmarks
+                    lon = np.random.uniform(0, 2*np.pi, n_lmk)
+                    lat = np.random.uniform(-np.pi/2, np.pi/2, n_lmk)
+                    for i in range(n_lmk):
+                        xyz_lmk[i, 0:3] = np.array([axes[0] * np.cos(lon[i]) * np.cos(lat[i]),
+                                                    axes[1] * np.sin(lon[i]) * np.cos(lat[i]),
+                                                    axes[2] * np.sin(lat[i])])
+                        normal_lmk[i, 0:3] = (2*xyz_lmk[i, 0:3] / axes**2)\
+                                             / np.linalg.norm((2*xyz_lmk[i, 0:3] / axes**2))
+
             # Set camera parameters
             self.nx_pixel = 2048
             self.ny_pixel = 1536
             self.w_pixel = (17.3*1e-3) / 2048
             self.f = configuration.f
+            self.dcm_CB = np.eye(3)
 
             # Set artificial parameters to filter non-visible pixels
-            self.maskangle_cam = 15 * np.pi/180
+            self.maskangle_cam = 20 * np.pi/180
             self.maskangle_sun = configuration.maskangle_sun
 
             # Set number of landmarks and associated shape
             n_lmk = configuration.n_lmk
-            poly_file = bsk_path + '/supportData/LocalGravData/EROS856Vert1708Fac.txt'
-            vert_list, face_list, n_vert, n_face = loadPolyFromFileToList(poly_file)
-            self.xyz_vert = np.array(vert_list)
-            self.order_face = np.array(face_list) - 1
-
-            # Randomly choose landmarks
-            np.random.seed(0)
-            idx_lmk = np.random.choice(n_vert, n_lmk, replace=False)
-            idx_lmk.sort()
-            self.idx_lmk = idx_lmk.tolist()
-            self.xyz_lmk = np.zeros((len(idx_lmk), 3))
-            for i in range(len(idx_lmk)):
-                idx = idx_lmk[i]
-                v1 = self.order_face[idx, 0]
-                v2 = self.order_face[idx, 1]
-                v3 = self.order_face[idx, 2]
-                xyz1 = self.xyz_vert[v1, 0:3]
-                xyz2 = self.xyz_vert[v2, 0:3]
-                xyz3 = self.xyz_vert[v3, 0:3]
-                self.xyz_lmk[i, 0:3] = (xyz1 + xyz2 + xyz3) / 3
+            xyz_lmk = np.zeros((n_lmk, 3))
+            normal_lmk = np.zeros((n_lmk, 3))
+            landmark_distribution('poly')
+            self.n_lmk = n_lmk
+            self.xyz_lmk = xyz_lmk
+            self.normal_lmk = normal_lmk
 
             # Add uncertainty to landmarks
             devR_lmk = np.sqrt(configuration.dev_lmk**2 / 3)
             R_lmk = np.zeros((3, 3))
             np.fill_diagonal(R_lmk, devR_lmk**2)
             np.random.seed(0)
-            self.dxyz_lmk = np.random.multivariate_normal(np.zeros(3), R_lmk, n_lmk)
+            self.dxyz_lmk = np.random.multivariate_normal(np.zeros(3), R_lmk, self.n_lmk)
 
     class DMCUKF:
         def __init__(self):
@@ -159,9 +185,8 @@ class Parameters:
             self.x_k = np.zeros(9)
 
             # Set measurements covariance
-            self.R_meas = np.array([[0.1**2, 0, 0],
-                                    [0, 0.1**2, 0],
-                                    [0, 0, 0.1**2]])
+            self.P_pixel = np.array([[1**2, 0],
+                                     [0, 1**2]])
 
             # Set hyperparameters
             self.alpha = 0
@@ -174,7 +199,7 @@ class Parameters:
     class GravityEst:
         def __init__(self, configuration, asteroid):
             # Set dataset
-            self.data_type = 'orbit'
+            self.data_type = configuration.data_type
 
             # Set loss type, learning rate and maximum iterations
             self.loss_type = configuration.loss_type
@@ -198,14 +223,14 @@ class Parameters:
             self.polyFile = bsk_path + '/supportData/LocalGravData/EROS856Vert1708Fac.txt'
             vert_list, face_list, n_vert, n_face = loadPolyFromFileToList(self.polyFile)
             self.xyz_vert = np.array(vert_list)
-            self.order_face = np.array(face_list) - 1
+            self.order_face = np.array(face_list)
             self.n_vert = n_vert
             self.n_face = n_face
             self.xyz_face = np.zeros((n_face, 3))
             for i in range(n_face):
                 idx = self.order_face[i, 0:3]
-                self.xyz_face[i, 0:3] = (self.xyz_vert[idx[0], 0:3] + self.xyz_vert[idx[1], 0:3]
-                                         + self.xyz_vert[idx[2], 0:3])/3
+                self.xyz_face[i, 0:3] = (self.xyz_vert[idx[0]-1, 0:3] + self.xyz_vert[idx[1]-1, 0:3]
+                                         + self.xyz_vert[idx[2]-1, 0:3])/3
 
             # Preallocate initial and final distributions
             self.pos0_M = []
@@ -220,10 +245,8 @@ class Parameters:
 
 
 class Outputs:
-    """
-    Class that saves variables of interest
-    """
     def __init__(self):
+        # Output classes
         self.groundtruth = self.GroundTruth()
         self.camera = self.Camera()
         self.results = self.Results()
@@ -234,30 +257,35 @@ class Outputs:
             self.t = []
 
             # Preallocate spacecraft truth position and velocity
-            self.pos_CA_N = []
-            self.vel_CA_N = []
-            self.pos_CA_A = []
-            self.vel_CA_A = []
+            self.pos_BP_N0 = []
+            self.vel_BP_N0 = []
+            self.pos_BP_N1 = []
+            self.vel_BP_N1 = []
+            self.pos_BP_P = []
+            self.vel_BP_P = []
+
+            # Preallocate spacecraft orientation in asteroid frame
+            self.mrp_BP = []
 
             # Preallocate spacecraft truth radius and altitude
-            self.r_CA = []
-            self.h_CA = []
+            self.r_BP = []
+            self.h_BP = []
 
             # Preallocate truth gravity acceleration
-            self.acc_CA_N = []
-            self.acc_CA_A = []
-            self.accHigh_CA_A = []
+            self.acc_BP_N0 = []
+            self.acc_BP_P = []
+            self.accHigh_BP_P = []
 
             # Preallocate ejecta truth data
-            self.pos_EA_A = []
-            self.acc_EA_A = []
-            self.r_EA = []
-            self.h_EA = []
+            self.pos_EP_P = []
+            self.acc_EP_P = []
+            self.r_EP = []
+            self.h_EP = []
 
             # Preallocate asteroid position, orientation and Sun's direction
-            self.pos_AS_N = []
-            self.e_SA_A = []
-            self.eul323_AN = []
+            self.pos_PS_N1 = []
+            self.e_SP_P = []
+            self.mrp_PN0 = []
 
             # Define maximum radius to be evaluated
             self.rmax = 50*1e3
@@ -309,25 +337,32 @@ class Outputs:
 
     class Camera:
         def __init__(self):
-            # Measurements time and pixel
+            # Time
             self.t = []
-            self.pixel = []
-            self.n_visible = []
-            self.flag_nav = []
-            self.latlon = []
+
+            # Number of visible landmarks, status and pixel
+            self.nvisible_lmk = []
+            self.isvisible_lmk = []
+            self.pixel_lmk = []
+
+            # Flag telling if there are available measurements
+            self.flag_meas = []
+
+            # Camera mrp
+            self.mrp_CP = []
 
     class Results:
         def __init__(self):
             # DMC-UKF position, velocity and acceleration
-            self.pos_CA_A = []
-            self.pos_CA_N = []
-            self.vel_CA_A = []
-            self.acc_CA_A = []
+            self.pos_BP_P = []
+            self.pos_BP_N1 = []
+            self.vel_BP_P = []
+            self.acc_BP_P = []
 
             # DMC-UKF uncertainty covariances
-            self.P = []
-            self.Ppos_A = []
-            self.Pacc_A = []
+            self.Pxx = []
+            self.Ppos_P = []
+            self.Pacc_P = []
 
             # DMC-UKF measurement residual
             self.resZ = []
@@ -341,8 +376,13 @@ class Outputs:
 
             # Preallocate gravity estimation data
             self.t_data = []
-            self.r_data = []
-            self.a_data = []
+            self.pos_data = []
+            self.acc_data = []
+
+            # Preallocate polyhedron acceleration
+            # evaluated at data
+            self.accNK_data = []
+            self.accNK_poly = []
 
             # Preallocate execution times
             self.tcpu_dmcukf = []

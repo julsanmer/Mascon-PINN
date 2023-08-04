@@ -1,24 +1,25 @@
 import numpy as np
 
-from Basilisk.ExternalModules import smallbodyDMCUKF
-from Basilisk.ExternalModules import gravEst
 from Basilisk.utilities import unitTestSupport as sp
-from Basilisk.utilities import RigidBodyKinematics
+from Basilisk.utilities import RigidBodyKinematics as rbk
+
+from Basilisk.ExternalModules import dmcukf
+from Basilisk.ExternalModules import masconFit
 
 from Gravity.mascon_features import initialize_mascon
+from Gravity.gravity_map import gravity_series
 
 
+# This function executes the simultaneous navigation
+# and gravity estimation algorithms
 def run_dmcukf(parameters, outputs):
     # This function initializes bsk dmc-ukf properties
     def initialize_dmcukf():
         # Set dmc-ukf mascon model
-        dmcukf_bsk.useSH = False
-        dmcukf_bsk.useM = True
-        dmcukf_bsk.mascon.nM = int(parameters.grav_est.n_M + 1)
-        dmcukf_bsk.mascon.posM = parameters.grav_est.pos0_M.tolist()
-        dmcukf_bsk.mascon.muM = parameters.grav_est.mu0_M.tolist()
+        dmcukf_bsk.setMascon(parameters.grav_est.mu0_M.tolist(),
+                             parameters.grav_est.pos0_M.tolist())
 
-        # Set solar radiation pressure if required
+        # Set SRP and Sun's 3rd body if required
         if parameters.flag_sun:
             dmcukf_bsk.useSRP = True
             dmcukf_bsk.useSun = True
@@ -27,75 +28,57 @@ def run_dmcukf(parameters, outputs):
             dmcukf_bsk.CR = parameters.spacecraft.CR
 
         # Set dmc-ukf state, uncertainty, process and measurement covariances
-        dmcukf_bsk.xhat_k = sp.np2EigenVectorXd(parameters.dmcukf.x_k + parameters.dmcukf.dx_k)
-        dmcukf_bsk.Pxx_k = parameters.dmcukf.P_k.tolist()
-        dmcukf_bsk.Pww = parameters.dmcukf.P_proc.tolist()
-        dmcukf_bsk.Pvv = parameters.dmcukf.R_meas.tolist()
+        dmcukf_bsk.x = sp.np2EigenVectorXd(parameters.dmcukf.x_k
+                                           + parameters.dmcukf.dx_k)
+        dmcukf_bsk.Pxx = parameters.dmcukf.P_k.tolist()
+        dmcukf_bsk.Pproc = parameters.dmcukf.P_proc.tolist()
+        dmcukf_bsk.Ppixel = parameters.dmcukf.P_pixel.tolist()
 
-        # Set hyperparameters
-        dmcukf_bsk.alpha = parameters.dmcukf.alpha
-        dmcukf_bsk.beta = parameters.dmcukf.beta
-        dmcukf_bsk.kappa = parameters.dmcukf.kappa
+        # Set integration steps
         dmcukf_bsk.Nint = parameters.dmcukf.n_prop
 
-        # Set what type of measurements is used
-        dmcukf_bsk.useMeasSimple = False
-        dmcukf_bsk.useMeasPoscam = False
-        dmcukf_bsk.useMeasPixel = True
-
-        # Set landmarks information
-        dmcukf_bsk.nLandmarks = len(parameters.sensors.xyz_lmk)
-        dmcukf_bsk.xyzLandmarks = parameters.sensors.xyz_lmk + parameters.sensors.dxyz_lmk
+        # Set landmark and camera information
+        dmcukf_bsk.nLmk = len(parameters.sensors.xyz_lmk)
+        dmcukf_bsk.rLmk = parameters.sensors.xyz_lmk \
+                          + parameters.sensors.dxyz_lmk
         dmcukf_bsk.f = parameters.sensors.f
         dmcukf_bsk.wPixel = parameters.sensors.w_pixel
 
-        # Set initial small body lst0 and rotational period
-        dmcukf_bsk.lst0 = parameters.asteroid.lst0
-        dmcukf_bsk.rotRate = 2*np.pi / parameters.asteroid.rot_period
+        # Set dcm of planet equatorial w.r.t. inertial and
+        # camera w.r.t. body frame
+        dmcukf_bsk.dcm_N1N0 = parameters.asteroid.dcm_N1N0
+        dmcukf_bsk.dcm_CB = parameters.sensors.dcm_CB
 
     # This function initializes bsk gravity estimation properties
-    def initialize_gravest():
+    def initialize_masconfit():
         # Set gravity estimation algorithm parameters
-        gravest_bsk.maxIter = parameters.grav_est.maxiter
-        gravest_bsk.lam = parameters.grav_est.lr
-        gravest_bsk.useM = True
-        gravest_bsk.useSH = False
-        gravest_bsk.mascon.nM = int(parameters.grav_est.n_M) + 1
+        masconfit_bsk.nM = int(parameters.grav_est.n_M) + 1
 
         # Set adimensional variables
-        gravest_bsk.mascon.mu = parameters.grav_est.mu
-        gravest_bsk.mascon.muMad = parameters.grav_est.muM_ad
-        gravest_bsk.mascon.posMad = parameters.grav_est.posM_ad.tolist()
+        masconfit_bsk.mu = parameters.grav_est.mu
+        masconfit_bsk.muMad = parameters.grav_est.muM_ad
+        masconfit_bsk.posMad = parameters.grav_est.posM_ad.tolist()
 
-        # Choose algorithm and loss function
-        gravest_bsk.useAdam = True
-        gravest_bsk.useAdagrad = False
-        gravest_bsk.useNAGD = False
-        gravest_bsk.useMSE = True
-        gravest_bsk.useMLE = False
+        # Choose loss function type
+        masconfit_bsk.useMSE = True
+        masconfit_bsk.useMLE = False
 
         # Set training variables flag
-        if parameters.grav_est.mascon_type == 'MU':
-            gravest_bsk.mascon.MU = True
-            gravest_bsk.mascon.MUPOS = False
-        elif parameters.grav_est.mascon_type == 'MUPOS':
-            gravest_bsk.mascon.MU = False
-            gravest_bsk.mascon.MUPOS = True
+        if parameters.grav_est.mascon_type == 'MUPOS':
+            masconfit_bsk.trainPOS = True
+        else:
+            masconfit_bsk.trainPOS = False
 
-        # Set polyhedron
-        gravest_bsk.poly.nVertex = parameters.grav_est.n_vert
-        gravest_bsk.poly.nFacet = parameters.grav_est.n_face
-        gravest_bsk.poly.xyzVertex = parameters.grav_est.xyz_vert.tolist()
-        gravest_bsk.poly.orderFacet = parameters.grav_est.order_face.tolist()
-        gravest_bsk.poly.initializeParameters()
+        # Set polyhedron shape
+        masconfit_bsk.shape.initPolyhedron(parameters.grav_est.xyz_vert.tolist(),
+                                           parameters.grav_est.order_face.tolist())
 
         # Initialize mascon distribution
-        pos0_M, mu0_M = initialize_mascon(gravest_bsk, parameters.grav_est.mascon_init,
-                                          parameters.grav_est.seed_M, parameters.grav_est.mu)
+        pos0_M, mu0_M = initialize_mascon(masconfit_bsk, parameters.grav_est)
         parameters.grav_est.pos0_M = pos0_M
         parameters.grav_est.mu0_M = mu0_M
-        gravest_bsk.mascon.posM = pos0_M.tolist()
-        gravest_bsk.mascon.muM = mu0_M.tolist()
+        masconfit_bsk.posM = pos0_M.tolist()
+        masconfit_bsk.muM = mu0_M.tolist()
 
     # This function loads measurements into bsk dmc-ukf module
     def load_measurements():
@@ -106,141 +89,138 @@ def run_dmcukf(parameters, outputs):
         t_meas = t[idx].tolist()
 
         # Extract small body position and orientation
-        posTruth_AS_N = outputs.groundtruth.pos_AS_N[idx, :].tolist()
-        eul323Truth_AN = outputs.groundtruth.eul323_AN[idx, :].tolist()
+        pos_PS_N1 = outputs.groundtruth.pos_PS_N1[idx, :].tolist()
+        mrp_PN0 = outputs.groundtruth.mrp_PN0[idx, :].tolist()
+        mrp_BP = outputs.groundtruth.mrp_BP[idx, :].tolist()
+
+        # Load small body ephemeris and orientation
+        dmcukf_bsk.batch.r_PS_N1 = pos_PS_N1
+        dmcukf_bsk.batch.mrp_PN0 = mrp_PN0
+
+        # Loop spacecraft orientation w.r.t. small body rotating frame
+        dmcukf_bsk.batch.mrp_BP = mrp_BP
 
         # Extract camera variables
-        pixel = outputs.camera.pixel[idx, :].tolist()
-        n_visible = outputs.camera.n_visible[idx].tolist()
-        visible = outputs.camera.flag_nav[idx].tolist()
-        latlon = outputs.camera.latlon[idx, :].tolist()
+        pixel_lmk = outputs.camera.pixel_lmk[idx, :].tolist()
+        isvisible_lmk = outputs.camera.isvisible_lmk[idx, :].tolist()
+        mrp_CP = outputs.camera.mrp_CP[idx, :].tolist()
 
         # Load measurements into module
-        dmcukf_bsk.statemeasBatch.tBatch = t_meas
-        dmcukf_bsk.statemeasBatch.nvisibleBatch = n_visible
-        dmcukf_bsk.statemeasBatch.visibleBatch = visible
-        dmcukf_bsk.statemeasBatch.pixelBatch = pixel
-        dmcukf_bsk.statemeasBatch.latlonBatch = latlon
-        dmcukf_bsk.statemeasBatch.rBatch_AS = posTruth_AS_N
-        dmcukf_bsk.statemeasBatch.eul323Batch_AN = eul323Truth_AN
-        dmcukf_bsk.statemeasBatch.nSegment = i
-
-        return t_meas
+        dmcukf_bsk.batch.t = t_meas
+        dmcukf_bsk.batch.isvisibleLmk = isvisible_lmk
+        dmcukf_bsk.batch.pLmk = pixel_lmk
 
     # This function saves dmc-ukf results
     def save_dmcukf():
-        tcpu_dmcukf = np.array(dmcukf_bsk.statemeasBatch.tcpu)
-
         # Obtain filter state, covariance, training data and residuals
-        Xhat = np.array(dmcukf_bsk.statemeasBatch.Xhat)
-        Pxx_array = np.array(dmcukf_bsk.statemeasBatch.Pxx)
-        # resZ = np.array(DMCUKF.statebatch.resZ)
-        r_data = np.array(dmcukf_bsk.statemeasBatch.rGrav)
-        a_data = np.array(dmcukf_bsk.statemeasBatch.aGrav)
+        X = np.array(dmcukf_bsk.batch.x)
+        Pxx_array = np.array(dmcukf_bsk.batch.Pxx)
+
+        # Get small body orientation variables
+        dcm_N1N0 = np.array(dmcukf_bsk.dcm_N1N0)
+        mrp_PN0 = np.array(dmcukf_bsk.batch.mrp_PN0)
 
         # Set estimated variables
-        n = len(Xhat)
-        rEst_CA_N = Xhat[:, 0:3]
-        vEst_CA_N = Xhat[:, 3:6]
-        aEst_N = Xhat[:, 6:9]
-        P = Pxx_array.reshape((len(t_meas), 9, 9))
+        n = len(X)
+        pos_BP_N1 = X[:, 0:3]
+        vel_BP_N1 = X[:, 3:6]
+        acc_BP_N1 = X[:, 6:9]
+        Pxx = Pxx_array.reshape((n, 9, 9))
 
         # Initialize variables in small body frame
-        rEst_CA_A = np.zeros((n, 3))
-        Ppos_A = np.zeros((n, 3, 3))
-        Pacc_A = np.zeros((n, 3, 3))
+        pos_data = np.zeros((n, 3))
+        acc_data = np.zeros((n, 3))
+        Ppos_P = np.zeros((n, 3, 3))
+        Pacc_P = np.zeros((n, 3, 3))
 
         # Fill variables in small body frame
         for k in range(n):
-            lst = parameters.asteroid.lst0 + 2 * np.pi / parameters.asteroid.rot_period * t_meas[k]
-            eul323 = np.array([0, 0, lst])
-            dcm_AN = RigidBodyKinematics.euler3232C(eul323)
-            rEst_CA_A[k, 0:3] = np.matmul(dcm_AN, rEst_CA_N[k, 0:3])
-            Ppos_A[k, 0:3, 0:3] = np.matmul(dcm_AN, np.matmul(P[k, 0:3, 0:3], dcm_AN.transpose()))
-            Pacc_A[k, 0:3, 0:3] = np.matmul(dcm_AN, np.matmul(P[k, 6:9, 6:9], dcm_AN.transpose()))
+            # Obtain spacecraft to planet dcm
+            dcm_PN0 = rbk.MRP2C(mrp_PN0[k, 0:3])
+            dcm_PN1 = np.matmul(dcm_PN0, dcm_N1N0.T)
+
+            # Compute data position and acceleration
+            pos_data[k, 0:3] = dcm_PN1.dot(pos_BP_N1[k, 0:3])
+            acc_data[k, 0:3] = dcm_PN1.dot(acc_BP_N1[k, 0:3]) \
+                               + np.array(dmcukf_bsk.mascon.computeField(pos_data[k, 0:3])).T
+
+            # Compute uncertainty in small body rotating frame
+            Ppos_P[k, 0:3, 0:3] = np.matmul(dcm_PN1, np.matmul(Pxx[k, 0:3, 0:3], dcm_PN1.T))
+            Pacc_P[k, 0:3, 0:3] = np.matmul(dcm_PN1, np.matmul(Pxx[k, 6:9, 6:9], dcm_PN1.T))
 
         # Save variables in outputs
         if i == 0:
-            # Initialize position and velocity
-            outputs.results.pos_CA_N = rEst_CA_N
-            outputs.results.vel_CA_N = vEst_CA_N
+            # Initialize position, velocity and unmodeled acceleration
+            outputs.results.pos_BP_N1 = pos_BP_N1
+            outputs.results.vel_BP_N1 = vel_BP_N1
+            outputs.results.acc_BP_N1 = acc_BP_N1
 
-            # Save acceleration
-            outputs.results.acc_CA_N = aEst_N
+            # Initialize gravity data
+            outputs.results.pos_data = pos_data
+            outputs.results.acc_data = acc_data
 
-            # Save training variables
-            outputs.results.r_data = r_data
-            outputs.results.a_data = a_data
-
-            # Save covariance and variables in small body frame
-            outputs.results.P = P
-            outputs.results.pos_CA_A = rEst_CA_A
-            outputs.results.Ppos_A = Ppos_A
-            outputs.results.Pacc_A = Pacc_A
+            # Initialize covariances
+            outputs.results.Pxx = Pxx
+            outputs.results.Ppos_P = Ppos_P
+            outputs.results.Pacc_P = Pacc_P
 
             # Save filter times
-            outputs.results.tcpu_dmcukf = tcpu_dmcukf[1:n]
-
-            ## Save residual
-            # navOutputs.nav.resZ = resZ
+            #outputs.results.tcpu_dmcukf = tcpu_dmcukf[1:n]
         else:
-            # Fill variables
-            outputs.results.pos_CA_N = np.concatenate((outputs.results.pos_CA_N, rEst_CA_N[1:n, :]))
-            outputs.results.vel_CA_N = np.concatenate((outputs.results.vel_CA_N, vEst_CA_N[1:n, :]))
-            outputs.results.acc_CA_N = np.concatenate((outputs.results.acc_CA_N, aEst_N[1:n, :]))
-            outputs.results.r_data = np.concatenate((outputs.results.r_data, rEst_CA_A[1:n, :]))
-            outputs.results.a_data = np.concatenate((outputs.results.a_data, a_data[1:n, :]))
-            outputs.results.P = np.concatenate((outputs.results.P, P[1:n, :, :]))
-            outputs.results.pos_CA_A = np.concatenate((outputs.results.pos_CA_A, rEst_CA_A[1:n, :]))
-            outputs.results.Ppos_A = np.concatenate((outputs.results.Ppos_A, Ppos_A[1:n, :, :]))
-            outputs.results.Pacc_A = np.concatenate((outputs.results.Pacc_A, Pacc_A[1:n, :, :]))
+            # Fill position, velocity and unmodeled acceleration
+            outputs.results.pos_BP_N1 = np.concatenate((outputs.results.pos_BP_N1, pos_BP_N1[1:n, :]))
+            outputs.results.vel_BP_N1 = np.concatenate((outputs.results.vel_BP_N1, vel_BP_N1[1:n, :]))
+            outputs.results.acc_BP_N1 = np.concatenate((outputs.results.acc_BP_N1, acc_BP_N1[1:n, :]))
+
+            # Fill gravity data
+            outputs.results.pos_data = np.concatenate((outputs.results.pos_data, pos_data[1:n, :]))
+            outputs.results.acc_data = np.concatenate((outputs.results.acc_data, acc_data[1:n, :]))
+
+            # Fill covariances
+            outputs.results.Pxx = np.concatenate((outputs.results.Pxx, Pxx[1:n, :, :]))
+            outputs.results.Ppos_P = np.concatenate((outputs.results.Ppos_P, Ppos_P[1:n, :, :]))
+            outputs.results.Pacc_P = np.concatenate((outputs.results.Pacc_P, Pacc_P[1:n, :, :]))
 
             # Save dmc-ukf computational times
-            outputs.results.tcpu_dmcukf = np.concatenate((outputs.results.tcpu_dmcukf,
-                                                          tcpu_dmcukf[1:n]))
+            #outputs.results.tcpu_dmcukf = np.concatenate((outputs.results.tcpu_dmcukf,
+            #                                              tcpu_dmcukf[1:n]))
 
     # This function prepares data for bsk gravity estimation
-    def prepare_gravest():
+    def prepare_masconfit():
         # Extract indexes
         idx = np.where(np.logical_and(t >= parameters.times_dmcukf[i, 0],
                                       t < parameters.times_dmcukf[i, 1]))[0]
-        flag_nav = outputs.camera.flag_nav[idx]
-        idx = idx[flag_nav == 1]
+        flag_meas = outputs.camera.flag_meas[idx]
 
         # Preallocate data batch and weights
         t_data = t[idx]
-        r_data = outputs.results.r_data[idx]
-        a_data = outputs.results.a_data[idx]
-        Wvec = np.ones(3 * int(np.sum(flag_nav)))
+        pos_data = outputs.results.pos_data[idx, 0:3]
+        acc_data = outputs.results.acc_data[idx, 0:3]
 
-        # # Filter posBatch, accBatch
-        # intBatch = parameters.grav_rate / parameters.dmcukf_rate
-        # lenBatch = len(tBatch) - 1
-        # idxBatch = np.linspace(0, np.floor(lenBatch / intBatch) * intBatch,
-        #                        int(np.floor(lenBatch / intBatch)) + 1).astype(int)
-        # tBatch = tBatch[idxBatch]
-        # posBatch = posBatch[idxBatch, 0:3]
-        # accBatch = accBatch[idxBatch, 0:3]
+        # Prune data with available measurements
+        t_data = t_data[flag_meas]
+        pos_data = pos_data[flag_meas, 0:3]
+        acc_data = acc_data[flag_meas, 0:3]
 
         # Include ejecta if needed
         if parameters.grav_est.flag_ejecta:
-            idx = rng.choice(len(r_data), size=parameters.grav_est.n_ejecta, replace=False)
-            r_data[idx, 0:3] = outputs.groundtruth.pos_EA_A[0, 0:parameters.grav_est.n_ejecta, 0:3]
-            a_data[idx, 0:3] = outputs.groundtruth.acc_EA_A[0, 0:parameters.grav_est.n_ejecta, 0:3]
+            idx = rng.choice(len(pos_data), size=parameters.grav_est.n_ejecta, replace=False)
+            pos_data[idx, 0:3] = outputs.groundtruth.pos_EP_P[0, 0:parameters.grav_est.n_ejecta, 0:3]
+            acc_data[idx, 0:3] = outputs.groundtruth.acc_EP_P[0, 0:parameters.grav_est.n_ejecta, 0:3]
 
-        return t_data, r_data, a_data, Wvec
+        return t_data, pos_data, acc_data
 
     # ------------------- SIMULTANEOUS NAVIGATION AND GRAVITY ESTIMATION ------------------------- #
-    # Set rng
+    # Set random seed
     rng = np.random.default_rng(0)
 
-    # Retrieve ground truth times
+    # Retrieve ground truth times and training segments
     t = outputs.groundtruth.t
     n_segments = len(parameters.times_groundtruth) - 1
 
     # Set dmc-ukf initial condition
-    pos0 = outputs.groundtruth.pos_CA_N[0, :]
-    vel0 = outputs.groundtruth.vel_CA_N[0, :]
+    pos0 = outputs.groundtruth.pos_BP_N1[0, :]
+    vel0 = outputs.groundtruth.vel_BP_N1[0, :]
     acc0 = np.zeros(3)
     parameters.dmcukf.x_k = np.concatenate((pos0, vel0, acc0))
 
@@ -253,11 +233,11 @@ def run_dmcukf(parameters, outputs):
     outputs.results.loss = np.zeros((parameters.grav_est.maxiter, n_segments))
 
     # Initialize basilisk gravity estimation module
-    gravest_bsk = gravEst.GravEst()
-    initialize_gravest()
+    masconfit_bsk = masconFit.MasconFit()
+    initialize_masconfit()
 
     # Initialize basilisk dmc-ukf module
-    dmcukf_bsk = smallbodyDMCUKF.SmallbodyDMCUKF()
+    dmcukf_bsk = dmcukf.DMCUKF()
     initialize_dmcukf()
     dmcukf_bsk.Reset(0)
 
@@ -269,45 +249,51 @@ def run_dmcukf(parameters, outputs):
         # Load measurements batch
         t0 = parameters.times_groundtruth[i]
         tf = parameters.times_groundtruth[i+1]
-        t_meas = load_measurements()
+        load_measurements()
 
         # Reset acceleration to zero after fit
         if i > 0:
-            xhat_k = np.array(dmcukf_bsk.xhat_k)
-            xhat_k[6:9] = 0
-            dmcukf_bsk.xhat_k = xhat_k.tolist()
+            x_k = np.array(dmcukf_bsk.x)
+            x_k[6:9] = 0
+            dmcukf_bsk.x = x_k.tolist()
 
         # Run filter forward
-        dmcukf_bsk.updateMeasBatch()
+        dmcukf_bsk.processBatch()
 
         # Save data
         save_dmcukf()
 
         # Prepare data for gravity estimation
-        t_data, r_data, a_data, Wvec = prepare_gravest()
+        t_data, r_data, a_data = prepare_masconfit()
 
         # Do gravity fit
-        gravest_bsk.trainGravity(r_data.tolist(), a_data.tolist(), Wvec.tolist())
-        outputs.results.loss[:, i] = np.array(gravest_bsk.L).squeeze()
-        outputs.results.tcpu_gravest[i] = gravest_bsk.tcpu
+        masconfit_bsk.train(r_data.tolist(), a_data.tolist())
+
+        # Save loss history
+        outputs.results.loss[:, i] = np.array(masconfit_bsk.getLoss()).squeeze()
+        #outputs.results.tcpu_gravest[i] = gravest_bsk.tcpu
 
         # Set gravity variables into dmc-ukf
-        dmcukf_bsk.mascon.posM = gravest_bsk.mascon.posM
-        dmcukf_bsk.mascon.muM = gravest_bsk.mascon.muM
+        dmcukf_bsk.setMascon(masconfit_bsk.muM, masconfit_bsk.posM)
 
         # Fill output variables
-        outputs.results.mu_M[:, i+1] = np.array(gravest_bsk.mascon.muM).squeeze()
-        outputs.results.pos_M[:, 0:3, i+1] = np.array(gravest_bsk.mascon.posM).squeeze()
+        outputs.results.mu_M[:, i+1] = np.array(masconfit_bsk.muM).squeeze()
+        outputs.results.pos_M[:, 0:3, i+1] = np.array(masconfit_bsk.posM).squeeze()
 
         # Reset some mascon to the unity
-        muMtemp = np.array(gravest_bsk.mascon.muM)
+        muMtemp = np.array(masconfit_bsk.muM)
         muMtemp[muMtemp < 1] = 1
-        gravest_bsk.mascon.muM = muMtemp.tolist()
+        masconfit_bsk.muM = muMtemp.tolist()
 
-        # # Save trained variables
-        # nTrain = len(t_data)
-        # outputs.results.t_data = t_data
-        # outputs.results.a_data = a_data
-
-    parameters.grav_est.pos_M = np.array(dmcukf_bsk.mascon.posM)
+    # Save mascon distribution
     parameters.grav_est.mu_M = np.array(dmcukf_bsk.mascon.muM)
+    parameters.grav_est.pos_M = np.array(dmcukf_bsk.mascon.xyzM)
+
+    # Compute inhomogeneous gravity time series
+    n_data = len(outputs.results.acc_data)
+    outputs.results.accNK_data = outputs.results.acc_data
+    for i in range(n_data):
+        outputs.results.accNK_data[i, 0:3] -= \
+            -parameters.asteroid.mu * outputs.results.pos_data[i, 0:3]\
+            / np.linalg.norm(outputs.results.pos_data[i, 0:3])**3
+    gravity_series(parameters, outputs)

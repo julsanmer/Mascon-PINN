@@ -1,22 +1,18 @@
 import numpy as np
 
-from Basilisk.ExternalModules import gravEst
+from Basilisk.utilities import simIncludeGravBody
+from Basilisk.ExternalModules import masconFit
 
 
+# This function computes a 2D gravity map
 def gravity_map2D(parameters, outputs, map_type):
     # Choose type of gravity map
     if map_type == 'groundtruth':
-        gravity = gravEst.GravEst()
-        mu = parameters.asteroid.mu
-
-        # Load polyhedral model
-        gravity.poly.muBody = mu
-        gravity.poly.nVertex = parameters.asteroid.n_vert
-        gravity.poly.nFacet = parameters.asteroid.n_face
-        gravity.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
-        gravity.poly.orderFacet = (parameters.asteroid.order_face - 1).tolist()
-        grav = gravity.poly
-        grav.initializeParameters()
+        # Set shape object
+        masconfit_bsk = masconFit.MasconFit()
+        shape = masconfit_bsk.shape
+        shape.initPolyhedron(parameters.asteroid.xyz_vert.tolist(),
+                             parameters.asteroid.order_face.tolist())
 
         # Extract parameters for grid
         rmax = outputs.groundtruth.rmax
@@ -44,9 +40,12 @@ def gravity_map2D(parameters, outputs, map_type):
         YZ = np.vstack((np.zeros(n*n), Yz_1D, Zy_1D)).transpose()
 
         # Compute laplacian and exterior points
-        lapXY_2D = np.reshape(np.array(grav.computeLaplacian(XY.tolist())), (n, n))
-        lapXZ_2D = np.reshape(np.array(grav.computeLaplacian(XZ.tolist())), (n, n))
-        lapYZ_2D = np.reshape(np.array(grav.computeLaplacian(YZ.tolist())), (n, n))
+        lapXY_2D = np.reshape(np.array(shape.computeLaplacianBatch(XY.tolist())),
+                              (n, n))
+        lapXZ_2D = np.reshape(np.array(shape.computeLaplacianBatch(XZ.tolist())),
+                              (n, n))
+        lapYZ_2D = np.reshape(np.array(shape.computeLaplacianBatch(YZ.tolist())),
+                              (n, n))
         extXY_2D = abs(lapXY_2D) < 2*np.pi
         extXZ_2D = abs(lapXZ_2D) < 2*np.pi
         extYZ_2D = abs(lapYZ_2D) < 2*np.pi
@@ -61,16 +60,21 @@ def gravity_map2D(parameters, outputs, map_type):
         outputs.groundtruth.extXY_2D = extXY_2D
         outputs.groundtruth.extXZ_2D = extXZ_2D
         outputs.groundtruth.extYZ_2D = extYZ_2D
+
+        # Create gravity object
+        mu = parameters.asteroid.mu
+        gravFactory = simIncludeGravBody.gravBodyFactory()
+        gravity = gravFactory.createCustomGravObject("eros", mu=mu)
+
+        # Set polyhedron model
+        gravity.poly.muBody = mu
+        gravity.poly.nVertex = parameters.asteroid.n_vert
+        gravity.poly.nFacet = parameters.asteroid.n_face
+        gravity.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
+        gravity.poly.orderFacet = parameters.asteroid.order_face.tolist()
+        grav = gravity.poly
+        grav.initializeParameters()
     elif map_type == 'results':
-        # Initialize class
-        gravity = gravEst.GravEst()
-        grav = gravity.mascon
-        grav.nM = int(parameters.grav_est.n_M) + 1
-        grav.posM = parameters.grav_est.pos_M.tolist()
-        grav.muM = parameters.grav_est.mu_M.tolist()
-
-        mu = parameters.grav_est.mu
-
         # Retry grid
         Xy_2D = outputs.groundtruth.Xy_2D
         Yx_2D = outputs.groundtruth.Yx_2D
@@ -81,6 +85,17 @@ def gravity_map2D(parameters, outputs, map_type):
         extXY_2D = outputs.groundtruth.extXY_2D
         extXZ_2D = outputs.groundtruth.extXZ_2D
         extYZ_2D = outputs.groundtruth.extYZ_2D
+
+        # Create gravity object
+        gravFactory = simIncludeGravBody.gravBodyFactory()
+        mu = parameters.grav_est.mu
+        gravity = gravFactory.createCustomGravObject("eros", mu=mu)
+
+        # Set mascon model
+        gravity.mascon.muM = parameters.grav_est.mu_M.tolist()
+        gravity.mascon.xyzM = parameters.grav_est.pos_M.tolist()
+        grav = gravity.mascon
+        grav.initializeParameters()
 
     # Preallocate gravity 2D map
     n = outputs.groundtruth.n_2D
@@ -181,22 +196,15 @@ def gravity_map2D(parameters, outputs, map_type):
         outputs.results.aErrYZ_2D = np.linalg.norm(a_YZ - outputs.groundtruth.aYZ_2D, axis=2) \
                                     / np.linalg.norm(outputs.groundtruth.aYZ_2D, axis=2)
 
-
+# This function computes a 3D gravity map
 def gravity_map3D(parameters, outputs, map_type):
     # Choose type of gravity map
     if map_type == 'groundtruth':
-        # Create gravity model
-        gravity = gravEst.GravEst()
-        mu = parameters.asteroid.mu
-
-        # Load polyhedron model
-        gravity.poly.muBody = mu
-        gravity.poly.nVertex = parameters.asteroid.n_vert
-        gravity.poly.nFacet = parameters.asteroid.n_face
-        gravity.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
-        gravity.poly.orderFacet = (parameters.asteroid.order_face - 1).tolist()
-        grav = gravity.poly
-        grav.initializeParameters()
+        # Set shape object
+        masconfit_bsk = masconFit.MasconFit()
+        shape = masconfit_bsk.shape
+        shape.initPolyhedron(parameters.asteroid.xyz_vert.tolist(),
+                             parameters.asteroid.order_face.tolist())
 
         # Parameters for 3D grid
         rmax = outputs.groundtruth.rmax
@@ -229,7 +237,9 @@ def gravity_map3D(parameters, outputs, map_type):
                     Y_3D[i, j, k] = r_jk * np.cos(lat[j]) * np.sin(lon[k])
                     Z_3D[i, j, k] = r_jk * np.sin(lat[j])
                     r_3D[i, j, k] = r_jk
-                    h_3D[i, j, k] = grav.computeAltitude([X_3D[i, j, k], Y_3D[i, j, k], Z_3D[i, j, k]])
+                    h_3D[i, j, k] = shape.computeAltitude([X_3D[i, j, k],
+                                                           Y_3D[i, j, k],
+                                                           Z_3D[i, j, k]])
 
             # Switch to next radial range
             if i < nr-1:
@@ -243,7 +253,7 @@ def gravity_map3D(parameters, outputs, map_type):
         XYZ = np.vstack((X_1D, Y_1D, Z_1D)).transpose()
 
         # Check interior shape points
-        lapXYZ_3D = np.reshape(np.array(grav.computeLaplacian(XYZ.tolist())), (nr, nlat, nlon))
+        lapXYZ_3D = np.reshape(np.array(shape.computeLaplacianBatch(XYZ.tolist())), (nr, nlat, nlon))
         extXYZ_3D = abs(lapXYZ_3D) < 2*np.pi
         r_3D[np.invert(extXYZ_3D)] = np.nan
         h_3D[np.invert(extXYZ_3D)] = np.nan
@@ -255,14 +265,21 @@ def gravity_map3D(parameters, outputs, map_type):
         outputs.groundtruth.rXYZ_3D = r_3D
         outputs.groundtruth.hXYZ_3D = h_3D
         outputs.groundtruth.extXYZ_3D = extXYZ_3D
-    elif map_type == 'results':
-        # Create gravity model
-        gravity = gravEst.GravEst()
-        grav = gravity.mascon
-        grav.nM = int(parameters.grav_est.n_M) + 1
-        grav.posM = parameters.grav_est.pos_M.tolist()
-        grav.muM = parameters.grav_est.mu_M.tolist()
 
+        # Create gravity object
+        mu = parameters.asteroid.mu
+        gravFactory = simIncludeGravBody.gravBodyFactory()
+        gravity = gravFactory.createCustomGravObject("eros", mu=mu)
+
+        # Set polyhedron model
+        gravity.poly.muBody = mu
+        gravity.poly.nVertex = parameters.asteroid.n_vert
+        gravity.poly.nFacet = parameters.asteroid.n_face
+        gravity.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
+        gravity.poly.orderFacet = parameters.asteroid.order_face.tolist()
+        grav = gravity.poly
+        grav.initializeParameters()
+    elif map_type == 'results':
         # Retry grid
         nr = outputs.groundtruth.nr_3D
         nlat = outputs.groundtruth.nlat_3D
@@ -271,6 +288,17 @@ def gravity_map3D(parameters, outputs, map_type):
         Y_3D = outputs.groundtruth.Y_3D
         Z_3D = outputs.groundtruth.Z_3D
         extXYZ_3D = outputs.groundtruth.extXYZ_3D
+
+        # Create gravity object
+        gravFactory = simIncludeGravBody.gravBodyFactory()
+        mu = parameters.grav_est.mu
+        gravity = gravFactory.createCustomGravObject("eros", mu=mu)
+
+        # Set mascon model
+        gravity.mascon.muM = parameters.grav_est.mu_M.tolist()
+        gravity.mascon.xyzM = parameters.grav_est.pos_M.tolist()
+        grav = gravity.mascon
+        grav.initializeParameters()
 
     # Preallocate acceleration
     a_XYZ = np.zeros((nr, nlat, nlon, 3))
@@ -383,3 +411,38 @@ def gravity_map3D(parameters, outputs, map_type):
         # Compute total error
         outputs.results.aErrTotal_3D = np.sum(outputs.results.aErr_binsAlt * outputs.groundtruth.N_alt) \
                                        / np.sum(outputs.groundtruth.N_alt)
+
+
+# This function computes the gravity acceleration
+def gravity_series(parameters, outputs):
+    # Extract estimated position
+    pos = outputs.results.pos_data
+    n = len(pos)
+
+    # Preallocate polyhedron and mascon ground truth
+    acc_poly = np.zeros((n, 3))
+
+    # Create gravity objects
+    mu = parameters.asteroid.mu
+    gravFactory = simIncludeGravBody.gravBodyFactory()
+
+    # Set polyhedron model
+    gravity = gravFactory.createCustomGravObject("eros1", mu=mu)
+    gravity.poly.muBody = mu
+    gravity.poly.nVertex = parameters.asteroid.n_vert
+    gravity.poly.nFacet = parameters.asteroid.n_face
+    gravity.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
+    gravity.poly.orderFacet = parameters.asteroid.order_face.tolist()
+    grav = gravity.poly
+    grav.initializeParameters()
+
+    # Loop through samples
+    for i in range(n):
+        # Compute Keplerian term
+        acc0 = -mu * pos[i, 0:3]/np.linalg.norm(pos[i, 0:3])**3
+
+        # Compute polyhedron and mascon gravity
+        acc_poly[i, 0:3] = np.array(grav.computeField(pos[i, 0:3])).reshape(3) \
+                           - acc0
+
+    outputs.results.accNK_poly = acc_poly

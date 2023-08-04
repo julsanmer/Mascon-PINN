@@ -11,11 +11,11 @@ def prepare_simulation(dev_lmk=0, maskangle_sun=0):
     configuration.grav_groundtruth = 'poly'
 
     # Define gravity estimation parameters
-    configuration.mascon_type = 'MU'
+    configuration.mascon_type = 'MUPOS'
     configuration.mascon_init = 'octant'
     #configParams.nM = np.array([100,200,300,400,500,600,700,800,900,1000])
     #configuration.nM_array = np.array([100, 500, 1000])
-    configuration.nM_array = np.array([100])
+    configuration.nM_array = np.array([200])
     configuration.rand_M = 1
 
     # Define Adam gradient descent variables
@@ -25,9 +25,8 @@ def prepare_simulation(dev_lmk=0, maskangle_sun=0):
 
     # Define simulation and training orbits batches
     configuration.orbits_groundtruth = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    #configuration.orbits_groundtruth = np.array([0, 0.1])
     configuration.orbits_dmcukf = np.array([[0, 1], [1, 2], [2, 3], [3, 4], [4, 5],
-                                           [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]])
+                                            [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]])
     maxorbits = 10
 
     # Define DMC-UKF rate and gravity estimation data sampling
@@ -161,10 +160,12 @@ def mascon_loop():
 if __name__ == "__main__":
     # Call configuration class
     configuration = Configuration()
+    #configuration.data_type = 'dense'
+    #configuration.results_type = 'ideal'
     configuration.data_type = 'orbit'
     configuration.results_type = 'simultaneous'
 
-    prepare_simulation(dev_lmk=0, maskangle_sun=5*np.pi/180)
+    prepare_simulation(dev_lmk=0, maskangle_sun=-90*np.pi/180)
     configuration.flag_groundtruth = False
     configuration.flag_camera = False
     configuration.flag_results = True

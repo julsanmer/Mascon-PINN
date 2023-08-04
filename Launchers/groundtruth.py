@@ -2,10 +2,12 @@ import numpy as np
 import os
 import inspect
 
-from Basilisk.utilities import orbitalMotion, RigidBodyKinematics
-from Basilisk.utilities import macros as mc
 from Basilisk.simulation import planetEphemeris
-from Basilisk.ExternalModules import gravEst
+from Basilisk.utilities import orbitalMotion
+from Basilisk.utilities import RigidBodyKinematics as rbk
+from Basilisk.utilities import macros as mc
+
+from Basilisk.ExternalModules import masconFit
 
 # Import master classes: simulation base class and scenario base class
 from BSK.BSK_masters import BSKSim, BSKScenario
@@ -65,7 +67,7 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
         dyn_model.gravBodyEphem.rotRate = planetEphemeris.DoubleVector([360*mc.D2R / rot_period])
 
         # Compute asteroid dcm and angular velocity w.r.t. inertial
-        dcm_AN = RigidBodyKinematics.euler3232C([ra, np.pi/2 - dec, lst0])
+        dcm_AN = rbk.euler3232C([ra, np.pi/2 - dec, lst0])
         omega_AN_A = np.array([0, 0, 360*mc.D2R/rot_period])
         r_AN_N, v_AN_N = orbitalMotion.elem2rv(orbitalMotion.MU_SUN*(1000.**3), oe_asteroid)
 
@@ -90,7 +92,7 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
         r_CA_N = dcm_AN.transpose().dot(r_CA)
         v_CA_N = dcm_AN.transpose().dot(v_CA)
 
-        # Set spacecraft initial condition in Basilisk
+        # Set spacecraft initial condition in BSK
         if parameters.flag_sun:
             r_CN_N = r_CA_N + r_AN_N
             v_CN_N = v_CA_N + v_AN_N
@@ -117,116 +119,124 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
 
     # This subclass retrieves basilisk on-orbit data
     def orbit_data(self, parameters, outputs):
-        # Set gravity module
-        gravest_bsk = gravEst.GravEst()
-        gravest_bsk.poly.nFacet = parameters.asteroid.n_face
-        gravest_bsk.poly.nVertex = parameters.asteroid.n_vert
-        gravest_bsk.poly.orderFacet = (parameters.asteroid.order_face - 1).tolist()
-        gravest_bsk.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
-        gravest_bsk.poly.initializeParameters()
+        # Set shape object
+        masconfit_bsk = masconFit.MasconFit()
+        shape = masconfit_bsk.shape
+        shape.initPolyhedron(parameters.asteroid.xyz_vert.tolist(),
+                             parameters.asteroid.order_face.tolist())
 
         # Retrieve simulation times
         t = np.array(self.scTruthRec.times() * mc.NANO2SEC)
         n = len(t)
 
         # Retrieve spacecraft truth position and velocity
-        pos_CN_N = np.array(self.scTruthRec.r_BN_N)
-        vel_CN_N = np.array(self.scTruthRec.v_BN_N)
+        pos_BN_N0 = np.array(self.scTruthRec.r_BN_N)
+        vel_BN_N0 = np.array(self.scTruthRec.v_BN_N)
 
         # Retrieve asteroid truth position, velocity, mrp and angular velocity
-        pos_AN_N = np.array(self.asteroidTruthRec.r_BdyZero_N)
-        vel_AN_N = np.array(self.asteroidTruthRec.v_BdyZero_N)
-        mrp_AN = np.array(self.asteroidTruthRec.sigma_BN)
-        angvel_AN_A = np.array(self.asteroidTruthRec.omega_BN_B)
+        pos_PN_N0 = np.array(self.asteroidTruthRec.r_BdyZero_N)
+        vel_PN_N0 = np.array(self.asteroidTruthRec.v_BdyZero_N)
+        mrp_PN0 = np.array(self.asteroidTruthRec.sigma_BN)
+        angvel_PN0_P = np.array(self.asteroidTruthRec.omega_BN_B)
 
         # Compute spacecraft truth state relative to asteroid in inertial frame
-        pos_CA_N = np.array(pos_CN_N - pos_AN_N)
-        vel_CA_N = np.array(vel_CN_N - vel_AN_N)
+        pos_BP_N0 = np.array(pos_BN_N0 - pos_PN_N0)
+        vel_BP_N0 = np.array(vel_BN_N0 - vel_PN_N0)
 
-        # Preallocate spacecraft truth position and velocity
-        pos_CA_A = np.zeros((n, 3))
-        vel_CA_A = np.zeros((n, 3))
+        # Preallocate spacecraft truth position and velocity in asteroid inertial and rotating
+        pos_BP_N1 = np.zeros((n, 3))
+        vel_BP_N1 = np.zeros((n, 3))
+        pos_BP_P = np.zeros((n, 3))
+        vel_BP_P = np.zeros((n, 3))
 
         # Preallocate gravity acceleration in asteroid and inertial frames
-        acc_CA_A = np.zeros((n, 3))
-        acc_CA_N = np.zeros((n, 3))
+        acc_BP_P = np.zeros((n, 3))
 
         # Preallocate inhomogeneous gravity acceleration in asteroid frame
-        accHigh_CA_A = np.zeros((n, 3))
+        accHigh_BP_P = np.zeros((n, 3))
 
         # Preallocate asteroid position, orientation and Sun's direction
-        pos_AS_N = np.zeros((n, 3))
-        eul323_AN = np.zeros((n, 3))
-        e_SA_A = np.zeros((n, 3))
+        pos_PS_N1 = np.zeros((n, 3))
+        eul323_PN0 = np.zeros((n, 3))
+        e_SP_P = np.zeros((n, 3))
 
         # Preallocate spacecraft truth radius and altitude
-        r_CA = np.zeros(n)
-        h_CA = np.zeros(n)
+        r_BP = np.zeros(n)
+        h_BP = np.zeros(n)
 
         # Direction cosine matrix from ecliptic and equatorial inertial frames
-        dcm_N1N0 = RigidBodyKinematics.euler3232C([
-            parameters.asteroid.ra, np.pi/2 - parameters.asteroid.dec, 0])
+        dcm_N1N0 = parameters.asteroid.dcm_N1N0
+
+        # Spacecraft orientation in asteroid frame
+        mrp_BP = np.zeros((n, 3))
 
         # Loop through simulation times
         for i in range(n):
             # Retrieve dcm between inertial and asteroid frame
-            dcm_AN = RigidBodyKinematics.MRP2C(mrp_AN[i, 0:3])
+            dcm_PN0 = rbk.MRP2C(mrp_PN0[i, 0:3])
+            dcm_PN1 = np.matmul(dcm_PN0, dcm_N1N0.T)
 
             # Rotate spacecraft truth position and velocity to asteroid frame
-            pos_CA_A[i, 0:3] = dcm_AN.dot(pos_CA_N[i, 0:3])
-            vel_CA_A[i, 0:3] = dcm_AN.dot(vel_CA_N[i, 0:3]) - np.cross(angvel_AN_A[i, 0:3],
-                                                                       pos_CA_A[i, 0:3])
+            pos_BP_P[i, 0:3] = dcm_PN0.dot(pos_BP_N0[i, 0:3])
+            vel_BP_P[i, 0:3] = dcm_PN0.dot(vel_BP_N0[i, 0:3]) - np.cross(angvel_PN0_P[i, 0:3],
+                                                                         pos_BP_P[i, 0:3])
 
             # Fill spacecraft truth radius and altitude
-            r_CA[i] = np.linalg.norm(pos_CA_A[i, 0:3])
-            h_CA[i] = gravest_bsk.poly.computeAltitude(pos_CA_A[i, 0:3].tolist())
+            r_BP[i] = np.linalg.norm(pos_BP_P[i, 0:3])
+            h_BP[i] = shape.computeAltitude(pos_BP_P[i, 0:3].tolist())
 
             # Fill asteroid orientation
-            eul323_AN[i, 0:3] = RigidBodyKinematics.MRP2Euler323(mrp_AN[i, 0:3])
+            eul323_PN0[i, 0:3] = rbk.MRP2Euler323(mrp_PN0[i, 0:3])
 
             # Fill gravity acceleration
-            acc_CA_A[i, 0:3] = np.array(self.DynModels.asteroid.poly.computeField(pos_CA_A[i, 0:3])).reshape(3) \
-                               + self.DynModels.asteroid.mu*pos_CA_A[i,0:3]/np.linalg.norm(pos_CA_A[i, 0:3])**3
+            acc_BP_P[i, 0:3] = \
+                np.array(self.DynModels.asteroid.poly.computeField(pos_BP_P[i, 0:3])).reshape(3)
 
             # Rotate truth position and velocity to equatorial inertial frame
-            pos_CA_N[i, 0:3] = np.dot(dcm_N1N0, pos_CA_N[i, 0:3])
-            vel_CA_N[i, 0:3] = np.dot(dcm_N1N0, vel_CA_N[i, 0:3])
+            pos_BP_N1[i, 0:3] = np.dot(dcm_N1N0, pos_BP_N0[i, 0:3])
+            vel_BP_N1[i, 0:3] = np.dot(dcm_N1N0, vel_BP_N0[i, 0:3])
 
-            # Rotate gravity acceleration to equatorial inertial frame
-            acc_CA_N[i, 0:3] = np.dot(dcm_N1N0, acc_CA_N[i, 0:3])
+            ## Rotate gravity acceleration to equatorial inertial frame
+            #acc_CA_N1[i, 0:3] = np.dot(dcm_N1N0, acc_CA_N0[i, 0:3])
 
             # Rotate asteroid position to equatorial inertial frame
-            pos_AS_N[i, 0:3] = np.dot(dcm_N1N0, pos_AN_N[i, 0:3])
+            pos_PS_N1[i, 0:3] = np.dot(dcm_N1N0, pos_PN_N0[i, 0:3])
 
             # Rotate Sun's direction to equatorial inertial frame
-            e_SA_A[i, 0:3] = np.dot(dcm_AN, -pos_AN_N[i, 0:3] / np.linalg.norm(pos_AN_N[i, 0:3]))
+            e_SP_P[i, 0:3] = np.dot(dcm_PN0, -pos_PN_N0[i, 0:3] / np.linalg.norm(pos_PN_N0[i, 0:3]))
+
+            # Generate "fake" attitude to point camera towards asteroid
+            lon = np.arctan2(pos_BP_P[i, 1], pos_BP_P[i, 0])
+            lat = np.arcsin(pos_BP_P[i, 2] / r_BP[i])
+            mrp_BP[i, 0:3] = rbk.euler3232MRP([lon, -(np.pi/2 + lat), np.pi/2])
 
         # Save outputs simulation variables related to spacecraft
         outputs.groundtruth.t = t
-        outputs.groundtruth.pos_CA_N = pos_CA_N
-        outputs.groundtruth.vel_CA_N = vel_CA_N
-        outputs.groundtruth.pos_CA_A = pos_CA_A
-        outputs.groundtruth.vel_CA_A = vel_CA_A
-        outputs.groundtruth.acc_CA_N = acc_CA_N
-        outputs.groundtruth.acc_CA_A = acc_CA_A
-        outputs.groundtruth.accHigh_CA_A = accHigh_CA_A
-        outputs.groundtruth.r_CA = r_CA
-        outputs.groundtruth.h_CA = h_CA
+        outputs.groundtruth.pos_BP_N0 = pos_BP_N0
+        outputs.groundtruth.vel_BP_N0 = vel_BP_N0
+        outputs.groundtruth.pos_BP_N1 = pos_BP_N1
+        outputs.groundtruth.vel_BP_N1 = vel_BP_N1
+        outputs.groundtruth.pos_BP_P = pos_BP_P
+        outputs.groundtruth.vel_BP_P = vel_BP_P
+        outputs.groundtruth.mrp_BP = mrp_BP
+        #outputs.groundtruth.acc_CA_N0 = acc_CA_N0
+        outputs.groundtruth.acc_BP_P = acc_BP_P
+        outputs.groundtruth.accHigh_BP_P = accHigh_BP_P
+        outputs.groundtruth.r_BP = r_BP
+        outputs.groundtruth.h_BP = h_BP
 
         # Save outputs simulation variables related to asteroid
-        outputs.groundtruth.pos_AS_N = pos_AS_N
-        outputs.groundtruth.e_SA_A = e_SA_A
-        outputs.groundtruth.eul323_AN = eul323_AN
+        outputs.groundtruth.pos_PS_N1 = pos_PS_N1
+        outputs.groundtruth.e_SP_P = e_SP_P
+        outputs.groundtruth.mrp_PN0 = mrp_PN0
 
     # This subclass creates ejecta data
     def ejecta_data(self, parameters, outputs):
-        # Set gravity module
-        gravest_bsk = gravEst.GravEst()
-        gravest_bsk.poly.nFacet = parameters.asteroid.n_face
-        gravest_bsk.poly.nVertex = parameters.asteroid.n_vert
-        gravest_bsk.poly.orderFacet = (parameters.asteroid.order_face - 1).tolist()
-        gravest_bsk.poly.xyzVertex = parameters.asteroid.xyz_vert.tolist()
-        gravest_bsk.poly.initializeParameters()
+        # Set shape object
+        masconfit_bsk = masconFit.MasconFit()
+        shape = masconfit_bsk.shape
+        shape.initPolyhedron(parameters.asteroid.xyz_vert.tolist(),
+                             parameters.asteroid.order_face.tolist())
 
         # Retrieve number of orbits, ejecta and its max radius
         n_orbits = parameters.n_segments
@@ -235,15 +245,15 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
 
         # Retrieve time and asteroid rotating frame positions
         t = outputs.groundtruth.t
-        pos_CA_A = outputs.groundtruth.pos_CA_A
+        pos_BP_P = outputs.groundtruth.pos_BP_P
 
         # Preallocate ejecta positions and gravity accelerations
-        pos_EA_A = np.zeros((n_orbits, n_ejecta, 3))
-        acc_EA_A = np.zeros((n_orbits, n_ejecta, 3))
+        pos_EP_P = np.zeros((n_orbits, n_ejecta, 3))
+        acc_EP_P = np.zeros((n_orbits, n_ejecta, 3))
 
         # Preallocate ejecta radius and altitude
-        r_EA = np.zeros((n_orbits, n_ejecta))
-        h_EA = np.zeros((n_orbits, n_ejecta))
+        r_EP = np.zeros((n_orbits, n_ejecta))
+        h_EP = np.zeros((n_orbits, n_ejecta))
 
         # Initialize random seed and loop through orbits
         np.random.seed(0)
@@ -263,24 +273,25 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
                 while not flag:
                     # Try ejecta radius
                     if cont < parameters.asteroid.maxiter_ejecta:
-                        r_try = np.random.uniform(0, rmax_ejecta)
+                        r = np.random.uniform(0, rmax_ejecta)
                     else:
-                        r_try = parameters.asteroid.rmaxiter_ejecta
+                        r = parameters.asteroid.rmaxiter_ejecta
 
                     # Try ejecta position and compute normalized Laplacian
-                    pos_try = r_try*(pos_CA_A[idx_ejecta[j], 0:3] / np.linalg.norm(pos_CA_A[idx_ejecta[j], 0:3]))
-                    lap_try = gravest_bsk.poly.computeLaplacian([pos_try.tolist(), [0, 0, 0]])
+                    pos = r * (pos_BP_P[idx_ejecta[j], 0:3]
+                               / np.linalg.norm(pos_BP_P[idx_ejecta[j], 0:3]))
+                    lap = shape.computeLaplacian(pos.tolist())
 
                     # Save ejecta sample if outside of asteroid
-                    if abs(lap_try[0][0]) < 2*np.pi:
+                    if abs(lap) < 2*np.pi:
                         # Save ejecta position and gravity acceleration
-                        pos_EA_A[i, j, 0:3] = pos_try
-                        acc_EA_A[i, j, 0:3] = np.array(self.DynModels.asteroid.poly.computeField(pos_try)
-                                                       ).reshape(3)
+                        pos_EP_P[i, j, 0:3] = pos
+                        acc_EP_P[i, j, 0:3] = \
+                            np.array(self.DynModels.asteroid.poly.computeField(pos)).reshape(3)
 
                         # Save ejecta radius and altitude
-                        r_EA[i, j] = r_try
-                        h_EA[i, j] = gravest_bsk.poly.computeAltitude(pos_try.tolist())
+                        r_EP[i, j] = r
+                        h_EP[i, j] = shape.computeAltitude(pos.tolist())
 
                         # Set flag to break loop
                         flag = True
@@ -289,26 +300,24 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
                     cont += 1
 
         # Save outputs simulation variables related to ejecta
-        outputs.groundtruth.pos_EA_A = pos_EA_A
-        outputs.groundtruth.acc_EA_A = acc_EA_A
-        outputs.groundtruth.r_EA = r_EA
-        outputs.groundtruth.h_EA = h_EA
+        outputs.groundtruth.pos_EP_P = pos_EP_P
+        outputs.groundtruth.acc_EP_P = acc_EP_P
+        outputs.groundtruth.r_EP = r_EP
+        outputs.groundtruth.h_EP = h_EP
 
     # This subclass creates dense data
     def dense_data(self, parameters, outputs):
-        # Create ancillary gravity model
-        gravest_bsk = gravEst.GravEst()
-        gravest_bsk.poly.nVertex = parameters.asteroid.n_vert
-        gravest_bsk.poly.nFacet = parameters.asteroid.n_face
-        gravest_bsk.poly.xyzVertex = parameters.asteroid.xyz_vert
-        gravest_bsk.poly.orderFacet = parameters.asteroid.order_face
-        gravest_bsk.poly.initializeParameters()
+        # Set shape object
+        masconfit_bsk = masconFit.MasconFit()
+        shape = masconfit_bsk.shape
+        shape.initPolyhedron(parameters.asteroid.xyz_vert.tolist(),
+                             parameters.asteroid.order_face.tolist())
 
         # Set times
         t = np.linspace(parameters.times_groundtruth[0], parameters.times_groundtruth[-1],
                         int((parameters.times_groundtruth[-1]-parameters.times_groundtruth[0]) / parameters.dmcukf_rate))
-        r_CA_A = np.zeros((len(t), 3))
-        a_A = np.zeros((len(t), 3))
+        pos_BP_P = np.zeros((len(t), 3))
+        acc_BP_P = np.zeros((len(t), 3))
         rmax = 30 * 1e3
 
         # Create position-gravity acceleration time
@@ -320,28 +329,21 @@ class ScenarioAsteroid(BSKSim, BSKScenario):
                 lat = np.random.uniform(-np.pi/2, np.pi/2)
                 lon = np.random.uniform(0, 2*np.pi)
                 r = np.random.uniform(0, rmax)
-                r_i = r * np.array([np.cos(lat) * np.cos(lon),
+                pos = r * np.array([np.cos(lat) * np.cos(lon),
                                     np.cos(lat) * np.sin(lon),
                                     np.sin(lat)])
 
                 # Save only if it is an interior point
-                lap = gravest_bsk.poly.computeLaplacian([r_i.tolist(), [0, 0, 0]])
-                if abs(lap[0][0]) < 2*np.pi:
-                    r_CA_A[i, 0:3] = r_i
-                    a_A[i, 0:3] = np.array(self.DynModels.asteroid.poly.computeField(r_i.tolist())).reshape(3) \
-                                  + parameters.asteroid.mu * r_i / np.linalg.norm(r_i)**3
+                lap = shape.computeLaplacian(pos.tolist())
+                if abs(lap) < 2*np.pi:
+                    pos_BP_P[i, 0:3] = pos
+                    acc_BP_P[i, 0:3] = np.array(self.DynModels.asteroid.poly.computeField(pos.tolist())).reshape(3)
                     flag_ext = True
-                print(i)
 
         # Save generated dataset
         outputs.groundtruth.t = t
-        outputs.groundtruth.r_CA_A = r_CA_A
-        outputs.groundtruth.a_A = a_A
-
-        #h = np.zeros(len(pos))
-        #for i in range(len(pos)):
-        #    h[i] = gravest_bsk.poly.computeAltitude(pos[i, 0:3].tolist())
-        #data.h = h
+        outputs.groundtruth.pos_BP_P = pos_BP_P
+        outputs.groundtruth.acc_BP_P = acc_BP_P
 
 
 def run_groundtruth(scenario, parameters, outputs):
