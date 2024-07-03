@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="radiation_pressure_8h" kind="file" language="C++">
+    <compoundname>radiationPressure.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateData.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/dynParamManager.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/EclipseMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="radiation_pressure_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h</label>
+        <link refid="radiation_pressure_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/EclipseMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>simulation/dynamics/_GeneralModuleFiles/dynParamManager.h</label>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_radiation_pressure" prot="public">RadiationPressure</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="radiation_pressure_8h_1aad5ac5dc5dc9ecb642676754ee4eed19" prot="public" static="no" strong="no">
+        <type></type>
+        <name>srpModel_t</name>
+        <enumvalue id="radiation_pressure_8h_1aad5ac5dc5dc9ecb642676754ee4eed19a7b192bbbe0dcdebbe56f804fae3da80b" prot="public">
+          <name>SRP_CANNONBALL_MODEL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="radiation_pressure_8h_1aad5ac5dc5dc9ecb642676754ee4eed19a0bf961fba77a663236f63c8578ab28c8" prot="public">
+          <name>SRP_FACETED_CPU_MODEL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="39" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="39" bodyend="42"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>RADIATION_PRESSURE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RADIATION_PRESSURE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/dynParamManager.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/EclipseMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>SRP_CANNONBALL_MODEL,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>SRP_FACETED_CPU_MODEL</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}<sp/>srpModel_t;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>SRP<sp/>effects<sp/>on<sp/>body</highlight></codeline>
+<codeline lineno="48" refid="class_radiation_pressure" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_radiation_pressure" kindref="compound">RadiationPressure</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>DynamicEffector{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_radiation_pressure_1a7a6b15069b10eebb3876d40edeb92955" kindref="member">RadiationPressure</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_radiation_pressure_1acb223fc69ecd73cfed9d5df3a874280f" kindref="member">~RadiationPressure</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1a7a16bfe41381e17b4c7015dcf56fb54e" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1a2696596bd6c7b702063ff9026efcc949" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1aa779c199b29dcc5575e507ed884beb4f" kindref="member">linkInStates</ref>(DynParamManager&amp;<sp/>statesIn);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1ae111b045dc90c342b4397d92665f41ba" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1abe6f08c1fc6be35e5749b49f5e9270fc" kindref="member">computeForceTorque</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1ae437f5466b24ab3b4e8034db504597bf" kindref="member">setUseCannonballModel</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1ae9aedfded40b5a68aa5491011e1218ce" kindref="member">setUseFacetedCPUModel</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1a0217189543e18f1f04beb1233ebec4e7" kindref="member">addForceLookupBEntry</ref>(Eigen::Vector3d<sp/>vec);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1a2b9422295f0156df5c2810575f643d01" kindref="member">addTorqueLookupBEntry</ref>(Eigen::Vector3d<sp/>vec);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_radiation_pressure_1a245c83b0a97dc7f4f47c1e774b987bd9" kindref="member">addSHatLookupBEntry</ref>(Eigen::Vector3d<sp/>vec);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeCannonballModel(Eigen::Vector3d<sp/>rSunB_B);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeLookupModel(Eigen::Vector3d<sp/>rSunB_B);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69" refid="class_radiation_pressure_1ae7b50c7f11b852a520b68917ca98e0f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="class_radiation_pressure_1ae7b50c7f11b852a520b68917ca98e0f3" kindref="member">area</ref>;<sp/></highlight></codeline>
+<codeline lineno="70" refid="class_radiation_pressure_1a5ec0338c1ab01ad5d0cf9729b6452e39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="class_radiation_pressure_1a5ec0338c1ab01ad5d0cf9729b6452e39" kindref="member">coefficientReflection</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_radiation_pressure_1ad3abcdc52c7087423779fa4be2685b76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_radiation_pressure_1ad3abcdc52c7087423779fa4be2685b76" kindref="member">sunEphmInMsg</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_radiation_pressure_1a6873f2483e0a8a3c94d5788cdb1dc329" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;EclipseMsgPayload&gt;<sp/><ref refid="class_radiation_pressure_1a6873f2483e0a8a3c94d5788cdb1dc329" kindref="member">sunEclipseInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="class_radiation_pressure_1a0b00d43b9b863a0e7632212f09dcc31c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="class_radiation_pressure_1a0b00d43b9b863a0e7632212f09dcc31c" kindref="member">lookupForce_B</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_radiation_pressure_1a3215cd426ea9d8f15e7ad4838ee982fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="class_radiation_pressure_1a3215cd426ea9d8f15e7ad4838ee982fa" kindref="member">lookupTorque_B</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="class_radiation_pressure_1acacaa5b5a4470f5656e4c82d9e05bba0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="class_radiation_pressure_1acacaa5b5a4470f5656e4c82d9e05bba0" kindref="member">lookupSHat_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="class_radiation_pressure_1a826c3b2923c5163327757872b438ef39" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_radiation_pressure_1a826c3b2923c5163327757872b438ef39" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>srpModel_t<sp/><sp/>srpModel;<sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>sunEphmInBuffer;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>stateRead;<sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>EclipseMsgPayload<sp/>sunVisibilityFactor;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubR_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubSigma;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h"/>
+  </compounddef>
+</doxygen>

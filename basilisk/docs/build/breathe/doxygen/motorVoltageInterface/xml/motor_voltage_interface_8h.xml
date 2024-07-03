@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="motor_voltage_interface_8h" kind="file" language="C++">
+    <compoundname>motorVoltageInterface.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/ArrayMotorVoltageMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/ArrayMotorTorqueMsgPayload.h</includes>
+    <includes local="yes">../../../architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">../../../architecture/utilities/bskLogging.h</includes>
+    <includes local="no">Eigen/Dense</includes>
+    <includedby refid="motor_voltage_interface_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/deviceInterface/motorVoltageInterface/motorVoltageInterface.cpp</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>../../../architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="7">
+        <label>../../../architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/deviceInterface/motorVoltageInterface/motorVoltageInterface.h</label>
+        <link refid="motor_voltage_interface_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/ArrayMotorTorqueMsgPayload.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/ArrayMotorVoltageMsgPayload.h</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_motor_voltage_interface" prot="public">MotorVoltageInterface</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MOTOR_VOLTAGE_INTERFACE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOTOR_VOLTAGE_INTERFACE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/ArrayMotorVoltageMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/ArrayMotorTorqueMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../../architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../../architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="class_motor_voltage_interface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_motor_voltage_interface" kindref="compound">MotorVoltageInterface</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_voltage_interface_1a46744a448c61eac988620df0b185904b" kindref="member">MotorVoltageInterface</ref>();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_voltage_interface_1aa5cbf253c167af309f7bffca7880af02" kindref="member">~MotorVoltageInterface</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1af2dbcbc3a127b726e6e90d07269e18e3" kindref="member">computeMotorTorque</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1a2e38bf72b650a27aa92cce5d111e60e7" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1ad17ebaa585d1ba11db46c036c6880769" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1afac2ac456101d1fcad28f2b12d96fe28" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1a69ce433e79a79e152d6bb19690bc40b5" kindref="member">writeOutputMessages</ref>(uint64_t<sp/>Clock);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1ae535efef5a3055171d4830936b4c84f5" kindref="member">setGains</ref>(Eigen::VectorXd<sp/>gains);<sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1a29171f2b61fe5b76ae38914a092d0237" kindref="member">setScaleFactors</ref>(Eigen::VectorXd<sp/>scaleFactors);<sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_voltage_interface_1a602ee74e63159ac2af5b60e0678d944a" kindref="member">setBiases</ref>(Eigen::VectorXd<sp/>biases);<sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50" refid="class_motor_voltage_interface_1a301a62dd100ae94e6ffacc55555a5c47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;ArrayMotorVoltageMsgPayload&gt;<sp/><ref refid="class_motor_voltage_interface_1a301a62dd100ae94e6ffacc55555a5c47" kindref="member">motorVoltageInMsg</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="class_motor_voltage_interface_1a0b57693e6a0235290902f99c8387af1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;ArrayMotorTorqueMsgPayload&gt;<sp/><ref refid="class_motor_voltage_interface_1a0b57693e6a0235290902f99c8387af1b" kindref="member">motorTorqueOutMsg</ref>;</highlight></codeline>
+<codeline lineno="52" refid="class_motor_voltage_interface_1a18359c1aae12d32a03c106284dd72701" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/><ref refid="class_motor_voltage_interface_1a18359c1aae12d32a03c106284dd72701" kindref="member">voltage2TorqueGain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="class_motor_voltage_interface_1ad2810d175de6edfb229e9f8b8a44ccd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/><ref refid="class_motor_voltage_interface_1ad2810d175de6edfb229e9f8b8a44ccd4" kindref="member">scaleFactor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="class_motor_voltage_interface_1ad076bcdcbbf5e402544f7adac5d80068" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/><ref refid="class_motor_voltage_interface_1ad076bcdcbbf5e402544f7adac5d80068" kindref="member">bias</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="class_motor_voltage_interface_1aa2d698c7fbd276e14e1a4b8f045c45f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_motor_voltage_interface_1aa2d698c7fbd276e14e1a4b8f045c45f6" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsgPayload<sp/>outputTorqueBuffer;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>prevTime;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorVoltageMsgPayload<sp/>inputVoltageBuffer;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/deviceInterface/motorVoltageInterface/motorVoltageInterface.h"/>
+  </compounddef>
+</doxygen>

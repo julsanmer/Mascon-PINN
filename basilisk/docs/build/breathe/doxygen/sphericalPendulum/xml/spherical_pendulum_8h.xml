@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="spherical_pendulum_8h" kind="file" language="C++">
+    <compoundname>sphericalPendulum.h</compoundname>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateEffector.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenMRP.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/fuelSlosh.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="spherical_pendulum_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h</label>
+        <link refid="spherical_pendulum_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/fuelSlosh.h</label>
+      </node>
+      <node id="2">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateEffector.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_spherical_pendulum" prot="public">SphericalPendulum</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SPHERICAL_PENDULUM_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SPHERICAL_PENDULUM_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenMRP.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/fuelSlosh.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="class_spherical_pendulum" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_spherical_pendulum" kindref="compound">SphericalPendulum</ref><sp/>:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>StateEffector,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>FuelSlosh</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="35" refid="class_spherical_pendulum_1ae7f4120302710946e97e6af2dc815baf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1ae7f4120302710946e97e6af2dc815baf" kindref="member">pendulumRadius</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="class_spherical_pendulum_1ad44397487ae1b4fc535beb5208c12923" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="class_spherical_pendulum_1ad44397487ae1b4fc535beb5208c12923" kindref="member">D</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="class_spherical_pendulum_1a117fb6ce58b19faadd8a4580c31c3223" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a117fb6ce58b19faadd8a4580c31c3223" kindref="member">phiDotInit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="class_spherical_pendulum_1a46aaaeffd13a88614a13222fcf13e2b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a46aaaeffd13a88614a13222fcf13e2b4" kindref="member">thetaDotInit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="class_spherical_pendulum_1a0bd6ce658b46e964612fd2d84cf805e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a0bd6ce658b46e964612fd2d84cf805e9" kindref="member">massInit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="class_spherical_pendulum_1a527fdac3c12d5d733d9c2b8d335f1f14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spherical_pendulum_1a527fdac3c12d5d733d9c2b8d335f1f14" kindref="member">nameOfPhiState</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="class_spherical_pendulum_1aa80f0c620e075f405c64c6b1e5b25995" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spherical_pendulum_1aa80f0c620e075f405c64c6b1e5b25995" kindref="member">nameOfThetaState</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="class_spherical_pendulum_1a29c20c51a699b657e96755e87bb3ab1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spherical_pendulum_1a29c20c51a699b657e96755e87bb3ab1c" kindref="member">nameOfPhiDotState</ref>;<sp/></highlight></codeline>
+<codeline lineno="43" refid="class_spherical_pendulum_1ae0ee4a2f4e78249a1db3c6dcfae3553b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spherical_pendulum_1ae0ee4a2f4e78249a1db3c6dcfae3553b" kindref="member">nameOfThetaDotState</ref>;<sp/></highlight></codeline>
+<codeline lineno="44" refid="class_spherical_pendulum_1a24eaa63fbb17e76ce442657d251ed24e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spherical_pendulum_1a24eaa63fbb17e76ce442657d251ed24e" kindref="member">nameOfMassState</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="class_spherical_pendulum_1a5ee1b42006e84b937eb67790719ad546" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spherical_pendulum_1a5ee1b42006e84b937eb67790719ad546" kindref="member">d</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="class_spherical_pendulum_1a0cc0bcf95161caa943d34aa59d8bf693" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_spherical_pendulum_1a0cc0bcf95161caa943d34aa59d8bf693" kindref="member">massState</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="class_spherical_pendulum_1a24cd5a5af94f63685bc16e1c685f55be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spherical_pendulum_1a24cd5a5af94f63685bc16e1c685f55be" kindref="member">pHat_01</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="class_spherical_pendulum_1af2db399046e2e14daf776606dc539ec6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spherical_pendulum_1af2db399046e2e14daf776606dc539ec6" kindref="member">pHat_02</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="class_spherical_pendulum_1a0d970ad8010be85bc594b36730e1e0c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spherical_pendulum_1a0d970ad8010be85bc594b36730e1e0c1" kindref="member">pHat_03</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="class_spherical_pendulum_1ac6b34ee587210890264f6b0d9b262b89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_spherical_pendulum_1ac6b34ee587210890264f6b0d9b262b89" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phiInit;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thetaInit;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theta;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phiDot;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thetaDot;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>massFSP;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_PcB_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>rTilde_PcB_B;<sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rPrime_PcB_B;<sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>rPrimeTilde_PcB_B;<sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>aPhi;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>bPhi;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>aTheta;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>bTheta;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cPhi;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cTheta;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*g_N;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>l_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>lPrime_B;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>lPrime_P0;<sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*phiState;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*thetaState;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*phiDotState;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*thetaDotState;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*omegaState;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*sigmaState;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*velocityState;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_B_P0;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rotation<sp/>matrix<sp/>from<sp/>P0<sp/>to<sp/>B<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint64_t<sp/>effectorID;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spherical_pendulum_1a8337b9a1efbd286579db94fe03e46beb" kindref="member">SphericalPendulum</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spherical_pendulum_1aafcc214da9ae3ad7475a65cfa252f1fd" kindref="member">~SphericalPendulum</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1abfd75abcf8ed0a04178b8882c110e99d" kindref="member">registerStates</ref>(DynParamManager&amp;<sp/>states);<sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a294952874416b5267108be7045feaf44" kindref="member">linkInStates</ref>(DynParamManager&amp;<sp/>states);<sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1aa9aefb11b7fca57f5aee808f2e559683" kindref="member">updateEffectorMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime);<sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a27b4824731dbdaf70da0f7ceb45e7813" kindref="member">modifyStates</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime);<sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1a2be0120baaf3e96a14034b86910478c0" kindref="member">retrieveMassValue</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1afa6f38822f051240eed71faa0b4db12f" kindref="member">updateContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>BackSubMatrices<sp/>&amp;<sp/>backSubContr,<sp/>Eigen::Vector3d<sp/>sigma_BN,<sp/>Eigen::Vector3d<sp/>omega_BN_B,<sp/>Eigen::Vector3d<sp/>g_N);<sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1ae840f636e5a62361c82bb6b43825e244" kindref="member">updateEnergyMomContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>&amp;<sp/>rotAngMomPntCContr_B,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>rotEnergyContr,<sp/>Eigen::Vector3d<sp/>omega_BN_B);<sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spherical_pendulum_1ab491bbdbb48e154e765d60a642e02b97" kindref="member">computeDerivatives</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>rDDot_BN_N,<sp/>Eigen::Vector3d<sp/>omegaDot_BN_B,<sp/>Eigen::Vector3d<sp/>sigma_BN);<sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SPHERICAL_PENDULUM_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h"/>
+  </compounddef>
+</doxygen>

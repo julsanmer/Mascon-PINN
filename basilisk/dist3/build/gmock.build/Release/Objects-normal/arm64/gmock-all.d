@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock-all.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-actions.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/gmock-port.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-port.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/gmock-pp.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-cardinalities.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-function-mocker.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-spec-builders.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-matchers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-more-actions.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-more-matchers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/include/gmock/gmock-nice-strict.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock-cardinalities.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock-internal-utils.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock-matchers.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock-spec-builders.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googlemock/src/gmock.cc

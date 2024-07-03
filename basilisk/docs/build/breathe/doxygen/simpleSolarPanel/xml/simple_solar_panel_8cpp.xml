@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="simple_solar_panel_8cpp" kind="file" language="C++">
+    <compoundname>simpleSolarPanel.cpp</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">algorithm</includes>
+    <includes refid="simple_solar_panel_8h" local="yes">simpleSolarPanel.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenMRP.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/power/simpleSolarPanel/simpleSolarPanel.cpp</label>
+        <link refid="simple_solar_panel_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>simpleSolarPanel.h</label>
+        <link refid="simple_solar_panel_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="5">
+        <label>algorithm</label>
+      </node>
+      <node id="10">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/msgPayloadDefC/EclipseMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="20">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="18">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="19">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="4">
+        <label>cstring</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="9">
+        <label>simulation/power/_GeneralModuleFiles/powerNodeBase.h</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Created<sp/>by<sp/>andrew<sp/>on<sp/>7/12/19.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simpleSolarPanel.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenMRP.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">SimpleSolarPanel::SimpleSolarPanel(){</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;nodePowerOut<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_solar_panel_1ad8a6b9ccf550ed1c7ba699a383beaadb" kindref="member">panelArea</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_solar_panel_1a7dff63276e86c6409f0fc3c75b3487bf" kindref="member">panelEfficiency</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_solar_panel_1a498603a789526c1e25e45a942c586421" kindref="member">nHat_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">SimpleSolarPanel::~SimpleSolarPanel(){</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_solar_panel_1a0896fbb9379f1516a684e39b5a5fff2b" kindref="member">SimpleSolarPanel::customReset</ref>(uint64_t<sp/>CurrentClock)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_solar_panel_1ad8a6b9ccf550ed1c7ba699a383beaadb" kindref="member">panelArea</ref><sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_solar_panel_1a63754559707a850ac6cf59a608a08289" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>panelArea<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>value&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_solar_panel_1a7dff63276e86c6409f0fc3c75b3487bf" kindref="member">panelEfficiency</ref><sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_solar_panel_1a63754559707a850ac6cf59a608a08289" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>panelEfficiency<sp/>variable<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>value&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_solar_panel_1a498603a789526c1e25e45a942c586421" kindref="member">nHat_B</ref>.norm()<sp/>&gt;<sp/>0.1)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_solar_panel_1a498603a789526c1e25e45a942c586421" kindref="member">nHat_B</ref>.normalize();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_solar_panel_1a63754559707a850ac6cf59a608a08289" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>nHat_B<sp/>must<sp/>be<sp/>set<sp/>to<sp/>a<sp/>non-zero<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_simple_solar_panel_1a9d4244e51699f41913dc221ff545f96b" kindref="member">sunInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_solar_panel_1a63754559707a850ac6cf59a608a08289" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;simpleSolarPanel.sunInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_simple_solar_panel_1a646981af9790ff6c7bdad89f21f2a5fa" kindref="member">stateInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_solar_panel_1a63754559707a850ac6cf59a608a08289" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;simpleSolarPanel.stateInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_simple_solar_panel_1a8b4c26c61945492cdbee4a8d7cf7a1f0" kindref="member">SimpleSolarPanel::customReadMessages</ref>()</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sunData<sp/>=<sp/><ref refid="class_simple_solar_panel_1a9d4244e51699f41913dc221ff545f96b" kindref="member">sunInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;stateCurrent<sp/>=<sp/><ref refid="class_simple_solar_panel_1a646981af9790ff6c7bdad89f21f2a5fa" kindref="member">stateInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_solar_panel_1a9d4244e51699f41913dc221ff545f96b" kindref="member">sunInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sunData<sp/>=<sp/>this-&gt;<ref refid="class_simple_solar_panel_1a9d4244e51699f41913dc221ff545f96b" kindref="member">sunInMsg</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_solar_panel_1a646981af9790ff6c7bdad89f21f2a5fa" kindref="member">stateInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;stateCurrent<sp/>=<sp/>this-&gt;<ref refid="class_simple_solar_panel_1a646981af9790ff6c7bdad89f21f2a5fa" kindref="member">stateInMsg</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_solar_panel_1a6d83239c8da0d9bcd2a2842e5fbf94f3" kindref="member">sunEclipseInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EclipseMsgPayload<sp/>sunVisibilityFactor;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sun<sp/>visiblity<sp/>input<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sunVisibilityFactor<sp/>=<sp/>this-&gt;<ref refid="class_simple_solar_panel_1a6d83239c8da0d9bcd2a2842e5fbf94f3" kindref="member">sunEclipseInMsg</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/>sunVisibilityFactor.shadowFactor;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_solar_panel_1aafeaea03e0b43ec3e781d8292d7bb09b" kindref="member">SimpleSolarPanel::setPanelParameters</ref>(Eigen::Vector3d<sp/>nHat_B,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>panelArea,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>panelEfficiency)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;nHat_B<sp/>=<sp/><ref refid="class_simple_solar_panel_1a498603a789526c1e25e45a942c586421" kindref="member">nHat_B</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;panelArea<sp/>=<sp/><ref refid="class_simple_solar_panel_1ad8a6b9ccf550ed1c7ba699a383beaadb" kindref="member">panelArea</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;panelEfficiency<sp/>=<sp/><ref refid="class_simple_solar_panel_1a7dff63276e86c6409f0fc3c75b3487bf" kindref="member">panelEfficiency</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SimpleSolarPanel::computeSunData()</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_SB_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sHat_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_BN;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_BN_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_SN_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigma_BN;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sHat_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>r_BN_N<sp/>=<sp/>cArray2EigenVector3d(this-&gt;stateCurrent.r_BN_N);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>r_SN_N<sp/>=<sp/>cArray2EigenVector3d(this-&gt;sunData.PositionVector);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>sigma_BN<sp/>=<sp/>cArray2EigenMRPd(this-&gt;stateCurrent.sigma_BN);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>r_SB_N<sp/>=<sp/>r_SN_N<sp/>-<sp/>r_BN_N;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>sHat_N<sp/>=<sp/>r_SB_N.normalized();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_BN<sp/>=<sp/>sigma_BN.toRotationMatrix().transpose();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>sHat_B<sp/>=<sp/>dcm_BN<sp/>*<sp/>sHat_N;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;projectedArea<sp/>=<sp/>this-&gt;<ref refid="class_simple_solar_panel_1ad8a6b9ccf550ed1c7ba699a383beaadb" kindref="member">panelArea</ref><sp/>*<sp/>(sHat_B.dot(this-&gt;<ref refid="class_simple_solar_panel_1a498603a789526c1e25e45a942c586421" kindref="member">nHat_B</ref>));</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;projectedArea&lt;0){</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;projectedArea<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r_SBNorm<sp/>=<sp/>r_SB_N.norm();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sunDistanceFactor<sp/>=<sp/>pow(AU*1000.,<sp/>2.)/pow(r_SBNorm,<sp/>2.);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SimpleSolarPanel::evaluatePowerModel(PowerNodeUsageMsgPayload<sp/>*powerUsageSimMsg)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;computeSunData();</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sunPowerFactor<sp/>=<sp/>SOLAR_FLUX_EARTH<sp/>*<sp/>this-&gt;sunDistanceFactor<sp/>*<sp/>this-&gt;shadowFactor;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>powerUsageSimMsg-&gt;netPower<sp/>=<sp/>sunPowerFactor<sp/>*<sp/>this-&gt;projectedArea<sp/>*<sp/>this-&gt;<ref refid="class_simple_solar_panel_1a7dff63276e86c6409f0fc3c75b3487bf" kindref="member">panelEfficiency</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/power/simpleSolarPanel/simpleSolarPanel.cpp"/>
+  </compounddef>
+</doxygen>

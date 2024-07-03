@@ -1,0 +1,764 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="relative_o_du_k_f_8h" kind="file" language="C++">
+    <compoundname>relativeODuKF.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">cMsgCInterface/NavTransMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/OpNavMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/OpNavFilterMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includedby refid="relative_o_du_k_f_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h</label>
+        <link refid="relative_o_du_k_f_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/OpNavFilterMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/OpNavMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_rel_o_du_k_f_config" prot="public">RelODuKFConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1adeb1ce7e2e6bd6968889f12fc81d6fe4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_relODuKF</definition>
+        <argsstring>(RelODuKFConfig *configData, int64_t moduleId)</argsstring>
+        <name>SelfInit_relODuKF</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates the two moduel output messages. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="101" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="31" bodyend="35" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="101" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1acfb17520d1c4a52cfe67a6e6274b34df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_relODuKF</definition>
+        <argsstring>(RelODuKFConfig *configData, uint64_t callTime, int64_t moduleId)</argsstring>
+        <name>Update_relODuKF</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the relative position measurements and outputs an estimate of the spacecraft states in the intertial frame. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Handle initializing time in filter and discard initial messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the time tag from the measured data is new compared to previous step, propagate and update the filter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If current clock time is further ahead than the measured time, then propagate to this current time-step</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>The post fits are y - ybar if a measurement was read, if observations are zero, do not compute post fit residuals</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute Post Fit Residuals, first get Y (eq 22) using the states post fit</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (equation 23)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the relative OD estimate into the copy of the navigation message structure</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the filter states output buffer and write the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="102" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="135" bodyend="219" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="102" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1ae4214cdc7167b08b5af28da6ee713a0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_relODuKF</definition>
+        <argsstring>(RelODuKFConfig *configData, uint64_t callTime, int64_t moduleId)</argsstring>
+        <name>Reset_relODuKF</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the relative OD filter to an initial state and initializes the internal estimation matrices. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Initialize filter parameters to max values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Ensure that all internal filter matrices are zeroed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set lambda/gamma to standard value for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>User a cholesky decomposition to obtain the sBar and sQnoise matrices for use in filter at runtime</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="104" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="45" bodyend="126" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="104" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1ab0cf81c20965315b7090e6def6e6a8e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void relODuKFTwoBodyDyn</definition>
+        <argsstring>(double state[ODUKF_N_STATES], double mu, double *stateDeriv)</argsstring>
+        <name>relODuKFTwoBodyDyn</name>
+        <param>
+          <type>double</type>
+          <declname>state</declname>
+          <array>[ODUKF_N_STATES]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+          <defname>muPlanet</defname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>stateDeriv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Function for two body dynamics solvers in order to use in the RK4. Only two body dynamics is used currently, but SRP, Solar Gravity, spherical harmonics can be added here. <simplesect kind="return"><para>double Next state </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting state </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>muPlanet</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Planet gravity constant </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stateDeriv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>State derivative vector </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="106" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="274" bodyend="284" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="106" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1a04f96d384cc1b3d97591db7ecc89c747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int relODuKFTimeUpdate</definition>
+        <argsstring>(RelODuKFConfig *configData, double updateTime)</argsstring>
+        <name>relODuKFTimeUpdate</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the time update for the relative OD kalman filter. It propagates the sigma points forward in time and then gets the current covariance and state estimates. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the planet ID from the message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Copy over the current state estimate into the 0th Sigma point and propagate by dt</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Scale that Sigma point by the appopriate scaling factor (Wm[0])</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the transpose of the sBar matrix because it is easier to extract Rows vs columns</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each Sigma point, apply sBar-based error, propagate forward, and scale by Wm just like 0th. Note that we perform +/- sigma points simultaneously in loop to save loop values.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Adding covariance columns from sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Subtracting covariance columns from sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the AT matrix prior to assembly</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the AT matrix. Note that this matrix is the internals of the qr decomposition call in the source design documentation. It is the inside of equation 20 in that document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Pop the sQNoise matrix on to the end of AT prior to getting QR decomposition</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>QR decomposition (only R computed!) of the AT matrix provides the new sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the sBar matrix over by the xBar vector using the appropriate weight like in equation 21 in design document.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Save current sBar matrix, covariance, and state estimate off for further use</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="107" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="293" bodyend="406" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="107" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1a091fa7c77d17610252a608fc60ccd4a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int relODuKFMeasUpdate</definition>
+        <argsstring>(RelODuKFConfig *configData)</argsstring>
+        <name>relODuKFMeasUpdate</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the measurement update for the kalman filter. It applies the observations in the obs vectors to the current state estimate and updates the state/covariance with that information. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the valid observations and the measurement model for all observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (note that this is equation 23 in the time update section of the reference document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the matrix that we perform the QR decomposition on in the measurement update section of the code. This is based on the differenence between the yBar parameter and the calculated measurement models. Equation 24 in driving doc.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>This is the square-root of the Rk matrix which we treat as the Cholesky decomposition of the observation variance matrix constructed for our number of observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Perform QR decomposition (only R again) of the above matrix to obtain the current Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the matrix over by the difference between the 0th SP-based measurement model and the yBar matrix (cholesky down-date again)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shifted matrix represents the Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Construct the Pxy matrix (equation 26) which multiplies the Sigma-point cloud by the measurement model cloud (weighted) to get the total Pxy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Then we need to invert the SyT*Sy matrix to get the Kalman gain factor. Since The Sy matrix is lower triangular, we can do a back-sub inversion instead of a full matrix inversion. That is the ukfUInv and ukfLInv calls below. Once that multiplication is done (equation 27), we have the Kalman Gain.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Difference the yBar and the observations to get the observed error and multiply by the Kalman Gain to get the state update. Add the state update to the state to get the updated state value (equation 27).</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the updated matrix U from equation 28. Note that I then transpose it so that I can extract &quot;columns&quot; from adjacent memory</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each column in the update matrix, perform a cholesky down-date on it to get the total shifted S matrix (called sBar in internal parameters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute equivalent covariance based on updated sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="108" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="436" bodyend="570" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="108" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1ace568cb3f451c1253aa5444b9fda701b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void relODuKFCleanUpdate</definition>
+        <argsstring>(RelODuKFConfig *configData)</argsstring>
+        <name>relODuKFCleanUpdate</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method cleans the filter states after a bad upadate on the fly. It removes the potentially corrupted previous estimates and puts the filter back to a working state. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Reset the observations, state, and covariannces to a previous safe value</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Reset the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="109" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="578" bodyend="599" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="109" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1a7acae4f65b7059a21b8b7eaf7274a332" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void relODStateProp</definition>
+        <argsstring>(RelODuKFConfig *configData, double *stateInOut, double dt)</argsstring>
+        <name>relODStateProp</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>stateInOut</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method propagates a relative OD state vector forward in time. Note that the calling parameter is updated in place to save on data copies. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stateInOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state that is propagated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step (s) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Start RK4</para>
+<para><itemizedlist>
+<listitem><para>Compute k1</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute k2</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute k3</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute k4</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Gather all terms with proper scales</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="110" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="228" bodyend="266" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="110" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="relative_o_du_k_f_8h_1aa2d262aa331150ef1f5f52c86903828f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void relODuKFMeasModel</definition>
+        <argsstring>(RelODuKFConfig *configData)</argsstring>
+        <name>relODuKFMeasModel</name>
+        <param>
+          <type><ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the measurement model. Given that the data is coming from the pixelLine Converter, the transformation has already taken place from pixel data to spacecraft position. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the OD filter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>yMeas matrix was set backwards deliberately so we need to transpose it through</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" line="111" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.c" bodystart="413" bodyend="428" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h" declline="111" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_RELOD_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_RELOD_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavTransMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/OpNavMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/OpNavFilterMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="struct_rel_o_du_k_f_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41" refid="struct_rel_o_du_k_f_config_1a46b496856032c23d4333065bf9608560" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C<sp/><ref refid="struct_rel_o_du_k_f_config_1a46b496856032c23d4333065bf9608560" kindref="member">navStateOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_rel_o_du_k_f_config_1a3a0ce6eecbe053e4d03914383689cce7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavFilterMsg_C<sp/><ref refid="struct_rel_o_du_k_f_config_1a3a0ce6eecbe053e4d03914383689cce7" kindref="member">filtDataOutMsg</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_rel_o_du_k_f_config_1a79a33db2aa30db0783460abe67eae136" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C<sp/><ref refid="struct_rel_o_du_k_f_config_1a79a33db2aa30db0783460abe67eae136" kindref="member">opNavInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_rel_o_du_k_f_config_1a6099d23fbb5a8faed135b8bde5af68fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a6099d23fbb5a8faed135b8bde5af68fe" kindref="member">numStates</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_rel_o_du_k_f_config_1a17b8876a74e3d8bd6020eacca3d98a22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a17b8876a74e3d8bd6020eacca3d98a22" kindref="member">countHalfSPs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="struct_rel_o_du_k_f_config_1ae9d59265eb7c9b8b8c57763d819ec336" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1ae9d59265eb7c9b8b8c57763d819ec336" kindref="member">numObs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_rel_o_du_k_f_config_1a80c17aa7485f99d6718198a4c76b3d69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a80c17aa7485f99d6718198a4c76b3d69" kindref="member">beta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="struct_rel_o_du_k_f_config_1adb7d40dedad2a3dfb099b209f3f8510c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1adb7d40dedad2a3dfb099b209f3f8510c" kindref="member">alpha</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="struct_rel_o_du_k_f_config_1acc4347bb179823edc554ae6dd22e969c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1acc4347bb179823edc554ae6dd22e969c" kindref="member">kappa</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="struct_rel_o_du_k_f_config_1a488aed8a2072c204a2e6a1fe8577c63a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a488aed8a2072c204a2e6a1fe8577c63a" kindref="member">lambdaVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="struct_rel_o_du_k_f_config_1af1a7b1507519030baf7d0a3ac8bbb33c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1af1a7b1507519030baf7d0a3ac8bbb33c" kindref="member">gamma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="struct_rel_o_du_k_f_config_1a50cc1e78fad7ea87e4212870b9d7e16d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a50cc1e78fad7ea87e4212870b9d7e16d" kindref="member">switchMag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="struct_rel_o_du_k_f_config_1a01f977c2a311a973249caceefbaf99e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a01f977c2a311a973249caceefbaf99e4" kindref="member">dt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="struct_rel_o_du_k_f_config_1a27b2783319d30c685b0fecc653f9395f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a27b2783319d30c685b0fecc653f9395f" kindref="member">timeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_rel_o_du_k_f_config_1a8592d14b60e300218028b3dcad257e4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a8592d14b60e300218028b3dcad257e4c" kindref="member">gyrAggTimeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="struct_rel_o_du_k_f_config_1a2c0d1a5c0d18d6ae7247c87b92b75f36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>aggSigma_b2b1[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="struct_rel_o_du_k_f_config_1ad4a1b2563778622c122e648f6433a9ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BdyGyrpltf[3][3];<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="struct_rel_o_du_k_f_config_1af7c4629fb75d54868d4c6044b05ac569" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wM[2<sp/>*<sp/>ODUKF_N_STATES<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_rel_o_du_k_f_config_1a23d1a80c41cde3c57b169434c089d712" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wC[2<sp/>*<sp/>ODUKF_N_STATES<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="struct_rel_o_du_k_f_config_1afcef086ecff618ebcbe894c7cbc59083" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stateInit[ODUKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="struct_rel_o_du_k_f_config_1ab9f14d188a5f2945006c23a4d0931ccc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>state[ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_rel_o_du_k_f_config_1aa79af59f9908f648bfad2eac4b9d3478" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>statePrev[ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="struct_rel_o_du_k_f_config_1a5f19cdb6b8148a0c24e9811f7b221d5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBar[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="struct_rel_o_du_k_f_config_1a623c497ffed9d539e0cc1f29ac2e2a05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBarPrev[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="struct_rel_o_du_k_f_config_1a13c0aab1ead1a830fadb680de8e06e74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="struct_rel_o_du_k_f_config_1ada002a24bf1bc24e851d4217ba94546e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarPrev[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="struct_rel_o_du_k_f_config_1a0d65b5f86c4e9ffd8f445ae18222303e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarInit[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="struct_rel_o_du_k_f_config_1a31613d39b86a1947dd75973db107e57c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xBar[ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="struct_rel_o_du_k_f_config_1ad9429ed887f8eed85406f91336fc8997" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>obs[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="struct_rel_o_du_k_f_config_1ae3b10f05c3c280f7d8d4bab38cb93b1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yMeas[3*(2*ODUKF_N_STATES+1)];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="struct_rel_o_du_k_f_config_1a208796034227884301177c59b349d762" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SP[(2*ODUKF_N_STATES+1)*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="struct_rel_o_du_k_f_config_1afcbfe2aecffde4c1a6b436eb2b2d61fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qNoise[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="struct_rel_o_du_k_f_config_1a9c5acfdf0e637e1fdceaaed5c9e2f07b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sQnoise[ODUKF_N_STATES*ODUKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="struct_rel_o_du_k_f_config_1ac24fb281915029655a64c5750f9a91bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>measNoise[ODUKF_N_MEAS*ODUKF_N_MEAS];<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="struct_rel_o_du_k_f_config_1a2dab49dc42d17a6f44ef6ba2e5850199" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a2dab49dc42d17a6f44ef6ba2e5850199" kindref="member">noiseSF</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="struct_rel_o_du_k_f_config_1a37b9b25cc2ebc02fcc412151a8e99a93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a37b9b25cc2ebc02fcc412151a8e99a93" kindref="member">planetIdInit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="struct_rel_o_du_k_f_config_1ace5b7d075ec10f8a28266ff65d3313db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1ace5b7d075ec10f8a28266ff65d3313db" kindref="member">planetId</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="struct_rel_o_du_k_f_config_1a33aab2cd8eafcbce1084b35bf3e24ba4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_rel_o_du_k_f_config_1a33aab2cd8eafcbce1084b35bf3e24ba4" kindref="member">firstPassComplete</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="struct_rel_o_du_k_f_config_1a8d255171e95ee863341e9aedefae56ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>postFits[3];<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="struct_rel_o_du_k_f_config_1a8d3a4408b3a381e1f6f50370b40592d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a8d3a4408b3a381e1f6f50370b40592d3" kindref="member">timeTagOut</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="struct_rel_o_du_k_f_config_1a6ece1fe1571211b4b9fcff341ea3d5cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_rel_o_du_k_f_config_1a6ece1fe1571211b4b9fcff341ea3d5cd" kindref="member">maxTimeJump</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="struct_rel_o_du_k_f_config_1a9f0c6f9097b7077770e3e9d10a893112" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsgPayload<sp/><ref refid="struct_rel_o_du_k_f_config_1a9f0c6f9097b7077770e3e9d10a893112" kindref="member">opNavInBuffer</ref>;<sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="struct_rel_o_du_k_f_config_1a2c32e666eb72a4c474670dc459412935" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="struct_rel_o_du_k_f_config_1a2c32e666eb72a4c474670dc459412935" kindref="member">bskLogger</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_relODuKF(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_relODuKF(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_relODuKF(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>relODuKFTwoBodyDyn(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>state[ODUKF_N_STATES],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateDeriv);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>relODuKFTimeUpdate(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>relODuKFMeasUpdate(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>relODuKFCleanUpdate(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>relODStateProp(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateInOut,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>relODuKFMeasModel(<ref refid="struct_rel_o_du_k_f_config" kindref="compound">RelODuKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/opticalNavigation/relativeODuKF/relativeODuKF.h"/>
+  </compounddef>
+</doxygen>

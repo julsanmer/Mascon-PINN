@@ -1,0 +1,545 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dv_accumulation_8c" kind="file" language="C++">
+    <compoundname>dvAccumulation.c</compoundname>
+    <includes refid="dv_accumulation_8h" local="yes">fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="yes">architecture/utilities/bsk_Print.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c</label>
+        <link refid="dv_accumulation_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.h</label>
+        <link refid="dv_accumulation_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bsk_Print.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/AccDataMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="9">
+        <label>stdlib.h</label>
+      </node>
+      <node id="8">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dv_accumulation_8c_1abcb38beb35d9ba7b37d85b47dc8d7ada" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_dvAccumulation</definition>
+        <argsstring>(DVAccumulationData *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_dvAccumulation</name>
+        <param>
+          <type><ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the nav aggregation algorithm. It initializes the output message in the messaging system. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the Nav aggregation interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="34" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_accumulation_8c_1a0764e30403e79badfb50db55213cf172" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_dvAccumulation</definition>
+        <argsstring>(DVAccumulationData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_dvAccumulation</name>
+        <param>
+          <type><ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Configure accumulator to reset itself</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>read in the accelerometer data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>stacks data in time order</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>reset accumulated DV vector to zero</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>reset previous time value to zero</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If we find valid timestamp, ensure that no &quot;older&quot; meas get ingested</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="40" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="40" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_accumulation_8c_1a31a4c9904512a83ef75567ae355ddcd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dvAccumulation_swap</definition>
+        <argsstring>(AccPktDataMsgPayload *p, AccPktDataMsgPayload *q)</argsstring>
+        <name>dvAccumulation_swap</name>
+        <param>
+          <type>AccPktDataMsgPayload *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>AccPktDataMsgPayload *</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="80" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="80" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_accumulation_8c_1a9762292834516e29d70d305b07fd7491" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int dvAccumulation_partition</definition>
+        <argsstring>(AccPktDataMsgPayload *A, int start, int end)</argsstring>
+        <name>dvAccumulation_partition</name>
+        <param>
+          <type>AccPktDataMsgPayload *</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="86" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="86" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_accumulation_8c_1a2575971c78d91f4ac4882056598e1a88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void dvAccumulation_QuickSort</definition>
+        <argsstring>(AccPktDataMsgPayload *A, int start, int end)</argsstring>
+        <name>dvAccumulation_QuickSort</name>
+        <param>
+          <type>AccPktDataMsgPayload *</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sort the AccPktDataMsgPaylaod by the measTime with an iterative quickSort. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>--&gt; Array to be sorted, </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>--&gt; Starting index, </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>--&gt; Ending index </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Create an auxiliary stack array. This contains indicies.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>initialize the index of the top of the stack</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>push initial values of l and h to stack</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Keep popping from stack while is not empty</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set pivot element at its correct position in sorted array</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If there are elements on left side of pivot, then push left side to stack</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If there are elements on right side of pivot, then push right side to stack</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="105" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="105" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_accumulation_8c_1aa9663dfa553e54ac0812e9a0d6ed7105" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_dvAccumulation</definition>
+        <argsstring>(DVAccumulationData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_dvAccumulation</name>
+        <param>
+          <type><ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the navigation message snippets created by the various navigation components in the FSW and aggregates them into a single complete navigation message. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the aggregate nav module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>zero output message container</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>read accelerometer input message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>stack data in time order</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Ensure that the computed dt doesn&apos;t get huge.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>process new accelerometer data to accumulate Delta_v</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>see if data is newer than last data time stamp</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Create output message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>write accumulated Dv message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" line="157" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c" bodystart="157" bodyend="212"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bsk_Print.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_dvAccumulation(<ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C_init(&amp;configData-&gt;<ref refid="struct_d_v_accumulation_data_1a262b68a7bef5ef4fd0f129b16e433a14" kindref="member">dvAcumOutMsg</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_dvAccumulation(<ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>AccDataMsgPayload<sp/>inputAccData;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>message<sp/>has<sp/>not<sp/>been<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!AccDataMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_d_v_accumulation_data_1ad1fe5bc9d85d3bb3edd615bbbbec03ac" kindref="member">accPktInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_d_v_accumulation_data_1a646905c278c17255a8169b80d2641389" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>dvAccumulation.accPktInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>inputAccData<sp/>=<sp/>AccDataMsg_C_read(&amp;configData-&gt;<ref refid="struct_d_v_accumulation_data_1ad1fe5bc9d85d3bb3edd615bbbbec03ac" kindref="member">accPktInMsg</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>dvAccumulation_QuickSort(&amp;(inputAccData.accPkts[0]),<sp/>0,<sp/>MAX_ACC_BUF_PKT-1);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="struct_d_v_accumulation_data_1ab7697e87f9be56a93a26b2b81d2e1d7a" kindref="member">vehAccumDV_B</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>reset<sp/>initialization<sp/>flag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1a37d73ce1c33085ced6aca5a8266bd94d" kindref="member">dvInitialized</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=(MAX_ACC_BUF_PKT-1);<sp/>i&gt;=0;<sp/>i--)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(inputAccData.accPkts[i].measTime<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>store<sp/>the<sp/>newest<sp/>time<sp/>tag<sp/>found<sp/>as<sp/>the<sp/>previous<sp/>time<sp/>tag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref><sp/>=<sp/>inputAccData.accPkts[i].measTime;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Experimenting<sp/>QuickSort<sp/>START<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>dvAccumulation_swap(AccPktDataMsgPayload<sp/>*p,<sp/>AccPktDataMsgPayload<sp/>*q){</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>AccPktDataMsgPayload<sp/>t;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>t=*p;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>*p=*q;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>*q=t;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dvAccumulation_partition(AccPktDataMsgPayload<sp/>*A,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>end){</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>pivot=A[end].measTime;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>partitionIndex=start;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=start;<sp/>i&lt;end;<sp/>i++){</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(A[i].measTime&lt;=pivot){</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dvAccumulation_swap(&amp;(A[i]),<sp/>&amp;(A[partitionIndex]));</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>partitionIndex++;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>dvAccumulation_swap(&amp;(A[partitionIndex]),<sp/>&amp;(A[end]));</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>partitionIndex;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>dvAccumulation_QuickSort<sp/>(AccPktDataMsgPayload<sp/>*A,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>end)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stack[MAX_ACC_BUF_PKT];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((end-start<sp/>+<sp/>1)<sp/>&gt;<sp/>MAX_ACC_BUF_PKT)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BSK_PRINT(MSG_ERROR,</highlight><highlight class="stringliteral">&quot;dvAccumulation_QuickSort:<sp/>Stack<sp/>insufficiently<sp/>sized<sp/>for<sp/>quick-sort<sp/>somehow.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>top<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>start;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>end;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<sp/>top<sp/>&gt;=<sp/>0<sp/>)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pop<sp/>h<sp/>and<sp/>l<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/>=<sp/>stack[<sp/>top--<sp/>];</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>stack[<sp/>top--<sp/>];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>partitionIndex<sp/>=<sp/>dvAccumulation_partition(<sp/>A,<sp/>start,<sp/>end<sp/>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>partitionIndex-1<sp/>&gt;<sp/>start<sp/>)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>start;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>partitionIndex<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>partitionIndex+1<sp/>&lt;<sp/>end<sp/>)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>partitionIndex<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stack[<sp/>++top<sp/>]<sp/>=<sp/>end;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Experimenting<sp/>QuickSort<sp/>END<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_dvAccumulation(<ref refid="struct_d_v_accumulation_data" kindref="compound">DVAccumulationData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frameDV_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m/s]<sp/>The<sp/>DV<sp/>of<sp/>an<sp/>integrated<sp/>acc<sp/>measurement<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>AccDataMsgPayload<sp/>inputAccData;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[-]<sp/>Input<sp/>message<sp/>container<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>outputData;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[-]<sp/>The<sp/>local<sp/>storage<sp/>of<sp/>the<sp/>outgoing<sp/>message<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>outputData<sp/>=<sp/>NavTransMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>inputAccData<sp/>=<sp/>AccDataMsg_C_read(&amp;configData-&gt;<ref refid="struct_d_v_accumulation_data_1ad1fe5bc9d85d3bb3edd615bbbbec03ac" kindref="member">accPktInMsg</ref>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>dvAccumulation_QuickSort(&amp;(inputAccData.accPkts[0]),<sp/>0,<sp/>MAX_ACC_BUF_PKT-1);<sp/></highlight><highlight class="comment">/*<sp/>measTime<sp/>is<sp/>the<sp/>array<sp/>we<sp/>want<sp/>to<sp/>sort.<sp/>We&apos;re<sp/>sorting<sp/>the<sp/>time<sp/>calculated<sp/>for<sp/>each<sp/>measurement<sp/>taken<sp/>from<sp/>the<sp/>accelerometer<sp/>in<sp/>order<sp/>in<sp/>terms<sp/>of<sp/>time.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_d_v_accumulation_data_1a37d73ce1c33085ced6aca5a8266bd94d" kindref="member">dvInitialized</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;MAX_ACC_BUF_PKT;<sp/>i++)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(inputAccData.accPkts[i].measTime<sp/>&gt;<sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref>)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref><sp/>=<sp/>inputAccData.accPkts[i].measTime;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1a37d73ce1c33085ced6aca5a8266bd94d" kindref="member">dvInitialized</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;MAX_ACC_BUF_PKT;<sp/>i++)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(inputAccData.accPkts[i].measTime<sp/>&gt;<sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref>)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>(inputAccData.accPkts[i].measTime<sp/>-<sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref>)*NANO2SEC;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(dt,<sp/>inputAccData.accPkts[i].accel_B,<sp/>frameDV_B);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(configData-&gt;<ref refid="struct_d_v_accumulation_data_1ab7697e87f9be56a93a26b2b81d2e1d7a" kindref="member">vehAccumDV_B</ref>,<sp/>frameDV_B,<sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1ab7697e87f9be56a93a26b2b81d2e1d7a" kindref="member">vehAccumDV_B</ref>);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref><sp/>=<sp/>inputAccData.accPkts[i].measTime;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>outputData.timeTag<sp/>=<sp/>configData-&gt;<ref refid="struct_d_v_accumulation_data_1aaeaa0e8f9fd6328495ad3eb34040ba9d" kindref="member">previousTime</ref>*NANO2SEC;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="struct_d_v_accumulation_data_1ab7697e87f9be56a93a26b2b81d2e1d7a" kindref="member">vehAccumDV_B</ref>,<sp/>outputData.vehAccumDV);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C_write(&amp;outputData,<sp/>&amp;configData-&gt;<ref refid="struct_d_v_accumulation_data_1a262b68a7bef5ef4fd0f129b16e433a14" kindref="member">dvAcumOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/dvAccumulation/dvAccumulation.c"/>
+  </compounddef>
+</doxygen>

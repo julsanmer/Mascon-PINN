@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sun_safe_point_8c" kind="file" language="C++">
+    <compoundname>sunSafePoint.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="sun_safe_point_8h" local="yes">fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c</label>
+        <link refid="sun_safe_point_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.h</label>
+        <link refid="sun_safe_point_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/AttGuidMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="sun_safe_point_8c_1a339640a9c48f845f0637c74aed055fa3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_sunSafePoint</definition>
+        <argsstring>(sunSafePointConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_sunSafePoint</name>
+        <param>
+          <type><ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the sun safe attitude guidance. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the sun safe guidance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" line="34" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="sun_safe_point_8c_1a828f08fa9a214a0021203b59e8f72ccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_sunSafePoint</definition>
+        <argsstring>(sunSafePointConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_sunSafePoint</name>
+        <param>
+          <type><ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the guidance module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" line="48" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" bodystart="48" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="sun_safe_point_8c_1af71710687802e639b6b2fb8e7b4a8c25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_sunSafePoint</definition>
+        <argsstring>(sunSafePointConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_sunSafePoint</name>
+        <param>
+          <type><ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the estimated body-observed sun vector and computes the current attitude/attitude rate errors to pass on to control. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the sun safe attitude guidance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <mdash/> Norm of measured direction vector</para>
+<para>&lt; <mdash/> Eigen Axis</para>
+<para>&lt; r/s inertial body angular velocity vector in B frame components</para>
+<para>&lt; r/s local copy of the desired reference frame rate</para>
+<para><itemizedlist>
+<listitem><para>Read the current sun body vector estimate</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the current error vector if it is valid</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" line="89" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c" bodystart="89" bodyend="156"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_sunSafePoint(<ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsg_C_init(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a0987f81a9606b429b73bf697b69b46a7" kindref="member">attGuidanceOutMsg</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_sunSafePoint(<ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v1[3];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavAttMsg_C_isLinked(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a17c96313cff37d44a48047d85e2f7c72" kindref="member">sunDirectionInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structsun_safe_point_config_1ad5b110195f7e7c74e3cf7358e10034d9" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>sunSafePoint.sunDirectionInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavAttMsg_C_isLinked(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a1e1818621fdabb7e243eb44073d52491" kindref="member">imuInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structsun_safe_point_config_1ad5b110195f7e7c74e3cf7358e10034d9" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>sunSafePoint.imuInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>an<sp/>Eigen<sp/>axis<sp/>orthogonal<sp/>to<sp/>sHatBdyCmd<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>)<sp/><sp/>&lt;<sp/>0.1)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>info[MAX_LOGGING_LENGTH];</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(info,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>module<sp/>vector<sp/>sHatBdyCmd<sp/>is<sp/>not<sp/>setup<sp/>as<sp/>a<sp/>unit<sp/>vector<sp/>[%f,<sp/>%f<sp/>%f]&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>[0],<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>[1],<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>[2]);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structsun_safe_point_config_1ad5b110195f7e7c74e3cf7358e10034d9" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/>info);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Set(1.,<sp/>0.,<sp/>0.,<sp/>v1);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ensure<sp/>that<sp/>this<sp/>vector<sp/>is<sp/>a<sp/>unit<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>,<sp/>v1,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>)<sp/>&lt;<sp/>0.1)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Set(0.,<sp/>1.,<sp/>0.,<sp/>v1);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>,<sp/>v1,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref><sp/>=<sp/>AttGuidMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_sunSafePoint(<ref refid="structsun_safe_point_config" kindref="compound">sunSafePointConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsgPayload<sp/>navMsg;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ctSNormalized;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sNorm;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e_hat[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_BN_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_RN_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsgPayload<sp/>localImuDataInBuffer;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref><sp/>=<sp/>AttGuidMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>navMsg<sp/>=<sp/>NavAttMsg_C_read(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a17c96313cff37d44a48047d85e2f7c72" kindref="member">sunDirectionInMsg</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>localImuDataInBuffer<sp/>=<sp/>NavAttMsg_C_read(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a1e1818621fdabb7e243eb44073d52491" kindref="member">imuInMsg</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(localImuDataInBuffer.omega_BN_B,<sp/>omega_BN_B);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>sNorm<sp/>=<sp/>v3Norm(navMsg.vehSunPntBdy);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sNorm<sp/>&gt;<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a72505bb400aa91316af3f8da256b9351" kindref="member">minUnitMag</ref>)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>good<sp/>sun<sp/>direction<sp/>vector<sp/>is<sp/>available<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctSNormalized<sp/>=<sp/>v3Dot(configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>,<sp/>navMsg.vehSunPntBdy)/sNorm;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctSNormalized<sp/>=<sp/>fabs(ctSNormalized)<sp/>&gt;<sp/>1.0<sp/>?</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctSNormalized/fabs(ctSNormalized)<sp/>:<sp/>ctSNormalized;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a74df2a174ea360b0d4804630132bed80" kindref="member">sunAngleErr</ref><sp/>=<sp/>safeAcos(ctSNormalized);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="119"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Compute<sp/>the<sp/>heading<sp/>error<sp/>relative<sp/>to<sp/>the<sp/>sun<sp/>direction<sp/>vector<sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structsun_safe_point_config_1a74df2a174ea360b0d4804630132bed80" kindref="member">sunAngleErr</ref><sp/>&lt;<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a2b0f46c53649a3e1d750e9da1f9a523a" kindref="member">smallAngle</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>sun<sp/>heading<sp/>and<sp/>desired<sp/>body<sp/>axis<sp/>are<sp/>essentially<sp/>aligned.<sp/><sp/>Set<sp/>attitude<sp/>error<sp/>to<sp/>zero.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.sigma_BR);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(M_PI<sp/>-<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a74df2a174ea360b0d4804630132bed80" kindref="member">sunAngleErr</ref><sp/>&lt;<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a2b0f46c53649a3e1d750e9da1f9a523a" kindref="member">smallAngle</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>commanded<sp/>body<sp/>vector<sp/>nearly<sp/>is<sp/>opposite<sp/>the<sp/>sun<sp/>heading<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structsun_safe_point_config_1a69072c3d344f658993eebf37c4d45173" kindref="member">eHat180_B</ref>,<sp/>e_hat);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>normal<sp/>case<sp/>where<sp/>sun<sp/>and<sp/>commanded<sp/>body<sp/>vectors<sp/>are<sp/>not<sp/>aligned<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(navMsg.vehSunPntBdy,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a7b42beed7724c91f6da5324802678fee" kindref="member">sHatBdyCmd</ref>,<sp/>e_hat);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(e_hat,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a4b6b048455a6c967bf04896039d81dbe" kindref="member">sunMnvrVec</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(tan(configData-&gt;<ref refid="structsun_safe_point_config_1a74df2a174ea360b0d4804630132bed80" kindref="member">sunAngleErr</ref>*0.25),<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1a4b6b048455a6c967bf04896039d81dbe" kindref="member">sunMnvrVec</ref>,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.sigma_BR);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MRPswitch(configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.sigma_BR,<sp/>1.0,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.sigma_BR);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>rate<sp/>tracking<sp/>error<sp/>are<sp/>the<sp/>body<sp/>rates<sp/>to<sp/>bring<sp/>spacecraft<sp/>to<sp/>rest<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structsun_safe_point_config_1a3bfbca35aff4c650ef31c0080487ff48" kindref="member">sunAxisSpinRate</ref>/sNorm,<sp/>navMsg.vehSunPntBdy,<sp/>omega_RN_B);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Subtract(omega_BN_B,<sp/>omega_RN_B,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.omega_BR_B);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(omega_RN_B,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.omega_RN_B);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>proper<sp/>sun<sp/>direction<sp/>vector<sp/>is<sp/>available<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.sigma_BR);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>specify<sp/>a<sp/>body-fixed<sp/>constant<sp/>search<sp/>rotation<sp/>rate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Subtract(omega_BN_B,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1aaf918d6018fff938afba796c64e33ec6" kindref="member">omega_RN_B</ref>,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.omega_BR_B);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structsun_safe_point_config_1aaf918d6018fff938afba796c64e33ec6" kindref="member">omega_RN_B</ref>,<sp/>configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>.omega_RN_B);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>write<sp/>the<sp/>Guidance<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsg_C_write(&amp;configData-&gt;<ref refid="structsun_safe_point_config_1ab5e7215c2a2badfd3f7ba7df5deaff12" kindref="member">attGuidanceOutBuffer</ref>,<sp/>&amp;configData-&gt;<ref refid="structsun_safe_point_config_1a0987f81a9606b429b73bf697b69b46a7" kindref="member">attGuidanceOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/sunSafePoint/sunSafePoint.c"/>
+  </compounddef>
+</doxygen>

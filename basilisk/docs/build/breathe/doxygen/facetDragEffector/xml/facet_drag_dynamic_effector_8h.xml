@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="facet_drag_dynamic_effector_8h" kind="file" language="C++">
+    <compoundname>facetDragDynamicEffector.h</compoundname>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="no">vector</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateData.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/AtmoPropsMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="facet_drag_dynamic_effector_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/facetDragEffector/facetDragDynamicEffector.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/facetDragEffector/facetDragDynamicEffector.h</label>
+        <link refid="facet_drag_dynamic_effector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/AtmoPropsMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_spacecraft_geometry_data" prot="public">SpacecraftGeometryData</innerclass>
+    <innerclass refid="class_facet_drag_dynamic_effector" prot="public">FacetDragDynamicEffector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016-2018,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FACET_DRAG_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FACET_DRAG_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/AtmoPropsMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="struct_spacecraft_geometry_data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42" refid="struct_spacecraft_geometry_data_1a4001937f00c282a5a995478152190cca" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="struct_spacecraft_geometry_data_1a4001937f00c282a5a995478152190cca" kindref="member">facetAreas</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_spacecraft_geometry_data_1ae7dc7985d91c90d54e2c05c187bd0ac0" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="struct_spacecraft_geometry_data_1ae7dc7985d91c90d54e2c05c187bd0ac0" kindref="member">facetCoeffs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="struct_spacecraft_geometry_data_1ab33d1cbe1a8cd6de283404a2a83aeeb0" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="struct_spacecraft_geometry_data_1ab33d1cbe1a8cd6de283404a2a83aeeb0" kindref="member">facetNormals_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_spacecraft_geometry_data_1a9d0ef66712d7b53a072d06f94c46e967" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="struct_spacecraft_geometry_data_1a9d0ef66712d7b53a072d06f94c46e967" kindref="member">facetLocations_B</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<ref refid="struct_spacecraft_geometry_data" kindref="compound">SpacecraftGeometryData</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="class_facet_drag_dynamic_effector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_facet_drag_dynamic_effector" kindref="compound">FacetDragDynamicEffector</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>DynamicEffector<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_facet_drag_dynamic_effector" kindref="compound">FacetDragDynamicEffector</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_facet_drag_dynamic_effector_1abb2b3ddce850e48b02e1d2ee0ba96014" kindref="member">~FacetDragDynamicEffector</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1a96d2eb608259026d6522c6d3fced2ad8" kindref="member">linkInStates</ref>(DynParamManager&amp;<sp/>states);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1ae2777664cd3a22ff084b374401468db9" kindref="member">computeForceTorque</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1ad0de4fabcf83d9d49bbe17929ef0b9b5" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1ae0b019af4ef6f70bb827e4ab38785249" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1aff13d687b58da9e41cbfae5987a6f3c0" kindref="member">WriteOutputMessages</ref>(uint64_t<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1a30f8686ae99818838dfdc7697b3a4264" kindref="member">ReadInputs</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_facet_drag_dynamic_effector_1aeabcf39fec8df56ca930a1daa55c615b" kindref="member">addFacet</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>area,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dragCoeff,<sp/>Eigen::Vector3d<sp/>B_normal_hat,<sp/>Eigen::Vector3d<sp/>B_location);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>plateDrag();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateDragDir();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69" refid="class_facet_drag_dynamic_effector_1a43eec41df86819f89520398d00d8f29b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_facet_drag_dynamic_effector_1a43eec41df86819f89520398d00d8f29b" kindref="member">numFacets</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="class_facet_drag_dynamic_effector_1a4f9586f72bf81a5c60d3c1b6d8ccf3d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;AtmoPropsMsgPayload&gt;<sp/><ref refid="class_facet_drag_dynamic_effector_1a4f9586f72bf81a5c60d3c1b6d8ccf3d8" kindref="member">atmoDensInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="71" refid="class_facet_drag_dynamic_effector_1ad19d0e758dfebb2a8effd71103e48a16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_facet_drag_dynamic_effector_1ad19d0e758dfebb2a8effd71103e48a16" kindref="member">hubSigma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_facet_drag_dynamic_effector_1ac0158de5eb00b46e259530cce185a221" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_facet_drag_dynamic_effector_1ac0158de5eb00b46e259530cce185a221" kindref="member">hubVelocity</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="class_facet_drag_dynamic_effector_1a38790d4da0593fc3988a8e25348d7c2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_facet_drag_dynamic_effector_1a38790d4da0593fc3988a8e25348d7c2f" kindref="member">v_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_facet_drag_dynamic_effector_1aa7caa4dab737080b3f914aae9ab6e3c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_facet_drag_dynamic_effector_1aa7caa4dab737080b3f914aae9ab6e3c5" kindref="member">v_hat_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="class_facet_drag_dynamic_effector_1a90a18b0072acca3cfb8ef1d1662ea22e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_facet_drag_dynamic_effector_1a90a18b0072acca3cfb8ef1d1662ea22e" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>AtmoPropsMsgPayload<sp/>atmoInData;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_spacecraft_geometry_data" kindref="compound">SpacecraftGeometryData</ref><sp/>scGeometry;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/facetDragEffector/facetDragDynamicEffector.h"/>
+  </compounddef>
+</doxygen>

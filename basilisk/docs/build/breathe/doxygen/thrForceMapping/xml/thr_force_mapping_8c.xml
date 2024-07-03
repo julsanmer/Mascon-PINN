@@ -1,0 +1,702 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="thr_force_mapping_8c" kind="file" language="C++">
+    <compoundname>thrForceMapping.c</compoundname>
+    <includes refid="thr_force_mapping_8h" local="yes">fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c</label>
+        <link refid="thr_force_mapping_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h</label>
+        <link refid="thr_force_mapping_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/THRArrayCmdForceMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/THRArrayConfigMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="11">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="thr_force_mapping_8c_1abb2077cc763233d156c0e3275939de75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>self init method <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="35" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8c_1a5667991a10cd532d897e91b458c90bed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>configure the number of axes that are controlled</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>read in the support thruster and vehicle configuration messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the thruster position and thruster force heading information into the module configuration data</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="48" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="48" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8c_1a9b8dd68aabba0b5a1a2079093ee00286" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The module takes a body frame torque vector and projects it onto available RCS or DV thrusters. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>zero all output message copies</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>clear arrays of the thruster mapping algorithm</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read the input messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the request 3D attitude control torque vector</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute thruster locations relative to COM</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute general thruster force mapping matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the control axes into [C]</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>map the control torque onto the control axes</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>1st iteration of finding a set of force vectors to implement the control torque</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Remove forces components that are contributing to the RCS Null space (this is due to the geometry of the thrusters)</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="108" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="108" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8c_1a7dbdd0083ddbd1626d60405070a1d265" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void substractMin</definition>
+        <argsstring>(double *F, uint32_t size)</argsstring>
+        <name>substractMin</name>
+        <param>
+          <type>double *</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Take a stack of force values find the smallest value, and subtract if from all force values. Here the smallest values will become zero, while other forces increase. This assumes that the thrusters are aligned such that if all thrusters are firing, then no torque or force is applied. This ensures only positive force values are computed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="251" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="251" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8c_1a63abfc8195bff0dc605fa8e19d87ef87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void findMinimumNormForce</definition>
+        <argsstring>(thrForceMappingConfig *configData, double D[3][MAX_EFF_CNT], double Lr_B_Bar[3], uint32_t numForces, double F[MAX_EFF_CNT])</argsstring>
+        <name>findMinimumNormForce</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>D</declname>
+          <array>[3][MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Lr_B_Bar</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numForces</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>F</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use a least square inverse to determine the smallest set of thruster forces that yield the desired torque vector. Note that this routine does not constrain yet the forces to be either positive or negative </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>copy the control axes into [C]</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="271" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="271" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8c_1a2c136173be3fbb28de6c73e8170b72fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double computeTorqueAngErr</definition>
+        <argsstring>(double D[3][MAX_EFF_CNT], double BLr_B[3], uint32_t numForces, double epsilon, double F[MAX_EFF_CNT], double FMag[MAX_EFF_CNT])</argsstring>
+        <name>computeTorqueAngErr</name>
+        <param>
+          <type>double</type>
+          <declname>D</declname>
+          <array>[3][MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>BLr_B</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numForces</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>epsilon</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>F</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>FMag</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determine the angle between the desired torque vector and the actual torque vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>make sure a control torque is requested, otherwise just return a zero angle error</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>loop over all thrusters and compute the actual torque to be applied</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>evaluate the angle between the requested and thruster implemented torque vector</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" line="317" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="317" bodyend="351"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>Simple<sp/>Thruster<sp/>Force<sp/>Evaluation<sp/>from</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayCmdForceMsg_C_init(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a8f7902a61ae46505bf3196db583cf966" kindref="member">thrForceCmdOutMsg</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pAxis;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>to<sp/>the<sp/>current<sp/>control<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayConfigMsgPayload<sp/><sp/><sp/>localThrusterData;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>local<sp/>copy<sp/>of<sp/>the<sp/>thruster<sp/>data<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;3;i++)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pAxis<sp/>=<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a3c89e043cd55a82879f0ae24cd0e0858" kindref="member">controlAxes_B</ref><sp/>+<sp/>3*configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(pAxis)<sp/>&gt;<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" kindref="member">epsilon</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(pAxis,pAxis);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>==0)<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,</highlight><highlight class="stringliteral">&quot;thrForceMapping()<sp/>is<sp/>not<sp/>setup<sp/>to<sp/>control<sp/>any<sp/>axes!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref>==0)<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,</highlight><highlight class="stringliteral">&quot;thrForceMapping()<sp/>must<sp/>have<sp/>thrForceSign<sp/>set<sp/>to<sp/>either<sp/>+1<sp/>or<sp/>-1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!THRArrayConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a2477b35d5e7960c56229ebf1b794813f" kindref="member">thrConfigInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>thrForceMapping.thrConfigInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!VehicleConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a7df4c295976feef6b15ac8c9012069ce" kindref="member">vehConfigInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>thrForceMapping.vehConfigInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!CmdTorqueBodyMsg_C_isLinked(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a602b2198cbb414a167adc5739b538658" kindref="member">cmdTorqueInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>thrForceMapping.cmdTorqueInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>localThrusterData<sp/>=<sp/>THRArrayConfigMsg_C_read(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a2477b35d5e7960c56229ebf1b794813f" kindref="member">thrConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1abaf273686fe564876e83bf9a601e69c8" kindref="member">sc</ref><sp/>=<sp/>VehicleConfigMsg_C_read(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a7df4c295976feef6b15ac8c9012069ce" kindref="member">vehConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref><sp/>=<sp/>(uint32_t)<sp/>localThrusterData.numThrusters;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;<sp/>i=i+1)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(localThrusterData.thrusters[i].rThrust_B,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a030a0e25d93f7499bfe517761edb0c3c" kindref="member">rThruster_B</ref>[i]);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(localThrusterData.thrusters[i].tHatThrust_B,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a43aafab92b73a287dde8fe17ead3cc68" kindref="member">gtThruster_B</ref>[i]);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(localThrusterData.thrusters[i].maxThrust<sp/>&lt;=<sp/>0.0){</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;A<sp/>configured<sp/>thruster<sp/>has<sp/>a<sp/>non-sensible<sp/>saturation<sp/>limit<sp/>of<sp/>&lt;=<sp/>0<sp/>N!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>[i]<sp/>=<sp/>localThrusterData.thrusters[i].maxThrust;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counterPosForces;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/><sp/><sp/><sp/><sp/>counter<sp/>for<sp/>number<sp/>of<sp/>positive<sp/>thruster<sp/>forces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>F[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[N]<sp/><sp/><sp/><sp/><sp/>vector<sp/>of<sp/>commanded<sp/>thruster<sp/>forces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Fbar[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[N]<sp/><sp/><sp/><sp/><sp/>vector<sp/>of<sp/>intermediate<sp/>thruster<sp/>forces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>D[3][MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m]<sp/><sp/><sp/><sp/><sp/>mapping<sp/>matrix<sp/>from<sp/>thruster<sp/>forces<sp/>to<sp/>body<sp/>torque<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Dbar[3][MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m]<sp/><sp/><sp/><sp/><sp/>reduced<sp/>mapping<sp/>matrix*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>C[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m]<sp/><sp/><sp/><sp/><sp/>control<sp/>mapping<sp/>matrix*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Lr_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Nm]<sp/><sp/><sp/><sp/>commanded<sp/>ADCS<sp/>control<sp/>torque<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Lr_offset[3];</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>LrLocal[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Nm]<sp/><sp/><sp/><sp/>Torque<sp/>provided<sp/>by<sp/>indiviual<sp/>thruster<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thrusterUsed[MAX_EFF_CNT];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/>of<sp/>flags<sp/>indicating<sp/>if<sp/>this<sp/>thruster<sp/>is<sp/>used<sp/>for<sp/>the<sp/>Lr_j<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>rThrusterRelCOM_B[MAX_EFF_CNT][3];</highlight><highlight class="comment">/*<sp/>[m]<sp/><sp/><sp/><sp/><sp/>local<sp/>copy<sp/>of<sp/>the<sp/>thruster<sp/>locations<sp/>relative<sp/>to<sp/>COM<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Lr_B_Bar[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Nm]<sp/><sp/><sp/><sp/>Control<sp/>torque<sp/>that<sp/>we<sp/>actually<sp/>control*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>maxFractUse;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/><sp/><sp/><sp/><sp/>ratio<sp/>of<sp/>maximum<sp/>requested<sp/>thruster<sp/>force<sp/>relative<sp/>to<sp/>maximum<sp/>thruster<sp/>limit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>rCrossGt[3];</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsgPayload<sp/>LrInputMsg;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayCmdForceMsgPayload<sp/>thrusterForceOut;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>thrusterForceOut<sp/>=<sp/>THRArrayCmdForceMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(F,<sp/>MAX_EFF_CNT);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(D,<sp/>3,<sp/>MAX_EFF_CNT);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(Dbar,<sp/>3,<sp/>MAX_EFF_CNT);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(C,<sp/>3,<sp/>3);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>LrInputMsg<sp/>=<sp/>CmdTorqueBodyMsg_C_read(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a602b2198cbb414a167adc5739b538658" kindref="member">cmdTorqueInMsg</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1abaf273686fe564876e83bf9a601e69c8" kindref="member">sc</ref><sp/>=<sp/>VehicleConfigMsg_C_read(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a7df4c295976feef6b15ac8c9012069ce" kindref="member">vehConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(LrInputMsg.torqueRequestBody,<sp/>Lr_B);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i=0;i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;i++)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Subtract(configData-&gt;<ref refid="structthr_force_mapping_config_1a030a0e25d93f7499bfe517761edb0c3c" kindref="member">rThruster_B</ref>[i],<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1abaf273686fe564876e83bf9a601e69c8" kindref="member">sc</ref>.CoM_B,<sp/>rThrusterRelCOM_B[i]);<sp/></highlight><highlight class="comment">/*<sp/>Part<sp/>1<sp/>of<sp/>Eq.<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(Lr_offset);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint32_t<sp/>i=0;<sp/>i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;<sp/>i=i+1)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(rThrusterRelCOM_B[i],<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a43aafab92b73a287dde8fe17ead3cc68" kindref="member">gtThruster_B</ref>[i],<sp/>rCrossGt);<sp/></highlight><highlight class="comment">/*<sp/>Eq.<sp/>6<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint32_t<sp/>j=0;<sp/>j&lt;3;<sp/>j++)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D[j][i]<sp/>=<sp/>rCrossGt[j];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref><sp/>&lt;<sp/>0)<sp/><sp/></highlight><highlight class="comment">/*<sp/>Handles<sp/>the<sp/>case<sp/>where<sp/>there<sp/>is<sp/>translational<sp/>motion<sp/>imparted<sp/>during<sp/>off-pulsing*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>[i],<sp/>rCrossGt,<sp/>LrLocal);<sp/></highlight><highlight class="comment">/*<sp/>Computing<sp/>local<sp/>torques<sp/>from<sp/>each<sp/>thruster<sp/>--<sp/>Individual<sp/>terms<sp/>in<sp/>Eq.<sp/>7*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Subtract(Lr_offset,<sp/>LrLocal,<sp/>Lr_offset);<sp/></highlight><highlight class="comment">/*<sp/>Summing<sp/>of<sp/>individual<sp/>torques<sp/>--<sp/>Eq.<sp/>5<sp/>&amp;<sp/>Eq.<sp/>7<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(Lr_offset,<sp/>Lr_B,<sp/>Lr_B);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i=0;i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;i++)<sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a3c89e043cd55a82879f0ae24cd0e0858" kindref="member">controlAxes_B</ref>[3*i],<sp/>C[i]);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(RECAST3X3<sp/>C,<sp/>Lr_B,<sp/>Lr_B_Bar);<sp/></highlight><highlight class="comment">/*<sp/>Note:<sp/>Lr_B_Bar<sp/>is<sp/>projected<sp/>only<sp/>onto<sp/>the<sp/>available<sp/>control<sp/>axes.<sp/>i.e.<sp/>if<sp/>using<sp/>DV<sp/>thrusters<sp/>with<sp/>only<sp/>1<sp/>control<sp/>axis,<sp/>Lr_B_Bar<sp/>=<sp/>[#,<sp/>0,<sp/>0]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>findMinimumNormForce(configData,<sp/>D,<sp/>Lr_B_Bar,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>,<sp/>F);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref>&gt;0)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>substractMin(F,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref>&lt;0<sp/>||<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a7b228496e06e6f6fb62f77afa6d1f35f" kindref="member">use2ndLoop</ref>)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counterPosForces<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(thrusterUsed,0x0,MAX_EFF_CNT*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i=0;i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;i++)<sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(F[i]*configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref><sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thrusterUsed[i]<sp/>=<sp/>1;<sp/></highlight><highlight class="comment">/*<sp/>Eq.<sp/>11<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint32_t<sp/>j=0;<sp/>j&lt;3;<sp/>j++)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Dbar[j][counterPosForces]<sp/>=<sp/>D[j][i];<sp/></highlight><highlight class="comment">/*<sp/>Eq.<sp/>12<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>counterPosForces<sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>findMinimumNormForce(configData,<sp/>Dbar,<sp/>Lr_B_Bar,<sp/>counterPosForces,<sp/>Fbar);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>substractMin(Fbar,<sp/>counterPosForces);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>c<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint32_t<sp/>i=0;i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;i++)<sp/>{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(thrusterUsed[i])<sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F[i]<sp/>=<sp/>Fbar[c];</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a222b11f0a99155286d7751678084c798" kindref="member">outTorqAngErr</ref><sp/>=<sp/>computeTorqueAngErr(D,<sp/>Lr_B_Bar,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" kindref="member">epsilon</ref>,<sp/>F,</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>);<sp/></highlight><highlight class="comment">/*<sp/>Eq.<sp/>16*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>maxFractUse<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>check<sp/>if<sp/>the<sp/>angle<sp/>between<sp/>the<sp/>request<sp/>and<sp/>actual<sp/>torque<sp/>exceeds<sp/>a<sp/>limit.<sp/><sp/>If<sp/>so,<sp/>then<sp/>uniformly<sp/>scale</highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>all<sp/>thruster<sp/>forces<sp/>values<sp/>to<sp/>not<sp/>exceed<sp/>saturation.</highlight></codeline>
+<codeline lineno="220"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>If<sp/>the<sp/>angle<sp/>threshold<sp/>is<sp/>negative,<sp/>then<sp/>this<sp/>scaling<sp/>is<sp/>bypassed.*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="structthr_force_mapping_config_1a222b11f0a99155286d7751678084c798" kindref="member">outTorqAngErr</ref><sp/>&gt;<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a64d3912009b4d7ffd9905f34fb85b616" kindref="member">angErrThresh</ref>)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint32_t<sp/>i=0;<sp/>i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>[i]<sp/>&gt;<sp/>0.0<sp/>&amp;&amp;<sp/>fabs(F[i])/configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>[i]<sp/>&gt;<sp/>maxFractUse)<sp/></highlight><highlight class="comment">/*<sp/>confirming<sp/>that<sp/>maxThrust<sp/>&gt;<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxFractUse<sp/>=<sp/>fabs(F[i])/configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>[i];</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>only<sp/>scale<sp/>the<sp/>requested<sp/>thruster<sp/>force<sp/>if<sp/>one<sp/>or<sp/>more<sp/>thrusters<sp/>are<sp/>saturated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(maxFractUse<sp/>&gt;<sp/>1.0)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(1.0/maxFractUse,<sp/>F,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>,<sp/>F);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a222b11f0a99155286d7751678084c798" kindref="member">outTorqAngErr</ref><sp/>=<sp/>computeTorqueAngErr(D,<sp/>Lr_B_Bar,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" kindref="member">epsilon</ref>,<sp/>F,</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" kindref="member">thrForcMag</ref>);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>store<sp/>the<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(F,<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>,<sp/>1,<sp/>thrusterForceOut.thrForce);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayCmdForceMsg_C_write(&amp;thrusterForceOut,<sp/>&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a8f7902a61ae46505bf3196db583cf966" kindref="member">thrForceCmdOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>substractMin(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*F,<sp/>uint32_t<sp/>size)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>minValue<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>size;i++){</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(F[i]<sp/>&lt;<sp/>minValue){</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>minValue<sp/>=<sp/>F[i];</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>size;i++){</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F[i]<sp/>=<sp/>F[i]<sp/>-<sp/>minValue;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>findMinimumNormForce(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>D[3][MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Lr_B_Bar[3],<sp/>uint32_t<sp/>numForces,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>F[MAX_EFF_CNT])</highlight></codeline>
+<codeline lineno="273"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i,j,k;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/><sp/><sp/><sp/>counters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>C[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m^2]<sp/><sp/>(C)<sp/>matrix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>CD[3][MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m^2]<sp/><sp/>[C].[D]<sp/>matrix<sp/>--<sp/>Thrusters<sp/>in<sp/>body<sp/>frame<sp/>mapped<sp/>on<sp/>control<sp/>axes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>CDCDT[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m^2]<sp/><sp/>[CD].[CD]^T<sp/>matrix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>CDCDTInv[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[m^2]<sp/><sp/>([CD].[CD]^T)^-1<sp/>matrix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>CDCDTInvLr[3];</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(F,<sp/>MAX_EFF_CNT);<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>the<sp/>output<sp/>force<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>m33SetZero(C);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>the<sp/>control<sp/>basis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;i++)<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(&amp;configData-&gt;<ref refid="structthr_force_mapping_config_1a3c89e043cd55a82879f0ae24cd0e0858" kindref="member">controlAxes_B</ref>[3*i],<sp/>C[i]);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>find<sp/>[D].[D]^T<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(C,<sp/>3,<sp/>3,<sp/>D,<sp/>3,<sp/>MAX_EFF_CNT,<sp/>CD);</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>m33SetIdentity(CDCDT);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j=0;<sp/>j&lt;configData-&gt;<ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;<sp/>j++)<sp/>{</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CDCDT[i][j]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;k&lt;numForces;k++)<sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CDCDT[i][j]<sp/>+=<sp/>CD[i][k]<sp/>*<sp/>CD[j][k];<sp/></highlight><highlight class="comment">/*<sp/>Part<sp/>of<sp/>Eq.<sp/>9<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m33Determinant(CDCDT)<sp/>&gt;<sp/>configData-&gt;<ref refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" kindref="member">epsilon</ref>){</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33Inverse(CDCDT,<sp/>CDCDTInv);</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33SetZero(CDCDTInv);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(CDCDTInv,<sp/>Lr_B_Bar,<sp/>CDCDTInvLr);</highlight><highlight class="comment">/*<sp/>If<sp/>fewer<sp/>than<sp/>3<sp/>control<sp/>axes,<sp/>then<sp/>the<sp/>1&apos;s<sp/>along<sp/>the<sp/>diagonal<sp/>of<sp/>DDTInv<sp/>will<sp/>not<sp/>conflict<sp/>with<sp/>the<sp/>mapping,<sp/>as<sp/>Lr_B_Bar<sp/>contains<sp/>the<sp/>nessessary<sp/>0s<sp/>to<sp/>inhibit<sp/>projection<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>mtMultV(CD,<sp/>3,<sp/>MAX_EFF_CNT,<sp/>CDCDTInvLr,<sp/>F);<sp/></highlight><highlight class="comment">/*<sp/>Eq.<sp/>15<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>computeTorqueAngErr(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>D[3][MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BLr_B[3],<sp/>uint32_t<sp/>numForces,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epsilon,</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>F[MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FMag[MAX_EFF_CNT])</highlight></codeline>
+<codeline lineno="319"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>returnAngle<sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[rad]<sp/><sp/>angle<sp/>between<sp/>requested<sp/>and<sp/>actual<sp/>torque<sp/>vector<sp/>*/</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(BLr_B)<sp/>&gt;<sp/>epsilon)<sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tauActual_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Nm]<sp/><sp/><sp/>control<sp/>torque<sp/>with<sp/>current<sp/>thruster<sp/>solution<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BLr_hat_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/><sp/><sp/><sp/>normalized<sp/>BLr_B<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>LrEffector_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Nm]<sp/><sp/><sp/>torque<sp/>of<sp/>an<sp/>individual<sp/>thruster<sp/>effector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thrusterForce;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[N]<sp/><sp/><sp/><sp/>saturation<sp/>constrained<sp/>thruster<sp/>force<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>DT[MAX_EFF_CNT][3];</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mTranspose(D,<sp/>3,<sp/>MAX_EFF_CNT,<sp/>DT);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(BLr_B,<sp/>BLr_hat_B);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(tauActual_B);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint32_t<sp/>i=0;<sp/>i&lt;numForces;<sp/>i++)</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>thrusterForce<sp/>=<sp/>fabs(F[i])<sp/>&lt;<sp/>FMag[i]<sp/>?<sp/>F[i]<sp/>:<sp/>FMag[i]*fabs(F[i])/F[i];<sp/></highlight><highlight class="comment">/*<sp/>This<sp/>could<sp/>produce<sp/>inf&apos;s<sp/>as<sp/>F[i]<sp/>approaches<sp/>0<sp/>if<sp/>FMag[i]<sp/>is<sp/>0,<sp/>as<sp/>such<sp/>we<sp/>check<sp/>if<sp/>FMag[i]<sp/>is<sp/>equal<sp/>to<sp/>zero<sp/>in<sp/>reset()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(thrusterForce,<sp/>DT[i],<sp/>LrEffector_B);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(tauActual_B,<sp/>LrEffector_B,<sp/>tauActual_B);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(tauActual_B,<sp/>tauActual_B);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(v3Dot(BLr_hat_B,<sp/>tauActual_B)<sp/>&lt;<sp/>1.0)</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>returnAngle<sp/>=<sp/>safeAcos(v3Dot(BLr_hat_B,<sp/>tauActual_B));<sp/></highlight><highlight class="comment">/*<sp/>Eq<sp/>16<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(returnAngle);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="351"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c"/>
+  </compounddef>
+</doxygen>

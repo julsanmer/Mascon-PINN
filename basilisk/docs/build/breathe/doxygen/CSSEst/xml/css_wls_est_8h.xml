@@ -1,0 +1,547 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="css_wls_est_8h" kind="file" language="C++">
+    <compoundname>cssWlsEst.h</compoundname>
+    <includes local="yes">cMsgCInterface/NavAttMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CSSConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CSSUnitConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CSSArraySensorMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/SunlineFilterMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="css_wls_est_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h</label>
+        <link refid="css_wls_est_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/CSSArraySensorMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/CSSConfigMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/CSSUnitConfigMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/SunlineFilterMsg_C.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_c_s_s_w_l_s_config" prot="public">CSSWLSConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="css_wls_est_8h_1a51568a32114319904312e789648fa08f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_cssWlsEst</definition>
+        <argsstring>(CSSWLSConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_cssWlsEst</name>
+        <param>
+          <type><ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for theCSS WLS estimator. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS WLS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" line="59" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c" bodystart="31" bodyend="37" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" declline="59" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="css_wls_est_8h_1aa161bc587203c9c1ab7bdf81fb33a96b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_cssWlsEst</definition>
+        <argsstring>(CSSWLSConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_cssWlsEst</name>
+        <param>
+          <type><ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the parsed CSS sensor data and outputs an estimate of the sun vector in the ADCS body frame <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Message Read and Setup</para>
+<para><itemizedlist>
+<listitem><para>Read the input parsed CSS sensor data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute control update time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Loop over the maximum number of sensors to check for good measurements</para>
+</listitem></itemizedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Isolate if measurement is good</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Set body vector for this measurement</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Get measurement value into observation vector</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Set inverse noise matrix</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>increase the number of valid observations</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Otherwise just continue</para>
+</listitem></orderedlist>
+</para>
+<para>Estimation Steps</para>
+<para><itemizedlist>
+<listitem><para>If there is no sun, just quit</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If no CSS got a strong enough signal. Sun estimation is not possible. Return the zero vector instead</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If at least one CSS got a strong enough signal. Proceed with the sun heading estimation</para>
+</listitem></itemizedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Configuration option to weight the measurements, otherwise set weighting matrix to identity</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Get least squares fit for sun pointing vector</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Estimate the inertial angular velocity from the rate of the sun heading measurements</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Store the sun heading estimate</para>
+</listitem></orderedlist>
+</para>
+<para>Residual Computation</para>
+<para><itemizedlist>
+<listitem><para>If the residual fit output message is set, then compute the residuals and stor them in the output message</para>
+</listitem></itemizedlist>
+</para>
+<para>Writing Outputs</para>
+<para><itemizedlist>
+<listitem><para>If the status from the WLS computation is erroneous, populate the output messages with zeros</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the status from the WLS computation good, populate the output messages with the computed data</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" line="60" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c" bodystart="161" bodyend="281" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" declline="60" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="css_wls_est_8h_1a4fb1fd5ad38b021a1b677dc6cbc76fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_cssWlsEst</definition>
+        <argsstring>(CSSWLSConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_cssWlsEst</name>
+        <param>
+          <type><ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the guidance module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" line="62" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c" bodystart="47" bodyend="74" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" declline="62" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="css_wls_est_8h_1a9827576c7338e6c072fbab23e1a7a5f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int computeWlsmn</definition>
+        <argsstring>(int numActiveCss, double *H, double *W, double *y, double x[3])</argsstring>
+        <name>computeWlsmn</name>
+        <param>
+          <type>int</type>
+          <declname>numActiveCss</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>W</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes a least squares fit with the given parameters. It treats the inputs as though they were double dimensioned arrays but they are all singly dimensioned for ease of use <simplesect kind="return"><para>success indicator (0 for good, 1 for fail) </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>numActiveCss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The count on input measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>H</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted pointing vector for each measurement </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the weighting matrix for the set of measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the observation vector for the valid sensors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output least squares fit for the observations </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>If we only have one sensor, output best guess (cone of possiblities)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If we have two, then do a 2x2 fit</para>
+</listitem></itemizedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Find minimum norm solution</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Multiply the Ht(HHt)^-1 by the observation vector to get fit</para>
+</listitem></orderedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If we have more than 2, do true LSQ fit</para>
+</listitem></itemizedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Use the weights to compute (HtWH)^-1HW</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>Multiply the LSQ matrix by the obs vector for best fit</para>
+</listitem></orderedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" line="63" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c" bodystart="114" bodyend="152" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" declline="63" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="css_wls_est_8h_1a0376bf66928694ee058ec5b0557c283d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void computeWlsResiduals</definition>
+        <argsstring>(double *cssMeas, CSSConfigMsgPayload *cssConfig, double *wlsEst, double *cssResiduals)</argsstring>
+        <name>computeWlsResiduals</name>
+        <param>
+          <type>double *</type>
+          <declname>cssMeas</declname>
+        </param>
+        <param>
+          <type>CSSConfigMsgPayload *</type>
+          <declname>cssConfig</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>wlsEst</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>cssResiduals</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the post-fit residuals for the WLS estimate. Note that everything has to have been allocated appropriately as this function operates directly on the arrays. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cssMeas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The measured values for the CSS sensors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cssConfig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The CSS configuration information </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>wlsEst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The WLS estimate computed for the CSS measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cssResiduals</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The measurement residuals output by this function </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>The method loops through the sensors and performs:</para>
+<para><orderedlist>
+<listitem><para>A dot product between the computed estimate with each sensor normal</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>A subtraction between that post-fit measurement estimate and the actual measurement</para>
+</listitem></orderedlist>
+</para>
+<para><orderedlist>
+<listitem><para>This populates the post-fit residuals</para>
+</listitem></orderedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" line="65" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.c" bodystart="85" bodyend="102" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h" declline="65" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_CSS_WLS_EST_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_CSS_WLS_EST_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavAttMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CSSConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CSSUnitConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CSSArraySensorMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/SunlineFilterMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="struct_c_s_s_w_l_s_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38" refid="struct_c_s_s_w_l_s_config_1aa97a1f88ff58ed6fd6d9633499110965" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsg_C<sp/><ref refid="struct_c_s_s_w_l_s_config_1aa97a1f88ff58ed6fd6d9633499110965" kindref="member">cssDataInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="struct_c_s_s_w_l_s_config_1a2226ced6530c8f642619d8447c6f6293" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSConfigMsg_C<sp/><ref refid="struct_c_s_s_w_l_s_config_1a2226ced6530c8f642619d8447c6f6293" kindref="member">cssConfigInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="struct_c_s_s_w_l_s_config_1abae47f4995543c48dbef2809d5ce8f1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsg_C<sp/><ref refid="struct_c_s_s_w_l_s_config_1abae47f4995543c48dbef2809d5ce8f1e" kindref="member">navStateOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="struct_c_s_s_w_l_s_config_1a338f3e96cc7dfce9ce2336acfd537e62" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SunlineFilterMsg_C<sp/><ref refid="struct_c_s_s_w_l_s_config_1a338f3e96cc7dfce9ce2336acfd537e62" kindref="member">cssWLSFiltResOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="struct_c_s_s_w_l_s_config_1af4edd8d999230f3c1e3a3a505d4521f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_c_s_s_w_l_s_config_1af4edd8d999230f3c1e3a3a505d4521f2" kindref="member">numActiveCss</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="struct_c_s_s_w_l_s_config_1ac191c60b4a98f6b027f9e9e20c0c474b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_c_s_s_w_l_s_config_1ac191c60b4a98f6b027f9e9e20c0c474b" kindref="member">useWeights</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_c_s_s_w_l_s_config_1abc39ae1c9f9e18d892c4a048c54790d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_c_s_s_w_l_s_config_1abc39ae1c9f9e18d892c4a048c54790d1" kindref="member">priorSignalAvailable</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_c_s_s_w_l_s_config_1a8a992b35146ccdc6734c567260faf1c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dOld[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="struct_c_s_s_w_l_s_config_1ae2400bc4de417a8aa7cb9132ba775b61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_c_s_s_w_l_s_config_1ae2400bc4de417a8aa7cb9132ba775b61" kindref="member">sensorUseThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_c_s_s_w_l_s_config_1a4c4eb48695f4379aa9ad72399d5c2d5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="struct_c_s_s_w_l_s_config_1a4c4eb48695f4379aa9ad72399d5c2d5f" kindref="member">priorTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="struct_c_s_s_w_l_s_config_1af15454b36c9ba51d642e029dadab426d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSConfigMsgPayload<sp/><ref refid="struct_c_s_s_w_l_s_config_1af15454b36c9ba51d642e029dadab426d" kindref="member">cssConfigInBuffer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="struct_c_s_s_w_l_s_config_1a2337ad70efe713dfb623ee4deac2f700" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SunlineFilterMsgPayload<sp/><ref refid="struct_c_s_s_w_l_s_config_1a2337ad70efe713dfb623ee4deac2f700" kindref="member">filtStatus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="struct_c_s_s_w_l_s_config_1a677f0ee8c0d12fcb2e44a26c886571fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="struct_c_s_s_w_l_s_config_1a677f0ee8c0d12fcb2e44a26c886571fe" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}<ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_cssWlsEst(<ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_cssWlsEst(<ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_cssWlsEst(<ref refid="struct_c_s_s_w_l_s_config" kindref="compound">CSSWLSConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>computeWlsmn(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numActiveCss,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*W,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*y,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x[3]);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeWlsResiduals(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*cssMeas,<sp/>CSSConfigMsgPayload<sp/>*cssConfig,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*wlsEst,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*cssResiduals);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/CSSEst/cssWlsEst.h"/>
+  </compounddef>
+</doxygen>

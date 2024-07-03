@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="oe_state_ephem_8c" kind="file" language="C++">
+    <compoundname>oeStateEphem.c</compoundname>
+    <includes refid="oe_state_ephem_8h" local="yes">fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h</includes>
+    <includes local="yes">fswAlgorithms/transDetermination/_GeneralModuleFiles/ephemerisUtilities.h</includes>
+    <includes local="yes">fswAlgorithms/transDetermination/chebyPosEphem/chebyPosEphem.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/orbitalMotion.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c</label>
+        <link refid="oe_state_ephem_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h</label>
+        <link refid="oe_state_ephem_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/orbitalMotion.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/EphemerisMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/TDBVehicleClockCorrelationMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>fswAlgorithms/transDetermination/_GeneralModuleFiles/ephemerisUtilities.h</label>
+      </node>
+      <node id="7">
+        <label>fswAlgorithms/transDetermination/chebyPosEphem/chebyPosEphem.h</label>
+      </node>
+      <node id="12">
+        <label>math.h</label>
+      </node>
+      <node id="14">
+        <label>stdlib.h</label>
+      </node>
+      <node id="13">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="oe_state_ephem_8c_1a3c86d5c6f9feccee1d7d448e60805988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates the output navigation message (translation only) for the ephemeris model <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" line="37" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="oe_state_ephem_8c_1ac9cf7c960e102f9e065f2a0ab18dd25a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This Reset method is empty <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" line="49" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="49" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="oe_state_ephem_8c_1a59dd9749c63d204aff0cfdb6875a3849" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the current time and computes the state of the object using that time and the stored Chebyshev coefficients. If the time provided is outside the specified range, the position vectors rail high/low appropriately. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>read in the input message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute time for fitting interval</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>select the fitting coefficients for the nearest fit interval</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine the scaled fitting time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine the true anomaly angle</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine semi-major axis</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Determine position and velocity vectors</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" line="66" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="66" bodyend="152"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/transDetermination/_GeneralModuleFiles/ephemerisUtilities.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/transDetermination/chebyPosEphem/chebyPosEphem.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/orbitalMotion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsg_C_init(&amp;configData-&gt;<ref refid="struct_o_e_state_ephem_data_1a0bbd59974425f2e9cc933e76495001b5" kindref="member">stateFitOutMsg</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>message<sp/>has<sp/>not<sp/>been<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!TDBVehicleClockCorrelationMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_o_e_state_ephem_data_1a77d587fe44c41a8e55289346cb470915" kindref="member">clockCorrInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ab433d6dd8852214a5ecc63af41cd7f12" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>oeStateEphem.clockCorrInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentScaledValue;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[s]<sp/>scaled<sp/>time<sp/>value<sp/>to<sp/>within<sp/>[-1,1]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentEphTime;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[s]<sp/>current<sp/>ephemeris<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>smallestTimeDifference;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[s]<sp/>smallest<sp/>difference<sp/>to<sp/>the<sp/>time<sp/>interval<sp/>mid-point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeDifference;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[s]<sp/>time<sp/>difference<sp/>with<sp/>respect<sp/>to<sp/>an<sp/>interval<sp/>mid-point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>anomalyAngle;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[r]<sp/>general<sp/>anomaly<sp/>angle<sp/>variable<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_cheby_o_e_record" kindref="compound">ChebyOERecord</ref><sp/>*currRec;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[]<sp/><sp/>pointer<sp/>to<sp/>the<sp/>current<sp/>Chebyshev<sp/>record<sp/>being<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>TDBVehicleClockCorrelationMsgPayload<sp/>localCorr;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsgPayload<sp/>tmpOutputState;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>classicElements<sp/>orbEl;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>tmpOutputState<sp/>=<sp/>EphemerisMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>localCorr<sp/>=<sp/>TDBVehicleClockCorrelationMsg_C_read(&amp;configData-&gt;<ref refid="struct_o_e_state_ephem_data_1a77d587fe44c41a8e55289346cb470915" kindref="member">clockCorrInMsg</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>currentEphTime<sp/>=<sp/>callTime*NANO2SEC;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>currentEphTime<sp/>+=<sp/>localCorr.ephemerisTime<sp/>-<sp/>localCorr.vehicleClockTime;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ab82a05742248a759bdc6b6cb8cbf6fc7" kindref="member">coeffSelector</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>smallestTimeDifference<sp/>=<sp/>fabs(currentEphTime<sp/>-<sp/>configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ad90a9e35a9ce60901a4b83ed9fd94176" kindref="member">ephArray</ref>[0].<ref refid="struct_cheby_o_e_record_1a0790b587a5b323232b091874d6218186" kindref="member">ephemTimeMid</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=1;<sp/>i&lt;MAX_OE_RECORDS;<sp/>i++)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timeDifference<sp/>=<sp/>fabs(currentEphTime<sp/>-<sp/>configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ad90a9e35a9ce60901a4b83ed9fd94176" kindref="member">ephArray</ref>[i].<ref refid="struct_cheby_o_e_record_1a0790b587a5b323232b091874d6218186" kindref="member">ephemTimeMid</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(timeDifference<sp/>&lt;<sp/>smallestTimeDifference)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ab82a05742248a759bdc6b6cb8cbf6fc7" kindref="member">coeffSelector</ref><sp/>=<sp/>(uint32_t)<sp/>i;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>smallestTimeDifference<sp/>=<sp/>timeDifference;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>currRec<sp/>=<sp/>&amp;(configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ad90a9e35a9ce60901a4b83ed9fd94176" kindref="member">ephArray</ref>[configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ab82a05742248a759bdc6b6cb8cbf6fc7" kindref="member">coeffSelector</ref>]);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>currentScaledValue<sp/>=<sp/>(currentEphTime<sp/>-<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a0790b587a5b323232b091874d6218186" kindref="member">ephemTimeMid</ref>)/currRec-&gt;<ref refid="struct_cheby_o_e_record_1aab427c23fad11fe94f596a7f77cbd92f" kindref="member">ephemTimeRad</ref>;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(fabs(currentScaledValue)<sp/>&gt;<sp/>1.0)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue<sp/>=<sp/>currentScaledValue/fabs(currentScaledValue);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>determine<sp/>orbit<sp/>elements<sp/>from<sp/>chebychev<sp/>polynominals<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>tmpOutputState.timeTag<sp/>=<sp/>callTime*NANO2SEC;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>orbEl.rPeriap<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1a1f8766d1e415267599c81ba216170205" kindref="member">rPeriapCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>orbEl.i<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1a56af813968911b623235377de047ee45" kindref="member">incCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>orbEl.e<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1a6aa0874fce0ef407ec332c274938b74b" kindref="member">eccCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>orbEl.omega<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1ae90c8d83bf871a660274679c73524b74" kindref="member">argPerCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>orbEl.Omega<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1a5cc61eb189c6cc45fef6b2a674105152" kindref="member">RAANCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>anomalyAngle<sp/>=<sp/>calculateChebyValue(currRec-&gt;<ref refid="struct_cheby_o_e_record_1ae8b8c09ee6c07c4f7e018e24e3ccbc7c" kindref="member">anomCoeff</ref>,<sp/>currRec-&gt;<ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>currentScaledValue);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(currRec-&gt;<ref refid="struct_cheby_o_e_record_1a00c9bf0b19c60354265cc1d98aaee801" kindref="member">anomalyFlag</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbEl.f<sp/>=<sp/>anomalyAngle;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(orbEl.e<sp/>&lt;<sp/>1.0)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>input<sp/>is<sp/>mean<sp/>elliptic<sp/>anomaly<sp/>angle<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbEl.f<sp/>=<sp/>E2f(M2E(anomalyAngle,<sp/>orbEl.e),<sp/>orbEl.e);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>input<sp/>is<sp/>mean<sp/>hyperbolic<sp/>anomaly<sp/>angle<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbEl.f<sp/>=<sp/>H2f(N2H(anomalyAngle,<sp/>orbEl.e),<sp/>orbEl.e);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(orbEl.e<sp/>-<sp/>1.0)<sp/>&gt;<sp/>1e-12)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>elliptic<sp/>or<sp/>hyperbolic<sp/>case<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbEl.a<sp/>=<sp/>orbEl.rPeriap/(1.0-orbEl.e);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>parabolic<sp/>case,<sp/>the<sp/>elem2rv()<sp/>function<sp/>assumes<sp/>a<sp/>parabola<sp/>has<sp/>a<sp/>=<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orbEl.a<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>elem2rv(configData-&gt;<ref refid="struct_o_e_state_ephem_data_1ad42a0abc817fb2c21906694e80bee927" kindref="member">muCentral</ref>,<sp/>&amp;orbEl,<sp/>tmpOutputState.r_BdyZero_N,</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpOutputState.v_BdyZero_N);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsg_C_write(&amp;tmpOutputState,<sp/>&amp;configData-&gt;<ref refid="struct_o_e_state_ephem_data_1a0bbd59974425f2e9cc933e76495001b5" kindref="member">stateFitOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c"/>
+  </compounddef>
+</doxygen>

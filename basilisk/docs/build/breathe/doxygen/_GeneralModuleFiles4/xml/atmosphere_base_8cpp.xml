@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="atmosphere_base_8cpp" kind="file" language="C++">
+    <compoundname>atmosphereBase.cpp</compoundname>
+    <includes refid="atmosphere_base_8h" local="yes">atmosphereBase.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/simDefinitions.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/atmosphereBase.cpp</label>
+        <link refid="atmosphere_base_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>atmosphereBase.h</label>
+        <link refid="atmosphere_base_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="7">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/AtmoPropsMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/EpochMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/utilities/simDefinitions.h</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>time.h</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"></highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;atmosphereBase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/simDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="class_atmosphere_base_1a178bbd8004a2e1480ec4275d285fc6c4" kindref="member">AtmosphereBase::AtmosphereBase</ref>()</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1afbaf28c140d42847542ea181df10ded8" kindref="member">planetRadius</ref><sp/>=<sp/>0.0;<sp/></highlight><highlight class="comment">//<sp/>[m]<sp/>Earth<sp/>magnetic<sp/>spherical<sp/>reference<sp/>radius<sp/>(see<sp/>p.<sp/>404<sp/>in<sp/>doi:10.1007/978-1-4939-0802-8)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a991eed54587277fee469680bab538fdb" kindref="member">r_BP_N</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a26fc03f27e1d6c62289fd4906524917e" kindref="member">r_BP_P</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_year<sp/>=<sp/>EPOCH_YEAR<sp/>-<sp/>1900;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_mon<sp/>=<sp/>EPOCH_MONTH<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_mday<sp/>=<sp/>EPOCH_DAY;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_hour<sp/>=<sp/>EPOCH_HOUR;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_min<sp/>=<sp/>EPOCH_MIN;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_sec<sp/>=<sp/>(int)<sp/>round(EPOCH_SEC);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_isdst<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1aba6dc979521231d5e1b5ed3d53224c06" kindref="member">envMinReach</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1adaa6e3808f939ca766660d42434aa6b2" kindref="member">envMaxReach</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1ad75ed9ac36d5732ae2832bd1964abd69" kindref="member">planetState</ref><sp/>=<sp/><ref refid="class_atmosphere_base_1aea875260b51bc274bb14ae82e11d4562" kindref="member">planetPosInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>m33SetIdentity(this-&gt;<ref refid="class_atmosphere_base_1ad75ed9ac36d5732ae2832bd1964abd69" kindref="member">planetState</ref>.J20002Pfix);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.clear();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><ref refid="class_atmosphere_base_1a8692c5df091d8b3a5f4321b20ea9e5d6" kindref="member">AtmosphereBase::~AtmosphereBase</ref>()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.at(c);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1adbff075a6d7981151eb903e24f3861ef" kindref="member">AtmosphereBase::addSpacecraftToModel</ref>(Message&lt;SCStatesMsgPayload&gt;<sp/>*tmpScMsg){</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>add<sp/>input<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.push_back(tmpScMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;AtmoPropsMsgPayload&gt;<sp/>*msg;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>msg<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Message&lt;AtmoPropsMsgPayload&gt;;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.push_back(msg);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>buffer<sp/>message<sp/>copies*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>AtmoPropsMsgPayload<sp/>msgAtmoBuffer;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.push_back(msgAtmoBuffer);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1acf488c63b173d77eb82722e94cf6f167" kindref="member">AtmosphereBase::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1a11f752c534eb972c577cd5d1f365c235" kindref="member">customReset</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>set<sp/>epoch<sp/>information.<sp/><sp/>If<sp/>provided,<sp/>then<sp/>the<sp/>epoch<sp/>message<sp/>information<sp/>should<sp/>be<sp/>used.<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_atmosphere_base_1a151baabc64d6d064bdb1b58d3e8cf5d3" kindref="member">epochInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>in<sp/>the<sp/>epoch<sp/>message<sp/>and<sp/>set<sp/>the<sp/>internal<sp/>time<sp/>structure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EpochMsgPayload<sp/>epochMsg;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_atmosphere_base_1a151baabc64d6d064bdb1b58d3e8cf5d3" kindref="member">epochInMsg</ref>.isWritten())<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1aa36946330f659948aef5ea736c646a6d" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;An<sp/>un-written<sp/>epoch<sp/>msg<sp/>was<sp/>linked<sp/>in!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>epochMsg<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a151baabc64d6d064bdb1b58d3e8cf5d3" kindref="member">epochInMsg</ref>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_year<sp/>=<sp/>epochMsg.year<sp/>-<sp/>1900;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_mon<sp/>=<sp/>epochMsg.month<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_mday<sp/>=<sp/>epochMsg.day;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_hour<sp/>=<sp/>epochMsg.hours;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_min<sp/>=<sp/>epochMsg.minutes;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>.tm_sec<sp/>=<sp/>(int)<sp/>round(epochMsg.seconds);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mktime(&amp;this-&gt;<ref refid="class_atmosphere_base_1a3ede27ff380075349be6ae52dd20576b" kindref="member">epochDateTime</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1a9e9e1091a6e8c9b291d6c3b5d5fd115d" kindref="member">customSetEpochFromVariable</ref>();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a9e9e1091a6e8c9b291d6c3b5d5fd115d" kindref="member">AtmosphereBase::customSetEpochFromVariable</ref>()</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a11f752c534eb972c577cd5d1f365c235" kindref="member">AtmosphereBase::customReset</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a89fde725b5700960183bda51ffe0057a" kindref="member">AtmosphereBase::writeMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>0;<sp/>c<sp/>&lt;<sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.size();<sp/>c++){</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>.at(c)-&gt;write(&amp;this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.at(c),<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1aa27ce1f3f843cafd13c44810429ec0e0" kindref="member">customWriteMessages</ref>(CurrentClock);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1aa27ce1f3f843cafd13c44810429ec0e0" kindref="member">AtmosphereBase::customWriteMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a414f3280b6652855f5f60d91b3760dc5" kindref="member">AtmosphereBase::readMessages</ref>()</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>scMsg;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a71c9fe398c0dcae969589eb9988caaf9" kindref="member">scStates</ref>.clear();</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>scRead;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.size()<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>0;<sp/>c&lt;this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.size();<sp/>c++){</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tmpScRead;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scMsg<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.at(c)();</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpScRead<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a9b5b0e1af20d1ebdb21e0fec9529c83d" kindref="member">scStateInMsgs</ref>.at(c).isWritten();</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/>scRead<sp/>&amp;&amp;<sp/>tmpScRead;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a71c9fe398c0dcae969589eb9988caaf9" kindref="member">scStates</ref>.push_back(scMsg);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1aa36946330f659948aef5ea736c646a6d" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Atmosphere<sp/>model<sp/>has<sp/>no<sp/>spacecraft<sp/>added<sp/>to<sp/>it.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>planetRead<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_atmosphere_base_1aea875260b51bc274bb14ae82e11d4562" kindref="member">planetPosInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1ad75ed9ac36d5732ae2832bd1964abd69" kindref="member">planetState</ref><sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1aea875260b51bc274bb14ae82e11d4562" kindref="member">planetPosInMsg</ref>();</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetRead<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1aea875260b51bc274bb14ae82e11d4562" kindref="member">planetPosInMsg</ref>.isWritten();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>customRead<sp/>=<sp/><ref refid="class_atmosphere_base_1a234555d45144382690d473c9498b63a2" kindref="member">customReadMessages</ref>();</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(planetRead<sp/>&amp;&amp;<sp/>scRead<sp/>&amp;&amp;<sp/>customRead);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a234555d45144382690d473c9498b63a2" kindref="member">AtmosphereBase::customReadMessages</ref>()</highlight></codeline>
+<codeline lineno="218"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a6423e9d72c239fd63db24214e238ab49" kindref="member">AtmosphereBase::updateRelativePos</ref>(SpicePlanetStateMsgPayload<sp/>*planetState,<sp/>SCStatesMsgPayload<sp/>*scState)</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(scState-&gt;r_BN_N,<sp/><ref refid="class_atmosphere_base_1ad75ed9ac36d5732ae2832bd1964abd69" kindref="member">planetState</ref>-&gt;PositionVector,<sp/>this-&gt;r_BP_N.data());</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(this-&gt;planetState.J20002Pfix,<sp/>this-&gt;r_BP_N.data(),<sp/>this-&gt;r_BP_P.data());</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a3c14cfc0ff1dc77e8845fb913500b1e3" kindref="member">orbitRadius</ref><sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a991eed54587277fee469680bab538fdb" kindref="member">r_BP_N</ref>.norm();</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">orbitAltitude</ref><sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a3c14cfc0ff1dc77e8845fb913500b1e3" kindref="member">orbitRadius</ref><sp/>-<sp/>this-&gt;<ref refid="class_atmosphere_base_1afbaf28c140d42847542ea181df10ded8" kindref="member">planetRadius</ref>;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1ac79f6aac6a0771b86e59dec71eff51eb" kindref="member">AtmosphereBase::updateLocalAtmosphere</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SCStatesMsgPayload&gt;::iterator<sp/>scIt;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;AtmoPropsMsgPayload&gt;::iterator<sp/>envMsgIt;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>envMsgIt<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.begin();</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(scIt<sp/>=<sp/><ref refid="class_atmosphere_base_1a71c9fe398c0dcae969589eb9988caaf9" kindref="member">scStates</ref>.begin();<sp/>scIt<sp/>!=<sp/><ref refid="class_atmosphere_base_1a71c9fe398c0dcae969589eb9988caaf9" kindref="member">scStates</ref>.end();<sp/>scIt++,<sp/>envMsgIt++){</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a6423e9d72c239fd63db24214e238ab49" kindref="member">updateRelativePos</ref>(&amp;(this-&gt;planetState),<sp/>&amp;(*scIt));</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*envMsgIt<sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>[0]-&gt;zeroMsgPayload;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">orbitAltitude</ref><sp/>&gt;<sp/>this-&gt;<ref refid="class_atmosphere_base_1aba6dc979521231d5e1b5ed3d53224c06" kindref="member">envMinReach</ref><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(this-&gt;<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">orbitAltitude &lt; this-&gt;</ref><ref refid="class_atmosphere_base_1adaa6e3808f939ca766660d42434aa6b2" kindref="member">envMaxReach</ref><sp/>||<sp/>this-&gt;<ref refid="class_atmosphere_base_1adaa6e3808f939ca766660d42434aa6b2" kindref="member">envMaxReach</ref><sp/>&lt;<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_atmosphere_base_1a248236143082c4648ff99b1e6b85ee9b" kindref="member">evaluateAtmosphereModel</ref>(&amp;(*envMsgIt),<sp/><ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">currentTime</ref>);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_atmosphere_base_1a63a45c45949db984bf2e6a1194900f0a" kindref="member">AtmosphereBase::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="276"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;AtmoPropsMsgPayload&gt;::iterator<sp/><ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">it</ref>;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">it</ref><sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.begin();<sp/>it!=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a744fe30eca4f98a616dbdabac688a2c8" kindref="member">envOutBuffer</ref>.end();<sp/>it++){</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">it</ref><sp/>=<sp/>this-&gt;<ref refid="class_atmosphere_base_1a033e0b9d7fc434a0f5bab37ddb2e21d0" kindref="member">envOutMsgs</ref>[0]-&gt;zeroMsgPayload;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_atmosphere_base_1a414f3280b6652855f5f60d91b3760dc5" kindref="member">readMessages</ref>())</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1ac79f6aac6a0771b86e59dec71eff51eb" kindref="member">updateLocalAtmosphere</ref>(CurrentSimNanos*<ref refid="class_atmosphere_base_1ae9565f0d5946e6c083ed623f86907bf1" kindref="member">NANO2SEC</ref>);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_atmosphere_base_1a89fde725b5700960183bda51ffe0057a" kindref="member">writeMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="292"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/atmosphereBase.cpp"/>
+  </compounddef>
+</doxygen>

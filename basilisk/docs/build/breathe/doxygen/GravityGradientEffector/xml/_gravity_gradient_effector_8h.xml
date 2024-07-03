@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_gravity_gradient_effector_8h" kind="file" language="C++">
+    <compoundname>GravityGradientEffector.h</compoundname>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="no">vector</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateData.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenMRP.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/GravityGradientMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includedby refid="_gravity_gradient_effector_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/GravityGradientEffector/GravityGradientEffector.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/GravityGradientEffector/GravityGradientEffector.h</label>
+        <link refid="_gravity_gradient_effector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/GravityGradientMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_gravity_gradient_effector" prot="public">GravityGradientEffector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2020,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>GRAVITY_GRADIENT_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GRAVITY_GRADIENT_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenMRP.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/GravityGradientMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="class_gravity_gradient_effector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_gravity_gradient_effector" kindref="compound">GravityGradientEffector</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>DynamicEffector<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_gravity_gradient_effector" kindref="compound">GravityGradientEffector</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_gravity_gradient_effector_1aca2965b2546bd7e76a98b8c75f1211c4" kindref="member">~GravityGradientEffector</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1ab86e821a8ba970c3841b0d6e2a2f8565" kindref="member">linkInStates</ref>(DynParamManager&amp;<sp/>states);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1a4418a6683c2d1e6605bce43801c186d0" kindref="member">computeForceTorque</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1ab2a3f3c308ce48c9be2aaf28f6dfb7de" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1a18cdf9dd63841ceda53b961593a136d8" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1ab79781cf2bfc7051f3063b95115d5d8c" kindref="member">WriteOutputMessages</ref>(uint64_t<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_gradient_effector_1a2e53a343276655f8bf0c5fec583f3a9a" kindref="member">addPlanetName</ref>(std::string<sp/>planetName);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52" refid="class_gravity_gradient_effector_1af6958283db3be8fb3519d299738efda1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;GravityGradientMsgPayload&gt;<sp/><ref refid="class_gravity_gradient_effector_1af6958283db3be8fb3519d299738efda1" kindref="member">gravityGradientOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="53" refid="class_gravity_gradient_effector_1a85568f15e5b9e26abc6c8a9a9d7f067a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_gravity_gradient_effector_1a85568f15e5b9e26abc6c8a9a9d7f067a" kindref="member">hubSigma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="class_gravity_gradient_effector_1a594fca3d789ba284d48bdc277eee3a50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_gravity_gradient_effector_1a594fca3d789ba284d48bdc277eee3a50" kindref="member">r_BN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="class_gravity_gradient_effector_1a8f2f90fe057975abe44926822cd53c42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_gravity_gradient_effector_1a8f2f90fe057975abe44926822cd53c42" kindref="member">ISCPntB_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="class_gravity_gradient_effector_1a1013a115db9ab2d6daf5e588f4cdedef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_gravity_gradient_effector_1a1013a115db9ab2d6daf5e588f4cdedef" kindref="member">c_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="class_gravity_gradient_effector_1ac46ffb81fd8ca5e625ab88b9de176fe5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_gravity_gradient_effector_1ac46ffb81fd8ca5e625ab88b9de176fe5" kindref="member">m_SC</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="class_gravity_gradient_effector_1a2e882d0a834061982cd7b1b11ccbd9d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::MatrixXd<sp/>*&gt;<sp/><ref refid="class_gravity_gradient_effector_1a2e882d0a834061982cd7b1b11ccbd9d5" kindref="member">r_PN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="class_gravity_gradient_effector_1adbb23d2f7197919604eb8d327eb9975d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::MatrixXd<sp/>*&gt;<sp/><ref refid="class_gravity_gradient_effector_1adbb23d2f7197919604eb8d327eb9975d" kindref="member">muPlanet</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_gravity_gradient_effector_1a411c428eb14560d328be1a0a7d58bc50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_gravity_gradient_effector_1a411c428eb14560d328be1a0a7d58bc50" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>planetPropertyNames;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>GRAVITY_GRADIENT_DYNAMIC_EFFECTOR_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/GravityGradientEffector/GravityGradientEffector.h"/>
+  </compounddef>
+</doxygen>

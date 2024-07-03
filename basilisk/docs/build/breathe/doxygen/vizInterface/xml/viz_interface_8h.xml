@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="viz_interface_8h" kind="file" language="C++">
+    <compoundname>vizInterface.h</compoundname>
+    <includes local="yes">utilities/vizProtobuffer/vizMessage.pb.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">map</includes>
+    <includes local="no">zmq.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">simulation/vizard/_GeneralModuleFiles/vizStructures.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/CameraConfigMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/CameraImageMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/RWSpeedMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/EpochMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/utilities/simDefinitions.h</includes>
+    <includedby refid="viz_interface_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/vizard/vizInterface/vizInterface.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/vizard/vizInterface/vizInterface.h</label>
+        <link refid="viz_interface_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/CameraConfigMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/CameraImageMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/msgPayloadDefC/EpochMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/msgPayloadDefC/RWSpeedMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/simDefinitions.h</label>
+      </node>
+      <node id="4">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>map</label>
+      </node>
+      <node id="8">
+        <label>simulation/vizard/_GeneralModuleFiles/vizStructures.h</label>
+      </node>
+      <node id="2">
+        <label>utilities/vizProtobuffer/vizMessage.pb.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="6">
+        <label>zmq.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_viz_interface" prot="public">VizInterface</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="viz_interface_8h_1ae540100819aefd506d006c067ad2ec8a" prot="public" static="no">
+        <name>VIZ_MAX_SIZE</name>
+        <initializer>100000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/vizard/vizInterface/vizInterface.h" line="41" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/vizard/vizInterface/vizInterface.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>Univeristy<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VIZ_INTERFACE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VIZ_INTERFACE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;utilities/vizProtobuffer/vizMessage.pb.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;zmq.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/vizard/_GeneralModuleFiles/vizStructures.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/CameraConfigMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/CameraImageMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/RWSpeedMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/EpochMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/simDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VIZ_MAX_SIZE<sp/>100000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="class_viz_interface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_viz_interface" kindref="compound">VizInterface</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_viz_interface_1a4d214298d640bc95db6c09022094084e" kindref="member">VizInterface</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_viz_interface_1af2ab1230fbf1d676e4d861fe4855e76f" kindref="member">~VizInterface</ref>();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1a910b7b767ce6c34165b3215cc8da7b1f" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1ae683ac5b032d3384e9b7efe10b58e35c" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1a643259d05c3aa1f97c3654796613c2ad" kindref="member">ReadBSKMessages</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1aaea5c6391400b8a23aa6638ce14bc4dd" kindref="member">WriteProtobuffer</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1a0e78609a3efcc0081d0c367caf2ab85b" kindref="member">addCamMsgToModule</ref>(Message&lt;CameraConfigMsgPayload&gt;<sp/>*tmpMsg);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58" refid="class_viz_interface_1a74bacd24d6d7c5a224844290eec8254d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;VizSpacecraftData&gt;<sp/><ref refid="class_viz_interface_1a74bacd24d6d7c5a224844290eec8254d" kindref="member">scData</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="class_viz_interface_1a9c2769cd57c37adf7a02af7314f44879" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector<sp/>&lt;ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;&gt;<sp/><ref refid="class_viz_interface_1a9c2769cd57c37adf7a02af7314f44879" kindref="member">spiceInMsgs</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="class_viz_interface_1a71ea3f58175f4f1001e1e887013e851d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;LocationPbMsg<sp/>*&gt;<sp/><ref refid="class_viz_interface_1a71ea3f58175f4f1001e1e887013e851d" kindref="member">locations</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="class_viz_interface_1a4a254f5993e7fbeb99338041fc72b2cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GravBodyInfo&gt;<sp/><ref refid="class_viz_interface_1a4a254f5993e7fbeb99338041fc72b2cb" kindref="member">gravBodyInformation</ref>;<sp/></highlight></codeline>
+<codeline lineno="62" refid="class_viz_interface_1a9e1787bbf28639aaaa0fd1c74a96e8c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Message&lt;CameraImageMsgPayload&gt;*&gt;<sp/><ref refid="class_viz_interface_1a9e1787bbf28639aaaa0fd1c74a96e8c2" kindref="member">opnavImageOutMsgs</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="class_viz_interface_1acace5ce8ac918c178e77c35174cbcd46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1acace5ce8ac918c178e77c35174cbcd46" kindref="member">opNavMode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="class_viz_interface_1a8fbbc2a0f3ac99764ebd2d4ce427c2ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1a8fbbc2a0f3ac99764ebd2d4ce427c2ea" kindref="member">saveFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="class_viz_interface_1a617d0e92955ff1422be5b42945f573b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_viz_interface_1a617d0e92955ff1422be5b42945f573b5" kindref="member">liveStream</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="class_viz_interface_1a6fe642e32afed61da818259ec28cc1ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;void*<sp/>&gt;<ref refid="class_viz_interface_1a6fe642e32afed61da818259ec28cc1ce" kindref="member">bskImagePtrs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="class_viz_interface_1a3cecc0766af698bf3e0cbd8a2850cb61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;ReadFunctor&lt;CameraConfigMsgPayload&gt;&gt;<sp/><ref refid="class_viz_interface_1a3cecc0766af698bf3e0cbd8a2850cb61" kindref="member">cameraConfInMsgs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_viz_interface_1a440e64d83ba761f16919bf18cdb8ea1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;MsgCurrStatus&gt;<sp/><ref refid="class_viz_interface_1a440e64d83ba761f16919bf18cdb8ea1e" kindref="member">cameraConfMsgStatus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_viz_interface_1ab8b357870b3847c2367158aebecc4257" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;CameraConfigMsgPayload&gt;<sp/><ref refid="class_viz_interface_1ab8b357870b3847c2367158aebecc4257" kindref="member">cameraConfigBuffers</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_viz_interface_1a87cd02b3f412e837d68f8e629ffc77f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="class_viz_interface_1a87cd02b3f412e837d68f8e629ffc77f3" kindref="member">FrameNumber</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="class_viz_interface_1abfe511d219043fa9d7fe6026c527f38a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_viz_interface_1abfe511d219043fa9d7fe6026c527f38a" kindref="member">protoFilename</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="class_viz_interface_1a183ed123306b2454672602b0729a3346" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>VizSettings<sp/><ref refid="class_viz_interface_1a183ed123306b2454672602b0729a3346" kindref="member">settings</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="class_viz_interface_1a41d80d777698b3de879b5fa5081aa588" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>LiveVizSettings<sp/><ref refid="class_viz_interface_1a41d80d777698b3de879b5fa5081aa588" kindref="member">liveSettings</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="class_viz_interface_1aff69b43c6210f9db0778653d14f861f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_viz_interface_1aff69b43c6210f9db0778653d14f861f4" kindref="member">comProtocol</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="class_viz_interface_1abac84c4120977062417f13ea73327f04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_viz_interface_1abac84c4120977062417f13ea73327f04" kindref="member">comAddress</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="class_viz_interface_1a263a483b7dd3a7dd9fc6eb232aedc9a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_viz_interface_1a263a483b7dd3a7dd9fc6eb232aedc9a7" kindref="member">comPortNumber</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="class_viz_interface_1a8efce09bb854482528890049bb5e936c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;EpochMsgPayload&gt;<sp/><ref refid="class_viz_interface_1a8efce09bb854482528890049bb5e936c" kindref="member">epochInMsg</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="class_viz_interface_1a97de5232648b2ae8133892ccbd9ebe15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>MsgCurrStatus<sp/><ref refid="class_viz_interface_1a97de5232648b2ae8133892ccbd9ebe15" kindref="member">epochMsgStatus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="class_viz_interface_1a01e4eeadfddb0b736030846ad4bd33d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>EpochMsgPayload<sp/><ref refid="class_viz_interface_1a01e4eeadfddb0b736030846ad4bd33d6" kindref="member">epochMsgBuffer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="class_viz_interface_1a0734c1cb18037769d73dc8f9a1892274" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_viz_interface_1a0734c1cb18037769d73dc8f9a1892274" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ZeroMQ<sp/>State</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>context;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>requester_socket;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>firstPass;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;MsgCurrStatus&gt;spiceInMsgStatus;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector<sp/>&lt;SpicePlanetStateMsgPayload&gt;<sp/>spiceMessage;<sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ofstream<sp/>*outputStream;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>requestImage(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>camCounter,<sp/>uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>VIZ_INTERFACE_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/vizard/vizInterface/vizInterface.h"/>
+  </compounddef>
+</doxygen>

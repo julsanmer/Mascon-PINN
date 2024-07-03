@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="magnetometer_8cpp" kind="file" language="C++">
+    <compoundname>magnetometer.cpp</compoundname>
+    <includes refid="magnetometer_8h" local="yes">simulation/sensors/magnetometer/magnetometer.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenMRP.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp</label>
+        <link refid="magnetometer_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/sensors/magnetometer/magnetometer.h</label>
+        <link refid="magnetometer_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="20">
+        <label>algorithm</label>
+      </node>
+      <node id="5">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/MagneticFieldMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/TAMSensorMsgPayload.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="23">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="21">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/gauss_markov.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="22">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/saturate.h</label>
+      </node>
+      <node id="19">
+        <label>cstring</label>
+      </node>
+      <node id="18">
+        <label>iostream</label>
+      </node>
+      <node id="17">
+        <label>math.h</label>
+      </node>
+      <node id="4">
+        <label>random</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2019,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/sensors/magnetometer/magnetometer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenMRP.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><ref refid="class_magnetometer_1aaa0805207e65f099d666d04768fc0f6d" kindref="member">Magnetometer::Magnetometer</ref>()</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numStates<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a6db077c2d4d345f724cae0ed222ab48c" kindref="member">senBias</ref>.fill(0.0);<sp/></highlight><highlight class="comment">//<sp/>Tesla</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" kindref="member">senNoiseStd</ref>.fill(-1.0);<sp/></highlight><highlight class="comment">//<sp/>Tesla</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a93d046a1b1b474cba335482906c6a354" kindref="member">walkBounds</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;noiseModel<sp/>=<sp/>GaussMarkov(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a90ff681c9b5686d96145abec95e8a766" kindref="member">scaleFactor</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" kindref="member">maxOutput</ref><sp/>=<sp/>1e200;<sp/></highlight><highlight class="comment">//<sp/>Tesla</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" kindref="member">minOutput</ref><sp/>=<sp/>-1e200;<sp/></highlight><highlight class="comment">//<sp/>Tesla</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;saturateUtility<sp/>=<sp/>Saturate(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1aac59777f613847a6fe71689091e0faab" kindref="member">dcm_SB</ref>.setIdentity(3,<sp/>3);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><ref refid="class_magnetometer_1ac8e9f1cba5ac44677d89fd052eae281c" kindref="member">Magnetometer::~Magnetometer</ref>()</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">Eigen::Matrix3d<sp/><ref refid="class_magnetometer_1a2d1620a53a99bbe96d36a7fb142d80d4" kindref="member">Magnetometer::setBodyToSensorDCM</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yaw,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pitch,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roll)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1aac59777f613847a6fe71689091e0faab" kindref="member">dcm_SB</ref><sp/>=<sp/>eigenM1(roll)<sp/>*<sp/>eigenM2(pitch)<sp/>*<sp/>eigenM3(yaw);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_magnetometer_1aac59777f613847a6fe71689091e0faab" kindref="member">dcm_SB</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1a804b45078a8d7d59ff20f406c834eb4a" kindref="member">Magnetometer::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_magnetometer_1ab869d73800aea2ec6a72de43191cd8d9" kindref="member">magInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_magnetometer_1aa228af2684279f6ec83ba304ae3b074d" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Magnetic<sp/>field<sp/>interface<sp/>message<sp/>name<sp/>(magInMsg)<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_magnetometer_1a379108a2036a6eba3b8a55d947ee6b28" kindref="member">stateInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_magnetometer_1aa228af2684279f6ec83ba304ae3b074d" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Spacecraft<sp/>state<sp/>message<sp/>name<sp/>(stateInMsg)<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;noiseModel.setUpperBounds(this-&gt;<ref refid="class_magnetometer_1a93d046a1b1b474cba335482906c6a354" kindref="member">walkBounds</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nMatrix<sp/>=<sp/>(this-&gt;<ref refid="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" kindref="member">senNoiseStd</ref><sp/>*<sp/>1.5).asDiagonal();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;noiseModel.setNoiseMatrix(nMatrix);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;noiseModel.setRNGSeed(this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>satBounds;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds.resize(this-&gt;numStates,<sp/>2);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(0,<sp/>0)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" kindref="member">minOutput</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(0,<sp/>1)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" kindref="member">maxOutput</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(1,<sp/>0)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" kindref="member">minOutput</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(1,<sp/>1)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" kindref="member">maxOutput</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(2,<sp/>0)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" kindref="member">minOutput</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>satBounds(2,<sp/>1)<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" kindref="member">maxOutput</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;saturateUtility.setBounds(satBounds);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1a64ed1b7622745fdf423004d0f2943d2a" kindref="member">Magnetometer::readInputMessages</ref>()</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;magData<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1ab869d73800aea2ec6a72de43191cd8d9" kindref="member">magInMsg</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;stateCurrent<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a379108a2036a6eba3b8a55d947ee6b28" kindref="member">stateInMsg</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1a9032013c016fca43b0e763b5c9a37eca" kindref="member">Magnetometer::computeMagData</ref>()</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>tam_N;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_BN;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigma_BN;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>tam_N<sp/>=<sp/>cArray2EigenVector3d(this-&gt;magData.magField_N);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>sigma_BN<sp/>=<sp/>cArray2EigenMRPd(this-&gt;stateCurrent.sigma_BN);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_BN<sp/>=<sp/>sigma_BN.toRotationMatrix().transpose();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a658451bb173eb3fac381426b69837f22" kindref="member">tam_S</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1aac59777f613847a6fe71689091e0faab" kindref="member">dcm_SB</ref><sp/>*<sp/>dcm_BN<sp/>*<sp/>tam_N;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1ab2106a02ce636f79cb22a090ec7a141d" kindref="member">Magnetometer::computeTrueOutput</ref>()</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a195a0740de577960e1ca248a2ddc2f9f" kindref="member">tamTrue_S</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a658451bb173eb3fac381426b69837f22" kindref="member">tam_S</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1aabfb35ea01b586e1b005bd4e0062e7fd" kindref="member">Magnetometer::applySensorErrors</ref>()</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>anyNoiseComponentUninitialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;<ref refid="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" kindref="member">senNoiseStd</ref>.size();<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((this-&gt;<ref refid="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" kindref="member">senNoiseStd</ref>(i)<sp/>&lt;=<sp/>0.0))<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>anyNoiseComponentUninitialized<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(anyNoiseComponentUninitialized)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a195a0740de577960e1ca248a2ddc2f9f" kindref="member">tamTrue_S</ref>;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;noiseModel.computeNextState();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>currentError<sp/>=<sp/>this-&gt;noiseModel.getCurrentState();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a195a0740de577960e1ca248a2ddc2f9f" kindref="member">tamTrue_S</ref><sp/>+<sp/>currentError;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>+<sp/>this-&gt;<ref refid="class_magnetometer_1a6db077c2d4d345f724cae0ed222ab48c" kindref="member">senBias</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>*=<sp/>this-&gt;<ref refid="class_magnetometer_1a90ff681c9b5686d96145abec95e8a766" kindref="member">scaleFactor</ref>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1ab09bf650aaa4340654013c4c4154cef3" kindref="member">Magnetometer::applySaturation</ref>()</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref><sp/>=<sp/>this-&gt;saturateUtility.saturate(this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1aaa2ae24f743d95dd4d5b42155d44f76d" kindref="member">Magnetometer::writeOutputMessages</ref>(uint64_t<sp/>Clock)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>TAMSensorMsgPayload<sp/>localMessage;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>localMessage<sp/>=<sp/>this-&gt;<ref refid="class_magnetometer_1af46f9804e8f4c129b21528cdef435382" kindref="member">tamDataOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" kindref="member">tamSensed_S</ref>,<sp/>localMessage.tam_S);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1af46f9804e8f4c129b21528cdef435382" kindref="member">tamDataOutMsg</ref>.write(&amp;localMessage,<sp/>this-&gt;moduleID,<sp/>Clock);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_magnetometer_1a848a9e17ed52cb29118529c50714e71e" kindref="member">Magnetometer::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a64ed1b7622745fdf423004d0f2943d2a" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1a9032013c016fca43b0e763b5c9a37eca" kindref="member">computeMagData</ref>();</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1ab2106a02ce636f79cb22a090ec7a141d" kindref="member">computeTrueOutput</ref>();</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1aabfb35ea01b586e1b005bd4e0062e7fd" kindref="member">applySensorErrors</ref>();</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1ab09bf650aaa4340654013c4c4154cef3" kindref="member">applySaturation</ref>();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetometer_1aaa2ae24f743d95dd4d5b42155d44f76d" kindref="member">writeOutputMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp"/>
+  </compounddef>
+</doxygen>

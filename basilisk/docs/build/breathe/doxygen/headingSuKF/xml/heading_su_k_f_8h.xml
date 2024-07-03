@@ -1,0 +1,728 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="heading_su_k_f_8h" kind="file" language="C++">
+    <compoundname>headingSuKF.h</compoundname>
+    <includes local="yes">cMsgCInterface/NavAttMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/VehicleConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/HeadingFilterMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/OpNavMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CameraConfigMsg_C.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="heading_su_k_f_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h</label>
+        <link refid="heading_su_k_f_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/CameraConfigMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/HeadingFilterMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/OpNavMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_heading_su_k_f_config" prot="public">HeadingSuKFConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="heading_su_k_f_8h_1ab78fdd0a81a4c0d40f63f32d1ee2c435" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the heading estimator. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Create filter states output message which is mostly for debug</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="93" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="35" bodyend="40" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="93" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1adcc766c66544e9c28c0001d4fbc78512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the parsed heading sensor data and outputs an estimate of the sun vector in the ADCS body frame <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input parsed heading sensor data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Check for switching frames</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the time tag from the measured data is new compared to previous step, propagate and update the filter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If current clock time is further ahead than the measured time, then propagate to this current time-step</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (equation 23)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>The post fits are y - ybar if a measurement was read, if observations are zero, do not compute post fit residuals</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the filter states output buffer and write the output message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the heading estimate into the copy of the OpNav message structure</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="94" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="137" bodyend="240" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="94" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a2ab0dbf6078499d3acc2fa3aac16327f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the heading attitude filter to an initial state and initializes the internal estimation matrices. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Check input message connections</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the local configuration data structures and outputs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Initialize filter parameters to max values</para>
+</listitem></itemizedlist>
+</para>
+<para>Initalize the filter to use b_1 of the body frame to make frame</para>
+<para><itemizedlist>
+<listitem><para>Ensure that all internal filter matrices are zeroed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set lambda/gamma to standard value for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>User a cholesky decomposition to obtain the sBar and sQnoise matrices for use in filter at runtime</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="96" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="50" bodyend="128" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a185f40b5b3eacf0baa88cabadc077829" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFTimeUpdate</definition>
+        <argsstring>(HeadingSuKFConfig *configData, double updateTime)</argsstring>
+        <name>headingSuKFTimeUpdate</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the time update for the heading kalman filter. It propagates the sigma points forward in time and then gets the current covariance and state estimates. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Copy over the current state estimate into the 0th Sigma point and propagate by dt</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Scale that Sigma point by the appopriate scaling factor (Wm[0])</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the transpose of the sBar matrix because it is easier to extract Rows vs columns</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each Sigma point, apply sBar-based error, propagate forward, and scale by Wm just like 0th. Note that we perform +/- sigma points simultaneously in loop to save loop values.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the AT matrix prior to assembly</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the AT matrix. Note that this matrix is the internals of the qr decomposition call in the source design documentation. It is the inside of equation 20 in that document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Pop the sQNoise matrix on to the end of AT prior to getting QR decomposition</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>QR decomposition (only R computed!) of the AT matrix provides the new sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the sBar matrix over by the xBar vector using the appropriate weight like in equation 21 in design document.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Save current sBar matrix, covariance, and state estimate off for further use</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="98" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="283" bodyend="370" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="98" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a2a75abb11b899796b57bf921d0477e30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFMeasUpdate</definition>
+        <argsstring>(HeadingSuKFConfig *configData, double updateTime)</argsstring>
+        <name>headingSuKFMeasUpdate</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the measurement update for the heading kalman filter. It applies the observations in the obs vectors to the current state estimate and updates the state/covariance with that information. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the valid observations and the measurement model for all observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (note that this is equation 23 in the time update section of the reference document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the matrix that we perform the QR decomposition on in the measurement update section of the code. This is based on the differenence between the yBar parameter and the calculated measurement models. Equation 24 in driving doc.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>This is the square-root of the Rk matrix which we treat as the Cholesky decomposition of the observation variance matrix constructed for our number of observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Perform QR decomposition (only R again) of the above matrix to obtain the current Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the matrix over by the difference between the 0th SP-based measurement model and the yBar matrix (cholesky down-date again)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shifted matrix represents the Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Construct the Pxy matrix (equation 26) which multiplies the Sigma-point cloud by the measurement model cloud (weighted) to get the total Pxy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Then we need to invert the SyT*Sy matrix to get the Kalman gain factor. Since The Sy matrix is lower triangular, we can do a back-sub inversion instead of a full matrix inversion. That is the ukfUInv and ukfLInv calls below. Once that multiplication is done (equation 27), we have the Kalman Gain.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Difference the yBar and the observations to get the observed error and multiply by the Kalman Gain to get the state update. Add the state update to the state to get the updated state value (equation 27).</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the updated matrix U from equation 28. Note that I then transpose it so that I can extract &quot;columns&quot; from adjacent memory</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each column in the update matrix, perform a cholesky down-date on it to get the total shifted S matrix (called sBar in internal parameters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute equivalent covariance based on updated sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="99" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="407" bodyend="526" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="99" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a184143c088199586b943e028fb1b26cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingStateProp</definition>
+        <argsstring>(double *stateInOut, double *b_vec, double dt)</argsstring>
+        <name>headingStateProp</name>
+        <param>
+          <type>double *</type>
+          <declname>stateInOut</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>b_vec</declname>
+          <defname>b_Vec</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method propagates a heading state vector forward in time. Note that the calling parameter is updated in place to save on data copies. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stateInOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state that is propagated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b_Vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to b vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time step </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Begin state update steps</para>
+<para>Take omega cross d</para>
+<para><itemizedlist>
+<listitem><para>Multiply omega cross d by dt and add to state to propagate</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="100" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="249" bodyend="274" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="100" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a5a3431565b170f09a30f651d539aa9a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFMeasModel</definition>
+        <argsstring>(HeadingSuKFConfig *configData)</argsstring>
+        <name>headingSuKFMeasModel</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes what the expected measurement vector is for each opnave measurement. All data is transacted from the main data structure for the model because there are many variables that would have to be updated otherwise. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Loop over sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>yMeas matrix was set backwards deliberately so we need to transpose it through</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="101" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="379" bodyend="398" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="101" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1a565baedca6725bc6e396087bf838004e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFComputeDCM_BS</definition>
+        <argsstring>(double heading[HEAD_N_STATES], double bVec[HEAD_N_STATES], double *dcm)</argsstring>
+        <name>headingSuKFComputeDCM_BS</name>
+        <param>
+          <type>double</type>
+          <declname>heading</declname>
+          <array>[HEAD_N_STATES]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bVec</declname>
+          <array>[HEAD_N_STATES]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>dcm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Populate the dcm_BS with the &quot;new&quot; S-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="102" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="583" bodyend="608" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="102" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8h_1abb3d92fea7d929a048782b1bca13ce1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFSwitch</definition>
+        <argsstring>(double *bVec_B, double *states, double *covar)</argsstring>
+        <name>headingSuKFSwitch</name>
+        <param>
+          <type>double *</type>
+          <declname>bVec_B</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>states</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>covar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the dcms necessary for the switch between the two frames. It the switches the states and the covariance, and sets s2 to be the new, different vector of the body frame. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bVec_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to b-vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the states </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the covariance </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Set the body frame vectors</para>
+<para>Populate the dcm_BS with the &quot;old&quot; S-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" line="103" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="537" bodyend="580" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h" declline="103" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016-2018,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_HEADING_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_HEADING_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavAttMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/VehicleConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/HeadingFilterMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/OpNavMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CameraConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="struct_heading_su_k_f_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35" refid="struct_heading_su_k_f_config_1aa5e41a41b725a82db19d184b43204b6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C<sp/><ref refid="struct_heading_su_k_f_config_1aa5e41a41b725a82db19d184b43204b6e" kindref="member">opnavDataOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="struct_heading_su_k_f_config_1af5654529b6844ef78f655ea8c0ec5743" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>HeadingFilterMsg_C<sp/><ref refid="struct_heading_su_k_f_config_1af5654529b6844ef78f655ea8c0ec5743" kindref="member">filtDataOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C<sp/><ref refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" kindref="member">opnavDataInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="struct_heading_su_k_f_config_1a55304735e6be0a5a2f1cb3f4a4ecdac4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraConfigMsg_C<sp/><ref refid="struct_heading_su_k_f_config_1a55304735e6be0a5a2f1cb3f4a4ecdac4" kindref="member">cameraConfigInMsg</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" kindref="member">putInCameraFrame</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_heading_su_k_f_config_1a84fdf1d1aa5a63652606e78b4167541d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a84fdf1d1aa5a63652606e78b4167541d" kindref="member">numObs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="struct_heading_su_k_f_config_1abc57b61cfcb771593a0133535c786fb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1abc57b61cfcb771593a0133535c786fb3" kindref="member">beta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" kindref="member">alpha</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_heading_su_k_f_config_1a2df367b4d0860fb23961529d42c2295e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a2df367b4d0860fb23961529d42c2295e" kindref="member">kappa</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_heading_su_k_f_config_1a9f7b0a1780b07872b610629e1ca5201e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a9f7b0a1780b07872b610629e1ca5201e" kindref="member">gamma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="struct_heading_su_k_f_config_1a032b58ded7ea8ba708da6e5a2a103b7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a032b58ded7ea8ba708da6e5a2a103b7f" kindref="member">qObsVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="struct_heading_su_k_f_config_1a411077f20be769603e7db6d3f77d53fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a411077f20be769603e7db6d3f77d53fc" kindref="member">noiseSF</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bVec_B[HEAD_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="struct_heading_su_k_f_config_1a3d4d4176a25e1cb96edbbd4ce7329e02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a3d4d4176a25e1cb96edbbd4ce7329e02" kindref="member">switchTresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="struct_heading_su_k_f_config_1a3e3b8331a4cec2e067d14ac1adc7c930" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stateInit[HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>state[HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wM[2<sp/>*<sp/>HEAD_N_STATES_SWITCH<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="62" refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wC[2<sp/>*<sp/>HEAD_N_STATES_SWITCH<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="64" refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBar[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_heading_su_k_f_config_1aa68aa31becc79dc9121cbb35c1c08f7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarInit[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xBar[HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>obs[OPNAV_MEAS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yMeas[OPNAV_MEAS*(2*HEAD_N_STATES_SWITCH+1)];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="struct_heading_su_k_f_config_1a76658e2ed9502895028d375b719190a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>postFits[OPNAV_MEAS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SP[(2*HEAD_N_STATES_SWITCH+1)*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_heading_su_k_f_config_1a5b0ef6f86e3beba7b28e72c2f91fb842" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qNoise[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sQnoise[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="struct_heading_su_k_f_config_1a20f93a89178f6e47a9c2f124533b2c6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qObs[OPNAV_MEAS*OPNAV_MEAS];<sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="struct_heading_su_k_f_config_1a6c63c096c809b1dbad9f22199d824f4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_heading_su_k_f_config_1a6c63c096c809b1dbad9f22199d824f4a" kindref="member">sensorUseThresh</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="struct_heading_su_k_f_config_1a75f652c2b1311e34f12ad49ab898b54f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsgPayload<sp/><ref refid="struct_heading_su_k_f_config_1a75f652c2b1311e34f12ad49ab898b54f" kindref="member">outputHeading</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsgPayload<sp/><ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="struct_heading_su_k_f_config_1a8e3e6d03f43d2458b7d27209f8d2fc87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="struct_heading_su_k_f_config_1a8e3e6d03f43d2458b7d27209f8d2fc87" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFTimeUpdate(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFMeasUpdate(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingStateProp(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateInOut,<sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*b_vec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFMeasModel(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFComputeDCM_BS(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading[HEAD_N_STATES],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bVec[HEAD_N_STATES],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dcm);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFSwitch(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*bVec_B,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*states,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*covar);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h"/>
+  </compounddef>
+</doxygen>

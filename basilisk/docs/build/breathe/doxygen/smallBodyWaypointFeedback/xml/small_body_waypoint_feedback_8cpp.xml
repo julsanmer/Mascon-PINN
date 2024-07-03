@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="small_body_waypoint_feedback_8cpp" kind="file" language="C++">
+    <compoundname>smallBodyWaypointFeedback.cpp</compoundname>
+    <includes refid="small_body_waypoint_feedback_8h" local="yes">fswAlgorithms/orbitControl/smallBodyWaypointFeedback/smallBodyWaypointFeedback.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/orbitControl/smallBodyWaypointFeedback/smallBodyWaypointFeedback.cpp</label>
+        <link refid="small_body_waypoint_feedback_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/orbitControl/smallBodyWaypointFeedback/smallBodyWaypointFeedback.h</label>
+        <link refid="small_body_waypoint_feedback_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/CmdForceBodyMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/EphemerisMsgPayload.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/NavAttMsgPayload.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/msgPayloadDefC/NavTransMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/orbitalMotion.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="8">
+        <label>cMsgCInterface/CmdForceBodyMsg_C.h</label>
+      </node>
+      <node id="17">
+        <label>cstring</label>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="18">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2021,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/orbitControl/smallBodyWaypointFeedback/smallBodyWaypointFeedback.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="class_small_body_waypoint_feedback_1a43f3e665d04c2b742b24699ea65c0cc4" kindref="member">SmallBodyWaypointFeedback::SmallBodyWaypointFeedback</ref>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;mu_sun<sp/>=<sp/>1.327124e20;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;o_hat_3_tilde.setZero();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;o_hat_3_tilde(0,<sp/>1)<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;o_hat_3_tilde(1,<sp/>0)<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;o_hat_1<sp/>&lt;&lt;<sp/>1,<sp/>0,<sp/>0;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;I.setIdentity(3,3);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1a2ff1f4b2f1179369d95abc748ae8d151" kindref="member">C_SRP</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1ad9c008c8f6ec6dfe58efe2327a33d670" kindref="member">P_0</ref><sp/>=<sp/>4.56e-6;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1a528cfa5269bed92be38c490907d54eb1" kindref="member">rho</ref><sp/>=<sp/>0.4;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><ref refid="class_small_body_waypoint_feedback_1a953c2906111c62cad877a28ef9eec788" kindref="member">SmallBodyWaypointFeedback::~SmallBodyWaypointFeedback</ref>()</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1afc8bf4b699910182075a64f4d464c656" kindref="member">SmallBodyWaypointFeedback::SelfInit</ref>(){</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceBodyMsg_C_init(&amp;this-&gt;<ref refid="class_small_body_waypoint_feedback_1af7344cb8424579274d5af3f3a6af3adb" kindref="member">forceOutMsgC</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1a97ba689283644ffb9a40c936345a1b5a" kindref="member">SmallBodyWaypointFeedback::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>that<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_waypoint_feedback_1af89f1eaa08915f7715878fd9a4415441" kindref="member">navTransInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_waypoint_feedback_1a8e766bad6315ca66600065cf873fa414" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyWaypointFeedback.navTransInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_waypoint_feedback_1ad52de6e23325b44ee01a28ee4b80a15f" kindref="member">navAttInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_waypoint_feedback_1a8e766bad6315ca66600065cf873fa414" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyWaypointFeedback.navAttInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_waypoint_feedback_1ac0afb617e5fbdab9c1c039a6e1b7e618" kindref="member">asteroidEphemerisInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_waypoint_feedback_1a8e766bad6315ca66600065cf873fa414" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyWaypointFeedback.asteroidEphemerisInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_waypoint_feedback_1a4f00e9c0b5a41ea8c966127abad1b6ea" kindref="member">sunEphemerisInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_waypoint_feedback_1a8e766bad6315ca66600065cf873fa414" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyWaypointFeedback.sunEphemerisInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1aca0cf7dcd8f5b07fd78bebca9dc17185" kindref="member">SmallBodyWaypointFeedback::readMessages</ref>(){</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>in<sp/>the<sp/>input<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>navTransInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1af89f1eaa08915f7715878fd9a4415441" kindref="member">navTransInMsg</ref>();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>navAttInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1ad52de6e23325b44ee01a28ee4b80a15f" kindref="member">navAttInMsg</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>asteroidEphemerisInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1ac0afb617e5fbdab9c1c039a6e1b7e618" kindref="member">asteroidEphemerisInMsg</ref>();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>sunEphemerisInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1a4f00e9c0b5a41ea8c966127abad1b6ea" kindref="member">sunEphemerisInMsg</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1aa34df9fa0fe16db4a3f1ef8564f87eba" kindref="member">SmallBodyWaypointFeedback::computeControl</ref>(uint64_t<sp/>CurrentSimNanos){</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>the<sp/>orbital<sp/>elements<sp/>of<sp/>the<sp/>asteroid,<sp/>we<sp/>assume<sp/>the<sp/>uncertainty<sp/>on<sp/>the<sp/>pos.<sp/>and<sp/>vel.<sp/>of<sp/>the<sp/>body<sp/>are<sp/>low</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>enough<sp/>to<sp/>consider<sp/>them<sp/>known<sp/>apriori<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>rv2elem(mu_sun,<sp/>asteroidEphemerisInMsgBuffer.r_BdyZero_N,<sp/>asteroidEphemerisInMsgBuffer.v_BdyZero_N,<sp/>&amp;oe_ast);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>F_dot<sp/>and<sp/>F_ddot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>F_dot<sp/>=<sp/>sqrt(mu_sun<sp/>/<sp/>(pow(oe_ast.a<sp/>*<sp/>(1<sp/>-<sp/>pow(oe_ast.e,<sp/>2)),<sp/>3)))<sp/>*<sp/>pow(1<sp/>+<sp/>(oe_ast.e)<sp/>*<sp/>cos(oe_ast.f),<sp/>2);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>F_ddot<sp/>=<sp/>-2<sp/>*<sp/>(oe_ast.e)<sp/>*<sp/>(sqrt(mu_sun<sp/>/<sp/>(pow(oe_ast.a<sp/>*<sp/>(1<sp/>-<sp/>pow(oe_ast.e,<sp/>2)),<sp/>3))))<sp/>*<sp/>sin(oe_ast.f)<sp/>*</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1<sp/>+<sp/>oe_ast.e<sp/>*<sp/>cos(oe_ast.f))<sp/>*<sp/>(F_dot);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>hill<sp/>frame<sp/>DCM<sp/>of<sp/>the<sp/>small<sp/>body<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_ON_array[3][3];</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>hillFrame(asteroidEphemerisInMsgBuffer.r_BdyZero_N,<sp/>asteroidEphemerisInMsgBuffer.v_BdyZero_N,<sp/>dcm_ON_array);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_ON<sp/>=<sp/>cArray2EigenMatrixXd(*dcm_ON_array,<sp/>3,<sp/>3).transpose();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>direction<sp/>of<sp/>the<sp/>sun<sp/>from<sp/>the<sp/>asteroid<sp/>in<sp/>the<sp/>small<sp/>body&apos;s<sp/>hill<sp/>frame,<sp/>assumes<sp/>heliocentric<sp/>frame</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>centered<sp/>at<sp/>the<sp/>origin<sp/>of<sp/>the<sp/>sun,<sp/>not<sp/>the<sp/>solar<sp/>system&apos;s<sp/>barycenter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>r_ON_N<sp/>=<sp/>cArray2EigenVector3d(asteroidEphemerisInMsgBuffer.r_BdyZero_N);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>r_SN_N<sp/>=<sp/>cArray2EigenVector3d(sunEphemerisInMsgBuffer.r_BdyZero_N);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>r_SO_O<sp/>=<sp/>dcm_ON<sp/>*<sp/>(r_SN_N<sp/>-<sp/>r_ON_N);<sp/><sp/></highlight><highlight class="comment">//<sp/>small<sp/>body<sp/>to<sp/>sun<sp/>pos<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>dcm<sp/>from<sp/>the<sp/>body<sp/>frame<sp/>to<sp/>the<sp/>body&apos;s<sp/>hill<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BN[3][3];</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(navAttInMsgBuffer.sigma_BN,<sp/>dcm_BN);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_OB;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_OB<sp/>=<sp/>dcm_ON<sp/>*<sp/>(cArray2EigenMatrixXd(*dcm_BN,<sp/>3,<sp/>3));</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>x1,<sp/>x2<sp/>from<sp/>the<sp/>input<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r_BO_O[3];</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v_BO_O[3];</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>rv2hill(asteroidEphemerisInMsgBuffer.r_BdyZero_N,<sp/>asteroidEphemerisInMsgBuffer.v_BdyZero_N,<sp/>navTransInMsgBuffer.r_BN_N,<sp/>navTransInMsgBuffer.v_BN_N,<sp/>r_BO_O,<sp/>v_BO_O);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>x1<sp/>=<sp/>cArray2EigenVector3d(r_BO_O);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>x2<sp/>=<sp/>cArray2EigenVector3d(v_BO_O);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>dx1<sp/>and<sp/>dx2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>dx1<sp/>=<sp/>x1<sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>dx2<sp/>=<sp/>x2<sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1a23c782526862a87069173c0ab7af83f5" kindref="member">x2_ref</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Now<sp/>compute<sp/>current<sp/>f<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>f_curr<sp/>=</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-F_ddot<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/>x1<sp/>-<sp/>2<sp/>*<sp/>F_dot<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/>x2<sp/>-</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pow(F_dot,<sp/>2)<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/>x1</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1aab24253d3629caa32feaf94c025d7482" kindref="member">mu_ast</ref><sp/>*<sp/>x1<sp/>/<sp/>pow(x1.norm(),<sp/>3)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>mu_sun<sp/>*<sp/>(3<sp/>*<sp/>(r_SO_O<sp/>/<sp/>r_SO_O.norm())<sp/>*<sp/>(r_SO_O<sp/>/<sp/>r_SO_O.norm()).transpose()<sp/>-<sp/>I)<sp/>*<sp/>x1<sp/>/</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pow(r_SO_O.norm(),<sp/>3)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/><ref refid="class_small_body_waypoint_feedback_1a2ff1f4b2f1179369d95abc748ae8d151" kindref="member">C_SRP</ref><sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1ad9c008c8f6ec6dfe58efe2327a33d670" kindref="member">P_0</ref><sp/>*<sp/>(1<sp/>+<sp/><ref refid="class_small_body_waypoint_feedback_1a528cfa5269bed92be38c490907d54eb1" kindref="member">rho</ref>)<sp/>*<sp/>(<ref refid="class_small_body_waypoint_feedback_1a9c1a8fb1c922f967eebc307b9e14227d" kindref="member">A_sc</ref><sp/>/<sp/><ref refid="class_small_body_waypoint_feedback_1a7758c13252b1ec0ca5db26a766d02a14" kindref="member">M_sc</ref>)<sp/>*<sp/>pow(AU*1000.,2)<sp/>*<sp/>o_hat_1<sp/>/<sp/>pow(r_SO_O.norm(),<sp/>2);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Now<sp/>compute<sp/>reference<sp/>f<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>f_ref<sp/>=</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-F_ddot<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref><sp/>-<sp/>2<sp/>*<sp/>F_dot<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1a23c782526862a87069173c0ab7af83f5" kindref="member">x2_ref</ref><sp/>-</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pow(F_dot,<sp/>2)<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/>o_hat_3_tilde<sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1aab24253d3629caa32feaf94c025d7482" kindref="member">mu_ast</ref><sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref><sp/>/<sp/>pow(<ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref>.norm(),<sp/>3)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>mu_sun<sp/>*<sp/>(3<sp/>*<sp/>(r_SO_O<sp/>/<sp/>r_SO_O.norm())<sp/>*<sp/>(r_SO_O<sp/>/<sp/>r_SO_O.norm()).transpose()<sp/>-<sp/>I)<sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1a5f8ca701df1b82b3ffea10e2492206af" kindref="member">x1_ref</ref><sp/>/</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pow(r_SO_O.norm(),<sp/>3)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/><ref refid="class_small_body_waypoint_feedback_1a2ff1f4b2f1179369d95abc748ae8d151" kindref="member">C_SRP</ref><sp/>*<sp/><ref refid="class_small_body_waypoint_feedback_1ad9c008c8f6ec6dfe58efe2327a33d670" kindref="member">P_0</ref><sp/>*<sp/>(1<sp/>+<sp/><ref refid="class_small_body_waypoint_feedback_1a528cfa5269bed92be38c490907d54eb1" kindref="member">rho</ref>)<sp/>*<sp/>(<ref refid="class_small_body_waypoint_feedback_1a9c1a8fb1c922f967eebc307b9e14227d" kindref="member">A_sc</ref><sp/>/<sp/><ref refid="class_small_body_waypoint_feedback_1a7758c13252b1ec0ca5db26a766d02a14" kindref="member">M_sc</ref>)<sp/>*<sp/>pow(AU*1000.,2)<sp/>*<sp/>o_hat_1<sp/>/<sp/>pow(r_SO_O.norm(),<sp/>2);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>thrust<sp/>in<sp/>the<sp/>small<sp/>body&apos;s<sp/>hill<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>thrust_O<sp/>=<sp/>-(f_curr<sp/>-<sp/>f_ref)<sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1aff4ce9fd34d4931992e2286d791483c0" kindref="member">K1</ref><sp/>*<sp/>dx1<sp/>-<sp/><ref refid="class_small_body_waypoint_feedback_1a56a3c9805b3c00a93e61ac63b0c3fe32" kindref="member">K2</ref><sp/>*<sp/>dx2;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>thrust<sp/>in<sp/>the<sp/>s/c<sp/>body<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>thrust_B<sp/>=<sp/>(dcm_OB.transpose())<sp/>*<sp/>thrust_O;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1a0936e2402cc596173e41c6411cb2903a" kindref="member">SmallBodyWaypointFeedback::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1aca0cf7dcd8f5b07fd78bebca9dc17185" kindref="member">readMessages</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1aa34df9fa0fe16db4a3f1ef8564f87eba" kindref="member">computeControl</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1afa1b7696cf3d1ef8f787c89b5aff529d" kindref="member">writeMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>prevTime<sp/>=<sp/>CurrentSimNanos;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_waypoint_feedback_1afa1b7696cf3d1ef8f787c89b5aff529d" kindref="member">SmallBodyWaypointFeedback::writeMessages</ref>(uint64_t<sp/>CurrentSimNanos){</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Create<sp/>the<sp/>output<sp/>message<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceBodyMsgPayload<sp/>forceOutMsgBuffer;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Zero<sp/>the<sp/>output<sp/>message<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>forceOutMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1a9489ea95f2fe43d8e7b57f1a6c029ad1" kindref="member">forceOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>the<sp/>force<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenVector3d2CArray(thrust_B,<sp/>forceOutMsgBuffer.forceRequestBody);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Write<sp/>the<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_waypoint_feedback_1a9489ea95f2fe43d8e7b57f1a6c029ad1" kindref="member">forceOutMsg</ref>.write(&amp;forceOutMsgBuffer,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Write<sp/>the<sp/>c-wrapped<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceBodyMsg_C_write(&amp;forceOutMsgBuffer,<sp/>&amp;this-&gt;<ref refid="class_small_body_waypoint_feedback_1af7344cb8424579274d5af3f3a6af3adb" kindref="member">forceOutMsgC</ref>,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/orbitControl/smallBodyWaypointFeedback/smallBodyWaypointFeedback.cpp"/>
+  </compounddef>
+</doxygen>

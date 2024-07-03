@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="motor_thermal_8cpp" kind="file" language="C++">
+    <compoundname>motorThermal.cpp</compoundname>
+    <includes refid="motor_thermal_8h" local="yes">simulation/thermal/motorThermal/motorThermal.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/thermal/motorThermal/motorThermal.cpp</label>
+        <link refid="motor_thermal_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/thermal/motorThermal/motorThermal.h</label>
+        <link refid="motor_thermal_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/RWConfigLogMsgPayload.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/msgPayloadDefC/TemperatureMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="9">
+        <label>cstring</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="12">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2021,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/thermal/motorThermal/motorThermal.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="class_motor_thermal_1a531fd883044f90f16f77fa8847d3e839" kindref="member">MotorThermal::MotorThermal</ref>()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1a2401ecac6c236f49a627e7fffbe6db21" kindref="member">currentTemperature</ref><sp/>=<sp/>-273.15;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1ac8b6a81cc1b23a642f366e600db3abfd" kindref="member">ambientTemperature</ref><sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1aaccb96d8c5e4aac7e7abed8edaefd4dc" kindref="member">ambientThermalResistance</ref><sp/>=<sp/>-1.0;<sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1a807800deefe714b667914d865a0d202d" kindref="member">motorHeatCapacity</ref><sp/>=<sp/>-1.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency</ref><sp/>=<sp/>1.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><ref refid="class_motor_thermal_1ad6c442de19b301f2d9195559a3e86306" kindref="member">MotorThermal::~MotorThermal</ref>()</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1a2dc1ea1a53579fd5b025fa94a98e6670" kindref="member">MotorThermal::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>input<sp/>message<sp/>is<sp/>linked</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_motor_thermal_1a3d868084c03d3c339d373d88c1169e87" kindref="member">rwStateInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a86a488e9f4924272b6e7e8645047dc5b" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;motorThermal.rwStateInMsg<sp/>is<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>the<sp/>current<sp/>temperature<sp/>is<sp/>at<sp/>or<sp/>below<sp/>absolute<sp/>zero,<sp/>it<sp/>means<sp/>either<sp/>the<sp/>temperature<sp/>wasn&apos;t<sp/>set<sp/>properly<sp/>or<sp/>some<sp/>error<sp/>occurred</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_motor_thermal_1a2401ecac6c236f49a627e7fffbe6db21" kindref="member">currentTemperature</ref><sp/>&lt;=<sp/>-273.15)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a86a488e9f4924272b6e7e8645047dc5b" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;motorThermal:<sp/>current<sp/>temperature<sp/>is<sp/>at<sp/>or<sp/>below<sp/>absolute<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>throw<sp/>an<sp/>error<sp/>if<sp/>the<sp/>efficiency<sp/>is<sp/>not<sp/>between<sp/>0.0<sp/>and<sp/>1.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency &lt;= 0.0 || this-&gt;</ref><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency</ref><sp/>&gt;=<sp/>1.0)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a86a488e9f4924272b6e7e8645047dc5b" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;motorThermal:<sp/>efficiency<sp/>is<sp/>%f,<sp/>must<sp/>be<sp/>a<sp/>value<sp/>greater<sp/>than<sp/>0.0<sp/>and<sp/>smaller<sp/>than<sp/>1.0.&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>the<sp/>ambient<sp/>heat<sp/>capacity<sp/>is<sp/>at<sp/>or<sp/>below<sp/>zero,<sp/>it<sp/>means<sp/>either<sp/>the<sp/>value<sp/>wasn&apos;t<sp/>set<sp/>properly</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_motor_thermal_1aaccb96d8c5e4aac7e7abed8edaefd4dc" kindref="member">ambientThermalResistance</ref><sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a86a488e9f4924272b6e7e8645047dc5b" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;motorThermal:<sp/>current<sp/>ambient<sp/>thermal<sp/>resistance<sp/>is<sp/>at<sp/>or<sp/>below<sp/>zero,<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>number.<sp/>The<sp/>value<sp/>has<sp/>either<sp/>not<sp/>been<sp/>set,<sp/>or<sp/>has<sp/>not<sp/>been<sp/>set<sp/>properly.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>the<sp/>motor<sp/>heat<sp/>capacity<sp/>is<sp/>at<sp/>or<sp/>below<sp/>zero,<sp/>it<sp/>means<sp/>either<sp/>the<sp/>value<sp/>wasn&apos;t<sp/>set<sp/>properly</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_motor_thermal_1a807800deefe714b667914d865a0d202d" kindref="member">motorHeatCapacity</ref><sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a86a488e9f4924272b6e7e8645047dc5b" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Current<sp/>ambient<sp/>heat<sp/>capacity<sp/>is<sp/>at<sp/>or<sp/>below<sp/>zero,<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>number.<sp/>The<sp/>value<sp/>has<sp/>either<sp/>not<sp/>been<sp/>set,<sp/>or<sp/>has<sp/>not<sp/>been<sp/>set<sp/>properly.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reset<sp/>the<sp/>previous<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">CurrentSimNanos</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>zero<sp/>the<sp/>incoming<sp/>message<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rwStateBuffer<sp/>=<sp/>this-&gt;<ref refid="class_motor_thermal_1a3d868084c03d3c339d373d88c1169e87" kindref="member">rwStateInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1a711eb84309783cd97efa7a88d44abaf5" kindref="member">MotorThermal::readInputMessages</ref>()</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>read<sp/>the<sp/>incoming<sp/>power<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rwStateBuffer<sp/>=<sp/>this-&gt;<ref refid="class_motor_thermal_1a3d868084c03d3c339d373d88c1169e87" kindref="member">rwStateInMsg</ref>();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1a24ba25e59f3a0ae4845cfae43e7f006e" kindref="member">MotorThermal::writeOutputMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1a238599347443e56c0dc1edf56cb3926b" kindref="member">temperatureOutMsg</ref>.write(&amp;this-&gt;temperatureBuffer,<sp/>this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">moduleID</ref>,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1af9a47dd9eac27cfe2c16eaa4e8efff41" kindref="member">MotorThermal::computeTemperature</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">wheelPower</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">frictionHeat</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatGeneration</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatDissipation</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">timeStep</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>the<sp/>time<sp/>step<sp/>for<sp/>conversion<sp/>from<sp/>power<sp/>to<sp/>heat</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">timeStep</ref><sp/>=<sp/>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">CurrentSimNanos</ref><sp/>-<sp/>this-&gt;prevTime)<sp/>*<sp/>1.0E-9;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>the<sp/>mechanical<sp/>power<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">wheelPower</ref><sp/>=<sp/>this-&gt;rwStateBuffer.Omega<sp/>*<sp/>this-&gt;rwStateBuffer.u_current;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>the<sp/>heat<sp/>generated<sp/>by<sp/>friction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">frictionHeat</ref><sp/>=<sp/>this-&gt;rwStateBuffer.Omega<sp/>*<sp/>this-&gt;rwStateBuffer.frictionTorque;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>heat<sp/>generation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatGeneration</ref><sp/>=<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">timeStep</ref><sp/>*<sp/>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">fabs</ref>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">wheelPower</ref>)<sp/>/<sp/>this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency</ref><sp/>*<sp/>(1.0<sp/>-<sp/>this-&gt;<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">efficiency</ref>)<sp/>+<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">fabs</ref>(frictionHeat));</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>heat<sp/>dissipation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatDissipation</ref><sp/>=<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">timeStep</ref><sp/>*<sp/>(this-&gt;<ref refid="class_motor_thermal_1a2401ecac6c236f49a627e7fffbe6db21" kindref="member">currentTemperature</ref><sp/>-<sp/>this-&gt;<ref refid="class_motor_thermal_1ac8b6a81cc1b23a642f366e600db3abfd" kindref="member">ambientTemperature</ref>)<sp/>/<sp/>this-&gt;<ref refid="class_motor_thermal_1aaccb96d8c5e4aac7e7abed8edaefd4dc" kindref="member">ambientThermalResistance</ref>;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>the<sp/>new<sp/>temperature<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_motor_thermal_1a2401ecac6c236f49a627e7fffbe6db21" kindref="member">currentTemperature</ref><sp/>=<sp/>this-&gt;currentTemperature<sp/>+<sp/>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatGeneration</ref><sp/>-<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">heatDissipation</ref>)<sp/>/<sp/>this-&gt;<ref refid="class_motor_thermal_1a807800deefe714b667914d865a0d202d" kindref="member">motorHeatCapacity</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>transfer<sp/>the<sp/>temperature<sp/>to<sp/>the<sp/>message<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;temperatureBuffer.temperature<sp/>=<sp/>this-&gt;<ref refid="class_motor_thermal_1a2401ecac6c236f49a627e7fffbe6db21" kindref="member">currentTemperature</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_motor_thermal_1a099c44813de6ad61be2557cd02b2386c" kindref="member">MotorThermal::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a711eb84309783cd97efa7a88d44abaf5" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1af9a47dd9eac27cfe2c16eaa4e8efff41" kindref="member">computeTemperature</ref>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">CurrentSimNanos</ref>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_motor_thermal_1a24ba25e59f3a0ae4845cfae43e7f006e" kindref="member">writeOutputMessages</ref>(<ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">CurrentSimNanos</ref>);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/><ref refid="class_motor_thermal_1ae736415aeab178af7c66045ad30993e5" kindref="member">CurrentSimNanos</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/thermal/motorThermal/motorThermal.cpp"/>
+  </compounddef>
+</doxygen>

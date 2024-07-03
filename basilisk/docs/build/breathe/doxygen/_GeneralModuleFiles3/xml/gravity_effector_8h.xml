@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="gravity_effector_8h" kind="file" language="C++">
+    <compoundname>gravityEffector.h</compoundname>
+    <includes refid="dynamic_effector_8h" local="yes">dynamicEffector.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includedby refid="gravity_effector_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/gravityEffector.cpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>dynParamManager.h</label>
+        <link refid="dyn_param_manager_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dynamicEffector.h</label>
+        <link refid="dynamic_effector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/gravityEffector.h</label>
+        <link refid="gravity_effector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>stateData.h</label>
+        <link refid="state_data_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="10">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>map</label>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_mascon" prot="public">Mascon</innerclass>
+    <innerclass refid="class_polyhedral" prot="public">Polyhedral</innerclass>
+    <innerclass refid="class_spherical_harmonics" prot="public">SphericalHarmonics</innerclass>
+    <innerclass refid="class_grav_body_data" prot="public">GravBodyData</innerclass>
+    <innerclass refid="class_gravity_effector" prot="public">GravityEffector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>GRAVITY_DYN_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GRAVITY_DYN_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="class_mascon" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_mascon" kindref="compound">Mascon</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="36" refid="class_mascon_1a6ab1d300d4c029bf812e37a0fe74bc99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_mascon_1a6ab1d300d4c029bf812e37a0fe74bc99" kindref="member">nM</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="class_mascon_1a0d4fc2433780b65b56cef70a920f0e79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/><ref refid="class_mascon_1a0d4fc2433780b65b56cef70a920f0e79" kindref="member">muM</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="class_mascon_1a9714eb0b0fade142d08d17eafac4a81f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_mascon_1a9714eb0b0fade142d08d17eafac4a81f" kindref="member">xyzM</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_mascon_1ae5447c6f779ead2cdd93f483dc0b528b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_mascon_1ae5447c6f779ead2cdd93f483dc0b528b" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_mascon" kindref="compound">Mascon</ref>();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_mascon" kindref="compound">~Mascon</ref>();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_mascon_1a50c6d6b66cf74635aa8c2122045556df" kindref="member">initializeParameters</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_mascon_1a2edc1720c7a2c4374f547f204228a828" kindref="member">computeField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>pos_Pfix);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_mascon_1adcbe4f0061f71c512b25f33dfa06dfe2" kindref="member">masconReady</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="class_polyhedral" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_polyhedral" kindref="compound">Polyhedral</ref></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56" refid="class_polyhedral_1a507f922960379c16ffaed5a35d8b9f27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1a507f922960379c16ffaed5a35d8b9f27" kindref="member">nVertex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="class_polyhedral_1aae28b1844a9a8a7a5473718cc24193b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1aae28b1844a9a8a7a5473718cc24193b3" kindref="member">nFacet</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="class_polyhedral_1a6e04a3cc2dcda15995fec5831da45b6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1a6e04a3cc2dcda15995fec5831da45b6a" kindref="member">volPoly</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="class_polyhedral_1a3108e142ed54ac6fd004762d14f98012" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1a3108e142ed54ac6fd004762d14f98012" kindref="member">muBody</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="class_polyhedral_1a65b1d0554bb77fc48f0876c65b8cb2a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_polyhedral_1a65b1d0554bb77fc48f0876c65b8cb2a6" kindref="member">xyzVertex</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="class_polyhedral_1a21d4e2892a48fd421991e12de55bd036" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXi<sp/><ref refid="class_polyhedral_1a21d4e2892a48fd421991e12de55bd036" kindref="member">orderFacet</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="class_polyhedral_1ae7e84caebbe72185888f80e673ddcd5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_polyhedral_1ae7e84caebbe72185888f80e673ddcd5d" kindref="member">normalFacet</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>xyzFacet;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_polyhedral_1a49f98bbbebbb328d29108753d35aa610" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_polyhedral_1a49f98bbbebbb328d29108753d35aa610" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_polyhedral" kindref="compound">Polyhedral</ref>();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_polyhedral" kindref="compound">~Polyhedral</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1ab6cce421340203b8dd6d768ba1c99140" kindref="member">initializeParameters</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_polyhedral_1ace897841f09a77b03776a381f544fda7" kindref="member">computeField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>pos_Pfix);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_polyhedral_1accd02bd0ab2177a984cdda23c770bdac" kindref="member">polyReady</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_spherical_harmonics" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_spherical_harmonics" kindref="compound">SphericalHarmonics</ref></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="83" refid="class_spherical_harmonics_1a646f0282fe46db6bc37ade737633ebb8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1a646f0282fe46db6bc37ade737633ebb8" kindref="member">maxDeg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="class_spherical_harmonics_1a26468441214c23b2ae5a9b4994740416" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1a26468441214c23b2ae5a9b4994740416" kindref="member">radEquator</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="class_spherical_harmonics_1abfdb05198530bf6e22f1e6cd0a25dfd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1abfdb05198530bf6e22f1e6cd0a25dfd9" kindref="member">muBody</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="class_spherical_harmonics_1aa6325f9101a15dd362f70211f1e07b69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1aa6325f9101a15dd362f70211f1e07b69" kindref="member">cBar</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="class_spherical_harmonics_1a125b9dd1de227f7eda1b975c2a0542a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1a125b9dd1de227f7eda1b975c2a0542a5" kindref="member">sBar</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="class_spherical_harmonics_1afca7ea5ca70437df721a892897450150" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1afca7ea5ca70437df721a892897450150" kindref="member">aBar</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="class_spherical_harmonics_1a436f11a8cd133690913fefc17770d8bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1a436f11a8cd133690913fefc17770d8bc" kindref="member">n1</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="class_spherical_harmonics_1ae57836afd57690636f0b93a442eb530c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1ae57836afd57690636f0b93a442eb530c" kindref="member">n2</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="class_spherical_harmonics_1adbfe2f25abd75e908b5bf9407bb226eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1adbfe2f25abd75e908b5bf9407bb226eb" kindref="member">nQuot1</ref>;</highlight></codeline>
+<codeline lineno="93" refid="class_spherical_harmonics_1aab2d80f2f2d0431db679e356880514a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="class_spherical_harmonics_1aab2d80f2f2d0431db679e356880514a5" kindref="member">nQuot2</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="class_spherical_harmonics_1a4ae7676cc6d8a74b2ad2759e4756a623" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_spherical_harmonics_1a4ae7676cc6d8a74b2ad2759e4756a623" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spherical_harmonics" kindref="compound">SphericalHarmonics</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spherical_harmonics" kindref="compound">~SphericalHarmonics</ref>();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1aecd56b2cc0e882b87b06177c7d031483" kindref="member">initializeParameters</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1a6b4265e66fa601447a44fdbef6f542a7" kindref="member">getK</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degree);<sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spherical_harmonics_1a57f00983833903461457986745a025cd" kindref="member">computeField</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3d<sp/>pos_Pfix,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>degree,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>include_zero_degree);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_spherical_harmonics_1a6cef81094866b42add7b6c7bef2c4bf2" kindref="member">harmReady</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="class_grav_body_data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_grav_body_data" kindref="compound">GravBodyData</ref></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Default<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_grav_body_data_1aa5cd7b9573a2aec62248afb38e4eb4db" kindref="member">GravBodyData</ref>();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_grav_body_data_1a8bb48e11d2308faf32cd6333ae76d86e" kindref="member">~GravBodyData</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a0bfdbbe31a06e61b5482ca55a9def194" kindref="member">initBody</ref>(int64_t<sp/>moduleID);<sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_grav_body_data_1accb9b0280caa76025274096d91ae6bec" kindref="member">computeGravityInertial</ref>(Eigen::Vector3d<sp/>r_I,<sp/>uint64_t<sp/>simTimeNanos);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a92a05f3923ba9e5f824566ab6813452d" kindref="member">computePotentialEnergy</ref>(Eigen::Vector3d<sp/>r_I);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a32d91b7cbc77594f542dfb8b869374c4" kindref="member">loadEphemeris</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1aac9590b0cccc1ac8baa38fb6b92ee610" kindref="member">registerProperties</ref>(<ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref>&amp;<sp/>statesIn);<sp/><sp/></highlight></codeline>
+<codeline lineno="127" refid="class_grav_body_data_1a0a0fdac8ca9ec9f5b7bf2a1764ec853c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_grav_body_data_1a0a0fdac8ca9ec9f5b7bf2a1764ec853c" kindref="member">planetBodyInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="130" refid="class_grav_body_data_1a604f53c740bd327f57d469ece798902d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a604f53c740bd327f57d469ece798902d" kindref="member">isCentralBody</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131" refid="class_grav_body_data_1a06df7b4f1d17b39028c786964224efc1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a06df7b4f1d17b39028c786964224efc1" kindref="member">useMascon</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132" refid="class_grav_body_data_1abe46ce7319da60d2abb26a5cbadcd89f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1abe46ce7319da60d2abb26a5cbadcd89f" kindref="member">usePolyhedral</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133" refid="class_grav_body_data_1aa38a6d9dd9a4b748025f27672c0b45c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1aa38a6d9dd9a4b748025f27672c0b45c5" kindref="member">useSphericalHarmParams</ref>=0;<sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="class_grav_body_data_1a101a84380b7bfe98bb825277e4a4a099" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a101a84380b7bfe98bb825277e4a4a099" kindref="member">mu</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136" refid="class_grav_body_data_1abf0c863b1a157f95f129ad405db09923" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1abf0c863b1a157f95f129ad405db09923" kindref="member">ephemTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137" refid="class_grav_body_data_1a90969a01db489ba218e22a7ab4e74521" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a90969a01db489ba218e22a7ab4e74521" kindref="member">ephIntTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138" refid="class_grav_body_data_1a068638bd3692b4cf600b427aa2e31a0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a068638bd3692b4cf600b427aa2e31a0c" kindref="member">radEquator</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="139" refid="class_grav_body_data_1a0474148bcd5fc46c38c4387af22f87af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_grav_body_data_1a0474148bcd5fc46c38c4387af22f87af" kindref="member">radiusRatio</ref>=0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140" refid="class_grav_body_data_1ad3af2d7231162bd600d41e836c2024c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/><ref refid="class_grav_body_data_1ad3af2d7231162bd600d41e836c2024c6" kindref="member">localPlanet</ref><sp/>=<sp/>{};<sp/><sp/></highlight></codeline>
+<codeline lineno="141" refid="class_grav_body_data_1a8c2d78d120f9c14a01e5a63f9df19f69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_grav_body_data_1a8c2d78d120f9c14a01e5a63f9df19f69" kindref="member">timeWritten</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142" refid="class_grav_body_data_1a89b6e4b81088a73876816d1af9b56253" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_grav_body_data_1a89b6e4b81088a73876816d1af9b56253" kindref="member">planetName</ref>=</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143" refid="class_grav_body_data_1a36e0137e4624aedeec4c9e33b7961adc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_grav_body_data_1a36e0137e4624aedeec4c9e33b7961adc" kindref="member">displayName</ref>=</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144" refid="class_grav_body_data_1a45814ec5bdaf168a062c0d54738f210d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_grav_body_data_1a45814ec5bdaf168a062c0d54738f210d" kindref="member">modelDictionaryKey</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146" refid="class_grav_body_data_1add69bcea561c6a4ea1735fc56f8d3f03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_mascon" kindref="compound">Mascon</ref><sp/><ref refid="class_grav_body_data_1add69bcea561c6a4ea1735fc56f8d3f03" kindref="member">mascon</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147" refid="class_grav_body_data_1a52cb95545932dae22012b878af3df8ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_polyhedral" kindref="compound">Polyhedral</ref><sp/><ref refid="class_grav_body_data_1a52cb95545932dae22012b878af3df8ef" kindref="member">poly</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148" refid="class_grav_body_data_1abf11b23d2c7b8105b44ff1fdd2d91e01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spherical_harmonics" kindref="compound">SphericalHarmonics</ref><sp/><ref refid="class_grav_body_data_1abf11b23d2c7b8105b44ff1fdd2d91e01" kindref="member">spherHarm</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149" refid="class_grav_body_data_1a68565632839f08cb0f1c5df4848cace3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_grav_body_data_1a68565632839f08cb0f1c5df4848cace3" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="150" refid="class_grav_body_data_1a67f767b8cdecdbfa01e423f6856a7888" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_grav_body_data_1a67f767b8cdecdbfa01e423f6856a7888" kindref="member">r_PN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="151" refid="class_grav_body_data_1af61d0d12dce17aac681050bd7a22cdbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_grav_body_data_1af61d0d12dce17aac681050bd7a22cdbc" kindref="member">v_PN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152" refid="class_grav_body_data_1abd97f263dc6889f0cd3d01faaf9ab8e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_grav_body_data_1abd97f263dc6889f0cd3d01faaf9ab8e5" kindref="member">muPlanet</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153" refid="class_grav_body_data_1a1810784eaef1403b628e992839d44ae9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_grav_body_data_1a1810784eaef1403b628e992839d44ae9" kindref="member">J20002Pfix</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="154" refid="class_grav_body_data_1a20bcef1f123c2aad5acd799a1f9b9847" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_grav_body_data_1a20bcef1f123c2aad5acd799a1f9b9847" kindref="member">J20002Pfix_dot</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="class_gravity_effector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_gravity_effector" kindref="compound">GravityEffector</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_gravity_effector" kindref="compound">GravityEffector</ref>();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_gravity_effector" kindref="compound">~GravityEffector</ref>();</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a6844d76bcb5c64f9d4df4fd65a62114f" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a941f2631c05abdde4264088fe1ae37e2" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1ac71c6b184cd5b7362bb5f7e822e21789" kindref="member">linkInStates</ref>(<ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref>&amp;<sp/>statesIn);<sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a69c1f240e2fab0f1ae5b9eba8eb56f1c" kindref="member">registerProperties</ref>(<ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref>&amp;<sp/>statesIn);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a5a3cd377c22b3a35ed334f4dbcbb00fd" kindref="member">computeGravityField</ref>(Eigen::Vector3d<sp/>r_cF_N,<sp/>Eigen::Vector3d<sp/>rDot_cF_N);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a692989f7c408d907d5e98e7effa34a3c" kindref="member">updateInertialPosAndVel</ref>(Eigen::Vector3d<sp/>r_BF_N,<sp/>Eigen::Vector3d<sp/>rDot_BF_N);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a67bbce54251a2afd7d9c0b640bd062ea" kindref="member">updateEnergyContributions</ref>(Eigen::Vector3d<sp/>r_CN_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>orbPotEnergyContr);<sp/><sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1aa733dbb4e86ed4c6239953796020d270" kindref="member">setGravBodies</ref>(std::vector&lt;GravBodyData<sp/>*&gt;<sp/><ref refid="class_gravity_effector_1a3bd1d471d982f67cde37597f64b455cc" kindref="member">gravBodies</ref>);<sp/></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1a055f787f8ee2c1ba15c7b90605974f4f" kindref="member">addGravBody</ref>(<ref refid="class_grav_body_data" kindref="compound">GravBodyData</ref>*<sp/>gravBody);<sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_gravity_effector_1ad258758e4bba73dfe009d277966bf1b2" kindref="member">prependSpacecraftNameToStates</ref>();<sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>getEulerSteppedGravBodyPosition(<ref refid="class_grav_body_data" kindref="compound">GravBodyData</ref><sp/>*bodyData);<sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeOutputMessages(uint64_t<sp/>currentSimNanos);<sp/></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="180" refid="class_gravity_effector_1a334662437ccac61ba7785d8acdec4103" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_gravity_effector_1a334662437ccac61ba7785d8acdec4103" kindref="member">vehicleGravityPropName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="181" refid="class_gravity_effector_1aa82d8872f6f0fc868f979ac6c050bdad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_gravity_effector_1aa82d8872f6f0fc868f979ac6c050bdad" kindref="member">systemTimeCorrPropName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="182" refid="class_gravity_effector_1a3bd1d471d982f67cde37597f64b455cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;GravBodyData*&gt;<sp/><ref refid="class_gravity_effector_1a3bd1d471d982f67cde37597f64b455cc" kindref="member">gravBodies</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="183" refid="class_gravity_effector_1ad35afb93627663b3c2583b120ef52f56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_grav_body_data" kindref="compound">GravBodyData</ref>*<sp/><ref refid="class_gravity_effector_1ad35afb93627663b3c2583b120ef52f56" kindref="member">centralBody</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184" refid="class_gravity_effector_1a272375615f4d1b2c4e9c29ae6a4997ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_gravity_effector_1a272375615f4d1b2c4e9c29ae6a4997ed" kindref="member">inertialPositionPropName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="185" refid="class_gravity_effector_1a609ab3a0b45c6582a3bed2eff84a204e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_gravity_effector_1a609ab3a0b45c6582a3bed2eff84a204e" kindref="member">inertialVelocityPropName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="186" refid="class_gravity_effector_1a2023637740c7d84bbc0907d4a9cd2d74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_gravity_effector_1a2023637740c7d84bbc0907d4a9cd2d74" kindref="member">nameOfSpacecraftAttachedTo</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="187" refid="class_gravity_effector_1a6aeb07926ef110a668f08b851dcc4438" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_gravity_effector_1a6aeb07926ef110a668f08b851dcc4438" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188" refid="class_gravity_effector_1ae41d86e0344825bc448638d741270db2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_gravity_effector_1ae41d86e0344825bc448638d741270db2" kindref="member">centralBodyOutMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*gravProperty;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*timeCorr;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*inertialPositionProperty;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*inertialVelocityProperty;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>GRAVITY_EFFECTOR_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/gravityEffector.h"/>
+  </compounddef>
+</doxygen>

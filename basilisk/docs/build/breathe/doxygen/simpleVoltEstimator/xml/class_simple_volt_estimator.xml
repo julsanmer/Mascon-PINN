@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_simple_volt_estimator" kind="class" language="C++" prot="public">
+    <compoundname>SimpleVoltEstimator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="simple_volt_estimator_8h" local="no">simpleVoltEstimator.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd SimpleVoltEstimator::PMatrix</definition>
+        <argsstring></argsstring>
+        <name>PMatrix</name>
+        <qualifiedname>SimpleVoltEstimator::PMatrix</qualifiedname>
+        <briefdescription>
+<para><ndash/> Cholesky-decomposition or matrix square root of the covariance matrix to apply errors with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="45" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd SimpleVoltEstimator::walkBounds</definition>
+        <argsstring></argsstring>
+        <name>walkBounds</name>
+        <qualifiedname>SimpleVoltEstimator::walkBounds</qualifiedname>
+        <briefdescription>
+<para><ndash/> &quot;3-sigma&quot; errors to permit for states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="46" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a15e7387191609422d681d87b1723ef43" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd SimpleVoltEstimator::voltErrors</definition>
+        <argsstring></argsstring>
+        <name>voltErrors</name>
+        <qualifiedname>SimpleVoltEstimator::voltErrors</qualifiedname>
+        <briefdescription>
+<para><ndash/> Current voltage errors applied to truth </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="47" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a50953c08fde35b7a2c0ab4f7946df500" prot="public" static="no" mutable="no">
+        <type>Message&lt; VoltMsgPayload &gt;</type>
+        <definition>Message&lt;VoltMsgPayload&gt; SimpleVoltEstimator::voltOutMsg</definition>
+        <argsstring></argsstring>
+        <name>voltOutMsg</name>
+        <qualifiedname>SimpleVoltEstimator::voltOutMsg</qualifiedname>
+        <briefdescription>
+<para>voltage output msg </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="48" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a1d2458b48cfd32e18cd88f798d0f58db" prot="public" static="no" mutable="no">
+        <type>VoltMsgPayload</type>
+        <definition>VoltMsgPayload SimpleVoltEstimator::trueVoltState</definition>
+        <argsstring></argsstring>
+        <name>trueVoltState</name>
+        <qualifiedname>SimpleVoltEstimator::trueVoltState</qualifiedname>
+        <briefdescription>
+<para><ndash/> voltage state without errors </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="49" column="20" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a3034ef523dad1d8f24fd02c0becdc35f" prot="public" static="no" mutable="no">
+        <type>VoltMsgPayload</type>
+        <definition>VoltMsgPayload SimpleVoltEstimator::estVoltState</definition>
+        <argsstring></argsstring>
+        <name>estVoltState</name>
+        <qualifiedname>SimpleVoltEstimator::estVoltState</qualifiedname>
+        <briefdescription>
+<para><ndash/> voltage state including errors </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="50" column="20" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1ab6aab4096b68a72acdca5265f6de3378" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger SimpleVoltEstimator::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>SimpleVoltEstimator::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="51" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a80cffe69659d96258d5012ab842828f1" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; VoltMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;VoltMsgPayload&gt; SimpleVoltEstimator::voltInMsg</definition>
+        <argsstring></argsstring>
+        <name>voltInMsg</name>
+        <qualifiedname>SimpleVoltEstimator::voltInMsg</qualifiedname>
+        <briefdescription>
+<para>voltage input msg </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="53" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_simple_volt_estimator_1acd98892d19d4b7ba9560d198b86c14a7" prot="private" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd SimpleVoltEstimator::AMatrix</definition>
+        <argsstring></argsstring>
+        <name>AMatrix</name>
+        <qualifiedname>SimpleVoltEstimator::AMatrix</qualifiedname>
+        <briefdescription>
+<para><ndash/> The matrix used to propagate the state </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="56" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_simple_volt_estimator_1a5865a2a217188019671f033657b18fc0" prot="private" static="no" mutable="no">
+        <type>GaussMarkov</type>
+        <definition>GaussMarkov SimpleVoltEstimator::errorModel</definition>
+        <argsstring></argsstring>
+        <name>errorModel</name>
+        <qualifiedname>SimpleVoltEstimator::errorModel</qualifiedname>
+        <briefdescription>
+<para><ndash/> Gauss-markov error states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="57" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_simple_volt_estimator_1a0a41603401b169068c85a69d7991386c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SimpleVoltEstimator::SimpleVoltEstimator</definition>
+        <argsstring>()</argsstring>
+        <name>SimpleVoltEstimator</name>
+        <qualifiedname>SimpleVoltEstimator::SimpleVoltEstimator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor for the simple voltage estimator module. It sets default variable values and initializes the various parts of the model </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="34" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="27" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1ac2919c3e6bb60a1777b506af88e21697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SimpleVoltEstimator::~SimpleVoltEstimator</definition>
+        <argsstring>()</argsstring>
+        <name>~SimpleVoltEstimator</name>
+        <qualifiedname>SimpleVoltEstimator::~SimpleVoltEstimator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destructor. Nothing here. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="35" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1a1d870c94a9ede6ca98a9a450b53fe72d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>SimpleVoltEstimator::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. It initializes the various containers used in the model as well as creates the output message. The error states are allocated as follows: Total states: 1<itemizedlist>
+<listitem><para>Voltage error [0] <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Initialize the propagation matrix to default values for use in update</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Alert the user and stop if the noise matrix is the wrong size. That&apos;d be bad.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set the matrices of the lower level error propagation (GaussMarkov)</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="37" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="52" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1ad4fe1162958c62cd99c1623329ec8bfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>SimpleVoltEstimator::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method calls all of the run-time operations for the simpleVoltEstimator module. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time associated with the model call </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="38" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1a2ec17f1cbfe293d28d31870866695c15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::computeErrors</definition>
+        <argsstring>()</argsstring>
+        <name>computeErrors</name>
+        <qualifiedname>SimpleVoltEstimator::computeErrors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method sets the propagation matrix and requests new random errors from its GaussMarkov model. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Set the GaussMarkov propagation matrix and compute errors</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="39" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="105" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1af3784e9cf9689ac3e656bb01d3500333" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::applyErrors</definition>
+        <argsstring>()</argsstring>
+        <name>applyErrors</name>
+        <qualifiedname>SimpleVoltEstimator::applyErrors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Add errors</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="40" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="95" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1a0cb7d10e510757fbd77abaa22917a612" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>SimpleVoltEstimator::readInputMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads the input message associated with the spacecraft voltage </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="41" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_volt_estimator_1a8c540f7f8d0d9173004353956e19519e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleVoltEstimator::writeOutputMessages</definition>
+        <argsstring>(uint64_t Clock)</argsstring>
+        <name>writeOutputMessages</name>
+        <qualifiedname>SimpleVoltEstimator::writeOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>Clock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method writes the voltage information into the output state message. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Clock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time associated with the model call </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp" bodystart="90" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>simple voltage estimation module class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>SimpleVoltEstimator</label>
+        <link refid="class_simple_volt_estimator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>SimpleVoltEstimator</label>
+        <link refid="class_simple_volt_estimator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" line="32" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h" bodystart="32" bodyend="58"/>
+    <listofallmembers>
+      <member refid="class_simple_volt_estimator_1acd98892d19d4b7ba9560d198b86c14a7" prot="private" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>AMatrix</name></member>
+      <member refid="class_simple_volt_estimator_1af3784e9cf9689ac3e656bb01d3500333" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>applyErrors</name></member>
+      <member refid="class_simple_volt_estimator_1ab6aab4096b68a72acdca5265f6de3378" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>bskLogger</name></member>
+      <member refid="class_simple_volt_estimator_1a2ec17f1cbfe293d28d31870866695c15" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>computeErrors</name></member>
+      <member refid="class_simple_volt_estimator_1a5865a2a217188019671f033657b18fc0" prot="private" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>errorModel</name></member>
+      <member refid="class_simple_volt_estimator_1a3034ef523dad1d8f24fd02c0becdc35f" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>estVoltState</name></member>
+      <member refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>PMatrix</name></member>
+      <member refid="class_simple_volt_estimator_1a0cb7d10e510757fbd77abaa22917a612" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>readInputMessages</name></member>
+      <member refid="class_simple_volt_estimator_1a1d870c94a9ede6ca98a9a450b53fe72d" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>Reset</name></member>
+      <member refid="class_simple_volt_estimator_1a0a41603401b169068c85a69d7991386c" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>SimpleVoltEstimator</name></member>
+      <member refid="class_simple_volt_estimator_1a1d2458b48cfd32e18cd88f798d0f58db" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>trueVoltState</name></member>
+      <member refid="class_simple_volt_estimator_1ad4fe1162958c62cd99c1623329ec8bfa" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>UpdateState</name></member>
+      <member refid="class_simple_volt_estimator_1a15e7387191609422d681d87b1723ef43" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>voltErrors</name></member>
+      <member refid="class_simple_volt_estimator_1a80cffe69659d96258d5012ab842828f1" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>voltInMsg</name></member>
+      <member refid="class_simple_volt_estimator_1a50953c08fde35b7a2c0ab4f7946df500" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>voltOutMsg</name></member>
+      <member refid="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>walkBounds</name></member>
+      <member refid="class_simple_volt_estimator_1a8c540f7f8d0d9173004353956e19519e" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>writeOutputMessages</name></member>
+      <member refid="class_simple_volt_estimator_1ac2919c3e6bb60a1777b506af88e21697" prot="public" virt="non-virtual"><scope>SimpleVoltEstimator</scope><name>~SimpleVoltEstimator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

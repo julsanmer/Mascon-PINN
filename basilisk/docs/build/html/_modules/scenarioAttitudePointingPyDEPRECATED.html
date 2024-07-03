@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scenarioAttitudePointingPyDEPRECATED &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>scenarioAttitudePointingPyDEPRECATED</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for scenarioAttitudePointingPyDEPRECATED</h1><div class="highlight"><pre>
+<span></span><span class="c1">#</span>
+<span class="c1">#  ISC License</span>
+<span class="c1">#</span>
+<span class="c1">#  Copyright (c) 2023, Autonomous Vehicle Systems Lab, University of Colorado at Boulder</span>
+<span class="c1">#</span>
+<span class="c1">#  Permission to use, copy, modify, and/or distribute this software for any</span>
+<span class="c1">#  purpose with or without fee is hereby granted, provided that the above</span>
+<span class="c1">#  copyright notice and this permission notice appear in all copies.</span>
+<span class="c1">#</span>
+<span class="c1">#  THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES</span>
+<span class="c1">#  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF</span>
+<span class="c1">#  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR</span>
+<span class="c1">#  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES</span>
+<span class="c1">#  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN</span>
+<span class="c1">#  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF</span>
+<span class="c1">#  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</span>
+<span class="c1">#</span>
+
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Overview</span>
+<span class="sd">--------</span>
+
+<span class="sd">Demonstrates how to stabilize the attitude tumble without translational motion.</span>
+<span class="sd">This script sets up a 6-DOF spacecraft, but without specifying any orbital motion.  Thus,</span>
+<span class="sd">this scenario simulates the spacecraft translating in deep space.  The scenario is a</span>
+<span class="sd">version of :ref:`scenarioAttitudePointing` where the :ref:`mrpPD` feedback control</span>
+<span class="sd">module is replaced with an equivalent python based BSK MRP PD control module.</span>
+
+<span class="sd">The script is found in the folder ``basilisk/examples`` and executed by using::</span>
+
+<span class="sd">    python3 scenarioAttitudePointingPyDEPRECATED.py</span>
+
+<span class="sd">As with :ref:`scenarioAttitudePointing`, when</span>
+<span class="sd">the simulation completes 3 plots are shown for the MRP attitude history, the rate</span>
+<span class="sd">tracking errors, as well as the control torque vector.</span>
+
+<span class="sd">This script showcases the deprecated way of creating Python modules.</span>
+<span class="sd">For the newer way, refer to :ref:`scenarioAttitudePointingPy`.</span>
+
+<span class="sd">The MRP PD control module in this script is a class called ``PythonMRPPD``.  Note that it has the</span>
+<span class="sd">same setup and update routines as are found with a C/C++ Basilisk module.</span>
+
+<span class="sd">To use a Python module in a simulation script, not that the python modules must be added to a special python specific</span>
+<span class="sd">process and task list.  This is done with the commands::</span>
+
+<span class="sd">    pyModulesProcess = scSim.CreateNewPythonProcess(pyProcessName, 9)</span>
+<span class="sd">    pyModulesProcess.createPythonTask(pyTaskName, simulationTimeStep, True, -1)</span>
+
+<span class="sd">Note that the python processes are always evaluated after the regular C/C++ processes.  Thus, the priority number</span>
+<span class="sd">only controls the order of the python processes, not the python process execution relative to regular</span>
+<span class="sd">Basilisk processes.</span>
+
+<span class="sd">Creating an instance of the Python module is done with the code::</span>
+
+<span class="sd">    pyMRPPD = PythonMRPPD(&quot;pyMRP_PD&quot;, True, 100)</span>
+<span class="sd">    pyMRPPD.K = 3.5</span>
+<span class="sd">    pyMRPPD.P = 30.0</span>
+<span class="sd">    pyModulesProcess.addModelToTask(pyTaskName, pyMRPPD)</span>
+
+<span class="sd">The first argument is the module tag string, the second is a bool argument specifying if the module is active</span>
+<span class="sd">or note, and the last is the priority value for this module.  The next step is to configure the module</span>
+<span class="sd">variables as you do with any other Basilisk module.  Finally, the module is added to the special task</span>
+<span class="sd">list specifically for executing python modules.</span>
+
+<span class="sd">Illustration of Simulation Results</span>
+<span class="sd">----------------------------------</span>
+
+<span class="sd">::</span>
+
+<span class="sd">    show_plots = True</span>
+
+<span class="sd">Here a small initial tumble is simulated.  The</span>
+<span class="sd">resulting attitude and control torque histories are shown below.  The spacecraft quickly</span>
+<span class="sd">regains a stable orientation without tumbling past 180 degrees.</span>
+
+<span class="sd">.. image:: /_images/Scenarios/scenarioAttitudePointingPyDEPRECATED1.svg</span>
+<span class="sd">   :align: center</span>
+
+<span class="sd">.. image:: /_images/Scenarios/scenarioAttitudePointingPyDEPRECATED2.svg</span>
+<span class="sd">   :align: center</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#</span>
+<span class="c1"># Basilisk Scenario Script and Integrated Test</span>
+<span class="c1">#</span>
+<span class="c1"># Purpose:  Integrated test showing how to setup and run a Python BSK module with C/C++ modules</span>
+<span class="c1"># Author:   Hanspeter Schaub</span>
+<span class="c1"># Creation Date:  Jan. 16, 2021</span>
+<span class="c1">#</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># import general simulation support files</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">SimulationBaseClass</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">unitTestSupport</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># general support file with common unit test functions</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">macros</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">simulationArchTypes</span>
+
+<span class="c1"># import simulation related support</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">spacecraft</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">extForceTorque</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">simpleNav</span>
+
+<span class="c1"># import FSW Algorithm related support</span>
+<span class="c1"># from Basilisk.fswAlgorithms import mrpFeedback</span>
+<span class="kn">from</span> <span class="nn">Basilisk.fswAlgorithms</span> <span class="kn">import</span> <span class="n">inertial3D</span>
+<span class="kn">from</span> <span class="nn">Basilisk.fswAlgorithms</span> <span class="kn">import</span> <span class="n">attTrackingError</span>
+
+<span class="c1"># import message declarations</span>
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="n">messaging</span>
+
+<span class="c1"># attempt to import vizard</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">vizSupport</span>
+
+<span class="c1"># Used to deprecate the entire scenario or ignore certain deprecation warnings</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">deprecated</span>
+
+<span class="c1"># The path to the location of Basilisk</span>
+<span class="c1"># Used to get the location of supporting data.</span>
+<span class="kn">from</span> <span class="nn">Basilisk</span> <span class="kn">import</span> <span class="n">__path__</span>
+
+<span class="n">bskPath</span> <span class="o">=</span> <span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fileName</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="nd">@deprecated</span><span class="o">.</span><span class="n">deprecated</span><span class="p">(</span>
+    <span class="s2">&quot;2024/04/01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The functionality showcased in this Scenario is deprecated.&quot;</span>
+    <span class="s2">&quot; See &#39;scenarioAttitudePointingPy.py&#39;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">show_plots</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The scenarios can be run with the followings setups parameters:</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        show_plots (bool): Determines if the script should display plots</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#  From here on scenario python code is found.  Above this line the code is to setup a</span>
+    <span class="c1">#  unitTest environment.  The above code is not critical if learning how to code BSK.</span>
+    <span class="c1">#</span>
+
+    <span class="c1"># Create simulation variable names</span>
+    <span class="n">simTaskName</span> <span class="o">=</span> <span class="s2">&quot;simTask&quot;</span>
+    <span class="n">simProcessName</span> <span class="o">=</span> <span class="s2">&quot;simProcess&quot;</span>
+    <span class="n">pyTaskName</span> <span class="o">=</span> <span class="s2">&quot;pyTask&quot;</span>
+    <span class="n">pyProcessName</span> <span class="o">=</span> <span class="s2">&quot;pyProcess&quot;</span>
+
+    <span class="c1">#  Create a sim module as an empty container</span>
+    <span class="n">scSim</span> <span class="o">=</span> <span class="n">SimulationBaseClass</span><span class="o">.</span><span class="n">SimBaseClass</span><span class="p">()</span>
+
+    <span class="c1"># set the simulation time variable used later on</span>
+    <span class="n">simulationTime</span> <span class="o">=</span> <span class="n">macros</span><span class="o">.</span><span class="n">min2nano</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#  create the simulation process</span>
+    <span class="c1">#</span>
+    <span class="n">dynProcess</span> <span class="o">=</span> <span class="n">scSim</span><span class="o">.</span><span class="n">CreateNewProcess</span><span class="p">(</span><span class="n">simProcessName</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># create the dynamics task and specify the integration update time</span>
+    <span class="n">simulationTimeStep</span> <span class="o">=</span> <span class="n">macros</span><span class="o">.</span><span class="n">sec2nano</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">dynProcess</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">scSim</span><span class="o">.</span><span class="n">CreateNewTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">simulationTimeStep</span><span class="p">))</span>
+
+    <span class="c1"># create the process and task that contains the Python modules</span>
+    <span class="c1"># This context manager is used to hide the deprecate warning,</span>
+    <span class="c1"># as we were expecting it</span>
+    <span class="k">with</span> <span class="n">deprecated</span><span class="o">.</span><span class="n">ignore</span><span class="p">(</span><span class="s2">&quot;CreateNewPythonProcess&quot;</span><span class="p">):</span>
+        <span class="n">pyModulesProcess</span> <span class="o">=</span> <span class="n">scSim</span><span class="o">.</span><span class="n">CreateNewPythonProcess</span><span class="p">(</span><span class="n">pyProcessName</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">pyModulesProcess</span><span class="o">.</span><span class="n">createPythonTask</span><span class="p">(</span><span class="n">pyTaskName</span><span class="p">,</span> <span class="n">simulationTimeStep</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   setup the simulation tasks/objects</span>
+    <span class="c1">#</span>
+
+    <span class="c1"># initialize spacecraft object and set properties</span>
+    <span class="n">scObject</span> <span class="o">=</span> <span class="n">spacecraft</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">()</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;bsk-Sat&quot;</span>
+    <span class="c1"># define the simulation inertia</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="p">[</span><span class="mf">900.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">600.0</span><span class="p">]</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">mHub</span> <span class="o">=</span> <span class="mf">750.0</span>  <span class="c1"># kg - spacecraft mass</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">r_BcB_B</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">]</span>  <span class="c1"># m - position vector of body-fixed point B relative to CM</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">IHubPntBc_B</span> <span class="o">=</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">np2EigenMatrix3d</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">sigma_BNInit</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">]]</span>  <span class="c1"># sigma_BN_B</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">omega_BN_BInit</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.001</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.03</span><span class="p">]]</span>  <span class="c1"># rad/s - omega_BN_B</span>
+
+    <span class="c1"># add spacecraft object to the simulation process</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">scObject</span><span class="p">)</span>
+
+    <span class="c1"># setup extForceTorque module</span>
+    <span class="c1"># the control torque is read in through the messaging system</span>
+    <span class="n">extFTObject</span> <span class="o">=</span> <span class="n">extForceTorque</span><span class="o">.</span><span class="n">ExtForceTorque</span><span class="p">()</span>
+    <span class="n">extFTObject</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;externalDisturbance&quot;</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">addDynamicEffector</span><span class="p">(</span><span class="n">extFTObject</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">extFTObject</span><span class="p">)</span>
+
+    <span class="c1"># add the simple Navigation sensor module.  This sets the SC attitude, rate, position</span>
+    <span class="c1"># velocity navigation message</span>
+    <span class="n">sNavObject</span> <span class="o">=</span> <span class="n">simpleNav</span><span class="o">.</span><span class="n">SimpleNav</span><span class="p">()</span>
+    <span class="n">sNavObject</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;SimpleNavigation&quot;</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">sNavObject</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   setup the FSW algorithm tasks</span>
+    <span class="c1">#</span>
+
+    <span class="c1"># setup inertial3D guidance module</span>
+    <span class="n">inertial3DObj</span> <span class="o">=</span> <span class="n">inertial3D</span><span class="o">.</span><span class="n">inertial3D</span><span class="p">()</span>
+    <span class="n">inertial3DObj</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;inertial3D&quot;</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">inertial3DObj</span><span class="p">)</span>
+    <span class="n">inertial3DObj</span><span class="o">.</span><span class="n">sigma_R0N</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># set the desired inertial orientation</span>
+
+    <span class="c1"># setup the attitude tracking error evaluation module</span>
+    <span class="n">attError</span> <span class="o">=</span> <span class="n">attTrackingError</span><span class="o">.</span><span class="n">attTrackingError</span><span class="p">()</span>
+    <span class="n">attError</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;attErrorInertial3D&quot;</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">attError</span><span class="p">)</span>
+
+    <span class="c1"># setup Python MRP PD control module</span>
+    <span class="n">pyMRPPD</span> <span class="o">=</span> <span class="n">PythonMRPPD</span><span class="p">(</span><span class="s2">&quot;pyMRP_PD&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">pyMRPPD</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="mf">3.5</span>
+    <span class="n">pyMRPPD</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="mf">30.0</span>
+    <span class="n">pyModulesProcess</span><span class="o">.</span><span class="n">addModelToTask</span><span class="p">(</span><span class="n">pyTaskName</span><span class="p">,</span> <span class="n">pyMRPPD</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   Setup data logging before the simulation is initialized</span>
+    <span class="c1">#</span>
+    <span class="n">numDataPoints</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">samplingTime</span> <span class="o">=</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">samplingTime</span><span class="p">(</span>
+        <span class="n">simulationTime</span><span class="p">,</span> <span class="n">simulationTimeStep</span><span class="p">,</span> <span class="n">numDataPoints</span>
+    <span class="p">)</span>
+    <span class="n">attErrorLog</span> <span class="o">=</span> <span class="n">attError</span><span class="o">.</span><span class="n">attGuidOutMsg</span><span class="o">.</span><span class="n">recorder</span><span class="p">(</span><span class="n">samplingTime</span><span class="p">)</span>
+    <span class="n">mrpLog</span> <span class="o">=</span> <span class="n">pyMRPPD</span><span class="o">.</span><span class="n">cmdTorqueOutMsg</span><span class="o">.</span><span class="n">recorder</span><span class="p">(</span><span class="n">samplingTime</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">attErrorLog</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">mrpLog</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># connect the messages to the modules</span>
+    <span class="c1">#</span>
+    <span class="n">sNavObject</span><span class="o">.</span><span class="n">scStateInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">scObject</span><span class="o">.</span><span class="n">scStateOutMsg</span><span class="p">)</span>
+    <span class="n">attError</span><span class="o">.</span><span class="n">attNavInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">sNavObject</span><span class="o">.</span><span class="n">attOutMsg</span><span class="p">)</span>
+    <span class="n">attError</span><span class="o">.</span><span class="n">attRefInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">inertial3DObj</span><span class="o">.</span><span class="n">attRefOutMsg</span><span class="p">)</span>
+    <span class="n">pyMRPPD</span><span class="o">.</span><span class="n">guidInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">attError</span><span class="o">.</span><span class="n">attGuidOutMsg</span><span class="p">)</span>
+    <span class="n">extFTObject</span><span class="o">.</span><span class="n">cmdTorqueInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">pyMRPPD</span><span class="o">.</span><span class="n">cmdTorqueOutMsg</span><span class="p">)</span>
+
+    <span class="c1"># if this scenario is to interface with the BSK Viz, uncomment the following lines</span>
+    <span class="n">vizSupport</span><span class="o">.</span><span class="n">enableUnityVisualization</span><span class="p">(</span>
+        <span class="n">scSim</span><span class="p">,</span>
+        <span class="n">simTaskName</span><span class="p">,</span>
+        <span class="n">scObject</span>
+        <span class="c1"># , saveFile=fileName</span>
+    <span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   initialize Simulation</span>
+    <span class="c1">#</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">InitializeSimulation</span><span class="p">()</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   configure a simulation stop time and execute the simulation run</span>
+    <span class="c1">#</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">ConfigureStopTime</span><span class="p">(</span><span class="n">simulationTime</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">ExecuteSimulation</span><span class="p">()</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   retrieve the logged data</span>
+    <span class="c1">#</span>
+    <span class="n">dataLr</span> <span class="o">=</span> <span class="n">mrpLog</span><span class="o">.</span><span class="n">torqueRequestBody</span>
+    <span class="n">dataSigmaBR</span> <span class="o">=</span> <span class="n">attErrorLog</span><span class="o">.</span><span class="n">sigma_BR</span>
+    <span class="n">dataOmegaBR</span> <span class="o">=</span> <span class="n">attErrorLog</span><span class="o">.</span><span class="n">omega_BR_B</span>
+    <span class="n">timeAxis</span> <span class="o">=</span> <span class="n">attErrorLog</span><span class="o">.</span><span class="n">times</span><span class="p">()</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1">#   plot the results</span>
+    <span class="c1">#</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>  <span class="c1"># clears out plots from earlier test runs</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">timeAxis</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2MIN</span><span class="p">,</span>
+            <span class="n">dataSigmaBR</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">unitTestSupport</span><span class="o">.</span><span class="n">getLineColor</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\sigma_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Attitude Error $\sigma_{B/R}$&quot;</span><span class="p">)</span>
+    <span class="n">figureList</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">pltName</span> <span class="o">=</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;1&quot;</span>
+    <span class="n">figureList</span><span class="p">[</span><span class="n">pltName</span><span class="p">]</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">timeAxis</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2MIN</span><span class="p">,</span>
+            <span class="n">dataLr</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">unitTestSupport</span><span class="o">.</span><span class="n">getLineColor</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$L_{r,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}$&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Control Torque $L_r$ [Nm]&quot;</span><span class="p">)</span>
+    <span class="n">pltName</span> <span class="o">=</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s2">&quot;2&quot;</span>
+    <span class="n">figureList</span><span class="p">[</span><span class="n">pltName</span><span class="p">]</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">timeAxis</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2MIN</span><span class="p">,</span>
+            <span class="n">dataOmegaBR</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">unitTestSupport</span><span class="o">.</span><span class="n">getLineColor</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\omega_{BR,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}$&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Rate Tracking Error [rad/s] &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">show_plots</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># close the plots being saved off to avoid over-writing old and new figures</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">figureList</span>
+
+
+<div class="viewcode-block" id="PythonMRPPD"><a class="viewcode-back" href="../examples/scenarioAttitudePointingPyDEPRECATED.html#scenarioAttitudePointingPyDEPRECATED.PythonMRPPD">[docs]</a><span class="k">class</span> <span class="nc">PythonMRPPD</span><span class="p">(</span><span class="n">simulationArchTypes</span><span class="o">.</span><span class="n">PythonModelClass</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class inherits from the `PythonModelClass` available in the ``simulationArchTypes`` module.</span>
+<span class="sd">    The `PythonModelClass` is the parent class which your Python BSK modules must inherit.</span>
+<span class="sd">    The class uses the following</span>
+<span class="sd">    virtual functions:</span>
+
+<span class="sd">    #. ``reset``: The method that will initialize any persistent data in your model to a common</span>
+<span class="sd">       &quot;ready to run&quot; state (e.g. filter states, integral control sums, etc).</span>
+<span class="sd">    #. ``updateState``: The method that will be called at the rate specified</span>
+<span class="sd">       in the PythonTask that was created in the input file.</span>
+
+<span class="sd">    Additionally, your class should ensure that in the ``__init__`` method, your call the super</span>
+<span class="sd">    ``__init__`` method for the class so that the base class&#39; constructor also gets called to</span>
+<span class="sd">    initialize the model-name, activity, moduleID, and other important class members:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        super(PythonMRPPD, self).__init__(modelName, modelActive, modelPriority)</span>
+
+<span class="sd">    You class must implement the above four functions. Beyond these four functions you class</span>
+<span class="sd">    can complete any other computations you need (``Numpy``, ``matplotlib``, vision processing</span>
+<span class="sd">    AI, whatever).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelName</span><span class="p">,</span> <span class="n">modelActive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">modelPriority</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PythonMRPPD</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">modelName</span><span class="p">,</span> <span class="n">modelActive</span><span class="p">,</span> <span class="n">modelPriority</span><span class="p">)</span>
+
+        <span class="c1"># Proportional gain term used in control</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Derivative gain term used in control</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Input guidance structure message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guidInMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">AttGuidMsgReader</span><span class="p">()</span>
+        <span class="c1"># Output body torque message name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmdTorqueOutMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">CmdTorqueBodyMsg</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PythonMRPPD.reset"><a class="viewcode-back" href="../examples/scenarioAttitudePointingPyDEPRECATED.html#scenarioAttitudePointingPyDEPRECATED.PythonMRPPD.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">currentTime</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The reset method is used to clear out any persistent variables that need to get changed</span>
+<span class="sd">        when a task is restarted.  This method is typically only called once after selfInit/crossInit,</span>
+<span class="sd">        but it should be written to allow the user to call it multiple times if necessary.</span>
+<span class="sd">        :param currentTime: current simulation time in nano-seconds</span>
+<span class="sd">        :return: none</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="PythonMRPPD.updateState"><a class="viewcode-back" href="../examples/scenarioAttitudePointingPyDEPRECATED.html#scenarioAttitudePointingPyDEPRECATED.PythonMRPPD.updateState">[docs]</a>    <span class="k">def</span> <span class="nf">updateState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">currentTime</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The updateState method is the cyclical worker method for a given Basilisk class.  It</span>
+<span class="sd">        will get called periodically at the rate specified in the Python task that the model is</span>
+<span class="sd">        attached to.  It persists and anything can be done inside of it.  If you have realtime</span>
+<span class="sd">        requirements though, be careful about how much processing you put into a Python updateState</span>
+<span class="sd">        method.  You could easily detonate your sim&#39;s ability to run in realtime.</span>
+
+<span class="sd">        :param currentTime: current simulation time in nano-seconds</span>
+<span class="sd">        :return: none</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># read input message</span>
+        <span class="n">guidMsgBuffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">guidInMsg</span><span class="p">()</span>
+
+        <span class="c1"># create output message buffer</span>
+        <span class="n">torqueOutMsgBuffer</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">CmdTorqueBodyMsgPayload</span><span class="p">()</span>
+
+        <span class="c1"># compute control solution</span>
+        <span class="n">lrCmd</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">guidMsgBuffer</span><span class="o">.</span><span class="n">sigma_BR</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">guidMsgBuffer</span><span class="o">.</span><span class="n">omega_BR_B</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span>
+        <span class="p">)</span>
+        <span class="n">torqueOutMsgBuffer</span><span class="o">.</span><span class="n">torqueRequestBody</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">lrCmd</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cmdTorqueOutMsg</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">torqueOutMsgBuffer</span><span class="p">,</span> <span class="n">currentTime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">moduleID</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">print_output</span><span class="p">():</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Sample Python module method&quot;&quot;&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">currentTime</span> <span class="o">*</span> <span class="mf">1.0e-9</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">torqueOutMsgBuffer</span><span class="o">.</span><span class="n">torqueRequestBody</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">guidMsgBuffer</span><span class="o">.</span><span class="n">sigma_BR</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">guidMsgBuffer</span><span class="o">.</span><span class="n">omega_BR_B</span><span class="p">)</span>
+
+        <span class="k">return</span></div></div>
+
+
+<span class="c1">#</span>
+<span class="c1"># This statement below ensures that the unit test scrip can be run as a</span>
+<span class="c1"># stand-along python script</span>
+<span class="c1">#</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># show_plots</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

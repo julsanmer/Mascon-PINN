@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dyn_param_manager_8cpp" kind="file" language="C++">
+    <compoundname>dynParamManager.cpp</compoundname>
+    <includes refid="dyn_param_manager_8h" local="yes">dynParamManager.h</includes>
+    <includes local="no">iostream</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/dynParamManager.cpp</label>
+        <link refid="dyn_param_manager_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dynParamManager.h</label>
+        <link refid="dyn_param_manager_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>stateData.h</label>
+        <link refid="state_data_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>map</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dynParamManager.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">DynParamManager::DynParamManager()</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">DynParamManager::~DynParamManager()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="class_state_data" kindref="compound">StateData</ref>*<sp/><ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">DynParamManager::registerState</ref>(uint32_t<sp/>nRow,<sp/>uint32_t<sp/>nCol,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>stateName)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stateName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>state<sp/>name<sp/>can&apos;t<sp/>be<sp/>an<sp/>empty<sp/>string.<sp/><sp/>Come<sp/>on.<sp/><sp/>You<sp/>get<sp/>null.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.find(stateName);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>!=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end())</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;You<sp/>created<sp/>a<sp/>state<sp/>with<sp/>the<sp/>name:<sp/>%s<sp/>more<sp/>than<sp/>once.<sp/><sp/>Go<sp/>ahead<sp/>and<sp/>don&apos;t<sp/>do<sp/>this.&quot;</highlight><highlight class="normal">,<sp/>stateName.c_str());</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it-&gt;second.getRowSize()<sp/>!=<sp/>nRow<sp/>||<sp/>it-&gt;second.getColumnSize()<sp/>!=<sp/>nCol)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;In<sp/>addition<sp/>to<sp/>that,<sp/>you<sp/>tried<sp/>to<sp/>change<sp/>the<sp/>size<sp/>of<sp/>the<sp/>state<sp/>in<sp/>question.<sp/><sp/>Come<sp/>on.<sp/><sp/>You<sp/>get<sp/>null.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>stateMatrix;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stateMatrix.resize(nRow,<sp/>nCol);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_state_data" kindref="compound">StateData</ref><sp/>newState(stateName,<sp/>stateMatrix);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.insert(std::pair&lt;std::string,<sp/>StateData&gt;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(stateName,<sp/>newState));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.find(stateName);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(&amp;(it-&gt;second));</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><ref refid="class_state_data" kindref="compound">StateData</ref>*<sp/><ref refid="class_dyn_param_manager_1aae12260c917672c1600aa1249c50933a" kindref="member">DynParamManager::getStateObject</ref>(std::string<sp/>stateName)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_state_data" kindref="compound">StateData</ref><sp/>*statePtr;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>statePtr<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.find(stateName);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>!=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end())</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>statePtr<sp/>=<sp/>&amp;(it-&gt;second);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(statePtr<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>The<sp/>requested<sp/>state<sp/>could<sp/>not<sp/>be<sp/>found.</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Either<sp/>the<sp/>state<sp/>name<sp/>was<sp/>miss-spelled,<sp/>or<sp/>the<sp/>state<sp/>simply</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>doesn&apos;t<sp/>exit<sp/>in<sp/>the<sp/>current<sp/>simulaiton<sp/>setup<sp/>(i.e.<sp/>asking<sp/>for<sp/>the</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hub<sp/>attitude<sp/>in<sp/>a<sp/>translation<sp/>only<sp/>simulation<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;You<sp/>requested<sp/>this<sp/>non-existent<sp/>state<sp/>name:<sp/>%s<sp/>You<sp/>either<sp/>miss-typed<sp/>the<sp/>stateName,<sp/>or<sp/>you<sp/>asked<sp/>for<sp/>a<sp/>state<sp/>that<sp/>doesn&apos;t<sp/>exist<sp/>in<sp/>your<sp/>simulation<sp/>setup.&quot;</highlight><highlight class="normal">,<sp/>stateName.c_str());</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(statePtr);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/><ref refid="class_dyn_param_manager_1a933c6046c511e91c437b5d1cab750702" kindref="member">DynParamManager::getStateVector</ref>()</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_dyn_param_manager_1aa1547f97375e5bb690f0f00a65775f21" kindref="member">DynParamManager::updateStateVector</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/>&amp;<sp/>newState)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::const_iterator<sp/>inIt;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin(),<sp/>inIt<sp/>=<sp/>newState.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>!=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end()<sp/>&amp;&amp;<sp/>inIt<sp/>!=<sp/>newState.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end();<sp/>it++,<sp/>inIt++)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it-&gt;second.setState(inIt-&gt;second.getState());</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_dyn_param_manager_1a6c3eec68a79882d446a7764bc68268fc" kindref="member">DynParamManager::propagateStateVector</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>!=<sp/><ref refid="class_dyn_param_manager_1a09c464537523b7173a0edaf189630dc7" kindref="member">stateContainer</ref>.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it-&gt;second.propagateState(dt);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/><ref refid="class_state_vector_1a73f418e7e5a5473fcb75b8389aed2987" kindref="member">StateVector::operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_state_vector" kindref="compound">StateVector</ref>&amp;<sp/>operand)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::const_iterator<sp/>opIt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/>outVector;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(it<sp/>=<sp/><ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin(),<sp/>opIt<sp/>=<sp/>operand.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>!=<sp/><ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end()<sp/>&amp;&amp;<sp/>opIt<sp/>!=<sp/>operand.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end();<sp/>it++,<sp/>opIt++)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_state_data" kindref="compound">StateData</ref><sp/>newState<sp/>=<sp/>it-&gt;second<sp/>+<sp/>opIt-&gt;second;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outVector.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.insert(std::pair&lt;std::string,<sp/>StateData&gt;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(it-&gt;first,<sp/>newState));</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>outVector;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/><ref refid="class_state_vector_1ad4dbb50b500b69c1ba0b0ba708f9f7ac" kindref="member">StateVector::operator*</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaleFactor)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_state_vector" kindref="compound">StateVector</ref><sp/>outVector;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>StateData&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(it<sp/>=<sp/><ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outVector.<ref refid="class_state_vector_1a958915b76a6e2174d864087723a9c531" kindref="member">stateMap</ref>.insert(std::pair&lt;std::string,<sp/>StateData&gt;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(it-&gt;first,<sp/>it-&gt;second*scaleFactor));</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>outVector;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">Eigen::MatrixXd*<sp/><ref refid="class_dyn_param_manager_1ada46fd23fcbc4abcc1760f3ccaf8479e" kindref="member">DynParamManager::createProperty</ref>(std::string<sp/>propName,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::MatrixXd<sp/>&amp;<sp/>propValue)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>Eigen::MatrixXd&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.find(propName);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>==<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.end())</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.insert(std::pair&lt;std::string,<sp/>Eigen::MatrixXd&gt;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(propName,<sp/>propValue));</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;You<sp/>created<sp/>the<sp/>dynamic<sp/>property:<sp/>%s<sp/>more<sp/>than<sp/>once.<sp/><sp/>You<sp/>shouldn&apos;t<sp/>be<sp/>doing<sp/>that.&quot;</highlight><highlight class="normal">,<sp/>propName.c_str());</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it-&gt;second<sp/>=<sp/>propValue;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(&amp;(<ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.find(propName)-&gt;second));</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal">Eigen::MatrixXd*<sp/><ref refid="class_dyn_param_manager_1a61e96d12fd7b123c9a7ae356b54ef381" kindref="member">DynParamManager::getPropertyReference</ref>(std::string<sp/>propName)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>Eigen::MatrixXd&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.find(propName);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>==<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.end())</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;You<sp/>requested<sp/>the<sp/>property:<sp/>%s<sp/>which<sp/>doesn&apos;t<sp/>exist.<sp/><sp/>Null<sp/>returned.&quot;</highlight><highlight class="normal">,<sp/>propName.c_str());</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(&amp;(it-&gt;second));</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_dyn_param_manager_1a44c43ab267348cbc5aab900b95740de7" kindref="member">DynParamManager::setPropertyValue</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>propName,</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::MatrixXd<sp/>&amp;<sp/>propValue)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>Eigen::MatrixXd&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>it<sp/>=<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.find(propName);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>==<sp/><ref refid="class_dyn_param_manager_1a324091a5df66fc9645f88036a8467ccc" kindref="member">dynProperties</ref>.end())</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_dyn_param_manager_1a02cd81261a8fc7488bf3b18064d4ae07" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;You<sp/>tried<sp/>to<sp/>set<sp/>the<sp/>property<sp/>value<sp/>for:<sp/>%s<sp/>which<sp/>has<sp/>not<sp/>been<sp/>created<sp/>yet.<sp/>I<sp/>can&apos;t<sp/>do<sp/>that.&quot;</highlight><highlight class="normal">,<sp/>propName.c_str());</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it-&gt;second<sp/>=<sp/>propValue;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/dynParamManager.cpp"/>
+  </compounddef>
+</doxygen>

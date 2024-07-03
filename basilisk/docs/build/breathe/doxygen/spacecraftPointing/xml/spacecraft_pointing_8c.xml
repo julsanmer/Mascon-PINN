@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="spacecraft_pointing_8c" kind="file" language="C++">
+    <compoundname>spacecraftPointing.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="spacecraft_pointing_8h" local="yes">fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c</label>
+        <link refid="spacecraft_pointing_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h</label>
+        <link refid="spacecraft_pointing_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/AttRefMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="spacecraft_pointing_8c_1a3108511f7392cae4416a261c094ed685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the spacecraft pointing module It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the spacecraft pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" line="35" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="spacecraft_pointing_8c_1a6631047e648a040335ba0ca7e7ea70e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <mdash/> dcm [AB]</para>
+<para>&lt; <mdash/> z-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis of A-frame expressed in B-frame components</para>
+<para>&lt; <mdash/> z-axis of A-frame expresses in B-frame components</para>
+<para>&lt; <mdash/> MRP of A-frame with respect to B-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" line="48" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="48" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="spacecraft_pointing_8c_1a38aa1575fc6d39d8296ca08f7a598571" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the vector that points from the deputy spacecraft to the chief spacecraft and calculates the orientation, angular velocity and angular acceleration of this vector with respect to the inertial reference frame in inertial reference frame components and passes them to the attitude tracking error module, where that attitude error can be calculated. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the spacecraft pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <mdash/> Input message that consists of the position and velocity of the chief</para>
+<para>&lt; <mdash/> Input message that consists of the position and velocity of the deputy</para>
+<para>&lt; <mdash/> Vector pointing from deputy to chief in inertial frame components</para>
+<para>&lt; <mdash/> DCM from R-frame to N-frame</para>
+<para>&lt; <mdash/> z-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis of R-frame expressed in N-frame components</para>
+<para>&lt; <mdash/> z-axis of R-frame expressed in N-frame components</para>
+<para>&lt; <mdash/> MRP of vector pointing from deputy to chief</para>
+<para>&lt; <mdash/> Difference between sigma at t-1 and t</para>
+<para>&lt; <mdash/> shadow MRP of previous timestep</para>
+<para>&lt; <mdash/> Difference between shadow sigma at t-1 and t</para>
+<para>&lt; <mdash/> timestep of the simulation</para>
+<para>&lt; <mdash/> delta_sigma_RN divided by dt results in sigma_dot_RN</para>
+<para>&lt; <mdash/> sigma_RN_squared of sigma vector of previous timestep</para>
+<para>&lt; <mdash/> sigma_RN_squared of sigma vector of current timestep</para>
+<para>&lt; <mdash/> B-matrix taken with sigmas from previous timestep</para>
+<para>&lt; <mdash/> B matrix to convert sigma_dot_RN to omega_RN_N</para>
+<para>&lt; <mdash/> Transposed B matrix</para>
+<para>&lt; <mdash/> average of the scaling factor (1/((1 + sigma^2)^2))</para>
+<para>&lt; <mdash/> Inverse of B matrix</para>
+<para>&lt; <mdash/> Angular velocity of vector pointing from deputy to chief in R-frame components</para>
+<para>&lt; <mdash/> MRP of N-frame with respect to R-frame</para>
+<para>&lt; <mdash/> DCM [NR]</para>
+<para>&lt; <mdash/> Angular velocity of vector pointing from deputy to chief in N-frame components</para>
+<para>&lt; <mdash/> Difference between omega at t-1 and t</para>
+<para>&lt; <mdash/> Angular acceleration of vector pointing from deputy to chief</para>
+<para>&lt; <mdash/> MRP of R1-frame with respect to N-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" line="97" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="97" bodyend="237"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsg_C_init(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1a568f80688ae5ab3e0de8dfb83ff506bd" kindref="member">attReferenceOutMsg</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavTransMsg_C_isLinked(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1adbba809885536774c1642ccde2d7318d" kindref="member">chiefPositionInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structspacecraft_pointing_config_1a7034e2f43671e83244a36e6357aa9449" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>spacecraftPointing.chiefPositionInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavTransMsg_C_isLinked(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1a4b490cc525af21089fcb8de8220ca3ec" kindref="member">deputyPositionInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structspacecraft_pointing_config_1a7034e2f43671e83244a36e6357aa9449" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>spacecraftPointing.deputyPositionInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Build<sp/>a<sp/>coordinate<sp/>system<sp/>around<sp/>the<sp/>vector<sp/>within<sp/>the<sp/>body<sp/>frame<sp/>that<sp/>points<sp/>towards<sp/>the<sp/>antenna<sp/>and<sp/>write<sp/>the<sp/>orientation</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>of<sp/>the<sp/>B-frame<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>A-frame.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_AB[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp_z[3]<sp/>=<sp/>{0.0,<sp/>0.0,<sp/>1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp_y[3]<sp/>=<sp/>{0.0,<sp/>1.0,<sp/>0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>A_y_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>A_z_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_AB[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(configData-&gt;<ref refid="structspacecraft_pointing_config_1ab894720d1f8485411c02463fe9f1bdf7" kindref="member">alignmentVector_B</ref>,<sp/>dcm_AB[0]);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(temp_z,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1ab894720d1f8485411c02463fe9f1bdf7" kindref="member">alignmentVector_B</ref>,<sp/>A_y_B);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>the<sp/>alignment<sp/>vector<sp/>aligns<sp/>with<sp/>the<sp/>z-axis<sp/>of<sp/>the<sp/>body<sp/>frame,<sp/>the<sp/>cross<sp/>product<sp/>is<sp/>performed<sp/>with<sp/>a<sp/>temporary<sp/>y-axis.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(A_y_B)<sp/>&lt;<sp/>1e-6){</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(configData-&gt;<ref refid="structspacecraft_pointing_config_1ab894720d1f8485411c02463fe9f1bdf7" kindref="member">alignmentVector_B</ref>,<sp/>temp_y,<sp/>A_y_B);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(A_y_B,<sp/>dcm_AB[1]);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(dcm_AB[0],<sp/>dcm_AB[1],<sp/>A_z_B);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(A_z_B,<sp/>dcm_AB[2]);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>C2MRP(dcm_AB,<sp/>sigma_AB);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1,<sp/>sigma_AB,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1af48936f04a4de34d24e29da22de31cde" kindref="member">sigma_BA</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>initial<sp/>values<sp/>of<sp/>the<sp/>sigma<sp/>and<sp/>omega<sp/>of<sp/>the<sp/>previous<sp/>timestep<sp/>to<sp/>zero.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structspacecraft_pointing_config_1a636444e663df3ded10fdc0a869b24431" kindref="member">old_omega_RN_N</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>the<sp/>numerical<sp/>error<sp/>flag<sp/>to<sp/>zero.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" kindref="member">i</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>chiefTransMsg;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>deputyTransMsg;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rho_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_RN[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp_z[3]<sp/>=<sp/>{0.0,<sp/>0.0,<sp/>1.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp_y[3]<sp/>=<sp/>{0.0,<sp/>1.0,<sp/>0.0};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>R_y_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>R_z_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_RN[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_sigma_RN[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>old_sigma_RN_shadow[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_sigma_RN_shadow[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_dot_RN[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>old_sigma_RN_squared;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_RN_squared;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>old_B_sigma_RN[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_sigma_RN[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_trans[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>average_scale;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_sigma_RN_inv[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_RN_R[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_NR[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_NR[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_RN_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_omega_RN_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>domega_RN_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_R1N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>in<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>chiefTransMsg<sp/>=<sp/>NavTransMsg_C_read(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1adbba809885536774c1642ccde2d7318d" kindref="member">chiefPositionInMsg</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>deputyTransMsg<sp/>=<sp/>NavTransMsg_C_read(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1a4b490cc525af21089fcb8de8220ca3ec" kindref="member">deputyPositionInMsg</ref>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Find<sp/>the<sp/>vector<sp/>that<sp/>points<sp/>from<sp/>the<sp/>deputy<sp/>spacecraft<sp/>to<sp/>the<sp/>chief<sp/>spacecraft.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(chiefTransMsg.r_BN_N,<sp/>deputyTransMsg.r_BN_N,<sp/>rho_N);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Build<sp/>a<sp/>coordinate<sp/>system<sp/>around<sp/>the<sp/>vector<sp/>that<sp/>points<sp/>from<sp/>the<sp/>deputy<sp/>to<sp/>the<sp/>chief<sp/>and</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>and<sp/>determine<sp/>the<sp/>orientation<sp/>of<sp/>this<sp/>R-frame<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>N-frame.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(rho_N,<sp/>dcm_RN[0]);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(temp_z,<sp/>dcm_RN[0],<sp/>R_y_N);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>the<sp/>rho_N<sp/>vector<sp/>aligns<sp/>with<sp/>the<sp/>x-axis<sp/>of<sp/>the<sp/>N-frame,<sp/>the<sp/>cross<sp/>product<sp/>is<sp/>performed<sp/>with<sp/>a<sp/>temporary<sp/>y-axis.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(R_y_N)<sp/>&lt;<sp/>1e-6){</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Cross(dcm_RN[0],<sp/>temp_y,<sp/>R_y_N);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(R_y_N,<sp/>dcm_RN[1]);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(dcm_RN[0],<sp/>dcm_RN[1],<sp/>R_z_N);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(R_z_N,<sp/>dcm_RN[2]);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>C2MRP(dcm_RN,<sp/>sigma_RN);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Determine<sp/>omega_RN_N<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Delta<sp/>sigma<sp/>is<sp/>calculated<sp/>and<sp/>the<sp/>shadow<sp/>delta<sp/>sigma.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(sigma_RN,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>,<sp/>delta_sigma_RN);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>MRPswitch(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>,<sp/>0.0,<sp/>old_sigma_RN_shadow);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(sigma_RN,<sp/>old_sigma_RN_shadow,<sp/>delta_sigma_RN_shadow);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Usually,<sp/>the<sp/>norm<sp/>of<sp/>delta_sigma_RN_shadow<sp/>is<sp/>way<sp/>larger<sp/>than<sp/>delta_sigma_RN<sp/>(and<sp/>not<sp/>the<sp/>correct<sp/>delta<sp/>to<sp/>take).</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>However,<sp/>in<sp/>case<sp/>an<sp/>MRP<sp/>switch<sp/>takes<sp/>place,<sp/>it<sp/>is<sp/>necessary<sp/>to<sp/>use<sp/>delta_sigma_RN_shadow<sp/>because<sp/>this<sp/>one<sp/>will</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>give<sp/>the<sp/>correct<sp/>delta.<sp/>So<sp/>the<sp/>if<sp/>statement<sp/>below<sp/>makes<sp/>sure<sp/>that<sp/>this<sp/>is<sp/>done.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(delta_sigma_RN)<sp/>&gt;=<sp/>v3Norm(delta_sigma_RN_shadow)){</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(delta_sigma_RN_shadow,<sp/>delta_sigma_RN);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(old_sigma_RN_shadow,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Find<sp/>the<sp/>timestep<sp/>of<sp/>the<sp/>simulation.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>(callTime<sp/>-<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a9a0ff0151940085892693cfba121f65d" kindref="member">priorTime</ref>)<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a9a0ff0151940085892693cfba121f65d" kindref="member">priorTime</ref><sp/>=<sp/>callTime;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>sigma_dot_RN<sp/>is<sp/>calculated<sp/>by<sp/>dividing<sp/>the<sp/>difference<sp/>in<sp/>sigma<sp/>by<sp/>the<sp/>timestep.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale((1.0/dt),<sp/>delta_sigma_RN,<sp/>sigma_dot_RN);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Due<sp/>to<sp/>the<sp/>fact<sp/>that<sp/>sigma_dot_RN<sp/>is<sp/>actually<sp/>the<sp/>average<sp/>increase<sp/>in<sp/>sigma<sp/>over<sp/>the<sp/>timeperiod<sp/>between<sp/>t-1<sp/>and<sp/>t,</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>turned<sp/>out<sp/>that<sp/>the<sp/>bevaviour<sp/>of<sp/>the<sp/>simulation<sp/>significantly<sp/>improves<sp/>in<sp/>case<sp/>the<sp/>average<sp/>of<sp/>the<sp/>B-matrix<sp/>of<sp/>old_sigma_RN</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>and<sp/>new_sigma_RN<sp/>is<sp/>taken,<sp/>as<sp/>well<sp/>as<sp/>the<sp/>average<sp/>of<sp/>1/((1+sigma^2)^2)<sp/>(see<sp/>Schaub<sp/>and<sp/>Junkins<sp/>eq.<sp/>3.163).<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>old_sigma_RN_squared<sp/>=<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]<sp/>+<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]<sp/>+<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2];</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>sigma_RN_squared<sp/>=<sp/>sigma_RN[0]*sigma_RN[0]<sp/>+<sp/>sigma_RN[1]*sigma_RN[1]<sp/>+<sp/>sigma_RN[2]*sigma_RN[2];</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Set(1.0<sp/>-<sp/>old_sigma_RN_squared<sp/>+<sp/>2.0*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0],<sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]<sp/>-<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]),<sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]<sp/>+<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]),</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]<sp/>+<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]),<sp/>1.0<sp/>-<sp/>old_sigma_RN_squared<sp/>+<sp/>2.0*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1],<sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]<sp/>-<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]),</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]<sp/>-<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]),<sp/>2.0*(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[1]<sp/>+<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[0]),<sp/>1.0<sp/>-<sp/>old_sigma_RN_squared<sp/>+<sp/>2.0*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2]*configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>[2],</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>old_B_sigma_RN);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Set(1.0<sp/>-<sp/>sigma_RN_squared<sp/>+<sp/>2.0*sigma_RN[0]*sigma_RN[0],<sp/>2.0*(sigma_RN[0]*sigma_RN[1]<sp/>-<sp/>sigma_RN[2]),<sp/>2.0*(sigma_RN[0]*sigma_RN[2]<sp/>+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma_RN[1]),</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0*(sigma_RN[1]*sigma_RN[0]<sp/>+<sp/>sigma_RN[2]),<sp/>1.0<sp/>-<sp/>sigma_RN_squared<sp/>+<sp/>2.0*sigma_RN[1]*sigma_RN[1],<sp/>2.0*(sigma_RN[1]*sigma_RN[2]<sp/>-<sp/>sigma_RN[0]),</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0*(sigma_RN[2]*sigma_RN[0]<sp/>-<sp/>sigma_RN[1]),<sp/>2.0*(sigma_RN[2]*sigma_RN[1]<sp/>+<sp/>sigma_RN[0]),<sp/>1.0<sp/>-<sp/>sigma_RN_squared<sp/>+<sp/>2.0*sigma_RN[2]*sigma_RN[2],</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B_sigma_RN);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Taking<sp/>the<sp/>average<sp/>between<sp/>entries<sp/>of<sp/>the<sp/>old<sp/>sigma<sp/>matrix<sp/>and<sp/>the<sp/>new<sp/>sigma<sp/>matrix.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Set((old_B_sigma_RN[0][0]<sp/>+<sp/>B_sigma_RN[0][0])/2,<sp/>(old_B_sigma_RN[0][1]<sp/>+<sp/>B_sigma_RN[0][1])/2,<sp/>(old_B_sigma_RN[0][2]<sp/>+<sp/>B_sigma_RN[0][2])/2,</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(old_B_sigma_RN[1][0]<sp/>+<sp/>B_sigma_RN[1][0])/2,<sp/>(old_B_sigma_RN[1][1]<sp/>+<sp/>B_sigma_RN[1][1])/2,<sp/>(old_B_sigma_RN[1][2]<sp/>+<sp/>B_sigma_RN[1][2])/2,</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(old_B_sigma_RN[2][0]<sp/>+<sp/>B_sigma_RN[2][0])/2,<sp/>(old_B_sigma_RN[2][1]<sp/>+<sp/>B_sigma_RN[2][1])/2,<sp/>(old_B_sigma_RN[2][2]<sp/>+<sp/>B_sigma_RN[2][2])/2,</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B_sigma_RN);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Find<sp/>the<sp/>angular<sp/>velocity<sp/>of<sp/>the<sp/>R-frame<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>N-frame<sp/>according<sp/>to<sp/>Schaub<sp/>and<sp/>Junkin&apos;s<sp/>chapter<sp/>about<sp/>MRPs.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Transpose(B_sigma_RN,<sp/>B_trans);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>average_scale<sp/>=<sp/>0.5*(1.0/((1.0<sp/>+<sp/>sigma_RN_squared)*(1.0<sp/>+<sp/>sigma_RN_squared))<sp/>+<sp/>1.0/((1.0<sp/>+<sp/>old_sigma_RN_squared)*(1.0<sp/>+<sp/>old_sigma_RN_squared)));</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Scale(average_scale,<sp/>B_trans,<sp/>B_sigma_RN_inv);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(B_sigma_RN_inv,<sp/>sigma_dot_RN,<sp/>omega_RN_R);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(4.0,<sp/>omega_RN_R,<sp/>omega_RN_R);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Convert<sp/>omega_RN_R<sp/>to<sp/>omega_RN_N.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1,<sp/>sigma_RN,<sp/>sigma_NR);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(sigma_NR,<sp/>dcm_NR);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(dcm_NR,<sp/>omega_RN_R,<sp/>omega_RN_N);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Determine<sp/>domega_RN_N.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(omega_RN_N,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a636444e663df3ded10fdc0a869b24431" kindref="member">old_omega_RN_N</ref>,<sp/>delta_omega_RN_N);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale((1.0/dt),<sp/>delta_omega_RN_N,<sp/>domega_RN_N);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(omega_RN_N,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a636444e663df3ded10fdc0a869b24431" kindref="member">old_omega_RN_N</ref>);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copy<sp/>the<sp/>sigma_RN<sp/>variable<sp/>to<sp/>the<sp/>old_sigma_RN<sp/>variable.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(sigma_RN,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" kindref="member">old_sigma_RN</ref>);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Due<sp/>to<sp/>the<sp/>numerical<sp/>method<sp/>used<sp/>the<sp/>first<sp/>result<sp/>from<sp/>omega<sp/>and<sp/>the<sp/>first<sp/>two<sp/>results<sp/>of<sp/>domega<sp/>are<sp/>incorrect.</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>For<sp/>this<sp/>reason,<sp/>these<sp/>values<sp/>are<sp/>set<sp/>to<sp/>zero.<sp/>Take<sp/>into<sp/>account<sp/>that<sp/>the<sp/>first<sp/>data<sp/>point<sp/>is<sp/>an<sp/>initialization</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datapoint.<sp/>This<sp/>is<sp/>equal<sp/>to<sp/>zero<sp/>for<sp/>all<sp/>parameters.<sp/>So<sp/>the<sp/>actual<sp/>simulation<sp/>only<sp/>starts<sp/>after<sp/>this<sp/>first<sp/>initialization</highlight></codeline>
+<codeline lineno="215"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datapoint.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" kindref="member">i</ref><sp/>&lt;<sp/>2){</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(omega_RN_N);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" kindref="member">i</ref><sp/>&lt;<sp/>3){</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(domega_RN_N);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" kindref="member">i</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>One<sp/>of<sp/>the<sp/>requirements<sp/>for<sp/>this<sp/>module<sp/>is<sp/>that<sp/>the<sp/>user<sp/>should<sp/>be<sp/>able<sp/>to<sp/>fill<sp/>in<sp/>a<sp/>vector<sp/>within<sp/>the<sp/>B-frame<sp/>that<sp/>points<sp/>at</highlight></codeline>
+<codeline lineno="225"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>antenna.<sp/>For<sp/>this<sp/>reason<sp/>it<sp/>is<sp/>necessary<sp/>to<sp/>add<sp/>the<sp/>orientation<sp/>of<sp/>the<sp/>B-frame<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>A-frame<sp/>to<sp/>the<sp/>R-frame</highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orientation<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>N-frame<sp/>(add<sp/>sigma_BA<sp/>to<sp/>sigma_RN).<sp/>This<sp/>results<sp/>in<sp/>the<sp/>orientation<sp/>of<sp/>the<sp/>R1-frame<sp/>with<sp/>respect</highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>to<sp/>the<sp/>N-frame<sp/>(sigma_R1N).<sp/>In<sp/>case<sp/>the<sp/>spacecraft<sp/>B-frame<sp/>points<sp/>towards<sp/>the<sp/>R1-frame,<sp/>the<sp/>A-frame<sp/>will<sp/>point<sp/>towards<sp/>the<sp/>R-frame,</highlight></codeline>
+<codeline lineno="228"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>which<sp/>results<sp/>in<sp/>an<sp/>antenna<sp/>vector<sp/>that<sp/>aligns<sp/>with<sp/>the<sp/>vector<sp/>that<sp/>points<sp/>to<sp/>the<sp/>chief<sp/>spacecraft.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>addMRP(sigma_RN,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1af48936f04a4de34d24e29da22de31cde" kindref="member">sigma_BA</ref>,<sp/>sigma_R1N);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(sigma_R1N,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" kindref="member">attReferenceOutBuffer</ref>.sigma_RN);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(omega_RN_N,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" kindref="member">attReferenceOutBuffer</ref>.omega_RN_N);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(domega_RN_N,<sp/>configData-&gt;<ref refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" kindref="member">attReferenceOutBuffer</ref>.domega_RN_N);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>write<sp/>the<sp/>Guidance<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsg_C_write(&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" kindref="member">attReferenceOutBuffer</ref>,<sp/>&amp;configData-&gt;<ref refid="structspacecraft_pointing_config_1a568f80688ae5ab3e0de8dfb83ff506bd" kindref="member">attReferenceOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="coarse_sun_sensor_8h" kind="file" language="C++">
+    <compoundname>coarseSunSensor.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefCpp/CSSConfigLogMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/CSSRawDataMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/EclipseMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/AlbedoMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/CSSArraySensorMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/gauss_markov.h</includes>
+    <includes local="yes">architecture/utilities/saturate.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">Eigen/Dense</includes>
+    <includedby refid="coarse_sun_sensor_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/sensors/coarseSunSensor/coarseSunSensor.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/sensors/coarseSunSensor/coarseSunSensor.h</label>
+        <link refid="coarse_sun_sensor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/AlbedoMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/CSSArraySensorMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/CSSRawDataMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/EclipseMsgPayload.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefCpp/CSSConfigLogMsgPayload.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/gauss_markov.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/saturate.h</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_coarse_sun_sensor" prot="public">CoarseSunSensor</innerclass>
+    <innerclass refid="class_c_s_s_constellation" prot="public">CSSConstellation</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CSSFaultState_t</name>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bca6843e92286abc7a65a3da79b0001e884" prot="public">
+          <name>CSSFAULT_OFF</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CSS measurement is set to 0 for all future time </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bcaf02b1ae653fa3c40984b4f2a6271dab1" prot="public">
+          <name>CSSFAULT_STUCK_CURRENT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CSS measurement is set to current value for all future time </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bcaed9c81f0d0d4a6249b3ad3fdc77d4ef5" prot="public">
+          <name>CSSFAULT_STUCK_MAX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CSS measurement is set to maximum value for all future time </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bca69c3359ddf4aff338b0500f00b9952aa" prot="public">
+          <name>CSSFAULT_STUCK_RAND</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CSS measurement is set to randomly selected value for all future time </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bca05a2a1f54334b5f51fa3eba70949f6c3" prot="public">
+          <name>CSSFAULT_RAND</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>CSS measurement returns uniformly distributed random values between 0 and max </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="coarse_sun_sensor_8h_1a519e2429509f538fab1555fc0e7846bcae2bd7b57b3f0bb02e66e42dbacc5c7fc" prot="public">
+          <name>NOMINAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/coarseSunSensor/coarseSunSensor.h" line="41" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/coarseSunSensor/coarseSunSensor.h" bodystart="41" bodyend="48"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>COARSE_SUN_SENSOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COARSE_SUN_SENSOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefCpp/CSSConfigLogMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/CSSRawDataMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/EclipseMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/AlbedoMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/CSSArraySensorMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/gauss_markov.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/saturate.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFAULT_OFF,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFAULT_STUCK_CURRENT,<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFAULT_STUCK_MAX,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFAULT_STUCK_RAND,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFAULT_RAND,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>NOMINAL</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/>CSSFaultState_t;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="class_coarse_sun_sensor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_coarse_sun_sensor" kindref="compound">CoarseSunSensor</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a7dc705fba12df6779f516b8b479a1b82" kindref="member">CoarseSunSensor</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a824562926b91d1b31a0be89994f978c8" kindref="member">~CoarseSunSensor</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1ae6e92b31d2a8a46261612a42fe95ab19" kindref="member">Reset</ref>(uint64_t<sp/>CurrentClock);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1acef21662adfc60bbfea890bfca437f7b" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1ad8cc7b63f8bdf3a55d1252b937dcfecc" kindref="member">setUnitDirectionVectorWithPerturbation</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cssThetaPerturb,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cssPhiPerturb);<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a799a2260a737ca51abbd97703e39e71a" kindref="member">setBodyToPlatformDCM</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yaw,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pitch,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>roll);<sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a503709528249356cca7bb7347e81be91" kindref="member">readInputMessages</ref>();<sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a8f5b31f57a6140a784534446e6747fb7" kindref="member">computeSunData</ref>();<sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a79b5c8f155631c129123a6e53419e414" kindref="member">computeTrueOutput</ref>();<sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a9294bf8f21a9e198a359cc0d445d4559" kindref="member">applySensorErrors</ref>();<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a3fe135887de3a550c7ce344786b53562" kindref="member">scaleSensorValues</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1a34d036f3041e944e6e1980a57db4a8f4" kindref="member">applySaturation</ref>();<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coarse_sun_sensor_1ae1483d24c0a2d8f946486363ee14a3b4" kindref="member">writeOutputMessages</ref>(uint64_t<sp/>Clock);<sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="69" refid="class_coarse_sun_sensor_1aefb4afc56bffa2e7bec30b1e3a748620" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1aefb4afc56bffa2e7bec30b1e3a748620" kindref="member">sunInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="70" refid="class_coarse_sun_sensor_1ae247ac0a318b7fab5907b158c59700f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SCStatesMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1ae247ac0a318b7fab5907b158c59700f5" kindref="member">stateInMsg</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_coarse_sun_sensor_1aa010a66df8a7be7256c6ce7734c5a4f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;CSSRawDataMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1aa010a66df8a7be7256c6ce7734c5a4f9" kindref="member">cssDataOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_coarse_sun_sensor_1a8f3ad7c32560e4328e02bafdc8632d4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;CSSConfigLogMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1a8f3ad7c32560e4328e02bafdc8632d4d" kindref="member">cssConfigLogOutMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="class_coarse_sun_sensor_1a65c711542f2515b64ccb7f341d43e132" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;EclipseMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1a65c711542f2515b64ccb7f341d43e132" kindref="member">sunEclipseInMsg</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_coarse_sun_sensor_1a0fcbe37fcfdc0fab3fcbaaa6995092ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;AlbedoMsgPayload&gt;<sp/><ref refid="class_coarse_sun_sensor_1a0fcbe37fcfdc0fab3fcbaaa6995092ec" kindref="member">albedoInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="class_coarse_sun_sensor_1a6eff8c27eb02cbc84ce754ce73b81a9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSFaultState_t<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a6eff8c27eb02cbc84ce754ce73b81a9f" kindref="member">faultState</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="class_coarse_sun_sensor_1aacfc25545eb3d0b1a1817e5b2565234e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1aacfc25545eb3d0b1a1817e5b2565234e" kindref="member">theta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="class_coarse_sun_sensor_1a422ea3cbbdc4e34b3c932d9c5d617e7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a422ea3cbbdc4e34b3c932d9c5d617e7c" kindref="member">phi</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="class_coarse_sun_sensor_1aeff9b8bf3e670e67e17a0034d102f4d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1aeff9b8bf3e670e67e17a0034d102f4d5" kindref="member">B2P321Angles</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="class_coarse_sun_sensor_1a2365352ebf21d7a8734200f5f187059c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a2365352ebf21d7a8734200f5f187059c" kindref="member">dcm_PB</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="class_coarse_sun_sensor_1aa0df451aab5d300f0c321949a92db2e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1aa0df451aab5d300f0c321949a92db2e9" kindref="member">nHat_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="class_coarse_sun_sensor_1a6dc7f64ca1e8b76e4a724403d0cbab95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a6dc7f64ca1e8b76e4a724403d0cbab95" kindref="member">sHat_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="class_coarse_sun_sensor_1ab721bac6bd970a9ce0172e91670e65df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1ab721bac6bd970a9ce0172e91670e65df" kindref="member">albedoValue</ref><sp/>=<sp/>-1.0;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="class_coarse_sun_sensor_1a88527c76121a0e11766034f4cdb71ec5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a88527c76121a0e11766034f4cdb71ec5" kindref="member">scaleFactor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="class_coarse_sun_sensor_1a5b9c27f69cc412dd69b115cf9f855b47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a5b9c27f69cc412dd69b115cf9f855b47" kindref="member">pastValue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="class_coarse_sun_sensor_1a6a64d8194fefd08fe092c176757633ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a6a64d8194fefd08fe092c176757633ab" kindref="member">trueValue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="class_coarse_sun_sensor_1acc3791ab4a6bc4ab1c69a599ac6f3561" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1acc3791ab4a6bc4ab1c69a599ac6f3561" kindref="member">sensedValue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="class_coarse_sun_sensor_1ae7d57ed070a531079b58655ae0170b78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1ae7d57ed070a531079b58655ae0170b78" kindref="member">kellyFactor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="class_coarse_sun_sensor_1a1ef6c1b9a5c098119d20526c5a9f7599" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a1ef6c1b9a5c098119d20526c5a9f7599" kindref="member">fov</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="class_coarse_sun_sensor_1a05b290428cb69fac73976ffc059ac5af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a05b290428cb69fac73976ffc059ac5af" kindref="member">r_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="class_coarse_sun_sensor_1abd50be1d3a634b0a7065f867059bc4e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1abd50be1d3a634b0a7065f867059bc4e1" kindref="member">r_PB_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="class_coarse_sun_sensor_1aa8dddda497987c59e9936aefbe416c31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1aa8dddda497987c59e9936aefbe416c31" kindref="member">senBias</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="class_coarse_sun_sensor_1a221717b105ed55bfb659f6e66b602434" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a221717b105ed55bfb659f6e66b602434" kindref="member">senNoiseStd</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="class_coarse_sun_sensor_1ad63ec2b199d3b64cc8597e8e5cf37702" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1ad63ec2b199d3b64cc8597e8e5cf37702" kindref="member">faultNoiseStd</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="class_coarse_sun_sensor_1a44067041c1c61871a4a35cb8f3bdc446" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a44067041c1c61871a4a35cb8f3bdc446" kindref="member">maxOutput</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="class_coarse_sun_sensor_1ad6e16e4e4b5bc88b3157cd44958392bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1ad6e16e4e4b5bc88b3157cd44958392bd" kindref="member">minOutput</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="class_coarse_sun_sensor_1a978439c01431b1ed15ef3d3b36546421" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a978439c01431b1ed15ef3d3b36546421" kindref="member">walkBounds</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98" refid="class_coarse_sun_sensor_1a28bcae607cbea787e41a9187a65b2e00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a28bcae607cbea787e41a9187a65b2e00" kindref="member">kPower</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="class_coarse_sun_sensor_1a00df64394822d0c0ea1eee2ad92e6b3e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_coarse_sun_sensor_1a00df64394822d0c0ea1eee2ad92e6b3e" kindref="member">CSSGroupID</ref>=-1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="class_coarse_sun_sensor_1a3389464ee1112d984ee061092bab7233" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_coarse_sun_sensor_1a3389464ee1112d984ee061092bab7233" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>sunData;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>stateCurrent;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>EclipseMsgPayload<sp/>sunVisibilityFactor;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sunDistanceFactor;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>GaussMarkov<sp/>noiseModel;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>GaussMarkov<sp/>faultNoiseModel;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>Saturate<sp/>saturateUtility;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="class_c_s_s_constellation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_c_s_s_constellation" kindref="compound">CSSConstellation</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_s_constellation_1abb94ba1741443e4708b0558b5a4006d7" kindref="member">CSSConstellation</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_c_s_s_constellation_1a40f8d6895159d7b8f8b3483204ede212" kindref="member">~CSSConstellation</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_c_s_s_constellation_1a66009ef436c735ba50c4f30eff76398c" kindref="member">Reset</ref>(uint64_t<sp/>CurrentClock);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_c_s_s_constellation_1a7127b144d668aadafdfda1b0298380d1" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);<sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_c_s_s_constellation_1a9742907b9eae1b104c3ed77c3bdcb83b" kindref="member">appendCSS</ref>(<ref refid="class_coarse_sun_sensor" kindref="compound">CoarseSunSensor</ref><sp/>*newSensor);<sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="125" refid="class_c_s_s_constellation_1a0feea6dede7d5142d1810c3ceebd4a50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;CSSArraySensorMsgPayload&gt;<sp/><ref refid="class_c_s_s_constellation_1a0feea6dede7d5142d1810c3ceebd4a50" kindref="member">constellationOutMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="126" refid="class_c_s_s_constellation_1a531ee92cdbff8fb5f8d6fb172f645259" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;CoarseSunSensor<sp/>*&gt;<sp/><ref refid="class_c_s_s_constellation_1a531ee92cdbff8fb5f8d6fb172f645259" kindref="member">sensorList</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsgPayload<sp/>outputBuffer;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/coarseSunSensor/coarseSunSensor.h"/>
+  </compounddef>
+</doxygen>

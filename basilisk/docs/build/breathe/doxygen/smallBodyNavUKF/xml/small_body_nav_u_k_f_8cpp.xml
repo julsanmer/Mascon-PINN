@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="small_body_nav_u_k_f_8cpp" kind="file" language="C++">
+    <compoundname>smallBodyNavUKF.cpp</compoundname>
+    <includes refid="small_body_nav_u_k_f_8h" local="yes">fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.cpp</label>
+        <link refid="small_body_nav_u_k_f_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.h</label>
+        <link refid="small_body_nav_u_k_f_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/orbitalMotion.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/EphemerisMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/SmallBodyNavUKFMsg_C.h</label>
+      </node>
+      <node id="15">
+        <label>cstring</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="16">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2022,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="class_small_body_nav_u_k_f_1a75691b8906ae47bf952a52e6e7a99a2e" kindref="member">SmallBodyNavUKF::SmallBodyNavUKF</ref>()</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numStates<sp/>=<sp/>9;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numMeas<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numSigmas<sp/>=<sp/>2*this-&gt;numStates<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;x_hat_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;P_k1_.setZero(this-&gt;numStates,<sp/>this-&gt;numStates);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;x_hat_k1.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;P_k1.setZero(this-&gt;numStates,<sp/>this-&gt;numStates);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;X_sigma_k1_.setZero(this-&gt;numStates,<sp/>this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;wm_sigma.setZero(this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;wc_sigma.setZero(this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;y_hat_k1_.setZero(this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;R_k1_.setZero(this-&gt;numMeas,<sp/>this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;Y_sigma_k1_.setZero(this-&gt;numMeas,<sp/>this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;H.setZero(this-&gt;numStates,<sp/>this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;K.setZero(this-&gt;numStates,<sp/>this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref>.setIdentity(3,3);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref>.setZero(3);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a928425f8af28d7df08d21206d1f8df69" kindref="member">alpha</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a09bda2669034a827f478088070648eec" kindref="member">beta</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref><sp/>=<sp/>1e-3;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="class_small_body_nav_u_k_f_1a5d7e22930ec3584764bc6ae99efdaab3" kindref="member">SmallBodyNavUKF::~SmallBodyNavUKF</ref>()</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1ae20ff739dd23ac556904f013fd53fdbf" kindref="member">SmallBodyNavUKF::SelfInit</ref>(){</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>SmallBodyNavUKFMsg_C_init(&amp;this-&gt;<ref refid="class_small_body_nav_u_k_f_1a86a8e84c86bc65091c136034e5c6b4d7" kindref="member">smallBodyNavUKFOutMsgC</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1adc7c396c5f250e3eb23635994be6bf10" kindref="member">SmallBodyNavUKF::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>check<sp/>that<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>connected<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_nav_u_k_f_1a0d4e9a5cfc1bbd1e5a7391d5c4e0b78a" kindref="member">navTransInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_nav_u_k_f_1ae0bd58a7f3f875c92dc23a9064cf7575" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyNavUKF.navTransInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_small_body_nav_u_k_f_1adf352440af390c1011af484d695a4ae2" kindref="member">asteroidEphemerisInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_small_body_nav_u_k_f_1ae0bd58a7f3f875c92dc23a9064cf7575" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SmallBodyNavUKF.asteroidEphemerisInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>UT<sp/>weights<sp/>to<sp/>be<sp/>used<sp/>in<sp/>the<sp/>UT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;wm_sigma(0)<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref><sp/>/<sp/>(this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref><sp/>+<sp/>this-&gt;numStates);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;wc_sigma(0)<sp/>=<sp/>this-&gt;wm_sigma(0)<sp/>+<sp/>1<sp/>-<sp/>pow(this-&gt;<ref refid="class_small_body_nav_u_k_f_1a928425f8af28d7df08d21206d1f8df69" kindref="member">alpha</ref>,2)<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a09bda2669034a827f478088070648eec" kindref="member">beta</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numStates;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>weigths<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;wm_sigma(i+1)<sp/>=<sp/>1<sp/>/<sp/>(2*(this-&gt;numStates<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>));</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;wm_sigma(numStates+i+1)<sp/>=<sp/>this-&gt;wm_sigma(i+1);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;wc_sigma(i+1)<sp/>=<sp/>this-&gt;wm_sigma(i+1);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;wc_sigma(numStates+i+1)<sp/>=<sp/>this-&gt;wm_sigma(i+1);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SmallBodyNavUKF::readMessages(){</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>in<sp/>the<sp/>input<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;navTransInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a0d4e9a5cfc1bbd1e5a7391d5c4e0b78a" kindref="member">navTransInMsg</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;asteroidEphemerisInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1adf352440af390c1011af484d695a4ae2" kindref="member">asteroidEphemerisInMsg</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SmallBodyNavUKF::processUT(uint64_t<sp/>CurrentSimNanos){</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>angular<sp/>velocity<sp/>of<sp/>the<sp/>small<sp/>body<sp/>fixed<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref><sp/>=<sp/>cArray2EigenVector3d(this-&gt;asteroidEphemerisInMsgBuffer.omega_BN_B);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Declare<sp/>matrix<sp/>to<sp/>store<sp/>sigma<sp/>points<sp/>spread<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>X_sigma_k;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>X_sigma_dot_k;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>sigma<sp/>points<sp/>related<sp/>matrices<sp/>and<sp/>vectors<sp/>to<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>X_sigma_k.setZero(this-&gt;numStates,<sp/>this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>X_sigma_dot_k.setZero(this-&gt;numStates,<sp/>this-&gt;numSigmas);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>square<sp/>root<sp/>matrix<sp/>of<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>Psqrt_k;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>Psqrt_k<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1ac06e5106e0af1a08e89adf0a12d72936" kindref="member">P_k</ref>.llt().matrixL();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>mean<sp/>to<sp/>central<sp/>sigma<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>X_sigma_k.col(0)<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" kindref="member">x_hat_k</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>generate<sp/>remaining<sp/>sigma<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numStates;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Generate<sp/>sigma<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X_sigma_k.col(i+1)<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" kindref="member">x_hat_k</ref></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>sqrt(this-&gt;numStates<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>)<sp/>*<sp/>Psqrt_k.col(i);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X_sigma_k.col(numStates+i+1)<sp/>=<sp/><ref refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" kindref="member">x_hat_k</ref></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>sqrt(this-&gt;numStates<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>)<sp/>*<sp/>Psqrt_k.col(i);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>propagate<sp/>sigma<sp/>points<sp/>and<sp/>compute<sp/>mean<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_sigma_k;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_sigma_dot_k;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_sigma_k;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>v_sigma_k;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>a_sigma_k;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>x_sigma_k.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>x_sigma_dot_k.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;x_hat_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numSigmas;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Extract<sp/>sigma<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_k<sp/>=<sp/>X_sigma_k.col(i);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>dynamics<sp/>derivative<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r_sigma_k<sp/>&lt;&lt;<sp/>x_sigma_k.segment(0,3);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v_sigma_k<sp/>&lt;&lt;<sp/>x_sigma_k.segment(3,3);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>a_sigma_k<sp/>&lt;&lt;<sp/>x_sigma_k.segment(6,3);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_dot_k.segment(0,3)<sp/>=<sp/>v_sigma_k;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_dot_k.segment(3,3)<sp/>=<sp/>-<sp/>2*this-&gt;<ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref>.cross(v_sigma_k)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref>.cross(this-&gt;<ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref>.cross(r_sigma_k))</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a838b986ed238370c99258d43aa56ab8d" kindref="member">mu_ast</ref>*r_sigma_k/pow(r_sigma_k.norm(),<sp/>3)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>a_sigma_k;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Use<sp/>Euler<sp/>integration<sp/>to<sp/>propagate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;X_sigma_k1_.col(i)<sp/>=<sp/>x_sigma_k<sp/>+<sp/>x_sigma_dot_k*(CurrentSimNanos-prevTime)*NANO2SEC;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>average<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;x_hat_k1_<sp/>=<sp/>this-&gt;x_hat_k1_<sp/>+<sp/>this-&gt;wm_sigma(i)*this-&gt;X_sigma_k1_.col(i);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>compute<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_sigma_dev_k1_;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>x_sigma_dev_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;P_k1_.setZero(this-&gt;numStates,<sp/>this-&gt;numStates);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numSigmas;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>deviation<sp/>of<sp/>sigma<sp/>from<sp/>the<sp/>mean<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_dev_k1_<sp/>=<sp/>this-&gt;X_sigma_k1_.col(i)<sp/>-<sp/>this-&gt;x_hat_k1_;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Add<sp/>the<sp/>deviation<sp/>to<sp/>the<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;P_k1_<sp/>=<sp/>this-&gt;P_k1_<sp/>+<sp/>this-&gt;wc_sigma(i)*x_sigma_dev_k1_*x_sigma_dev_k1_.transpose();</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Add<sp/>process<sp/>noise<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;P_k1_<sp/>=<sp/>this-&gt;P_k1_<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a44b381a6a4b598fbc31528f6eb59b95e" kindref="member">P_proc</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SmallBodyNavUKF::measurementUT(){</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>square<sp/>root<sp/>matrix<sp/>of<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>Psqrt_k1_;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>Psqrt_k1_<sp/>=<sp/>P_k1_.llt().matrixL();</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>mean<sp/>to<sp/>central<sp/>sigma<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;X_sigma_k1_.col(0)<sp/>=<sp/>this-&gt;x_hat_k1_;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>generate<sp/>remaining<sp/>sigma<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numStates;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Generate<sp/>sigma<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;X_sigma_k1_.col(i+1)<sp/>=<sp/>this-&gt;x_hat_k1_</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>sqrt(this-&gt;numStates<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>)<sp/>*<sp/>Psqrt_k1_.col(i);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;X_sigma_k1_.col(this-&gt;numStates+i+1)<sp/>=<sp/>this-&gt;x_hat_k1_</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>sqrt(this-&gt;numStates<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>)<sp/>*<sp/>Psqrt_k1_.col(i);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>propagate<sp/>sigma<sp/>points<sp/>and<sp/>compute<sp/>mean<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_sigma_k1_;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>x_sigma_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;y_hat_k1_.setZero(this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numSigmas;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Extract<sp/>sigma<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_k1_<sp/>=<sp/>this-&gt;X_sigma_k1_.col(i);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>correlation<sp/>between<sp/>state<sp/>and<sp/>measurement<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;Y_sigma_k1_.col(i)<sp/>=<sp/>x_sigma_k1_.segment(0,3);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>average<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;y_hat_k1_<sp/>=<sp/>this-&gt;y_hat_k1_<sp/>+<sp/>this-&gt;wm_sigma(i)*this-&gt;Y_sigma_k1_.col(i);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>to<sp/>compute<sp/>measurements<sp/>covariance<sp/>and<sp/>cross-correlation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_sigma_dev_k1_;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>y_sigma_dev_k1_;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>x_sigma_dev_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>y_sigma_dev_k1_.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;R_k1_.setZero(this-&gt;numMeas,<sp/>this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;H.setZero(this-&gt;numStates,<sp/>this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;numSigmas;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>deviation<sp/>of<sp/>measurement<sp/>sigma<sp/>from<sp/>the<sp/>mean<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_sigma_dev_k1_<sp/>=<sp/>this-&gt;X_sigma_k1_.col(i)<sp/>-<sp/>this-&gt;x_hat_k1_;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y_sigma_dev_k1_<sp/>=<sp/>this-&gt;Y_sigma_k1_.col(i)<sp/>-<sp/>this-&gt;y_hat_k1_;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Add<sp/>the<sp/>deviation<sp/>to<sp/>the<sp/>measurement<sp/>and<sp/>cross-correlation<sp/>covariances*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;R_k1_<sp/>=<sp/>this-&gt;R_k1_<sp/>+<sp/>this-&gt;wc_sigma(i)*y_sigma_dev_k1_*y_sigma_dev_k1_.transpose();</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;H<sp/>=<sp/>this-&gt;H<sp/>+<sp/>this-&gt;wc_sigma(i)*x_sigma_dev_k1_*y_sigma_dev_k1_.transpose();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Extract<sp/>dcm<sp/>of<sp/>the<sp/>small<sp/>body,<sp/>it<sp/>transforms<sp/>from<sp/>inertial<sp/>to<sp/>small<sp/>body<sp/>fixed<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_AN_array[3][3];</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(asteroidEphemerisInMsgBuffer.sigma_BN,<sp/>dcm_AN_array);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref><sp/>=<sp/>cArray2EigenMatrix3d(*dcm_AN_array);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Add<sp/>process<sp/>noise<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;R_k1_<sp/>=<sp/>this-&gt;R_k1_<sp/>+<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref><sp/>*<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1af1f51020f9a2b6f6455728489416a70b" kindref="member">R_meas</ref><sp/>*<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref>.transpose();</highlight></codeline>
+<codeline lineno="238"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SmallBodyNavUKF::kalmanUpdate(){</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>attitude<sp/>MRP<sp/>of<sp/>the<sp/>small<sp/>body<sp/>fixed<sp/>frame<sp/>w.r.t.<sp/>inertial<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_AN;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>sigma_AN<sp/>=<sp/>cArray2EigenVector3d(asteroidEphemerisInMsgBuffer.sigma_BN);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Subtract<sp/>the<sp/>asteroid<sp/>position<sp/>from<sp/>the<sp/>spacecraft<sp/>position<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>y_k1;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>y_k1.setZero(this-&gt;numMeas);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>y_k1.segment(0,<sp/>3)<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref>*(cArray2EigenVector3d(navTransInMsgBuffer.r_BN_N)<sp/>-<sp/><sp/>cArray2EigenVector3d(asteroidEphemerisInMsgBuffer.r_BdyZero_N));</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>Kalman<sp/>gain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;K<sp/>=<sp/>this-&gt;H*this-&gt;R_k1_.inverse();</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>the<sp/>Kalman<sp/>innovation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>w_k1;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>w_k1.setZero(this-&gt;numStates);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>w_k1<sp/>=<sp/>this-&gt;K<sp/>*<sp/>(y_k1<sp/>-<sp/>this-&gt;y_hat_k1_);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Update<sp/>state<sp/>estimation<sp/>and<sp/>covariance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;x_hat_k1<sp/>=<sp/>this-&gt;x_hat_k1_<sp/>+<sp/>w_k1;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;P_k1<sp/>=<sp/>this-&gt;P_k1_<sp/>-<sp/>this-&gt;K<sp/>*<sp/>this-&gt;R_k1_<sp/>*<sp/>this-&gt;K.transpose();</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>the<sp/>state<sp/>estimate<sp/>and<sp/>covariance<sp/>to<sp/>k<sp/>for<sp/>the<sp/>next<sp/>iteration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" kindref="member">x_hat_k</ref><sp/>=<sp/>this-&gt;x_hat_k1;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1ac06e5106e0af1a08e89adf0a12d72936" kindref="member">P_k</ref><sp/>=<sp/>this-&gt;P_k1;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SmallBodyNavUKF::writeMessages(uint64_t<sp/>CurrentSimNanos){</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Create<sp/>output<sp/>msg<sp/>buffers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>SmallBodyNavUKFMsgPayload<sp/>smallBodyNavUKFOutMsgBuffer;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Zero<sp/>the<sp/>output<sp/>message<sp/>buffers<sp/>before<sp/>assigning<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>smallBodyNavUKFOutMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a3aa53b2b4b45828909482e08e27cfa01" kindref="member">smallBodyNavUKFOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>values<sp/>to<sp/>the<sp/>small<sp/>body<sp/>navigation<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenMatrixXd2CArray(this-&gt;x_hat_k1,<sp/>smallBodyNavUKFOutMsgBuffer.state);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenMatrixXd2CArray(this-&gt;P_k1,<sp/>*smallBodyNavUKFOutMsgBuffer.covar);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Write<sp/>to<sp/>the<sp/>C++-wrapped<sp/>output<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_small_body_nav_u_k_f_1a3aa53b2b4b45828909482e08e27cfa01" kindref="member">smallBodyNavUKFOutMsg</ref>.write(&amp;smallBodyNavUKFOutMsgBuffer,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Write<sp/>to<sp/>the<sp/>C-wrapped<sp/>output<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>SmallBodyNavUKFMsg_C_write(&amp;smallBodyNavUKFOutMsgBuffer,<sp/>&amp;this-&gt;<ref refid="class_small_body_nav_u_k_f_1a86a8e84c86bc65091c136034e5c6b4d7" kindref="member">smallBodyNavUKFOutMsgC</ref>,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1a43a0fbc2a78aa40b414afd410a5dfab2" kindref="member">SmallBodyNavUKF::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;readMessages();</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;processUT(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;measurementUT();</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;kalmanUpdate();</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;writeMessages(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>CurrentSimNanos;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.cpp"/>
+  </compounddef>
+</doxygen>

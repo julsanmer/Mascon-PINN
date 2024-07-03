@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_simple_storage_unit" kind="class" language="C++" prot="public">
+    <compoundname>SimpleStorageUnit</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">DataStorageUnitBase</basecompoundref>
+    <includes refid="simple_storage_unit_8h" local="no">simpleStorageUnit.h</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_simple_storage_unit_1a9d01c16bb07c80e21fb6ca56b2563e84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SimpleStorageUnit::SimpleStorageUnit</definition>
+        <argsstring>()</argsstring>
+        <name>SimpleStorageUnit</name>
+        <qualifiedname>SimpleStorageUnit::SimpleStorageUnit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The constructor creates a <ref refid="class_simple_storage_unit" kindref="compound">SimpleStorageUnit</ref> instance with zero stored data <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" line="31" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.cpp" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_storage_unit_1a25a33183d816fea14d3c42cdf9f6a968" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SimpleStorageUnit::~SimpleStorageUnit</definition>
+        <argsstring>()</argsstring>
+        <name>~SimpleStorageUnit</name>
+        <qualifiedname>SimpleStorageUnit::~SimpleStorageUnit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destructor <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" line="32" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.cpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_simple_storage_unit_1a172823b9a80fc37d491281d286173db6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleStorageUnit::customReset</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>customReset</name>
+        <qualifiedname>SimpleStorageUnit::customReset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+          <defname>currentClock</defname>
+        </param>
+        <briefdescription>
+<para>Custom Reset method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom reset function <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentClock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" line="35" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.cpp" bodystart="45" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_simple_storage_unit_1a4c40f5366a8b51d02e331f4a570428c2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SimpleStorageUnit::integrateDataStatus</definition>
+        <argsstring>(double currentTime)</argsstring>
+        <name>integrateDataStatus</name>
+        <qualifiedname>SimpleStorageUnit::integrateDataStatus</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <briefdescription>
+<para>Overwrites the integrateDataStatus method to create a single partition in the storage unit (&quot;STORED DATA&quot;) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Overwrites the integrateDataStatus method to create a single partition in the storage unit (&quot;STORED DATA&quot;) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>loop over all the data nodes and add them to the single partition.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Only perform the operation if it will not result in less than 0 data</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Sum all data in storedData vector</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Update previousTime</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" line="36" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.cpp" bodystart="56" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>simple storage unit class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>DataStorageUnitBase</label>
+      </node>
+      <node id="1">
+        <label>SimpleStorageUnit</label>
+        <link refid="class_simple_storage_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>DataStorageUnitBase</label>
+      </node>
+      <node id="1">
+        <label>SimpleStorageUnit</label>
+        <link refid="class_simple_storage_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" line="28" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/storageUnit/simpleStorageUnit.h" bodystart="28" bodyend="38"/>
+    <listofallmembers>
+      <member refid="class_simple_storage_unit_1a172823b9a80fc37d491281d286173db6" prot="private" virt="non-virtual"><scope>SimpleStorageUnit</scope><name>customReset</name></member>
+      <member refid="class_simple_storage_unit_1a4c40f5366a8b51d02e331f4a570428c2" prot="private" virt="non-virtual"><scope>SimpleStorageUnit</scope><name>integrateDataStatus</name></member>
+      <member refid="class_simple_storage_unit_1a9d01c16bb07c80e21fb6ca56b2563e84" prot="public" virt="non-virtual"><scope>SimpleStorageUnit</scope><name>SimpleStorageUnit</name></member>
+      <member refid="class_simple_storage_unit_1a25a33183d816fea14d3c42cdf9f6a968" prot="public" virt="non-virtual"><scope>SimpleStorageUnit</scope><name>~SimpleStorageUnit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

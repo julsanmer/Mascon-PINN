@@ -1,0 +1,20 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/vscmgStateEffector.cpp \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/vscmgStateEffector.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/stateEffector.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenMRP.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/dynParamManager.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/stateData.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/bskLogging.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/dynamicEffector.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/dynamicObject.h \
+  /Users/julio/Desktop/basilisk/src/architecture/_GeneralModuleFiles/sys_model.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/VSCMGs/../_GeneralModuleFiles/stateVecIntegrator.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/VSCMGSpeedMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/macroDefinitions.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/VSCMGCmdMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/VSCMGArrayTorqueMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefCpp/VSCMGConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/msgHeader.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenSupport.h

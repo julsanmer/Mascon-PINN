@@ -1,0 +1,649 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_magnetometer" kind="class" language="C++" prot="public">
+    <compoundname>Magnetometer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="magnetometer_8h" local="no">magnetometer.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_magnetometer_1a379108a2036a6eba3b8a55d947ee6b28" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SCStatesMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SCStatesMsgPayload&gt; Magnetometer::stateInMsg</definition>
+        <argsstring></argsstring>
+        <name>stateInMsg</name>
+        <qualifiedname>Magnetometer::stateInMsg</qualifiedname>
+        <briefdescription>
+<para>[-] input message for spacecraft states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="52" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1ab869d73800aea2ec6a72de43191cd8d9" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; MagneticFieldMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;MagneticFieldMsgPayload&gt; Magnetometer::magInMsg</definition>
+        <argsstring></argsstring>
+        <name>magInMsg</name>
+        <qualifiedname>Magnetometer::magInMsg</qualifiedname>
+        <briefdescription>
+<para>[-] input message for magnetic field data in inertial frame N </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="53" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1af46f9804e8f4c129b21528cdef435382" prot="public" static="no" mutable="no">
+        <type>Message&lt; TAMSensorMsgPayload &gt;</type>
+        <definition>Message&lt;TAMSensorMsgPayload&gt; Magnetometer::tamDataOutMsg</definition>
+        <argsstring></argsstring>
+        <name>tamDataOutMsg</name>
+        <qualifiedname>Magnetometer::tamDataOutMsg</qualifiedname>
+        <briefdescription>
+<para>[-] Message for TAM output data in sensor frame S </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="54" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1aac59777f613847a6fe71689091e0faab" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d Magnetometer::dcm_SB</definition>
+        <argsstring></argsstring>
+        <name>dcm_SB</name>
+        <qualifiedname>Magnetometer::dcm_SB</qualifiedname>
+        <briefdescription>
+<para>[-] DCM from body frame to sensor frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="55" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a658451bb173eb3fac381426b69837f22" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::tam_S</definition>
+        <argsstring></argsstring>
+        <name>tam_S</name>
+        <qualifiedname>Magnetometer::tam_S</qualifiedname>
+        <briefdescription>
+<para>[T] Magnetic field vector in sensor frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="56" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::tamSensed_S</definition>
+        <argsstring></argsstring>
+        <name>tamSensed_S</name>
+        <qualifiedname>Magnetometer::tamSensed_S</qualifiedname>
+        <briefdescription>
+<para>[T] Measurement including perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="57" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a195a0740de577960e1ca248a2ddc2f9f" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::tamTrue_S</definition>
+        <argsstring></argsstring>
+        <name>tamTrue_S</name>
+        <qualifiedname>Magnetometer::tamTrue_S</qualifiedname>
+        <briefdescription>
+<para>[T] Measurement without perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="58" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a90ff681c9b5686d96145abec95e8a766" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Magnetometer::scaleFactor</definition>
+        <argsstring></argsstring>
+        <name>scaleFactor</name>
+        <qualifiedname>Magnetometer::scaleFactor</qualifiedname>
+        <briefdescription>
+<para>[-] Scale factor applied to sensor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="59" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a6db077c2d4d345f724cae0ed222ab48c" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::senBias</definition>
+        <argsstring></argsstring>
+        <name>senBias</name>
+        <qualifiedname>Magnetometer::senBias</qualifiedname>
+        <briefdescription>
+<para>[T] Sensor bias vector </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="60" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::senNoiseStd</definition>
+        <argsstring></argsstring>
+        <name>senNoiseStd</name>
+        <qualifiedname>Magnetometer::senNoiseStd</qualifiedname>
+        <briefdescription>
+<para>[T] Sensor noise standard deviation vector </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="61" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a93d046a1b1b474cba335482906c6a354" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d Magnetometer::walkBounds</definition>
+        <argsstring></argsstring>
+        <name>walkBounds</name>
+        <qualifiedname>Magnetometer::walkBounds</qualifiedname>
+        <briefdescription>
+<para>[T] &quot;3-sigma&quot; errors to permit for states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="63" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Magnetometer::maxOutput</definition>
+        <argsstring></argsstring>
+        <name>maxOutput</name>
+        <qualifiedname>Magnetometer::maxOutput</qualifiedname>
+        <briefdescription>
+<para>[T] Maximum output for saturation application </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="64" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Magnetometer::minOutput</definition>
+        <argsstring></argsstring>
+        <name>minOutput</name>
+        <qualifiedname>Magnetometer::minOutput</qualifiedname>
+        <briefdescription>
+<para>[T] Minimum output for saturation application </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="65" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1aa228af2684279f6ec83ba304ae3b074d" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger Magnetometer::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>Magnetometer::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="66" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_magnetometer_1a5ea9e26ef018abeb246372ec12bb84ea" prot="private" static="no" mutable="no">
+        <type>MagneticFieldMsgPayload</type>
+        <definition>MagneticFieldMsgPayload Magnetometer::magData</definition>
+        <argsstring></argsstring>
+        <name>magData</name>
+        <qualifiedname>Magnetometer::magData</qualifiedname>
+        <briefdescription>
+<para>[-] Magnetic field in inertial N frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="69" column="29" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a092381be51dba72d37cd5769a439b7d1" prot="private" static="no" mutable="no">
+        <type>SCStatesMsgPayload</type>
+        <definition>SCStatesMsgPayload Magnetometer::stateCurrent</definition>
+        <argsstring></argsstring>
+        <name>stateCurrent</name>
+        <qualifiedname>Magnetometer::stateCurrent</qualifiedname>
+        <briefdescription>
+<para>[-] Current spacecraft state </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="70" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a1e9867906375448e24d1e2968a8b4235" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t Magnetometer::numStates</definition>
+        <argsstring></argsstring>
+        <name>numStates</name>
+        <qualifiedname>Magnetometer::numStates</qualifiedname>
+        <briefdescription>
+<para>[-] Number of States for Gauss Markov Models </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="71" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a51c337463e6ce46bd325a9b1b28be7c5" prot="private" static="no" mutable="no">
+        <type>GaussMarkov</type>
+        <definition>GaussMarkov Magnetometer::noiseModel</definition>
+        <argsstring></argsstring>
+        <name>noiseModel</name>
+        <qualifiedname>Magnetometer::noiseModel</qualifiedname>
+        <briefdescription>
+<para>[-] Gauss Markov noise generation model </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="72" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetometer_1a18bcd3d8de3b72ed09e03ed3c0a9b9bb" prot="private" static="no" mutable="no">
+        <type>Saturate</type>
+        <definition>Saturate Magnetometer::saturateUtility</definition>
+        <argsstring></argsstring>
+        <name>saturateUtility</name>
+        <qualifiedname>Magnetometer::saturateUtility</qualifiedname>
+        <briefdescription>
+<para>[-] Saturation utility </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="73" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_magnetometer_1aaa0805207e65f099d666d04768fc0f6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Magnetometer::Magnetometer</definition>
+        <argsstring>()</argsstring>
+        <name>Magnetometer</name>
+        <qualifiedname>Magnetometer::Magnetometer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor, setting variables to default values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="39" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="33" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1ac8e9f1cba5ac44677d89fd052eae281c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Magnetometer::~Magnetometer</definition>
+        <argsstring>()</argsstring>
+        <name>~Magnetometer</name>
+        <qualifiedname>Magnetometer::~Magnetometer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the destructor, nothing to report here. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="40" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1a804b45078a8d7d59ff20f406c834eb4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::Reset</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>Magnetometer::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+          <defname>CurrentSimNanos</defname>
+        </param>
+        <briefdescription>
+<para>Method for reseting the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time from the architecture </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="41" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="66" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1a848a9e17ed52cb29118529c50714e71e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>Magnetometer::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+<para>Method to update state for runtime. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is called at a specified rate by the architecture. It makes the calls to compute the current magnetic field information and write the output message for the rest of the model. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time from the architecture </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the inputs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get magnetic field vector</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute true output</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Apply any set errors</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Apply saturation</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write output data</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="169" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1a64ed1b7622745fdf423004d0f2943d2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>Magnetometer::readInputMessages</qualifiedname>
+        <briefdescription>
+<para>Method to read the input messages. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads necessary input messages. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read magnetic field model ephemeris message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read vehicle state ephemeris message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="93" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1ab2106a02ce636f79cb22a090ec7a141d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::computeTrueOutput</definition>
+        <argsstring>()</argsstring>
+        <name>computeTrueOutput</name>
+        <qualifiedname>Magnetometer::computeTrueOutput</qualifiedname>
+        <briefdescription>
+<para>Method to compute the true magnetic field vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the true sensed values for the sensor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="44" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="117" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1a9032013c016fca43b0e763b5c9a37eca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::computeMagData</definition>
+        <argsstring>()</argsstring>
+        <name>computeMagData</name>
+        <qualifiedname>Magnetometer::computeMagData</qualifiedname>
+        <briefdescription>
+<para>Method to get the magnetic field vector information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the magnetic field vector information in the sensor frame. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Magnetic field vector in inertial frame using a magnetic field model (WMM, Dipole, etc.)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the inertial to sensor frame transformation information and convert tam_N to tam_S</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="45" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="103" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1aabfb35ea01b586e1b005bd4e0062e7fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::applySensorErrors</definition>
+        <argsstring>()</argsstring>
+        <name>applySensorErrors</name>
+        <qualifiedname>Magnetometer::applySensorErrors</qualifiedname>
+        <briefdescription>
+<para>Method to set the actual output of the sensor with errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the true values (tamTrue_S) and converts it over to an errored value. It applies Gaussian noise, constant bias and scale factor to the truth. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>If any of the standard deviation vector elements is not positive, do not use noise error from RNG.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get current error from random number generator</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Sensed value with noise</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Sensed value with bias</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Multiplying the sensed value with a scale factor</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="46" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="124" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1ab09bf650aaa4340654013c4c4154cef3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::applySaturation</definition>
+        <argsstring>()</argsstring>
+        <name>applySaturation</name>
+        <qualifiedname>Magnetometer::applySaturation</qualifiedname>
+        <briefdescription>
+<para>Apply saturation effects to sensed output (floor and ceiling) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method applies saturation using the given bounds. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="47" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1aaa2ae24f743d95dd4d5b42155d44f76d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Magnetometer::writeOutputMessages</definition>
+        <argsstring>(uint64_t Clock)</argsstring>
+        <name>writeOutputMessages</name>
+        <qualifiedname>Magnetometer::writeOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>Clock</declname>
+        </param>
+        <briefdescription>
+<para>Method to write the output message to the system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method writes the output messages. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Zero the output message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the outgoing message to the architecture</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="48" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="155" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetometer_1a2d1620a53a99bbe96d36a7fb142d80d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d Magnetometer::setBodyToSensorDCM</definition>
+        <argsstring>(double yaw, double pitch, double roll)</argsstring>
+        <name>setBodyToSensorDCM</name>
+        <qualifiedname>Magnetometer::setBodyToSensorDCM</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>yaw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>roll</declname>
+        </param>
+        <briefdescription>
+<para>Utility method to configure the sensor DCM. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>This method composes the transformation matrix from Body to Sensor frame. </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="49" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.cpp" bodystart="55" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>magnetometer class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Magnetometer</label>
+        <link refid="class_magnetometer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Magnetometer</label>
+        <link refid="class_magnetometer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" line="37" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/magnetometer/magnetometer.h" bodystart="37" bodyend="74"/>
+    <listofallmembers>
+      <member refid="class_magnetometer_1ab09bf650aaa4340654013c4c4154cef3" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>applySaturation</name></member>
+      <member refid="class_magnetometer_1aabfb35ea01b586e1b005bd4e0062e7fd" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>applySensorErrors</name></member>
+      <member refid="class_magnetometer_1aa228af2684279f6ec83ba304ae3b074d" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>bskLogger</name></member>
+      <member refid="class_magnetometer_1a9032013c016fca43b0e763b5c9a37eca" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>computeMagData</name></member>
+      <member refid="class_magnetometer_1ab2106a02ce636f79cb22a090ec7a141d" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>computeTrueOutput</name></member>
+      <member refid="class_magnetometer_1aac59777f613847a6fe71689091e0faab" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>dcm_SB</name></member>
+      <member refid="class_magnetometer_1a5ea9e26ef018abeb246372ec12bb84ea" prot="private" virt="non-virtual"><scope>Magnetometer</scope><name>magData</name></member>
+      <member refid="class_magnetometer_1ab869d73800aea2ec6a72de43191cd8d9" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>magInMsg</name></member>
+      <member refid="class_magnetometer_1aaa0805207e65f099d666d04768fc0f6d" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>Magnetometer</name></member>
+      <member refid="class_magnetometer_1ae89b0a9cada1193136f832e4df4c0fa1" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>maxOutput</name></member>
+      <member refid="class_magnetometer_1a84dd809e2658ab0a13ad4e8fa1c2363a" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>minOutput</name></member>
+      <member refid="class_magnetometer_1a51c337463e6ce46bd325a9b1b28be7c5" prot="private" virt="non-virtual"><scope>Magnetometer</scope><name>noiseModel</name></member>
+      <member refid="class_magnetometer_1a1e9867906375448e24d1e2968a8b4235" prot="private" virt="non-virtual"><scope>Magnetometer</scope><name>numStates</name></member>
+      <member refid="class_magnetometer_1a64ed1b7622745fdf423004d0f2943d2a" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>readInputMessages</name></member>
+      <member refid="class_magnetometer_1a804b45078a8d7d59ff20f406c834eb4a" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>Reset</name></member>
+      <member refid="class_magnetometer_1a18bcd3d8de3b72ed09e03ed3c0a9b9bb" prot="private" virt="non-virtual"><scope>Magnetometer</scope><name>saturateUtility</name></member>
+      <member refid="class_magnetometer_1a90ff681c9b5686d96145abec95e8a766" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>scaleFactor</name></member>
+      <member refid="class_magnetometer_1a6db077c2d4d345f724cae0ed222ab48c" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>senBias</name></member>
+      <member refid="class_magnetometer_1a436d8d30b2fbf3eb1bd9d6c1dab1d0db" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>senNoiseStd</name></member>
+      <member refid="class_magnetometer_1a2d1620a53a99bbe96d36a7fb142d80d4" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>setBodyToSensorDCM</name></member>
+      <member refid="class_magnetometer_1a092381be51dba72d37cd5769a439b7d1" prot="private" virt="non-virtual"><scope>Magnetometer</scope><name>stateCurrent</name></member>
+      <member refid="class_magnetometer_1a379108a2036a6eba3b8a55d947ee6b28" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>stateInMsg</name></member>
+      <member refid="class_magnetometer_1a658451bb173eb3fac381426b69837f22" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>tam_S</name></member>
+      <member refid="class_magnetometer_1af46f9804e8f4c129b21528cdef435382" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>tamDataOutMsg</name></member>
+      <member refid="class_magnetometer_1a585b298b7d588df21752e3a981bf7a36" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>tamSensed_S</name></member>
+      <member refid="class_magnetometer_1a195a0740de577960e1ca248a2ddc2f9f" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>tamTrue_S</name></member>
+      <member refid="class_magnetometer_1a848a9e17ed52cb29118529c50714e71e" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>UpdateState</name></member>
+      <member refid="class_magnetometer_1a93d046a1b1b474cba335482906c6a354" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>walkBounds</name></member>
+      <member refid="class_magnetometer_1aaa2ae24f743d95dd4d5b42155d44f76d" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>writeOutputMessages</name></member>
+      <member refid="class_magnetometer_1ac8e9f1cba5ac44677d89fd052eae281c" prot="public" virt="non-virtual"><scope>Magnetometer</scope><name>~Magnetometer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

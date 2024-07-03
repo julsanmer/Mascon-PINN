@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>simIncludeGravBody &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../externalTools/index.html">externalTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>simIncludeGravBody</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for simIncludeGravBody</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># ISC License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2016, Autonomous Vehicle Systems Lab, University of Colorado at Boulder</span>
+<span class="c1">#</span>
+<span class="c1"># Permission to use, copy, modify, and/or distribute this software for any</span>
+<span class="c1"># purpose with or without fee is hereby granted, provided that the above</span>
+<span class="c1"># copyright notice and this permission notice appear in all copies.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES</span>
+<span class="c1"># WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF</span>
+<span class="c1"># MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR</span>
+<span class="c1"># ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES</span>
+<span class="c1"># WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN</span>
+<span class="c1"># ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF</span>
+<span class="c1"># OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</span>
+
+
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">gravityEffector</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">spiceInterface</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation.gravityEffector</span> <span class="kn">import</span> <span class="n">loadGravFromFile</span> <span class="k">as</span> <span class="n">loadGravFromFile_python</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation.gravityEffector</span> <span class="kn">import</span> <span class="n">loadPolyFromFile</span> <span class="k">as</span> <span class="n">loadPolyFromFile_python</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">unitTestSupport</span>
+
+
+<div class="viewcode-block" id="gravBodyFactory"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory">[docs]</a><span class="k">class</span> <span class="nc">gravBodyFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory cass to create gravitational bodies.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bodyNames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetNames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceKernelFileNames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochMsg</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">bodyNames</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">createBodies</span><span class="p">(</span><span class="n">bodyNames</span><span class="p">)</span>
+
+<div class="viewcode-block" id="gravBodyFactory.createBodies"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createBodies">[docs]</a>    <span class="k">def</span> <span class="nf">createBodies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bodyNames</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            A convenience function to create multiple typical solar system bodies.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            bodyNames : array_like</span>
+<span class="sd">                Planet name strings. Each planet name must be a valid SPICE celestial body string.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            gravBodies : array_like</span>
+<span class="sd">                A list of gravity body objects held by the gravity factory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">bodyNames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;mercury&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createMercury</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;venus&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createVenus</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;earth&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createEarth</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;moon&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createMoon</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;mars&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createMars</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;mars barycenter&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createMarsBarycenter</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;jupiter barycenter&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createJupiter</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;saturn&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createSaturn</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;uranus&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createUranus</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;neptune&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createNeptune</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;sun&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">createSun</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gravBody &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; not found in gravBodyUtilities.py&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span></div>
+
+    <span class="c1"># Note, in the `create` functions below the `isCentralBody` and `useSphericalHarmParams` are</span>
+    <span class="c1"># all set to False in the `GravGodyData()` constructor.</span>
+
+<div class="viewcode-block" id="gravBodyFactory.createSun"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createSun">[docs]</a>    <span class="k">def</span> <span class="nf">createSun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with sun mass properties.&quot;&quot;&quot;</span>
+        <span class="n">sun</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;sun_planet_data&quot;</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;sun&quot;</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">1.32712440018E20</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">695508000.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;sun&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sun</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_sun&quot;</span><span class="p">)</span>
+        <span class="n">sun</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">sun</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createMercury"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createMercury">[docs]</a>    <span class="k">def</span> <span class="nf">createMercury</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Mercury mass properties.&quot;&quot;&quot;</span>
+        <span class="n">mercury</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;mercury_planet_data&quot;</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;mercury&quot;</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">4.28283100e13</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">2439700.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;mercury&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mercury</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_mercury&quot;</span><span class="p">)</span>
+        <span class="n">mercury</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">mercury</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createVenus"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createVenus">[docs]</a>    <span class="k">def</span> <span class="nf">createVenus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Venus mass properties.&quot;&quot;&quot;</span>
+        <span class="n">venus</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;venus_planet_data&quot;</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;venus&quot;</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">3.24858599e14</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">6051800.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;venus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">venus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_venus&quot;</span><span class="p">)</span>
+        <span class="n">venus</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">venus</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createEarth"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createEarth">[docs]</a>    <span class="k">def</span> <span class="nf">createEarth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Earth mass properties.&quot;&quot;&quot;</span>
+        <span class="n">earth</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;earth_planet_data&quot;</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;earth&quot;</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.3986004415E+15</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">6378136.6</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;earth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">earth</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_earth&quot;</span><span class="p">)</span>
+        <span class="n">earth</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">earth</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createMoon"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createMoon">[docs]</a>    <span class="k">def</span> <span class="nf">createMoon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Moon mass properties.&quot;&quot;&quot;</span>
+        <span class="n">moon</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;moon_planet_data&quot;</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;moon&quot;</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">4.902799E12</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">1738100.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;moon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">moon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_moon&quot;</span><span class="p">)</span>
+        <span class="n">moon</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">moon</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createMars"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createMars">[docs]</a>    <span class="k">def</span> <span class="nf">createMars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Mars mass properties.&quot;&quot;&quot;</span>
+        <span class="n">mars</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;mars_planet_data&quot;</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;mars&quot;</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">4.28283100e13</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mi">3396190</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;mars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_mars&quot;</span><span class="p">)</span>
+        <span class="n">mars</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">mars</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createMarsBarycenter"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createMarsBarycenter">[docs]</a>    <span class="k">def</span> <span class="nf">createMarsBarycenter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Mars mass properties.&quot;&quot;&quot;</span>
+        <span class="n">mars_barycenter</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;mars barycenter_planet_data&quot;</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;mars&quot;</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">4.28283100e13</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mi">3396190</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;mars barycenter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mars_barycenter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_mars&quot;</span><span class="p">)</span>
+        <span class="n">mars_barycenter</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">mars_barycenter</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createJupiter"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createJupiter">[docs]</a>    <span class="k">def</span> <span class="nf">createJupiter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Jupiter mass properties.&quot;&quot;&quot;</span>
+        <span class="n">jupiter</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;jupiter barycenter_planet_data&quot;</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;jupiter&quot;</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">1.266865349093058E17</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">71492000.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;jupiter barycenter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jupiter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_jupiter&quot;</span><span class="p">)</span>
+        <span class="n">jupiter</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jupiter</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createSaturn"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createSaturn">[docs]</a>    <span class="k">def</span> <span class="nf">createSaturn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Saturn mass properties.&quot;&quot;&quot;</span>
+        <span class="n">saturn</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;saturn barycenter_planet_data&quot;</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;saturn&quot;</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">3.79395000E16</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">60268000.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;saturn&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">saturn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_saturn&quot;</span><span class="p">)</span>
+        <span class="n">saturn</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">saturn</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createUranus"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createUranus">[docs]</a>    <span class="k">def</span> <span class="nf">createUranus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Uranus mass properties.&quot;&quot;&quot;</span>
+        <span class="n">uranus</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;uranus barycenter_planet_data&quot;</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;uranus&quot;</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">5.79396566E15</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">25559000.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;uranus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">uranus</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_uranus&quot;</span><span class="p">)</span>
+        <span class="n">uranus</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">uranus</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createNeptune"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createNeptune">[docs]</a>    <span class="k">def</span> <span class="nf">createNeptune</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create gravity body with Neptune mass properties.&quot;&quot;&quot;</span>
+        <span class="n">neptune</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="s2">&quot;neptune barycenter_planet_data&quot;</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="s2">&quot;neptune&quot;</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">6.83509920E15</span>  <span class="c1"># meters^3/s^2</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="mf">24764000.0</span>  <span class="c1"># meters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;neptune&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neptune</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;IAU_neptune&quot;</span><span class="p">)</span>
+        <span class="n">neptune</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">neptune</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createCustomGravObject"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createCustomGravObject">[docs]</a>    <span class="k">def</span> <span class="nf">createCustomGravObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Create a custom gravity body object.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            label : string</span>
+<span class="sd">                Gravity body name</span>
+<span class="sd">            mu : double</span>
+<span class="sd">                Gravity constant</span>
+
+<span class="sd">            Other Parameters</span>
+<span class="sd">            ----------------</span>
+<span class="sd">            kwargs :</span>
+<span class="sd">                radEquator : double</span>
+<span class="sd">                    Equatorial radius in meters</span>
+<span class="sd">                radiusRatio : double</span>
+<span class="sd">                    Ratio of the polar radius to the equatorial radius.</span>
+<span class="sd">                planetFrame : string</span>
+<span class="sd">                    Name of the spice planet frame</span>
+<span class="sd">                displayName: string</span>
+<span class="sd">                    Vizard celestial body name, if not provided then planetFrame becomes the Vizard name</span>
+<span class="sd">                modelDictionaryKey: string</span>
+<span class="sd">                    Vizard model key name.  if not set, then either the displayName or planetName is used to set the model</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">checkMethodKeyword</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;radEquator&#39;</span><span class="p">,</span> <span class="s1">&#39;radiusRatio&#39;</span><span class="p">,</span> <span class="s1">&#39;planetFrame&#39;</span><span class="p">,</span> <span class="s1">&#39;displayName&#39;</span><span class="p">,</span> <span class="s1">&#39;modelDictionaryKey&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ERROR: label must be a string&#39;</span><span class="p">)</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">gravBody</span> <span class="o">=</span> <span class="n">gravityEffector</span><span class="o">.</span><span class="n">GravBodyData</span><span class="p">()</span>
+        <span class="n">gravBody</span><span class="o">.</span><span class="n">planetName</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="n">gravBody</span><span class="o">.</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span>
+        <span class="k">if</span> <span class="s1">&#39;radEquator&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">gravBody</span><span class="o">.</span><span class="n">radEquator</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;radEquator&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;radiusRatio&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">gravBody</span><span class="o">.</span><span class="n">radiusRatio</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;radiusRatio&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;displayName&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">gravBody</span><span class="o">.</span><span class="n">displayName</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;displayName&#39;</span><span class="p">]</span>
+        <span class="n">gravBody</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;modelDictionaryKey&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">gravBody</span><span class="o">.</span><span class="n">modelDictionaryKey</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;modelDictionaryKey&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">gravBody</span>
+        <span class="n">planetFrame</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;planetFrame&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">planetFrame</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;planetFrame&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">planetFrame</span><span class="p">)</span>
+        <span class="n">gravBody</span><span class="o">.</span><span class="n">this</span><span class="o">.</span><span class="n">disown</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">gravBody</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.createSpiceInterface"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.createSpiceInterface">[docs]</a>    <span class="k">def</span> <span class="nf">createSpiceInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            A convenience function to configure a NAIF Spice module for the simulation.</span>
+<span class="sd">            It connect the gravBodyData objects to the spice planet state messages.  Thus,</span>
+<span class="sd">            it must be run after the gravBodyData objects are created.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            path : string</span>
+<span class="sd">                The absolute path to the Basilisk source directory (default &#39;&#39;).</span>
+<span class="sd">            time : string</span>
+<span class="sd">                The time string.</span>
+
+<span class="sd">            Other Parameters</span>
+<span class="sd">            ----------------</span>
+<span class="sd">            kwargs :</span>
+<span class="sd">                spiceKernalFileNames :</span>
+<span class="sd">                    A list of spice kernel file names including file extension.</span>
+<span class="sd">                spicePlanetNames :</span>
+<span class="sd">                    A list of planet names whose Spice data is loaded, overriding the gravBodies list.</span>
+<span class="sd">                spicePlanetFrames :</span>
+<span class="sd">                    A list of strings for the planet frame names.  If left empty for a planet, then</span>
+<span class="sd">                    ``IAU_`` + planetName is assumed for the planet frame.</span>
+<span class="sd">                epochInMsg: bool</span>
+<span class="sd">                    Flag to set an epoch input message for the spice interface</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="s1">&#39;spiceKernalFileNames&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;spiceKernalFileNames&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">spiceKernelFileNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;spiceKernalFileNames expects a list&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spiceKernelFileNames</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;de430.bsp&#39;</span><span class="p">,</span> <span class="s1">&#39;naif0012.tls&#39;</span><span class="p">,</span> <span class="s1">&#39;de-403-masses.tpc&#39;</span><span class="p">,</span> <span class="s1">&#39;pck00010.tpc&#39;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetNames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;spicePlanetNames&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">planetName</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;spicePlanetNames&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">planetName</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;spicePlanetNames expects a list&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetNames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="s1">&#39;spicePlanetFrames&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">planetFrame</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;spicePlanetFrames&#39;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">planetFrame</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;spicePlanetFrames expects a list&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span> <span class="o">=</span> <span class="n">spiceInterface</span><span class="o">.</span><span class="n">SpiceInterface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;SpiceInterfaceData&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">SPICEDataPath</span> <span class="o">=</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">addPlanetNames</span><span class="p">(</span><span class="n">spiceInterface</span><span class="o">.</span><span class="n">StringVector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetNames</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">UTCCalInit</span> <span class="o">=</span> <span class="n">time</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">planetFrames</span> <span class="o">=</span> <span class="n">spiceInterface</span><span class="o">.</span><span class="n">StringVector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spicePlanetFrames</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spiceKernelFileNames</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">loadSpiceKernel</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">SPICELoaded</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># subscribe Grav Body data to the spice state message</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">gravBodyDataItem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gravBodies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">gravBodyDataItem</span><span class="o">.</span><span class="n">planetBodyInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">planetStateOutMsgs</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># create and connect to an epoch input message</span>
+        <span class="k">if</span> <span class="s1">&#39;epochInMsg&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;epochInMsg&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">epochMsg</span> <span class="o">=</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">timeStringToGregorianUTCMsg</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dataPath</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">epochInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epochMsg</span><span class="p">)</span>
+
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="gravBodyFactory.unloadSpiceKernels"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.gravBodyFactory.unloadSpiceKernels">[docs]</a>    <span class="k">def</span> <span class="nf">unloadSpiceKernels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Method to unload spice kernals at the end of a simulation.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spiceKernelFileNames</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">unloadSpiceKernel</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spiceObject</span><span class="o">.</span><span class="n">SPICEDataPath</span><span class="p">)</span>
+        <span class="k">return</span></div></div>
+
+
+
+<div class="viewcode-block" id="loadGravFromFile"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.loadGravFromFile">[docs]</a><span class="k">def</span> <span class="nf">loadGravFromFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">spherHarm</span><span class="p">,</span> <span class="n">maxDeg</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Load the gravitational body spherical harmonics coefficients from a file.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            fileName : string</span>
+<span class="sd">                The full path to the specified data file.</span>
+<span class="sd">            spherHarm:</span>
+<span class="sd">                The spherical harmonics container of the gravity body.</span>
+<span class="sd">            maxDeg : integer</span>
+<span class="sd">                maximum degree of spherical harmonics to load</span>
+
+
+<span class="sd">            Notes</span>
+<span class="sd">            -----</span>
+<span class="sd">            This function is a convenience utility for loading in the spherical harmonics</span>
+<span class="sd">            coefficients from a data file.  The default harmonic degree is 2 unless specified.</span>
+<span class="sd">            Note that this function calls the gravityEffector function loadGravFromFile().</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loadGravFromFile_python</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">spherHarm</span><span class="p">,</span> <span class="n">maxDeg</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="loadPolyFromFile"><a class="viewcode-back" href="../Documentation/utilities/simIncludeGravBody.html#simIncludeGravBody.loadPolyFromFile">[docs]</a><span class="k">def</span> <span class="nf">loadPolyFromFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">poly</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Load the gravitational body spherical harmonics coefficients from a file.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            fileName : string</span>
+<span class="sd">                The full path to the specified data file.</span>
+<span class="sd">            spherHarm:</span>
+<span class="sd">                The spherical harmonics container of the gravity body.</span>
+<span class="sd">            maxDeg : integer</span>
+<span class="sd">                maximum degree of spherical harmonics to load</span>
+
+
+<span class="sd">            Notes</span>
+<span class="sd">            -----</span>
+<span class="sd">            This function is a convenience utility for loading in the spherical harmonics</span>
+<span class="sd">            coefficients from a data file.  The default harmonic degree is 2 unless specified.</span>
+<span class="sd">            Note that this function calls the gravityEffector function loadGravFromFile().</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">loadPolyFromFile_python</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">poly</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>desktopFswModels &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../externalTools/index.html">externalTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>desktopFswModels</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for desktopFswModels</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">configUtil</span> <span class="kn">import</span> <span class="n">CreateRWAClass</span>
+<span class="kn">import</span> <span class="nn">fswClasses</span>
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="n">messaging</span>
+
+<div class="viewcode-block" id="FSWModels"><a class="viewcode-back" href="../externalTools/fswAuto/fswExamples/desktopFswModels.html#desktopFswModels.FSWModels">[docs]</a><span class="k">class</span> <span class="nc">FSWModels</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class instantiating the FSW modules and initializing them</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masterSim</span><span class="p">):</span>
+        <span class="c1"># Create a sim module as an empty container</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simBasePath</span> <span class="o">=</span> <span class="n">masterSim</span><span class="o">.</span><span class="n">simBasePath</span>
+        <span class="c1"># Instantiate C classes</span>
+        <span class="n">fsw</span> <span class="o">=</span> <span class="n">fswClasses</span><span class="o">.</span><span class="n">FSWClasses</span><span class="p">(</span><span class="n">masterSim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">VehConfigData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">VehConfigDataWrap</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">vehConfigDataClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwConfigData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rwConfigWrap</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">rwConfigDataClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inertial3DData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inertial3DWrap</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">inertial3DClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attTrackingData_base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attTrackingWrap_base</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">attTrackingError_baseClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAWrap</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">MRP_FeedbackRWAClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwMotorTorqueData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rwMotorTorqueWrap</span> <span class="o">=</span> <span class="n">fsw</span><span class="o">.</span><span class="n">rwMotorTorqueClass</span><span class="p">()</span>
+
+        <span class="n">sNavData</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">NavAttMsgPayload</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sNavMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">NavAttMsg</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sNavData</span><span class="p">)</span>
+        <span class="n">rwSpeedData</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">RWSpeedMsgPayload</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwSpeedMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">RWSpeedMsg</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rwSpeedData</span><span class="p">)</span>
+
+        <span class="c1"># Initialize all objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">InitAllFSWObjects</span><span class="p">(</span><span class="n">masterSim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">SetLocalConfigData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masterSim</span><span class="p">):</span>
+        <span class="c1"># Set RW Config Data</span>
+        <span class="n">rwClass</span> <span class="o">=</span> <span class="n">CreateRWAClass</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fswRwConstMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">RWConstellationMsg</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">rwClass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numRW</span> <span class="o">=</span> <span class="n">rwClass</span><span class="o">.</span><span class="n">numRW</span>
+
+    <span class="k">def</span> <span class="nf">SetVehConfigData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">VehConfigData</span><span class="o">.</span><span class="n">ISCPntB_B</span> <span class="o">=</span> <span class="p">[</span><span class="mf">700.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">700.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">800</span><span class="p">]</span>  <span class="c1"># kg * m^2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">VehConfigData</span><span class="o">.</span><span class="n">CoM_B</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">SetRWConfigDataFSW</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwConfigData</span><span class="o">.</span><span class="n">rwConstellationInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fswRwConstMsg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">SetInertial3DPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inertial3DData</span><span class="o">.</span><span class="n">sigma_R0N</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">setAttTrackingError_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attTrackingData_base</span><span class="o">.</span><span class="n">attRefInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inertial3DData</span><span class="o">.</span><span class="n">attRefOutMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attTrackingData_base</span><span class="o">.</span><span class="n">attNavInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sNavMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attTrackingData_base</span><span class="o">.</span><span class="n">sigma_R0R</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">SetMRP_FeedbackRWA</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="mf">4.0</span><span class="c1">#1.  # rad/sec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="mf">30.0</span><span class="c1">#3.  # N*m*sec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">Ki</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>  <span class="c1"># N*m - negative values turn off the integral feedback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">integralLimit</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># rad</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">guidInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attTrackingData_base</span><span class="o">.</span><span class="n">attGuidOutMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">vehConfigInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VehConfigData</span><span class="o">.</span><span class="n">vecConfigOutMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">rwParamsInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rwConfigData</span><span class="o">.</span><span class="n">rwParamsOutMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">rwSpeedsInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rwSpeedMsg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">SetRWMotorTorque</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">controlAxes_B</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>
+                         <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>
+                         <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwMotorTorqueData</span><span class="o">.</span><span class="n">controlAxes_B</span> <span class="o">=</span> <span class="n">controlAxes_B</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwMotorTorqueData</span><span class="o">.</span><span class="n">vehControlInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MRP_FeedbackRWAData</span><span class="o">.</span><span class="n">cmdTorqueOutMsg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwMotorTorqueData</span><span class="o">.</span><span class="n">rwParamsInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rwConfigData</span><span class="o">.</span><span class="n">rwParamsOutMsg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">InitAllFSWObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">masterSim</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetLocalConfigData</span><span class="p">(</span><span class="n">masterSim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetVehConfigData</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetRWConfigDataFSW</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetInertial3DPoint</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setAttTrackingError_base</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetMRP_FeedbackRWA</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">SetRWMotorTorque</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sim__model_8h" kind="file" language="C++">
+    <compoundname>sim_model.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">set</includes>
+    <includes local="no">thread</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">condition_variable</includes>
+    <includes local="no">iostream</includes>
+    <includes refid="sys__process_8h" local="yes">architecture/system_model/sys_process.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/utilities/bskSemaphore.h</includes>
+    <includedby refid="sim__model_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/architecture/system_model/sim_model.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/system_model/sim_model.h</label>
+        <link refid="sim__model_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>architecture/system_model/sys_model_task.h</label>
+        <link refid="sys__model__task_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>architecture/system_model/sys_process.h</label>
+        <link refid="sys__process_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/bskSemaphore.h</label>
+      </node>
+      <node id="7">
+        <label>condition_variable</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>mutex</label>
+      </node>
+      <node id="4">
+        <label>set</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>thread</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_sim_thread_execution" prot="public">SimThreadExecution</innerclass>
+    <innerclass refid="class_sim_model" prot="public">SimModel</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SimModel_HH_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SimModel_HH_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;condition_variable&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/system_model/sys_process.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskSemaphore.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="class_sim_thread_execution" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_sim_thread_execution" kindref="compound">SimThreadExecution</ref></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sim_thread_execution" kindref="compound">SimThreadExecution</ref>();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sim_thread_execution" kindref="compound">SimThreadExecution</ref>(uint64_t<sp/>threadIdent,<sp/>uint64_t<sp/>currentSimNanos=0);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sim_thread_execution_1ae0de01a00621e4a5b5ec5e90785ed171" kindref="member">~SimThreadExecution</ref>();<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="class_sim_thread_execution_1ac1f6d49823e06607ef90bdd2e51c80c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1ac1f6d49823e06607ef90bdd2e51c80c8" kindref="member">updateNewStopTime</ref>(uint64_t<sp/>newStopNanos)<sp/>{<ref refid="class_sim_thread_execution_1af9cc6342ad99dd16580b6ae84715d300" kindref="member">stopThreadNanos</ref><sp/>=<sp/>newStopNanos;}<sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="class_sim_thread_execution_1a437b10e6cacdb05f105c7d7f51c69650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a437b10e6cacdb05f105c7d7f51c69650" kindref="member">clearProcessList</ref>()<sp/>{processList.clear();}<sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1af1423c1ddab7e191fe9469d1edaef793" kindref="member">selfInitProcesses</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a142dc427f98a58888407bf2b1abc1868" kindref="member">crossInitProcesses</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a3984b22554c81447b49db7abc2f152e7" kindref="member">resetProcesses</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a6db496d5d6acf2f1e7b9aacd82fd93de" kindref="member">addNewProcess</ref>(<ref refid="class_sys_process" kindref="compound">SysProcess</ref>*<sp/>newProc);</highlight></codeline>
+<codeline lineno="46" refid="class_sim_thread_execution_1a86b8992d251ced2cefbaeff7b20c10c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1a86b8992d251ced2cefbaeff7b20c10c6" kindref="member">procCount</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>processList.size();}<sp/></highlight></codeline>
+<codeline lineno="47" refid="class_sim_thread_execution_1ab24a2c1581aa1851bd2abbf3ae071129" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1ab24a2c1581aa1851bd2abbf3ae071129" kindref="member">threadActive</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;threadRunning;}<sp/></highlight></codeline>
+<codeline lineno="48" refid="class_sim_thread_execution_1a24d4fb7186480135066b347ab2a18d19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a24d4fb7186480135066b347ab2a18d19" kindref="member">threadReady</ref>()<sp/>{this-&gt;threadRunning=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;}<sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1acbb9bbbf0cb9203c1655e3b7aaf6ff17" kindref="member">waitOnInit</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a40245432fadd460de18913b6db87bb2e" kindref="member">postInit</ref>();</highlight></codeline>
+<codeline lineno="51" refid="class_sim_thread_execution_1a46b365038a59d03e6549e484c3f098f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a46b365038a59d03e6549e484c3f098f6" kindref="member">threadValid</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(!this-&gt;terminateThread);}<sp/></highlight></codeline>
+<codeline lineno="52" refid="class_sim_thread_execution_1a7825e45a15e5f1e11af4ce252bb5417f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a7825e45a15e5f1e11af4ce252bb5417f" kindref="member">killThread</ref>()<sp/>{this-&gt;terminateThread=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;}<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a7b6b683e14c44451042f528506f0be42" kindref="member">lockThread</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a45a709d8bde76c6be42a807988160418" kindref="member">unlockThread</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a14670530672acc6509b11d538d2f1e8a" kindref="member">lockParent</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a5087446d12c59af56c0dcefc52c58c0e" kindref="member">unlockParent</ref>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1abd78120803f5811d2a166097f0a6fb94" kindref="member">StepUntilStop</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1ae726d77b8faf40c0bb7ec5d85187da7a" kindref="member">SingleStepProcesses</ref>(int64_t<sp/>stopPri=-1);<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1adca92b0157f86b0623d6c71c38e9a154" kindref="member">moveProcessMessages</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="61" refid="class_sim_thread_execution_1a1b34399826b6adfe35ba8455c295b693" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1a1b34399826b6adfe35ba8455c295b693" kindref="member">currentThreadNanos</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="class_sim_thread_execution_1af9cc6342ad99dd16580b6ae84715d300" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1af9cc6342ad99dd16580b6ae84715d300" kindref="member">stopThreadNanos</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="class_sim_thread_execution_1a8f7271e229e8f16d8840231137b1964a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="class_sim_thread_execution_1a8f7271e229e8f16d8840231137b1964a" kindref="member">stopThreadPriority</ref>;<sp/></highlight></codeline>
+<codeline lineno="64" refid="class_sim_thread_execution_1a3a56138fc7e0df51cdf62f9b8aa407fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1a3a56138fc7e0df51cdf62f9b8aa407fd" kindref="member">threadID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="class_sim_thread_execution_1a6e8642516dc592c80917fc730204327e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::thread<sp/>*<ref refid="class_sim_thread_execution_1a6e8642516dc592c80917fc730204327e" kindref="member">threadContext</ref>;<sp/></highlight></codeline>
+<codeline lineno="66" refid="class_sim_thread_execution_1aab96b5f499ad6e30a12e8b0af1f4a690" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1aab96b5f499ad6e30a12e8b0af1f4a690" kindref="member">CurrentNanos</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="class_sim_thread_execution_1aa2431425f698a55249673e02dcd4c805" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_thread_execution_1aa2431425f698a55249673e02dcd4c805" kindref="member">NextTaskTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="class_sim_thread_execution_1ab5a87bc91b39ed07eb855b760bca2df1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="class_sim_thread_execution_1ab5a87bc91b39ed07eb855b760bca2df1" kindref="member">nextProcPriority</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="class_sim_thread_execution_1a169db192ab9b7e54076ad2a304ea80e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a169db192ab9b7e54076ad2a304ea80e9" kindref="member">selfInitNow</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="class_sim_thread_execution_1a8dd24f0258370dea1238854129ca6574" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a8dd24f0258370dea1238854129ca6574" kindref="member">crossInitNow</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_sim_thread_execution_1a385c3bf1681dbc863b3b401237d0c6e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sim_thread_execution_1a385c3bf1681dbc863b3b401237d0c6e5" kindref="member">resetNow</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>threadRunning;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>terminateThread;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKSemaphore<sp/>parentThreadLock;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKSemaphore<sp/>selfThreadLock;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SysProcess*&gt;<sp/>processList;<sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>std::mutex<sp/>initReadyLock;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>std::condition_variable<sp/>initHoldVar;<sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="class_sim_model" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_sim_model" kindref="compound">SimModel</ref></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sim_model_1a611b900776f23877a3eab1cde6f1c803" kindref="member">SimModel</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sim_model_1a510e5563113c7b34235f8ac8f6f17690" kindref="member">~SimModel</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a4054d6b12154b29ae31fd19e24182ad0" kindref="member">selfInitSimulation</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a3c9d52f87b3632813601b005eb29ec22" kindref="member">resetInitSimulation</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a5c3116c212cd092d06a80fcb8623951d" kindref="member">StepUntilStop</ref>(uint64_t<sp/>SimStopTime,<sp/>int64_t<sp/>stopPri);<sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1ae18704e320e709c850574423501be333" kindref="member">SingleStepProcesses</ref>(int64_t<sp/>stopPri=-1);<sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1ab8b9e34277edf0f2126700686c4faedc" kindref="member">addNewProcess</ref>(<ref refid="class_sys_process" kindref="compound">SysProcess</ref><sp/>*newProc);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a1d613ac2d851eb3620f2117485e59c6e" kindref="member">addProcessToThread</ref>(<ref refid="class_sys_process" kindref="compound">SysProcess</ref><sp/>*newProc,<sp/>uint64_t<sp/>threadSel);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a882a554253a92500efe21ab01a7e84fb" kindref="member">ResetSimulation</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a1b6d945f5e5da5dd9d4159faae218627" kindref="member">clearProcsFromThreads</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1aaceb5cecd0a4d8f10dcfcdff69fe609c" kindref="member">resetThreads</ref>(uint64_t<sp/>threadCount);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1a5e4106f716aa07e4421ef9333e44b98f" kindref="member">deleteThreads</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1afa896824d31f013c277ec37753468437" kindref="member">assignRemainingProcs</ref>();</highlight></codeline>
+<codeline lineno="100" refid="class_sim_model_1acbb27390c7a5c579e3a3d22cc0a5287c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_model_1acbb27390c7a5c579e3a3d22cc0a5287c" kindref="member">getThreadCount</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_sim_model_1af934c33478a2b9f0747957847e9b63d6" kindref="member">threadList</ref>.size();}<sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="class_sim_model_1aed9344a56834846e01ab06d1bba4c872" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_sim_model_1aed9344a56834846e01ab06d1bba4c872" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="105" refid="class_sim_model_1ad7f062d45c8f806b53988a829b1359c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SysProcess<sp/>*&gt;<sp/><ref refid="class_sim_model_1ad7f062d45c8f806b53988a829b1359c0" kindref="member">processList</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="106" refid="class_sim_model_1af934c33478a2b9f0747957847e9b63d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SimThreadExecution*&gt;<sp/><ref refid="class_sim_model_1af934c33478a2b9f0747957847e9b63d6" kindref="member">threadList</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="107" refid="class_sim_model_1a95b4d0fa3d0dacf77d77a7f7e8f8d863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_sim_model_1a95b4d0fa3d0dacf77d77a7f7e8f8d863" kindref="member">SimulationName</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="108" refid="class_sim_model_1a660408e1fa80f3f10511a7c7607f96e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_model_1a660408e1fa80f3f10511a7c7607f96e8" kindref="member">CurrentNanos</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="109" refid="class_sim_model_1a2195fb8d34f3b792973235188696f0ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sim_model_1a2195fb8d34f3b792973235188696f0ab" kindref="member">NextTaskTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="110" refid="class_sim_model_1a41140caca6d27ed1ec5ca53d826c3f2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><ref refid="class_sim_model_1a41140caca6d27ed1ec5ca53d826c3f2e" kindref="member">nextProcPriority</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>_SimModel_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/system_model/sim_model.h"/>
+  </compounddef>
+</doxygen>

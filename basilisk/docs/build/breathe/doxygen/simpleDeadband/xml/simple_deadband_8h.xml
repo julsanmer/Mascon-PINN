@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="simple_deadband_8h" kind="file" language="C++">
+    <compoundname>simpleDeadband.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">cMsgCInterface/AttGuidMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="simple_deadband_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h</label>
+        <link refid="simple_deadband_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/AttGuidMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structsimple_deadband_config" prot="public">simpleDeadbandConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="simple_deadband_8h_1a92fee7fa61c299ef8fbfc483bd38ed8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_simpleDeadband</definition>
+        <argsstring>(simpleDeadbandConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_simpleDeadband</name>
+        <param>
+          <type><ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for this module. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" line="54" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.c" bodystart="49" bodyend="52" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" declline="54" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="simple_deadband_8h_1ad6504c692424b333eaeba0fd4e5f789e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_simpleDeadband</definition>
+        <argsstring>(simpleDeadbandConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_simpleDeadband</name>
+        <param>
+          <type><ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method parses the input data, checks if the deadband needs to be applied and outputs the guidance command with simples either zeroed (control OFF) or left unchanged (control ON) <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the attitude tracking simple module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input message and set it as the output by default</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Evaluate average simple in attitude and rates</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Check whether control should be ON or OFF</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write output guidance message and update module knowledge of control status</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" line="55" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.c" bodystart="78" bodyend="93" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" declline="55" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="simple_deadband_8h_1ab9291ddd57f9d47305afa0c88d4fa6aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_simpleDeadband</definition>
+        <argsstring>(simpleDeadbandConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_simpleDeadband</name>
+        <param>
+          <type><ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the MRP steering control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" line="56" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.c" bodystart="62" bodyend="69" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" declline="56" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="simple_deadband_8h_1a04a0b6fd53f1f1a793b69913d25b6448" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void applyDBLogic_simpleDeadband</definition>
+        <argsstring>(simpleDeadbandConfig *configData)</argsstring>
+        <name>applyDBLogic_simpleDeadband</name>
+        <param>
+          <type><ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method applies a two-level deadbanding logic (according to the current average simple compared with the set threshold) and decides whether control should be switched ON/OFF or not. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the attitude tracking simple module </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.c" bodystart="101" bodyend="118" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h" declline="57" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SIMPLE_DEADBAND_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SIMPLE_DEADBAND_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/AttGuidMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structsimple_deadband_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>private<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structsimple_deadband_config_1a7c990a2393ce261f62e9c6af206516e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1a7c990a2393ce261f62e9c6af206516e7" kindref="member">innerAttThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="structsimple_deadband_config_1a4fdd7f4f273e1ca0531068f71254b757" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1a4fdd7f4f273e1ca0531068f71254b757" kindref="member">outerAttThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="structsimple_deadband_config_1a278f554d2af07ffce49c10d323507053" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1a278f554d2af07ffce49c10d323507053" kindref="member">innerRateThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="structsimple_deadband_config_1a1ce1f25e60bdb6c915a1f794e015892d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1a1ce1f25e60bdb6c915a1f794e015892d" kindref="member">outerRateThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="structsimple_deadband_config_1a0e0aa5c79377c072c65823fd2aad5170" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structsimple_deadband_config_1a0e0aa5c79377c072c65823fd2aad5170" kindref="member">wasControlOff</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="structsimple_deadband_config_1a986da82727ed529e4a8892310a71e61f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1a986da82727ed529e4a8892310a71e61f" kindref="member">attError</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="structsimple_deadband_config_1ae6c3a48672493c9d5bf615379fb4aaf3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structsimple_deadband_config_1ae6c3a48672493c9d5bf615379fb4aaf3" kindref="member">rateError</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>IO<sp/>interfaces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structsimple_deadband_config_1ace8e9ce135d040d756ab30a05bc77343" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsg_C<sp/><ref refid="structsimple_deadband_config_1ace8e9ce135d040d756ab30a05bc77343" kindref="member">attGuidOutMsg</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structsimple_deadband_config_1aa873e331a93201ba91cbeef4a4526b00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsg_C<sp/><ref refid="structsimple_deadband_config_1aa873e331a93201ba91cbeef4a4526b00" kindref="member">guidInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="structsimple_deadband_config_1ac06b3f1b83e428bedaa7a09143512d67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsgPayload<sp/><ref refid="structsimple_deadband_config_1ac06b3f1b83e428bedaa7a09143512d67" kindref="member">attGuidOut</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="structsimple_deadband_config_1a969618190602993542a05d23c032cf14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structsimple_deadband_config_1a969618190602993542a05d23c032cf14" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_simpleDeadband(<ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_simpleDeadband(<ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_simpleDeadband(<ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyDBLogic_simpleDeadband(<ref refid="structsimple_deadband_config" kindref="compound">simpleDeadbandConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/simpleDeadband/simpleDeadband.h"/>
+  </compounddef>
+</doxygen>

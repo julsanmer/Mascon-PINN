@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="spacecraft_pointing_8h" kind="file" language="C++">
+    <compoundname>spacecraftPointing.h</compoundname>
+    <includes local="yes">cMsgCInterface/NavTransMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/AttRefMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="spacecraft_pointing_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h</label>
+        <link refid="spacecraft_pointing_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/AttRefMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structspacecraft_pointing_config" prot="public">spacecraftPointingConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="spacecraft_pointing_8h_1a3108511f7392cae4416a261c094ed685" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the spacecraft pointing module It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the spacecraft pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" line="51" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="35" bodyend="38" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" declline="51" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="spacecraft_pointing_8h_1a38aa1575fc6d39d8296ca08f7a598571" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the vector that points from the deputy spacecraft to the chief spacecraft and calculates the orientation, angular velocity and angular acceleration of this vector with respect to the inertial reference frame in inertial reference frame components and passes them to the attitude tracking error module, where that attitude error can be calculated. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the spacecraft pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <mdash/> Input message that consists of the position and velocity of the chief</para>
+<para>&lt; <mdash/> Input message that consists of the position and velocity of the deputy</para>
+<para>&lt; <mdash/> Vector pointing from deputy to chief in inertial frame components</para>
+<para>&lt; <mdash/> DCM from R-frame to N-frame</para>
+<para>&lt; <mdash/> z-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis of R-frame expressed in N-frame components</para>
+<para>&lt; <mdash/> z-axis of R-frame expressed in N-frame components</para>
+<para>&lt; <mdash/> MRP of vector pointing from deputy to chief</para>
+<para>&lt; <mdash/> Difference between sigma at t-1 and t</para>
+<para>&lt; <mdash/> shadow MRP of previous timestep</para>
+<para>&lt; <mdash/> Difference between shadow sigma at t-1 and t</para>
+<para>&lt; <mdash/> timestep of the simulation</para>
+<para>&lt; <mdash/> delta_sigma_RN divided by dt results in sigma_dot_RN</para>
+<para>&lt; <mdash/> sigma_RN_squared of sigma vector of previous timestep</para>
+<para>&lt; <mdash/> sigma_RN_squared of sigma vector of current timestep</para>
+<para>&lt; <mdash/> B-matrix taken with sigmas from previous timestep</para>
+<para>&lt; <mdash/> B matrix to convert sigma_dot_RN to omega_RN_N</para>
+<para>&lt; <mdash/> Transposed B matrix</para>
+<para>&lt; <mdash/> average of the scaling factor (1/((1 + sigma^2)^2))</para>
+<para>&lt; <mdash/> Inverse of B matrix</para>
+<para>&lt; <mdash/> Angular velocity of vector pointing from deputy to chief in R-frame components</para>
+<para>&lt; <mdash/> MRP of N-frame with respect to R-frame</para>
+<para>&lt; <mdash/> DCM [NR]</para>
+<para>&lt; <mdash/> Angular velocity of vector pointing from deputy to chief in N-frame components</para>
+<para>&lt; <mdash/> Difference between omega at t-1 and t</para>
+<para>&lt; <mdash/> Angular acceleration of vector pointing from deputy to chief</para>
+<para>&lt; <mdash/> MRP of R1-frame with respect to N-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" line="52" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="97" bodyend="237" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" declline="52" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="spacecraft_pointing_8h_1a6631047e648a040335ba0ca7e7ea70e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_spacecraftPointing</definition>
+        <argsstring>(spacecraftPointingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_spacecraftPointing</name>
+        <param>
+          <type><ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the pointing module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <mdash/> dcm [AB]</para>
+<para>&lt; <mdash/> z-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis used for cross-product</para>
+<para>&lt; <mdash/> y-axis of A-frame expressed in B-frame components</para>
+<para>&lt; <mdash/> z-axis of A-frame expresses in B-frame components</para>
+<para>&lt; <mdash/> MRP of A-frame with respect to B-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" line="54" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.c" bodystart="48" bodyend="86" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h" declline="54" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SPACECRAFTPOINTING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SPACECRAFTPOINTING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavTransMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/AttRefMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structspacecraft_pointing_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32" refid="structspacecraft_pointing_config_1a568f80688ae5ab3e0de8dfb83ff506bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsg_C<sp/><ref refid="structspacecraft_pointing_config_1a568f80688ae5ab3e0de8dfb83ff506bd" kindref="member">attReferenceOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="structspacecraft_pointing_config_1adbba809885536774c1642ccde2d7318d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C<sp/><ref refid="structspacecraft_pointing_config_1adbba809885536774c1642ccde2d7318d" kindref="member">chiefPositionInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="structspacecraft_pointing_config_1a4b490cc525af21089fcb8de8220ca3ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C<sp/><ref refid="structspacecraft_pointing_config_1a4b490cc525af21089fcb8de8220ca3ec" kindref="member">deputyPositionInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="structspacecraft_pointing_config_1ab894720d1f8485411c02463fe9f1bdf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>alignmentVector_B[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="structspacecraft_pointing_config_1af48936f04a4de34d24e29da22de31cde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_BA[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="structspacecraft_pointing_config_1a6f9155f770a40971d5d944485293c7d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>old_sigma_RN[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="structspacecraft_pointing_config_1a636444e663df3ded10fdc0a869b24431" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>old_omega_RN_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structspacecraft_pointing_config_1a6d81013c52c1c799fc6ce36eaf3ecc99" kindref="member">i</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="structspacecraft_pointing_config_1a9a0ff0151940085892693cfba121f65d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="structspacecraft_pointing_config_1a9a0ff0151940085892693cfba121f65d" kindref="member">priorTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsgPayload<sp/><ref refid="structspacecraft_pointing_config_1a405549236750369ecb9aeed9e28f4181" kindref="member">attReferenceOutBuffer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="structspacecraft_pointing_config_1a7034e2f43671e83244a36e6357aa9449" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structspacecraft_pointing_config_1a7034e2f43671e83244a36e6357aa9449" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_spacecraftPointing(<ref refid="structspacecraft_pointing_config" kindref="compound">spacecraftPointingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftPointing/spacecraftPointing.h"/>
+  </compounddef>
+</doxygen>

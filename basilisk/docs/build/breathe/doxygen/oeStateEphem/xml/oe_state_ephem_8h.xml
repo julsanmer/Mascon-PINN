@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="oe_state_ephem_8h" kind="file" language="C++">
+    <compoundname>oeStateEphem.h</compoundname>
+    <includes local="yes">cMsgCInterface/TDBVehicleClockCorrelationMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/EphemerisMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="oe_state_ephem_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h</label>
+        <link refid="oe_state_ephem_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/EphemerisMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/TDBVehicleClockCorrelationMsg_C.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_cheby_o_e_record" prot="public">ChebyOERecord</innerclass>
+    <innerclass refid="struct_o_e_state_ephem_data" prot="public">OEStateEphemData</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="oe_state_ephem_8h_1a577a0260cd44e2f3cafeeed78e72491a" prot="public" static="no">
+        <name>MAX_OE_RECORDS</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" line="28" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="oe_state_ephem_8h_1a17db1afa299ab2343abd11508af5eea5" prot="public" static="no">
+        <name>MAX_OE_COEFF</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" line="29" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="oe_state_ephem_8h_1a3c86d5c6f9feccee1d7d448e60805988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates the output navigation message (translation only) for the ephemeris model <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" line="69" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="37" bodyend="40" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" declline="69" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="oe_state_ephem_8h_1a59dd9749c63d204aff0cfdb6875a3849" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the current time and computes the state of the object using that time and the stored Chebyshev coefficients. If the time provided is outside the specified range, the position vectors rail high/low appropriately. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>read in the input message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute time for fitting interval</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>select the fitting coefficients for the nearest fit interval</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine the scaled fitting time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine the true anomaly angle</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>determine semi-major axis</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Determine position and velocity vectors</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" line="70" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="66" bodyend="152" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" declline="70" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="oe_state_ephem_8h_1ac9cf7c960e102f9e065f2a0ab18dd25a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_oeStateEphem</definition>
+        <argsstring>(OEStateEphemData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_oeStateEphem</name>
+        <param>
+          <type><ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This Reset method is empty <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" line="72" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.c" bodystart="49" bodyend="56" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h" declline="72" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_OE_STATE_EPHEM_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_OE_STATE_EPHEM_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/TDBVehicleClockCorrelationMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/EphemerisMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_OE_RECORDS<sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_OE_COEFF<sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="struct_cheby_o_e_record" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38" refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_cheby_o_e_record_1a75e539c95f403f873259e16001258b4e" kindref="member">nChebCoeff</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="struct_cheby_o_e_record_1a0790b587a5b323232b091874d6218186" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_cheby_o_e_record_1a0790b587a5b323232b091874d6218186" kindref="member">ephemTimeMid</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="struct_cheby_o_e_record_1aab427c23fad11fe94f596a7f77cbd92f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_cheby_o_e_record_1aab427c23fad11fe94f596a7f77cbd92f" kindref="member">ephemTimeRad</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="struct_cheby_o_e_record_1a1f8766d1e415267599c81ba216170205" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rPeriapCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_cheby_o_e_record_1a6aa0874fce0ef407ec332c274938b74b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>eccCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="struct_cheby_o_e_record_1a56af813968911b623235377de047ee45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>incCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="struct_cheby_o_e_record_1ae90c8d83bf871a660274679c73524b74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>argPerCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_cheby_o_e_record_1a5cc61eb189c6cc45fef6b2a674105152" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RAANCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_cheby_o_e_record_1ae8b8c09ee6c07c4f7e018e24e3ccbc7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>anomCoeff[MAX_OE_COEFF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="struct_cheby_o_e_record_1a00c9bf0b19c60354265cc1d98aaee801" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_cheby_o_e_record_1a00c9bf0b19c60354265cc1d98aaee801" kindref="member">anomalyFlag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<ref refid="struct_cheby_o_e_record" kindref="compound">ChebyOERecord</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="struct_o_e_state_ephem_data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56" refid="struct_o_e_state_ephem_data_1a0bbd59974425f2e9cc933e76495001b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsg_C<sp/><ref refid="struct_o_e_state_ephem_data_1a0bbd59974425f2e9cc933e76495001b5" kindref="member">stateFitOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_o_e_state_ephem_data_1a77d587fe44c41a8e55289346cb470915" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>TDBVehicleClockCorrelationMsg_C<sp/><ref refid="struct_o_e_state_ephem_data_1a77d587fe44c41a8e55289346cb470915" kindref="member">clockCorrInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="struct_o_e_state_ephem_data_1ad42a0abc817fb2c21906694e80bee927" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_o_e_state_ephem_data_1ad42a0abc817fb2c21906694e80bee927" kindref="member">muCentral</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="struct_o_e_state_ephem_data_1ad90a9e35a9ce60901a4b83ed9fd94176" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_cheby_o_e_record" kindref="compound">ChebyOERecord</ref><sp/>ephArray[MAX_OE_RECORDS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="struct_o_e_state_ephem_data_1ab82a05742248a759bdc6b6cb8cbf6fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_o_e_state_ephem_data_1ab82a05742248a759bdc6b6cb8cbf6fc7" kindref="member">coeffSelector</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="struct_o_e_state_ephem_data_1ab433d6dd8852214a5ecc63af41cd7f12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="struct_o_e_state_ephem_data_1ab433d6dd8852214a5ecc63af41cd7f12" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_oeStateEphem(<ref refid="struct_o_e_state_ephem_data" kindref="compound">OEStateEphemData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/transDetermination/oeStateEphem/oeStateEphem.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_prescribed_motion_state_effector" kind="class" language="C++" prot="public">
+    <compoundname>PrescribedMotionStateEffector</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">StateEffector</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="prescribed_motion_state_effector_8h" local="no">prescribedMotionStateEffector.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a1f075a1a64d9840d1999de9a4842bada" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PrescribedMotionStateEffector::currentSimTimeSec</definition>
+        <argsstring></argsstring>
+        <name>currentSimTimeSec</name>
+        <qualifiedname>PrescribedMotionStateEffector::currentSimTimeSec</qualifiedname>
+        <briefdescription>
+<para>[s] Current simulation time, updated at the dynamics frequency </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="58" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PrescribedMotionStateEffector::mass</definition>
+        <argsstring></argsstring>
+        <name>mass</name>
+        <qualifiedname>PrescribedMotionStateEffector::mass</qualifiedname>
+        <briefdescription>
+<para>[kg] Effector mass </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="59" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ac3aba8beee9dbafd5df01fe6256da862" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::IPntFc_F</definition>
+        <argsstring></argsstring>
+        <name>IPntFc_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::IPntFc_F</qualifiedname>
+        <briefdescription>
+<para>[kg-m^2] Inertia of the effector about its center of mass in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="60" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1abe031f922f14724ba8058c551836cc00" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_MB_B</definition>
+        <argsstring></argsstring>
+        <name>r_MB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_MB_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of point M relative to point B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="61" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1aeb0ce1775f4f01355052ace7fade8bc6" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FcF_F</definition>
+        <argsstring></argsstring>
+        <name>r_FcF_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FcF_F</qualifiedname>
+        <briefdescription>
+<para>[m] Position of the effector center of mass relative to point F in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="62" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a752c64c0d5a21c6a0053c5fb33c3d494" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_MB_B</definition>
+        <argsstring></argsstring>
+        <name>omega_MB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_MB_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame M with respect to frame B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="63" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ac16d31c31ca5e8b36aa37c931a7b9ae7" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omegaPrime_MB_B</definition>
+        <argsstring></argsstring>
+        <name>omegaPrime_MB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaPrime_MB_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s^2] B frame time derivative of omega_MB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="64" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a205e88ae7accc04bbcbbb21f21e3b692" prot="public" static="no" mutable="no">
+        <type>Eigen::MRPd</type>
+        <definition>Eigen::MRPd PrescribedMotionStateEffector::sigma_MB</definition>
+        <argsstring></argsstring>
+        <name>sigma_MB</name>
+        <qualifiedname>PrescribedMotionStateEffector::sigma_MB</qualifiedname>
+        <briefdescription>
+<para>MRP attitude of frame M relative to frame B. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="65" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FM_M</definition>
+        <argsstring></argsstring>
+        <name>r_FM_M</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FM_M</qualifiedname>
+        <briefdescription>
+<para>[m] Position of point F relative to point M in M frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="68" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrime_FM_M</definition>
+        <argsstring></argsstring>
+        <name>rPrime_FM_M</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrime_FM_M</qualifiedname>
+        <briefdescription>
+<para>[m/s] B frame time derivative of r_FM_M in M frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="69" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrimePrime_FM_M</definition>
+        <argsstring></argsstring>
+        <name>rPrimePrime_FM_M</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrimePrime_FM_M</qualifiedname>
+        <briefdescription>
+<para>[m/s^2] B frame time derivative of rPrime_FM_M in M frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="70" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_FM_F</definition>
+        <argsstring></argsstring>
+        <name>omega_FM_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_FM_F</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame F relative to frame M in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="71" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omegaPrime_FM_F</definition>
+        <argsstring></argsstring>
+        <name>omegaPrime_FM_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaPrime_FM_F</qualifiedname>
+        <briefdescription>
+<para>[rad/s^2] B frame time derivative of omega_FM_F in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="72" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" prot="public" static="no" mutable="no">
+        <type>Eigen::MRPd</type>
+        <definition>Eigen::MRPd PrescribedMotionStateEffector::sigma_FM</definition>
+        <argsstring></argsstring>
+        <name>sigma_FM</name>
+        <qualifiedname>PrescribedMotionStateEffector::sigma_FM</qualifiedname>
+        <briefdescription>
+<para>MRP attitude of frame F relative to frame M. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="73" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1af0ca0129fba4383c9cb5dea9791bd8f6" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string PrescribedMotionStateEffector::nameOfsigma_FMState</definition>
+        <argsstring></argsstring>
+        <name>nameOfsigma_FMState</name>
+        <qualifiedname>PrescribedMotionStateEffector::nameOfsigma_FMState</qualifiedname>
+        <briefdescription>
+<para>Identifier for the sigma_FM state data container. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="74" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a60e97b8b414e13dfee172dac69ea3b58" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; PrescribedMotionMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;PrescribedMotionMsgPayload&gt; PrescribedMotionStateEffector::prescribedMotionInMsg</definition>
+        <argsstring></argsstring>
+        <name>prescribedMotionInMsg</name>
+        <qualifiedname>PrescribedMotionStateEffector::prescribedMotionInMsg</qualifiedname>
+        <briefdescription>
+<para>Input message for the effector&apos;s prescribed states. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="76" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a7d30215be28706411ca5bb29c1d5fb25" prot="public" static="no" mutable="no">
+        <type>Message&lt; PrescribedMotionMsgPayload &gt;</type>
+        <definition>Message&lt;PrescribedMotionMsgPayload&gt; PrescribedMotionStateEffector::prescribedMotionOutMsg</definition>
+        <argsstring></argsstring>
+        <name>prescribedMotionOutMsg</name>
+        <qualifiedname>PrescribedMotionStateEffector::prescribedMotionOutMsg</qualifiedname>
+        <briefdescription>
+<para>Output message for the effector&apos;s prescribed states. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="77" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a5712b59c0ad8eecb9737346fb1e30d78" prot="public" static="no" mutable="no">
+        <type>Message&lt; SCStatesMsgPayload &gt;</type>
+        <definition>Message&lt;SCStatesMsgPayload&gt; PrescribedMotionStateEffector::prescribedMotionConfigLogOutMsg</definition>
+        <argsstring></argsstring>
+        <name>prescribedMotionConfigLogOutMsg</name>
+        <qualifiedname>PrescribedMotionStateEffector::prescribedMotionConfigLogOutMsg</qualifiedname>
+        <briefdescription>
+<para>Output config log message for the effector&apos;s states. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="78" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a381e029650ae4e6fa23ed16bac806ec0" prot="private" static="yes" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t PrescribedMotionStateEffector::effectorID</definition>
+        <argsstring></argsstring>
+        <name>effectorID</name>
+        <qualifiedname>PrescribedMotionStateEffector::effectorID</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>ID number of this panel. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="81" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a2acefcdda1eaf21bf6e2f8880c04ecc6" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::IPntFc_B</definition>
+        <argsstring></argsstring>
+        <name>IPntFc_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::IPntFc_B</qualifiedname>
+        <briefdescription>
+<para>[kg-m^2] Inertia of the effector about its center of mass in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="84" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a2b680e7d45406beb5c18380493bc8658" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FB_B</definition>
+        <argsstring></argsstring>
+        <name>r_FB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FB_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of point F relative to point B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="85" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a73ac4828e83402e7f633cd497ea74571" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FcF_B</definition>
+        <argsstring></argsstring>
+        <name>r_FcF_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FcF_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of the effector center of mass relative to point F in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="86" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a8022a9dc89ad1ad510e59288e63babf6" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FM_B</definition>
+        <argsstring></argsstring>
+        <name>r_FM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FM_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of point F relative to point M in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="89" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a9164144a91a8fa14961a23c98945af39" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrime_FM_B</definition>
+        <argsstring></argsstring>
+        <name>rPrime_FM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrime_FM_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] B frame time derivative of position r_FM_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="90" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a26209b84f7a2630636b55a7506dd001a" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrimePrime_FM_B</definition>
+        <argsstring></argsstring>
+        <name>rPrimePrime_FM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrimePrime_FM_B</qualifiedname>
+        <briefdescription>
+<para>[m/s^2] B frame time derivative of rPrime_FM_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="91" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1af6f3b69a8ea43b75a34af658f5410875" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_FM_B</definition>
+        <argsstring></argsstring>
+        <name>omega_FM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_FM_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of F frame relative to the M frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="92" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a10c80b295e054b26cf5a48e466c740fc" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omegaPrime_FM_B</definition>
+        <argsstring></argsstring>
+        <name>omegaPrime_FM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaPrime_FM_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s^2] B frame time derivative of omega_FB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="93" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1aef3a33d4a190c5a21702b738f12d5f24" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_FB_B</definition>
+        <argsstring></argsstring>
+        <name>omega_FB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_FB_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame F relative to frame B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="94" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1aa84b6952d2235f3db2fda0a39ee4698e" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omegaPrime_FB_B</definition>
+        <argsstring></argsstring>
+        <name>omegaPrime_FB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaPrime_FB_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s^2] B frame time derivative of omega_FB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="95" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a889fb1897e854f67cdbb1681fdd171fc" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FcM_B</definition>
+        <argsstring></argsstring>
+        <name>r_FcM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FcM_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of frame F center of mass relative to point M in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="98" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a04a5e805d00cda8c1e52a3c0f3ab2732" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FcB_B</definition>
+        <argsstring></argsstring>
+        <name>r_FcB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FcB_B</qualifiedname>
+        <briefdescription>
+<para>[m] Position of frame F center of mass relative to point B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="99" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ad17329ea32206d41727276eb5c5a30c0" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrime_FcM_B</definition>
+        <argsstring></argsstring>
+        <name>rPrime_FcM_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrime_FcM_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] B frame time derivative of r_FcM_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="100" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a9f74dd89b944c4f6bb4d988e58d53078" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrime_FcB_B</definition>
+        <argsstring></argsstring>
+        <name>rPrime_FcB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrime_FcB_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] B frame time derivative of r_FcB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="101" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a30f230438372b5b812c0d3cd52fa754d" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrimePrime_FcB_B</definition>
+        <argsstring></argsstring>
+        <name>rPrimePrime_FcB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrimePrime_FcB_B</qualifiedname>
+        <briefdescription>
+<para>[m/s^2] B frame time derivative of rPrime_FcB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="102" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1abe58b94d3d2b6955855decead27aed2b" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_BN_B</definition>
+        <argsstring></argsstring>
+        <name>omega_BN_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_BN_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame B relative to the inertial frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="103" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a273545c92bae41539c484b23a6036030" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_FN_B</definition>
+        <argsstring></argsstring>
+        <name>omega_FN_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_FN_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame F relative to the inertial frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="104" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1aa02b6e99b0e9fc86e4ebc14b54209df8" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rDot_FcB_B</definition>
+        <argsstring></argsstring>
+        <name>rDot_FcB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rDot_FcB_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] Inertial time derivative of r_FcB_B in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="105" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a651984fafa95d4940768b0b1548f1cc2" prot="private" static="no" mutable="no">
+        <type>Eigen::MRPd</type>
+        <definition>Eigen::MRPd PrescribedMotionStateEffector::sigma_BN</definition>
+        <argsstring></argsstring>
+        <name>sigma_BN</name>
+        <qualifiedname>PrescribedMotionStateEffector::sigma_BN</qualifiedname>
+        <briefdescription>
+<para>MRP attitude of frame B relative to the inertial frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="106" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a5f939017bea808b317a10e0d50125746" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::dcm_BN</definition>
+        <argsstring></argsstring>
+        <name>dcm_BN</name>
+        <qualifiedname>PrescribedMotionStateEffector::dcm_BN</qualifiedname>
+        <briefdescription>
+<para>DCM from inertial frame to frame B. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="109" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ab238f6d2f4ec36bcfd80805d9cc0652d" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::dcm_BM</definition>
+        <argsstring></argsstring>
+        <name>dcm_BM</name>
+        <qualifiedname>PrescribedMotionStateEffector::dcm_BM</qualifiedname>
+        <briefdescription>
+<para>DCM from frame M to frame B. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="110" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a6c135c830df7a341a7be31d7a1a53d8c" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::dcm_FM</definition>
+        <argsstring></argsstring>
+        <name>dcm_FM</name>
+        <qualifiedname>PrescribedMotionStateEffector::dcm_FM</qualifiedname>
+        <briefdescription>
+<para>DCM from frame M to frame F. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="111" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a61559cb3b7fcb411fab5a8a5d7810bfc" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::dcm_BF</definition>
+        <argsstring></argsstring>
+        <name>dcm_BF</name>
+        <qualifiedname>PrescribedMotionStateEffector::dcm_BF</qualifiedname>
+        <briefdescription>
+<para>DCM from frame F to frame B. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="112" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1ae599c445cf0ccaac299e5cc03cac262b" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::rTilde_FcB_B</definition>
+        <argsstring></argsstring>
+        <name>rTilde_FcB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::rTilde_FcB_B</qualifiedname>
+        <briefdescription>
+<para>[m] Tilde cross product matrix of r_FcB_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="115" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a8aea38bb11b18eba7c9fd112715ca1f9" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::omegaTilde_BN_B</definition>
+        <argsstring></argsstring>
+        <name>omegaTilde_BN_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaTilde_BN_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Tilde cross product matrix of omega_BN_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="116" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a062fd970daa8b5c1eed537315e357a39" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d PrescribedMotionStateEffector::omegaTilde_FB_B</definition>
+        <argsstring></argsstring>
+        <name>omegaTilde_FB_B</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaTilde_FB_B</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Tilde cross product matrix of omega_FB_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="117" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a2f90f905798f1b787e70812d485ebcb3" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::r_FcN_N</definition>
+        <argsstring></argsstring>
+        <name>r_FcN_N</name>
+        <qualifiedname>PrescribedMotionStateEffector::r_FcN_N</qualifiedname>
+        <briefdescription>
+<para>[m] Position of frame F center of mass relative to the inertial frame in inertial frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="120" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a0c4b3fa30ee6c747e92a4defc2f19c9a" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::v_FcN_N</definition>
+        <argsstring></argsstring>
+        <name>v_FcN_N</name>
+        <qualifiedname>PrescribedMotionStateEffector::v_FcN_N</qualifiedname>
+        <briefdescription>
+<para>[m/s] Inertial velocity of frame F center of mass relative to the inertial frame in inertial frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="121" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a9489921e4aa7b37e2fbede3478f2e82c" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::sigma_FN</definition>
+        <argsstring></argsstring>
+        <name>sigma_FN</name>
+        <qualifiedname>PrescribedMotionStateEffector::sigma_FN</qualifiedname>
+        <briefdescription>
+<para>MRP attitude of frame F relative to the inertial frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="122" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a8050c20bbaa67fd1875e5ebc370343bc" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omega_FN_F</definition>
+        <argsstring></argsstring>
+        <name>omega_FN_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::omega_FN_F</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame F relative to the inertial frame in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="123" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a23983527fd7e377decb7b0719df01263" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* PrescribedMotionStateEffector::hubSigma</definition>
+        <argsstring></argsstring>
+        <name>hubSigma</name>
+        <qualifiedname>PrescribedMotionStateEffector::hubSigma</qualifiedname>
+        <briefdescription>
+<para>Hub attitude relative to the inertial frame represented by MRP. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="126" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a880af96258776d0f548ce5cb7379b6ab" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* PrescribedMotionStateEffector::hubOmega</definition>
+        <argsstring></argsstring>
+        <name>hubOmega</name>
+        <qualifiedname>PrescribedMotionStateEffector::hubOmega</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Hub angular velocity in B frame components relative to the inertial frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="127" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a529b26f1182fbede7e23da64c83440cf" prot="private" static="no" mutable="no">
+        <type>Eigen::MatrixXd *</type>
+        <definition>Eigen::MatrixXd* PrescribedMotionStateEffector::inertialPositionProperty</definition>
+        <argsstring></argsstring>
+        <name>inertialPositionProperty</name>
+        <qualifiedname>PrescribedMotionStateEffector::inertialPositionProperty</qualifiedname>
+        <briefdescription>
+<para>[m] r_N Inertial position relative to system spice zeroBase/refBase </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="128" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1af4a738f1e29e4178f960f08212cde65a" prot="private" static="no" mutable="no">
+        <type>Eigen::MatrixXd *</type>
+        <definition>Eigen::MatrixXd* PrescribedMotionStateEffector::inertialVelocityProperty</definition>
+        <argsstring></argsstring>
+        <name>inertialVelocityProperty</name>
+        <qualifiedname>PrescribedMotionStateEffector::inertialVelocityProperty</qualifiedname>
+        <briefdescription>
+<para>[m] v_N Inertial velocity relative to system spice zeroBase/refBase </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="129" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a5384ef2d242a590709160c355283012f" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rEpoch_FM_M</definition>
+        <argsstring></argsstring>
+        <name>rEpoch_FM_M</name>
+        <qualifiedname>PrescribedMotionStateEffector::rEpoch_FM_M</qualifiedname>
+        <briefdescription>
+<para>[m] Position of point F relative to point M in M frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="132" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a2f054efe118450eba5a89563ccc80b03" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::rPrimeEpoch_FM_M</definition>
+        <argsstring></argsstring>
+        <name>rPrimeEpoch_FM_M</name>
+        <qualifiedname>PrescribedMotionStateEffector::rPrimeEpoch_FM_M</qualifiedname>
+        <briefdescription>
+<para>[m/s] B frame time derivative of r_FM_M in M frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="133" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a5d1819a32ec4e022760fb77208732ca4" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PrescribedMotionStateEffector::omegaEpoch_FM_F</definition>
+        <argsstring></argsstring>
+        <name>omegaEpoch_FM_F</name>
+        <qualifiedname>PrescribedMotionStateEffector::omegaEpoch_FM_F</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Angular velocity of frame F relative to frame M in F frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="134" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_prescribed_motion_state_effector_1a25968273dc5dc478d9bb564c1f1d1f39" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* PrescribedMotionStateEffector::sigma_FMState</definition>
+        <argsstring></argsstring>
+        <name>sigma_FMState</name>
+        <qualifiedname>PrescribedMotionStateEffector::sigma_FMState</qualifiedname>
+        <briefdescription>
+<para>MRP attitude of frame F relative to frame M. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="135" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1ab5f0193926e271a4839c863017abf053" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PrescribedMotionStateEffector::PrescribedMotionStateEffector</definition>
+        <argsstring>()</argsstring>
+        <name>PrescribedMotionStateEffector</name>
+        <qualifiedname>PrescribedMotionStateEffector::PrescribedMotionStateEffector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor, setting variables to default values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="35" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="26" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a8b494c74e15cabc96123d5ddafcb7609" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PrescribedMotionStateEffector::~PrescribedMotionStateEffector</definition>
+        <argsstring>()</argsstring>
+        <name>~PrescribedMotionStateEffector</name>
+        <qualifiedname>PrescribedMotionStateEffector::~PrescribedMotionStateEffector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the destructor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="36" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a69f13d0a52abadb02e2d88f8fbc0b695" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::Reset</definition>
+        <argsstring>(uint64_t currentClock) override</argsstring>
+        <name>Reset</name>
+        <qualifiedname>PrescribedMotionStateEffector::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>currentClock</declname>
+        </param>
+        <briefdescription>
+<para>Method for reset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentClock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[ns] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="37" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="76" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a5b8785daabc7ff5148620dd056426822" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::writeOutputStateMessages</definition>
+        <argsstring>(uint64_t currentClock) override</argsstring>
+        <name>writeOutputStateMessages</name>
+        <qualifiedname>PrescribedMotionStateEffector::writeOutputStateMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>currentClock</declname>
+        </param>
+        <briefdescription>
+<para>Method for writing the output messages. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the computed states and outputs them to the messaging system. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentClock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[ns] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="38" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="84" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1aefa3b7999a1e965b68326c841e35ec0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::UpdateState</definition>
+        <argsstring>(uint64_t currentSimNanos) override</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>PrescribedMotionStateEffector::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>currentSimNanos</declname>
+        </param>
+        <briefdescription>
+<para>Method for updating the effector states. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method updates the effector state at the dynamics frequency. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[ns] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="39" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="316" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a4d7e859e1994dd5ef0483e4b563e52ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::registerStates</definition>
+        <argsstring>(DynParamManager &amp;statesIn) override</argsstring>
+        <name>registerStates</name>
+        <qualifiedname>PrescribedMotionStateEffector::registerStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>statesIn</declname>
+          <defname>states</defname>
+        </param>
+        <briefdescription>
+<para>Method for registering the effector&apos;s states. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the state effector to register its states with the dynamic parameter manager. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to give the state effector access the hub states </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="40" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="132" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a65309b96baeb45c6d80518641a571bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::linkInStates</definition>
+        <argsstring>(DynParamManager &amp;states) override</argsstring>
+        <name>linkInStates</name>
+        <qualifiedname>PrescribedMotionStateEffector::linkInStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>states</declname>
+          <defname>statesIn</defname>
+        </param>
+        <briefdescription>
+<para>Method for giving the effector access to hub states. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the effector to have access to the hub states. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statesIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to give the state effector access the hub states </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="41" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="119" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1ae6ec889b474e02bd8cbdaa6631ed9914" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::updateContributions</definition>
+        <argsstring>(double integTime, BackSubMatrices &amp;backSubContr, Eigen::Vector3d sigma_BN, Eigen::Vector3d omega_BN_B, Eigen::Vector3d g_N) override</argsstring>
+        <name>updateContributions</name>
+        <qualifiedname>PrescribedMotionStateEffector::updateContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>BackSubMatrices &amp;</type>
+          <declname>backSubContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>g_N</declname>
+        </param>
+        <briefdescription>
+<para>Method for computing the effector&apos;s back-substitution contributions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the state effector to give its contributions to the matrices needed for the back-sub. method <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>integTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[s] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>backSubContr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>State effector contribution matrices for back-substitution </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_BN</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current B frame attitude with respect to the inertial frame </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omega_BN_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[rad/s] Angular velocity of the B frame with respect to the inertial frame, expressed in B frame components </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m/s^2] Gravitational acceleration in N frame components </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="217" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1abd2755ebccbe9fa578a84bb6f91dcbf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::computeDerivatives</definition>
+        <argsstring>(double integTime, Eigen::Vector3d rDDot_BN_N, Eigen::Vector3d omegaDot_BN_B, Eigen::Vector3d sigma_BN) override</argsstring>
+        <name>computeDerivatives</name>
+        <qualifiedname>PrescribedMotionStateEffector::computeDerivatives</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rDDot_BN_N</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omegaDot_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <briefdescription>
+<para>Method for effector to compute its state derivatives. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is for defining the state effector&apos;s MRP state derivative <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>integTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[s] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rDDot_BN_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m/s^2] Acceleration of the vector pointing from the inertial frame origin to the B frame origin, expressed in inertial frame components </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omegaDot_BN_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[rad/s^2] Inertial time derivative of the angular velocity of the B frame with respect to the inertial frame, expressed in B frame components </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_BN</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current B frame attitude with respect to the inertial frame </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="47" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="257" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a49784b562bc29cfcb6914c06bc11decd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::updateEffectorMassProps</definition>
+        <argsstring>(double integTime) override</argsstring>
+        <name>updateEffectorMassProps</name>
+        <qualifiedname>PrescribedMotionStateEffector::updateEffectorMassProps</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para>Method for calculating the effector mass props and prop rates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the state effector to provide its contributions to the mass props and mass prop rates of the spacecraft. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>integTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[s] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="51" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="148" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1a05c880db26b9076d37cb3daf9af504f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::updateEnergyMomContributions</definition>
+        <argsstring>(double integTime, Eigen::Vector3d &amp;rotAngMomPntCContr_B, double &amp;rotEnergyContr, Eigen::Vector3d omega_BN_B) override</argsstring>
+        <name>updateEnergyMomContributions</name>
+        <qualifiedname>PrescribedMotionStateEffector::updateEnergyMomContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d &amp;</type>
+          <declname>rotAngMomPntCContr_B</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>rotEnergyContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <briefdescription>
+<para>Method for computing the energy and momentum of the effector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is for calculating the contributions of the effector to the energy and momentum of the spacecraft. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>integTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[s] Time the method is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotAngMomPntCContr_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[kg m^2/s] Contribution of stateEffector to total rotational angular mom </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rotEnergyContr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[J] Contribution of stateEffector to total rotational energy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omega_BN_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[rad/s] Angular velocity of the B frame with respect to the inertial frame, expressed in B frame components </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="52" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="275" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_prescribed_motion_state_effector_1af246c61319b45facad3451aad54e5c81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PrescribedMotionStateEffector::computePrescribedMotionInertialStates</definition>
+        <argsstring>()</argsstring>
+        <name>computePrescribedMotionInertialStates</name>
+        <qualifiedname>PrescribedMotionStateEffector::computePrescribedMotionInertialStates</qualifiedname>
+        <briefdescription>
+<para>Method for computing the effector&apos;s states relative to the inertial frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the effector states relative to the inertial frame. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="56" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp" bodystart="299" bodyend="310"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>prescribed motion state effector class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>PrescribedMotionStateEffector</label>
+        <link refid="class_prescribed_motion_state_effector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>PrescribedMotionStateEffector</label>
+        <link refid="class_prescribed_motion_state_effector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" line="33" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.h" bodystart="33" bodyend="137"/>
+    <listofallmembers>
+      <member refid="class_prescribed_motion_state_effector_1abd2755ebccbe9fa578a84bb6f91dcbf2" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>computeDerivatives</name></member>
+      <member refid="class_prescribed_motion_state_effector_1af246c61319b45facad3451aad54e5c81" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>computePrescribedMotionInertialStates</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a1f075a1a64d9840d1999de9a4842bada" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>currentSimTimeSec</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a61559cb3b7fcb411fab5a8a5d7810bfc" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>dcm_BF</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ab238f6d2f4ec36bcfd80805d9cc0652d" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>dcm_BM</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a5f939017bea808b317a10e0d50125746" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>dcm_BN</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a6c135c830df7a341a7be31d7a1a53d8c" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>dcm_FM</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a381e029650ae4e6fa23ed16bac806ec0" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>effectorID</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a880af96258776d0f548ce5cb7379b6ab" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>hubOmega</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a23983527fd7e377decb7b0719df01263" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>hubSigma</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a529b26f1182fbede7e23da64c83440cf" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>inertialPositionProperty</name></member>
+      <member refid="class_prescribed_motion_state_effector_1af4a738f1e29e4178f960f08212cde65a" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>inertialVelocityProperty</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a2acefcdda1eaf21bf6e2f8880c04ecc6" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>IPntFc_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ac3aba8beee9dbafd5df01fe6256da862" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>IPntFc_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a65309b96baeb45c6d80518641a571bad" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>linkInStates</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>mass</name></member>
+      <member refid="class_prescribed_motion_state_effector_1af0ca0129fba4383c9cb5dea9791bd8f6" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>nameOfsigma_FMState</name></member>
+      <member refid="class_prescribed_motion_state_effector_1abe58b94d3d2b6955855decead27aed2b" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_BN_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1aef3a33d4a190c5a21702b738f12d5f24" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_FB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1af6f3b69a8ea43b75a34af658f5410875" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_FM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_FM_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a273545c92bae41539c484b23a6036030" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_FN_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a8050c20bbaa67fd1875e5ebc370343bc" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_FN_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a752c64c0d5a21c6a0053c5fb33c3d494" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omega_MB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a5d1819a32ec4e022760fb77208732ca4" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaEpoch_FM_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1aa84b6952d2235f3db2fda0a39ee4698e" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaPrime_FB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a10c80b295e054b26cf5a48e466c740fc" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaPrime_FM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaPrime_FM_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ac16d31c31ca5e8b36aa37c931a7b9ae7" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaPrime_MB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a8aea38bb11b18eba7c9fd112715ca1f9" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaTilde_BN_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a062fd970daa8b5c1eed537315e357a39" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>omegaTilde_FB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a5712b59c0ad8eecb9737346fb1e30d78" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>prescribedMotionConfigLogOutMsg</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a60e97b8b414e13dfee172dac69ea3b58" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>prescribedMotionInMsg</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a7d30215be28706411ca5bb29c1d5fb25" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>prescribedMotionOutMsg</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ab5f0193926e271a4839c863017abf053" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>PrescribedMotionStateEffector</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a2b680e7d45406beb5c18380493bc8658" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a04a5e805d00cda8c1e52a3c0f3ab2732" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FcB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a73ac4828e83402e7f633cd497ea74571" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FcF_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1aeb0ce1775f4f01355052ace7fade8bc6" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FcF_F</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a889fb1897e854f67cdbb1681fdd171fc" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FcM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a2f90f905798f1b787e70812d485ebcb3" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FcN_N</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a8022a9dc89ad1ad510e59288e63babf6" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_FM_M</name></member>
+      <member refid="class_prescribed_motion_state_effector_1abe031f922f14724ba8058c551836cc00" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>r_MB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1aa02b6e99b0e9fc86e4ebc14b54209df8" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rDot_FcB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a4d7e859e1994dd5ef0483e4b563e52ca" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>registerStates</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a5384ef2d242a590709160c355283012f" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rEpoch_FM_M</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a69f13d0a52abadb02e2d88f8fbc0b695" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>Reset</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a9f74dd89b944c4f6bb4d988e58d53078" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrime_FcB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ad17329ea32206d41727276eb5c5a30c0" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrime_FcM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a9164144a91a8fa14961a23c98945af39" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrime_FM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrime_FM_M</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a2f054efe118450eba5a89563ccc80b03" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrimeEpoch_FM_M</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a30f230438372b5b812c0d3cd52fa754d" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrimePrime_FcB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a26209b84f7a2630636b55a7506dd001a" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrimePrime_FM_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rPrimePrime_FM_M</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ae599c445cf0ccaac299e5cc03cac262b" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>rTilde_FcB_B</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a651984fafa95d4940768b0b1548f1cc2" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>sigma_BN</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>sigma_FM</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a25968273dc5dc478d9bb564c1f1d1f39" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>sigma_FMState</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a9489921e4aa7b37e2fbede3478f2e82c" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>sigma_FN</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a205e88ae7accc04bbcbbb21f21e3b692" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>sigma_MB</name></member>
+      <member refid="class_prescribed_motion_state_effector_1ae6ec889b474e02bd8cbdaa6631ed9914" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>updateContributions</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a49784b562bc29cfcb6914c06bc11decd" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>updateEffectorMassProps</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a05c880db26b9076d37cb3daf9af504f4" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>updateEnergyMomContributions</name></member>
+      <member refid="class_prescribed_motion_state_effector_1aefa3b7999a1e965b68326c841e35ec0c" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>UpdateState</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a0c4b3fa30ee6c747e92a4defc2f19c9a" prot="private" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>v_FcN_N</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a5b8785daabc7ff5148620dd056426822" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>writeOutputStateMessages</name></member>
+      <member refid="class_prescribed_motion_state_effector_1a8b494c74e15cabc96123d5ddafcb7609" prot="public" virt="non-virtual"><scope>PrescribedMotionStateEffector</scope><name>~PrescribedMotionStateEffector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

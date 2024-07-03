@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/src/simulation/vizard/dataFileToViz/dataFileToViz.cpp \
+  /Users/julio/Desktop/basilisk/src/simulation/vizard/dataFileToViz/dataFileToViz.h \
+  /Users/julio/Desktop/basilisk/src/architecture/_GeneralModuleFiles/sys_model.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/bskLogging.h \
+  /Users/julio/Desktop/basilisk/src/simulation/vizard/_GeneralModuleFiles/vizStructures.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/RWConfigLogMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/simulation/dynamics/reactionWheels/reactionWheelSupport.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/SCStatesMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/DeviceCmdMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/DataNodeUsageMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefCpp/DataStorageStatusMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/PowerStorageStatusMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/FuelTankMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/ColorMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefCpp/CSSConfigLogMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefCpp/THROutputMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefCpp/ChargeMsmMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/msgHeader.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/linearAlgebra.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/rigidBodyKinematics.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenSupport.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenMRP.h

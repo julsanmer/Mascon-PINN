@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="spacecraft_system_8h" kind="file" language="C++">
+    <compoundname>spacecraftSystem.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/dynParamManager.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/stateEffector.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/dynamicEffector.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/gravityEffector.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/dynamicObject.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/stateVecIntegrator.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">../_GeneralModuleFiles/hubEffector.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCMassPropsMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCEnergyMomentumMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="spacecraft_system_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/spacecraftSystem/spacecraftSystem.cpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>../_GeneralModuleFiles/dynParamManager.h</label>
+      </node>
+      <node id="6">
+        <label>../_GeneralModuleFiles/dynamicEffector.h</label>
+      </node>
+      <node id="8">
+        <label>../_GeneralModuleFiles/dynamicObject.h</label>
+      </node>
+      <node id="7">
+        <label>../_GeneralModuleFiles/gravityEffector.h</label>
+      </node>
+      <node id="11">
+        <label>../_GeneralModuleFiles/hubEffector.h</label>
+      </node>
+      <node id="5">
+        <label>../_GeneralModuleFiles/stateEffector.h</label>
+      </node>
+      <node id="9">
+        <label>../_GeneralModuleFiles/stateVecIntegrator.h</label>
+      </node>
+      <node id="10">
+        <label>../_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/spacecraftSystem/spacecraftSystem.h</label>
+        <link refid="spacecraft_system_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/msgPayloadDefC/SCEnergyMomentumMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/msgPayloadDefC/SCMassPropsMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_docking_data" prot="public">DockingData</innerclass>
+    <innerclass refid="class_spacecraft_unit" prot="public">SpacecraftUnit</innerclass>
+    <innerclass refid="class_spacecraft_system" prot="public">SpacecraftSystem</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SPACECRAFT_DYNAMICS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SPACECRAFT_DYNAMICS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/dynParamManager.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/stateEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/gravityEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/dynamicObject.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/stateVecIntegrator.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../_GeneralModuleFiles/hubEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCMassPropsMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCEnergyMomentumMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="struct_docking_data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_docking_data" kindref="compound">DockingData</ref><sp/>{</highlight></codeline>
+<codeline lineno="44" refid="struct_docking_data_1af0374eba11aa8875b894de7ed5cee95a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="struct_docking_data_1af0374eba11aa8875b894de7ed5cee95a" kindref="member">r_DB_B</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="struct_docking_data_1a1196f43be409bda7e9209bc12bd378e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="struct_docking_data_1a1196f43be409bda7e9209bc12bd378e1" kindref="member">dcm_DB</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="struct_docking_data_1ace770bdc8fb01dd248f1a326b092360d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="struct_docking_data_1ace770bdc8fb01dd248f1a326b092360d" kindref="member">r_DP_P</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="struct_docking_data_1a1645db82a5470859592c87bb8f7c273b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="struct_docking_data_1a1645db82a5470859592c87bb8f7c273b" kindref="member">dcm_DP</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_docking_data_1a1dff3f731833b7339b6fff6442f8888a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="struct_docking_data_1a1dff3f731833b7339b6fff6442f8888a" kindref="member">portName</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_docking_data" kindref="compound">DockingData</ref>()</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;r_DB_B.setZero();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;r_DP_P.setZero();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;dcm_DB.setIdentity();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;dcm_DP.setIdentity();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_docking_data_1a1dff3f731833b7339b6fff6442f8888a" kindref="member">portName</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="class_spacecraft_unit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_spacecraft_system" kindref="compound">SpacecraftSystem</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="class_spacecraft_unit_1af013e0506a175402d4cca4a28daa96a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1af013e0506a175402d4cca4a28daa96a0" kindref="member">docked</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="class_spacecraft_unit_1a8a830b45a78c6c0e7666917d2200746c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spacecraft_unit_1a8a830b45a78c6c0e7666917d2200746c" kindref="member">spacecraftName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="class_spacecraft_unit_1a4e441237d1d8b08369c7c3527b5314c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;SCStatesMsgPayload&gt;<sp/><ref refid="class_spacecraft_unit_1a4e441237d1d8b08369c7c3527b5314c6" kindref="member">scStateOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="class_spacecraft_unit_1a5eecdd47c21825020dc01ee6205cbe5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;SCMassPropsMsgPayload&gt;<sp/><ref refid="class_spacecraft_unit_1a5eecdd47c21825020dc01ee6205cbe5f" kindref="member">scMassStateOutMsg</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="class_spacecraft_unit_1a5354643e1eb5e2e34cc429436bc2b424" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;SCEnergyMomentumMsgPayload&gt;<sp/><ref refid="class_spacecraft_unit_1a5354643e1eb5e2e34cc429436bc2b424" kindref="member">scEnergyMomentumOutMsg</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="class_spacecraft_unit_1a0182b827b48d14767e490a5ba8b45f57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a0182b827b48d14767e490a5ba8b45f57" kindref="member">totOrbEnergy</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_spacecraft_unit_1aa1b82e0fb52324b7495fa2c3acf5fba1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1aa1b82e0fb52324b7495fa2c3acf5fba1" kindref="member">totRotEnergy</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="class_spacecraft_unit_1aff7692f3906a3645835cbc5bc22fab03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1aff7692f3906a3645835cbc5bc22fab03" kindref="member">rotEnergyContr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="class_spacecraft_unit_1ad9bb2405bb5b00b0bc1b10ba8ec110b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1ad9bb2405bb5b00b0bc1b10ba8ec110b2" kindref="member">orbPotentialEnergyContr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="class_spacecraft_unit_1a601738e395152e20e2862e5444baf05e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a601738e395152e20e2862e5444baf05e" kindref="member">totOrbAngMomPntN_N</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="class_spacecraft_unit_1a8285a03edb471308947b67b8ef163619" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a8285a03edb471308947b67b8ef163619" kindref="member">totRotAngMomPntC_N</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="class_spacecraft_unit_1a20e70e41ecf64c22bec8badd8578e30b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a20e70e41ecf64c22bec8badd8578e30b" kindref="member">rotAngMomPntCContr_B</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="class_spacecraft_unit_1a485bbc4faf4aca6320fee4a2a68f683f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BackSubMatrices<sp/><ref refid="class_spacecraft_unit_1a485bbc4faf4aca6320fee4a2a68f683f" kindref="member">backSubMatricesContributions</ref>;<sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="class_spacecraft_unit_1ada3a045252ac0cf4e60e3882c1fb4af0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1ada3a045252ac0cf4e60e3882c1fb4af0" kindref="member">sumForceExternal_N</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="class_spacecraft_unit_1af76172e4448e0c54d86f27306fb203f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1af76172e4448e0c54d86f27306fb203f8" kindref="member">sumForceExternal_B</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="class_spacecraft_unit_1af482c8b0de5ce1b2cde54b32bbac6cda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1af482c8b0de5ce1b2cde54b32bbac6cda" kindref="member">sumTorquePntB_B</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="class_spacecraft_unit_1aa3731b522d756ccc5870f0cf8514d310" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1aa3731b522d756ccc5870f0cf8514d310" kindref="member">oldV_CN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="class_spacecraft_unit_1a1004ccc9001881806d710a02620e4124" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a1004ccc9001881806d710a02620e4124" kindref="member">oldV_BN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="class_spacecraft_unit_1a283897006ba332364f0db5dabaed46c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a283897006ba332364f0db5dabaed46c5" kindref="member">oldOmega_BN_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="class_spacecraft_unit_1ac73744519357b2ba9adfa7009fb8f1b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1ac73744519357b2ba9adfa7009fb8f1b0" kindref="member">dvAccum_CN_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="class_spacecraft_unit_1a0a8274a0e04c0f9b29d6a03b9ae51229" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a0a8274a0e04c0f9b29d6a03b9ae51229" kindref="member">dvAccum_BN_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="class_spacecraft_unit_1a3222e7288fe00c331f5ccd09168949cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1a3222e7288fe00c331f5ccd09168949cb" kindref="member">nonConservativeAccelpntB_B</ref>;</highlight></codeline>
+<codeline lineno="92" refid="class_spacecraft_unit_1ad1df7ae3c22c24c89c600471db35aa80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_spacecraft_unit_1ad1df7ae3c22c24c89c600471db35aa80" kindref="member">omegaDot_BN_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="class_spacecraft_unit_1a4bbe5f153f6669bcb2b3a05ac6c0c6b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>HubEffector<sp/><ref refid="class_spacecraft_unit_1a4bbe5f153f6669bcb2b3a05ac6c0c6b9" kindref="member">hub</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="class_spacecraft_unit_1a166de176e2863df5a6eed5b2a1a84ed7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GravityEffector<sp/><ref refid="class_spacecraft_unit_1a166de176e2863df5a6eed5b2a1a84ed7" kindref="member">gravField</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98" refid="class_spacecraft_unit_1afab2a524f0d10739e9c0c96084a18540" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;StateEffector*&gt;<sp/><ref refid="class_spacecraft_unit_1afab2a524f0d10739e9c0c96084a18540" kindref="member">states</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="class_spacecraft_unit_1a98e6d9333b0c3ec06255e684d4b0cb12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;DynamicEffector*&gt;<sp/><ref refid="class_spacecraft_unit_1a98e6d9333b0c3ec06255e684d4b0cb12" kindref="member">dynEffectors</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="class_spacecraft_unit_1ac50dcd9260157bb52070e591dcae8641" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;DockingData*&gt;<sp/><ref refid="class_spacecraft_unit_1ac50dcd9260157bb52070e591dcae8641" kindref="member">dockingPoints</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103" refid="class_spacecraft_unit_1a180fa5005a74a39617ad7890a041553e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_spacecraft_unit_1a180fa5005a74a39617ad7890a041553e" kindref="member">inertialPositionProperty</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="104" refid="class_spacecraft_unit_1a81894d5710b27fe54e6a16869ae139f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*<ref refid="class_spacecraft_unit_1a81894d5710b27fe54e6a16869ae139f4" kindref="member">inertialVelocityProperty</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="class_spacecraft_unit_1a82970e4a9eaf6492b3d7bd352a1ddeb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_spacecraft_unit_1a82970e4a9eaf6492b3d7bd352a1ddeb7" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spacecraft_unit" kindref="compound">~SpacecraftUnit</ref>();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1abf8a4ba2a5a05b1c852c162671802083" kindref="member">addStateEffector</ref>(StateEffector<sp/>*newStateEffector);<sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1aefe890e240131f67ef095b55e8a51acc" kindref="member">addDynamicEffector</ref>(DynamicEffector<sp/>*newDynamicEffector);<sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a463ff3e62a0a25fcf4516b300eb5b07c" kindref="member">addDockingPort</ref>(<ref refid="struct_docking_data" kindref="compound">DockingData</ref><sp/>*newDockingPort);<sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a4423ccc2926e1334f079f0dd5f4f305f" kindref="member">SelfInitSC</ref>(int64_t<sp/>moduleID);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a843bdacaac79688da31859e3e36163d7" kindref="member">ResetSC</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a25b63efcf8529d876a6cf8dd546ae973" kindref="member">writeOutputMessagesSC</ref>(uint64_t<sp/>clockTime,<sp/>int64_t<sp/>moduleID);<sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1a340ccfd87c401c9a48ac313a15d81b3a" kindref="member">linkInStatesSC</ref>(DynParamManager&amp;<sp/>statesIn);<sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_unit_1ae3ccd5694b37d4202bd52984f1239dc5" kindref="member">initializeDynamicsSC</ref>(DynParamManager&amp;<sp/>statesIn);<sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*m_SC;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*mDot_SC;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*ISCPntB_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*c_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*cPrime_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*cDot_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*ISCPntBPrime_B;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*g_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubR_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubV_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubOmega_BN_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubSigma;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*hubGravVelocity;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*BcGravVelocity;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="class_spacecraft_system" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_spacecraft_system" kindref="compound">SpacecraftSystem</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>DynamicObject{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="class_spacecraft_system_1ac02493b15e676da41d0b1d342f15cf9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_spacecraft_system_1ac02493b15e676da41d0b1d342f15cf9b" kindref="member">simTimePrevious</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148" refid="class_spacecraft_system_1a8a3535be3bab274615e7c565f943478a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_spacecraft_system_1a8a3535be3bab274615e7c565f943478a" kindref="member">numOutMsgBuffers</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149" refid="class_spacecraft_system_1acef37d41484287a12675d32d23340b18" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_spacecraft_system_1acef37d41484287a12675d32d23340b18" kindref="member">sysTimePropertyName</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="150" refid="class_spacecraft_system_1a255095e7af047da3330fd4999136a6ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a255095e7af047da3330fd4999136a6ef" kindref="member">currTimeStep</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="151" refid="class_spacecraft_system_1aa3c03f6a8c83e9c36741d59204bb509d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1aa3c03f6a8c83e9c36741d59204bb509d" kindref="member">timePrevious</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152" refid="class_spacecraft_system_1a1ce781575e1d355cdc077bbf50904574" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref><sp/><ref refid="class_spacecraft_system_1a1ce781575e1d355cdc077bbf50904574" kindref="member">primaryCentralSpacecraft</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153" refid="class_spacecraft_system_1a7af6cdd5a23810b6f69d71267d8d8ac6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SpacecraftUnit*&gt;<sp/><ref refid="class_spacecraft_system_1a7af6cdd5a23810b6f69d71267d8d8ac6" kindref="member">spacecraftDockedToPrimary</ref>;<sp/></highlight></codeline>
+<codeline lineno="154" refid="class_spacecraft_system_1aa506868b737deacc747fba407727bd45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SpacecraftUnit*&gt;<sp/><ref refid="class_spacecraft_system_1aa506868b737deacc747fba407727bd45" kindref="member">unDockedSpacecraft</ref>;<sp/></highlight></codeline>
+<codeline lineno="155" refid="class_spacecraft_system_1aa606d710003104370c90fed0272a9eb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1aa606d710003104370c90fed0272a9eb0" kindref="member">numberOfSCAttachedToPrimary</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="156" refid="class_spacecraft_system_1a35f42b0168104bcbc3d713a410791dad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_spacecraft_system_1a35f42b0168104bcbc3d713a410791dad" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spacecraft_system_1adffb01adf98e06b30063dbaddf963021" kindref="member">SpacecraftSystem</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_spacecraft_system_1aefaeeee330133aa6f974a20336ee0f3e" kindref="member">~SpacecraftSystem</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1ac66b7856e0753ea7bdf25cc1b0037071" kindref="member">initializeDynamics</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a66c9bbd65ecb353f14c78b6b54303141" kindref="member">computeEnergyMomentum</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time);<sp/><sp/></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a2ef548bdba8049ac75ac54e7b0f1c083" kindref="member">computeEnergyMomentumSC</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time,<sp/><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft);<sp/><sp/></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1af24b31ea9674e19334276efbdd282a06" kindref="member">computeEnergyMomentumSystem</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time);<sp/><sp/></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a5270c807cea836719424cfe2083c2188" kindref="member">updateSpacecraftMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time,<sp/><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft);<sp/><sp/></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1abb0a617141d737c550757f2c639ead4a" kindref="member">updateSystemMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time);<sp/><sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a674ba2b5b1c8ecc141cb11a8fb9b6b60" kindref="member">initializeSCPosVelocity</ref>(<ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft);<sp/></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a45cf1aed8029392fed3fc16f4aa3bd18" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a418283f717ec8daf2cf5d9d0170bb120" kindref="member">writeOutputMessages</ref>(uint64_t<sp/>clockTime);<sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a9184ecb23127370c6fb800cd01e0fd25" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1aa4f0a13101addc4f05595197887fd5f3" kindref="member">equationsOfMotion</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTimeSeconds,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a51ca0bcf3076a95fdf6e05f824a428d4" kindref="member">equationsOfMotionSC</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTimeSeconds,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep,<sp/><ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1ad594da6128eb0193ef3cd9ad164fac3c" kindref="member">equationsOfMotionSystem</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTimeSeconds,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a376bd692de1a6cd31df3151082b50879" kindref="member">findPriorStateInformation</ref>(<ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft);<sp/><sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a7bf8e773791e820fb128066be3922182" kindref="member">calculateDeltaVandAcceleration</ref>(<ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref>&amp;<sp/>spacecraft,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>localTimeStep);<sp/></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a776745d9ba910f60dfc28246c19091ce" kindref="member">attachSpacecraftToPrimary</ref>(<ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref><sp/>*newSpacecraft,<sp/>std::string<sp/>dockingPortNameOfNewSpacecraft,<sp/>std::string<sp/>dockingToPortName);<sp/><sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1af64e355724b55e68a06db1be9b80f383" kindref="member">addSpacecraftUndocked</ref>(<ref refid="class_spacecraft_unit" kindref="compound">SpacecraftUnit</ref><sp/>*newSpacecraft);<sp/><sp/></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a49cad62bf64f993cbc6f03d4e4b024d7" kindref="member">determineAttachedSCStates</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1aa7c05aa90199976057f14e78e09ee4a0" kindref="member">preIntegration</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>callTime)<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/><sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_spacecraft_system_1a1445d10d6c94d3583537026686a6e985" kindref="member">postIntegration</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>callTime)<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/><sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>*sysTime;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>SPACECRAFT_DYNAMICS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/spacecraftSystem/spacecraftSystem.h"/>
+  </compounddef>
+</doxygen>

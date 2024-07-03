@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="thruster_dynamic_effector_8h" kind="file" language="C++">
+    <compoundname>thrusterDynamicEffector.h</compoundname>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateData.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/THRTimePair.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/THRSimConfig.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/THROperation.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/BodyToHubInfo.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefCpp/THROutputMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/THRArrayOnTimeCmdMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="thruster_dynamic_effector_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/dynamics/Thrusters/thrusterDynamicEffector/thrusterDynamicEffector.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/Thrusters/thrusterDynamicEffector/thrusterDynamicEffector.h</label>
+        <link refid="thruster_dynamic_effector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="8">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/THRArrayOnTimeCmdMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefCpp/THROutputMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="7">
+        <label>simulation/dynamics/_GeneralModuleFiles/BodyToHubInfo.h</label>
+      </node>
+      <node id="6">
+        <label>simulation/dynamics/_GeneralModuleFiles/THROperation.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/THRSimConfig.h</label>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/THRTimePair.h</label>
+      </node>
+      <node id="2">
+        <label>simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h</label>
+      </node>
+      <node id="3">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="15">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_thruster_dynamic_effector" prot="public">ThrusterDynamicEffector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>THRUSTER_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>THRUSTER_DYNAMIC_EFFECTOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/dynamicEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/THRTimePair.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/THRSimConfig.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/THROperation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/BodyToHubInfo.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefCpp/THROutputMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/THRArrayOnTimeCmdMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="class_thruster_dynamic_effector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_thruster_dynamic_effector" kindref="compound">ThrusterDynamicEffector</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>DynamicEffector<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_thruster_dynamic_effector_1a14180e21af0cc5d5e1eb77dd4e6b5af1" kindref="member">ThrusterDynamicEffector</ref>();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_thruster_dynamic_effector_1ad9cd2fdadf7d1ddbff76ed6590141414" kindref="member">~ThrusterDynamicEffector</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1aafdf771234705d274145f1c40f7314e0" kindref="member">linkInStates</ref>(DynParamManager&amp;<sp/>states);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a4a31b2531597d32fd2983611e6d6b600" kindref="member">computeForceTorque</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a1c88946cd2f3dfb375285885c5dbc542" kindref="member">computeStateContribution</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a36992b6dc689f57ef466a8d94578c0a6" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a6b9951faa7c92baf8da9ab75db6d3aa0" kindref="member">addThruster</ref>(THRSimConfig*<sp/>newThruster);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a6b9951faa7c92baf8da9ab75db6d3aa0" kindref="member">addThruster</ref>(THRSimConfig*<sp/>newThruster,<sp/>Message&lt;SCStatesMsgPayload&gt;*<sp/>bodyStateMsg);<sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a1ae6fd12c74d37b08b77d09b623e584e" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a79e5421c3aa5260d3abf2f2ec36fee55" kindref="member">writeOutputMessages</ref>(uint64_t<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a8af6a651f57de30f730e2a79855e68f0" kindref="member">ReadInputs</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1aa8878f712f36fc788800eb36d6c5cb05" kindref="member">ConfigureThrustRequests</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a18e138caff983da0a44ef76fb780cb9e" kindref="member">ComputeThrusterFire</ref>(THRSimConfig<sp/>*CurrentThruster,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1ab8c94899539c2c56c792d8391eefe3aa" kindref="member">ComputeThrusterShut</ref>(THRSimConfig<sp/>*CurrentThruster,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1aa311c8b59865e39534508fdda0e69aa6" kindref="member">UpdateThrusterProperties</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="65" refid="class_thruster_dynamic_effector_1ae966f01dac0c3a60971a5d72b300e83c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;THRArrayOnTimeCmdMsgPayload&gt;<sp/><ref refid="class_thruster_dynamic_effector_1ae966f01dac0c3a60971a5d72b300e83c" kindref="member">cmdsInMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="class_thruster_dynamic_effector_1a40ac8d5184485710eb5cca5799e4840f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Message&lt;THROutputMsgPayload&gt;*&gt;<sp/><ref refid="class_thruster_dynamic_effector_1a40ac8d5184485710eb5cca5799e4840f" kindref="member">thrusterOutMsgs</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_thruster_dynamic_effector_1a851266541abffae648e93b79d8205670" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a851266541abffae648e93b79d8205670" kindref="member">stepsInRamp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="class_thruster_dynamic_effector_1a7a4eaefbb00ae5946271db4a499256e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;THRSimConfig&gt;<sp/><ref refid="class_thruster_dynamic_effector_1a7a4eaefbb00ae5946271db4a499256e7" kindref="member">thrusterData</ref>;<sp/></highlight></codeline>
+<codeline lineno="70" refid="class_thruster_dynamic_effector_1ac94f6ef65d54c78429d553218965934b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="class_thruster_dynamic_effector_1ac94f6ef65d54c78429d553218965934b" kindref="member">NewThrustCmds</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_thruster_dynamic_effector_1a29bedbc094588d6e71c4e67b64c0fc4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a29bedbc094588d6e71c4e67b64c0fc4c" kindref="member">mDotTotal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_thruster_dynamic_effector_1a3baf5c19dc493fe2be42484f29f109fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1a3baf5c19dc493fe2be42484f29f109fa" kindref="member">prevFireTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_thruster_dynamic_effector_1ae6ed51f4e64fbe1f9900b5f5c29f7db0" kindref="member">thrFactorToTime</ref>(THRSimConfig<sp/>*thrData,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;THRTimePair&gt;<sp/>*thrRamp);</highlight></codeline>
+<codeline lineno="75" refid="class_thruster_dynamic_effector_1a54bbf4d9db999a97c8ada2d10698dd29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_thruster_dynamic_effector_1a54bbf4d9db999a97c8ada2d10698dd29" kindref="member">hubSigma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="class_thruster_dynamic_effector_1afa901dc9ca40ee7df00c12280f9edfc0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>StateData<sp/>*<ref refid="class_thruster_dynamic_effector_1afa901dc9ca40ee7df00c12280f9edfc0" kindref="member">hubOmega</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="class_thruster_dynamic_effector_1a79c9a7b95d47b478675d9c4880c3d14e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd*<sp/><ref refid="class_thruster_dynamic_effector_1a79c9a7b95d47b478675d9c4880c3d14e" kindref="member">inertialPositionProperty</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="class_thruster_dynamic_effector_1ada3c5b7005d65cdf4dd2474c051d023d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_thruster_dynamic_effector_1ada3c5b7005d65cdf4dd2474c051d023d" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;THROutputMsgPayload&gt;<sp/>thrusterOutBuffer;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayOnTimeCmdMsgPayload<sp/>incomingCmdBuffer;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;ReadFunctor&lt;SCStatesMsgPayload&gt;&gt;<sp/>attachedBodyInMsgs;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>attachedBodyBuffer;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;BodyToHubInfo&gt;<sp/>bodyToHubInfo;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>prevCommandTime;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>THRUSTER_DYNAMIC_EFFECTOR_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/Thrusters/thrusterDynamicEffector/thrusterDynamicEffector.h"/>
+  </compounddef>
+</doxygen>

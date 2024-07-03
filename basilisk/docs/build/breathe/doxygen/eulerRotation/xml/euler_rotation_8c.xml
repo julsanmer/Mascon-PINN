@@ -1,0 +1,642 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="euler_rotation_8c" kind="file" language="C++">
+    <compoundname>eulerRotation.c</compoundname>
+    <includes refid="euler_rotation_8h" local="yes">fswAlgorithms/attGuidance/eulerRotation/eulerRotation.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="yes">fswAlgorithms/fswUtilities/fswDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c</label>
+        <link refid="euler_rotation_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/attGuidance/eulerRotation/eulerRotation.h</label>
+        <link refid="euler_rotation_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/AttRefMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/AttStateMsg_C.h</label>
+      </node>
+      <node id="9">
+        <label>fswAlgorithms/fswUtilities/fswDefinitions.h</label>
+      </node>
+      <node id="8">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="euler_rotation_8c_1a2dc6e9cff8723ba57d69e65e6909e293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_eulerRotation</definition>
+        <argsstring>(eulerRotationConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_eulerRotation</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+<para>This method initializes the configData for eulerRotation model. It creates the module output message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the null space control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="46" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1a7e8472a045a9d9ed950263aca5fbacf9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_eulerRotation</definition>
+        <argsstring>(eulerRotationConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_eulerRotation</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+<para>This resets the module to original states. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the null space control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="58" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="58" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1a611c718aa1f7c694f748d089bd14528d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_eulerRotation</definition>
+        <argsstring>(eulerRotationConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_eulerRotation</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+<para>This method takes the input attitude reference frame, and and superimposes the dynamic euler angle scanning motion on top of this. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the mrpRotation module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="78" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="78" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1a483efe0f3cdc55733dbf82af7db95621" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void checkRasterCommands</definition>
+        <argsstring>(eulerRotationConfig *configData)</argsstring>
+        <name>checkRasterCommands</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+<para>This function checks if there is a new commanded raster maneuver message available. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the mrpRotation module </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="123" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="123" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1a89089dd48d745d2bacaf121268e46020" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void computeTimeStep</definition>
+        <argsstring>(eulerRotationConfig *configData, uint64_t callTime)</argsstring>
+        <name>computeTimeStep</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <briefdescription>
+<para>This function computes control update time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the mrpRotation module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="142" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="142" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1aa4c85491d6660b8e60fb9f69ff31b74e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void computeEuler321_Binv_derivative</definition>
+        <argsstring>(double angleSet[3], double angleRates[3], double B_inv_deriv[3][3])</argsstring>
+        <name>computeEuler321_Binv_derivative</name>
+        <param>
+          <type>double</type>
+          <declname>angleSet</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>angleRates</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>B_inv_deriv</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+<para>This function computes the analytical derivative of the B_inv matrix for the 3-2-1 Euler Angle set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angleSet</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>321 Euler angles </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angleRates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 321 Euler angle rates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B_inv_deriv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the inv(B) matrix for 321 Euler angles </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="158" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="158" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="euler_rotation_8c_1a80a1ae190d595abeeb89569c193cf4db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void computeEulerRotationReference</definition>
+        <argsstring>(eulerRotationConfig *configData, double sigma_R0N[3], double omega_R0N_N[3], double domega_R0N_N[3], AttRefMsgPayload *attRefOut)</argsstring>
+        <name>computeEulerRotationReference</name>
+        <param>
+          <type><ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sigma_R0N</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>omega_R0N_N</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>domega_R0N_N</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>AttRefMsgPayload *</type>
+          <declname>attRefOut</declname>
+        </param>
+        <briefdescription>
+<para>This function computes the reference (Euler angle attitude set, angular velocity and angular acceleration) associated with a rotation defined in terms of an initial euler angle set and a constant euler angle rate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the mrpRotation module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma_R0N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input reference attitude using MRPs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omega_R0N_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input reference frame angular rate vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>domega_R0N_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input reference frame angular acceleration vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attRefOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output message copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; [] increment in attitude coordinates <linebreak/>
+</para>
+<para>&lt; [] DCM rotating from R0 to R</para>
+<para>&lt; [] DCM rotating from N to R0</para>
+<para>&lt; [] DCM rotating from N to R</para>
+<para>&lt; [] matrix related Euler angle rates to angular velocity vector components</para>
+<para>&lt; [r/s] angular velocity vector between R and R0 frame in R frame components</para>
+<para>&lt; [r/s] angular velocity vector between R and R0 frame in N frame components</para>
+<para>&lt; [] time derivatie of matrix relating EA rates to omegas</para>
+<para>&lt; [r/s] inertial derivative of omega_RR0_R in R frame components</para>
+<para>&lt; [r/s] inertial derivative of omega_RR0_R in N frame components</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" line="192" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c" bodystart="192" bodyend="231"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>Euler<sp/>Angle<sp/>Rotation<sp/>Guidance<sp/>Module<sp/>with<sp/>Constant<sp/>Euler<sp/>Rates</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>University<sp/>of<sp/>Colorado,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>(AVS)<sp/>Lab</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>Unpublished<sp/>Copyright<sp/>(c)<sp/>2012-2015<sp/>University<sp/>of<sp/>Colorado,<sp/>All<sp/>Rights<sp/>Reserved</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/attGuidance/eulerRotation/eulerRotation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/fswUtilities/fswDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Support<sp/>files.<sp/><sp/>Be<sp/>sure<sp/>to<sp/>use<sp/>the<sp/>absolute<sp/>path<sp/>relative<sp/>to<sp/>Basilisk<sp/>directory.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_eulerRotation(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsg_C_init(&amp;configData-&gt;<ref refid="structeuler_rotation_config_1a83d5775e972acf8c7577d08722e4e053" kindref="member">attRefOutMsg</ref>);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_eulerRotation(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>message<sp/>is<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!AttRefMsg_C_isLinked(&amp;configData-&gt;<ref refid="structeuler_rotation_config_1a2217865bf7118aa7852fc741f2fd7afd" kindref="member">attRefInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structeuler_rotation_config_1ab640ced9ee3804b16028d8a4a3684b9c" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>eulerRotation.attRefInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aadfb68d2e2b1bacf710b9a4ae92c6181" kindref="member">priorTime</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structeuler_rotation_config_1a31d88b8574962edc7cf40626b8444e52" kindref="member">priorCmdSet</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structeuler_rotation_config_1af24a0786f6b9d38e4fb385bb6948b6ad" kindref="member">priorCmdRates</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_eulerRotation(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsgPayload<sp/>inputRef;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsgPayload<sp/>attRefOut;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Read<sp/>input<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>inputRef<sp/>=<sp/>AttRefMsg_C_read(&amp;configData-&gt;<ref refid="structeuler_rotation_config_1a2217865bf7118aa7852fc741f2fd7afd" kindref="member">attRefInMsg</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(AttStateMsg_C_isLinked(&amp;configData-&gt;<ref refid="structeuler_rotation_config_1acd688fdfd6244ca369d157b90ac3ad25" kindref="member">desiredAttInMsg</ref>))</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AttStateMsgPayload<sp/>attStates;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Read<sp/>Raster<sp/>Manager<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>attStates<sp/>=<sp/>AttStateMsg_C_read(&amp;configData-&gt;<ref refid="structeuler_rotation_config_1acd688fdfd6244ca369d157b90ac3ad25" kindref="member">desiredAttInMsg</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Save<sp/>commanded<sp/>321<sp/>Euler<sp/>set<sp/>and<sp/>rates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(attStates.state,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1af1b384d4835075ecdbd47e7ed2d5d315" kindref="member">cmdSet</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(attStates.rate,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1a79169b894c59a5ae4dab297010d742fe" kindref="member">cmdRates</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Check<sp/>the<sp/>command<sp/>is<sp/>new<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checkRasterCommands(configData);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Compute<sp/>time<sp/>step<sp/>to<sp/>use<sp/>in<sp/>the<sp/>integration<sp/>downstream<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>computeTimeStep(configData,<sp/>callTime);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Compute<sp/>output<sp/>reference<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>attRefOut<sp/>=<sp/>AttRefMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>computeEulerRotationReference(configData,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inputRef.sigma_RN,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inputRef.omega_RN_N,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inputRef.domega_RN_N,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;attRefOut);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Write<sp/>output<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>AttRefMsg_C_write(&amp;attRefOut,<sp/>&amp;configData-&gt;<ref refid="structeuler_rotation_config_1a83d5775e972acf8c7577d08722e4e053" kindref="member">attRefOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Update<sp/>last<sp/>time<sp/>the<sp/>module<sp/>was<sp/>called<sp/>to<sp/>current<sp/>call<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aadfb68d2e2b1bacf710b9a4ae92c6181" kindref="member">priorTime</ref><sp/>=<sp/>callTime;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>checkRasterCommands(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>prevCmdActive<sp/>=<sp/>v3IsEqual(configData-&gt;<ref refid="structeuler_rotation_config_1af1b384d4835075ecdbd47e7ed2d5d315" kindref="member">cmdSet</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1a31d88b8574962edc7cf40626b8444e52" kindref="member">priorCmdSet</ref><sp/>,<sp/>1E-12)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>v3IsEqual(configData-&gt;<ref refid="structeuler_rotation_config_1a79169b894c59a5ae4dab297010d742fe" kindref="member">cmdRates</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1af24a0786f6b9d38e4fb385bb6948b6ad" kindref="member">priorCmdRates</ref><sp/>,<sp/>1E-12);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!prevCmdActive)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structeuler_rotation_config_1af1b384d4835075ecdbd47e7ed2d5d315" kindref="member">cmdSet</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structeuler_rotation_config_1a79169b894c59a5ae4dab297010d742fe" kindref="member">cmdRates</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aad9e10bfbbd586096a7334a86ca348bf" kindref="member">angleRates</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structeuler_rotation_config_1af1b384d4835075ecdbd47e7ed2d5d315" kindref="member">cmdSet</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1a31d88b8574962edc7cf40626b8444e52" kindref="member">priorCmdSet</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structeuler_rotation_config_1a79169b894c59a5ae4dab297010d742fe" kindref="member">cmdRates</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1af24a0786f6b9d38e4fb385bb6948b6ad" kindref="member">priorCmdRates</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeTimeStep(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structeuler_rotation_config_1aadfb68d2e2b1bacf710b9a4ae92c6181" kindref="member">priorTime</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aba8d29a733d893e0bf5da786bc6b982b" kindref="member">dt</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aba8d29a733d893e0bf5da786bc6b982b" kindref="member">dt</ref><sp/>=<sp/>(callTime<sp/>-<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aadfb68d2e2b1bacf710b9a4ae92c6181" kindref="member">priorTime</ref>)*NANO2SEC;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeEuler321_Binv_derivative(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angleSet[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angleRates[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_inv_deriv[3][3])</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s2;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>c2;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s3;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>c3;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>s2<sp/>=<sp/>sin(angleSet[1]);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>c2<sp/>=<sp/>cos(angleSet[1]);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>s3<sp/>=<sp/>sin(angleSet[2]);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>c3<sp/>=<sp/>cos(angleSet[2]);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[0][0]<sp/>=<sp/>-angleRates[1]<sp/>*<sp/>c2;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[0][1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[0][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[1][0]<sp/>=<sp/>angleRates[2]<sp/>*<sp/>c3<sp/>*<sp/>c2<sp/>-<sp/>angleRates[1]<sp/>*<sp/>s3<sp/>*<sp/>s2;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[1][1]<sp/>=<sp/>-angleRates[2]<sp/>*<sp/>s3;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[1][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[2][0]<sp/>=<sp/>-angleRates[2]<sp/>*<sp/>s3<sp/>*<sp/>c2<sp/>-<sp/>angleRates[1]<sp/>*<sp/>c3<sp/>*<sp/>c2;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[2][1]<sp/>=<sp/>-angleRates[2]<sp/>*<sp/>c3;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>B_inv_deriv[2][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeEulerRotationReference(<ref refid="structeuler_rotation_config" kindref="compound">eulerRotationConfig</ref><sp/>*configData,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_R0N[3],</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_R0N_N[3],</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>domega_R0N_N[3],</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AttRefMsgPayload<sp/>*attRefOut)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>attitude<sp/>reference*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>attIncrement[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RR0[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>R0N[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>RN[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(sigma_R0N,<sp/>R0N);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structeuler_rotation_config_1aba8d29a733d893e0bf5da786bc6b982b" kindref="member">dt</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aad9e10bfbbd586096a7334a86ca348bf" kindref="member">angleRates</ref>,<sp/>attIncrement);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>,<sp/>attIncrement,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>Euler3212C(configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>,<sp/>RR0);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultM33(RR0,<sp/>R0N,<sp/>RN);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>C2MRP(RN,<sp/>attRefOut-&gt;sigma_RN);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>angular<sp/>velocity<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_inv[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_RR0_R[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_RR0_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>BinvEuler321(configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>,<sp/>B_inv);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(B_inv,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aad9e10bfbbd586096a7334a86ca348bf" kindref="member">angleRates</ref>,<sp/>omega_RR0_R);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>m33tMultV3(RN,<sp/>omega_RR0_R,<sp/>omega_RR0_N);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(omega_R0N_N,<sp/>omega_RR0_N,<sp/>attRefOut-&gt;omega_RN_N);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>angular<sp/>acceleration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_inv_deriv[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>domega_RR0_R[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>domega_RR0_N[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp[3];</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>computeEuler321_Binv_derivative(configData-&gt;<ref refid="structeuler_rotation_config_1a09fee46cc3f43d877747589ff6209982" kindref="member">angleSet</ref>,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aad9e10bfbbd586096a7334a86ca348bf" kindref="member">angleRates</ref>,<sp/>B_inv_deriv);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(B_inv_deriv,<sp/>configData-&gt;<ref refid="structeuler_rotation_config_1aad9e10bfbbd586096a7334a86ca348bf" kindref="member">angleRates</ref>,<sp/>domega_RR0_R);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>m33tMultV3(RN,<sp/>domega_RR0_R,<sp/>domega_RR0_N);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(omega_R0N_N,<sp/>omega_RR0_N,<sp/>temp);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(temp,<sp/>domega_RR0_N,<sp/>domega_RR0_N);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(domega_RR0_N,<sp/>domega_R0N_N,<sp/>attRefOut-&gt;domega_RN_N);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/eulerRotation/eulerRotation.c"/>
+  </compounddef>
+</doxygen>

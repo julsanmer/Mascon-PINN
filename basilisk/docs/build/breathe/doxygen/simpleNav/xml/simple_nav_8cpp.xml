@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="simple_nav_8cpp" kind="file" language="C++">
+    <compoundname>simpleNav.cpp</compoundname>
+    <includes refid="simple_nav_8h" local="yes">simulation/navigation/simpleNav/simpleNav.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/navigation/simpleNav/simpleNav.cpp</label>
+        <link refid="simple_nav_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/navigation/simpleNav/simpleNav.h</label>
+        <link refid="simple_nav_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="4">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/NavAttMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/NavTransMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/gauss_markov.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="18">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="16">
+        <label>cstring</label>
+      </node>
+      <node id="15">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/navigation/simpleNav/simpleNav.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="class_simple_nav_1a6665b2db602d3e6c39a0d2cb5b7ce53a" kindref="member">SimpleNav::SimpleNav</ref>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a06cb724d81e245b3f99f910e8323d7a0" kindref="member">crossTrans</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a413fa072b13dcfa4ffd64b9c93a65b1b" kindref="member">crossAtt</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a88a78ef9f2e9fa66800cbea9db39aa65" kindref="member">estAttState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a90ddd0f3420292d92d3f94325947e51e" kindref="member">attOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a90ddd0f3420292d92d3f94325947e51e" kindref="member">attOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a16cf321b06ba6b02538b8b506e2ccf32" kindref="member">estTransState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a8e458e652a5d94f4b10402e74802046b" kindref="member">transOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1ace07ce0be692f9f01df15f6c44244be7" kindref="member">trueTransState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a8e458e652a5d94f4b10402e74802046b" kindref="member">transOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a641d685ee905144fa0c740d201060abd" kindref="member">PMatrix</ref>.resize(18,18);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a641d685ee905144fa0c740d201060abd" kindref="member">PMatrix</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a739b34b964c24e11ab175d3c1a489eec" kindref="member">walkBounds</ref>.resize(18);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a739b34b964c24e11ab175d3c1a489eec" kindref="member">walkBounds</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel<sp/>=<sp/><sp/>GaussMarkov(18,<sp/>this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><ref refid="class_simple_nav_1a6679aa9eb860a848c6eaa13ff3f5fdbd" kindref="member">SimpleNav::~SimpleNav</ref>()</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1ab42aa86589ee3c7d7fa9c02327b97e57" kindref="member">SimpleNav::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>input<sp/>message<sp/>has<sp/>not<sp/>been<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_simple_nav_1a56ea75015df582015622b405000fc87c" kindref="member">scStateInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_nav_1addb532201bcf42f2d1c2d21b661bf72f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SimpleNav.scStateInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>numStates<sp/>=<sp/>18;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix.setIdentity(numStates,<sp/>numStates);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix(0,3)<sp/>=<sp/>this-&gt;AMatrix(1,4)<sp/>=<sp/>this-&gt;AMatrix(2,5)<sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a06cb724d81e245b3f99f910e8323d7a0" kindref="member">crossTrans</ref><sp/>?<sp/>1.0<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix(6,9)<sp/>=<sp/>this-&gt;AMatrix(7,10)<sp/>=<sp/>this-&gt;AMatrix(8,<sp/>11)<sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a413fa072b13dcfa4ffd64b9c93a65b1b" kindref="member">crossAtt</ref><sp/>?<sp/>1.0<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_nav_1a641d685ee905144fa0c740d201060abd" kindref="member">PMatrix</ref>.size()<sp/>!=<sp/>numStates*numStates)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_nav_1addb532201bcf42f2d1c2d21b661bf72f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>process<sp/>noise<sp/>matrix<sp/>(PMatrix)<sp/>is<sp/>not<sp/>18*18.<sp/>Size<sp/>is<sp/>%ld.<sp/><sp/>Quitting&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_simple_nav_1a641d685ee905144fa0c740d201060abd" kindref="member">PMatrix</ref>.size());</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setNoiseMatrix(this-&gt;<ref refid="class_simple_nav_1a641d685ee905144fa0c740d201060abd" kindref="member">PMatrix</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setRNGSeed(this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_nav_1a739b34b964c24e11ab175d3c1a489eec" kindref="member">walkBounds</ref>.size()<sp/>!=<sp/>numStates)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_nav_1addb532201bcf42f2d1c2d21b661bf72f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>walkbounds<sp/>vector<sp/><sp/>is<sp/>not<sp/>18<sp/>elements.<sp/>Quitting&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setUpperBounds(this-&gt;<ref refid="class_simple_nav_1a739b34b964c24e11ab175d3c1a489eec" kindref="member">walkBounds</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1a3f745d5d3d87890984d332a06d54980d" kindref="member">SimpleNav::readInputMessages</ref>()</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1a56ea75015df582015622b405000fc87c" kindref="member">scStateInMsg</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1aae03a7309889d614b90658b9541894f4" kindref="member">sunState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1aac83a7f66fec97dc92aee521cd3d5f0f" kindref="member">sunStateInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_nav_1aac83a7f66fec97dc92aee521cd3d5f0f" kindref="member">sunStateInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1aae03a7309889d614b90658b9541894f4" kindref="member">sunState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_nav_1aac83a7f66fec97dc92aee521cd3d5f0f" kindref="member">sunStateInMsg</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1ae3694ef1c65707c331f82686d1cbefb7" kindref="member">SimpleNav::writeOutputMessages</ref>(uint64_t<sp/>Clock)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>time<sp/>tage<sp/>the<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a88a78ef9f2e9fa66800cbea9db39aa65" kindref="member">estAttState</ref>.timeTag<sp/>=<sp/>(double)<sp/>Clock<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a16cf321b06ba6b02538b8b506e2ccf32" kindref="member">estTransState</ref>.timeTag<sp/>=<sp/>(double)<sp/>Clock<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a90ddd0f3420292d92d3f94325947e51e" kindref="member">attOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_simple_nav_1a88a78ef9f2e9fa66800cbea9db39aa65" kindref="member">estAttState</ref>,<sp/>this-&gt;moduleID,<sp/>Clock);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a8e458e652a5d94f4b10402e74802046b" kindref="member">transOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_simple_nav_1a16cf321b06ba6b02538b8b506e2ccf32" kindref="member">estTransState</ref>,<sp/>this-&gt;moduleID,<sp/>Clock);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1a523754cfc412b6f94770799ac89566af" kindref="member">SimpleNav::applyErrors</ref>()</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_simple_nav_1ace07ce0be692f9f01df15f6c44244be7" kindref="member">trueTransState</ref>.r_BN_N,<sp/>&amp;(this-&gt;navErrors.data()[0]),<sp/>this-&gt;estTransState.r_BN_N);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_simple_nav_1ace07ce0be692f9f01df15f6c44244be7" kindref="member">trueTransState</ref>.v_BN_N,<sp/>&amp;(this-&gt;navErrors.data()[3]),<sp/>this-&gt;estTransState.v_BN_N);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>addMRP(this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref>.sigma_BN,<sp/>&amp;(this-&gt;navErrors.data()[6]),<sp/>this-&gt;estAttState.sigma_BN);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref>.omega_BN_B,<sp/>&amp;(this-&gt;navErrors.data()[9]),<sp/>this-&gt;estAttState.omega_BN_B);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_simple_nav_1ace07ce0be692f9f01df15f6c44244be7" kindref="member">trueTransState</ref>.vehAccumDV,<sp/>&amp;(this-&gt;navErrors.data()[15]),<sp/>this-&gt;estTransState.vehAccumDV);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_nav_1aac83a7f66fec97dc92aee521cd3d5f0f" kindref="member">sunStateInMsg</ref>.isLinked()){</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_OT[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>dcm,<sp/>body<sp/>T<sp/>to<sp/>body<sp/>O<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MRP2C(&amp;(this-&gt;<ref refid="class_simple_nav_1acfcce676c9082f7681fe98633c50febe" kindref="member">navErrors</ref>.data()[12]),<sp/>dcm_OT);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33MultV3(dcm_OT,<sp/>this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref>.vehSunPntBdy,<sp/>this-&gt;estAttState.vehSunPntBdy);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(this-&gt;<ref refid="class_simple_nav_1a88a78ef9f2e9fa66800cbea9db39aa65" kindref="member">estAttState</ref>.vehSunPntBdy);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1a24d83068fa747fc4e8cde31ee682ad8b" kindref="member">SimpleNav::computeTrueOutput</ref>(uint64_t<sp/>Clock)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.r_BN_N,<sp/>this-&gt;trueTransState.r_BN_N);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.v_BN_N,<sp/>this-&gt;trueTransState.v_BN_N);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.sigma_BN,<sp/>this-&gt;trueAttState.sigma_BN);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.omega_BN_B,<sp/>this-&gt;trueAttState.omega_BN_B);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.TotalAccumDVBdy,<sp/>this-&gt;trueTransState.vehAccumDV);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_simple_nav_1aac83a7f66fec97dc92aee521cd3d5f0f" kindref="member">sunStateInMsg</ref>.isLinked()){</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sc2SunInrtl[3];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BN[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>dcm,<sp/>inertial<sp/>to<sp/>body<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Subtract(this-&gt;<ref refid="class_simple_nav_1aae03a7309889d614b90658b9541894f4" kindref="member">sunState</ref>.PositionVector,<sp/>this-&gt;inertialState.r_BN_N,<sp/>sc2SunInrtl);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Normalize(sc2SunInrtl,<sp/>sc2SunInrtl);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MRP2C(this-&gt;<ref refid="class_simple_nav_1a9bc0d9e3463ccec06b34b3f20d406af2" kindref="member">inertialState</ref>.sigma_BN,<sp/>dcm_BN);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33MultV3(dcm_BN,<sp/>sc2SunInrtl,<sp/>this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref>.vehSunPntBdy);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(this-&gt;<ref refid="class_simple_nav_1a58482a7a8edd9a6451e1a718df262c71" kindref="member">trueAttState</ref>.vehSunPntBdy);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1abc8340e88119ce06bd323dc7c54bfba1" kindref="member">SimpleNav::computeErrors</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>localProp<sp/>=<sp/>this-&gt;AMatrix;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>timeStep<sp/>=<sp/>(CurrentSimNanos<sp/>-<sp/>this-&gt;prevTime)*1.0E-9;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(0,3)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(1,4)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(2,5)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(6,9)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(7,10)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(8,11)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setPropMatrix(localProp);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.computeNextState();</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1acfcce676c9082f7681fe98633c50febe" kindref="member">navErrors</ref><sp/>=<sp/>this-&gt;errorModel.getCurrentState();</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_nav_1ae850ef638756eb5e768a882e8e189e70" kindref="member">SimpleNav::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a3f745d5d3d87890984d332a06d54980d" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a24d83068fa747fc4e8cde31ee682ad8b" kindref="member">computeTrueOutput</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1abc8340e88119ce06bd323dc7c54bfba1" kindref="member">computeErrors</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1a523754cfc412b6f94770799ac89566af" kindref="member">applyErrors</ref>();</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_nav_1ae3694ef1c65707c331f82686d1cbefb7" kindref="member">writeOutputMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>CurrentSimNanos;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/navigation/simpleNav/simpleNav.cpp"/>
+  </compounddef>
+</doxygen>

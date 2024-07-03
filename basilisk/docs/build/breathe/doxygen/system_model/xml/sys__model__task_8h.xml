@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sys__model__task_8h" kind="file" language="C++">
+    <compoundname>sys_model_task.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="sys__model__task_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_model_task.cpp</includedby>
+    <includedby refid="sys__process_8h" local="yes">/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_process.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_model_task.h</label>
+        <link refid="sys__model__task_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/system_model/sim_model.h</label>
+        <link refid="sim__model_8h_source"/>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_model_task.h</label>
+        <link refid="sys__model__task_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_process.h</label>
+        <link refid="sys__process_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_model_priority_pair" prot="public">ModelPriorityPair</innerclass>
+    <innerclass refid="class_sys_model_task" prot="public">SysModelTask</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SysModelTask_HH_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SysModelTask_HH_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="struct_model_priority_pair" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30" refid="struct_model_priority_pair_1a2d49d3cbfb492af1775ca237d2e82952" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/><ref refid="struct_model_priority_pair_1a2d49d3cbfb492af1775ca237d2e82952" kindref="member">CurrentModelPriority</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="struct_model_priority_pair_1aac7b2c953dcbd6cee57c06d4a7f6e78c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SysModel<sp/>*<ref refid="struct_model_priority_pair_1aac7b2c953dcbd6cee57c06d4a7f6e78c" kindref="member">ModelPtr</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}<ref refid="struct_model_priority_pair" kindref="compound">ModelPriorityPair</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="class_sys_model_task" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_sys_model_task" kindref="compound">SysModelTask</ref></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sys_model_task_1ab6b4bb186e3859881d7a2163afc7ccfa" kindref="member">SysModelTask</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sys_model_task_1ab6b4bb186e3859881d7a2163afc7ccfa" kindref="member">SysModelTask</ref>(uint64_t<sp/>InputPeriod,<sp/>uint64_t<sp/>InputDelay=0,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint64_t<sp/>FirstStartTime=0);<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sys_model_task_1a11ee06133514d050df6b0b3b004c7c6d" kindref="member">~SysModelTask</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1ae368f0da40da920f7605b8c531950528" kindref="member">AddNewObject</ref>(SysModel<sp/>*NewModel,<sp/>int32_t<sp/>Priority<sp/>=<sp/>-1);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1af3af746b8278dd8ea67dd7f57dbca47f" kindref="member">SelfInitTaskList</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>CrossInitTaskList();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1ace0cab1c2d03a7422713aaf17997f762" kindref="member">ExecuteTaskList</ref>(uint64_t<sp/>CurrentSimTime);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1aa160641a32a62d0ce776c60dfb1c8710" kindref="member">ResetTaskList</ref>(uint64_t<sp/>CurrentSimTime);</highlight></codeline>
+<codeline lineno="48" refid="class_sys_model_task_1a549079b2bef4718bb870cd694186ea04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1a549079b2bef4718bb870cd694186ea04" kindref="member">ResetTask</ref>()<sp/>{this-&gt;<ref refid="class_sys_model_task_1adc492d2c9207dec7e8901bd05a08df4e" kindref="member">NextStartTime</ref><sp/>=<sp/>this-&gt;<ref refid="class_sys_model_task_1a7fe4614471fae04193bf0efe47f159fe" kindref="member">FirstTaskTime</ref>;}<sp/></highlight></codeline>
+<codeline lineno="49" refid="class_sys_model_task_1a64994b13ac32a16fe710c13a945d61d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1a64994b13ac32a16fe710c13a945d61d0" kindref="member">enableTask</ref>()<sp/>{this-&gt;<ref refid="class_sys_model_task_1aaf78cbbda16bb3c0544c4f006e3f0ebf" kindref="member">taskActive</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;}<sp/></highlight></codeline>
+<codeline lineno="50" refid="class_sys_model_task_1a1dbbb03853de15e0008538b0287d8111" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1a1dbbb03853de15e0008538b0287d8111" kindref="member">disableTask</ref>()<sp/>{this-&gt;<ref refid="class_sys_model_task_1aaf78cbbda16bb3c0544c4f006e3f0ebf" kindref="member">taskActive</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1aeda51159234bb5852abb372b6ab712cd" kindref="member">updatePeriod</ref>(uint64_t<sp/>newPeriod);</highlight></codeline>
+<codeline lineno="52" refid="class_sys_model_task_1af02367a9ed3a577e8ecf9718302807bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1af02367a9ed3a577e8ecf9718302807bb" kindref="member">updateParentProc</ref>(std::string<sp/>parent)<sp/>{this-&gt;<ref refid="class_sys_model_task_1a543584af868df97619f8c554360ac86a" kindref="member">parentProc</ref><sp/>=<sp/>parent;}<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="55" refid="class_sys_model_task_1a6bdb95635a0172e7214e3f003e2d7eff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;ModelPriorityPair&gt;<sp/><ref refid="class_sys_model_task_1a6bdb95635a0172e7214e3f003e2d7eff" kindref="member">TaskModels</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="class_sys_model_task_1ac9d9a925e6820c78a1464e5ed1895645" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_sys_model_task_1ac9d9a925e6820c78a1464e5ed1895645" kindref="member">TaskName</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="class_sys_model_task_1a543584af868df97619f8c554360ac86a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_sys_model_task_1a543584af868df97619f8c554360ac86a" kindref="member">parentProc</ref>;<sp/></highlight></codeline>
+<codeline lineno="58" refid="class_sys_model_task_1adc492d2c9207dec7e8901bd05a08df4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sys_model_task_1adc492d2c9207dec7e8901bd05a08df4e" kindref="member">NextStartTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="class_sys_model_task_1ae55049a100a38b886c908d5fc31dad96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sys_model_task_1ae55049a100a38b886c908d5fc31dad96" kindref="member">NextPickupTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="class_sys_model_task_1aa8450710c6c2d2bff540af7ce00ef58f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sys_model_task_1aa8450710c6c2d2bff540af7ce00ef58f" kindref="member">TaskPeriod</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="class_sys_model_task_1a40e9864dceff9599d53e259321139092" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sys_model_task_1a40e9864dceff9599d53e259321139092" kindref="member">PickupDelay</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="class_sys_model_task_1a7fe4614471fae04193bf0efe47f159fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="class_sys_model_task_1a7fe4614471fae04193bf0efe47f159fe" kindref="member">FirstTaskTime</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="class_sys_model_task_1aaf78cbbda16bb3c0544c4f006e3f0ebf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_sys_model_task_1aaf78cbbda16bb3c0544c4f006e3f0ebf" kindref="member">taskActive</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="class_sys_model_task_1a26c0a01eec5ede3379118d809825119a" refkind="member"><highlight class="normal"><sp/><sp/>BSKLogger<sp/><ref refid="class_sys_model_task_1a26c0a01eec5ede3379118d809825119a" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>_SysModelTask_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/system_model/sys_model_task.h"/>
+  </compounddef>
+</doxygen>

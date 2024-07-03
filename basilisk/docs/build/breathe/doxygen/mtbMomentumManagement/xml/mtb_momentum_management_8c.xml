@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mtb_momentum_management_8c" kind="file" language="C++">
+    <compoundname>mtbMomentumManagement.c</compoundname>
+    <includes refid="mtb_momentum_management_8h" local="yes">mtbMomentumManagement.h</includes>
+    <includes local="yes">string.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/svd.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c</label>
+        <link refid="mtb_momentum_management_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mtbMomentumManagement.h</label>
+        <link refid="mtb_momentum_management_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/svd.h</label>
+      </node>
+      <node id="8">
+        <label>cMsgCInterface/ArrayMotorTorqueMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/MTBArrayConfigMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/MTBCmdMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/RWArrayConfigMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/RWSpeedMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/TAMSensorBodyMsg_C.h</label>
+      </node>
+      <node id="10">
+        <label>stdio.h</label>
+      </node>
+      <node id="12">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mtb_momentum_management_8c_1ac833dd4716ec4ecdb62c77d1149268d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_mtbMomentumManagement</definition>
+        <argsstring>(mtbMomentumManagementConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_mtbMomentumManagement</name>
+        <param>
+          <type><ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>embed:rst
+   This method initializes the configData for this module.
+   It checks to ensure that the inputs are sane and then creates the
+   output message of type :ref:`MTBCmdMsgPayload` and :ref:`ArrayMotorTorqueMsgPayload`.
+</verbatim> <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" line="36" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" bodystart="36" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="mtb_momentum_management_8c_1a8576a31ab020e6822f49075cd84e12dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_mtbMomentumManagement</definition>
+        <argsstring>(mtbMomentumManagementConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_mtbMomentumManagement</name>
+        <param>
+          <type><ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. The local copy of the message output buffer should be cleared. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[ns] time the method is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input configuration messages.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" line="53" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" bodystart="53" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="mtb_momentum_management_8c_1aa6ea40beec5b56f783ab7a351a01799c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_mtbMomentumManagement</definition>
+        <argsstring>(mtbMomentumManagementConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_mtbMomentumManagement</name>
+        <param>
+          <type><ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the appropriate wheel torques and magnetic torque bar dipoles to bias the wheels to their desired speeds. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the wheel speed feedback.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the magnetic torque bar dipole commands.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the desired Body torque produced by the torque bars.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the reaction wheel torque commands.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the desired Body torque produced by the reaction wheels.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" line="88" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" bodystart="88" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="mtb_momentum_management_8c_1a4497a7a15da747d9cb2351daba50994f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void v3TildeM</definition>
+        <argsstring>(double v[3], void *result)</argsstring>
+        <name>v3TildeM</name>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" line="180" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c" bodystart="180" bodyend="192"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2021,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;mtbMomentumManagement.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;string.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/svd.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_mtbMomentumManagement(<ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>MTBCmdMsg_C_init(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a63695b6fad346fb8a76af7547f68f27f" kindref="member">mtbCmdOutMsg</ref>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsg_C_init(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1af5c8462a0aebe5edc04b0011aad780f3" kindref="member">rwMotorTorqueOutMsg</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_mtbMomentumManagement(<ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>linked.</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!RWArrayConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a02640cff90f322fd409e6ba2fc8f44a4" kindref="member">rwParamsInMsg</ref>)){</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmtb_momentum_management_config_1a9be5b52a915d94e53c4765a3651d0f1d" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>mtbMomentumManagement.rwParamsInMsg<sp/>is<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!MTBArrayConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a1a9c3050d15c5b627713c9403b2f8f8f" kindref="member">mtbParamsInMsg</ref>)){</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmtb_momentum_management_config_1a9be5b52a915d94e53c4765a3651d0f1d" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>mtbMomentumManagement.mtbParamsInMsg<sp/>is<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!TAMSensorBodyMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a9398404deb7b2c36355645e438ec6d80" kindref="member">tamSensorBodyInMsg</ref>)){</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmtb_momentum_management_config_1a9be5b52a915d94e53c4765a3651d0f1d" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>mtbMomentumManagement.tamSensorBodyInMsg<sp/>is<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!RWSpeedMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a6f31dfbf3dd72ca4a281658a924c691f" kindref="member">rwSpeedsInMsg</ref>)){</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmtb_momentum_management_config_1a9be5b52a915d94e53c4765a3651d0f1d" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>mtbMomentumManagement.rwSpeedsInMsg<sp/>is<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ArrayMotorTorqueMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a17184d73f6201019490340275374fc7b" kindref="member">rwMotorTorqueInMsg</ref>)){</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmtb_momentum_management_config_1a9be5b52a915d94e53c4765a3651d0f1d" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>mtbMomentumManagement.rwMotorTorqueInMsg<sp/>is<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a02869068e90217236f6eb31c8933e9bc" kindref="member">rwConfigParams</ref><sp/>=<sp/>RWArrayConfigMsg_C_read(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a02640cff90f322fd409e6ba2fc8f44a4" kindref="member">rwParamsInMsg</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref><sp/>=<sp/>MTBArrayConfigMsg_C_read(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a1a9c3050d15c5b627713c9403b2f8f8f" kindref="member">mtbParamsInMsg</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_mtbMomentumManagement(<ref refid="structmtb_momentum_management_config" kindref="compound">mtbMomentumManagementConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Declare<sp/>and<sp/>initialize<sp/>local<sp/>variables.</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numRW<sp/>=<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a02869068e90217236f6eb31c8933e9bc" kindref="member">rwConfigParams</ref>.numRW;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numMTB<sp/>=<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.numMTB;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BTilde_B[3*3];</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BGt[3*MAX_EFF_CNT];</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BGtPsuedoInverse[MAX_EFF_CNT*3];</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>uDelta_B[3];</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>uDelta_W[MAX_EFF_CNT];</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GsPsuedoInverse[MAX_EFF_CNT*3];</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Gs[3<sp/>*<sp/>MAX_EFF_CNT];</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(BTilde_B,<sp/>3,<sp/>3);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(BGt,<sp/>3,<sp/>numMTB);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(BGtPsuedoInverse,<sp/>numMTB,<sp/>3);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(uDelta_B);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(uDelta_W,<sp/>numRW);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(GsPsuedoInverse,<sp/>numRW,<sp/>3);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="structmtb_momentum_management_config_1a02869068e90217236f6eb31c8933e9bc" kindref="member">rwConfigParams</ref>.GsMatrix_B,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a02869068e90217236f6eb31c8933e9bc" kindref="member">rwConfigParams</ref>.numRW,<sp/>3,<sp/>Gs);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a6abd8d0f82ae8bdbcc7410b9df65a606" kindref="member">tauDesiredMTB_B</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a92099a66b975677ac2896ce2f287d7d3" kindref="member">tauDesiredRW_B</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a4ee77e0888b58caf619beea3c4318803" kindref="member">hDeltaWheels_W</ref>,<sp/>numRW);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a892196b8b060f348862c5999ba7cf341" kindref="member">hDeltaWheels_B</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e2ece9212cacaa606ae5ed52dd78c35" kindref="member">tauDesiredRW_W</ref>,<sp/>numRW);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a3764d1b147b15963504f1bc16fb37cc6" kindref="member">tauIdealRW_W</ref>,<sp/>numRW);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1af2657c7450444ca4e6fdc871579c5e70" kindref="member">tauIdealRW_B</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e937aaa075eab3a9b56b6026eb52e42" kindref="member">wheelSpeedError_W</ref>,<sp/>numRW);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Read<sp/>input<sp/>messages<sp/>and<sp/>initialize<sp/>output<sp/>messages.</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>TAMSensorBodyMsgPayload<sp/>tamSensorBodyInMsgBuffer<sp/>=<sp/>TAMSensorBodyMsg_C_read(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a9398404deb7b2c36355645e438ec6d80" kindref="member">tamSensorBodyInMsg</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>RWSpeedMsgPayload<sp/>rwSpeedsInMsgBuffer<sp/>=<sp/>RWSpeedMsg_C_read(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a6f31dfbf3dd72ca4a281658a924c691f" kindref="member">rwSpeedsInMsg</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsgPayload<sp/>rwMotorTorqueInMsgBuffer<sp/>=<sp/>ArrayMotorTorqueMsg_C_read(&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a17184d73f6201019490340275374fc7b" kindref="member">rwMotorTorqueInMsg</ref>);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>MTBCmdMsgPayload<sp/>mtbCmdOutputMsgBuffer<sp/>=<sp/>MTBCmdMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsgPayload<sp/>rwMotorTorqueOutMsgBuffer<sp/>=<sp/>rwMotorTorqueInMsgBuffer;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>vSubtract(rwSpeedsInMsgBuffer.wheelSpeeds,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1af652539092709f7d724894ee12cd7d90" kindref="member">wheelSpeedBiases</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e937aaa075eab3a9b56b6026eb52e42" kindref="member">wheelSpeedError_W</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>vElementwiseMult(configData-&gt;<ref refid="structmtb_momentum_management_config_1a02869068e90217236f6eb31c8933e9bc" kindref="member">rwConfigParams</ref>.JsList,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e937aaa075eab3a9b56b6026eb52e42" kindref="member">wheelSpeedError_W</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a4ee77e0888b58caf619beea3c4318803" kindref="member">hDeltaWheels_W</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(Gs,<sp/>3,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a4ee77e0888b58caf619beea3c4318803" kindref="member">hDeltaWheels_W</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a892196b8b060f348862c5999ba7cf341" kindref="member">hDeltaWheels_B</ref>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-configData-&gt;<ref refid="structmtb_momentum_management_config_1a662751ec91afded6ee3d218deccce8bc" kindref="member">cGain</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a4ee77e0888b58caf619beea3c4318803" kindref="member">hDeltaWheels_W</ref>,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a3764d1b147b15963504f1bc16fb37cc6" kindref="member">tauIdealRW_W</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(Gs,<sp/>3,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a3764d1b147b15963504f1bc16fb37cc6" kindref="member">tauIdealRW_W</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1af2657c7450444ca4e6fdc871579c5e70" kindref="member">tauIdealRW_B</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>v3TildeM(tamSensorBodyInMsgBuffer.tam_B,<sp/>BTilde_B);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(BTilde_B,<sp/>3,<sp/>3,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.GtMatrix_B,<sp/>3,<sp/>numMTB,<sp/>BGt);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>solveSVD(BGt,<sp/>3,<sp/>numMTB,<sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1af2657c7450444ca4e6fdc871579c5e70" kindref="member">tauIdealRW_B</ref>,<sp/>0.00000000001);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds,<sp/>numMTB,<sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Saturate<sp/>dipoles.</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>numMTB;<sp/>j++)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mtbCmdOutputMsgBuffer.mtbDipoleCmds[j]<sp/>&gt;<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.maxMtbDipoles[j])</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds[j]<sp/>=<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.maxMtbDipoles[j];</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mtbCmdOutputMsgBuffer.mtbDipoleCmds[j]<sp/>&lt;<sp/>-configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.maxMtbDipoles[j])</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds[j]<sp/>=<sp/>-configData-&gt;<ref refid="structmtb_momentum_management_config_1ae7990d7acaf8812c6c4e792096ebe742" kindref="member">mtbConfigParams</ref>.maxMtbDipoles[j];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(BGt,<sp/>3,<sp/>numMTB,<sp/>mtbCmdOutputMsgBuffer.mtbDipoleCmds,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6abd8d0f82ae8bdbcc7410b9df65a606" kindref="member">tauDesiredMTB_B</ref>);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6abd8d0f82ae8bdbcc7410b9df65a606" kindref="member">tauDesiredMTB_B</ref>,<sp/>3,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6abd8d0f82ae8bdbcc7410b9df65a606" kindref="member">tauDesiredMTB_B</ref>);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(configData-&gt;<ref refid="structmtb_momentum_management_config_1a6abd8d0f82ae8bdbcc7410b9df65a606" kindref="member">tauDesiredMTB_B</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1af2657c7450444ca4e6fdc871579c5e70" kindref="member">tauIdealRW_B</ref>,<sp/>uDelta_B);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>mMinimumNormInverse(Gs,<sp/>3,<sp/>numRW,<sp/>GsPsuedoInverse);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(GsPsuedoInverse,<sp/>numRW,<sp/>3,<sp/>uDelta_B,<sp/>uDelta_W);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>vAdd(configData-&gt;<ref refid="structmtb_momentum_management_config_1a3764d1b147b15963504f1bc16fb37cc6" kindref="member">tauIdealRW_W</ref>,<sp/>numRW,<sp/>uDelta_W,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e2ece9212cacaa606ae5ed52dd78c35" kindref="member">tauDesiredRW_W</ref>);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(Gs,<sp/>3,<sp/>numRW,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e2ece9212cacaa606ae5ed52dd78c35" kindref="member">tauDesiredRW_W</ref>,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a92099a66b975677ac2896ce2f287d7d3" kindref="member">tauDesiredRW_B</ref>);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a92099a66b975677ac2896ce2f287d7d3" kindref="member">tauDesiredRW_B</ref>,<sp/>3,<sp/>configData-&gt;<ref refid="structmtb_momentum_management_config_1a92099a66b975677ac2896ce2f287d7d3" kindref="member">tauDesiredRW_B</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Write<sp/>output<sp/>messages.</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>MTBCmdMsg_C_write(&amp;mtbCmdOutputMsgBuffer,<sp/>&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1a63695b6fad346fb8a76af7547f68f27f" kindref="member">mtbCmdOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>vAdd(configData-&gt;<ref refid="structmtb_momentum_management_config_1a6e2ece9212cacaa606ae5ed52dd78c35" kindref="member">tauDesiredRW_W</ref>,<sp/>numRW,<sp/>rwMotorTorqueOutMsgBuffer.motorTorque,<sp/>rwMotorTorqueOutMsgBuffer.motorTorque);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsg_C_write(&amp;rwMotorTorqueOutMsgBuffer,<sp/>&amp;configData-&gt;<ref refid="structmtb_momentum_management_config_1af5c8462a0aebe5edc04b0011aad780f3" kindref="member">rwMotorTorqueOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>Returns<sp/>the<sp/>tilde<sp/>matrix<sp/>in<sp/>the<sp/>form<sp/>of<sp/>a<sp/>1-D<sp/>array.</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>v3TildeM(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v[3],<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*result)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*m_result<sp/>=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*)result;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>0,<sp/>0)]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>0,<sp/>1)]<sp/>=<sp/>-v[2];</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>0,<sp/>2)]<sp/>=<sp/>v[1];</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>1,<sp/>0)]<sp/>=<sp/>v[2];</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>1,<sp/>1)]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>1,<sp/>2)]<sp/>=<sp/>-v[0];</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>2,<sp/>0)]<sp/>=<sp/>-v[1];</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>2,<sp/>1)]<sp/>=<sp/>v[0];</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>m_result[MXINDEX(3,<sp/>2,<sp/>2)]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/mtbMomentumManagement/mtbMomentumManagement.c"/>
+  </compounddef>
+</doxygen>

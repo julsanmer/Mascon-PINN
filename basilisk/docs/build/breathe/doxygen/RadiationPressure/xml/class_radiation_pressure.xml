@@ -1,0 +1,658 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_radiation_pressure" kind="class" language="C++" prot="public">
+    <compoundname>RadiationPressure</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">DynamicEffector</basecompoundref>
+    <includes refid="radiation_pressure_8h" local="no">radiationPressure.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_radiation_pressure_1ae7b50c7f11b852a520b68917ca98e0f3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double RadiationPressure::area</definition>
+        <argsstring></argsstring>
+        <name>area</name>
+        <qualifiedname>RadiationPressure::area</qualifiedname>
+        <briefdescription>
+<para>m^2 Body surface area </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="69" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a5ec0338c1ab01ad5d0cf9729b6452e39" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double RadiationPressure::coefficientReflection</definition>
+        <argsstring></argsstring>
+        <name>coefficientReflection</name>
+        <qualifiedname>RadiationPressure::coefficientReflection</qualifiedname>
+        <briefdescription>
+<para><ndash/> Factor grouping surface optical properties </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="70" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1ad3abcdc52c7087423779fa4be2685b76" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SpicePlanetStateMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt; RadiationPressure::sunEphmInMsg</definition>
+        <argsstring></argsstring>
+        <name>sunEphmInMsg</name>
+        <qualifiedname>RadiationPressure::sunEphmInMsg</qualifiedname>
+        <briefdescription>
+<para><ndash/> sun state input message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="71" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a6873f2483e0a8a3c94d5788cdb1dc329" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; EclipseMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;EclipseMsgPayload&gt; RadiationPressure::sunEclipseInMsg</definition>
+        <argsstring></argsstring>
+        <name>sunEclipseInMsg</name>
+        <qualifiedname>RadiationPressure::sunEclipseInMsg</qualifiedname>
+        <briefdescription>
+<para><ndash/> (optional) sun eclipse input message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="72" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a0b00d43b9b863a0e7632212f09dcc31c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt;Eigen::Vector3d&gt; RadiationPressure::lookupForce_B</definition>
+        <argsstring></argsstring>
+        <name>lookupForce_B</name>
+        <qualifiedname>RadiationPressure::lookupForce_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> Force on S/C at 1 AU from sun </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="73" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a3215cd426ea9d8f15e7ad4838ee982fa" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt;Eigen::Vector3d&gt; RadiationPressure::lookupTorque_B</definition>
+        <argsstring></argsstring>
+        <name>lookupTorque_B</name>
+        <qualifiedname>RadiationPressure::lookupTorque_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> Torque on S/C </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="74" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1acacaa5b5a4470f5656e4c82d9e05bba0" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Eigen::Vector3d &gt;</type>
+        <definition>std::vector&lt;Eigen::Vector3d&gt; RadiationPressure::lookupSHat_B</definition>
+        <argsstring></argsstring>
+        <name>lookupSHat_B</name>
+        <qualifiedname>RadiationPressure::lookupSHat_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> S/C to sun unit vector defined in the body frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="75" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a826c3b2923c5163327757872b438ef39" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger RadiationPressure::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>RadiationPressure::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="76" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_radiation_pressure_1af7eced18f0b2cd9dbbcf5296ad12a059" prot="private" static="no" mutable="no">
+        <type>srpModel_t</type>
+        <definition>srpModel_t RadiationPressure::srpModel</definition>
+        <argsstring></argsstring>
+        <name>srpModel</name>
+        <qualifiedname>RadiationPressure::srpModel</qualifiedname>
+        <briefdescription>
+<para><ndash/> specifies which SRP model to use </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="79" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1a0709ceb878895c5d6d543e068a98984e" prot="private" static="no" mutable="no">
+        <type>SpicePlanetStateMsgPayload</type>
+        <definition>SpicePlanetStateMsgPayload RadiationPressure::sunEphmInBuffer</definition>
+        <argsstring></argsstring>
+        <name>sunEphmInBuffer</name>
+        <qualifiedname>RadiationPressure::sunEphmInBuffer</qualifiedname>
+        <briefdescription>
+<para><ndash/> Buffer for incoming ephemeris message data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="80" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1aa80b9b70880258c2ee43ad6648b14a58" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool RadiationPressure::stateRead</definition>
+        <argsstring></argsstring>
+        <name>stateRead</name>
+        <qualifiedname>RadiationPressure::stateRead</qualifiedname>
+        <briefdescription>
+<para><ndash/> Indicates a succesful read of incoming SC state message data </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="81" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1ae61ec12f32442885f7705b7dbfd64a44" prot="private" static="no" mutable="no">
+        <type>EclipseMsgPayload</type>
+        <definition>EclipseMsgPayload RadiationPressure::sunVisibilityFactor</definition>
+        <argsstring></argsstring>
+        <name>sunVisibilityFactor</name>
+        <qualifiedname>RadiationPressure::sunVisibilityFactor</qualifiedname>
+        <briefdescription>
+<para>[-] scaling parameter from 0 (fully obscured) to 1 (fully visible) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="82" column="23" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1ad004e2066f1f373441f45ac4d303d9d8" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* RadiationPressure::hubR_N</definition>
+        <argsstring></argsstring>
+        <name>hubR_N</name>
+        <qualifiedname>RadiationPressure::hubR_N</qualifiedname>
+        <briefdescription>
+<para><ndash/> State data accesss to inertial position for the hub </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="83" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_radiation_pressure_1ada05a176713d224ab1b432a26c268528" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* RadiationPressure::hubSigma</definition>
+        <argsstring></argsstring>
+        <name>hubSigma</name>
+        <qualifiedname>RadiationPressure::hubSigma</qualifiedname>
+        <briefdescription>
+<para><ndash/> Hub/Inertial attitude represented by MRP </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="84" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_radiation_pressure_1a7a6b15069b10eebb3876d40edeb92955" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RadiationPressure::RadiationPressure</definition>
+        <argsstring>()</argsstring>
+        <name>RadiationPressure</name>
+        <qualifiedname>RadiationPressure::RadiationPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor. It sets some default initializers that can be overriden by the user. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="50" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="29" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1acb223fc69ecd73cfed9d5df3a874280f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>RadiationPressure::~RadiationPressure</definition>
+        <argsstring>()</argsstring>
+        <name>~RadiationPressure</name>
+        <qualifiedname>RadiationPressure::~RadiationPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The destructor. Nothing of note is performed here </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="51" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1a7a16bfe41381e17b4c7015dcf56fb54e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>RadiationPressure::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+          <defname>CurrenSimNanos</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the module to origina configuration values. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="53" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="55" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1a2696596bd6c7b702063ff9026efcc949" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>RadiationPressure::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Update model state by reading in new message data <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current simulation time in nanoseconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="54" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1aa779c199b29dcc5575e507ed884beb4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::linkInStates</definition>
+        <argsstring>(DynParamManager &amp;statesIn)</argsstring>
+        <name>linkInStates</name>
+        <qualifiedname>RadiationPressure::linkInStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>statesIn</declname>
+          <defname>states</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method retrieves pointers to parameters/data stored in the dynamic parameter manager <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dynamic parameter manager </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="55" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1ae111b045dc90c342b4397d92665f41ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>RadiationPressure::readInputMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to read the incoming ephmeris and spacecraft state messages. The data is stored in the associated buffer structure. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="56" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="79" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1abe6f08c1fc6be35e5749b49f5e9270fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::computeForceTorque</definition>
+        <argsstring>(double integTime, double timeStep)</argsstring>
+        <name>computeForceTorque</name>
+        <qualifiedname>RadiationPressure::computeForceTorque</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the dynamic effect due to solar raidation pressure. It is an inherited method from the DynamicEffector class and is designed to be called by the simulation dynamics engine. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>integTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current simulation integration time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timeStep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current integration time step used </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="98" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1ae437f5466b24ab3b4e8034db504597bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::setUseCannonballModel</definition>
+        <argsstring>()</argsstring>
+        <name>setUseCannonballModel</name>
+        <qualifiedname>RadiationPressure::setUseCannonballModel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the model to the cannonball model in computing the solar radiation force <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="58" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="137" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1ae9aedfded40b5a68aa5491011e1218ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::setUseFacetedCPUModel</definition>
+        <argsstring>()</argsstring>
+        <name>setUseFacetedCPUModel</name>
+        <qualifiedname>RadiationPressure::setUseFacetedCPUModel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the model to the faceted table-lookup model, evaluted on the CPU, in computing the solar radiation force <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="59" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="145" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1a0217189543e18f1f04beb1233ebec4e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::addForceLookupBEntry</definition>
+        <argsstring>(Eigen::Vector3d vec)</argsstring>
+        <name>addForceLookupBEntry</name>
+        <qualifiedname>RadiationPressure::addForceLookupBEntry</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add force vector in the body frame to lookup table.</para>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(N) Force vector for particular attitude in lookup table </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="60" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="223" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1a2b9422295f0156df5c2810575f643d01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::addTorqueLookupBEntry</definition>
+        <argsstring>(Eigen::Vector3d vec)</argsstring>
+        <name>addTorqueLookupBEntry</name>
+        <qualifiedname>RadiationPressure::addTorqueLookupBEntry</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add torque vector to lookup table.</para>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(Nm) Torque vector for particular attitude in lookup table </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="61" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="233" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1a245c83b0a97dc7f4f47c1e774b987bd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::addSHatLookupBEntry</definition>
+        <argsstring>(Eigen::Vector3d vec)</argsstring>
+        <name>addSHatLookupBEntry</name>
+        <qualifiedname>RadiationPressure::addSHatLookupBEntry</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add sun unit direction vector in body frame to lookup table.</para>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sun unit direction vector in body frame </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="62" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="243" bodyend="246"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_radiation_pressure_1ae7eec61453a2b4b0bbf0271860c7b7d4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::computeCannonballModel</definition>
+        <argsstring>(Eigen::Vector3d rSunB_B)</argsstring>
+        <name>computeCannonballModel</name>
+        <qualifiedname>RadiationPressure::computeCannonballModel</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rSunB_B</declname>
+          <defname>s_N</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the solar radiation force vector based on cross-sectional Area and mass of the spacecraft and the position vector of the spacecraft to the sun. The solar radiation pressure decreases quadratically with distance from sun (in AU)</para>
+<para>Solar Radiation Equations obtained from Earth Space and Planets Journal Vol. 51, 1999 pp. 979-986 <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s_N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(m) Position vector to the Sun relative to the inertial frame </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="65" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="162" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_radiation_pressure_1ac6faceb895334808e70e877ef40968bd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RadiationPressure::computeLookupModel</definition>
+        <argsstring>(Eigen::Vector3d rSunB_B)</argsstring>
+        <name>computeLookupModel</name>
+        <qualifiedname>RadiationPressure::computeLookupModel</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rSunB_B</declname>
+          <defname>s_B</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the solar radiation force vector using a lookup table given the current spacecraft attitude and the position vector of the spacecraft to the sun. It is assumed that the lookup table has been generated with a solar flux at 1AU. Force and torque values are scaled.</para>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(m) Position vector of the Sun relative to the body frame </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="66" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.cpp" bodystart="183" bodyend="216"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>solar radiation pressure dynamic effector </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>DynamicEffector</label>
+      </node>
+      <node id="1">
+        <label>RadiationPressure</label>
+        <link refid="class_radiation_pressure"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>DynamicEffector</label>
+      </node>
+      <node id="1">
+        <label>RadiationPressure</label>
+        <link refid="class_radiation_pressure"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" line="48" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/RadiationPressure/radiationPressure.h" bodystart="48" bodyend="86"/>
+    <listofallmembers>
+      <member refid="class_radiation_pressure_1a0217189543e18f1f04beb1233ebec4e7" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>addForceLookupBEntry</name></member>
+      <member refid="class_radiation_pressure_1a245c83b0a97dc7f4f47c1e774b987bd9" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>addSHatLookupBEntry</name></member>
+      <member refid="class_radiation_pressure_1a2b9422295f0156df5c2810575f643d01" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>addTorqueLookupBEntry</name></member>
+      <member refid="class_radiation_pressure_1ae7b50c7f11b852a520b68917ca98e0f3" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>area</name></member>
+      <member refid="class_radiation_pressure_1a826c3b2923c5163327757872b438ef39" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>bskLogger</name></member>
+      <member refid="class_radiation_pressure_1a5ec0338c1ab01ad5d0cf9729b6452e39" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>coefficientReflection</name></member>
+      <member refid="class_radiation_pressure_1ae7eec61453a2b4b0bbf0271860c7b7d4" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>computeCannonballModel</name></member>
+      <member refid="class_radiation_pressure_1abe6f08c1fc6be35e5749b49f5e9270fc" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>computeForceTorque</name></member>
+      <member refid="class_radiation_pressure_1ac6faceb895334808e70e877ef40968bd" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>computeLookupModel</name></member>
+      <member refid="class_radiation_pressure_1ad004e2066f1f373441f45ac4d303d9d8" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>hubR_N</name></member>
+      <member refid="class_radiation_pressure_1ada05a176713d224ab1b432a26c268528" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>hubSigma</name></member>
+      <member refid="class_radiation_pressure_1aa779c199b29dcc5575e507ed884beb4f" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>linkInStates</name></member>
+      <member refid="class_radiation_pressure_1a0b00d43b9b863a0e7632212f09dcc31c" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>lookupForce_B</name></member>
+      <member refid="class_radiation_pressure_1acacaa5b5a4470f5656e4c82d9e05bba0" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>lookupSHat_B</name></member>
+      <member refid="class_radiation_pressure_1a3215cd426ea9d8f15e7ad4838ee982fa" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>lookupTorque_B</name></member>
+      <member refid="class_radiation_pressure_1a7a6b15069b10eebb3876d40edeb92955" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>RadiationPressure</name></member>
+      <member refid="class_radiation_pressure_1ae111b045dc90c342b4397d92665f41ba" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>readInputMessages</name></member>
+      <member refid="class_radiation_pressure_1a7a16bfe41381e17b4c7015dcf56fb54e" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>Reset</name></member>
+      <member refid="class_radiation_pressure_1ae437f5466b24ab3b4e8034db504597bf" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>setUseCannonballModel</name></member>
+      <member refid="class_radiation_pressure_1ae9aedfded40b5a68aa5491011e1218ce" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>setUseFacetedCPUModel</name></member>
+      <member refid="class_radiation_pressure_1af7eced18f0b2cd9dbbcf5296ad12a059" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>srpModel</name></member>
+      <member refid="class_radiation_pressure_1aa80b9b70880258c2ee43ad6648b14a58" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>stateRead</name></member>
+      <member refid="class_radiation_pressure_1a6873f2483e0a8a3c94d5788cdb1dc329" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>sunEclipseInMsg</name></member>
+      <member refid="class_radiation_pressure_1a0709ceb878895c5d6d543e068a98984e" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>sunEphmInBuffer</name></member>
+      <member refid="class_radiation_pressure_1ad3abcdc52c7087423779fa4be2685b76" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>sunEphmInMsg</name></member>
+      <member refid="class_radiation_pressure_1ae61ec12f32442885f7705b7dbfd64a44" prot="private" virt="non-virtual"><scope>RadiationPressure</scope><name>sunVisibilityFactor</name></member>
+      <member refid="class_radiation_pressure_1a2696596bd6c7b702063ff9026efcc949" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>UpdateState</name></member>
+      <member refid="class_radiation_pressure_1acb223fc69ecd73cfed9d5df3a874280f" prot="public" virt="non-virtual"><scope>RadiationPressure</scope><name>~RadiationPressure</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

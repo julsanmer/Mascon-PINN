@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="low_pass_filter_torque_command_8c" kind="file" language="C++">
+    <compoundname>lowPassFilterTorqueCommand.c</compoundname>
+    <includes refid="low_pass_filter_torque_command_8h" local="yes">fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">fswAlgorithms/fswUtilities/fswDefinitions.h</includes>
+    <includes local="yes">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c</label>
+        <link refid="low_pass_filter_torque_command_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.h</label>
+        <link refid="low_pass_filter_torque_command_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="8">
+        <label>fswAlgorithms/fswUtilities/fswDefinitions.h</label>
+      </node>
+      <node id="9">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="low_pass_filter_torque_command_8c_1a89f54872e7d9f002f90569b01ae7f7a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_lowPassFilterTorqueCommand</definition>
+        <argsstring>(lowPassFilterTorqueCommandConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_lowPassFilterTorqueCommand</name>
+        <param>
+          <type><ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for this module. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Initialize output message for module</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" line="40" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="low_pass_filter_torque_command_8c_1ab47ab4f9f7d3776247dc45d691857434" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_lowPassFilterTorqueCommand</definition>
+        <argsstring>(lowPassFilterTorqueCommandConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_lowPassFilterTorqueCommand</name>
+        <param>
+          <type><ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the MRP steering control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" line="54" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" bodystart="54" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="low_pass_filter_torque_command_8c_1ab03664a83269804f139d6faa2cb2d274" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_lowPassFilterTorqueCommand</definition>
+        <argsstring>(lowPassFilterTorqueCommandConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_lowPassFilterTorqueCommand</name>
+        <param>
+          <type><ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the attitude and rate errors relative to the Reference frame, as well as the reference frame angular rates and acceleration, and computes the required control torque Lr. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the MRP Steering attitude control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; 3d vector sub-result</para>
+<para>&lt; <ndash/> Control output message</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" line="78" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c" bodystart="78" bodyend="149"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>Control<sp/>Torque<sp/>Low<sp/>Pass<sp/>Filter<sp/>Module</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>modify<sp/>the<sp/>path<sp/>to<sp/>reflect<sp/>the<sp/>new<sp/>module<sp/>names<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/fswUtilities/fswDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;math.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_lowPassFilterTorqueCommand(<ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C_init(&amp;configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1ad5c29ee80e37459cf0f56858c6f299b7" kindref="member">cmdTorqueOutMsg</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_lowPassFilterTorqueCommand(<ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a2d1a8f9b5eaf268d486ab8ffcadcc8b1" kindref="member">reset</ref><sp/><sp/>=<sp/>BOOL_TRUE;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>reset<sp/>the<sp/>first<sp/>run<sp/>flag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>message<sp/>is<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!CmdTorqueBodyMsg_C_isLinked(&amp;configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1aca21790547ed2825c2ebcf54ab352946" kindref="member">cmdTorqueInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a5ca705158f0f111bb081d160144eb3af" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>lowPassFilterTorqueCommand.cmdTorqueInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[i]);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[i]);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_lowPassFilterTorqueCommand(<ref refid="structlow_pass_filter_torque_command_config" kindref="compound">lowPassFilterTorqueCommandConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>v3[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsgPayload<sp/>controlOut;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>the<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>controlOut<sp/>=<sp/>CmdTorqueBodyMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>Read<sp/>the<sp/>input<sp/>messages<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsgPayload<sp/>msgBuffer<sp/>=<sp/>CmdTorqueBodyMsg_C_read(&amp;configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1aca21790547ed2825c2ebcf54ab352946" kindref="member">cmdTorqueInMsg</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(msgBuffer.torqueRequestBody,<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[0]);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>check<sp/>if<sp/>the<sp/>filter<sp/>states<sp/>must<sp/>be<sp/>reset</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a2d1a8f9b5eaf268d486ab8ffcadcc8b1" kindref="member">reset</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>populate<sp/>the<sp/>filter<sp/>history<sp/>with<sp/>1st<sp/>input<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=1;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[0],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[i]);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>the<sp/>history<sp/>of<sp/>filtered<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[i]);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>h<sp/>times<sp/>the<sp/>prewarped<sp/>critical<sp/>filter<sp/>frequency<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a58ddefd207c323620de707584f0030a3" kindref="member">hw</ref><sp/>=<sp/>tan(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a6c4736fd22dc6f1f0becedd63e0d7288" kindref="member">wc</ref><sp/>*<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1ad6faeaf21ec37654c20c5598b71befea" kindref="member">h</ref><sp/>/<sp/>2.0)*2.0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>determine<sp/>1st<sp/>order<sp/>low-pass<sp/>filter<sp/>coefficients<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1afdcd461700e02d9b8e819ef0cd402bbd" kindref="member">a</ref>[0]<sp/>=<sp/>2.0<sp/>+<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a58ddefd207c323620de707584f0030a3" kindref="member">hw</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1afdcd461700e02d9b8e819ef0cd402bbd" kindref="member">a</ref>[1]<sp/>=<sp/>2.0<sp/>-<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a58ddefd207c323620de707584f0030a3" kindref="member">hw</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a6b3ca7a9eea2912196a21206cad733d5" kindref="member">b</ref>[0]<sp/>=<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a58ddefd207c323620de707584f0030a3" kindref="member">hw</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a6b3ca7a9eea2912196a21206cad733d5" kindref="member">b</ref>[1]<sp/>=<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a58ddefd207c323620de707584f0030a3" kindref="member">hw</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>turn<sp/>off<sp/>first<sp/>run<sp/>flag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a2d1a8f9b5eaf268d486ab8ffcadcc8b1" kindref="member">reset</ref><sp/>=<sp/>BOOL_FALSE;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>regular<sp/>filter<sp/>run</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0]);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a6b3ca7a9eea2912196a21206cad733d5" kindref="member">b</ref>[i],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[i],<sp/>v3);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(v3,<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0]);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=1;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1afdcd461700e02d9b8e819ef0cd402bbd" kindref="member">a</ref>[i],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[i],<sp/>v3);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(v3,<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0]);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(1.0/configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1afdcd461700e02d9b8e819ef0cd402bbd" kindref="member">a</ref>[0],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0]);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>reset<sp/>the<sp/>filter<sp/>state<sp/>history<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=1;i&lt;NUM_LPF;i++)<sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[NUM_LPF-1-i],<sp/><sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a281041b03cc8fbe93c3ffa24c09cd7b3" kindref="member">Lr</ref>[NUM_LPF-i]);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[NUM_LPF-1-i],<sp/>configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[NUM_LPF-i]);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>store<sp/>the<sp/>output<sp/>message<sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1a8e914077cc805302adcfe2569bf0a080" kindref="member">LrF</ref>[0],<sp/>controlOut.torqueRequestBody);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C_write(&amp;controlOut,<sp/>&amp;configData-&gt;<ref refid="structlow_pass_filter_torque_command_config_1ad5c29ee80e37459cf0f56858c6f299b7" kindref="member">cmdTorqueOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/lowPassFilterTorqueCommand/lowPassFilterTorqueCommand.c"/>
+  </compounddef>
+</doxygen>

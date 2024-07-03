@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="css_comm_8c" kind="file" language="C++">
+    <compoundname>cssComm.c</compoundname>
+    <includes refid="css_comm_8h" local="yes">fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c</label>
+        <link refid="css_comm_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.h</label>
+        <link refid="css_comm_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/CSSArraySensorMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>stdio.h</label>
+      </node>
+      <node id="6">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="css_comm_8c_1a52f973a950b04e9beaa8c2f6b2e7c5ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_cssProcessTelem</definition>
+        <argsstring>(CSSConfigData *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_cssProcessTelem</name>
+        <param>
+          <type><ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for theCSS sensor interface. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS sensor interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" line="32" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="css_comm_8c_1af6ee2f1ad808b8b9c5d079ecbf1e3f4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_cssProcessTelem</definition>
+        <argsstring>(CSSConfigData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_cssProcessTelem</name>
+        <param>
+          <type><ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the guidance module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Check to make sure that number of sensors is less than the max and warn if none are set</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" line="45" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" bodystart="45" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="css_comm_8c_1af8dc37f7ce9b5dd42d511eab0c1bddb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_cssProcessTelem</definition>
+        <argsstring>(CSSConfigData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_cssProcessTelem</name>
+        <param>
+          <type><ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the raw sensor data from the coarse sun sensors and converts that information to the format used by the CSS nav. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Loop over the sensors and compute data<orderedlist>
+<listitem><para>Check appropriate range on sensor and calibrate</para>
+</listitem><listitem><para>If Chebyshev polynomials are configured:<itemizedlist>
+<listitem><para>Seed polynominal computations</para>
+</listitem><listitem><para>Loop over polynominals to compute estimated correction factor</para>
+</listitem><listitem><para>Output is base value plus the correction factor</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>If sensor output range is incorrect, set output value to zero</para>
+</listitem></orderedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write aggregate output into output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" line="83" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c" bodystart="83" bodyend="143"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_cssProcessTelem(<ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsg_C_init(&amp;configData-&gt;<ref refid="struct_c_s_s_config_data_1a1f98eb4bf26173459a89150b737c850a" kindref="member">cssArrayOutMsg</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_cssProcessTelem(<ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>message<sp/>has<sp/>not<sp/>been<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!CSSArraySensorMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_c_s_s_config_data_1a7186ebd2f891236fd5d4623cf080bc54" kindref="member">sensorListInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_c_s_s_config_data_1a167d8e771dafc986bb371e3ff7362875" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>cssComm.sensorListInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_c_s_s_config_data_1a5b0ea906227ba529876403b2606551a3" kindref="member">numSensors</ref><sp/>&gt;<sp/>MAX_NUM_CSS_SENSORS)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>info[MAX_LOGGING_LENGTH];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(info,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>configured<sp/>number<sp/>of<sp/>CSS<sp/>sensors<sp/>exceeds<sp/>the<sp/>maximum,<sp/>%d<sp/>&gt;<sp/>%d!<sp/>Changing<sp/>the<sp/>number<sp/>of<sp/>sensors<sp/>to<sp/>the<sp/>max.&quot;</highlight><highlight class="normal">,<sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a5b0ea906227ba529876403b2606551a3" kindref="member">numSensors</ref>,<sp/>MAX_NUM_CSS_SENSORS);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_c_s_s_config_data_1a167d8e771dafc986bb371e3ff7362875" kindref="member">bskLogger</ref>,<sp/>BSK_WARNING,<sp/>info);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a5b0ea906227ba529876403b2606551a3" kindref="member">numSensors</ref><sp/>=<sp/>MAX_NUM_CSS_SENSORS;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="struct_c_s_s_config_data_1a5b0ea906227ba529876403b2606551a3" kindref="member">numSensors</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_c_s_s_config_data_1a167d8e771dafc986bb371e3ff7362875" kindref="member">bskLogger</ref>,<sp/>BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;There<sp/>are<sp/>zero<sp/>CSS<sp/>configured!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="struct_c_s_s_config_data_1a9bf3015a423bb4e987089e0ec8f80fa3" kindref="member">maxSensorValue</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_c_s_s_config_data_1a167d8e771dafc986bb371e3ff7362875" kindref="member">bskLogger</ref>,<sp/>BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Max<sp/>CSS<sp/>sensor<sp/>value<sp/>configured<sp/>to<sp/>zero!<sp/>CSS<sp/>sensor<sp/>values<sp/>will<sp/>be<sp/>normalized<sp/>by<sp/>zero,<sp/>inducing<sp/>faux<sp/>saturation!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a104d1332f6e08d03481fe2b1958e1de2" kindref="member">inputValues</ref><sp/>=<sp/>CSSArraySensorMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_cssProcessTelem(<ref refid="struct_c_s_s_config_data" kindref="compound">CSSConfigData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>i,<sp/>j;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsgPayload<sp/>inMsgBuffer;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inputValues[MAX_NUM_CSS_SENSORS];<sp/></highlight><highlight class="comment">/*<sp/>[-]<sp/>Current<sp/>measured<sp/>CSS<sp/>value<sp/>for<sp/>the<sp/>constellation<sp/>of<sp/>CSS<sp/>sensor<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ChebyDiffFactor,<sp/>ChebyPrev,<sp/>ChebyNow,<sp/>ChebyLocalPrev,<sp/>ValueMult;<sp/></highlight><highlight class="comment">/*<sp/>Parameters<sp/>used<sp/>for<sp/>the<sp/>Chebyshev<sp/>Recursion<sp/>Forumula<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsgPayload<sp/>outputBuffer;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>outputBuffer<sp/>=<sp/>CSSArraySensorMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>read<sp/>sensor<sp/>list<sp/>input<sp/>msg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>inMsgBuffer<sp/>=<sp/>CSSArraySensorMsg_C_read(&amp;configData-&gt;<ref refid="struct_c_s_s_config_data_1a7186ebd2f891236fd5d4623cf080bc54" kindref="member">sensorListInMsg</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(inMsgBuffer.CosValue,<sp/>MAX_NUM_CSS_SENSORS,<sp/>inputValues);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;configData-&gt;<ref refid="struct_c_s_s_config_data_1a5b0ea906227ba529876403b2606551a3" kindref="member">numSensors</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputBuffer.CosValue[i]<sp/>=<sp/>(float)<sp/>inputValues[i]/configData-&gt;<ref refid="struct_c_s_s_config_data_1a9bf3015a423bb4e987089e0ec8f80fa3" kindref="member">maxSensorValue</ref>;<sp/></highlight><highlight class="comment">/*<sp/>Scale<sp/>Sensor<sp/>Data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seed<sp/>the<sp/>polynomial<sp/>computations<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ValueMult<sp/>=<sp/>2.0*outputBuffer.CosValue[i];</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyPrev<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyNow<sp/>=<sp/>outputBuffer.CosValue[i];</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyDiffFactor<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyDiffFactor<sp/>=<sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a414ec448bfd9c2639b79f2782e12f9e0" kindref="member">chebyCount</ref><sp/>&gt;<sp/>0<sp/>?<sp/>ChebyPrev*configData-&gt;<ref refid="struct_c_s_s_config_data_1a7e8fb77d3b2aaae40987eaac50297090" kindref="member">kellyCheby</ref>[0]<sp/>:<sp/>ChebyDiffFactor;<sp/></highlight><highlight class="comment">/*<sp/>if<sp/>only<sp/>first<sp/>order<sp/>correction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyDiffFactor<sp/>=<sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a414ec448bfd9c2639b79f2782e12f9e0" kindref="member">chebyCount</ref><sp/>&gt;<sp/>1<sp/>?<sp/>ChebyNow*configData-&gt;<ref refid="struct_c_s_s_config_data_1a7e8fb77d3b2aaae40987eaac50297090" kindref="member">kellyCheby</ref>[1]<sp/>+<sp/>ChebyDiffFactor<sp/>:<sp/>ChebyDiffFactor;<sp/></highlight><highlight class="comment">/*<sp/>if<sp/>higher<sp/>order<sp/>(&gt;<sp/>first)<sp/>corrections<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>remaining<sp/>polynomials<sp/>and<sp/>add<sp/>in<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j=2;<sp/>j&lt;configData-&gt;<ref refid="struct_c_s_s_config_data_1a414ec448bfd9c2639b79f2782e12f9e0" kindref="member">chebyCount</ref>;<sp/>j<sp/>=<sp/>j+1)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyLocalPrev<sp/>=<sp/>ChebyNow;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyNow<sp/>=<sp/>ValueMult*ChebyNow<sp/>-<sp/>ChebyPrev;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyPrev<sp/>=<sp/>ChebyLocalPrev;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ChebyDiffFactor<sp/>+=<sp/>configData-&gt;<ref refid="struct_c_s_s_config_data_1a7e8fb77d3b2aaae40987eaac50297090" kindref="member">kellyCheby</ref>[j]*ChebyNow;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputBuffer.CosValue[i]<sp/>=<sp/>outputBuffer.CosValue[i]<sp/>+<sp/>ChebyDiffFactor;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(outputBuffer.CosValue[i]<sp/>&gt;<sp/>1.0)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputBuffer.CosValue[i]<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(outputBuffer.CosValue[i]<sp/>&lt;<sp/>0.0)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outputBuffer.CosValue[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsg_C_write(&amp;outputBuffer,<sp/>&amp;configData-&gt;<ref refid="struct_c_s_s_config_data_1a1f98eb4bf26173459a89150b737c850a" kindref="member">cssArrayOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/sensorInterfaces/CSSSensorData/cssComm.c"/>
+  </compounddef>
+</doxygen>

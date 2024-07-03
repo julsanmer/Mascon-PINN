@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>test_unitFacetSRPDynamicEffector &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../externalTools/index.html">externalTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>test_unitFacetSRPDynamicEffector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for test_unitFacetSRPDynamicEffector</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># ISC License</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (c) 2023, Autonomous Vehicle Systems Lab, University of Colorado at Boulder</span>
+<span class="c1">#</span>
+<span class="c1"># Permission to use, copy, modify, and/or distribute this software for any</span>
+<span class="c1"># purpose with or without fee is hereby granted, provided that the above</span>
+<span class="c1"># copyright notice and this permission notice appear in all copies.</span>
+<span class="c1">#</span>
+<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES</span>
+<span class="c1"># WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF</span>
+<span class="c1"># MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR</span>
+<span class="c1"># ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES</span>
+<span class="c1"># WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN</span>
+<span class="c1"># ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF</span>
+<span class="c1"># OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</span>
+
+<span class="c1">#</span>
+<span class="c1"># Purpose:  Test the facetSRPDynamicEffector module.</span>
+<span class="c1"># Author:   Leah Kiner</span>
+<span class="c1"># Creation Date:  Dec 18 2022</span>
+<span class="c1">#</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">Basilisk</span> <span class="kn">import</span> <span class="n">__path__</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">SimulationBaseClass</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">unitTestSupport</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">orbitalMotion</span><span class="p">,</span> <span class="n">simIncludeGravBody</span>
+<span class="kn">from</span> <span class="nn">Basilisk.simulation</span> <span class="kn">import</span> <span class="n">spacecraft</span><span class="p">,</span> <span class="n">facetSRPDynamicEffector</span>
+<span class="kn">from</span> <span class="nn">Basilisk.utilities</span> <span class="kn">import</span> <span class="n">macros</span><span class="p">,</span> <span class="n">RigidBodyKinematics</span> <span class="k">as</span> <span class="n">rbk</span>
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="n">messaging</span>
+<span class="n">bskPath</span> <span class="o">=</span> <span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getframeinfo</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())</span><span class="o">.</span><span class="n">filename</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+<span class="n">splitPath</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;simulation&#39;</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<div class="viewcode-block" id="test_facetSRPDynamicEffector"><a class="viewcode-back" href="../Documentation/simulation/dynamics/facetSRPDynamicEffector/_UnitTest/test_unitFacetSRPDynamicEffector.html#test_unitFacetSRPDynamicEffector.test_facetSRPDynamicEffector">[docs]</a><span class="k">def</span> <span class="nf">test_facetSRPDynamicEffector</span><span class="p">(</span><span class="n">show_plots</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    **Validation Test Description**</span>
+
+<span class="sd">    The unit test for this module ensures that the calculated Solar Radiation Pressure (SRP) force and torque acting</span>
+<span class="sd">    on the spacecraft about the body-fixed point B is properly computed for a static spacecraft. The spacecraft</span>
+<span class="sd">    geometry defined in this test consists of a cubic hub and two circular solar arrays. Six square facets represent</span>
+<span class="sd">    the cubic hub and four circular facets describe the solar arrays. The SRP force and torque module values are</span>
+<span class="sd">    checked with values computed in python both initially and at a time halfway through the simulation.</span>
+
+<span class="sd">    **Test Parameters**</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        show_plots (bool): (True) Show plots, (False) Do not show plots</span>
+
+<span class="sd">    **Description of Variables Being Tested**</span>
+
+<span class="sd">    The initial module-computed SRP force value ``SRPDataForce_B`` is checked with the value computed in</span>
+<span class="sd">    python ``forceTest1Val``. The initial module-computed SRP torque value ``SRPDataTorque_B`` is also checked</span>
+<span class="sd">    with the value computed in python ``torqueTest1Val``. Similarly, these values halfway through the simulation</span>
+<span class="sd">    are checked to match.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">testResults</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">testMessage</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">srpRes</span><span class="p">,</span> <span class="n">srpMsg</span> <span class="o">=</span> <span class="n">TestfacetSRPDynamicEffector</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">testMessage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">srpMsg</span><span class="p">)</span>
+    <span class="n">testResults</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">srpRes</span><span class="p">)</span>
+
+    <span class="n">testSum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">testResults</span><span class="p">)</span>
+    <span class="n">snippetName</span> <span class="o">=</span> <span class="s2">&quot;unitTestPassFail&quot;</span>
+
+    <span class="k">if</span> <span class="n">testSum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">colorText</span> <span class="o">=</span> <span class="s1">&#39;ForestGreen&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PASSED&quot;</span><span class="p">)</span>
+        <span class="n">passedText</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\textcolor{&#39;</span> <span class="o">+</span> <span class="n">colorText</span> <span class="o">+</span> <span class="s1">&#39;}{&#39;</span> <span class="o">+</span> <span class="s2">&quot;PASSED&quot;</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colorText</span> <span class="o">=</span> <span class="s1">&#39;Red&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed&quot;</span><span class="p">)</span>
+        <span class="n">passedText</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\textcolor{&#39;</span> <span class="o">+</span> <span class="n">colorText</span> <span class="o">+</span> <span class="s1">&#39;}{&#39;</span> <span class="o">+</span> <span class="s2">&quot;Failed&quot;</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+
+    <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">writeTeXSnippet</span><span class="p">(</span><span class="n">snippetName</span><span class="p">,</span> <span class="n">passedText</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">testSum</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">testMessage</span></div>
+
+<div class="viewcode-block" id="checkFacetSRPForce"><a class="viewcode-back" href="../Documentation/simulation/dynamics/facetSRPDynamicEffector/_UnitTest/test_unitFacetSRPDynamicEffector.html#test_unitFacetSRPDynamicEffector.checkFacetSRPForce">[docs]</a><span class="k">def</span> <span class="nf">checkFacetSRPForce</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">specCoeff</span><span class="p">,</span> <span class="n">diffCoeff</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">,</span> <span class="n">sigma_BN</span><span class="p">,</span> <span class="n">scPos</span><span class="p">,</span> <span class="n">sunPos</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function calculates the per-facet SRP force acting on the spacecraft.&quot;&quot;&quot;</span>
+    <span class="c1"># Define required constants</span>
+    <span class="n">speedLight</span> <span class="o">=</span> <span class="mf">299792458.0</span>
+    <span class="n">AstU</span> <span class="o">=</span> <span class="mf">149597870700.0</span>
+    <span class="n">solarRadFlux</span> <span class="o">=</span> <span class="mf">1368.0</span>
+
+    <span class="c1"># Compute dcm_BN using MRP transformation</span>
+    <span class="n">dcm_BN</span> <span class="o">=</span> <span class="n">rbk</span><span class="o">.</span><span class="n">MRP2C</span><span class="p">(</span><span class="n">sigma_BN</span><span class="p">)</span>
+
+    <span class="c1"># Convert vectors from the N frame to the B frame</span>
+    <span class="n">r_BN_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">dcm_BN</span><span class="p">,</span> <span class="n">scPos</span><span class="p">)</span>
+    <span class="n">r_SN_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">dcm_BN</span><span class="p">,</span> <span class="n">sunPos</span><span class="p">)</span>
+    <span class="n">r_SB_B</span> <span class="o">=</span> <span class="n">r_SN_B</span> <span class="o">-</span> <span class="n">r_BN_B</span>
+
+    <span class="c1"># Determine unit direction vector pointing from point B on the spacecraft to the Sun</span>
+    <span class="n">sHat</span> <span class="o">=</span> <span class="n">r_SB_B</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_SB_B</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the incidence angle theta between the facet normal vector and the Sun-direction vector</span>
+    <span class="n">cosTheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sHat</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">)</span>
+    <span class="n">intermediate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">sHat</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">)</span>
+    <span class="n">sinTheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">sinTheta</span><span class="p">,</span> <span class="n">cosTheta</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the facet projected area onto the plane whose normal vector is the Sun-direction vector</span>
+    <span class="n">projArea</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the solar radiation pressure acting on the facet</span>
+    <span class="n">numAU</span> <span class="o">=</span> <span class="n">AstU</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_SB_B</span><span class="p">)</span>
+    <span class="n">SRPPressure</span> <span class="o">=</span> <span class="p">(</span><span class="n">solarRadFlux</span> <span class="o">/</span> <span class="n">speedLight</span><span class="p">)</span> <span class="o">*</span> <span class="n">numAU</span> <span class="o">*</span> <span class="n">numAU</span>
+
+    <span class="c1"># Compute the SRP force acting on the facet only if the facet is illuminated by the Sun</span>
+    <span class="k">if</span> <span class="n">projArea</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">srp_force</span> <span class="o">=</span> <span class="o">-</span><span class="n">SRPPressure</span> <span class="o">*</span> <span class="n">projArea</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">specCoeff</span><span class="p">)</span> <span class="o">*</span> <span class="n">sHat</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">diffCoeff</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">specCoeff</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">normal_B</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">srp_force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,])</span>
+
+    <span class="k">return</span> <span class="n">srp_force</span></div>
+
+<div class="viewcode-block" id="checkFacetSRPTorque"><a class="viewcode-back" href="../Documentation/simulation/dynamics/facetSRPDynamicEffector/_UnitTest/test_unitFacetSRPDynamicEffector.html#test_unitFacetSRPDynamicEffector.checkFacetSRPTorque">[docs]</a><span class="k">def</span> <span class="nf">checkFacetSRPTorque</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">specCoeff</span><span class="p">,</span> <span class="n">diffCoeff</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">,</span> <span class="n">locationPntB_B</span><span class="p">,</span> <span class="n">sigma_BN</span><span class="p">,</span> <span class="n">scPos</span><span class="p">,</span> <span class="n">sunPos</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function calculates the per-facet SRP torque acting on the spacecraft.&quot;&quot;&quot;</span>
+    <span class="c1"># Define required constants</span>
+    <span class="n">speedLight</span> <span class="o">=</span> <span class="mf">299792458.0</span>
+    <span class="n">AstU</span> <span class="o">=</span> <span class="mf">149597870700.0</span>
+    <span class="n">solarRadFlux</span> <span class="o">=</span> <span class="mf">1368.0</span>
+
+    <span class="c1"># Compute dcm_BN using MRP transformation</span>
+    <span class="n">dcm_BN</span> <span class="o">=</span> <span class="n">rbk</span><span class="o">.</span><span class="n">MRP2C</span><span class="p">(</span><span class="n">sigma_BN</span><span class="p">)</span>
+
+    <span class="c1"># Convert vectors from the N frame to the B frame</span>
+    <span class="n">r_BN_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">dcm_BN</span><span class="p">,</span> <span class="n">scPos</span><span class="p">)</span>
+    <span class="n">r_SN_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">dcm_BN</span><span class="p">,</span> <span class="n">sunPos</span><span class="p">)</span>
+    <span class="n">r_SB_B</span> <span class="o">=</span> <span class="n">r_SN_B</span> <span class="o">-</span> <span class="n">r_BN_B</span>
+
+    <span class="c1"># Determine unit direction vector pointing from point B on the spacecraft to the Sun</span>
+    <span class="n">sHat</span> <span class="o">=</span> <span class="n">r_SB_B</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_SB_B</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the incidence angle theta between the facet normal vector and the Sun-direction vector</span>
+    <span class="n">cosTheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sHat</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">)</span>
+    <span class="n">intermediate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">sHat</span><span class="p">,</span> <span class="n">normal_B</span><span class="p">)</span>
+    <span class="n">sinTheta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">sinTheta</span><span class="p">,</span> <span class="n">cosTheta</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the facet projected area onto the plane whose normal vector is the Sun-direction vector</span>
+    <span class="n">projArea</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the solar radiation pressure acting on the facet</span>
+    <span class="n">numAU</span> <span class="o">=</span> <span class="n">AstU</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_SB_B</span><span class="p">)</span>
+    <span class="n">SRPPressure</span> <span class="o">=</span> <span class="p">(</span><span class="n">solarRadFlux</span> <span class="o">/</span> <span class="n">speedLight</span><span class="p">)</span> <span class="o">*</span> <span class="n">numAU</span> <span class="o">*</span> <span class="n">numAU</span>
+
+    <span class="c1"># Compute the SRP force contribution from the facet only if the facet is illuminated by the Sun</span>
+    <span class="k">if</span> <span class="n">projArea</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">srp_force</span> <span class="o">=</span> <span class="o">-</span><span class="n">SRPPressure</span> <span class="o">*</span> <span class="n">projArea</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">specCoeff</span><span class="p">)</span> <span class="o">*</span> <span class="n">sHat</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">diffCoeff</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">specCoeff</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">normal_B</span> <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">srp_force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="p">])</span>
+
+    <span class="c1"># Calculate the SRP torque contribution from the facet</span>
+    <span class="n">srp_torque</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">locationPntB_B</span><span class="p">,</span> <span class="n">srp_force</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">srp_torque</span></div>
+
+
+<div class="viewcode-block" id="TestfacetSRPDynamicEffector"><a class="viewcode-back" href="../Documentation/simulation/dynamics/facetSRPDynamicEffector/_UnitTest/test_unitFacetSRPDynamicEffector.html#test_unitFacetSRPDynamicEffector.TestfacetSRPDynamicEffector">[docs]</a><span class="k">def</span> <span class="nf">TestfacetSRPDynamicEffector</span><span class="p">(</span><span class="n">show_plots</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call this routine directly to run the unit test.&quot;&quot;&quot;</span>
+    <span class="c1"># Init test support variables</span>
+    <span class="n">testFailCount</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">testMessages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Create the simulation task and process</span>
+    <span class="n">simTaskName</span> <span class="o">=</span> <span class="s2">&quot;simTask&quot;</span>
+    <span class="n">simProcessName</span> <span class="o">=</span> <span class="s2">&quot;simProcess&quot;</span>
+    <span class="n">scSim</span> <span class="o">=</span> <span class="n">SimulationBaseClass</span><span class="o">.</span><span class="n">SimBaseClass</span><span class="p">()</span>
+    <span class="n">dynProcess</span> <span class="o">=</span> <span class="n">scSim</span><span class="o">.</span><span class="n">CreateNewProcess</span><span class="p">(</span><span class="n">simProcessName</span><span class="p">)</span>
+    <span class="n">simulationTimeStep_Sec</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">simulationTimeStep_NS</span> <span class="o">=</span> <span class="n">macros</span><span class="o">.</span><span class="n">sec2nano</span><span class="p">(</span><span class="n">simulationTimeStep_Sec</span><span class="p">)</span>
+    <span class="n">dynProcess</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">scSim</span><span class="o">.</span><span class="n">CreateNewTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">simulationTimeStep_NS</span><span class="p">))</span>
+
+    <span class="c1"># Create the spacecraft object</span>
+    <span class="n">scObject</span> <span class="o">=</span> <span class="n">spacecraft</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">()</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;spacecraft&quot;</span>
+
+    <span class="c1"># Add the Earth and Sun as gravitational bodies</span>
+    <span class="n">gravFactory</span> <span class="o">=</span> <span class="n">simIncludeGravBody</span><span class="o">.</span><span class="n">gravBodyFactory</span><span class="p">()</span>
+    <span class="n">earth</span> <span class="o">=</span> <span class="n">gravFactory</span><span class="o">.</span><span class="n">createEarth</span><span class="p">()</span>
+    <span class="n">sun</span> <span class="o">=</span> <span class="n">gravFactory</span><span class="o">.</span><span class="n">createSun</span><span class="p">()</span>
+    <span class="n">earth</span><span class="o">.</span><span class="n">isCentralBody</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># ensure this is the central gravitational body</span>
+    <span class="n">earthIdx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sunIdx</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">earthStateMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">SpicePlanetStateMsgPayload</span><span class="p">()</span>
+    <span class="n">earthStateMsg</span><span class="o">.</span><span class="n">PositionVector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">149598023</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">earthStateMsg</span><span class="o">.</span><span class="n">VelocityVector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">earthMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">SpicePlanetStateMsg</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">earthStateMsg</span><span class="p">)</span>
+    <span class="n">gravFactory</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;earth&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">planetBodyInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">earthMsg</span><span class="p">)</span>
+    <span class="n">sunStateMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">SpicePlanetStateMsgPayload</span><span class="p">()</span>
+    <span class="n">sunStateMsg</span><span class="o">.</span><span class="n">PositionVector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">sunStateMsg</span><span class="o">.</span><span class="n">VelocityVector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="n">sunMsg</span> <span class="o">=</span> <span class="n">messaging</span><span class="o">.</span><span class="n">SpicePlanetStateMsg</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sunStateMsg</span><span class="p">)</span>
+    <span class="n">gravFactory</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;sun&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">planetBodyInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">sunMsg</span><span class="p">)</span>
+
+    <span class="c1"># Create an instance of the facetSRPEffector module to be tested</span>
+    <span class="n">newSRP</span> <span class="o">=</span> <span class="n">facetSRPDynamicEffector</span><span class="o">.</span><span class="n">FacetSRPDynamicEffector</span><span class="p">()</span>
+    <span class="n">newSRP</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">=</span> <span class="s2">&quot;FacetSRP&quot;</span>
+
+    <span class="c1"># Connect the Sun&#39;s ephemeris message to the module</span>
+    <span class="n">newSRP</span><span class="o">.</span><span class="n">sunInMsg</span><span class="o">.</span><span class="n">subscribeTo</span><span class="p">(</span><span class="n">sunMsg</span><span class="p">)</span>
+
+    <span class="c1"># Add the SRP dynamic effector to the spacecraft object</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">addDynamicEffector</span><span class="p">(</span><span class="n">newSRP</span><span class="p">)</span>
+
+    <span class="c1"># Define the spacecraft geometry for this test</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Define the facet surface areas</span>
+        <span class="n">area1</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="mf">1.5</span>  <span class="c1"># [m^2]</span>
+        <span class="n">area2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="mf">7.5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="mf">7.5</span><span class="p">)</span>  <span class="c1"># [m^2]</span>
+        <span class="n">facetAreas</span> <span class="o">=</span> <span class="p">[</span><span class="n">area1</span><span class="p">,</span> <span class="n">area1</span><span class="p">,</span> <span class="n">area1</span><span class="p">,</span> <span class="n">area1</span><span class="p">,</span> <span class="n">area1</span><span class="p">,</span> <span class="n">area1</span><span class="p">,</span> <span class="n">area2</span><span class="p">,</span> <span class="n">area2</span><span class="p">,</span> <span class="n">area2</span><span class="p">,</span> <span class="n">area2</span><span class="p">]</span>
+
+        <span class="c1"># Define the facet normals in B frame components</span>
+        <span class="n">facetNormal1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+        <span class="n">facetNormal6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">])</span>
+        <span class="n">facetNormal7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal9</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">facetNormal10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+        <span class="n">normals_B</span> <span class="o">=</span> <span class="p">[</span><span class="n">facetNormal1</span><span class="p">,</span> <span class="n">facetNormal2</span><span class="p">,</span> <span class="n">facetNormal3</span><span class="p">,</span> <span class="n">facetNormal4</span><span class="p">,</span> <span class="n">facetNormal5</span><span class="p">,</span> <span class="n">facetNormal6</span><span class="p">,</span> <span class="n">facetNormal7</span><span class="p">,</span> <span class="n">facetNormal8</span><span class="p">,</span> <span class="n">facetNormal9</span><span class="p">,</span> <span class="n">facetNormal10</span><span class="p">]</span>
+
+        <span class="c1"># Define the facet center of pressure locations with respect to point B in B frame components</span>
+        <span class="n">facetLoc1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc9</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">facetLoc10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  <span class="c1"># [m]</span>
+        <span class="n">locationsPntB_B</span> <span class="o">=</span> <span class="p">[</span><span class="n">facetLoc1</span><span class="p">,</span> <span class="n">facetLoc2</span><span class="p">,</span> <span class="n">facetLoc3</span><span class="p">,</span> <span class="n">facetLoc4</span><span class="p">,</span> <span class="n">facetLoc5</span><span class="p">,</span> <span class="n">facetLoc6</span><span class="p">,</span> <span class="n">facetLoc7</span><span class="p">,</span> <span class="n">facetLoc8</span><span class="p">,</span> <span class="n">facetLoc9</span><span class="p">,</span> <span class="n">facetLoc10</span><span class="p">]</span>
+
+        <span class="c1"># Define the facet optical coefficients</span>
+        <span class="n">specCoeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+        <span class="n">diffCoeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+
+        <span class="c1"># Populate the scGeometry structure with the facet information</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">facetAreas</span><span class="p">)):</span>
+            <span class="n">newSRP</span><span class="o">.</span><span class="n">addFacet</span><span class="p">(</span><span class="n">facetAreas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">specCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">diffCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">normals_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">locationsPntB_B</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">testFailCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">testMessages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ERROR: FacetDrag unit test failed while setting facet parameters.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">testFailCount</span><span class="p">,</span> <span class="n">testMessages</span>
+
+    <span class="c1"># Set up the spacecraft orbit</span>
+    <span class="n">oe</span> <span class="o">=</span> <span class="n">orbitalMotion</span><span class="o">.</span><span class="n">ClassicElements</span><span class="p">()</span>
+    <span class="n">r_eq</span> <span class="o">=</span> <span class="mi">6371</span><span class="o">*</span><span class="mf">1000.0</span>  <span class="c1"># [m]</span>
+    <span class="n">rN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r_eq</span><span class="o">+</span><span class="mf">2000.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">149598023</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m]</span>
+    <span class="n">vN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">7.90854</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># [m/s]</span>
+    <span class="n">sig_BN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+    <span class="c1"># Initialize spacecraft states with the initialization variables</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">r_CN_NInit</span> <span class="o">=</span> <span class="n">rN</span>  <span class="c1"># [m] r_CN_N</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">v_CN_NInit</span> <span class="o">=</span> <span class="n">vN</span>  <span class="c1"># [m] v_CN_N</span>
+    <span class="n">scObject</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">sigma_BNInit</span> <span class="o">=</span> <span class="n">sig_BN</span>
+
+    <span class="c1"># Set up data logging</span>
+    <span class="n">scPosDataLog</span> <span class="o">=</span> <span class="n">scObject</span><span class="o">.</span><span class="n">scStateOutMsg</span><span class="o">.</span><span class="n">recorder</span><span class="p">()</span>
+    <span class="n">sunPosDataLog</span> <span class="o">=</span> <span class="n">gravFactory</span><span class="o">.</span><span class="n">gravBodies</span><span class="p">[</span><span class="s1">&#39;sun&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">planetBodyInMsg</span><span class="o">.</span><span class="n">recorder</span><span class="p">()</span>
+
+    <span class="c1"># Add the BSK objects to the simulation process</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">scObject</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">newSRP</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">scPosDataLog</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddModelToTask</span><span class="p">(</span><span class="n">simTaskName</span><span class="p">,</span> <span class="n">sunPosDataLog</span><span class="p">)</span>
+
+    <span class="c1"># Set the simulation time</span>
+    <span class="n">simTimeSec</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># [s]</span>
+    <span class="n">simulationTime</span> <span class="o">=</span> <span class="n">macros</span><span class="o">.</span><span class="n">sec2nano</span><span class="p">(</span><span class="n">simTimeSec</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the simulation</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">InitializeSimulation</span><span class="p">()</span>
+
+    <span class="c1"># Add the data for logging</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddVariableForLogging</span><span class="p">(</span><span class="n">newSRP</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">+</span> <span class="s2">&quot;.forceExternal_B&quot;</span><span class="p">,</span> <span class="n">simulationTimeStep_NS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">AddVariableForLogging</span><span class="p">(</span><span class="n">newSRP</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">+</span> <span class="s2">&quot;.torqueExternalPntB_B&quot;</span><span class="p">,</span> <span class="n">simulationTimeStep_NS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Configure the simulation stop time and execute the simulation run</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">ConfigureStopTime</span><span class="p">(</span><span class="n">simulationTime</span><span class="p">)</span>
+    <span class="n">scSim</span><span class="o">.</span><span class="n">ExecuteSimulation</span><span class="p">()</span>
+
+    <span class="c1"># Retrieve the logged data</span>
+    <span class="n">timespan</span> <span class="o">=</span> <span class="n">scPosDataLog</span><span class="o">.</span><span class="n">times</span><span class="p">()</span>
+    <span class="n">r_BN_N</span> <span class="o">=</span> <span class="n">scPosDataLog</span><span class="o">.</span><span class="n">r_BN_N</span>
+    <span class="n">sigma_BN</span> <span class="o">=</span> <span class="n">scPosDataLog</span><span class="o">.</span><span class="n">sigma_BN</span>
+    <span class="n">r_SN_N</span> <span class="o">=</span> <span class="n">sunPosDataLog</span><span class="o">.</span><span class="n">PositionVector</span>
+    <span class="n">SRPDataForce_B</span> <span class="o">=</span> <span class="n">scSim</span><span class="o">.</span><span class="n">GetLogVariableData</span><span class="p">(</span><span class="n">newSRP</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">+</span> <span class="s2">&quot;.forceExternal_B&quot;</span><span class="p">)</span>
+    <span class="n">SRPDataTorque_B</span> <span class="o">=</span> <span class="n">scSim</span><span class="o">.</span><span class="n">GetLogVariableData</span><span class="p">(</span><span class="n">newSRP</span><span class="o">.</span><span class="n">ModelTag</span> <span class="o">+</span> <span class="s2">&quot;.torqueExternalPntB_B&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Store the logged data for plotting</span>
+    <span class="n">srpForce_B_plotting</span> <span class="o">=</span> <span class="n">SRPDataForce_B</span>
+    <span class="n">srpForce_B_plotting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">srpForce_B_plotting</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">srpTorque_B_plotting</span> <span class="o">=</span> <span class="n">SRPDataTorque_B</span>
+    <span class="n">srpTorque_B_plotting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">srpTorque_B_plotting</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Plotting results</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">r_BN_N</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r_{\mathcal</span><span class="si">{B}</span><span class="s1">/\mathcal</span><span class="si">{N}</span><span class="s1">} \cdot \hat</span><span class="si">{n}</span><span class="s1">_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">r_BN_N</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r_{\mathcal</span><span class="si">{B}</span><span class="s1">/\mathcal</span><span class="si">{N}</span><span class="s1">} \cdot \hat</span><span class="si">{n}</span><span class="s1">_2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">r_BN_N</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$r_{\mathcal</span><span class="si">{B}</span><span class="s1">/\mathcal</span><span class="si">{N}</span><span class="s1">} \cdot \hat</span><span class="si">{n}</span><span class="s1">_3$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1">^\mathcal</span><span class="si">{N}</span><span class="s1"> r_{\mathcal</span><span class="si">{B}</span><span class="s1">/\mathcal</span><span class="si">{N}</span><span class="s1">}$ (m)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpForce_B_plotting</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$F \cdot \hat</span><span class="si">{b}</span><span class="s1">_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpForce_B_plotting</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$F \cdot \hat</span><span class="si">{b}</span><span class="s1">_2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpForce_B_plotting</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$F \cdot \hat</span><span class="si">{b}</span><span class="s1">_3$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1">^\mathcal</span><span class="si">{B}</span><span class="s1"> F_{SRP, B}$ (N)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpTorque_B_plotting</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$L \cdot \hat</span><span class="si">{b}</span><span class="s1">_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpTorque_B_plotting</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$L \cdot \hat</span><span class="si">{b}</span><span class="s1">_2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan</span> <span class="o">*</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">srpTorque_B_plotting</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$L \cdot \hat</span><span class="si">{b}</span><span class="s1">_3$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1">^\mathcal</span><span class="si">{B}</span><span class="s1"> L_{SRP, B}$ (Nm)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">show_plots</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Compare the retrieved data to the expected values computed in python</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="mf">1e-15</span>
+    <span class="n">forceTest1Val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,])</span>
+    <span class="n">forceTest2Val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,])</span>
+    <span class="n">torqueTest1Val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="p">])</span>
+    <span class="n">torqueTest2Val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="p">])</span>
+    <span class="n">index2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">simTimeSec</span> <span class="o">/</span> <span class="n">simulationTimeStep_Sec</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">facetAreas</span><span class="p">)):</span>
+        <span class="n">forceTest1Val</span> <span class="o">+=</span> <span class="n">checkFacetSRPForce</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">facetAreas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">specCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">diffCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">normals_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sigma_BN</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r_BN_N</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r_SN_N</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">forceTest2Val</span> <span class="o">+=</span> <span class="n">checkFacetSRPForce</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">facetAreas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">specCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">diffCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">normals_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sigma_BN</span><span class="p">[</span><span class="n">index2</span><span class="p">],</span> <span class="n">r_BN_N</span><span class="p">[</span><span class="n">index2</span><span class="p">],</span>
+                                       <span class="n">r_SN_N</span><span class="p">[</span><span class="n">index2</span><span class="p">])</span>
+        <span class="n">torqueTest1Val</span> <span class="o">+=</span> <span class="n">checkFacetSRPTorque</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">facetAreas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">specCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">diffCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">normals_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">locationsPntB_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sigma_BN</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                            <span class="n">r_BN_N</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r_SN_N</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">torqueTest2Val</span> <span class="o">+=</span> <span class="n">checkFacetSRPTorque</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">facetAreas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">specCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">diffCoeff</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">normals_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                              <span class="n">locationsPntB_B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sigma_BN</span><span class="p">[</span><span class="n">index2</span><span class="p">],</span>
+                                              <span class="n">r_BN_N</span><span class="p">[</span><span class="n">index2</span><span class="p">],</span> <span class="n">r_SN_N</span><span class="p">[</span><span class="n">index2</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">isArrayEqual</span><span class="p">(</span><span class="n">SRPDataForce_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">forceTest1Val</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">):</span>
+        <span class="n">testFailCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">testMessages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;FAILED:  FacetSRPEffector failed unit test at t=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataForce_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2SEC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;sec with a value difference of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataForce_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">forceTest1Val</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">SRPDataForce_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">forceTest1Val</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">isArrayEqual</span><span class="p">(</span><span class="n">SRPDataForce_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">forceTest2Val</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">):</span>
+        <span class="n">testFailCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">testMessages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;FAILED:  FacetSRPEffector failed unit test at t=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataForce_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2SEC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;sec with a value difference of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataForce_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">forceTest2Val</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">SRPDataForce_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">forceTest2Val</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">isArrayEqual</span><span class="p">(</span><span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">torqueTest1Val</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">):</span>
+        <span class="n">testFailCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">testMessages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;FAILED:  FacetSRPEffector failed unit test at t=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2SEC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;sec with a value difference of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">torqueTest1Val</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">torqueTest1Val</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unitTestSupport</span><span class="o">.</span><span class="n">isArrayEqual</span><span class="p">(</span><span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">torqueTest2Val</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">):</span>
+        <span class="n">testFailCount</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">testMessages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;FAILED:  FacetSRPEffector failed unit test at t=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">macros</span><span class="o">.</span><span class="n">NANO2SEC</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;sec with a value difference of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">torqueTest2Val</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">SRPDataTorque_B</span><span class="p">[</span><span class="n">index2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">torqueTest2Val</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">testFailCount</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">testMessages</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PASSED&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">testFailCount</span><span class="p">,</span> <span class="n">testMessages</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># TestfacetSRPDynamicEffector</span>
+    <span class="n">TestfacetSRPDynamicEffector</span><span class="p">(</span>
+            <span class="kc">True</span>  <span class="c1"># show plots</span>
+           <span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

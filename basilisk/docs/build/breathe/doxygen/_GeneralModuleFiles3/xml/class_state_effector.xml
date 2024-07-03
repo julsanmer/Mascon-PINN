@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_state_effector" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>StateEffector</compoundname>
+    <derivedcompoundref refid="class_hub_effector" prot="public" virt="non-virtual">HubEffector</derivedcompoundref>
+    <includes refid="state_effector_8h" local="no">stateEffector.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string StateEffector::nameOfSpacecraftAttachedTo</definition>
+        <argsstring></argsstring>
+        <name>nameOfSpacecraftAttachedTo</name>
+        <qualifiedname>StateEffector::nameOfSpacecraftAttachedTo</qualifiedname>
+        <initializer>=&quot;&quot;</initializer>
+        <briefdescription>
+<para>class variable </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="53" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1a2fe1cb2f0d18b5aebd2f95a58f3a6332" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string StateEffector::parentSpacecraftName</definition>
+        <argsstring></argsstring>
+        <name>parentSpacecraftName</name>
+        <qualifiedname>StateEffector::parentSpacecraftName</qualifiedname>
+        <initializer>=&quot;&quot;</initializer>
+        <briefdescription>
+<para><ndash/> name of the spacecraft the state effector is attached to </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="54" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_effector_mass_props" kindref="compound">EffectorMassProps</ref></type>
+        <definition>EffectorMassProps StateEffector::effProps</definition>
+        <argsstring></argsstring>
+        <name>effProps</name>
+        <qualifiedname>StateEffector::effProps</qualifiedname>
+        <briefdescription>
+<para><ndash/> stateEffectors instantiation of effector mass props </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="55" column="23" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1afc2be2211f784c4b8582e2d5b4e47112" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd StateEffector::stateDerivContribution</definition>
+        <argsstring></argsstring>
+        <name>stateDerivContribution</name>
+        <qualifiedname>StateEffector::stateDerivContribution</qualifiedname>
+        <briefdescription>
+<para><ndash/> stateEffector contribution to another stateEffector to prevent double-counting </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="56" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1a1f2f395a28391a7d92ae8e4432c61cbf" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StateEffector::forceOnBody_B</definition>
+        <argsstring></argsstring>
+        <name>forceOnBody_B</name>
+        <qualifiedname>StateEffector::forceOnBody_B</qualifiedname>
+        <briefdescription>
+<para>[N] Force that the state effector applies to the s/c </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="57" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1ab7a2204f97b75cbe432aebffa6901606" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StateEffector::torqueOnBodyPntB_B</definition>
+        <argsstring></argsstring>
+        <name>torqueOnBodyPntB_B</name>
+        <qualifiedname>StateEffector::torqueOnBodyPntB_B</qualifiedname>
+        <briefdescription>
+<para>[N] Torque that the state effector applies to the body about point B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="58" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1ab73f300496a13a8ad88e86682af2f34e" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StateEffector::torqueOnBodyPntC_B</definition>
+        <argsstring></argsstring>
+        <name>torqueOnBodyPntC_B</name>
+        <qualifiedname>StateEffector::torqueOnBodyPntC_B</qualifiedname>
+        <briefdescription>
+<para>[N] Torque that the state effector applies to the body about point B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="59" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1a5b1d4ed95d416ef2d9ceace566a4a428" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StateEffector::r_BP_P</definition>
+        <argsstring></argsstring>
+        <name>r_BP_P</name>
+        <qualifiedname>StateEffector::r_BP_P</qualifiedname>
+        <briefdescription>
+<para>position vector of the spacecraft mody frame origin B relative to the primary spacecraft body frame P. This is used in the SpacecraftSystem module where multiple spacecraft hubs can be a single spacecraft </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="60" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1a3f453bbbbdfba52651c489dfc2370148" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d StateEffector::dcm_BP</definition>
+        <argsstring></argsstring>
+        <name>dcm_BP</name>
+        <qualifiedname>StateEffector::dcm_BP</qualifiedname>
+        <briefdescription>
+<para>DCM of the spacecraft body frame B relative to primary spacecraft body frame P. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="61" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_state_effector_1a0ed248bd13ea11652cf6df51bcf6f8d0" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger StateEffector::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>StateEffector::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="62" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_state_effector_1abf137999e279af0434a83eb7d2b0baf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>StateEffector::StateEffector</definition>
+        <argsstring>()</argsstring>
+        <name>StateEffector</name>
+        <qualifiedname>StateEffector::StateEffector</qualifiedname>
+        <briefdescription>
+<para><ndash/> Contructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor, just setting the variables to zero </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="65" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="23" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a00d8ed219b5a4eb18ce97742a2a93468" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>StateEffector::~StateEffector</definition>
+        <argsstring>()</argsstring>
+        <name>~StateEffector</name>
+        <qualifiedname>StateEffector::~StateEffector</qualifiedname>
+        <briefdescription>
+<para><ndash/> Destructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the destructor, nothing to report here </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="66" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1aeb8497e3c43b12e78284a1bb5d34c514" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::updateEffectorMassProps</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>updateEffectorMassProps</name>
+        <qualifiedname>StateEffector::updateEffectorMassProps</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1a69b5a03b4d59f36dfa3a84dd6936b3c4">updateEffectorMassProps</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for stateEffector to give mass contributions </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is for the state effector to provide its contributions of mass and mass rates to the dynamicObject. This allows for the dynamicObject to have access to the total mass, and inerita, mass and inertia rates </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="67" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a5459a11ce83f7d925de4fabb392cc60c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::updateContributions</definition>
+        <argsstring>(double integTime, BackSubMatrices &amp;backSubContr, Eigen::Vector3d sigma_BN, Eigen::Vector3d omega_BN_B, Eigen::Vector3d g_N)</argsstring>
+        <name>updateContributions</name>
+        <qualifiedname>StateEffector::updateContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_back_sub_matrices" kindref="compound">BackSubMatrices</ref> &amp;</type>
+          <declname>backSubContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>g_N</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Back-sub contributions </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is strictly for the back-substituion method for computing the dynamics of the spacecraft. The back-sub method first computes rDDot_BN_N and omegaDot_BN_B for the spacecraft using these contributions from the state effectors. Then computeDerivatives is called to compute the stateEffectors derivatives using rDDot_BN_N omegaDot_BN_B </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="68" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1add699b5020d7da6effa54677c004a7e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::updateEnergyMomContributions</definition>
+        <argsstring>(double integTime, Eigen::Vector3d &amp;rotAngMomPntCContr_B, double &amp;rotEnergyContr, Eigen::Vector3d omega_BN_B)</argsstring>
+        <name>updateEnergyMomContributions</name>
+        <qualifiedname>StateEffector::updateEnergyMomContributions</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1a64a8e9caeb7dcae98cf604a08eb68d56">updateEnergyMomContributions</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d &amp;</type>
+          <declname>rotAngMomPntCContr_B</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>rotEnergyContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Energy and momentum calculations </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows for an individual stateEffector to add its energy and momentum calculations to the dynamicObject. The analytical devlopement of these contributions can be seen in Basilisk/simulation/dynamics/_Documentation/Basilisk-EnergyAndMomentum-20161219.pdf </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="69" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a77ce78826ce7fcc8d5deb3907f4c82a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::modifyStates</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>modifyStates</name>
+        <qualifiedname>StateEffector::modifyStates</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1afac7a9b3652fef43121b1d03ea39b88e">modifyStates</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Modify state values after integration </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows for an individual stateEffector to modify their states after integration </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="71" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1ae1e131d9dac6b6ab49eab538049d0df7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::calcForceTorqueOnBody</definition>
+        <argsstring>(double integTime, Eigen::Vector3d omega_BN_B)</argsstring>
+        <name>calcForceTorqueOnBody</name>
+        <qualifiedname>StateEffector::calcForceTorqueOnBody</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Force and torque on s/c due to stateEffector </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows for an individual stateEffector to find the force and torque that the stateEffector is placing on to the body </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="72" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="87" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1aa9f69447ca99b3d52138cbb7c9783e80" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::writeOutputStateMessages</definition>
+        <argsstring>(uint64_t integTimeNanos)</argsstring>
+        <name>writeOutputStateMessages</name>
+        <qualifiedname>StateEffector::writeOutputStateMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>integTimeNanos</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Write State Messages after integration </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method ensures that all dynamics states have their messages written after integation </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="73" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="93" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a3745fd088f1fbb5ac25f9204b66c85a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void StateEffector::registerStates</definition>
+        <argsstring>(DynParamManager &amp;states)=0</argsstring>
+        <name>registerStates</name>
+        <qualifiedname>StateEffector::registerStates</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1a198a93c8b81ebc638cb298eebfe0b829">registerStates</reimplementedby>
+        <param>
+          <type><ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref> &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for stateEffectors to register states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="74" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a117e24b8d78d31f1043da6077040fe78" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void StateEffector::linkInStates</definition>
+        <argsstring>(DynParamManager &amp;states)=0</argsstring>
+        <name>linkInStates</name>
+        <qualifiedname>StateEffector::linkInStates</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1a4b1c0ca2bd95b25e31818a890847d37d">linkInStates</reimplementedby>
+        <param>
+          <type><ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref> &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for stateEffectors to get other states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="75" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a17f780a3e2eaf4f90279efd2bc41a2f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void StateEffector::computeDerivatives</definition>
+        <argsstring>(double integTime, Eigen::Vector3d rDDot_BN_N, Eigen::Vector3d omegaDot_BN_B, Eigen::Vector3d sigma_BN)=0</argsstring>
+        <name>computeDerivatives</name>
+        <qualifiedname>StateEffector::computeDerivatives</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1a061c0c95cc304e6826614293b704f4ed">computeDerivatives</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rDDot_BN_N</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omegaDot_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for each stateEffector to calculate derivatives </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="76" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1aa57f9697860dfcf9b63e1c35707369a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::prependSpacecraftNameToStates</definition>
+        <argsstring>()</argsstring>
+        <name>prependSpacecraftNameToStates</name>
+        <qualifiedname>StateEffector::prependSpacecraftNameToStates</qualifiedname>
+        <reimplementedby refid="class_hub_effector_1adb315b3b25828c6bbd878294237dd914">prependSpacecraftNameToStates</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method ensures that stateEffectors can be implemented using the multi-spacecraft archticture </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="77" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_state_effector_1a2495dbcfc25237ef118a2fe4c3644211" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void StateEffector::receiveMotherSpacecraftData</definition>
+        <argsstring>(Eigen::Vector3d rSC_BP_P, Eigen::Matrix3d dcmSC_BP)</argsstring>
+        <name>receiveMotherSpacecraftData</name>
+        <qualifiedname>StateEffector::receiveMotherSpacecraftData</qualifiedname>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rSC_BP_P</declname>
+        </param>
+        <param>
+          <type>Eigen::Matrix3d</type>
+          <declname>dcmSC_BP</declname>
+        </param>
+        <briefdescription>
+<para>class method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="78" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.cpp" bodystart="55" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>state effector class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>HubEffector</label>
+        <link refid="class_hub_effector"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>StateEffector</label>
+        <link refid="class_state_effector"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>EffectorMassProps</label>
+        <link refid="struct_effector_mass_props"/>
+      </node>
+      <node id="1">
+        <label>StateEffector</label>
+        <link refid="class_state_effector"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>effProps</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" line="51" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/stateEffector.h" bodystart="51" bodyend="79"/>
+    <listofallmembers>
+      <member refid="class_state_effector_1a0ed248bd13ea11652cf6df51bcf6f8d0" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>bskLogger</name></member>
+      <member refid="class_state_effector_1ae1e131d9dac6b6ab49eab538049d0df7" prot="public" virt="virtual"><scope>StateEffector</scope><name>calcForceTorqueOnBody</name></member>
+      <member refid="class_state_effector_1a17f780a3e2eaf4f90279efd2bc41a2f4" prot="public" virt="pure-virtual"><scope>StateEffector</scope><name>computeDerivatives</name></member>
+      <member refid="class_state_effector_1a3f453bbbbdfba52651c489dfc2370148" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>dcm_BP</name></member>
+      <member refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>effProps</name></member>
+      <member refid="class_state_effector_1a1f2f395a28391a7d92ae8e4432c61cbf" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>forceOnBody_B</name></member>
+      <member refid="class_state_effector_1a117e24b8d78d31f1043da6077040fe78" prot="public" virt="pure-virtual"><scope>StateEffector</scope><name>linkInStates</name></member>
+      <member refid="class_state_effector_1a77ce78826ce7fcc8d5deb3907f4c82a4" prot="public" virt="virtual"><scope>StateEffector</scope><name>modifyStates</name></member>
+      <member refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>nameOfSpacecraftAttachedTo</name></member>
+      <member refid="class_state_effector_1a2fe1cb2f0d18b5aebd2f95a58f3a6332" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>parentSpacecraftName</name></member>
+      <member refid="class_state_effector_1aa57f9697860dfcf9b63e1c35707369a2" prot="public" virt="virtual"><scope>StateEffector</scope><name>prependSpacecraftNameToStates</name></member>
+      <member refid="class_state_effector_1a5b1d4ed95d416ef2d9ceace566a4a428" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>r_BP_P</name></member>
+      <member refid="class_state_effector_1a2495dbcfc25237ef118a2fe4c3644211" prot="public" virt="virtual"><scope>StateEffector</scope><name>receiveMotherSpacecraftData</name></member>
+      <member refid="class_state_effector_1a3745fd088f1fbb5ac25f9204b66c85a6" prot="public" virt="pure-virtual"><scope>StateEffector</scope><name>registerStates</name></member>
+      <member refid="class_state_effector_1afc2be2211f784c4b8582e2d5b4e47112" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>stateDerivContribution</name></member>
+      <member refid="class_state_effector_1abf137999e279af0434a83eb7d2b0baf4" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>StateEffector</name></member>
+      <member refid="class_state_effector_1ab7a2204f97b75cbe432aebffa6901606" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>torqueOnBodyPntB_B</name></member>
+      <member refid="class_state_effector_1ab73f300496a13a8ad88e86682af2f34e" prot="public" virt="non-virtual"><scope>StateEffector</scope><name>torqueOnBodyPntC_B</name></member>
+      <member refid="class_state_effector_1a5459a11ce83f7d925de4fabb392cc60c" prot="public" virt="virtual"><scope>StateEffector</scope><name>updateContributions</name></member>
+      <member refid="class_state_effector_1aeb8497e3c43b12e78284a1bb5d34c514" prot="public" virt="virtual"><scope>StateEffector</scope><name>updateEffectorMassProps</name></member>
+      <member refid="class_state_effector_1add699b5020d7da6effa54677c004a7e5" prot="public" virt="virtual"><scope>StateEffector</scope><name>updateEnergyMomContributions</name></member>
+      <member refid="class_state_effector_1aa9f69447ca99b3d52138cbb7c9783e80" prot="public" virt="virtual"><scope>StateEffector</scope><name>writeOutputStateMessages</name></member>
+      <member refid="class_state_effector_1a00d8ed219b5a4eb18ce97742a2a93468" prot="public" virt="virtual"><scope>StateEffector</scope><name>~StateEffector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_recorder" kind="class" language="C++" prot="public">
+    <compoundname>Recorder</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="messaging_8h" local="no">messaging.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="class_recorder" kindref="compound">typename</ref> <ref refid="class_recorder" kindref="compound">messageType</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_recorder_1ae076726846472beb9ef55ada292ed54e" prot="public" static="no" mutable="no">
+        <type><ref refid="class_recorder" kindref="compound">BSKLogger</ref></type>
+        <definition>BSKLogger Recorder&lt; messageType &gt;::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>Recorder::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="326" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="326" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_recorder_1ad947a7d2a82630cfcd0f528546e45a43" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">messageType</ref> &gt;</type>
+        <definition>std::vector&lt;messageType&gt; Recorder&lt; messageType &gt;::msgRecord</definition>
+        <argsstring></argsstring>
+        <name>msgRecord</name>
+        <qualifiedname>Recorder::msgRecord</qualifiedname>
+        <briefdescription>
+<para>vector of recorded messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="334" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="334" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_recorder_1a38f48d08b809d00462be5875a14b74fb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">uint64_t</ref> &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; Recorder&lt; messageType &gt;::msgRecordTimes</definition>
+        <argsstring></argsstring>
+        <name>msgRecordTimes</name>
+        <qualifiedname>Recorder::msgRecordTimes</qualifiedname>
+        <briefdescription>
+<para>vector of times at which messages are recorded </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="335" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="335" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_recorder_1ac9f0c7022a139f89e51feddc845390e8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">uint64_t</ref> &gt;</type>
+        <definition>std::vector&lt;uint64_t&gt; Recorder&lt; messageType &gt;::msgWrittenTimes</definition>
+        <argsstring></argsstring>
+        <name>msgWrittenTimes</name>
+        <qualifiedname>Recorder::msgWrittenTimes</qualifiedname>
+        <briefdescription>
+<para>vector of times at which messages are written </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="336" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="336" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_recorder_1a995e53b06d6e6a10832691f6facec1cc" prot="private" static="no" mutable="no">
+        <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+        <definition>uint64_t Recorder&lt; messageType &gt;::nextUpdateTime</definition>
+        <argsstring></argsstring>
+        <name>nextUpdateTime</name>
+        <qualifiedname>Recorder::nextUpdateTime</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>[ns] earliest time at which the msg is recorded again </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="337" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_recorder_1aebfb65528ae8f1a23e1cef8ba4e24988" prot="private" static="no" mutable="no">
+        <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+        <definition>uint64_t Recorder&lt; messageType &gt;::timeInterval</definition>
+        <argsstring></argsstring>
+        <name>timeInterval</name>
+        <qualifiedname>Recorder::timeInterval</qualifiedname>
+        <briefdescription>
+<para>[ns] recording time intervale </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="338" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_recorder_1a70281c8a03ed5febf38dca3f0069bb31" prot="private" static="no" mutable="no">
+        <type><ref refid="class_read_functor" kindref="compound">ReadFunctor</ref>&lt; <ref refid="class_recorder" kindref="compound">messageType</ref> &gt;</type>
+        <definition>ReadFunctor&lt;messageType&gt; Recorder&lt; messageType &gt;::readMessage</definition>
+        <argsstring></argsstring>
+        <name>readMessage</name>
+        <qualifiedname>Recorder::readMessage</qualifiedname>
+        <briefdescription>
+<para>method description </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="341" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="341" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_recorder_1afbdce8e89252c39992f7c51ff55beff8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Recorder&lt; messageType &gt;::Recorder</definition>
+        <argsstring>()</argsstring>
+        <name>Recorder</name>
+        <qualifiedname>Recorder::Recorder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="239" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="239" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1af8f9d820758a80b14b835b32167ca11b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Recorder&lt; messageType &gt;::Recorder</definition>
+        <argsstring>(Message&lt; messageType &gt; *message, uint64_t timeDiff=0)</argsstring>
+        <name>Recorder</name>
+        <qualifiedname>Recorder::Recorder</qualifiedname>
+        <param>
+          <type><ref refid="class_message" kindref="compound">Message</ref>&lt; <ref refid="class_recorder" kindref="compound">messageType</ref> &gt; *</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>timeDiff</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para><ndash/> Use this to record cpp messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="241" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="241" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a8c38cb1187e038ec273b6f48b36d9b69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Recorder&lt; messageType &gt;::Recorder</definition>
+        <argsstring>(void *message, uint64_t timeDiff=0)</argsstring>
+        <name>Recorder</name>
+        <qualifiedname>Recorder::Recorder</qualifiedname>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">void</ref> *</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>timeDiff</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para><ndash/> Use this to record C messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="247" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="247" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a3e3b0501a1231e477697b0eb6caa03a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Recorder&lt; messageType &gt;::Recorder</definition>
+        <argsstring>(ReadFunctor&lt; messageType &gt; *messageReader, uint64_t timeDiff=0)</argsstring>
+        <name>Recorder</name>
+        <qualifiedname>Recorder::Recorder</qualifiedname>
+        <param>
+          <type><ref refid="class_read_functor" kindref="compound">ReadFunctor</ref>&lt; <ref refid="class_recorder" kindref="compound">messageType</ref> &gt; *</type>
+          <declname>messageReader</declname>
+        </param>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>timeDiff</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para><ndash/> Use this to keep track of what someone is reading </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="262" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="262" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1ade2d4b06f4092cef8e00b9855ec8c34a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Recorder&lt; messageType &gt;::~Recorder</definition>
+        <argsstring>()</argsstring>
+        <name>~Recorder</name>
+        <qualifiedname>Recorder::~Recorder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="271" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="271" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a86cc9953757de9ed07f4e81bda5913fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::SelfInit</definition>
+        <argsstring>()</argsstring>
+        <name>SelfInit</name>
+        <qualifiedname>Recorder::SelfInit</qualifiedname>
+        <briefdescription>
+<para><ndash/> self initialization </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="274" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="274" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1ab5fd51789b6de630a660b0c3a330799f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::IntegratedInit</definition>
+        <argsstring>()</argsstring>
+        <name>IntegratedInit</name>
+        <qualifiedname>Recorder::IntegratedInit</qualifiedname>
+        <briefdescription>
+<para><ndash/> cross initialization </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="276" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="276" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1aeb8561c7cfba47c4a71b2faaf6b76f7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>Recorder::UpdateState</qualifiedname>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Read and record the message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="278" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="278" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a600ead436d02555bdc789d4661667fe5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>Recorder::Reset</qualifiedname>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+<para>Reset method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; <ndash/> Can only reset to 0 for now</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="287" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="287" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a9514a8cdf484b6f78a3e64d0a24d440e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">uint64_t</ref> &gt; &amp;</type>
+        <definition>std::vector&lt; uint64_t &gt; &amp; Recorder&lt; messageType &gt;::times</definition>
+        <argsstring>()</argsstring>
+        <name>times</name>
+        <qualifiedname>Recorder::times</qualifiedname>
+        <briefdescription>
+<para>time recorded method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="294" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="294" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1af99f10a05385544e5f0c1f198c1ae16a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">uint64_t</ref> &gt; &amp;</type>
+        <definition>std::vector&lt; uint64_t &gt; &amp; Recorder&lt; messageType &gt;::timesWritten</definition>
+        <argsstring>()</argsstring>
+        <name>timesWritten</name>
+        <qualifiedname>Recorder::timesWritten</qualifiedname>
+        <briefdescription>
+<para>time written method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="296" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="296" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a66874b92f5b2f0f270c00ca7d6858388" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_recorder" kindref="compound">messageType</ref> &gt; &amp;</type>
+        <definition>std::vector&lt; messageType &gt; &amp; Recorder&lt; messageType &gt;::record</definition>
+        <argsstring>()</argsstring>
+        <name>record</name>
+        <qualifiedname>Recorder::record</qualifiedname>
+        <briefdescription>
+<para>record method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="298" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="298" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a05e22f586ac508c0b580ce6d72d0d852" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Recorder&lt; messageType &gt;::findMsgName</definition>
+        <argsstring>(std::string msgName)</argsstring>
+        <name>findMsgName</name>
+        <qualifiedname>Recorder::findMsgName</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>msgName</declname>
+        </param>
+        <briefdescription>
+<para>determine message name </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="301" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="301" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1a1054a982a62e40a40401e43dd6c08dff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>Recorder::clear</qualifiedname>
+        <briefdescription>
+<para>clear the recorded messages, i.e. purge the history </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="320" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="320" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="class_recorder_1ac7d569a619f95d2161bd4f70e9ffe630" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_recorder" kindref="compound">void</ref></type>
+        <definition>void Recorder&lt; messageType &gt;::updateTimeInterval</definition>
+        <argsstring>(uint64_t timeDiff)</argsstring>
+        <name>updateTimeInterval</name>
+        <qualifiedname>Recorder::updateTimeInterval</qualifiedname>
+        <param>
+          <type><ref refid="class_recorder" kindref="compound">uint64_t</ref></type>
+          <declname>timeDiff</declname>
+        </param>
+        <briefdescription>
+<para>method to update the minimum time interval before recording the next message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="329" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="329" bodyend="331"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Keep a time history of messages accessible to users from python </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Recorder&lt; messageType &gt;</label>
+        <link refid="class_recorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Recorder&lt; messageType &gt;</label>
+        <link refid="class_recorder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" line="237" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h" bodystart="237" bodyend="342"/>
+    <listofallmembers>
+      <member refid="class_recorder_1ae076726846472beb9ef55ada292ed54e" prot="public" virt="non-virtual"><scope>Recorder</scope><name>bskLogger</name></member>
+      <member refid="class_recorder_1a1054a982a62e40a40401e43dd6c08dff" prot="public" virt="non-virtual"><scope>Recorder</scope><name>clear</name></member>
+      <member refid="class_recorder_1a05e22f586ac508c0b580ce6d72d0d852" prot="public" virt="non-virtual"><scope>Recorder</scope><name>findMsgName</name></member>
+      <member refid="class_recorder_1ab5fd51789b6de630a660b0c3a330799f" prot="public" virt="non-virtual"><scope>Recorder</scope><name>IntegratedInit</name></member>
+      <member refid="class_recorder_1ad947a7d2a82630cfcd0f528546e45a43" prot="private" virt="non-virtual"><scope>Recorder</scope><name>msgRecord</name></member>
+      <member refid="class_recorder_1a38f48d08b809d00462be5875a14b74fb" prot="private" virt="non-virtual"><scope>Recorder</scope><name>msgRecordTimes</name></member>
+      <member refid="class_recorder_1ac9f0c7022a139f89e51feddc845390e8" prot="private" virt="non-virtual"><scope>Recorder</scope><name>msgWrittenTimes</name></member>
+      <member refid="class_recorder_1a995e53b06d6e6a10832691f6facec1cc" prot="private" virt="non-virtual"><scope>Recorder</scope><name>nextUpdateTime</name></member>
+      <member refid="class_recorder_1a70281c8a03ed5febf38dca3f0069bb31" prot="private" virt="non-virtual"><scope>Recorder</scope><name>readMessage</name></member>
+      <member refid="class_recorder_1a66874b92f5b2f0f270c00ca7d6858388" prot="public" virt="non-virtual"><scope>Recorder</scope><name>record</name></member>
+      <member refid="class_recorder_1afbdce8e89252c39992f7c51ff55beff8" prot="public" virt="non-virtual"><scope>Recorder</scope><name>Recorder</name></member>
+      <member refid="class_recorder_1af8f9d820758a80b14b835b32167ca11b" prot="public" virt="non-virtual"><scope>Recorder</scope><name>Recorder</name></member>
+      <member refid="class_recorder_1a8c38cb1187e038ec273b6f48b36d9b69" prot="public" virt="non-virtual"><scope>Recorder</scope><name>Recorder</name></member>
+      <member refid="class_recorder_1a3e3b0501a1231e477697b0eb6caa03a8" prot="public" virt="non-virtual"><scope>Recorder</scope><name>Recorder</name></member>
+      <member refid="class_recorder_1a600ead436d02555bdc789d4661667fe5" prot="public" virt="non-virtual"><scope>Recorder</scope><name>Reset</name></member>
+      <member refid="class_recorder_1a86cc9953757de9ed07f4e81bda5913fe" prot="public" virt="non-virtual"><scope>Recorder</scope><name>SelfInit</name></member>
+      <member refid="class_recorder_1aebfb65528ae8f1a23e1cef8ba4e24988" prot="private" virt="non-virtual"><scope>Recorder</scope><name>timeInterval</name></member>
+      <member refid="class_recorder_1a9514a8cdf484b6f78a3e64d0a24d440e" prot="public" virt="non-virtual"><scope>Recorder</scope><name>times</name></member>
+      <member refid="class_recorder_1af99f10a05385544e5f0c1f198c1ae16a" prot="public" virt="non-virtual"><scope>Recorder</scope><name>timesWritten</name></member>
+      <member refid="class_recorder_1aeb8561c7cfba47c4a71b2faaf6b76f7b" prot="public" virt="non-virtual"><scope>Recorder</scope><name>UpdateState</name></member>
+      <member refid="class_recorder_1ac7d569a619f95d2161bd4f70e9ffe630" prot="public" virt="non-virtual"><scope>Recorder</scope><name>updateTimeInterval</name></member>
+      <member refid="class_recorder_1ade2d4b06f4092cef8e00b9855ec8c34a" prot="public" virt="non-virtual"><scope>Recorder</scope><name>~Recorder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

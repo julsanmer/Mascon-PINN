@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>mpyCppWrapper &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../externalTools/index.html">externalTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>mpyCppWrapper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mpyCppWrapper</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="p">(</span><span class="n">sim_model</span><span class="p">,</span> <span class="n">alg_contain</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<div class="viewcode-block" id="CppWrapperClass"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass">[docs]</a><span class="k">class</span> <span class="nc">CppWrapperClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is the main class handling instrospection of the C modules.</span>
+<span class="sd">        It generates the C++ wrapper classes (with callbacks to the C algorithms and</span>
+<span class="sd">        setters and getters for the C module variables) and it also generates the MicroPython integration patch.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">,</span> <span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">simTag</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_store_path</span> <span class="o">=</span> <span class="n">outputPath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span> <span class="o">=</span> <span class="n">CppWrapClassTemplate</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module_mpy_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_store_path</span> <span class="o">+</span> <span class="s2">&quot;/module.hpp&quot;</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_replace</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">NameReplace</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">SelfInit_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># {modelTag: SelfInit alg address, moduleID}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Update_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionary D = {modelTag: Update alg address, moduleID}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Reset_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># dictionary D = {modelTag: Reset alg address, moduleID}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_dictionaries</span><span class="p">(</span><span class="n">simTag</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">taskIdxDir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areTasksInSimTaskList</span><span class="p">(</span><span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_class_functions_wrapper</span><span class="p">(</span><span class="n">TheSim</span><span class="p">,</span> <span class="n">taskActivityDir</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">fill_dictionaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simTag</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">):</span>
+        <span class="n">TheSimList</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">simTag</span><span class="p">))</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">elemName</span> <span class="ow">in</span> <span class="n">TheSimList</span><span class="p">:</span>
+            <span class="n">elem</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">simTag</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">elemName</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="o">==</span> <span class="n">alg_contain</span><span class="o">.</span><span class="n">AlgContain</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">SelfInit_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getSelfInitAddress</span><span class="p">()),</span> <span class="n">i</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Update_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getUpdateAddress</span><span class="p">()),</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">hasResetAddress</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getResetAddress</span><span class="p">())</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">hasResetAddress</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">Reset_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">hasResetAddress</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="CppWrapperClass.getTaskIndex"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass.getTaskIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getTaskIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theSim</span><span class="p">,</span> <span class="n">taskUse</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This function returns the key name of the NameReplace dictionary according to the index of the task</span>
+<span class="sd">            and the index of the model inside the task</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">taskPy</span> <span class="ow">in</span> <span class="n">theSim</span><span class="o">.</span><span class="n">TaskList</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">taskUse</span><span class="o">.</span><span class="n">TaskName</span> <span class="o">==</span> <span class="n">taskPy</span><span class="o">.</span><span class="n">Name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">j</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
+
+    <span class="k">def</span> <span class="nf">areTasksInSimTaskList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TASKS BEING PARSED: &#39;</span><span class="p">)</span>
+        <span class="n">taskIdxDir</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">taskOrderedList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">procIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">)):</span>
+            <span class="n">locProcList</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">[</span><span class="n">procIdx</span><span class="p">]</span><span class="o">.</span><span class="n">processTasks</span><span class="p">)):</span>
+                <span class="n">theTask</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">[</span><span class="n">procIdx</span><span class="p">]</span><span class="o">.</span><span class="n">processTasks</span><span class="p">[</span><span class="n">i_task</span><span class="p">]</span>
+                <span class="n">taskFound</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">ordIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">locProcList</span><span class="p">)):</span>
+                    <span class="n">locTask</span> <span class="o">=</span> <span class="n">locProcList</span><span class="p">[</span><span class="n">ordIdx</span><span class="p">]</span>
+                    <span class="c1"># locTask[0] = taskName</span>
+                    <span class="c1"># locTask[1] = taskPriority</span>
+                    <span class="k">if</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span> <span class="o">&gt;</span> <span class="n">locTask</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">locProcList</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">ordIdx</span><span class="p">,</span>
+                            <span class="p">[</span><span class="n">theTask</span><span class="o">.</span><span class="n">TaskPtr</span><span class="o">.</span><span class="n">TaskName</span><span class="p">,</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span><span class="p">])</span>
+                        <span class="n">taskFound</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="n">taskFound</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">locProcList</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">theTask</span><span class="o">.</span><span class="n">TaskPtr</span><span class="o">.</span><span class="n">TaskName</span><span class="p">,</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span><span class="p">,</span> <span class="n">theTask</span><span class="p">])</span>
+            <span class="n">taskOrderedList</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">locProcList</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">taskOrderedList</span><span class="p">)):</span>
+            <span class="c1"># taskOrderedList[i_task][0] = taskName</span>
+            <span class="c1"># taskOrderedList[i_task][1] = taskPriority</span>
+            <span class="c1"># taskOrderedList[i_task][2] = theTask</span>
+            <span class="n">taskName</span> <span class="o">=</span> <span class="n">taskOrderedList</span><span class="p">[</span><span class="n">i_task</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">taskName</span> <span class="ow">in</span> <span class="n">taskActivityDir</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">idxUse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTaskIndex</span><span class="p">(</span><span class="n">TheSim</span><span class="p">,</span> <span class="n">taskOrderedList</span><span class="p">[</span><span class="n">i_task</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">TaskPtr</span><span class="p">)</span>
+                <span class="n">taskIdxDir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idxUse</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span> <span class="n">i_task</span><span class="p">,</span> <span class="n">taskName</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">taskIdxDir</span>
+
+    <span class="k">def</span> <span class="nf">getTaskModelKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i_task</span><span class="p">,</span> <span class="n">i_model</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;self.TaskList[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i_task</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;].TaskModels[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i_model</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+        <span class="k">return</span> <span class="n">key</span>
+
+<div class="viewcode-block" id="CppWrapperClass.parseSwigVars"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass.parseSwigVars">[docs]</a>    <span class="k">def</span> <span class="nf">parseSwigVars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            First Parsing Method: Gets rid of all the variables that come after a built-in.</span>
+<span class="sd">            The methods SelfInit, Update and Restart will always come first, and so will</span>
+<span class="sd">            the variables that are capitalized (this is based on how &quot;dir()&quot; command works in the Python interpreter).</span>
+<span class="sd">            Returns a reduced array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parsed_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
+                <span class="n">parsed_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_array</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">parsed_array</span></div>
+
+<div class="viewcode-block" id="CppWrapperClass.evalParsedList"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass.evalParsedList">[docs]</a>    <span class="k">def</span> <span class="nf">evalParsedList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Second Parsing Method: Collects all the SwigPyObjects present in the list.</span>
+<span class="sd">            Only the methods ``SelfInit_(...)``, ``Update_(...)`` and ``Restart_(...)``</span>
+<span class="sd">            are wrapped by Swig in the ``.i`` files. Therefore they are the only ``SwigPyObjects``.</span>
+
+<span class="sd">        :return: a dictionary D = {method, address}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">addressDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">methodName</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">methodObject</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;sys.modules[&quot;&#39;</span> <span class="o">+</span> <span class="n">module</span> <span class="o">+</span> <span class="s1">&#39;&quot;].&#39;</span> <span class="o">+</span> <span class="n">methodName</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">methodObject</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;SwigPyObject&quot;</span><span class="p">:</span>
+                <span class="n">methodAddress</span> <span class="o">=</span> <span class="n">sim_model</span><span class="o">.</span><span class="n">getObjectAddress</span><span class="p">(</span><span class="n">methodObject</span><span class="p">)</span>
+                <span class="n">addressDict</span><span class="p">[</span><span class="n">methodName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">methodAddress</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">addressDict</span></div>
+
+<div class="viewcode-block" id="CppWrapperClass.checkMethodType"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass.checkMethodType">[docs]</a>    <span class="k">def</span> <span class="nf">checkMethodType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This function checks the method type of the input and returns the corresponding strings.</span>
+
+<span class="sd">        :return: methodName: name of the model data algorithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">str_selfInit</span> <span class="o">=</span> <span class="s1">&#39;SelfInit&#39;</span>
+        <span class="n">str_update</span> <span class="o">=</span> <span class="s1">&#39;Update&#39;</span>
+        <span class="n">str_reset</span> <span class="o">=</span> <span class="s1">&#39;Reset&#39;</span>
+
+        <span class="n">str_blank</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># the methods SelfInit doesn&#39;t need the callTime parameter</span>
+        <span class="n">str_callTime</span> <span class="o">=</span> <span class="s1">&#39;, callTime&#39;</span>  <span class="c1"># the methods Reset and Update need an extra parameter for callTine</span>
+
+        <span class="k">if</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_selfInit</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_selfInit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">str_selfInit</span><span class="p">,</span> <span class="n">str_blank</span>
+        <span class="k">elif</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_update</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_update</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">str_update</span><span class="p">,</span> <span class="n">str_callTime</span>
+        <span class="k">elif</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_reset</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_reset</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">str_reset</span><span class="p">,</span> <span class="n">str_callTime</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot recognize the method. Parse better.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CppWrapperClass.findAddressMatch"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapperClass.findAddressMatch">[docs]</a>    <span class="k">def</span> <span class="nf">findAddressMatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addressVal</span><span class="p">,</span> <span class="n">modelTagKey</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This function makes sure that each algorithm in a data model is matched with the proper algorithm in</span>
+<span class="sd">            the corresponding model wrap.</span>
+<span class="sd">            If there&#39;s a match, returns the ID of the model.</span>
+<span class="sd">            Otherwise, an ugly error is raised and the whole program quits.</span>
+
+<span class="sd">        :param addressVal: address of the model data algorithm.</span>
+<span class="sd">        :param modelTagKey: modelTag = key with which to search in ``dict``.</span>
+<span class="sd">        :param dict: wrap algorithms&#39; address dictionary in which to look for a match. For example, use dict[modelTagKey][0] = model wrap algorithm address or dict[modelTagKey][1] = model ID</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">address</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">modelTagKey</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="n">addressVal</span><span class="p">:</span>
+                <span class="n">IDVal</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">modelTagKey</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">IDVal</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">modelTagKey</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is not wrapping all the existing algorithms in &#39;</span>
+                                                <span class="s1">&#39;the corresponding data model. Fix it.&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">create_class_functions_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">,</span> <span class="n">taskActivityDir</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">taskIdxDir</span><span class="p">:</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">TaskList</span><span class="p">[</span><span class="n">i_task</span><span class="p">]</span>
+            <span class="n">i_model</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">TaskModels</span><span class="p">:</span>
+                <span class="n">curr_model_algs_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTaskModelKey</span><span class="p">(</span><span class="n">i_task</span><span class="p">,</span> <span class="n">i_model</span><span class="p">)</span>
+                <span class="n">modelTag</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">NameReplace</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">module</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="vm">__module__</span>
+                <span class="n">c_struct_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+                <span class="n">split_names</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+                <span class="n">h_file_name</span> <span class="o">=</span> <span class="n">split_names</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">h_folder_name</span> <span class="o">=</span> <span class="n">split_names</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">header_line</span> <span class="o">=</span> <span class="s1">&#39;#include &quot;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.h&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">h_folder_name</span><span class="p">,</span> <span class="n">h_file_name</span><span class="p">)</span>
+                <span class="n">hpp_line</span> <span class="o">=</span> <span class="s1">&#39;#include &quot;</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.hpp&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">h_folder_name</span><span class="p">,</span> <span class="n">h_file_name</span><span class="p">)</span>
+
+                <span class="n">sysMod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">module</span><span class="p">]</span>
+                <span class="n">dirList</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">sysMod</span><span class="p">)</span>
+                <span class="n">parsed_dirList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parseSwigVars</span><span class="p">(</span><span class="n">dirList</span><span class="p">)</span>
+                <span class="n">addressDict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evalParsedList</span><span class="p">(</span><span class="n">parsed_dirList</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">addressDict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">methodType</span><span class="p">,</span> <span class="n">methodCallTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkMethodType</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                    <span class="n">c_call</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="s2">&quot;(&amp;(this-&gt;config_data)&quot;</span> <span class="o">+</span> <span class="n">methodCallTime</span> <span class="o">+</span> <span class="s2">&quot;, this-&gt;moduleID);&quot;</span>
+                    <span class="n">split_arg</span> <span class="o">=</span> <span class="n">methodCallTime</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+                    <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                    <span class="k">if</span> <span class="n">split_arg</span><span class="p">:</span>
+                        <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;uint64_t </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">split_arg</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">curr_model_algs_dict</span><span class="p">[</span><span class="n">methodType</span><span class="p">]</span> <span class="o">=</span> <span class="n">c_call</span><span class="p">,</span> <span class="n">arg</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">create_new_template</span><span class="p">(</span><span class="n">modelTag</span><span class="p">,</span> <span class="n">header_line</span><span class="p">,</span> <span class="n">c_struct_name</span><span class="p">,</span> <span class="n">curr_model_algs_dict</span><span class="p">,</span>
+                                                          <span class="n">hpp_line</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">autocode_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">modelTag</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">join_swigged_data</span><span class="p">()</span>
+                <span class="n">output_file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_store_path</span> <span class="o">+</span> <span class="s2">&quot;/</span><span class="si">%s</span><span class="s2">.hpp&quot;</span> <span class="o">%</span> <span class="n">h_file_name</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">write_new_class</span><span class="p">(</span><span class="n">abs_path_file_name</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">generate_mpy_wrapper_code</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module_mpy_file</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+                <span class="n">i_model</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module_mpy_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">printList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="c1">#print( &quot;input = &quot;, input)</span>
+        <span class="c1">#print( &quot;len_input = &quot;, len(input))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)):</span>
+            <span class="n">prefixIn</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
+                <span class="c1">#print( &quot;RECURSION&quot;)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printList</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">prefixIn</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="n">list_write</span> <span class="o">=</span> <span class="n">prefixIn</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="c1">#print( &quot;str_write = &quot;, list_write)</span>
+                    <span class="c1">#print( &quot;input_type = &quot;, type(input[i]).__name__)</span>
+
+    <span class="k">def</span> <span class="nf">classify_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="n">len_list</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;float&#39;</span><span class="p">:</span>
+            <span class="n">callback</span> <span class="o">=</span> <span class="s2">&quot;self.wrapper_template.swig_v</span><span class="si">%s</span><span class="s2">_doubles(prefix)&quot;</span> <span class="o">%</span> <span class="n">len_list</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">eval</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t evaluate the following callback: </span><span class="si">%s</span><span class="s2">. Not swigging anything for you here.&quot;</span> <span class="o">%</span>
+                              <span class="n">callback</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">autocode_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="c1">#print( &quot;\nmodel = &quot;, model)</span>
+        <span class="n">dir_model</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">field_names</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dir_model</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dir_model</span><span class="p">)):</span>
+            <span class="n">fieldName</span> <span class="o">=</span> <span class="n">dir_model</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">fieldValue</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">fieldName</span><span class="p">)</span>
+            <span class="n">fieldTypeName</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">fieldValue</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="n">fieldTypeFull</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fieldValue</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+                <span class="c1"># this and __ and SwigPyObject and instancemethod</span>
+                <span class="k">if</span> <span class="n">fieldName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;__&#39;</span> <span class="ow">or</span> <span class="n">fieldName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;this&#39;</span> <span class="ow">or</span> \
+                        <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;SwigPyObject&#39;</span> <span class="ow">or</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;instancemethod&#39;</span><span class="p">:</span>
+                    <span class="n">field_names</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fieldName</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="c1"># class</span>
+                <span class="k">elif</span> <span class="n">fieldTypeFull</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;class&#39;</span><span class="p">:</span>
+                    <span class="n">class_prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">fieldName</span><span class="p">)</span>
+                    <span class="c1">#print( &quot;class_prefix = %s. RECURSION NEEDED.&quot; % class_prefix)</span>
+
+                <span class="c1"># character array</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_string</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;int&#39;</span><span class="p">:</span>  <span class="c1"># and fieldValue is not 0:</span>
+                    <span class="k">if</span> <span class="n">fieldValue</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_numeric_value</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="n">fieldTypeName</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;float&#39;</span><span class="p">:</span>  <span class="c1"># and fieldValue is not 0.0:</span>
+                    <span class="k">if</span> <span class="n">fieldValue</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1">#print( &quot;Value iz zero for fieldName = %s, of type = %s&quot; % (fieldName, fieldTypeName))</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_numeric_value</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">)</span>
+
+                <span class="c1"># handle numeric lists</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fieldValue</span><span class="p">):</span>
+                        <span class="c1"># print( &quot;Value iz zero for fieldName = %s, of type = %s&quot; % (fieldName, fieldTypeName))</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">classify_list</span><span class="p">(</span><span class="nb">list</span><span class="o">=</span><span class="n">fieldValue</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">fieldName</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                    <span class="c1">#print( &quot;field_name: %s\t field_value: %s\t field_type_name: %s\t field_type_full: %s\t&quot; % (fieldName, fieldValue, fieldTypeName, fieldTypeFull))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># this and __ and SwigPyObject and instancemethod</span>
+                <span class="k">if</span> <span class="n">fieldName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;__&#39;</span> <span class="ow">or</span> <span class="n">fieldName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;this&#39;</span> <span class="ow">or</span> \
+                        <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;SwigPyObject&#39;</span> <span class="ow">or</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;instancemethod&#39;</span><span class="p">:</span>
+                    <span class="n">field_names</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fieldName</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="c1"># class</span>
+                <span class="k">elif</span> <span class="s1">&#39;Basilisk&#39;</span> <span class="ow">in</span> <span class="n">fieldTypeFull</span><span class="p">:</span>
+                    <span class="n">class_prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">fieldName</span><span class="p">)</span>
+                    <span class="c1"># print( &quot;class_prefix = %s. RECURSION NEEDED.&quot; % class_prefix)</span>
+
+                <span class="c1"># character array</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_string</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;int&#39;</span><span class="p">:</span>  <span class="c1"># and fieldValue is not 0:</span>
+                    <span class="k">if</span> <span class="n">fieldValue</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_numeric_value</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="n">fieldTypeName</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;float&#39;</span><span class="p">:</span>  <span class="c1"># and fieldValue is not 0.0:</span>
+                    <span class="k">if</span> <span class="n">fieldValue</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># print( &quot;Value iz zero for fieldName = %s, of type = %s&quot; % (fieldName, fieldTypeName))</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">wrapper_template</span><span class="o">.</span><span class="n">swig_numeric_value</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">fieldName</span><span class="p">,</span> <span class="n">field_type</span><span class="o">=</span><span class="s1">&#39;double&#39;</span><span class="p">)</span>
+
+                <span class="c1"># handle numeric lists</span>
+                <span class="k">elif</span> <span class="n">fieldTypeName</span> <span class="o">==</span> <span class="s1">&#39;list&#39;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fieldValue</span><span class="p">):</span>
+                        <span class="c1"># print( &quot;Value iz zero for fieldName = %s, of type = %s&quot; % (fieldName, fieldTypeName))</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">classify_list</span><span class="p">(</span><span class="nb">list</span><span class="o">=</span><span class="n">fieldValue</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">fieldName</span><span class="p">)</span>
+
+                <span class="c1"># # non-array variable</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">pass</span></div>
+                    <span class="c1"># print( &quot;field_name: %s\t field_value: %s\t field_type_name: %s\t field_type_full: %s\t&quot; % (fieldName, fieldValue, fieldTypeName, fieldTypeFull))</span>
+
+        <span class="c1">#print( &quot;field_names = &quot;, field_names)</span>
+        <span class="c1">#print( &quot;swigged vars = &quot;, self.wrapper_template.get_swigged_keys())</span>
+
+
+<div class="viewcode-block" id="SwigNamer"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.SwigNamer">[docs]</a><span class="k">class</span> <span class="nc">SwigNamer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class to handler creation of setters and getters (i.e. SWIG functionality)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_str</span> <span class="o">=</span> <span class="s2">&quot;this-&gt;config_data.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_str</span> <span class="o">=</span> <span class="s2">&quot;new_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_call</span> <span class="o">=</span> <span class="s2">&quot;Set_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_str</span> <span class="o">=</span> <span class="s2">&quot;local_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_call</span> <span class="o">=</span> <span class="s2">&quot;Get_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span></div>
+
+
+<div class="viewcode-block" id="MpyWrapCodeTemplate"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.MpyWrapCodeTemplate">[docs]</a><span class="k">class</span> <span class="nc">MpyWrapCodeTemplate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Template class defining the glue-code to include in the MicroPython C++ Wrapper source</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_tag</span><span class="p">,</span> <span class="n">algs_dict</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">hpp_line</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span> <span class="o">=</span> <span class="s1">&#39;wrap_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">model_tag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span> <span class="o">=</span> <span class="n">class_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_header</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_struct_names</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_init</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_props</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_code</span><span class="p">(</span><span class="n">model_tag</span><span class="p">,</span> <span class="n">algs_dict</span><span class="p">,</span> <span class="n">hpp_line</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">initialize_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_tag</span><span class="p">,</span> <span class="n">algs_dict</span><span class="p">,</span> <span class="n">hpp_line</span><span class="p">):</span>
+        <span class="c1"># Create MPy Wrapper Class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_header</span> <span class="o">=</span> <span class="n">hpp_line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">struct_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_FunctionNames&#39;</span> <span class="o">%</span> <span class="n">model_tag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_struct_names</span> <span class="o">=</span> <span class="s2">&quot;struct </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">struct_name</span> <span class="o">+</span> \
+                                         <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">{</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                         <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">func_name_def(SelfInit)</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> \
+                                         <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">func_name_def(Update)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;Reset&#39;</span> <span class="ow">in</span> <span class="n">algs_dict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_struct_names</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">func_name_def(Reset)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_struct_names</span> <span class="o">+=</span> <span class="s2">&quot;};</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_init</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">upywrap::ClassWrapper &lt; </span><span class="si">%s</span><span class="s1"> &gt; </span><span class="si">%s</span><span class="s1">(&quot;</span><span class="si">%s</span><span class="s1">&quot;, mod);</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                                 <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span> <span class="o">+</span> \
+                                 <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">.DefInit &lt;&gt; ();</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span> <span class="o">+</span> \
+                                 <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">.Def &lt; </span><span class="si">%s</span><span class="s1">::SelfInit &gt; (&amp; </span><span class="si">%s</span><span class="s1">::SelfInit);</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span><span class="p">,</span> <span class="n">struct_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span> <span class="o">+</span> \
+                                 <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">.Def &lt; </span><span class="si">%s</span><span class="s1">::Update &gt; (&amp; </span><span class="si">%s</span><span class="s1">::UpdateState);</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span><span class="p">,</span> <span class="n">struct_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;Reset&#39;</span> <span class="ow">in</span> <span class="n">algs_dict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_init</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">.Def &lt; </span><span class="si">%s</span><span class="s1">::Reset &gt; (&amp; </span><span class="si">%s</span><span class="s1">::Reset);</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span><span class="p">,</span> <span class="n">struct_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">)</span>
+        <span class="c1"># print( &quot;str_mpy_wrap_struct_names =\n&quot;, self.str_mpy_wrap_struct_names)</span>
+        <span class="c1"># print( &quot;str_mpy_wrap_init =\n&quot;, self.str_mpy_wrap_init)</span>
+
+
+    <span class="k">def</span> <span class="nf">add_properties_to_wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_vars_swig_dict</span><span class="p">):</span>
+        <span class="n">str_props</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># str_props = &#39;%s.Property(&quot;%s&quot;, &amp;%s::%s, &amp;%s::%s);\n&#39; % (self.wrap_name, &quot;ModelTag&quot;, self.class_name, values[0], self.class_name, values[1])</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">current_vars_swig_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">prop_line</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">.Property(&quot;</span><span class="si">%s</span><span class="s1">&quot;, &amp;</span><span class="si">%s</span><span class="s1">::</span><span class="si">%s</span><span class="s1">, &amp;</span><span class="si">%s</span><span class="s1">::</span><span class="si">%s</span><span class="s1">);</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wrap_name</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                                  <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">str_props</span> <span class="o">+=</span> <span class="n">prop_line</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_props</span> <span class="o">=</span> <span class="n">str_props</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">write_module_wrap_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_mpy_file</span><span class="p">):</span>
+        <span class="n">the_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_header</span> <span class="o">+</span> \
+                     <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_struct_names</span> <span class="o">+</span> \
+                     <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_init</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_mpy_wrap_props</span> <span class="o">+</span> \
+                     <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+        <span class="n">module_mpy_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">the_string</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CppWrapClassTemplate"><a class="viewcode-back" href="../externalTools/fswAuto/autowrapper/mpyCppWrapper.html#mpyCppWrapper.CppWrapClassTemplate">[docs]</a><span class="k">class</span> <span class="nc">CppWrapClassTemplate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Template class defining the C++ wrapper class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_algs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_swig</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_model</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_mpy_code_model</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># print( &quot;CppWrapClassTemplate now resetting(...)&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_algs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_swig</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_model</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_mpy_code_model</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_swigged_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">generate_mpy_wrapper_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">abs_path_file_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_mpy_code_model</span><span class="o">.</span><span class="n">add_properties_to_wrap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_mpy_code_model</span><span class="o">.</span><span class="n">write_module_wrap_code</span><span class="p">(</span><span class="n">abs_path_file_name</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">create_new_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_tag</span><span class="p">,</span> <span class="n">header_line</span><span class="p">,</span> <span class="n">c_struct_name</span><span class="p">,</span> <span class="n">algs_dict</span><span class="p">,</span> <span class="n">hpp_line</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_model</span> <span class="o">=</span> <span class="n">model_tag</span>
+        <span class="c1"># Create C++ class</span>
+        <span class="n">compile_def_name</span> <span class="o">=</span> <span class="s1">&#39;WRAP_</span><span class="si">%s</span><span class="s1">_HPP&#39;</span> <span class="o">%</span> <span class="n">model_tag</span>
+        <span class="c1">#print( &quot;compile_def_name = &quot;, compile_def_name)</span>
+
+        <span class="n">str_compile_def</span> <span class="o">=</span> <span class="s1">&#39;#ifndef &#39;</span> <span class="o">+</span> <span class="n">compile_def_name</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                          <span class="s1">&#39;#define &#39;</span> <span class="o">+</span> <span class="n">compile_def_name</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+
+        <span class="n">str_includes</span> <span class="o">=</span> <span class="s1">&#39;#include &lt;iostream&gt;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                       <span class="s1">&#39;#include &quot;utilities/linearAlgebra.h&quot;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                       <span class="s1">&#39;#include &quot;_GeneralModuleFiles/sys_model.h&quot;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                       <span class="n">header_line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+        <span class="n">class_name</span> <span class="o">=</span> <span class="n">model_tag</span> <span class="o">+</span> <span class="s2">&quot;Class&quot;</span>
+        <span class="c1"># class_name = c_struct_name + &quot;Class&quot;</span>
+        <span class="n">str_class</span> <span class="o">=</span> <span class="s1">&#39;class </span><span class="si">%s</span><span class="s1">: public SysModel {</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">class_name</span> <span class="o">+</span> \
+                         <span class="s1">&#39;public: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                         <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1">(){ memset(&amp;this-&gt;config_data, 0x0, sizeof(</span><span class="si">%s</span><span class="s1">));}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">c_struct_name</span><span class="p">)</span> <span class="o">+</span> \
+                         <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">~</span><span class="si">%s</span><span class="s1">(){return;}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">class_name</span>
+
+        <span class="n">str_callbacks</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">void SelfInit(</span><span class="si">%s</span><span class="s1">){ </span><span class="si">%s</span><span class="s1"> }</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;SelfInit&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;SelfInit&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> \
+                        <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">void UpdateState(</span><span class="si">%s</span><span class="s1">){ </span><span class="si">%s</span><span class="s1"> }</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;Update&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;Update&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;Reset&#39;</span> <span class="ow">in</span> <span class="n">algs_dict</span><span class="p">:</span>
+            <span class="n">str_callbacks</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">void Reset(</span><span class="si">%s</span><span class="s1">){ </span><span class="si">%s</span><span class="s1"> }</span><span class="se">\n\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;Reset&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">algs_dict</span><span class="p">[</span><span class="s1">&#39;Reset&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_algs</span> <span class="o">=</span> <span class="n">str_compile_def</span> <span class="o">+</span> <span class="n">str_includes</span> <span class="o">+</span> <span class="n">str_class</span> <span class="o">+</span> <span class="n">str_callbacks</span>
+
+        <span class="n">str_c_data</span> <span class="o">=</span> <span class="s1">&#39;private: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+                     <span class="s1">&#39;</span><span class="se">\t</span><span class="si">%s</span><span class="s1"> config_data;&#39;</span> <span class="o">%</span> <span class="n">c_struct_name</span>
+
+        <span class="n">str_end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">}; </span><span class="se">\n\n</span><span class="s1">#endif&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_config</span> <span class="o">=</span> <span class="n">str_c_data</span> <span class="o">+</span> <span class="n">str_end</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">swig_model_tag</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_mpy_code_model</span> <span class="o">=</span> <span class="n">MpyWrapCodeTemplate</span><span class="p">(</span><span class="n">model_tag</span><span class="p">,</span> <span class="n">algs_dict</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">hpp_line</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">join_swigged_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">str_swig</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">str_swig</span> <span class="o">+=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str_class_swig</span> <span class="o">=</span> <span class="n">str_swig</span>
+        <span class="c1">#print( &quot;str_class_swig = &quot;, self.str_class_swig))</span>
+
+    <span class="k">def</span> <span class="nf">write_new_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">abs_path_file_name</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;NEW WRAP: output_file_name = &quot;</span><span class="p">,</span> <span class="n">abs_path_file_name</span><span class="p">)</span>
+        <span class="n">the_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_class_algs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_class_swig</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">str_class_config</span>
+        <span class="c1">#print( &quot;\nthe_string=\n&quot;, the_string)</span>
+        <span class="c1">#return</span>
+        <span class="c1"># Write cpp class</span>
+        <span class="n">file_mode</span> <span class="o">=</span> <span class="s1">&#39;w+&#39;</span>  <span class="c1"># create file to be written if it doesn&#39;t exist</span>
+        <span class="c1">#alg_class = open(self.output_store_path + &#39;/&#39; + h_file_name + &#39;.hpp&#39;, file_mode)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">abs_path_file_name</span><span class="p">,</span> <span class="n">file_mode</span><span class="p">)</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">the_string</span><span class="p">)</span>
+        <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">swig_model_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">field_name</span> <span class="o">=</span> <span class="s2">&quot;ModelTag&quot;</span>
+        <span class="n">swig</span> <span class="o">=</span> <span class="n">SwigNamer</span><span class="p">(</span><span class="n">field_name</span><span class="o">=</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="c1"># Setter</span>
+        <span class="n">setter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">void </span><span class="si">%s</span><span class="s2">(std::string </span><span class="si">%s</span><span class="s2">){</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">this-&gt;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Getter</span>
+        <span class="n">getter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">std::string </span><span class="si">%s</span><span class="s2">() const{</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">return(this-&gt;</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">field_name</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setter_str</span><span class="p">,</span> <span class="n">getter_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span>
+
+    <span class="k">def</span> <span class="nf">swig_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+        <span class="n">swig</span> <span class="o">=</span> <span class="n">SwigNamer</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="c1"># Setter</span>
+        <span class="n">setter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">void </span><span class="si">%s</span><span class="s2">(std::string </span><span class="si">%s</span><span class="s2">){</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">memset(</span><span class="si">%s</span><span class="s2">, &#39;</span><span class="se">\\</span><span class="s2">0&#39;, sizeof(char) * MAX_STAT_MSG_LENGTH);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">strncpy(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">.c_str(), </span><span class="si">%s</span><span class="s2">.length());</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Getter</span>
+        <span class="n">getter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">std::string </span><span class="si">%s</span><span class="s2">() const{</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">std::string </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">output_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">return(</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">output_str</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setter_str</span><span class="p">,</span> <span class="n">getter_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span>
+        <span class="c1"># print( &quot;\nswig_string(). field_name = &quot;, field_name)</span>
+        <span class="c1"># print( &quot;setter_str = \n&quot;, setter_str)</span>
+        <span class="c1"># print( &quot;getter_str = \n&quot;, getter_str)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">swig_numeric_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">field_type</span><span class="p">):</span>
+        <span class="n">swig</span> <span class="o">=</span> <span class="n">SwigNamer</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="c1"># Setter</span>
+        <span class="n">setter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">void </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">) {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">field_type</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Getter</span>
+        <span class="n">getter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">() const {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">field_type</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">return (</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setter_str</span><span class="p">,</span> <span class="n">getter_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span>
+
+    <span class="k">def</span> <span class="nf">swig_v3_doubles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+        <span class="n">swig</span> <span class="o">=</span> <span class="n">SwigNamer</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="c1"># Setter</span>
+        <span class="n">setter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">void </span><span class="si">%s</span><span class="s2">(std::vector&lt;double&gt;</span><span class="si">%s</span><span class="s2">) {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">v3Copy(</span><span class="si">%s</span><span class="s2">.data(), </span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Getter</span>
+        <span class="n">getter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">std::vector&lt;double&gt; </span><span class="si">%s</span><span class="s2">() const {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">std::vector&lt;double&gt; </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2"> + sizeof(</span><span class="si">%s</span><span class="s2">) / sizeof(</span><span class="si">%s</span><span class="s2">[0]) );</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> \
+                     <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">output_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">return (</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">output_str</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setter_str</span><span class="p">,</span> <span class="n">getter_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span>
+        <span class="c1"># print( &quot;\nswig_v3_doubles(). field_name = &quot;, field_name)</span>
+        <span class="c1"># print( &quot;setter_str = \n&quot;, setter_str)</span>
+        <span class="c1"># print( &quot;getter_str = \n&quot;, getter_str)</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">swig_v9_doubles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+        <span class="n">swig</span> <span class="o">=</span> <span class="n">SwigNamer</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="c1"># Setter</span>
+        <span class="n">setter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">void </span><span class="si">%s</span><span class="s2">(std::vector&lt;double&gt;</span><span class="si">%s</span><span class="s2">) {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">m33Copy(RECAST3X3 </span><span class="si">%s</span><span class="s2">.data(),  RECAST3X3 </span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">input_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># Getter</span>
+        <span class="n">getter_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">std::vector&lt;double&gt; </span><span class="si">%s</span><span class="s2">() const {</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">std::vector&lt;double&gt; </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2"> + sizeof(</span><span class="si">%s</span><span class="s2">) / sizeof(</span><span class="si">%s</span><span class="s2">[0]) );</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> \
+                     <span class="p">(</span><span class="n">swig</span><span class="o">.</span><span class="n">output_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">config_str</span><span class="p">)</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">return (</span><span class="si">%s</span><span class="s2">);</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">swig</span><span class="o">.</span><span class="n">output_str</span> <span class="o">+</span> \
+                     <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_vars_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">setter_str</span><span class="p">,</span> <span class="n">getter_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_props_swig_dict</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">swig</span><span class="o">.</span><span class="n">set_call</span><span class="p">,</span> <span class="n">swig</span><span class="o">.</span><span class="n">get_call</span>
+        <span class="c1"># print( &quot;\nswig_v9_doubles(). field_name = &quot;, field_name)</span>
+        <span class="c1"># print( &quot;setter_str = \n&quot;, setter_str)</span>
+        <span class="c1"># print( &quot;getter_str = \n&quot;, getter_str)</span>
+        <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="hough_circles_8cpp" kind="file" language="C++">
+    <compoundname>houghCircles.cpp</compoundname>
+    <includes local="no">string.h</includes>
+    <includes refid="hough_circles_8h" local="yes">houghCircles.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/houghCircles/houghCircles.cpp</label>
+        <link refid="hough_circles_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>houghCircles.h</label>
+        <link refid="hough_circles_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="15">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/msgPayloadDefC/CameraImageMsgPayload.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/msgPayloadDefC/OpNavCirclesMsgPayload.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>opencv2/core/mat.hpp</label>
+      </node>
+      <node id="12">
+        <label>opencv2/dnn.hpp</label>
+      </node>
+      <node id="8">
+        <label>opencv2/highgui.hpp</label>
+      </node>
+      <node id="10">
+        <label>opencv2/imgcodecs.hpp</label>
+      </node>
+      <node id="11">
+        <label>opencv2/imgproc.hpp</label>
+      </node>
+      <node id="7">
+        <label>opencv2/opencv.hpp</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>Hough<sp/>Circle<sp/>Finder</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/><sp/><sp/><sp/>Note:<sp/><sp/><sp/>This<sp/>module<sp/>takes<sp/>an<sp/>image<sp/>and<sp/>writes<sp/>out<sp/>the<sp/>circles<sp/>that<sp/>are<sp/>found<sp/>in<sp/>the<sp/>image<sp/>by<sp/>OpenCV&apos;s<sp/>HoughCricle<sp/>Transform.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/><sp/><sp/><sp/>Author:<sp/>Thibaud<sp/>Teil</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/><sp/><sp/><sp/>Date:<sp/><sp/><sp/>February<sp/>13,<sp/>2019</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>modify<sp/>the<sp/>path<sp/>to<sp/>reflect<sp/>the<sp/>new<sp/>module<sp/>names<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;houghCircles.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="class_hough_circles_1ac0114f24c4362050288f81b8f28a4d73" kindref="member">HoughCircles::HoughCircles</ref>()</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a77c5248ce2d4c488ce39ee6d2859b525" kindref="member">filename</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a377ca40c3a86d53f459c9d9f1dbc0fb0" kindref="member">saveImages</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a115ae98df2dbe6166e21b2c796d9f7de" kindref="member">noiseSF</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a5ac5597b57c542ec40afd3c2d23be156" kindref="member">blurrSize</ref><sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1ac082f5a39334dd75a2ee578735c333e9" kindref="member">dpValue</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1ad3c89fa6975dec4e061cdf7a3618e352" kindref="member">expectedCircles</ref><sp/>=<sp/>MAX_CIRCLE_NUM;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1acefa953d430ff90f22b24fe5379d7282" kindref="member">saveDir</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1aedcad920d237efc5dca38e1a7dea859a" kindref="member">cannyThresh</ref><sp/>=<sp/>200;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a532f49c870645166ad223831d3f62d5d" kindref="member">voteThresh</ref><sp/>=<sp/>20;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1aab616ac4848ab4ddaae04b00b2f56288" kindref="member">houghMinDist</ref><sp/>=<sp/>50;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a8c0a225045e76fbe1b44b05a9c454aa0" kindref="member">houghMinRadius</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1ad4634e822ee6b9cea8734ced21ac2158" kindref="member">houghMaxRadius</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Maximum<sp/>circle<sp/>radius.<sp/>If<sp/>&lt;=<sp/>0,<sp/>uses<sp/>the<sp/>maximum<sp/>image<sp/>dimension.<sp/>If<sp/>&lt;<sp/>0,<sp/>returns<sp/>centers<sp/>without<sp/>finding<sp/>the<sp/>radius</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><ref refid="class_hough_circles_1a666fb66b2559cae310751ad83513e90f" kindref="member">HoughCircles::~HoughCircles</ref>()</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hough_circles_1a42d4d9a3079a567ec8c977a2938a97f4" kindref="member">HoughCircles::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>that<sp/>the<sp/>required<sp/>message<sp/>has<sp/>not<sp/>been<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_hough_circles_1a9592b5142c1a8ab1219703884f5ff1d1" kindref="member">imageInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_hough_circles_1a4dc35fda3d7a038061672ac3e2adca70" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;HoughCircles.imageInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hough_circles_1ad1ebc9b20bbb77bf3a19ca91a45ffee0" kindref="member">HoughCircles::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>dirName;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraImageMsgPayload<sp/>imageBuffer;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavCirclesMsgPayload<sp/>circleBuffer;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>imageBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a9592b5142c1a8ab1219703884f5ff1d1" kindref="member">imageInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>circleBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a054090633e8ec112970f6d533c4e54fc" kindref="member">opnavCirclesOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::Mat<sp/>imageCV,<sp/>blurred;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>circlesFound=0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hough_circles_1acefa953d430ff90f22b24fe5379d7282" kindref="member">saveDir</ref><sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dirName<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1acefa953d430ff90f22b24fe5379d7282" kindref="member">saveDir</ref><sp/>+<sp/>std::to_string(CurrentSimNanos*1E-9)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.jpg&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{dirName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;./&quot;</highlight><highlight class="normal">+<sp/>std::to_string(CurrentSimNanos*1E-9)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.jpg&quot;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_hough_circles_1a9592b5142c1a8ab1219703884f5ff1d1" kindref="member">imageInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imageBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a9592b5142c1a8ab1219703884f5ff1d1" kindref="member">imageInMsg</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a9d466e20cf695c8991dbee5f46314030" kindref="member">sensorTimeTag</ref><sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a9592b5142c1a8ab1219703884f5ff1d1" kindref="member">imageInMsg</ref>.timeWritten();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Added<sp/>for<sp/>debugging<sp/>purposes*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_hough_circles_1a77c5248ce2d4c488ce39ee6d2859b525" kindref="member">filename</ref>.empty()){</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imageCV<sp/>=<sp/>cv::imread(this-&gt;<ref refid="class_hough_circles_1a77c5248ce2d4c488ce39ee6d2859b525" kindref="member">filename</ref>,<sp/>cv::IMREAD_COLOR);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(imageBuffer.valid<sp/>==<sp/>1<sp/>&amp;&amp;<sp/>imageBuffer.timeTag<sp/>&gt;=<sp/>CurrentSimNanos){</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>char&gt;<sp/>vectorBuffer((</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)imageBuffer.imagePointer,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)imageBuffer.imagePointer<sp/>+<sp/>imageBuffer.imageBufferLength);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imageCV<sp/>=<sp/>cv::imdecode(vectorBuffer,<sp/>cv::IMREAD_COLOR);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hough_circles_1a377ca40c3a86d53f459c9d9f1dbc0fb0" kindref="member">saveImages</ref><sp/>==<sp/>1){</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cv::imwrite(this-&gt;<ref refid="class_hough_circles_1acefa953d430ff90f22b24fe5379d7282" kindref="member">saveDir</ref>,<sp/>imageCV))<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_hough_circles_1a4dc35fda3d7a038061672ac3e2adca70" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;houghCircles:<sp/>wasn&apos;t<sp/>able<sp/>to<sp/>save<sp/>images.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a054090633e8ec112970f6d533c4e54fc" kindref="member">opnavCirclesOutMsg</ref>.write(&amp;circleBuffer,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::cvtColor(<sp/>imageCV,<sp/>imageCV,<sp/>cv::COLOR_BGR2GRAY);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::threshold(imageCV,<sp/>imageCV,<sp/>15,<sp/>255,<sp/>cv::THRESH_BINARY_INV);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::blur(imageCV,<sp/>blurred,<sp/>cv::Size(this-&gt;<ref refid="class_hough_circles_1a5ac5597b57c542ec40afd3c2d23be156" kindref="member">blurrSize</ref>,this-&gt;<ref refid="class_hough_circles_1a5ac5597b57c542ec40afd3c2d23be156" kindref="member">blurrSize</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;cv::Vec4f&gt;<sp/>circles;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>cv::HoughCircles(<sp/>blurred,<sp/>circles,<sp/>cv::HOUGH_GRADIENT,<sp/>this-&gt;<ref refid="class_hough_circles_1ac082f5a39334dd75a2ee578735c333e9" kindref="member">dpValue</ref>,<sp/>this-&gt;<ref refid="class_hough_circles_1aab616ac4848ab4ddaae04b00b2f56288" kindref="member">houghMinDist</ref>,<sp/>this-&gt;<ref refid="class_hough_circles_1aedcad920d237efc5dca38e1a7dea859a" kindref="member">cannyThresh</ref>,this-&gt;<ref refid="class_hough_circles_1a532f49c870645166ad223831d3f62d5d" kindref="member">voteThresh</ref>,<sp/>this-&gt;<ref refid="class_hough_circles_1a8c0a225045e76fbe1b44b05a9c454aa0" kindref="member">houghMinRadius</ref>,<sp/>this-&gt;<ref refid="class_hough_circles_1ad4634e822ee6b9cea8734ced21ac2158" kindref="member">houghMaxRadius</ref><sp/>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>circleBuffer.timeTag<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a9d466e20cf695c8991dbee5f46314030" kindref="member">sensorTimeTag</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>circleBuffer.cameraID<sp/>=<sp/>imageBuffer.cameraID;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;<ref refid="class_hough_circles_1ad3c89fa6975dec4e061cdf7a3618e352" kindref="member">expectedCircles</ref><sp/>&amp;&amp;<sp/>i&lt;(int)<sp/>circles.size();<sp/>i++<sp/>)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.circlesCenters[2*i]<sp/>=<sp/>circles[i][0];</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.circlesCenters[2*i+1]<sp/>=<sp/>circles[i][1];</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.circlesRadii[i]<sp/>=<sp/>circles[i][2];</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j=0;<sp/>j&lt;3;<sp/>j++){</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.uncertainty[j+3*j]<sp/>=<sp/>this-&gt;<ref refid="class_hough_circles_1a115ae98df2dbe6166e21b2c796d9f7de" kindref="member">noiseSF</ref>*circles[i][3]/this-&gt;<ref refid="class_hough_circles_1a532f49c870645166ad223831d3f62d5d" kindref="member">voteThresh</ref>;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circlesFound+=1;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(circlesFound<sp/>&gt;0){</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.valid<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>circleBuffer.planetIds[0]<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hough_circles_1a054090633e8ec112970f6d533c4e54fc" kindref="member">opnavCirclesOutMsg</ref>.write(&amp;circleBuffer,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>free(imageBuffer.imagePointer);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/houghCircles/houghCircles.cpp"/>
+  </compounddef>
+</doxygen>

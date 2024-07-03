@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="data_storage_unit_base_8h" kind="file" language="C++">
+    <compoundname>dataStorageUnitBase.h</compoundname>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">string</includes>
+    <includes local="no">cstring</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/DataNodeUsageMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefCpp/DataStorageStatusMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="data_storage_unit_base_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/_GeneralModuleFiles/dataStorageUnitBase.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/_GeneralModuleFiles/dataStorageUnitBase.h</label>
+        <link refid="data_storage_unit_base_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/DataNodeUsageMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefCpp/DataStorageStatusMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>cstring</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structdata_instance" prot="public">dataInstance</innerclass>
+    <innerclass refid="class_data_storage_unit_base" prot="public">DataStorageUnitBase</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/DataNodeUsageMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefCpp/DataStorageStatusMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>BASILISK_DATASTORAGEUNITBASE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASILISK_DATASTORAGEUNITBASE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structdata_instance" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata_instance" kindref="compound">dataInstance</ref><sp/>{</highlight></codeline>
+<codeline lineno="36" refid="structdata_instance_1af9492f2e29967102ec2a876b4102f77a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structdata_instance_1af9492f2e29967102ec2a876b4102f77a" kindref="member">dataInstanceName</ref>[128];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="structdata_instance_1a3a258151c04450974f7a176723de68e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structdata_instance_1a3a258151c04450974f7a176723de68e9" kindref="member">dataInstanceSum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">};<sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_data_storage_unit_base" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_data_storage_unit_base" kindref="compound">DataStorageUnitBase</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a37bf6324e2718d2b1d8c30e36a247fea" kindref="member">DataStorageUnitBase</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1aecee6701fac48f776793c691aca15cbc" kindref="member">~DataStorageUnitBase</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1acc951f995d1a6c65c4bd55896ea28615" kindref="member">Reset</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">CurrentSimNanos</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1afef376d147d7f6023aa4c6a9ad96ba5f" kindref="member">addDataNodeToModel</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">Message&lt;DataNodeUsageMsgPayload&gt;</ref><sp/>*<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpNodeMsg</ref>);<sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a1a618247a6c0eb77e2cdb5d54e16b2f9" kindref="member">UpdateState</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">CurrentSimNanos</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a95aebe8f088357d2ed140ba0ca5ced0a" kindref="member">writeMessages</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">CurrentClock</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a08506c0cd75663ebf62d74c01f2094fb" kindref="member">readMessages</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1ae4ac3dbe9a2a97b893a16330fe2e8bec" kindref="member">integrateDataStatus</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">currentTime</ref>);<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a63e5e808f33b709898303a3fea0ee5a4" kindref="member">customReset</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">CurrentClock</ref>);<sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a76e633d2a7c96841581268aa399a46b3" kindref="member">customWriteMessages</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">CurrentClock</ref>);<sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a1f5eb167c18b77d85f65617f1ff37733" kindref="member">customReadMessages</ref>();<sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1af2796082ed069b30d728471d3ba66f07" kindref="member">messageInStoredData</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">DataNodeUsageMsgPayload</ref><sp/>*<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpNodeMsg</ref>);<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1ab17b3a11b07ff95d8f65a169ebf64fce" kindref="member">sumAllData</ref>();<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60" refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;ReadFunctor&lt;DataNodeUsageMsgPayload&gt;&gt;<sp/><ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>;<sp/></highlight></codeline>
+<codeline lineno="61" refid="class_data_storage_unit_base_1aa9cde1835f06ba608d11c2f226bb60bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">Message&lt;DataStorageStatusMsgPayload&gt;</ref><sp/><ref refid="class_data_storage_unit_base_1aa9cde1835f06ba608d11c2f226bb60bd" kindref="member">storageUnitDataOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="62" refid="class_data_storage_unit_base_1a0e7e917a516e5e891be578c47afb46fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a0e7e917a516e5e891be578c47afb46fe" kindref="member">storageCapacity</ref>;<sp/></highlight></codeline>
+<codeline lineno="63" refid="class_data_storage_unit_base_1a00c8d4b214dc04407c0708510d6ff52b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">BSKLogger</ref><sp/><ref refid="class_data_storage_unit_base_1a00c8d4b214dc04407c0708510d6ff52b" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="66" refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">DataStorageStatusMsgPayload</ref><sp/><ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="67" refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;DataNodeUsageMsgPayload&gt;<sp/><ref refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" kindref="member">nodeBaudMsgs</ref>;<sp/></highlight></codeline>
+<codeline lineno="68" refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">storedDataSum</ref>;<sp/></highlight></codeline>
+<codeline lineno="69" refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;dataInstance&gt;<sp/><ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>;<sp/></highlight></codeline>
+<codeline lineno="70" refid="class_data_storage_unit_base_1aee03e9ab0102fa646a57212c184094d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1aee03e9ab0102fa646a57212c184094d8" kindref="member">previousTime</ref>;<sp/></highlight></codeline>
+<codeline lineno="71" refid="class_data_storage_unit_base_1a3da60aa3743533c73c4286915d8341e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a3da60aa3743533c73c4286915d8341e8" kindref="member">currentTimestep</ref>;</highlight></codeline>
+<codeline lineno="72" refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" kindref="member">netBaud</ref>;<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//BASILISK_DATASTORAGEUNITBASE_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/_GeneralModuleFiles/dataStorageUnitBase.h"/>
+  </compounddef>
+</doxygen>

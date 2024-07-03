@@ -1,0 +1,1205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="okeefe_e_k_f_8h" kind="file" language="C++">
+    <compoundname>okeefeEKF.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">cMsgCInterface/NavAttMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CSSArraySensorMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/SunlineFilterMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CSSConfigMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">string.h</includes>
+    <includedby refid="okeefe_e_k_f_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h</label>
+        <link refid="okeefe_e_k_f_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/CSSArraySensorMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/CSSConfigMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/SunlineFilterMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structokeefe_e_k_f_config" prot="public">okeefeEKFConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1a5d6fea93568e3fb232c1801a9a5cb2de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_okeefeEKF</definition>
+        <argsstring>(okeefeEKFConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_okeefeEKF</name>
+        <param>
+          <type><ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for theCSS WLS estimator. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS WLS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="89" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="34" bodyend="38" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="89" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1adad663365be32de191cc0534177ca896" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_okeefeEKF</definition>
+        <argsstring>(okeefeEKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_okeefeEKF</name>
+        <param>
+          <type><ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the sunline attitude filter to an initial state and initializes the internal estimation matrices. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Zero the local configuration data structures and outputs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read in coarse sun sensor configuration information.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each coarse sun sensor, convert the configuration data over from structure to body</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Save the count of sun sensors for later use</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Initialize filter parameters to max values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Ensure that all internal filter matrices are zeroed</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="90" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="48" bodyend="102" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="90" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1aab67d23464481e2bde9b5912b8ae93f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_okeefeEKF</definition>
+        <argsstring>(okeefeEKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_okeefeEKF</name>
+        <param>
+          <type><ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the parsed CSS sensor data and outputs an estimate of the sun vector in the ADCS body frame <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input parsed CSS sensor data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the time tag from the measured data is new compared to previous step, propagate and update the filter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If current clock time is further ahead than the measured time, then propagate to this current time-step</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the sunline estimate into the copy of the navigation message structure</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the filter states output buffer and write the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="92" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="111" bodyend="166" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="92" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1a1086eb05af9455828593bd9c26dcbc4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineTimeUpdate</definition>
+        <argsstring>(okeefeEKFConfig *configData, double updateTime)</argsstring>
+        <name>sunlineTimeUpdate</name>
+        <param>
+          <type><ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the time update for the sunline kalman filter. It calls for the updated Dynamics Matrix, as well as the new states and STM. It then updates the covariance, with process noise. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Compute time step</para>
+<para><itemizedlist>
+<listitem><para>Propagate the previous reference states and STM to the current time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Update the covariance</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="94" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="175" bodyend="206" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="94" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1aedce3ef18020f35ab6b8a0d88c995b79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineMeasUpdate</definition>
+        <argsstring>(okeefeEKFConfig *configData, double updateTime)</argsstring>
+        <name>sunlineMeasUpdate</name>
+        <param>
+          <type><ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the measurement update for the sunline kalman filter. It applies the observations in the obs vectors to the current state estimate and updates the state/covariance with that information. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the valid observations and the measurement model for all observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the Kalman Gain.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the update with a CKF</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the update with a EKF, notice the reference state is added as an argument because it is changed by the filter update</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="95" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="332" bodyend="353" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="95" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1aa6515eef5f4e91042e2b577c3ec3e648" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineStateSTMProp</definition>
+        <argsstring>(double dynMat[SKF_N_STATES_HALF *SKF_N_STATES_HALF], double dt, double omega[SKF_N_STATES_HALF], double *stateInOut, double *prevstates, double *stateTransition)</argsstring>
+        <name>sunlineStateSTMProp</name>
+        <param>
+          <type>double</type>
+          <declname>dynMat</declname>
+          <array>[SKF_N_STATES_HALF *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>omega</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>stateInOut</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>prevstates</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>stateTransition</declname>
+        </param>
+        <briefdescription>
+<para>This method propagates a sunline state vector forward in time. Note that the calling parameter is updated in place to save on data copies. This also updates the STM using the dynamics matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dynMat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dynamic matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omega</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>angular velocity </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stateInOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a state array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prevstates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to previous states </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stateTransition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to state transition matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Begin state update steps</para>
+<para>Take omega cross d</para>
+<para><itemizedlist>
+<listitem><para>Multiply omega cross d by -dt and add to state to propagate</para>
+</listitem></itemizedlist>
+</para>
+<para>Begin STM propagation step</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="96" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="273" bodyend="301" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="96" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1abccaf5ec16a6099e3abbd0bcb09bee3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineHMatrixYMeas</definition>
+        <argsstring>(double states[SKF_N_STATES_HALF], size_t numCSS, double cssSensorCos[MAX_N_CSS_MEAS], double sensorUseThresh, double cssNHat_B[MAX_NUM_CSS_SENSORS *3], double CBias[MAX_NUM_CSS_SENSORS], double *obs, double *yMeas, int *numObs, double *measMat)</argsstring>
+        <name>sunlineHMatrixYMeas</name>
+        <param>
+          <type>double</type>
+          <declname>states</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>numCSS</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>cssSensorCos</declname>
+          <array>[MAX_N_CSS_MEAS]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sensorUseThresh</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>cssNHat_B</declname>
+          <array>[MAX_NUM_CSS_SENSORS *3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>CBias</declname>
+          <array>[MAX_NUM_CSS_SENSORS]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>obs</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>yMeas</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>numObs</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>measMat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the H matrix, defined by dGdX. As well as computing the innovation, difference between the measurements and the expected measurements. This methods modifies the numObs, measMat, and yMeas. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numCSS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The total number of CSS </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cssSensorCos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of the measurements from the CSSs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sensorUseThresh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Thresh The Threshold below which the measuremnts are not read </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cssNHat_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The normals vector for each of the CSSs </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yMeas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the innovation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the number of observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>measMat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Point to the H measurement matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>CBias</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of biases </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Loop over all available coarse sun sensors and only use ones that meet validity threshold</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each valid measurement, copy observation value and compute expected obs value and fill out H matrix.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="98" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="491" bodyend="514" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="98" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1ae7744b0ed63b995af7e410712eac293f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineKalmanGainOkeefe</definition>
+        <argsstring>(double covarBar[SKF_N_STATES_HALF *SKF_N_STATES_HALF], double hObs[MAX_N_CSS_MEAS *SKF_N_STATES_HALF], double qObsVal, int numObsInt, double *kalmanGain)</argsstring>
+        <name>sunlineKalmanGainOkeefe</name>
+        <param>
+          <type>double</type>
+          <declname>covarBar</declname>
+          <array>[SKF_N_STATES_HALF *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>hObs</declname>
+          <array>[MAX_N_CSS_MEAS *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qObsVal</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numObsInt</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>kalmanGain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the Kalman gain given the measurements. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>covarBar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time updated covariance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The H matrix filled with the observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qObsVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The observation noise </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numObsInt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kalmanGain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the Kalman Gain </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Add measurement noise</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Invert the previous matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the Kalman Gain</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="100" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="527" bodyend="561" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="100" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1adb8fa4b2d2b9355016799abba7a2f637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineRateCompute</definition>
+        <argsstring>(double states[SKF_N_STATES_HALF], double dt, double prev_states[SKF_N_STATES_HALF], double *omega)</argsstring>
+        <name>sunlineRateCompute</name>
+        <param>
+          <type>double</type>
+          <declname>states</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>prev_states</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>omega</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the rotation rate of the spacecraft by using the two previous state estimates. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Updated states </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prev_states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The states saved from previous step for this purpose </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>omega</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the rotation rate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="102" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="216" bodyend="261" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="102" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1a18b5abfb363f4b552bf59a202944cc0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineDynMatrixOkeefe</definition>
+        <argsstring>(double omega[SKF_N_STATES_HALF], double dt, double *dynMat)</argsstring>
+        <name>sunlineDynMatrixOkeefe</name>
+        <param>
+          <type>double</type>
+          <declname>omega</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>dynMat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the dynamics matrix, which is the derivative of the dynamics F by the state X, evaluated at the reference state. It takes in the configure data and updates this A matrix pointer called dynMat <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>omega</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rotation rate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dynMat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the Dynamic Matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="104" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="312" bodyend="322" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="104" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1a5366a8b70fc36b66aa7d1892d30654cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sunlineCKFUpdateOkeefe</definition>
+        <argsstring>(double xBar[SKF_N_STATES_HALF], double kalmanGain[SKF_N_STATES_HALF *MAX_N_CSS_MEAS], double covarBar[SKF_N_STATES_HALF *SKF_N_STATES_HALF], double qObsVal, int numObsInt, double yObs[MAX_N_CSS_MEAS], double hObs[MAX_N_CSS_MEAS *SKF_N_STATES_HALF], double *x, double *covar)</argsstring>
+        <name>sunlineCKFUpdateOkeefe</name>
+        <param>
+          <type>double</type>
+          <declname>xBar</declname>
+          <array>[SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>kalmanGain</declname>
+          <array>[SKF_N_STATES_HALF *MAX_N_CSS_MEAS]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>covarBar</declname>
+          <array>[SKF_N_STATES_HALF *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qObsVal</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numObsInt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yObs</declname>
+          <array>[MAX_N_CSS_MEAS]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>hObs</declname>
+          <array>[MAX_N_CSS_MEAS *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>covar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the updated with a Classical Kalman Filter <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xBar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state after a time update </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kalmanGain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The computed Kalman Gain </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covarBar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time updated covariance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qObsVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The observation noise </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numObsInt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of CSSs that get measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y vector after receiving the measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The H matrix filled with the observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the state error for modification </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the covariance after update </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute innovation, multiply it my Kalman Gain, and add it to xBar</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute new covariance with Joseph&apos;s method</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="106" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="368" bodyend="414" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="106" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="okeefe_e_k_f_8h_1ac2c2643932f43e170a9406f7cbcbf981" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void okeefeEKFUpdate</definition>
+        <argsstring>(double kalmanGain[SKF_N_STATES_HALF *MAX_N_CSS_MEAS], double covarBar[SKF_N_STATES_HALF *SKF_N_STATES_HALF], double qObsVal, int numObsInt, double yObs[MAX_N_CSS_MEAS], double hObs[MAX_N_CSS_MEAS *SKF_N_STATES_HALF], double *states, double *x, double *covar)</argsstring>
+        <name>okeefeEKFUpdate</name>
+        <param>
+          <type>double</type>
+          <declname>kalmanGain</declname>
+          <array>[SKF_N_STATES_HALF *MAX_N_CSS_MEAS]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>covarBar</declname>
+          <array>[SKF_N_STATES_HALF *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>qObsVal</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numObsInt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yObs</declname>
+          <array>[MAX_N_CSS_MEAS]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>hObs</declname>
+          <array>[MAX_N_CSS_MEAS *SKF_N_STATES_HALF]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>states</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>covar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the updated with a Extended Kalman Filter <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kalmanGain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The computed Kalman Gain </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covarBar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time updated covariance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qObsVal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The observation noise </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>numObsInt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The amount of CSSs that get measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y vector after receiving the measurements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hObs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The H matrix filled with the observations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the states </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the state error for modification </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the covariance after update </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Update the state error</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Change the reference state</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute new covariance with Joseph&apos;s method</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" line="108" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.c" bodystart="428" bodyend="473" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h" declline="108" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SUNLINE_EKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SUNLINE_EKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavAttMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CSSArraySensorMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/SunlineFilterMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CSSConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structokeefe_e_k_f_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="structokeefe_e_k_f_config_1ad57880df4cb7d5c2565b424336f99837" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsg_C<sp/><ref refid="structokeefe_e_k_f_config_1ad57880df4cb7d5c2565b424336f99837" kindref="member">navStateOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structokeefe_e_k_f_config_1a840086abb3f8ba0305ecf7b4a6c08fa7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SunlineFilterMsg_C<sp/><ref refid="structokeefe_e_k_f_config_1a840086abb3f8ba0305ecf7b4a6c08fa7" kindref="member">filtDataOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="structokeefe_e_k_f_config_1a26161e251dcd4f70e9a1eaea4557582f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsg_C<sp/><ref refid="structokeefe_e_k_f_config_1a26161e251dcd4f70e9a1eaea4557582f" kindref="member">cssDataInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structokeefe_e_k_f_config_1a999ff38008d4619f068ac586b9c24a14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSConfigMsg_C<sp/><ref refid="structokeefe_e_k_f_config_1a999ff38008d4619f068ac586b9c24a14" kindref="member">cssConfigInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="structokeefe_e_k_f_config_1af2c7daf536b1c8a1c850b60d9a173b28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1af2c7daf536b1c8a1c850b60d9a173b28" kindref="member">qObsVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="structokeefe_e_k_f_config_1ae202822e20beb88f83e26b42a078b1bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1ae202822e20beb88f83e26b42a078b1bc" kindref="member">qProcVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="structokeefe_e_k_f_config_1a3e8ef883f20d0b78a779cb7ab11f23a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1a3e8ef883f20d0b78a779cb7ab11f23a3" kindref="member">dt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="structokeefe_e_k_f_config_1a8cee1254880d24fdf57d86e37b00865f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1a8cee1254880d24fdf57d86e37b00865f" kindref="member">timeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="structokeefe_e_k_f_config_1a1ea2569b4dc01be8e5b0bae9f7b904e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>state[SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="structokeefe_e_k_f_config_1ab3d22322e9a88835d73493ff5617318c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>prev_states[SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structokeefe_e_k_f_config_1a7eaa3fe5e6840ebb8583912d8b437971" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega[SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="structokeefe_e_k_f_config_1ae4680c2cfe073ea6c72d7f11099fc553" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x[SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structokeefe_e_k_f_config_1a7fce7756c009f8682c86289feef0cc7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xBar[SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="structokeefe_e_k_f_config_1ad15b2fe2e471c96e13f6426513d83194" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarBar[SKF_N_STATES_HALF*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="structokeefe_e_k_f_config_1a5d4f27ee73451a099ce6dfe74797d952" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar[SKF_N_STATES_HALF*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="structokeefe_e_k_f_config_1acbbb393133095a3b798f8cc88a50b8c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stateTransition[SKF_N_STATES_HALF*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="structokeefe_e_k_f_config_1a484468b25a9cf659d12a4ba4000f8cf6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kalmanGain[SKF_N_STATES_HALF*MAX_N_CSS_MEAS];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="structokeefe_e_k_f_config_1a407e5629e7371e52687a17987c0b71a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dynMat[SKF_N_STATES_HALF*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="structokeefe_e_k_f_config_1a1343015cb0e3910a0631972e7d416d58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>measMat[MAX_N_CSS_MEAS*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="structokeefe_e_k_f_config_1a52da3126b8f2b7e94effd94a139d94c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>obs[MAX_N_CSS_MEAS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="structokeefe_e_k_f_config_1ae1c5d22d514098b4e616b1c679e93cec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yMeas[MAX_N_CSS_MEAS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="structokeefe_e_k_f_config_1a120c59879f68f04da03c8dfc345e12da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>procNoise[SKF_N_STATES_HALF*SKF_N_STATES_HALF];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="structokeefe_e_k_f_config_1afd6944beeea4458a6420b72bbc01d841" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>measNoise[MAX_N_CSS_MEAS*MAX_N_CSS_MEAS];<sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="structokeefe_e_k_f_config_1ac7b01a4dbb6671a3e735a4a77263b1a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>postFits[MAX_N_CSS_MEAS];<sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="structokeefe_e_k_f_config_1a20db469c92d5d4bcc996232f84fbc744" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cssNHat_B[MAX_NUM_CSS_SENSORS*3];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="structokeefe_e_k_f_config_1a59333e0bd947fe9732e0f2ccd0b4bf51" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>CBias[MAX_NUM_CSS_SENSORS];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="structokeefe_e_k_f_config_1aa860b1e26bd3cfc0937f048510e36378" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structokeefe_e_k_f_config_1aa860b1e26bd3cfc0937f048510e36378" kindref="member">numStates</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="structokeefe_e_k_f_config_1a0ae1f4790c7952b9f5bc6afbd009cc24" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1a0ae1f4790c7952b9f5bc6afbd009cc24" kindref="member">numObs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="structokeefe_e_k_f_config_1a4f5d5bfc9e9fbf98c3cf7af7911532bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structokeefe_e_k_f_config_1a4f5d5bfc9e9fbf98c3cf7af7911532bc" kindref="member">numActiveCss</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="structokeefe_e_k_f_config_1a0edd7d1c0e9b9a7626c027ae3632fb93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structokeefe_e_k_f_config_1a0edd7d1c0e9b9a7626c027ae3632fb93" kindref="member">numCSSTotal</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="structokeefe_e_k_f_config_1a7e29a44c8dc42ebb1ae504f25c163439" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1a7e29a44c8dc42ebb1ae504f25c163439" kindref="member">sensorUseThresh</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="structokeefe_e_k_f_config_1aeb052a2298363fd9297ada24258c2216" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structokeefe_e_k_f_config_1aeb052a2298363fd9297ada24258c2216" kindref="member">eKFSwitch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="structokeefe_e_k_f_config_1af27f9e2be529979fe0ead0047b099a50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsgPayload<sp/><ref refid="structokeefe_e_k_f_config_1af27f9e2be529979fe0ead0047b099a50" kindref="member">outputSunline</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="structokeefe_e_k_f_config_1a15c3cbbd722b60eeed2baf7ada2a276b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CSSArraySensorMsgPayload<sp/><ref refid="structokeefe_e_k_f_config_1a15c3cbbd722b60eeed2baf7ada2a276b" kindref="member">cssSensorInBuffer</ref>;<sp/></highlight></codeline>
+<codeline lineno="82" refid="structokeefe_e_k_f_config_1a2b99abac5c0e16922d79ea1600f381a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structokeefe_e_k_f_config_1a2b99abac5c0e16922d79ea1600f381a9" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_okeefeEKF(<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_okeefeEKF(<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_okeefeEKF(<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineTimeUpdate(<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineMeasUpdate(<ref refid="structokeefe_e_k_f_config" kindref="compound">okeefeEKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineStateSTMProp(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dynMat[SKF_N_STATES_HALF*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateInOut,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*prevstates,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateTransition);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineHMatrixYMeas(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>states[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>numCSS,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cssSensorCos[MAX_N_CSS_MEAS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sensorUseThresh,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cssNHat_B[MAX_NUM_CSS_SENSORS*3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>CBias[MAX_NUM_CSS_SENSORS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*obs,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*yMeas,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*numObs,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*measMat);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineKalmanGainOkeefe(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarBar[SKF_N_STATES_HALF*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>hObs[MAX_N_CSS_MEAS*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qObsVal,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numObsInt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*kalmanGain);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineRateCompute(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>states[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>prev_states[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*omega);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineDynMatrixOkeefe(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dynMat);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sunlineCKFUpdateOkeefe(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xBar[SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kalmanGain[SKF_N_STATES_HALF*MAX_N_CSS_MEAS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarBar[SKF_N_STATES_HALF*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qObsVal,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numObsInt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yObs[MAX_N_CSS_MEAS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>hObs[MAX_N_CSS_MEAS*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*covar);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>okeefeEKFUpdate(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kalmanGain[SKF_N_STATES_HALF*MAX_N_CSS_MEAS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarBar[SKF_N_STATES_HALF*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qObsVal,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numObsInt,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yObs[MAX_N_CSS_MEAS],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>hObs[MAX_N_CSS_MEAS*SKF_N_STATES_HALF],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*states,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*covar);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/okeefeEKF/okeefeEKF.h"/>
+  </compounddef>
+</doxygen>

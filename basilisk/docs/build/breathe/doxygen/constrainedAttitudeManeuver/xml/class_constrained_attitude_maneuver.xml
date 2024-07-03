@@ -1,0 +1,997 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_constrained_attitude_maneuver" kind="class" language="C++" prot="public">
+    <compoundname>ConstrainedAttitudeManeuver</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="constrained_attitude_maneuver_8h" local="no">constrainedAttitudeManeuver.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a3f6d5725a76ca5284d31ee37604e0256" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConstrainedAttitudeManeuver::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::N</qualifiedname>
+        <briefdescription>
+<para>Fineness level of discretization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="115" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a69d9f12b40c1b4a6422bf6d7bc0a7ad3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConstrainedAttitudeManeuver::BSplineType</definition>
+        <argsstring></argsstring>
+        <name>BSplineType</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::BSplineType</qualifiedname>
+        <briefdescription>
+<para>0 for interpolation; 1 for LS approximation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="116" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a4e7a9392cd46cee69d0be80114b66094" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConstrainedAttitudeManeuver::costFcnType</definition>
+        <argsstring></argsstring>
+        <name>costFcnType</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::costFcnType</qualifiedname>
+        <briefdescription>
+<para>0 for minimum distance path; 1 for minimum control effort path </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="117" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a976c7642b4c449af53a59a3ea521c244" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::sigma_BN_goal[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>sigma_BN_goal</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::sigma_BN_goal</qualifiedname>
+        <briefdescription>
+<para>Initial S/C attitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="118" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a552d87f71152d5e6b216a8bd0cb10afe" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::omega_BN_B_goal[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>omega_BN_B_goal</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::omega_BN_B_goal</qualifiedname>
+        <briefdescription>
+<para>Initial S/C angular rate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="119" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1aedf9e341bd670bde4728856f9abc9bc6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::avgOmega</definition>
+        <argsstring></argsstring>
+        <name>avgOmega</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::avgOmega</qualifiedname>
+        <briefdescription>
+<para>Average angular rate norm during the maneuver. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="120" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a1c9729c8419c73552dddb861cd14d932" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::keepOutFov</definition>
+        <argsstring></argsstring>
+        <name>keepOutFov</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepOutFov</qualifiedname>
+        <briefdescription>
+<para>Field of view of the sensitive instrument. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="121" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a5f78ed66d775da4a26c5db004371716b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::keepOutBore_B[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>keepOutBore_B</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepOutBore_B</qualifiedname>
+        <briefdescription>
+<para>Body-frame direction of the boresight of the sensitive instrument. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="122" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1afeaac4ded0a798de078edb04a5bd5105" prot="public" static="no" mutable="no">
+        <type><ref refid="structconstraint_struct" kindref="compound">constraintStruct</ref></type>
+        <definition>constraintStruct ConstrainedAttitudeManeuver::constraints</definition>
+        <argsstring></argsstring>
+        <name>constraints</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::constraints</qualifiedname>
+        <briefdescription>
+<para>Structure containing the constraint directions in inertial coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="123" column="22" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a4eda1cb0eb4f52eec29d647a32311244" prot="public" static="no" mutable="no">
+        <type><ref refid="structsc_boresight_struct" kindref="compound">scBoresightStruct</ref></type>
+        <definition>scBoresightStruct ConstrainedAttitudeManeuver::boresights</definition>
+        <argsstring></argsstring>
+        <name>boresights</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::boresights</qualifiedname>
+        <briefdescription>
+<para>Structure containing the instrument boresight directions in body frame coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="124" column="23" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1ab90d8890c6e131726237ef686207dbc0" prot="public" static="no" mutable="no">
+        <type>std::map&lt; int, std::map&lt; int, std::map&lt; int, <ref refid="class_node" kindref="compound">Node</ref> &gt; &gt; &gt;</type>
+        <definition>std::map&lt;int,std::map&lt;int,std::map&lt;int,Node&gt; &gt; &gt; ConstrainedAttitudeManeuver::NodesMap</definition>
+        <argsstring></argsstring>
+        <name>NodesMap</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::NodesMap</qualifiedname>
+        <briefdescription>
+<para>C++ map from node indices to <ref refid="class_node" kindref="compound">Node</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="125" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a5b7163a9eedd663ff7ffb796935b9ec3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConstrainedAttitudeManeuver::keyS[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>keyS</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keyS</qualifiedname>
+        <briefdescription>
+<para>Key to Start node in NodesMap. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="126" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a231594f31d609b30b854666d1366bcf5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConstrainedAttitudeManeuver::keyG[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>keyG</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keyG</qualifiedname>
+        <briefdescription>
+<para>Key to Goal node in NodesMap. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="127" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a8bb32bacaa717f8bf862e6f5f5ceb930" prot="public" static="no" mutable="no">
+        <type><ref refid="class_node_list" kindref="compound">NodeList</ref></type>
+        <definition>NodeList ConstrainedAttitudeManeuver::path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::path</qualifiedname>
+        <briefdescription>
+<para>Path of nodes from start to goal. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="128" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1ab0a4d019edc902829029da41dac70566" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::pathCost</definition>
+        <argsstring></argsstring>
+        <name>pathCost</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::pathCost</qualifiedname>
+        <briefdescription>
+<para>Cost of the path above, according to the cost function used. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="129" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a48ba4f571f3f56253ed6cc0107c27251" prot="public" static="no" mutable="no">
+        <type>InputDataSet</type>
+        <definition>InputDataSet ConstrainedAttitudeManeuver::Input</definition>
+        <argsstring></argsstring>
+        <name>Input</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::Input</qualifiedname>
+        <briefdescription>
+<para>Input structure for the BSpline interpolation/approximation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="130" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1ae29ea4da3ce74b0d584e15c3c1a2ec18" prot="public" static="no" mutable="no">
+        <type>OutputDataSet</type>
+        <definition>OutputDataSet ConstrainedAttitudeManeuver::Output</definition>
+        <argsstring></argsstring>
+        <name>Output</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::Output</qualifiedname>
+        <briefdescription>
+<para>Output structure of the BSpline interpolation/approximation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="131" column="19" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a28a1869a66f16db0631385d592f38e1e" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SCStatesMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SCStatesMsgPayload&gt; ConstrainedAttitudeManeuver::scStateInMsg</definition>
+        <argsstring></argsstring>
+        <name>scStateInMsg</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::scStateInMsg</qualifiedname>
+        <briefdescription>
+<para>Spacecraft state input message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="133" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a19b88b419b2568f7ce7be9f945f235dd" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; VehicleConfigMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;VehicleConfigMsgPayload&gt; ConstrainedAttitudeManeuver::vehicleConfigInMsg</definition>
+        <argsstring></argsstring>
+        <name>vehicleConfigInMsg</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::vehicleConfigInMsg</qualifiedname>
+        <briefdescription>
+<para>FSW vehicle configuration input message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="134" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a5a3e1e294b08fe392a02cbeef9d1e86d" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SpicePlanetStateMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt; ConstrainedAttitudeManeuver::keepOutCelBodyInMsg</definition>
+        <argsstring></argsstring>
+        <name>keepOutCelBodyInMsg</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepOutCelBodyInMsg</qualifiedname>
+        <briefdescription>
+<para>Celestial body state msg - keep out direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="135" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1aab5dd293e3519e62fe493f7c3f9b20ae" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SpicePlanetStateMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt; ConstrainedAttitudeManeuver::keepInCelBodyInMsg</definition>
+        <argsstring></argsstring>
+        <name>keepInCelBodyInMsg</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepInCelBodyInMsg</qualifiedname>
+        <briefdescription>
+<para>Celestial body state msg - keep in direction. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="136" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a040a746e5dd20f991d46f8afd5ce74d7" prot="public" static="no" mutable="no">
+        <type>Message&lt; AttRefMsgPayload &gt;</type>
+        <definition>Message&lt;AttRefMsgPayload&gt; ConstrainedAttitudeManeuver::attRefOutMsg</definition>
+        <argsstring></argsstring>
+        <name>attRefOutMsg</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::attRefOutMsg</qualifiedname>
+        <briefdescription>
+<para>Attitude reference output message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="137" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1ae07d809c429130f800e0c6d56284690f" prot="public" static="no" mutable="no">
+        <type>AttRefMsg_C</type>
+        <definition>AttRefMsg_C ConstrainedAttitudeManeuver::attRefOutMsgC</definition>
+        <argsstring></argsstring>
+        <name>attRefOutMsgC</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::attRefOutMsgC</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>C-wrapped attitude reference output message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="138" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a5934da4e266609004605e75132939a34" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger ConstrainedAttitudeManeuver::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::bskLogger</qualifiedname>
+        <briefdescription>
+<para>BSK Logging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="140" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a601041537cc35d799f544be4d1b98bca" prot="private" static="no" mutable="no">
+        <type>SCStatesMsgPayload</type>
+        <definition>SCStatesMsgPayload ConstrainedAttitudeManeuver::scStateMsgBuffer</definition>
+        <argsstring></argsstring>
+        <name>scStateMsgBuffer</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::scStateMsgBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="143" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a1d49465184e9e03cc1cce9c553386558" prot="private" static="no" mutable="no">
+        <type>VehicleConfigMsgPayload</type>
+        <definition>VehicleConfigMsgPayload ConstrainedAttitudeManeuver::vehicleConfigMsgBuffer</definition>
+        <argsstring></argsstring>
+        <name>vehicleConfigMsgBuffer</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::vehicleConfigMsgBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="144" column="29" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1a7e2eb94787cd5f6f55020be9fd085959" prot="private" static="no" mutable="no">
+        <type>SpicePlanetStateMsgPayload</type>
+        <definition>SpicePlanetStateMsgPayload ConstrainedAttitudeManeuver::keepOutCelBodyMsgBuffer</definition>
+        <argsstring></argsstring>
+        <name>keepOutCelBodyMsgBuffer</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepOutCelBodyMsgBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="145" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_constrained_attitude_maneuver_1aaeb59413f977d6bfdca6a96b5ca66fba" prot="private" static="no" mutable="no">
+        <type>SpicePlanetStateMsgPayload</type>
+        <definition>SpicePlanetStateMsgPayload ConstrainedAttitudeManeuver::keepInCelBodyMsgBuffer</definition>
+        <argsstring></argsstring>
+        <name>keepInCelBodyMsgBuffer</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::keepInCelBodyMsgBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="146" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a473555c6f2dea9b0fed600f9da4c8826" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConstrainedAttitudeManeuver::ConstrainedAttitudeManeuver</definition>
+        <argsstring>()</argsstring>
+        <name>ConstrainedAttitudeManeuver</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::ConstrainedAttitudeManeuver</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor for the module class. It sets default variable values and initializes the various parts of the model </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="92" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="184" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1aea8f64fe7ee1b3457f64eb0cf8c35b75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConstrainedAttitudeManeuver::ConstrainedAttitudeManeuver</definition>
+        <argsstring>(int N)</argsstring>
+        <name>ConstrainedAttitudeManeuver</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::ConstrainedAttitudeManeuver</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor for the module class. It sets default variable values and initializes the various parts of the model </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="93" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="191" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1aed54d1dac3ae2270f740da2bd45f0e7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ConstrainedAttitudeManeuver::~ConstrainedAttitudeManeuver</definition>
+        <argsstring>()</argsstring>
+        <name>~ConstrainedAttitudeManeuver</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::~ConstrainedAttitudeManeuver</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Module Destructor. <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="94" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a0d9d2f53f13a7e2cd04e1531eeaa0279" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::SelfInit</definition>
+        <argsstring>()</argsstring>
+        <name>SelfInit</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::SelfInit</qualifiedname>
+        <briefdescription>
+<para>Self initialization for C-wrapped messages. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initialize C-wrapped output messages </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="95" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="208" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a4518d43390820f3c4e7002f9f5c45cf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. The input messages are read here, the grid is generated and the graph search is performed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="96" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="232" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1af6663210bde903617edb062c48a9bc9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is the state update. It reads the information from the interpolated trajectory and writes the output message. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time for system </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="97" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="266" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a4cab805a293796f7fdd25fe2659408ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::ReadInputs</definition>
+        <argsstring>()</argsstring>
+        <name>ReadInputs</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::ReadInputs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads the input messages in from the system and sets the appropriate parameters <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input messages into the correct pointer</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the inertial direction of the object w.r.t. the S/C</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the inertial direction of the object w.r.t. the S/C</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="98" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="301" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1af3ac1647f4ae3d5d014b8b9ce773c949" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::GenerateGrid</definition>
+        <argsstring>(Node startNode, Node goalNode)</argsstring>
+        <name>GenerateGrid</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::GenerateGrid</qualifiedname>
+        <param>
+          <type><ref refid="class_node" kindref="compound">Node</ref></type>
+          <declname>startNode</declname>
+        </param>
+        <param>
+          <type><ref refid="class_node" kindref="compound">Node</ref></type>
+          <declname>goalNode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method generates the MRP grid and connects the free neighboring nodes <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="99" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="336" bodyend="517"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a01600778200d09d2ee321e09aa51d0c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::appendKeepOutDirection</definition>
+        <argsstring>(double direction[3], double Fov)</argsstring>
+        <name>appendKeepOutDirection</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::appendKeepOutDirection</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>direction</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Fov</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add keep-out body-frame direction <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="100" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="213" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a0d44eb8df6afb213180cb4705c392490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::appendKeepInDirection</definition>
+        <argsstring>(double direction[3], double Fov)</argsstring>
+        <name>appendKeepInDirection</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::appendKeepInDirection</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>direction</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Fov</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add keep-in body-frame direction <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="101" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="222" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1aec6325480bd8f20ca50ffc9dbedc597a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::AStar</definition>
+        <argsstring>()</argsstring>
+        <name>AStar</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::AStar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method applies standard distance-based A* to find a valid path <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="102" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="538" bodyend="588"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a7ddbaf53976802282fe5d96edf677dfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::effortBasedAStar</definition>
+        <argsstring>()</argsstring>
+        <name>effortBasedAStar</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::effortBasedAStar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method applies the effort-based A* to find a valid path <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="103" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="593" bodyend="647"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a791ec4c8ffa418919135eccc0ad280fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::backtrack</definition>
+        <argsstring>(Node *p)</argsstring>
+        <name>backtrack</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::backtrack</qualifiedname>
+        <param>
+          <type><ref refid="class_node" kindref="compound">Node</ref> *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used inside A* to track the path from goal to start, order it from start to goal and store in class variable path <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="104" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="522" bodyend="533"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a9a74181f7dc508d0af9f5983daf14d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::pathHandle</definition>
+        <argsstring>()</argsstring>
+        <name>pathHandle</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::pathHandle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes a path of waypoints and returns an Input structure suitable for BSpline interpolation/approximation <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="105" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="652" bodyend="700"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1adb8fcc0d1903f58f1b01aa9d9d66a4a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::spline</definition>
+        <argsstring>()</argsstring>
+        <name>spline</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::spline</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the BSpline interpolation/approximation and outputs an Output structure <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="106" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="705" bodyend="727"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a59f6cb90e31ea93ba34ce6e492a938d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConstrainedAttitudeManeuver::computeTorque</definition>
+        <argsstring>(int n, double I[9], double L[3])</argsstring>
+        <name>computeTorque</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::computeTorque</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>I</declname>
+          <array>[9]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>L</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the torque vector required at time step with index n <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="107" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="732" bodyend="745"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a10dae96b4df53bc3cdcf50103369c461" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::computeTorqueNorm</definition>
+        <argsstring>(int n, double I[9])</argsstring>
+        <name>computeTorqueNorm</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::computeTorqueNorm</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>I</declname>
+          <array>[9]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the torque vector required at time step with index n <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="108" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="750" bodyend="756"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1adb8f21d9661285908ac59088a97596a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::effortEvaluation</definition>
+        <argsstring>()</argsstring>
+        <name>effortEvaluation</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::effortEvaluation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method integrates the control torque norm over maneuver time and returns the cost for the effort-based A*. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="109" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="761" bodyend="779"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a4562eaaf9f7fdf8b67cda2b309869403" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::returnNodeCoord</definition>
+        <argsstring>(int key[3], int nodeCoord)</argsstring>
+        <name>returnNodeCoord</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::returnNodeCoord</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nodeCoord</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows to access the coordinates of a <ref refid="class_node" kindref="compound">Node</ref> in NodesMap without swigging the C++ Map. It is designed to be used in the UnitTest primarily. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="110" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="785" bodyend="793"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1a9e796b7ea72b7264f1c3391ac9404ac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConstrainedAttitudeManeuver::returnNodeState</definition>
+        <argsstring>(int key[3])</argsstring>
+        <name>returnNodeState</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::returnNodeState</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows to access the state of a <ref refid="class_node" kindref="compound">Node</ref> (free or not free) in NodesMap without swigging the C++ Map. It is designed to be used in the UnitTest primarily. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="111" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="799" bodyend="807"/>
+      </memberdef>
+      <memberdef kind="function" id="class_constrained_attitude_maneuver_1ac04add72eb4d21d8ab277ea1981d8513" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConstrainedAttitudeManeuver::returnPathCoord</definition>
+        <argsstring>(int index, int nodeCoord)</argsstring>
+        <name>returnPathCoord</name>
+        <qualifiedname>ConstrainedAttitudeManeuver::returnPathCoord</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nodeCoord</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows to access the coordinates of path Nodes in without swigging NodesList C++. It is designed to be used in the UnitTest primarily. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="112" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.cpp" bodystart="813" bodyend="821"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>waypoint reference module class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ConstrainedAttitudeManeuver</label>
+        <link refid="class_constrained_attitude_maneuver"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ConstrainedAttitudeManeuver</label>
+        <link refid="class_constrained_attitude_maneuver"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>constraints</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>boresights</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>path</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Node</label>
+        <link refid="class_node"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>backPointer</edgelabel>
+          <edgelabel>neighbors</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>NodeList</label>
+        <link refid="class_node_list"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>list</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+      <node id="3">
+        <label>constraintStruct</label>
+        <link refid="structconstraint_struct"/>
+      </node>
+      <node id="4">
+        <label>scBoresightStruct</label>
+        <link refid="structsc_boresight_struct"/>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" line="90" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attGuidance/constrainedAttitudeManeuver/constrainedAttitudeManeuver.h" bodystart="90" bodyend="147"/>
+    <listofallmembers>
+      <member refid="class_constrained_attitude_maneuver_1a0d44eb8df6afb213180cb4705c392490" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>appendKeepInDirection</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a01600778200d09d2ee321e09aa51d0c1" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>appendKeepOutDirection</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aec6325480bd8f20ca50ffc9dbedc597a" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>AStar</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a040a746e5dd20f991d46f8afd5ce74d7" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>attRefOutMsg</name></member>
+      <member refid="class_constrained_attitude_maneuver_1ae07d809c429130f800e0c6d56284690f" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>attRefOutMsgC</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aedf9e341bd670bde4728856f9abc9bc6" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>avgOmega</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a791ec4c8ffa418919135eccc0ad280fc" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>backtrack</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a4eda1cb0eb4f52eec29d647a32311244" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>boresights</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a5934da4e266609004605e75132939a34" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>bskLogger</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a69d9f12b40c1b4a6422bf6d7bc0a7ad3" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>BSplineType</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a59f6cb90e31ea93ba34ce6e492a938d8" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>computeTorque</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a10dae96b4df53bc3cdcf50103369c461" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>computeTorqueNorm</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a473555c6f2dea9b0fed600f9da4c8826" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>ConstrainedAttitudeManeuver</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aea8f64fe7ee1b3457f64eb0cf8c35b75" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>ConstrainedAttitudeManeuver</name></member>
+      <member refid="class_constrained_attitude_maneuver_1afeaac4ded0a798de078edb04a5bd5105" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>constraints</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a4e7a9392cd46cee69d0be80114b66094" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>costFcnType</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a7ddbaf53976802282fe5d96edf677dfa" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>effortBasedAStar</name></member>
+      <member refid="class_constrained_attitude_maneuver_1adb8f21d9661285908ac59088a97596a3" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>effortEvaluation</name></member>
+      <member refid="class_constrained_attitude_maneuver_1af3ac1647f4ae3d5d014b8b9ce773c949" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>GenerateGrid</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a48ba4f571f3f56253ed6cc0107c27251" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>Input</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aab5dd293e3519e62fe493f7c3f9b20ae" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepInCelBodyInMsg</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aaeb59413f977d6bfdca6a96b5ca66fba" prot="private" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepInCelBodyMsgBuffer</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a5f78ed66d775da4a26c5db004371716b" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepOutBore_B</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a5a3e1e294b08fe392a02cbeef9d1e86d" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepOutCelBodyInMsg</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a7e2eb94787cd5f6f55020be9fd085959" prot="private" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepOutCelBodyMsgBuffer</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a1c9729c8419c73552dddb861cd14d932" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keepOutFov</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a231594f31d609b30b854666d1366bcf5" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keyG</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a5b7163a9eedd663ff7ffb796935b9ec3" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>keyS</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a3f6d5725a76ca5284d31ee37604e0256" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>N</name></member>
+      <member refid="class_constrained_attitude_maneuver_1ab90d8890c6e131726237ef686207dbc0" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>NodesMap</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a552d87f71152d5e6b216a8bd0cb10afe" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>omega_BN_B_goal</name></member>
+      <member refid="class_constrained_attitude_maneuver_1ae29ea4da3ce74b0d584e15c3c1a2ec18" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>Output</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a8bb32bacaa717f8bf862e6f5f5ceb930" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>path</name></member>
+      <member refid="class_constrained_attitude_maneuver_1ab0a4d019edc902829029da41dac70566" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>pathCost</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a9a74181f7dc508d0af9f5983daf14d4f" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>pathHandle</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a4cab805a293796f7fdd25fe2659408ad" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>ReadInputs</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a4518d43390820f3c4e7002f9f5c45cf7" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>Reset</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a4562eaaf9f7fdf8b67cda2b309869403" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>returnNodeCoord</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a9e796b7ea72b7264f1c3391ac9404ac3" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>returnNodeState</name></member>
+      <member refid="class_constrained_attitude_maneuver_1ac04add72eb4d21d8ab277ea1981d8513" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>returnPathCoord</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a28a1869a66f16db0631385d592f38e1e" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>scStateInMsg</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a601041537cc35d799f544be4d1b98bca" prot="private" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>scStateMsgBuffer</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a0d9d2f53f13a7e2cd04e1531eeaa0279" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>SelfInit</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a976c7642b4c449af53a59a3ea521c244" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>sigma_BN_goal</name></member>
+      <member refid="class_constrained_attitude_maneuver_1adb8fcc0d1903f58f1b01aa9d9d66a4a1" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>spline</name></member>
+      <member refid="class_constrained_attitude_maneuver_1af6663210bde903617edb062c48a9bc9c" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>UpdateState</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a19b88b419b2568f7ce7be9f945f235dd" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>vehicleConfigInMsg</name></member>
+      <member refid="class_constrained_attitude_maneuver_1a1d49465184e9e03cc1cce9c553386558" prot="private" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>vehicleConfigMsgBuffer</name></member>
+      <member refid="class_constrained_attitude_maneuver_1aed54d1dac3ae2270f740da2bd45f0e7a" prot="public" virt="non-virtual"><scope>ConstrainedAttitudeManeuver</scope><name>~ConstrainedAttitudeManeuver</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

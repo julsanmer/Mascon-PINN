@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="hinged_rigid_body_motor_8cpp" kind="file" language="C++">
+    <compoundname>hingedRigidBodyMotor.cpp</compoundname>
+    <includes refid="hinged_rigid_body_motor_8h" local="yes">simulation/dynamics/hingedRigidBodyMotor/hingedRigidBodyMotor.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/hingedRigidBodyMotor/hingedRigidBodyMotor.cpp</label>
+        <link refid="hinged_rigid_body_motor_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/dynamics/hingedRigidBodyMotor/hingedRigidBodyMotor.h</label>
+        <link refid="hinged_rigid_body_motor_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/ArrayMotorTorqueMsgPayload.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/msgPayloadDefC/HingedRigidBodyMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>cstring</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2022,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/hingedRigidBodyMotor/hingedRigidBodyMotor.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="class_hinged_rigid_body_motor_1af1a2c7ef9fb782e0b47eba88f24ab7e4" kindref="member">HingedRigidBodyMotor::HingedRigidBodyMotor</ref>()</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">K</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1a533cf921f83f80de9d35a85d7d1a02c6" kindref="member">P</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="class_hinged_rigid_body_motor_1a9fc5a44bd328c2757e03e1e583e93845" kindref="member">HingedRigidBodyMotor::~HingedRigidBodyMotor</ref>()</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a96c158af38d52a8bbc3867eb8868f77d" kindref="member">HingedRigidBodyMotor::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_hinged_rigid_body_motor_1adb56d8a5ec3767b4fb3d22721a0be81c" kindref="member">hingedBodyStateSensedInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1acd93b1bf36049fa30cfd1f12330df6d6" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;HingedRigidBodyMotor.hingedBodyStateSensedInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_hinged_rigid_body_motor_1aa490efedf5085389d263d1cb50256526" kindref="member">hingedBodyStateReferenceInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1acd93b1bf36049fa30cfd1f12330df6d6" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;HingedRigidBodyMotor.hingedBodyStateReferenceInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">K &lt;= 0.0 || this-&gt;</ref><ref refid="class_hinged_rigid_body_motor_1a533cf921f83f80de9d35a85d7d1a02c6" kindref="member">P</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1acd93b1bf36049fa30cfd1f12330df6d6" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;HingedRigidBodyMotor<sp/>K<sp/>and<sp/>P<sp/>must<sp/>be<sp/>set<sp/>to<sp/>positive<sp/>values.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1acf301e627e2e4c81db7315b313b14987" kindref="member">HingedRigidBodyMotor::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">sensedTheta</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">sensedThetaDot</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refTheta</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refThetaDot</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">torque</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">HingedRigidBodyMsgPayload</ref><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateSensedInMsgBuffer</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">HingedRigidBodyMsgPayload</ref><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateReferenceInMsgBuffer</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">ArrayMotorTorqueMsgPayload</ref><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">motorTorqueOutMsgBuffer</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">motorTorqueOutMsgBuffer</ref><sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1aab66284eec18371c93e62aa19141927b" kindref="member">motorTorqueOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>hingedBodyStateSensedInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1adb56d8a5ec3767b4fb3d22721a0be81c" kindref="member">hingedBodyStateSensedInMsg</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>hingedBodyStateReferenceInMsgBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1aa490efedf5085389d263d1cb50256526" kindref="member">hingedBodyStateReferenceInMsg</ref>();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>sensedTheta<sp/>=<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateSensedInMsgBuffer</ref>.theta;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">sensedThetaDot</ref><sp/>=<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateSensedInMsgBuffer</ref>.thetaDot;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refTheta</ref><sp/>=<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateReferenceInMsgBuffer</ref>.theta;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refThetaDot</ref><sp/>=<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">hingedBodyStateReferenceInMsgBuffer</ref>.thetaDot;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">torque</ref><sp/>=<sp/>-1<sp/>*<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">K</ref><sp/>*<sp/>(sensedTheta<sp/>-<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refTheta</ref>)<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1a533cf921f83f80de9d35a85d7d1a02c6" kindref="member">P</ref><sp/>*<sp/>(sensedThetaDot<sp/>-<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">refThetaDot</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">motorTorqueOutMsgBuffer</ref>.motorTorque[0]<sp/>=<sp/><ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">torque</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1aab66284eec18371c93e62aa19141927b" kindref="member">motorTorqueOutMsg</ref>.write(&amp;motorTorqueOutMsgBuffer,<sp/>this-&gt;<ref refid="class_hinged_rigid_body_motor_1a370b8630cc465083d8c5910f127b4108" kindref="member">moduleID</ref>,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/hingedRigidBodyMotor/hingedRigidBodyMotor.cpp"/>
+  </compounddef>
+</doxygen>

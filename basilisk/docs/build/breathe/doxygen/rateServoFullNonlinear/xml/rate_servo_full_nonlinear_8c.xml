@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="rate_servo_full_nonlinear_8c" kind="file" language="C++">
+    <compoundname>rateServoFullNonlinear.c</compoundname>
+    <includes refid="rate_servo_full_nonlinear_8h" local="yes">fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">fswAlgorithms/fswUtilities/fswDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c</label>
+        <link refid="rate_servo_full_nonlinear_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.h</label>
+        <link refid="rate_servo_full_nonlinear_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/AttGuidMsg_C.h</label>
+      </node>
+      <node id="9">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/RWArrayConfigMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/RWAvailabilityMsg_C.h</label>
+      </node>
+      <node id="8">
+        <label>cMsgCInterface/RWSpeedMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/RateCmdMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="15">
+        <label>fswAlgorithms/fswUtilities/fswDefinitions.h</label>
+      </node>
+      <node id="18">
+        <label>math.h</label>
+      </node>
+      <node id="11">
+        <label>stdint.h</label>
+      </node>
+      <node id="17">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="rate_servo_full_nonlinear_8c_1ae01b3bb1d8baf8d6c7d078e0f41b39a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_rateServoFullNonlinear</definition>
+        <argsstring>(rateServoFullNonlinearConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_rateServoFullNonlinear</name>
+        <param>
+          <type><ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>selfInit method <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" line="39" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="rate_servo_full_nonlinear_8c_1aefc039fa8a35a70992b97cbaf477ec90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_rateServoFullNonlinear</definition>
+        <argsstring>(rateServoFullNonlinearConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_rateServoFullNonlinear</name>
+        <param>
+          <type><ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the servo rate control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input messages</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" line="52" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" bodystart="52" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="rate_servo_full_nonlinear_8c_1a7748b017933cd51d1e1e72caaf2db507" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_rateServoFullNonlinear</definition>
+        <argsstring>(rateServoFullNonlinearConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_rateServoFullNonlinear</name>
+        <param>
+          <type><ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes and rate errors relative to the Reference frame, as well as the reference frame angular rates and acceleration, and computes the required control torque Lr. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the servo rate control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Guidance input Message</para>
+<para>&lt; Reaction wheel speed estimates input message</para>
+<para>&lt; Reaction wheel availability input message</para>
+<para>&lt; rate steering law message input message</para>
+<para>&lt; commanded torque output message</para>
+<para><itemizedlist>
+<listitem><para>zero the output message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute control update time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero and read the dynamic input messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute body rate</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute the rate tracking error</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>integrate rate tracking error <linebreak/>
+</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>evaluate required attitude control torque Lr</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set output message and pass it to the message bus</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" line="105" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c" bodystart="105" bodyend="216"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>rateServoFullNonlinear<sp/>Module</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/fswUtilities/fswDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_rateServoFullNonlinear(<ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C_init(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8ced0ec3f59e859b99e3bc5eb9ccc170" kindref="member">cmdTorqueOutMsg</ref>);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_rateServoFullNonlinear(<ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>VehicleConfigMsgPayload<sp/>sc;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>make<sp/>sure<sp/>option<sp/>msg<sp/>connections<sp/>are<sp/>correctly<sp/>done<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(RWArrayConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a924d4c37647ed9a1257dee5ae39b1355" kindref="member">rwParamsInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!RWSpeedMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a27c223ea61a78b048eb21cf327887f47" kindref="member">rwSpeedsInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a723be7d4d919525b3481bab7465f6664" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,</highlight><highlight class="stringliteral">&quot;The<sp/>rwSpeedsInMsg<sp/>wasn&apos;t<sp/>connected<sp/>while<sp/>rwParamsInMsg<sp/>was<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>essential<sp/>messages<sp/>are<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!AttGuidMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a62f92a2e1a2913622b9d19351eeb2f1d" kindref="member">guidInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a723be7d4d919525b3481bab7465f6664" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>rateServoFullNonlinear.guidInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!VehicleConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1aad879f53eb9c59e4594313b69b32aa82" kindref="member">vehConfigInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a723be7d4d919525b3481bab7465f6664" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>rateServoFullNonlinear.vehConfigInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!RateCmdMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a786359db57c83d669f4bcd565e1d54ff" kindref="member">rateSteeringInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a723be7d4d919525b3481bab7465f6664" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>rateServoFullNonlinear.rateSteeringInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>sc<sp/>=<sp/>VehicleConfigMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1aad879f53eb9c59e4594313b69b32aa82" kindref="member">vehConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i<sp/>&lt;<sp/>9;<sp/>i++){</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1ac6f1c51c5e042eb47cdec5d1a68e20a1" kindref="member">ISCPntB_B</ref>[i]<sp/>=<sp/>sc.ISCPntB_B[i];</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref>.numRW<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(RWArrayConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a924d4c37647ed9a1257dee5ae39b1355" kindref="member">rwParamsInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref><sp/>=<sp/>RWArrayConfigMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a924d4c37647ed9a1257dee5ae39b1355" kindref="member">rwParamsInMsg</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>the<sp/>integral<sp/>measure<sp/>of<sp/>the<sp/>rate<sp/>tracking<sp/>error<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>the<sp/>prior<sp/>time<sp/>flag<sp/>state.</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>If<sp/>zero,<sp/>control<sp/>time<sp/>step<sp/>not<sp/>evaluated<sp/>on<sp/>the<sp/>first<sp/>function<sp/>call<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a18d00fe4c937bab826e033776f2b6e87" kindref="member">priorTime</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_rateServoFullNonlinear(<ref refid="structrate_servo_full_nonlinear_config" kindref="compound">rateServoFullNonlinearConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>AttGuidMsgPayload<sp/><sp/><sp/>guidCmd;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>RWSpeedMsgPayload<sp/><sp/><sp/>wheelSpeeds;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>RWAvailabilityMsgPayload<sp/>wheelsAvailability;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>RateCmdMsgPayload<sp/><sp/><sp/>rateGuid;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsgPayload<sp/>controlOut;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[s]<sp/>control<sp/>update<sp/>period<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Lr[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>required<sp/>control<sp/>torque<sp/>vector<sp/>[Nm]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>omega_BastN_B[3];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>angular<sp/>velocity<sp/>of<sp/>B^ast<sp/>relative<sp/>to<sp/>inertial<sp/>N,<sp/>in<sp/>body<sp/>frame<sp/>components<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>omega_BBast_B[3];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>angular<sp/>velocity<sp/>tracking<sp/>error<sp/>between<sp/>actual<sp/><sp/>body<sp/>frame<sp/>B<sp/>and<sp/>desired<sp/>B^ast<sp/>frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>omega_BN_B[3];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>angular<sp/>rate<sp/>of<sp/>the<sp/>body<sp/>B<sp/>relative<sp/>to<sp/>inertial<sp/>N,<sp/>in<sp/>body<sp/>frame<sp/>compononents<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*wheelGs;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reaction<sp/>wheel<sp/>spin<sp/>axis<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Temporary<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_1[3];</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_2[3];</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_3[3];</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_4[3];</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_5[3];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_6[3];</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3_7[3];</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intLimCheck;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>controlOut<sp/>=<sp/>CmdTorqueBodyMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a18d00fe4c937bab826e033776f2b6e87" kindref="member">priorTime</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>(callTime<sp/>-<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a18d00fe4c937bab826e033776f2b6e87" kindref="member">priorTime</ref>)<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a18d00fe4c937bab826e033776f2b6e87" kindref="member">priorTime</ref><sp/>=<sp/>callTime;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>guidCmd<sp/>=<sp/>AttGuidMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a62f92a2e1a2913622b9d19351eeb2f1d" kindref="member">guidInMsg</ref>);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>rateGuid<sp/>=<sp/>RateCmdMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a786359db57c83d669f4bcd565e1d54ff" kindref="member">rateSteeringInMsg</ref>);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>wheelSpeeds<sp/>=<sp/>RWSpeedMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>wheelsAvailability<sp/>=<sp/>RWAvailabilityMsg_C_zeroMsgPayload();<sp/><sp/></highlight><highlight class="comment">//<sp/>wheelAvailability<sp/>set<sp/>to<sp/>0<sp/>(AVAILABLE)<sp/>by<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref>.numRW<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheelSpeeds<sp/>=<sp/>RWSpeedMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a27c223ea61a78b048eb21cf327887f47" kindref="member">rwSpeedsInMsg</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(RWAvailabilityMsg_C_isLinked(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80f0fc2014b54861d14591c346e0adf8" kindref="member">rwAvailInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheelsAvailability<sp/>=<sp/>RWAvailabilityMsg_C_read(&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80f0fc2014b54861d14591c346e0adf8" kindref="member">rwAvailInMsg</ref>);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(guidCmd.omega_BR_B,<sp/>guidCmd.omega_RN_B,<sp/>omega_BN_B);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(rateGuid.omega_BastR_B,<sp/>guidCmd.omega_RN_B,<sp/>omega_BastN_B);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(omega_BN_B,<sp/>omega_BastN_B,<sp/>omega_BBast_B);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a25478be7eb1b165b617d995970a16569" kindref="member">Ki</ref><sp/>&gt;<sp/>0)<sp/>{<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>check<sp/>if<sp/>integral<sp/>feedback<sp/>is<sp/>turned<sp/>on<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(dt,<sp/>omega_BBast_B,<sp/>v3_1);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(v3_1,<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>,<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>z<sp/>=<sp/>integral(del_omega)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;3;i++)<sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>intLimCheck<sp/>=<sp/>fabs(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>[i]);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(intLimCheck<sp/>&gt;<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a2167d412daea23878ab1dab6dfacaf17" kindref="member">integralLimit</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>[i]<sp/>*=<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a2167d412daea23878ab1dab6dfacaf17" kindref="member">integralLimit</ref>/intLimCheck;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>integral<sp/>feedback<sp/>is<sp/>turned<sp/>off<sp/>through<sp/>a<sp/>negative<sp/>gain<sp/>setting<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a3c334a0ca235721f466c3bc909d9bc56" kindref="member">P</ref>,<sp/>omega_BBast_B,<sp/>Lr);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>+P<sp/>delta_omega<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a25478be7eb1b165b617d995970a16569" kindref="member">Ki</ref>,<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8076808d02dba6e5527d077c8310e696" kindref="member">z</ref>,<sp/>v3_2);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(v3_2,<sp/>Lr,<sp/>Lr);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>+Ki*z<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lr<sp/>+=<sp/>-<sp/>omega_BastN<sp/>x<sp/>([I]omega<sp/>+<sp/>[Gs]h_s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(RECAST3X3<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1ac6f1c51c5e042eb47cdec5d1a68e20a1" kindref="member">ISCPntB_B</ref>,<sp/>omega_BN_B,<sp/>v3_3);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref>.numRW;<sp/>i++)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(wheelsAvailability.wheelAvailability[i]<sp/>==<sp/>AVAILABLE){<sp/></highlight><highlight class="comment">/*<sp/>check<sp/>if<sp/>wheel<sp/>is<sp/>available<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheelGs<sp/>=<sp/>&amp;(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref>.GsMatrix_B[i*3]);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Scale(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a80997ddd1541a6407f24da8dd2b84e56" kindref="member">rwConfigParams</ref>.JsList[i]<sp/>*<sp/>(v3Dot(omega_BN_B,<sp/>wheelGs)<sp/>+<sp/>wheelSpeeds.wheelSpeeds[i]),</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheelGs,<sp/>v3_4);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Add(v3_4,<sp/>v3_3,<sp/>v3_3);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(omega_BastN_B,<sp/>v3_3,<sp/>v3_4);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(Lr,<sp/>v3_4,<sp/>Lr);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lr<sp/>+=<sp/><sp/>-<sp/>[I](d(omega_B^ast/R)/dt<sp/>+<sp/>d(omega_r)/dt<sp/>-<sp/>omega<sp/>x<sp/>omega_r)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(omega_BN_B,<sp/>guidCmd.omega_RN_B,<sp/>v3_5);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(guidCmd.domega_RN_B,<sp/>v3_5,<sp/>v3_6);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(v3_6,<sp/>rateGuid.omegap_BastR_B,<sp/>v3_6);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(RECAST3X3<sp/>configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1ac6f1c51c5e042eb47cdec5d1a68e20a1" kindref="member">ISCPntB_B</ref>,<sp/>v3_6,<sp/>v3_7);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Subtract(Lr,<sp/>v3_7,<sp/>Lr);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Add<sp/>external<sp/>torque:<sp/>Lr<sp/>+=<sp/>L<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a81fffc33eec6cf56e49ab5b5a1ca74a7" kindref="member">knownTorquePntB_B</ref>,<sp/>Lr,<sp/>Lr);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Change<sp/>sign<sp/>to<sp/>compute<sp/>the<sp/>net<sp/>positive<sp/>control<sp/>torque<sp/>onto<sp/>the<sp/>spacecraft<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1.0,<sp/>Lr,<sp/>Lr);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(Lr,<sp/>controlOut.torqueRequestBody);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C_write(&amp;controlOut,<sp/>&amp;configData-&gt;<ref refid="structrate_servo_full_nonlinear_config_1a8ced0ec3f59e859b99e3bc5eb9ccc170" kindref="member">cmdTorqueOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c"/>
+  </compounddef>
+</doxygen>

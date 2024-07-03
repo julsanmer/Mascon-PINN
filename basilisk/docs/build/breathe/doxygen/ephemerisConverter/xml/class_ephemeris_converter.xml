@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_ephemeris_converter" kind="class" language="C++" prot="public">
+    <compoundname>EphemerisConverter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="ephemeris_converter_8h" local="no">ephemerisConverter.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_ephemeris_converter_1ab3ed9c44cc74bfa7d8b8eda41130a16d" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Message&lt; EphemerisMsgPayload &gt; * &gt;</type>
+        <definition>std::vector&lt;Message&lt;EphemerisMsgPayload&gt;*&gt; EphemerisConverter::ephemOutMsgs</definition>
+        <argsstring></argsstring>
+        <name>ephemOutMsgs</name>
+        <qualifiedname>EphemerisConverter::ephemOutMsgs</qualifiedname>
+        <briefdescription>
+<para>vector of planet ephemeris output messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="47" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ephemeris_converter_1aa3ddc7ebf638c689bf81d0f2576802c2" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; ReadFunctor&lt; SpicePlanetStateMsgPayload &gt; &gt;</type>
+        <definition>std::vector&lt;ReadFunctor&lt;SpicePlanetStateMsgPayload&gt; &gt; EphemerisConverter::spiceInMsgs</definition>
+        <argsstring></argsstring>
+        <name>spiceInMsgs</name>
+        <qualifiedname>EphemerisConverter::spiceInMsgs</qualifiedname>
+        <briefdescription>
+<para>vector of planet spice state input messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="48" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ephemeris_converter_1a296b878779f3d90249cfe8544e44cf43" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger EphemerisConverter::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>EphemerisConverter::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="50" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ephemeris_converter_1a42be5c1840e70f7b09b28e97cffc2dd6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; EphemerisMsgPayload &gt;</type>
+        <definition>std::vector&lt;EphemerisMsgPayload&gt; EphemerisConverter::ephemOutBuffers</definition>
+        <argsstring></argsstring>
+        <name>ephemOutBuffers</name>
+        <qualifiedname>EphemerisConverter::ephemOutBuffers</qualifiedname>
+        <briefdescription>
+<para>output message buffers </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="52" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ephemeris_converter_1afbd0a6a3221c77243aa2f1f51d680dec" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; SpicePlanetStateMsgPayload &gt;</type>
+        <definition>std::vector&lt;SpicePlanetStateMsgPayload&gt; EphemerisConverter::spiceInBuffers</definition>
+        <argsstring></argsstring>
+        <name>spiceInBuffers</name>
+        <qualifiedname>EphemerisConverter::spiceInBuffers</qualifiedname>
+        <briefdescription>
+<para>spice input message copies </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="53" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ephemeris_converter_1a58dc75a4de13089531d44215e4c23415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EphemerisConverter::EphemerisConverter</definition>
+        <argsstring>()</argsstring>
+        <name>EphemerisConverter</name>
+        <qualifiedname>EphemerisConverter::EphemerisConverter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="36" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1a2aa0bdc5f441db5c8fa48b8009a8f767" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EphemerisConverter::~EphemerisConverter</definition>
+        <argsstring>()</argsstring>
+        <name>~EphemerisConverter</name>
+        <qualifiedname>EphemerisConverter::~EphemerisConverter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="37" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="29" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1afc823b72a1356d0ba837006a1e48e492" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>EphemerisConverter::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>update module states <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time in nano-seconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="39" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="129" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1afdd49e77323ce484de6c5c52295baeb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>EphemerisConverter::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+          <defname>CurrenSimNanos</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the module to origina configuration values. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="40" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="39" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1a6a390cb0e37ff4493a18516d2ed96c2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>EphemerisConverter::readInputMessages</qualifiedname>
+        <briefdescription>
+<para>class method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="41" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="106" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1a04af67944659259db67bf953ccc758bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::convertEphemData</definition>
+        <argsstring>(uint64_t clockNow)</argsstring>
+        <name>convertEphemData</name>
+        <qualifiedname>EphemerisConverter::convertEphemData</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>clockNow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>convert ephemeris data <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>clockNow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="72" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1ac9454a71cb3cce9ccbdf1f23be16cd2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::writeOutputMessages</definition>
+        <argsstring>(uint64_t Clock)</argsstring>
+        <name>writeOutputMessages</name>
+        <qualifiedname>EphemerisConverter::writeOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>Clock</declname>
+          <defname>CurrentSimNanos</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>write output message <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time in nano-seconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="117" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ephemeris_converter_1a35162e002b3a4fd89684cf1e80c407be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EphemerisConverter::addSpiceInputMsg</definition>
+        <argsstring>(Message&lt; SpicePlanetStateMsgPayload &gt; *msg)</argsstring>
+        <name>addSpiceInputMsg</name>
+        <qualifiedname>EphemerisConverter::addSpiceInputMsg</qualifiedname>
+        <param>
+          <type>Message&lt; SpicePlanetStateMsgPayload &gt; *</type>
+          <declname>msg</declname>
+          <defname>tmpMsg</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>add a planet spice input message </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="44" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.cpp" bodystart="50" bodyend="66"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>ephemeric converter class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EphemerisConverter</label>
+        <link refid="class_ephemeris_converter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EphemerisConverter</label>
+        <link refid="class_ephemeris_converter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" line="34" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/ephemerisConverter/ephemerisConverter.h" bodystart="34" bodyend="54"/>
+    <listofallmembers>
+      <member refid="class_ephemeris_converter_1a35162e002b3a4fd89684cf1e80c407be" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>addSpiceInputMsg</name></member>
+      <member refid="class_ephemeris_converter_1a296b878779f3d90249cfe8544e44cf43" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>bskLogger</name></member>
+      <member refid="class_ephemeris_converter_1a04af67944659259db67bf953ccc758bc" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>convertEphemData</name></member>
+      <member refid="class_ephemeris_converter_1a58dc75a4de13089531d44215e4c23415" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>EphemerisConverter</name></member>
+      <member refid="class_ephemeris_converter_1a42be5c1840e70f7b09b28e97cffc2dd6" prot="private" virt="non-virtual"><scope>EphemerisConverter</scope><name>ephemOutBuffers</name></member>
+      <member refid="class_ephemeris_converter_1ab3ed9c44cc74bfa7d8b8eda41130a16d" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>ephemOutMsgs</name></member>
+      <member refid="class_ephemeris_converter_1a6a390cb0e37ff4493a18516d2ed96c2f" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>readInputMessages</name></member>
+      <member refid="class_ephemeris_converter_1afdd49e77323ce484de6c5c52295baeb4" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>Reset</name></member>
+      <member refid="class_ephemeris_converter_1afbd0a6a3221c77243aa2f1f51d680dec" prot="private" virt="non-virtual"><scope>EphemerisConverter</scope><name>spiceInBuffers</name></member>
+      <member refid="class_ephemeris_converter_1aa3ddc7ebf638c689bf81d0f2576802c2" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>spiceInMsgs</name></member>
+      <member refid="class_ephemeris_converter_1afc823b72a1356d0ba837006a1e48e492" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>UpdateState</name></member>
+      <member refid="class_ephemeris_converter_1ac9454a71cb3cce9ccbdf1f23be16cd2e" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>writeOutputMessages</name></member>
+      <member refid="class_ephemeris_converter_1a2aa0bdc5f441db5c8fa48b8009a8f767" prot="public" virt="non-virtual"><scope>EphemerisConverter</scope><name>~EphemerisConverter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1045 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_spherical_pendulum" kind="class" language="C++" prot="public">
+    <compoundname>SphericalPendulum</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">StateEffector</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">FuelSlosh</basecompoundref>
+    <includes refid="spherical_pendulum_8h" local="no">sphericalPendulum.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_spherical_pendulum_1ae7f4120302710946e97e6af2dc815baf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::pendulumRadius</definition>
+        <argsstring></argsstring>
+        <name>pendulumRadius</name>
+        <qualifiedname>SphericalPendulum::pendulumRadius</qualifiedname>
+        <briefdescription>
+<para>[m] distance between the center of the tank and the spherical pendulum mass </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="35" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ad44397487ae1b4fc535beb5208c12923" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d SphericalPendulum::D</definition>
+        <argsstring></argsstring>
+        <name>D</name>
+        <qualifiedname>SphericalPendulum::D</qualifiedname>
+        <briefdescription>
+<para>[N*s/m] linear damping matrix for spherical pendulum </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="36" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a117fb6ce58b19faadd8a4580c31c3223" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::phiDotInit</definition>
+        <argsstring></argsstring>
+        <name>phiDotInit</name>
+        <qualifiedname>SphericalPendulum::phiDotInit</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Initial value for spherical pendulum pendulum offset derivative </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="37" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a46aaaeffd13a88614a13222fcf13e2b4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::thetaDotInit</definition>
+        <argsstring></argsstring>
+        <name>thetaDotInit</name>
+        <qualifiedname>SphericalPendulum::thetaDotInit</qualifiedname>
+        <briefdescription>
+<para>[rad/s] Initial value for spherical pendulum pendulum offset derivative </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="38" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a0bd6ce658b46e964612fd2d84cf805e9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::massInit</definition>
+        <argsstring></argsstring>
+        <name>massInit</name>
+        <qualifiedname>SphericalPendulum::massInit</qualifiedname>
+        <briefdescription>
+<para>[m] Initial value for spherical pendulum pendulum mass </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="39" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a527fdac3c12d5d733d9c2b8d335f1f14" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string SphericalPendulum::nameOfPhiState</definition>
+        <argsstring></argsstring>
+        <name>nameOfPhiState</name>
+        <qualifiedname>SphericalPendulum::nameOfPhiState</qualifiedname>
+        <briefdescription>
+<para>[-] Identifier for the phi state data container </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="40" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1aa80f0c620e075f405c64c6b1e5b25995" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string SphericalPendulum::nameOfThetaState</definition>
+        <argsstring></argsstring>
+        <name>nameOfThetaState</name>
+        <qualifiedname>SphericalPendulum::nameOfThetaState</qualifiedname>
+        <briefdescription>
+<para>[-] Identifier for the theta state data container </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="41" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a29c20c51a699b657e96755e87bb3ab1c" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string SphericalPendulum::nameOfPhiDotState</definition>
+        <argsstring></argsstring>
+        <name>nameOfPhiDotState</name>
+        <qualifiedname>SphericalPendulum::nameOfPhiDotState</qualifiedname>
+        <briefdescription>
+<para>[-] Identifier for the phiDot state data container </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="42" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ae0ee4a2f4e78249a1db3c6dcfae3553b" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string SphericalPendulum::nameOfThetaDotState</definition>
+        <argsstring></argsstring>
+        <name>nameOfThetaDotState</name>
+        <qualifiedname>SphericalPendulum::nameOfThetaDotState</qualifiedname>
+        <briefdescription>
+<para>[-] Identifier for the thetaDot state data container </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="43" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a24eaa63fbb17e76ce442657d251ed24e" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string SphericalPendulum::nameOfMassState</definition>
+        <argsstring></argsstring>
+        <name>nameOfMassState</name>
+        <qualifiedname>SphericalPendulum::nameOfMassState</qualifiedname>
+        <briefdescription>
+<para>[-] Identifier for the mass state data container </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="44" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a5ee1b42006e84b937eb67790719ad546" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <qualifiedname>SphericalPendulum::d</qualifiedname>
+        <briefdescription>
+<para>[m] position vector from B point to tank center , T, in body frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="45" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a0cc0bcf95161caa943d34aa59d8bf693" prot="public" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::massState</definition>
+        <argsstring></argsstring>
+        <name>massState</name>
+        <qualifiedname>SphericalPendulum::massState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for the pendulums mass </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="46" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a24cd5a5af94f63685bc16e1c685f55be" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::pHat_01</definition>
+        <argsstring></argsstring>
+        <name>pHat_01</name>
+        <qualifiedname>SphericalPendulum::pHat_01</qualifiedname>
+        <briefdescription>
+<para><ndash/> first vector of the P0 frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="47" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1af2db399046e2e14daf776606dc539ec6" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::pHat_02</definition>
+        <argsstring></argsstring>
+        <name>pHat_02</name>
+        <qualifiedname>SphericalPendulum::pHat_02</qualifiedname>
+        <briefdescription>
+<para><ndash/> second vector of the P0 frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="48" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a0d970ad8010be85bc594b36730e1e0c1" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::pHat_03</definition>
+        <argsstring></argsstring>
+        <name>pHat_03</name>
+        <qualifiedname>SphericalPendulum::pHat_03</qualifiedname>
+        <briefdescription>
+<para><ndash/> third vector of the P0 frame in B frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="49" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ac6b34ee587210890264f6b0d9b262b89" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger SphericalPendulum::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>SphericalPendulum::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="50" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_spherical_pendulum_1a1bed8983c52b876d32d50a26a4beddab" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::phiInit</definition>
+        <argsstring></argsstring>
+        <name>phiInit</name>
+        <qualifiedname>SphericalPendulum::phiInit</qualifiedname>
+        <briefdescription>
+<para>[rad] Initial value for spherical pendulum pendulum offset </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="53" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a1c5e97b84f1a44e13635e7a7cb73df27" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::thetaInit</definition>
+        <argsstring></argsstring>
+        <name>thetaInit</name>
+        <qualifiedname>SphericalPendulum::thetaInit</qualifiedname>
+        <briefdescription>
+<para>[rad] Initial value for spherical pendulum pendulum offset </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="54" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1abcf3375de75bda64e94f09d3c9cfbb31" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::phi</definition>
+        <argsstring></argsstring>
+        <name>phi</name>
+        <qualifiedname>SphericalPendulum::phi</qualifiedname>
+        <briefdescription>
+<para>[rad] spherical pendulum displacement in P0 frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="55" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a01e02af842f48b86c6e2b5da0ef2391c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::theta</definition>
+        <argsstring></argsstring>
+        <name>theta</name>
+        <qualifiedname>SphericalPendulum::theta</qualifiedname>
+        <briefdescription>
+<para>[rad] spherical pendulum displacement in P0 frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="56" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a126c0c72e7df60d6dc0745ba24271fa3" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::phiDot</definition>
+        <argsstring></argsstring>
+        <name>phiDot</name>
+        <qualifiedname>SphericalPendulum::phiDot</qualifiedname>
+        <briefdescription>
+<para>[rad/s] time derivative of displacement in P0 frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="57" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a1cd54773bad3bd407760747c1f1807e9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::thetaDot</definition>
+        <argsstring></argsstring>
+        <name>thetaDot</name>
+        <qualifiedname>SphericalPendulum::thetaDot</qualifiedname>
+        <briefdescription>
+<para>[rad/s] time derivative of displacement in P0 frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="58" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1af376488e7e48ce11678179bc4defe092" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::massFSP</definition>
+        <argsstring></argsstring>
+        <name>massFSP</name>
+        <qualifiedname>SphericalPendulum::massFSP</qualifiedname>
+        <briefdescription>
+<para>[kg] mass of spherical pendulum pendulum </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="59" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a5205f42a94017cbf60bdf0cba59d30ba" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::r_PcB_B</definition>
+        <argsstring></argsstring>
+        <name>r_PcB_B</name>
+        <qualifiedname>SphericalPendulum::r_PcB_B</qualifiedname>
+        <briefdescription>
+<para>[m] position vector form B to center of mass location of pendulum </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="60" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a8757110a15be78137a4459fd2a061930" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d SphericalPendulum::rTilde_PcB_B</definition>
+        <argsstring></argsstring>
+        <name>rTilde_PcB_B</name>
+        <qualifiedname>SphericalPendulum::rTilde_PcB_B</qualifiedname>
+        <briefdescription>
+<para>[m] tilde matrix of r_Pc_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="61" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ad4f5768029e1b8b9f5bfdbbec9e68879" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::rPrime_PcB_B</definition>
+        <argsstring></argsstring>
+        <name>rPrime_PcB_B</name>
+        <qualifiedname>SphericalPendulum::rPrime_PcB_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] Body time derivative of r_Pc_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="62" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ac32f04bef442132a747ff6506875418d" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d SphericalPendulum::rPrimeTilde_PcB_B</definition>
+        <argsstring></argsstring>
+        <name>rPrimeTilde_PcB_B</name>
+        <qualifiedname>SphericalPendulum::rPrimeTilde_PcB_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] Tilde matrix of rPrime_PcB_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="63" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a9db4f822228f07b42eb9dac45b3b13d4" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::aPhi</definition>
+        <argsstring></argsstring>
+        <name>aPhi</name>
+        <qualifiedname>SphericalPendulum::aPhi</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="65" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1aecb64c882508abb3a40edfddd6b75469" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::bPhi</definition>
+        <argsstring></argsstring>
+        <name>bPhi</name>
+        <qualifiedname>SphericalPendulum::bPhi</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="66" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1abd7ae6685b9cd83fb049041b7025c97b" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::aTheta</definition>
+        <argsstring></argsstring>
+        <name>aTheta</name>
+        <qualifiedname>SphericalPendulum::aTheta</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="67" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a831acf3695fe4a5ae4c05c4197ec9634" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::bTheta</definition>
+        <argsstring></argsstring>
+        <name>bTheta</name>
+        <qualifiedname>SphericalPendulum::bTheta</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="68" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1af6ec2b5e64df57d0a092706ff481b5fd" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::cPhi</definition>
+        <argsstring></argsstring>
+        <name>cPhi</name>
+        <qualifiedname>SphericalPendulum::cPhi</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="69" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1acd32c375a4c3c685b67d7d8f61b18034" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SphericalPendulum::cTheta</definition>
+        <argsstring></argsstring>
+        <name>cTheta</name>
+        <qualifiedname>SphericalPendulum::cTheta</qualifiedname>
+        <briefdescription>
+<para><ndash/> Term needed for back-sub method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="70" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a9099d1119de009f83a0d938113a27de2" prot="private" static="no" mutable="no">
+        <type>Eigen::MatrixXd *</type>
+        <definition>Eigen::MatrixXd* SphericalPendulum::g_N</definition>
+        <argsstring></argsstring>
+        <name>g_N</name>
+        <qualifiedname>SphericalPendulum::g_N</qualifiedname>
+        <briefdescription>
+<para>[m/s^2] Gravitational acceleration in N frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="72" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a86fd5c99613d7d0ef87854c28185bac5" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::l_B</definition>
+        <argsstring></argsstring>
+        <name>l_B</name>
+        <qualifiedname>SphericalPendulum::l_B</qualifiedname>
+        <briefdescription>
+<para>[m] vector from the center of the tank to the spherical pendulum pendulum in B frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="73" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a151261ad286373d901f31c2b47597b20" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::lPrime_B</definition>
+        <argsstring></argsstring>
+        <name>lPrime_B</name>
+        <qualifiedname>SphericalPendulum::lPrime_B</qualifiedname>
+        <briefdescription>
+<para>[m/s] derivative of l respect to B frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="74" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1afc693122447e766cb7ff64a25aac8628" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d SphericalPendulum::lPrime_P0</definition>
+        <argsstring></argsstring>
+        <name>lPrime_P0</name>
+        <qualifiedname>SphericalPendulum::lPrime_P0</qualifiedname>
+        <briefdescription>
+<para>[m/s] derivative of l in P0 frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="75" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a260e8819284b05d110a541e1c3dd4629" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::phiState</definition>
+        <argsstring></argsstring>
+        <name>phiState</name>
+        <qualifiedname>SphericalPendulum::phiState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for spherical pendulum displacement </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="76" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a1afd3e532287f457aebf16f635a4c2a8" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::thetaState</definition>
+        <argsstring></argsstring>
+        <name>thetaState</name>
+        <qualifiedname>SphericalPendulum::thetaState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for spherical pendulum displacement </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="77" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1aa9a2e7d375ea0dacc665e4c9fd14ce82" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::phiDotState</definition>
+        <argsstring></argsstring>
+        <name>phiDotState</name>
+        <qualifiedname>SphericalPendulum::phiDotState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for time derivative of phi; </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="78" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1afd74ba1f76fc582b039fc95269a9e84e" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::thetaDotState</definition>
+        <argsstring></argsstring>
+        <name>thetaDotState</name>
+        <qualifiedname>SphericalPendulum::thetaDotState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for time derivative of theta; </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="79" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a14ee5618e364d8525821770283161011" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::omegaState</definition>
+        <argsstring></argsstring>
+        <name>omegaState</name>
+        <qualifiedname>SphericalPendulum::omegaState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for the hubs omega_BN_B </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="80" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a15b16aaf71211c7e8d73b75fb4d9e9f0" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::sigmaState</definition>
+        <argsstring></argsstring>
+        <name>sigmaState</name>
+        <qualifiedname>SphericalPendulum::sigmaState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for the hubs sigma_BN </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="81" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1ac3bd4ee56743d04bf1420ff0305a2968" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* SphericalPendulum::velocityState</definition>
+        <argsstring></argsstring>
+        <name>velocityState</name>
+        <qualifiedname>SphericalPendulum::velocityState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for the hubs rDot_BN_N </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="82" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spherical_pendulum_1a7fa809690d506888fc88a055aeb4b495" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d SphericalPendulum::dcm_B_P0</definition>
+        <argsstring></argsstring>
+        <name>dcm_B_P0</name>
+        <qualifiedname>SphericalPendulum::dcm_B_P0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="83" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_spherical_pendulum_1ac29ce54286a132c881687e7230c1ccc9" prot="private" static="yes" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t SphericalPendulum::effectorID</definition>
+        <argsstring></argsstring>
+        <name>effectorID</name>
+        <qualifiedname>SphericalPendulum::effectorID</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>[] ID number of this panel </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="84" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_spherical_pendulum_1a8337b9a1efbd286579db94fe03e46beb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SphericalPendulum::SphericalPendulum</definition>
+        <argsstring>()</argsstring>
+        <name>SphericalPendulum</name>
+        <qualifiedname>SphericalPendulum::SphericalPendulum</qualifiedname>
+        <briefdescription>
+<para><ndash/> Contructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor, setting variables to default values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="89" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="30" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1aafcc214da9ae3ad7475a65cfa252f1fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SphericalPendulum::~SphericalPendulum</definition>
+        <argsstring>()</argsstring>
+        <name>~SphericalPendulum</name>
+        <qualifiedname>SphericalPendulum::~SphericalPendulum</qualifiedname>
+        <briefdescription>
+<para><ndash/> Destructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the destructor, nothing to report here </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="90" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1abfd75abcf8ed0a04178b8882c110e99d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::registerStates</definition>
+        <argsstring>(DynParamManager &amp;states)</argsstring>
+        <name>registerStates</name>
+        <qualifiedname>SphericalPendulum::registerStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for FSP to register its states </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the method for the spherical pendulum to register its states: l and lDot </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="91" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="90" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1a294952874416b5267108be7045feaf44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::linkInStates</definition>
+        <argsstring>(DynParamManager &amp;states)</argsstring>
+        <name>linkInStates</name>
+        <qualifiedname>SphericalPendulum::linkInStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>states</declname>
+          <defname>statesIn</defname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for FSP to get access of other states </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Method for spherical pendulum to access the states that it needs. It needs gravity and the hub states </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="92" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="75" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1aa9aefb11b7fca57f5aee808f2e559683" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::updateEffectorMassProps</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>updateEffectorMassProps</name>
+        <qualifiedname>SphericalPendulum::updateEffectorMassProps</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for FSP to add its contributions to mass props </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the method for the FSP to add its contributions to the mass props and mass prop rates of the vehicle </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="93" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="123" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1a27b4824731dbdaf70da0f7ceb45e7813" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::modifyStates</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>modifyStates</name>
+        <qualifiedname>SphericalPendulum::modifyStates</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to force states modification during integration </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="94" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="361" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1a2be0120baaf3e96a14034b86910478c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::retrieveMassValue</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>retrieveMassValue</name>
+        <qualifiedname>SphericalPendulum::retrieveMassValue</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is method is used to pass mass properties information to the fuelTank </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="95" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="201" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1afa6f38822f051240eed71faa0b4db12f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::updateContributions</definition>
+        <argsstring>(double integTime, BackSubMatrices &amp;backSubContr, Eigen::Vector3d sigma_BN, Eigen::Vector3d omega_BN_B, Eigen::Vector3d g_N)</argsstring>
+        <name>updateContributions</name>
+        <qualifiedname>SphericalPendulum::updateContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>BackSubMatrices &amp;</type>
+          <declname>backSubContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>g_N</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Back-sub contributions </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is for the FSP to add its contributions to the back-sub method </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="96" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="210" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1ae840f636e5a62361c82bb6b43825e244" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::updateEnergyMomContributions</definition>
+        <argsstring>(double integTime, Eigen::Vector3d &amp;rotAngMomPntCContr_B, double &amp;rotEnergyContr, Eigen::Vector3d omega_BN_B)</argsstring>
+        <name>updateEnergyMomContributions</name>
+        <qualifiedname>SphericalPendulum::updateEnergyMomContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d &amp;</type>
+          <declname>rotAngMomPntCContr_B</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>rotEnergyContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Energy and momentum calculations </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is for the FSP to add its contributions to energy and momentum </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="97" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="340" bodyend="359"/>
+      </memberdef>
+      <memberdef kind="function" id="class_spherical_pendulum_1ab491bbdbb48e154e765d60a642e02b97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphericalPendulum::computeDerivatives</definition>
+        <argsstring>(double integTime, Eigen::Vector3d rDDot_BN_N, Eigen::Vector3d omegaDot_BN_B, Eigen::Vector3d sigma_BN)</argsstring>
+        <name>computeDerivatives</name>
+        <qualifiedname>SphericalPendulum::computeDerivatives</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rDDot_BN_N</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omegaDot_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for each stateEffector to calculate derivatives </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to define the derivatives of the FSP. One is the trivial kinematic derivative and the other is derived using the back-sub method </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="99" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.cpp" bodystart="307" bodyend="337"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>spherical pendulum state effector model </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>FuelSlosh</label>
+      </node>
+      <node id="1">
+        <label>SphericalPendulum</label>
+        <link refid="class_spherical_pendulum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>FuelSlosh</label>
+      </node>
+      <node id="1">
+        <label>SphericalPendulum</label>
+        <link refid="class_spherical_pendulum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" line="31" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/sphericalPendulum/sphericalPendulum.h" bodystart="33" bodyend="100"/>
+    <listofallmembers>
+      <member refid="class_spherical_pendulum_1a9db4f822228f07b42eb9dac45b3b13d4" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>aPhi</name></member>
+      <member refid="class_spherical_pendulum_1abd7ae6685b9cd83fb049041b7025c97b" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>aTheta</name></member>
+      <member refid="class_spherical_pendulum_1aecb64c882508abb3a40edfddd6b75469" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>bPhi</name></member>
+      <member refid="class_spherical_pendulum_1ac6b34ee587210890264f6b0d9b262b89" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>bskLogger</name></member>
+      <member refid="class_spherical_pendulum_1a831acf3695fe4a5ae4c05c4197ec9634" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>bTheta</name></member>
+      <member refid="class_spherical_pendulum_1ab491bbdbb48e154e765d60a642e02b97" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>computeDerivatives</name></member>
+      <member refid="class_spherical_pendulum_1af6ec2b5e64df57d0a092706ff481b5fd" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>cPhi</name></member>
+      <member refid="class_spherical_pendulum_1acd32c375a4c3c685b67d7d8f61b18034" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>cTheta</name></member>
+      <member refid="class_spherical_pendulum_1ad44397487ae1b4fc535beb5208c12923" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>D</name></member>
+      <member refid="class_spherical_pendulum_1a5ee1b42006e84b937eb67790719ad546" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>d</name></member>
+      <member refid="class_spherical_pendulum_1a7fa809690d506888fc88a055aeb4b495" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>dcm_B_P0</name></member>
+      <member refid="class_spherical_pendulum_1ac29ce54286a132c881687e7230c1ccc9" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>effectorID</name></member>
+      <member refid="class_spherical_pendulum_1a9099d1119de009f83a0d938113a27de2" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>g_N</name></member>
+      <member refid="class_spherical_pendulum_1a86fd5c99613d7d0ef87854c28185bac5" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>l_B</name></member>
+      <member refid="class_spherical_pendulum_1a294952874416b5267108be7045feaf44" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>linkInStates</name></member>
+      <member refid="class_spherical_pendulum_1a151261ad286373d901f31c2b47597b20" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>lPrime_B</name></member>
+      <member refid="class_spherical_pendulum_1afc693122447e766cb7ff64a25aac8628" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>lPrime_P0</name></member>
+      <member refid="class_spherical_pendulum_1af376488e7e48ce11678179bc4defe092" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>massFSP</name></member>
+      <member refid="class_spherical_pendulum_1a0bd6ce658b46e964612fd2d84cf805e9" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>massInit</name></member>
+      <member refid="class_spherical_pendulum_1a0cc0bcf95161caa943d34aa59d8bf693" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>massState</name></member>
+      <member refid="class_spherical_pendulum_1a27b4824731dbdaf70da0f7ceb45e7813" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>modifyStates</name></member>
+      <member refid="class_spherical_pendulum_1a24eaa63fbb17e76ce442657d251ed24e" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>nameOfMassState</name></member>
+      <member refid="class_spherical_pendulum_1a29c20c51a699b657e96755e87bb3ab1c" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>nameOfPhiDotState</name></member>
+      <member refid="class_spherical_pendulum_1a527fdac3c12d5d733d9c2b8d335f1f14" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>nameOfPhiState</name></member>
+      <member refid="class_spherical_pendulum_1ae0ee4a2f4e78249a1db3c6dcfae3553b" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>nameOfThetaDotState</name></member>
+      <member refid="class_spherical_pendulum_1aa80f0c620e075f405c64c6b1e5b25995" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>nameOfThetaState</name></member>
+      <member refid="class_spherical_pendulum_1a14ee5618e364d8525821770283161011" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>omegaState</name></member>
+      <member refid="class_spherical_pendulum_1ae7f4120302710946e97e6af2dc815baf" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>pendulumRadius</name></member>
+      <member refid="class_spherical_pendulum_1a24cd5a5af94f63685bc16e1c685f55be" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>pHat_01</name></member>
+      <member refid="class_spherical_pendulum_1af2db399046e2e14daf776606dc539ec6" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>pHat_02</name></member>
+      <member refid="class_spherical_pendulum_1a0d970ad8010be85bc594b36730e1e0c1" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>pHat_03</name></member>
+      <member refid="class_spherical_pendulum_1abcf3375de75bda64e94f09d3c9cfbb31" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>phi</name></member>
+      <member refid="class_spherical_pendulum_1a126c0c72e7df60d6dc0745ba24271fa3" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>phiDot</name></member>
+      <member refid="class_spherical_pendulum_1a117fb6ce58b19faadd8a4580c31c3223" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>phiDotInit</name></member>
+      <member refid="class_spherical_pendulum_1aa9a2e7d375ea0dacc665e4c9fd14ce82" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>phiDotState</name></member>
+      <member refid="class_spherical_pendulum_1a1bed8983c52b876d32d50a26a4beddab" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>phiInit</name></member>
+      <member refid="class_spherical_pendulum_1a260e8819284b05d110a541e1c3dd4629" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>phiState</name></member>
+      <member refid="class_spherical_pendulum_1a5205f42a94017cbf60bdf0cba59d30ba" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>r_PcB_B</name></member>
+      <member refid="class_spherical_pendulum_1abfd75abcf8ed0a04178b8882c110e99d" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>registerStates</name></member>
+      <member refid="class_spherical_pendulum_1a2be0120baaf3e96a14034b86910478c0" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>retrieveMassValue</name></member>
+      <member refid="class_spherical_pendulum_1ad4f5768029e1b8b9f5bfdbbec9e68879" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>rPrime_PcB_B</name></member>
+      <member refid="class_spherical_pendulum_1ac32f04bef442132a747ff6506875418d" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>rPrimeTilde_PcB_B</name></member>
+      <member refid="class_spherical_pendulum_1a8757110a15be78137a4459fd2a061930" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>rTilde_PcB_B</name></member>
+      <member refid="class_spherical_pendulum_1a15b16aaf71211c7e8d73b75fb4d9e9f0" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>sigmaState</name></member>
+      <member refid="class_spherical_pendulum_1a8337b9a1efbd286579db94fe03e46beb" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>SphericalPendulum</name></member>
+      <member refid="class_spherical_pendulum_1a01e02af842f48b86c6e2b5da0ef2391c" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>theta</name></member>
+      <member refid="class_spherical_pendulum_1a1cd54773bad3bd407760747c1f1807e9" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>thetaDot</name></member>
+      <member refid="class_spherical_pendulum_1a46aaaeffd13a88614a13222fcf13e2b4" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>thetaDotInit</name></member>
+      <member refid="class_spherical_pendulum_1afd74ba1f76fc582b039fc95269a9e84e" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>thetaDotState</name></member>
+      <member refid="class_spherical_pendulum_1a1c5e97b84f1a44e13635e7a7cb73df27" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>thetaInit</name></member>
+      <member refid="class_spherical_pendulum_1a1afd3e532287f457aebf16f635a4c2a8" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>thetaState</name></member>
+      <member refid="class_spherical_pendulum_1afa6f38822f051240eed71faa0b4db12f" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>updateContributions</name></member>
+      <member refid="class_spherical_pendulum_1aa9aefb11b7fca57f5aee808f2e559683" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>updateEffectorMassProps</name></member>
+      <member refid="class_spherical_pendulum_1ae840f636e5a62361c82bb6b43825e244" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>updateEnergyMomContributions</name></member>
+      <member refid="class_spherical_pendulum_1ac3bd4ee56743d04bf1420ff0305a2968" prot="private" virt="non-virtual"><scope>SphericalPendulum</scope><name>velocityState</name></member>
+      <member refid="class_spherical_pendulum_1aafcc214da9ae3ad7475a65cfa252f1fd" prot="public" virt="non-virtual"><scope>SphericalPendulum</scope><name>~SphericalPendulum</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

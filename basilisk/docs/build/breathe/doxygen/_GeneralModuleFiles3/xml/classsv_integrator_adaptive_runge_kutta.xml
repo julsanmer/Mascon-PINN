@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classsv_integrator_adaptive_runge_kutta" kind="class" language="C++" prot="public">
+    <compoundname>svIntegratorAdaptiveRungeKutta</compoundname>
+    <basecompoundref refid="classsv_integrator_runge_kutta" prot="public" virt="non-virtual">svIntegratorRungeKutta&lt; numberStages &gt;</basecompoundref>
+    <includes refid="sv_integrator_adaptive_runge_kutta_8h" local="no">svIntegratorAdaptiveRungeKutta.h</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>numberStages</declname>
+        <defname>numberStages</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a98941d1eee8119a719008b495de71910" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::relTol</definition>
+        <argsstring></argsstring>
+        <name>relTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::relTol</qualifiedname>
+        <initializer>= 1e-4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum relative truncation error allowed.</para>
+<para>The relative truncation error is the absolute error of the state divided by the magnitude of the state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="181" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a8153dced325d94cc0dd309c0b766b7c1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::absTol</definition>
+        <argsstring></argsstring>
+        <name>absTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::absTol</qualifiedname>
+        <initializer>= 1e-8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum absolute truncation error allowed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="184" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1acdfad064e18e60ca07bf457cc56bc2cb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::safetyFactorForNextStepSize</definition>
+        <argsstring></argsstring>
+        <name>safetyFactorForNextStepSize</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::safetyFactorForNextStepSize</qualifiedname>
+        <initializer>= 0.9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>When a new step size is computed, it is multiplied by this factor.</para>
+<para>New step sizes are initially computed so that the error made using the new step matches exactly the tolerance limits. By providing a safetyFactor &lt; 0.9, we obtain a step size the produces a lower error than the tolerance, thus almost guaranteen that we don&apos;t repeat a step twice. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="193" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a124ec72ffefafd9ea49087f163fc54c0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::maximumFactorIncreaseForNextStepSize</definition>
+        <argsstring></argsstring>
+        <name>maximumFactorIncreaseForNextStepSize</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::maximumFactorIncreaseForNextStepSize</qualifiedname>
+        <initializer>= 4.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>When a new step size is computed, it can only be maximumFactorIncreaseForNextStepSize times the old step size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="198" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1aae39386cfdbe0de7e59680c31f84fff9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::minimumFactorDecreaseForNextStepSize</definition>
+        <argsstring></argsstring>
+        <name>minimumFactorDecreaseForNextStepSize</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::minimumFactorDecreaseForNextStepSize</qualifiedname>
+        <initializer>= 0.1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>When a new step size is computed, it must be above minimumFactorDecreaseForNextStepSize times the old step size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="203" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a492d1d088c9e937aeb09e37fe02ec79f" prot="protected" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::methodLargestOrder</definition>
+        <argsstring></argsstring>
+        <name>methodLargestOrder</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::methodLargestOrder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The higher order of the two orders used in adaptive RK methods.</para>
+<para>For the RKF45 method, for example, methodLargestOrder should be 5. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="237" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a831e25f65c58e53b1f84dc9a04632d52" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, double &gt;</type>
+        <definition>std::unordered_map&lt;std::string, double&gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::stateSpecificRelTol</definition>
+        <argsstring></argsstring>
+        <name>stateSpecificRelTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::stateSpecificRelTol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Holds the maximum relative truncation error allowed for specific states </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="240" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a0c88a47c1535457afaf6f4ee44abc2b0" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, double &gt;</type>
+        <definition>std::unordered_map&lt;std::string, double&gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::stateSpecificAbsTol</definition>
+        <argsstring></argsstring>
+        <name>stateSpecificAbsTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::stateSpecificAbsTol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Holds the maximum absolute truncation error allowed for specific states </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="243" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1a789bdc8cde34d04586968ba708f569a9" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; ExtendedStateId, double, <ref refid="struct_extended_state_id_hash" kindref="compound">ExtendedStateIdHash</ref> &gt;</type>
+        <definition>std::unordered_map&lt;ExtendedStateId, double, ExtendedStateIdHash&gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::dynObjectStateSpecificRelTol</definition>
+        <argsstring></argsstring>
+        <name>dynObjectStateSpecificRelTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::dynObjectStateSpecificRelTol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Holds the maximum relative truncation error allowed for specific states of specific dynamic objects </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="247" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsv_integrator_adaptive_runge_kutta_1adafba43f92ae53b291036d0fffebc3a4" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; ExtendedStateId, double, <ref refid="struct_extended_state_id_hash" kindref="compound">ExtendedStateIdHash</ref> &gt;</type>
+        <definition>std::unordered_map&lt;ExtendedStateId, double, ExtendedStateIdHash&gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::dynObjectStateSpecificAbsTol</definition>
+        <argsstring></argsstring>
+        <name>dynObjectStateSpecificAbsTol</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::dynObjectStateSpecificAbsTol</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Holds the maximum absolute truncation error allowed for specific states of specific dynamic objects </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="251" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="251" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a7229586d06abae07d8a70adaaa5e2ad2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::svIntegratorAdaptiveRungeKutta</definition>
+        <argsstring>(DynamicObject *dynIn, const RKAdaptiveCoefficients&lt; numberStages &gt; &amp;coefficients, const double methodLargestOrder)</argsstring>
+        <name>svIntegratorAdaptiveRungeKutta</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::svIntegratorAdaptiveRungeKutta</qualifiedname>
+        <param>
+          <type><ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> *</type>
+          <declname>dynIn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_r_k_adaptive_coefficients" kindref="compound">RKAdaptiveCoefficients</ref>&lt; numberStages &gt; &amp;</type>
+          <declname>coefficients</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>methodLargestOrder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructs the integrator for the given dynamic object and specified Adaptive RK coefficients.</para>
+<para>methodLargestOrder is the higher order of the two orders used in adaptive RK methods. For the RKF45 method, for example, methodLargestOrder should be 5. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="68" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="255" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1ac54e8dd56af98026909ca9c4afd3be58" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::integrate</definition>
+        <argsstring>(double currentTime, double timeStep) override</argsstring>
+        <name>integrate</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::integrate</qualifiedname>
+        <reimplements refid="classsv_integrator_runge_kutta_1a299b2b5e9f03976644e00d7163c3b474">integrate</reimplements>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Performs the integration of the associated dynamic objects up to time currentTime+timeStep </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="74" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="268" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a2f3b9900468d0966e1250c95aecd9391" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setRelativeTolerance</definition>
+        <argsstring>(double relTol)</argsstring>
+        <name>setRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setRelativeTolerance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>relTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the relative tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and every state.</para>
+<para>This is akin to changing <ref refid="classsv_integrator_adaptive_runge_kutta_1a98941d1eee8119a719008b495de71910" kindref="member">svIntegratorAdaptiveRungeKutta::relTol</ref> directly </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="83" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="354" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1abedb0a66b4878a1bec2c0609c2926777" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getRelativeTolerance</definition>
+        <argsstring>()</argsstring>
+        <name>getRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getRelativeTolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the relative tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and every state.</para>
+<para>This is akin to reading <ref refid="classsv_integrator_adaptive_runge_kutta_1a98941d1eee8119a719008b495de71910" kindref="member">svIntegratorAdaptiveRungeKutta::relTol</ref> directly </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="92" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="360" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1ac6d64c2c6b5eabb6388c280ca6e66e58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setAbsoluteTolerance</definition>
+        <argsstring>(double absTol)</argsstring>
+        <name>setAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setAbsoluteTolerance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>absTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the absolute tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and every state.</para>
+<para>This is akin to changing <ref refid="classsv_integrator_adaptive_runge_kutta_1a8153dced325d94cc0dd309c0b766b7c1" kindref="member">svIntegratorAdaptiveRungeKutta::absTol</ref> directly </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="101" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="366" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a5945ae772c9bf610dc7831bd78834d03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getAbsoluteTolerance</definition>
+        <argsstring>()</argsstring>
+        <name>getAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getAbsoluteTolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the absolute tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and every state.</para>
+<para>This is akin to reading <ref refid="classsv_integrator_adaptive_runge_kutta_1a8153dced325d94cc0dd309c0b766b7c1" kindref="member">svIntegratorAdaptiveRungeKutta::absTol</ref> directly </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="110" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="372" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a7b151573e21e2c02013c14ea0452cbaa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setRelativeTolerance</definition>
+        <argsstring>(std::string stateName, double relTol)</argsstring>
+        <name>setRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setRelativeTolerance</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>relTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the relative tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="116" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="378" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a1cb66edc5571e42091aca20a6c49b8a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; double &gt;</type>
+        <definition>std::optional&lt; double &gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getRelativeTolerance</definition>
+        <argsstring>(std::string stateName)</argsstring>
+        <name>getRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getRelativeTolerance</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the relative tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name.</para>
+<para>If the relative tolerance for this state was not set, then returns an empty optional. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="125" column="19" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="386" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a09d9df6f84c1bf1508e5f85a07243e5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setAbsoluteTolerance</definition>
+        <argsstring>(std::string stateName, double absTol)</argsstring>
+        <name>setAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setAbsoluteTolerance</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>absTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the absolute tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="131" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="395" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1aa152ef04366cfab5f7eec71430ca1c6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; double &gt;</type>
+        <definition>std::optional&lt; double &gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getAbsoluteTolerance</definition>
+        <argsstring>(std::string stateName)</argsstring>
+        <name>getAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getAbsoluteTolerance</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the absolute tolerance for every <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name.</para>
+<para>If the absolute tolerance for this state was not set, then returns an empty optional. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="140" column="19" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="403" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a4448bcb9037e9c8b72f253d1b6e9464d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setRelativeTolerance</definition>
+        <argsstring>(const DynamicObject &amp;dynamicObject, std::string stateName, double relTol)</argsstring>
+        <name>setRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setRelativeTolerance</qualifiedname>
+        <param>
+          <type>const <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> &amp;</type>
+          <declname>dynamicObject</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>relTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the relative tolerance for the given <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="147" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="412" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1adb064674b8edf60eb331b967410bbaec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::optional&lt; double &gt;</type>
+        <definition>std::optional&lt; double &gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getRelativeTolerance</definition>
+        <argsstring>(const DynamicObject &amp;dynamicObject, std::string stateName)</argsstring>
+        <name>getRelativeTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getRelativeTolerance</qualifiedname>
+        <param>
+          <type>const <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> &amp;</type>
+          <declname>dynamicObject</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the relative tolerance for the given <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name.</para>
+<para>If the relative tolerance for this state and <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> was not set, then returns an empty optional. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="156" column="19" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="422" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1ac2bb198f6dc7ca8b3dd3630d56a43cff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::setAbsoluteTolerance</definition>
+        <argsstring>(const DynamicObject &amp;dynamicObject, std::string stateName, double absTol)</argsstring>
+        <name>setAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::setAbsoluteTolerance</qualifiedname>
+        <param>
+          <type>const <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> &amp;</type>
+          <declname>dynamicObject</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>absTol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the absolute tolerance for the given <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="164" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="434" bodyend="441"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a59e1d8ca1b814d264d9f7eb1e1d5afcb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::optional&lt; double &gt;</type>
+        <definition>std::optional&lt; double &gt; svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getAbsoluteTolerance</definition>
+        <argsstring>(const DynamicObject &amp;dynamicObject, std::string stateName)</argsstring>
+        <name>getAbsoluteTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getAbsoluteTolerance</qualifiedname>
+        <param>
+          <type>const <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> &amp;</type>
+          <declname>dynamicObject</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>stateName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the absolute tolerance for he given <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> and the state identified by the given name.</para>
+<para>If the absolute tolerance for this state and <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> was not set, then returns an empty optional. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="173" column="19" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="444" bodyend="453"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1abf0f16f0dd5af0bd764c594b264bda28" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::computeMaxRelativeError</definition>
+        <argsstring>(double timeStep, const ExtendedStateVector &amp;candidateNextState, const typename svIntegratorRungeKutta&lt; numberStages &gt;::KCoefficientsValues &amp;kVectors) const</argsstring>
+        <name>computeMaxRelativeError</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::computeMaxRelativeError</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> &amp;</type>
+          <declname>candidateNextState</declname>
+        </param>
+        <param>
+          <type>const typename <ref refid="classsv_integrator_runge_kutta" kindref="compound">svIntegratorRungeKutta</ref>&lt; numberStages &gt;<ref refid="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" kindref="member">::KCoefficientsValues</ref> &amp;</type>
+          <declname>kVectors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the absolute error of every state using the lower and higher order RK methods.</para>
+<para>Then, the norm of each state error is compared to the error tolerance for that state. Greatest relation between error and tolerance is returned, which is the relation that defines the minimum acceptable time step. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="216" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="313" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a3bb659c32ba7fe31db6caa7f3cc6ec54" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::findDynamicObjectIndex</definition>
+        <argsstring>(const DynamicObject &amp;dynamicObject) const</argsstring>
+        <name>findDynamicObjectIndex</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::findDynamicObjectIndex</qualifiedname>
+        <param>
+          <type>const <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> &amp;</type>
+          <declname>dynamicObject</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Finds index of dynamicObject in dynPtrs (vector of pointers to <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="222" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="456" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_adaptive_runge_kutta_1a38f720c7d4090d47255846ac252d93e9" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;::getTolerance</definition>
+        <argsstring>(size_t dynamicObjectIndex, const std::string &amp;stateName, double stateNorm) const</argsstring>
+        <name>getTolerance</name>
+        <qualifiedname>svIntegratorAdaptiveRungeKutta::getTolerance</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>dynamicObjectIndex</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>stateName</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stateNorm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Combines the relative and absolute tolerances into a single tolerance</para>
+<para>This checks for the general, state-specific, and dynamicObject-state-specific tolerances; only the most specific tolerance is used. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="231" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="468" bodyend="492"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classsv_integrator_runge_kutta" kindref="compound">svIntegratorRungeKutta</ref> class implements a state integrator based on the family of explicit Runge-Kutta numerical integrators with variable time step.</para>
+<para>When &apos;<ref refid="classsv_integrator_adaptive_runge_kutta_1ac54e8dd56af98026909ca9c4afd3be58" kindref="member">svIntegratorAdaptiveRungeKutta::integrate</ref>&apos; is called, this integrator will try to integrate with the given time step. It will then evaluate the error commited and, if it&apos;s too large, internally use smaller time steps until the error tolerances are met. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>StateVecIntegrator</label>
+        <link refid="class_state_vec_integrator"/>
+      </node>
+      <node id="1">
+        <label>svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_adaptive_runge_kutta"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>svIntegratorRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_runge_kutta"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>StateVecIntegrator</label>
+        <link refid="class_state_vec_integrator"/>
+      </node>
+      <node id="1">
+        <label>svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_adaptive_runge_kutta"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>svIntegratorRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_runge_kutta"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" line="58" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorAdaptiveRungeKutta.h" bodystart="58" bodyend="252"/>
+    <listofallmembers>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a8153dced325d94cc0dd309c0b766b7c1" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>absTol</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a763727e6cdcf680e858e9581f697e80d" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>coefficients</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a35e64be6c861273e448df8b42440aaca" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>computeDerivatives</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a7cd97c7a3ab60f334e686b13360cb7dd" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>computeKCoefficients</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1abf0f16f0dd5af0bd764c594b264bda28" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>computeMaxRelativeError</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a6124dcfe390c304e7dea78da2f329014" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>computeNextState</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1adafba43f92ae53b291036d0fffebc3a4" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>dynObjectStateSpecificAbsTol</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a789bdc8cde34d04586968ba708f569a9" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>dynObjectStateSpecificRelTol</name></member>
+      <member refid="class_state_vec_integrator_1a20cd61469ea25ab82542bc11013e84a9" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>dynPtrs</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a3bb659c32ba7fe31db6caa7f3cc6ec54" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>findDynamicObjectIndex</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a5945ae772c9bf610dc7831bd78834d03" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1aa152ef04366cfab5f7eec71430ca1c6c" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a59e1d8ca1b814d264d9f7eb1e1d5afcb" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1abedb0a66b4878a1bec2c0609c2926777" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a1cb66edc5571e42091aca20a6c49b8a6" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1adb064674b8edf60eb331b967410bbaec" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a38f720c7d4090d47255846ac252d93e9" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>getTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1ac54e8dd56af98026909ca9c4afd3be58" prot="public" virt="virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>integrate</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>KCoefficientsValues</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a124ec72ffefafd9ea49087f163fc54c0" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>maximumFactorIncreaseForNextStepSize</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a492d1d088c9e937aeb09e37fe02ec79f" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>methodLargestOrder</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1aae39386cfdbe0de7e59680c31f84fff9" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>minimumFactorDecreaseForNextStepSize</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a98941d1eee8119a719008b495de71910" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>relTol</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1acdfad064e18e60ca07bf457cc56bc2cb" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>safetyFactorForNextStepSize</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1ac6d64c2c6b5eabb6388c280ca6e66e58" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a09d9df6f84c1bf1508e5f85a07243e5c" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1ac2bb198f6dc7ca8b3dd3630d56a43cff" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setAbsoluteTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a2f3b9900468d0966e1250c95aecd9391" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a7b151573e21e2c02013c14ea0452cbaa" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a4448bcb9037e9c8b72f253d1b6e9464d" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>setRelativeTolerance</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a0c88a47c1535457afaf6f4ee44abc2b0" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>stateSpecificAbsTol</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a831e25f65c58e53b1f84dc9a04632d52" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>stateSpecificRelTol</name></member>
+      <member refid="class_state_vec_integrator_1a2e71bdc71d4d62fd8f7661ce3c1484df" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>StateVecIntegrator</name></member>
+      <member refid="classsv_integrator_adaptive_runge_kutta_1a7229586d06abae07d8a70adaaa5e2ad2" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>svIntegratorAdaptiveRungeKutta</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a90234d943b842610076074c81be7277b" prot="public" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>svIntegratorRungeKutta</name></member>
+      <member refid="classsv_integrator_runge_kutta_1aa7621899fdc1b4509f8210d10154f25b" prot="protected" virt="non-virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>svIntegratorRungeKutta</name></member>
+      <member refid="class_state_vec_integrator_1a74d21f7c5bd9fc35b445a82e11587a80" prot="public" virt="virtual"><scope>svIntegratorAdaptiveRungeKutta</scope><name>~StateVecIntegrator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

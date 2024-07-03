@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="data_storage_unit_base_8cpp" kind="file" language="C++">
+    <compoundname>dataStorageUnitBase.cpp</compoundname>
+    <includes refid="data_storage_unit_base_8h" local="yes">dataStorageUnitBase.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">iostream</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/_GeneralModuleFiles/dataStorageUnitBase.cpp</label>
+        <link refid="data_storage_unit_base_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>dataStorageUnitBase.h</label>
+        <link refid="data_storage_unit_base_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="7">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/DataNodeUsageMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefCpp/DataStorageStatusMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="6">
+        <label>cstring</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;dataStorageUnitBase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="class_data_storage_unit_base_1a37bf6324e2718d2b1d8c30e36a247fea" kindref="member">DataStorageUnitBase::DataStorageUnitBase</ref>(){</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aee03e9ab0102fa646a57212c184094d8" kindref="member">previousTime</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.clear();<sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">storedDataSum</ref><sp/>=<sp/>0.0;<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" kindref="member">netBaud</ref><sp/>=<sp/>0.0;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><ref refid="class_data_storage_unit_base_1aecee6701fac48f776793c691aca15cbc" kindref="member">DataStorageUnitBase::~DataStorageUnitBase</ref>(){</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1acc951f995d1a6c65c4bd55896ea28615" kindref="member">DataStorageUnitBase::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aee03e9ab0102fa646a57212c184094d8" kindref="member">previousTime</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint64_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.size();<sp/>i++){</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[i].dataInstanceSum<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a63e5e808f33b709898303a3fea0ee5a4" kindref="member">customReset</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1afef376d147d7f6023aa4c6a9ad96ba5f" kindref="member">DataStorageUnitBase::addDataNodeToModel</ref>(Message&lt;DataNodeUsageMsgPayload&gt;<sp/>*tmpNodeMsg){</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.push_back(tmpNodeMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a1a618247a6c0eb77e2cdb5d54e16b2f9" kindref="member">DataStorageUnitBase::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_data_storage_unit_base_1a08506c0cd75663ebf62d74c01f2094fb" kindref="member">readMessages</ref>())</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ae4ac3dbe9a2a97b893a16330fe2e8bec" kindref="member">integrateDataStatus</ref>(CurrentSimNanos*NANO2SEC);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref><sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aa9cde1835f06ba608d11c2f226bb60bd" kindref="member">storageUnitDataOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a95aebe8f088357d2ed140ba0ca5ced0a" kindref="member">writeMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a08506c0cd75663ebf62d74c01f2094fb" kindref="member">DataStorageUnitBase::readMessages</ref>()</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>DataNodeUsageMsgPayload<sp/>nodeMsg;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" kindref="member">nodeBaudMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dataRead<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tmpDataRead;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.size()<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.size();<sp/>c++)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nodeMsg<sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.at(c)();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpDataRead<sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a919da1426d207dd51f6de757d023fd5b" kindref="member">nodeDataUseInMsgs</ref>.at(c).isWritten();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dataRead<sp/>=<sp/>dataRead<sp/>&amp;&amp;<sp/>tmpDataRead;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" kindref="member">nodeBaudMsgs</ref>.push_back(nodeMsg);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a00c8d4b214dc04407c0708510d6ff52b" kindref="member">bskLogger</ref>.bskLog(BSK_INFORMATION,<sp/></highlight><highlight class="stringliteral">&quot;Data<sp/>storage<sp/>has<sp/>no<sp/>data<sp/>node<sp/>messages<sp/>to<sp/>read.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dataRead<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>customRead<sp/>=<sp/><ref refid="class_data_storage_unit_base_1a1f5eb167c18b77d85f65617f1ff37733" kindref="member">customReadMessages</ref>();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(dataRead<sp/>&amp;&amp;<sp/>customRead);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a95aebe8f088357d2ed140ba0ca5ced0a" kindref="member">DataStorageUnitBase::writeMessages</ref>(uint64_t<sp/>CurrentClock){</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref><sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aa9cde1835f06ba608d11c2f226bb60bd" kindref="member">storageUnitDataOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>.currentNetBaud<sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" kindref="member">netBaud</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>.storageCapacity<sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a0e7e917a516e5e891be578c47afb46fe" kindref="member">storageCapacity</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>.storageLevel<sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">storedDataSum</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(uint64_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.size();<sp/>i++){</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>.storedDataName.push_back(this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[i].dataInstanceName);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>.storedData.push_back(this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[i].dataInstanceSum);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aa9cde1835f06ba608d11c2f226bb60bd" kindref="member">storageUnitDataOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_data_storage_unit_base_1a467b1bd391eb6cabca6afa32d30adcfe" kindref="member">storageStatusMsg</ref>,<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a76e633d2a7c96841581268aa399a46b3" kindref="member">customWriteMessages</ref>(CurrentClock);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1ae4ac3dbe9a2a97b893a16330fe2e8bec" kindref="member">DataStorageUnitBase::integrateDataStatus</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime){</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a3da60aa3743533c73c4286915d8341e8" kindref="member">currentTimestep</ref><sp/>=<sp/>currentTime<sp/>-<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1aee03e9ab0102fa646a57212c184094d8" kindref="member">previousTime</ref>;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" kindref="member">netBaud</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdata_instance" kindref="compound">dataInstance</ref><sp/>tmpDataInstance;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;DataNodeUsageMsgPayload&gt;::iterator<sp/>it;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(it<sp/>=<sp/><ref refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" kindref="member">nodeBaudMsgs</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="class_data_storage_unit_base_1ac7a0db1d806564ee7113a78caa06a5bb" kindref="member">nodeBaudMsgs</ref>.end();<sp/>it++)<sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index<sp/>=<sp/><ref refid="class_data_storage_unit_base_1af2796082ed069b30d728471d3ba66f07" kindref="member">messageInStoredData</ref>(&amp;(*it));</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((this-&gt;<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">storedDataSum &lt; this-&gt;</ref><ref refid="class_data_storage_unit_base_1a0e7e917a516e5e891be578c47afb46fe" kindref="member">storageCapacity</ref>)<sp/>||<sp/>(it-&gt;baudRate<sp/>&lt;<sp/>0))<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">index</ref><sp/>!=<sp/>-1)<sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>index].dataInstanceSum<sp/>+<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;baudRate<sp/>*<sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">this</ref>-&gt;currentTimestep))<sp/>&gt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">size_t</ref>)<sp/>index].dataInstanceSum<sp/>+=<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;baudRate<sp/>*<sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">this</ref>-&gt;currentTimestep);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">strcmp</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;dataName,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">strncpy</ref>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpDataInstance</ref>.dataInstanceName,<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;dataName,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpDataInstance</ref>.dataInstanceName));</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpDataInstance</ref>.dataInstanceSum<sp/>=<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;baudRate<sp/>*<sp/>(this-&gt;<ref refid="class_data_storage_unit_base_1a3da60aa3743533c73c4286915d8341e8" kindref="member">currentTimestep</ref>);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.push_back(tmpDataInstance);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a04042ef0dabab0509beb0de57d626a9c" kindref="member">netBaud</ref><sp/>+=<sp/>it-&gt;baudRate;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">storedDataSum</ref><sp/>=<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ab17b3a11b07ff95d8f65a169ebf64fce" kindref="member">sumAllData</ref>();</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;previousTime<sp/>=<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">currentTime</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1af2796082ed069b30d728471d3ba66f07" kindref="member">DataStorageUnitBase::messageInStoredData</ref>(DataNodeUsageMsgPayload<sp/>*tmpNodeMsg){</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>index<sp/>as<sp/>-1<sp/>(indicates<sp/>data<sp/>is<sp/>not<sp/>in<sp/>storedData)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">index</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Loop<sp/>through<sp/>storedData.<sp/>If<sp/>dataName<sp/>is<sp/>found,<sp/>set<sp/>index<sp/>=<sp/>i</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">uint64_t</ref><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">i</ref><sp/>=<sp/>0;<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">i</ref><sp/>&lt;<sp/>this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.size();<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">i</ref>++){</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">strcmp</ref>(this-&gt;<ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>[<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">i</ref>].dataInstanceName,<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">tmpNodeMsg</ref>-&gt;dataName)<sp/>==<sp/>0){</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">index</ref><sp/>=<sp/>(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">int</ref>)<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">i</ref>;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">index</ref>;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1ab17b3a11b07ff95d8f65a169ebf64fce" kindref="member">DataStorageUnitBase::sumAllData</ref>(){</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">dataSum</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;dataInstance&gt;::iterator<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(<ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref><sp/>=<sp/><ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.begin();<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref><sp/>!=<sp/><ref refid="class_data_storage_unit_base_1ad76c3a129e388c3e5fb111942d1435fb" kindref="member">storedData</ref>.end();<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>++)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">dataSum</ref><sp/>+=<sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">it</ref>-&gt;dataInstanceSum;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a9a24d1e5d1ffcf6a2e07f74323241366" kindref="member">dataSum</ref>;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a63e5e808f33b709898303a3fea0ee5a4" kindref="member">DataStorageUnitBase::customReset</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a76e633d2a7c96841581268aa399a46b3" kindref="member">DataStorageUnitBase::customWriteMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_data_storage_unit_base_1a1f5eb167c18b77d85f65617f1ff37733" kindref="member">DataStorageUnitBase::customReadMessages</ref>()</highlight></codeline>
+<codeline lineno="248"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/onboardDataHandling/_GeneralModuleFiles/dataStorageUnitBase.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="small_body_nav_u_k_f_8h" kind="file" language="C++">
+    <compoundname>smallBodyNavUKF.h</compoundname>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">cMsgCInterface/EphemerisMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/NavTransMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/SmallBodyNavUKFMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/orbitalMotion.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includedby refid="small_body_nav_u_k_f_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.h</label>
+        <link refid="small_body_nav_u_k_f_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/orbitalMotion.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/EphemerisMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/SmallBodyNavUKFMsg_C.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_small_body_nav_u_k_f" prot="public">SmallBodyNavUKF</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2022,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SMALLBODYNAVUKF_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SMALLBODYNAVUKF_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/EphemerisMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavTransMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/SmallBodyNavUKFMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/orbitalMotion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="class_small_body_nav_u_k_f" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_small_body_nav_u_k_f" kindref="compound">SmallBodyNavUKF</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_small_body_nav_u_k_f_1a75691b8906ae47bf952a52e6e7a99a2e" kindref="member">SmallBodyNavUKF</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_small_body_nav_u_k_f_1a5d7e22930ec3584764bc6ae99efdaab3" kindref="member">~SmallBodyNavUKF</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1ae20ff739dd23ac556904f013fd53fdbf" kindref="member">SelfInit</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1adc7c396c5f250e3eb23635994be6bf10" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1a43a0fbc2a78aa40b414afd410a5dfab2" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>readMessages();<sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>writeMessages(uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>processUT(uint64_t<sp/>CurrentSimNanos);<sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>measurementUT();<sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>kalmanUpdate();<sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="54" refid="class_small_body_nav_u_k_f_1a0d4e9a5cfc1bbd1e5a7391d5c4e0b78a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;NavTransMsgPayload&gt;<sp/><ref refid="class_small_body_nav_u_k_f_1a0d4e9a5cfc1bbd1e5a7391d5c4e0b78a" kindref="member">navTransInMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="class_small_body_nav_u_k_f_1adf352440af390c1011af484d695a4ae2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;EphemerisMsgPayload&gt;<sp/><ref refid="class_small_body_nav_u_k_f_1adf352440af390c1011af484d695a4ae2" kindref="member">asteroidEphemerisInMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="class_small_body_nav_u_k_f_1a3aa53b2b4b45828909482e08e27cfa01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;SmallBodyNavUKFMsgPayload&gt;<sp/><ref refid="class_small_body_nav_u_k_f_1a3aa53b2b4b45828909482e08e27cfa01" kindref="member">smallBodyNavUKFOutMsg</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="class_small_body_nav_u_k_f_1a86a8e84c86bc65091c136034e5c6b4d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SmallBodyNavUKFMsg_C<sp/><ref refid="class_small_body_nav_u_k_f_1a86a8e84c86bc65091c136034e5c6b4d7" kindref="member">smallBodyNavUKFOutMsgC</ref><sp/>=<sp/>{};<sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="class_small_body_nav_u_k_f_1ae0bd58a7f3f875c92dc23a9064cf7575" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_small_body_nav_u_k_f_1ae0bd58a7f3f875c92dc23a9064cf7575" kindref="member">bskLogger</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="class_small_body_nav_u_k_f_1a838b986ed238370c99258d43aa56ab8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1a838b986ed238370c99258d43aa56ab8d" kindref="member">mu_ast</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="class_small_body_nav_u_k_f_1a44b381a6a4b598fbc31528f6eb59b95e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_small_body_nav_u_k_f_1a44b381a6a4b598fbc31528f6eb59b95e" kindref="member">P_proc</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="63" refid="class_small_body_nav_u_k_f_1af1f51020f9a2b6f6455728489416a70b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_small_body_nav_u_k_f_1af1f51020f9a2b6f6455728489416a70b" kindref="member">R_meas</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/><ref refid="class_small_body_nav_u_k_f_1aecfd71d71356de40f9b98b71df101d46" kindref="member">x_hat_k</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="class_small_body_nav_u_k_f_1ac06e5106e0af1a08e89adf0a12d72936" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/><ref refid="class_small_body_nav_u_k_f_1ac06e5106e0af1a08e89adf0a12d72936" kindref="member">P_k</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="class_small_body_nav_u_k_f_1a928425f8af28d7df08d21206d1f8df69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1a928425f8af28d7df08d21206d1f8df69" kindref="member">alpha</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="class_small_body_nav_u_k_f_1a09bda2669034a827f478088070648eec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1a09bda2669034a827f478088070648eec" kindref="member">beta</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_small_body_nav_u_k_f_1aa88d0ea25d79570c6631331e61c9b376" kindref="member">kappa</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="class_small_body_nav_u_k_f_1a5ad3031da1dd838e3898de10880f3453" kindref="member">dcm_AN</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_small_body_nav_u_k_f_1a6ae5732892ad1d00431cbe8f4f0b9116" kindref="member">omega_AN_A</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>navTransInMsgBuffer;<sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsgPayload<sp/>asteroidEphemerisInMsgBuffer;<sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>prevTime;<sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>numStates;<sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>numMeas;<sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>numSigmas;<sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_hat_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>x_hat_k1;<sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>wm_sigma;<sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>wc_sigma;<sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXd<sp/>y_hat_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>P_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>P_k1;<sp/><sp/></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>X_sigma_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>R_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>Y_sigma_k1_;<sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>H;<sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>K;<sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/smallBodyNavigation/smallBodyNavUKF/smallBodyNavUKF.h"/>
+  </compounddef>
+</doxygen>

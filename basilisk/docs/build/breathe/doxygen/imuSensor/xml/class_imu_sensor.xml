@@ -1,0 +1,1202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_imu_sensor" kind="class" language="C++" prot="public">
+    <compoundname>ImuSensor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="imu_sensor_8h" local="no">imuSensor.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_imu_sensor_1ac9c5be0a49419b35b4af9b25543ca104" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SCStatesMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SCStatesMsgPayload&gt; ImuSensor::scStateInMsg</definition>
+        <argsstring></argsstring>
+        <name>scStateInMsg</name>
+        <qualifiedname>ImuSensor::scStateInMsg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>input essage name for spacecraft state </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="64" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a0e0e0f6392ab90693928b6cd54eae772" prot="public" static="no" mutable="no">
+        <type>Message&lt; IMUSensorMsgPayload &gt;</type>
+        <definition>Message&lt;IMUSensorMsgPayload&gt; ImuSensor::sensorOutMsg</definition>
+        <argsstring></argsstring>
+        <name>sensorOutMsg</name>
+        <qualifiedname>ImuSensor::sensorOutMsg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>output message name for IMU output data </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="65" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a292f559c78121f56b0835a65b82a75a5" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::sensorPos_B</definition>
+        <argsstring></argsstring>
+        <name>sensorPos_B</name>
+        <qualifiedname>ImuSensor::sensorPos_B</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>[m] IMU sensor location in body </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="66" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1acbfdb4922ff27544818b8b4cc5771069" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d ImuSensor::dcm_PB</definition>
+        <argsstring></argsstring>
+        <name>dcm_PB</name>
+        <qualifiedname>ImuSensor::dcm_PB</qualifiedname>
+        <briefdescription>
+<para><ndash/> Transform from body to platform </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="67" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a487b939a2cd4be64abb8ff4c01f582db" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::senRotBias</definition>
+        <argsstring></argsstring>
+        <name>senRotBias</name>
+        <qualifiedname>ImuSensor::senRotBias</qualifiedname>
+        <briefdescription>
+<para>[r/s] Rotational Sensor bias value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="68" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a562dd8eefd0dcb2a1a47de1e48f32622" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::senTransBias</definition>
+        <argsstring></argsstring>
+        <name>senTransBias</name>
+        <qualifiedname>ImuSensor::senTransBias</qualifiedname>
+        <briefdescription>
+<para>[m/s2] Translational acceleration sen bias </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="69" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a9cfd803aea067b13a7229cabb6c114af" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ImuSensor::senRotMax</definition>
+        <argsstring></argsstring>
+        <name>senRotMax</name>
+        <qualifiedname>ImuSensor::senRotMax</qualifiedname>
+        <briefdescription>
+<para>[r/s] Gyro saturation value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="70" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a39ecdf0866972826ad5de815b46bab2c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ImuSensor::senTransMax</definition>
+        <argsstring></argsstring>
+        <name>senTransMax</name>
+        <qualifiedname>ImuSensor::senTransMax</qualifiedname>
+        <briefdescription>
+<para>[m/s2] Accelerometer saturation value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="71" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a163aee4a8c3631fa2cd5b8b77968451f" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t ImuSensor::OutputBufferCount</definition>
+        <argsstring></argsstring>
+        <name>OutputBufferCount</name>
+        <qualifiedname>ImuSensor::OutputBufferCount</qualifiedname>
+        <briefdescription>
+<para><ndash/> number of output msgs stored </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="72" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a1f0a73a035c51dd2b01c7db7ac94c3d1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ImuSensor::NominalReady</definition>
+        <argsstring></argsstring>
+        <name>NominalReady</name>
+        <qualifiedname>ImuSensor::NominalReady</qualifiedname>
+        <briefdescription>
+<para><ndash/> Flag indicating that system is in run </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="73" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a3bd5c36fa8cca513903d01a688c0fdbf" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d ImuSensor::PMatrixAccel</definition>
+        <argsstring></argsstring>
+        <name>PMatrixAccel</name>
+        <qualifiedname>ImuSensor::PMatrixAccel</qualifiedname>
+        <briefdescription>
+<para>[-] Cholesky-decomposition or matrix square root of the covariance matrix to apply errors with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="74" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a462a84f02843d63909b9b133ccfed4ca" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d ImuSensor::AMatrixAccel</definition>
+        <argsstring></argsstring>
+        <name>AMatrixAccel</name>
+        <qualifiedname>ImuSensor::AMatrixAccel</qualifiedname>
+        <briefdescription>
+<para>[-] AMatrix that we use for error propagation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="75" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1ac67410610024b660765d2f534ab0c8f7" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::walkBoundsAccel</definition>
+        <argsstring></argsstring>
+        <name>walkBoundsAccel</name>
+        <qualifiedname>ImuSensor::walkBoundsAccel</qualifiedname>
+        <briefdescription>
+<para>[-] &quot;3-sigma&quot; errors to permit for states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="76" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1aca1f6e58534b341e02882d5ac5b6b4eb" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::navErrorsAccel</definition>
+        <argsstring></argsstring>
+        <name>navErrorsAccel</name>
+        <qualifiedname>ImuSensor::navErrorsAccel</qualifiedname>
+        <briefdescription>
+<para>[-] Current navigation errors applied to truth </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="77" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a45b16624e18b471cd41da7172feb87b8" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d ImuSensor::PMatrixGyro</definition>
+        <argsstring></argsstring>
+        <name>PMatrixGyro</name>
+        <qualifiedname>ImuSensor::PMatrixGyro</qualifiedname>
+        <briefdescription>
+<para>[-] Cholesky-decomposition or matrix square root of the covariance matrix to apply errors with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="78" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1abbde16b5703a13a1267f1487a57915ac" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d ImuSensor::AMatrixGyro</definition>
+        <argsstring></argsstring>
+        <name>AMatrixGyro</name>
+        <qualifiedname>ImuSensor::AMatrixGyro</qualifiedname>
+        <briefdescription>
+<para>[-] AMatrix that we use for error propagation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="79" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a9784d35940372613dd863aff698bbb18" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::walkBoundsGyro</definition>
+        <argsstring></argsstring>
+        <name>walkBoundsGyro</name>
+        <qualifiedname>ImuSensor::walkBoundsGyro</qualifiedname>
+        <briefdescription>
+<para>[-] &quot;3-sigma&quot; errors to permit for states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="80" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a2714aa64b719d8402ce4480bace2f93d" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::navErrorsGyro</definition>
+        <argsstring></argsstring>
+        <name>navErrorsGyro</name>
+        <qualifiedname>ImuSensor::navErrorsGyro</qualifiedname>
+        <briefdescription>
+<para>[-] Current navigation errors applied to truth </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="81" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1aa230687eb7f3b40ed4b705b14683b3aa" prot="public" static="no" mutable="no">
+        <type>IMUSensorMsgPayload</type>
+        <definition>IMUSensorMsgPayload ImuSensor::trueValues</definition>
+        <argsstring></argsstring>
+        <name>trueValues</name>
+        <qualifiedname>ImuSensor::trueValues</qualifiedname>
+        <briefdescription>
+<para>[-] total measurement without perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="83" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a72cb4df124aa9426ddb5246807607b0c" prot="public" static="no" mutable="no">
+        <type>IMUSensorMsgPayload</type>
+        <definition>IMUSensorMsgPayload ImuSensor::sensedValues</definition>
+        <argsstring></argsstring>
+        <name>sensedValues</name>
+        <qualifiedname>ImuSensor::sensedValues</qualifiedname>
+        <briefdescription>
+<para>[-] total measurement including perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="84" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a2f63e763d1ce0c54f20613b41eeeb3d8" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::accelScale</definition>
+        <argsstring></argsstring>
+        <name>accelScale</name>
+        <qualifiedname>ImuSensor::accelScale</qualifiedname>
+        <briefdescription>
+<para>(-) scale factor for acceleration axes </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="86" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a0391957c105db2db5e358e0578620afa" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::gyroScale</definition>
+        <argsstring></argsstring>
+        <name>gyroScale</name>
+        <qualifiedname>ImuSensor::gyroScale</qualifiedname>
+        <briefdescription>
+<para>(-) scale factors for acceleration axes </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="87" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a079ad19d25831b9fc9cb750dd138c243" prot="public" static="no" mutable="no">
+        <type>Discretize</type>
+        <definition>Discretize ImuSensor::aDisc</definition>
+        <argsstring></argsstring>
+        <name>aDisc</name>
+        <qualifiedname>ImuSensor::aDisc</qualifiedname>
+        <briefdescription>
+<para>(-) instance of discretization utility for linear acceleration </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="89" column="16" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a9e6c50c4fb04c556dfac1939d93eddd2" prot="public" static="no" mutable="no">
+        <type>Discretize</type>
+        <definition>Discretize ImuSensor::oDisc</definition>
+        <argsstring></argsstring>
+        <name>oDisc</name>
+        <qualifiedname>ImuSensor::oDisc</qualifiedname>
+        <briefdescription>
+<para>(-) instance of idscretization utility for angular rate </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="90" column="16" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1ae21daf5927f97d379b79ac1e964b236f" prot="public" static="no" mutable="no">
+        <type>Saturate</type>
+        <definition>Saturate ImuSensor::aSat</definition>
+        <argsstring></argsstring>
+        <name>aSat</name>
+        <qualifiedname>ImuSensor::aSat</qualifiedname>
+        <briefdescription>
+<para>(-) instance of saturate utility for linear acceleration </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="91" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a8186405461fcc9de4e486269fa03b897" prot="public" static="no" mutable="no">
+        <type>Saturate</type>
+        <definition>Saturate ImuSensor::oSat</definition>
+        <argsstring></argsstring>
+        <name>oSat</name>
+        <qualifiedname>ImuSensor::oSat</qualifiedname>
+        <briefdescription>
+<para>(-) instance of saturate utility for angular rate </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="92" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a8dd854b62ed91731a7247186ea7f1cf8" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger ImuSensor::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>ImuSensor::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="94" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_imu_sensor_1a2d4aa3edede4a7c9a87ec5854d0b653e" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t ImuSensor::PreviousTime</definition>
+        <argsstring></argsstring>
+        <name>PreviousTime</name>
+        <qualifiedname>ImuSensor::PreviousTime</qualifiedname>
+        <briefdescription>
+<para><ndash/> Timestamp from previous frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="97" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a117ef5c4cf494a9c1207f1e76c79462e" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t ImuSensor::numStates</definition>
+        <argsstring></argsstring>
+        <name>numStates</name>
+        <qualifiedname>ImuSensor::numStates</qualifiedname>
+        <briefdescription>
+<para><ndash/> Number of States for Gauss Markov Models </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="98" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a4d70d9bb35e69c8f5d37fafd9cbf3ae2" prot="private" static="no" mutable="no">
+        <type>SCStatesMsgPayload</type>
+        <definition>SCStatesMsgPayload ImuSensor::StatePrevious</definition>
+        <argsstring></argsstring>
+        <name>StatePrevious</name>
+        <qualifiedname>ImuSensor::StatePrevious</qualifiedname>
+        <briefdescription>
+<para><ndash/> Previous state to delta in IMU </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="99" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1ab837621a6d801c02efa4559b9be99f41" prot="private" static="no" mutable="no">
+        <type>SCStatesMsgPayload</type>
+        <definition>SCStatesMsgPayload ImuSensor::StateCurrent</definition>
+        <argsstring></argsstring>
+        <name>StateCurrent</name>
+        <qualifiedname>ImuSensor::StateCurrent</qualifiedname>
+        <briefdescription>
+<para><ndash/> Current SSBI-relative state </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="100" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a6890696486a3134ca874a3184d85e56c" prot="private" static="no" mutable="no">
+        <type>GaussMarkov</type>
+        <definition>GaussMarkov ImuSensor::errorModelAccel</definition>
+        <argsstring></argsstring>
+        <name>errorModelAccel</name>
+        <qualifiedname>ImuSensor::errorModelAccel</qualifiedname>
+        <briefdescription>
+<para>[-] Gauss-markov error states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="101" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a9eb8b7f673e01ec6e587e4fc1b522150" prot="private" static="no" mutable="no">
+        <type>GaussMarkov</type>
+        <definition>GaussMarkov ImuSensor::errorModelGyro</definition>
+        <argsstring></argsstring>
+        <name>errorModelGyro</name>
+        <qualifiedname>ImuSensor::errorModelGyro</qualifiedname>
+        <briefdescription>
+<para>[-] Gauss-markov error states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="102" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a8b1c1cf44747e1837a88ee4b299ab7a3" prot="private" static="no" mutable="no">
+        <type>Eigen::MRPd</type>
+        <definition>Eigen::MRPd ImuSensor::previous_sigma_BN</definition>
+        <argsstring></argsstring>
+        <name>previous_sigma_BN</name>
+        <qualifiedname>ImuSensor::previous_sigma_BN</qualifiedname>
+        <briefdescription>
+<para><ndash/> sigma_BN from the previous spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="104" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a54a6dab5104cdf6cfa0b6ba6b4592faf" prot="private" static="no" mutable="no">
+        <type>Eigen::MRPd</type>
+        <definition>Eigen::MRPd ImuSensor::current_sigma_BN</definition>
+        <argsstring></argsstring>
+        <name>current_sigma_BN</name>
+        <qualifiedname>ImuSensor::current_sigma_BN</qualifiedname>
+        <briefdescription>
+<para><ndash/> sigma_BN from the most recent spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="105" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1aa964e47094ab0ebdfd58fc02072c9ea4" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::previous_omega_BN_B</definition>
+        <argsstring></argsstring>
+        <name>previous_omega_BN_B</name>
+        <qualifiedname>ImuSensor::previous_omega_BN_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> omega_BN_B from the previous spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="106" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1ad3dd1c37ffeed2bdf107fbbbc1b2449d" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::current_omega_BN_B</definition>
+        <argsstring></argsstring>
+        <name>current_omega_BN_B</name>
+        <qualifiedname>ImuSensor::current_omega_BN_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> omega_BN_B from the current spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="107" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a52242c9ce2a4d1e27e1fd539a464fe54" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::current_nonConservativeAccelpntB_B</definition>
+        <argsstring></argsstring>
+        <name>current_nonConservativeAccelpntB_B</name>
+        <qualifiedname>ImuSensor::current_nonConservativeAccelpntB_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> nonConservativeAccelpntB_B from the current message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="108" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a9010fc88bde216e94ced8cf32d1bc6df" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::current_omegaDot_BN_B</definition>
+        <argsstring></argsstring>
+        <name>current_omegaDot_BN_B</name>
+        <qualifiedname>ImuSensor::current_omegaDot_BN_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> omegaDot_BN_B from the curret spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="109" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1afdf5da84adc3e534e2827e31b861e387" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::previous_TotalAccumDV_BN_B</definition>
+        <argsstring></argsstring>
+        <name>previous_TotalAccumDV_BN_B</name>
+        <qualifiedname>ImuSensor::previous_TotalAccumDV_BN_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> TotalAccumDV_BN_B from the previous spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="110" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a09562e56d8a11f7b8ffbe3cbaae36b74" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::current_TotalAccumDV_BN_B</definition>
+        <argsstring></argsstring>
+        <name>current_TotalAccumDV_BN_B</name>
+        <qualifiedname>ImuSensor::current_TotalAccumDV_BN_B</qualifiedname>
+        <briefdescription>
+<para><ndash/> TotalAccumDV_BN_B from the current spacecraft message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="111" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a8a3b9e45a441dc169f45e4788a752d6a" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::accel_SN_P_out</definition>
+        <argsstring></argsstring>
+        <name>accel_SN_P_out</name>
+        <qualifiedname>ImuSensor::accel_SN_P_out</qualifiedname>
+        <briefdescription>
+<para><ndash/> rDotDot_SN_P for either next method or output messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="113" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a500ba84c83bbf27cd0079d827e60e94e" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::DV_SN_P_out</definition>
+        <argsstring></argsstring>
+        <name>DV_SN_P_out</name>
+        <qualifiedname>ImuSensor::DV_SN_P_out</qualifiedname>
+        <briefdescription>
+<para><ndash/> time step deltaV for either next method or output messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="114" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a7404298d6a2e6647f85156ff5432b911" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::omega_PN_P_out</definition>
+        <argsstring></argsstring>
+        <name>omega_PN_P_out</name>
+        <qualifiedname>ImuSensor::omega_PN_P_out</qualifiedname>
+        <briefdescription>
+<para><ndash/> omega_PN_P for either next method or output messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="115" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_imu_sensor_1a4263fc15291a1fb310aa09576fc6b8af" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d ImuSensor::prv_PN_out</definition>
+        <argsstring></argsstring>
+        <name>prv_PN_out</name>
+        <qualifiedname>ImuSensor::prv_PN_out</qualifiedname>
+        <briefdescription>
+<para><ndash/> time step PRV_PN for either next method or output messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="116" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_imu_sensor_1a4387ccc6fa677d913253683954efc9be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ImuSensor::ImuSensor</definition>
+        <argsstring>()</argsstring>
+        <name>ImuSensor</name>
+        <qualifiedname>ImuSensor::ImuSensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="42" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="33" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a0c61d9b5c7b1950e8b63ce3570985785" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ImuSensor::~ImuSensor</definition>
+        <argsstring>()</argsstring>
+        <name>~ImuSensor</name>
+        <qualifiedname>ImuSensor::~ImuSensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="43" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a3acaaf8724e7b003c5bc8e9a81d0c9dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>ImuSensor::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset the module <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current time (ns) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Alert the user if the noise matrix was not the right size. That&apos;d be bad.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Alert the user if the noise matrix was not the right size. That&apos;d be bad.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="45" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="104" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1ac9f21753d436841421f808589f054665" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>ImuSensor::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>update module states <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current time (ns) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="46" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="395" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1ab8895587e902106f24e41863b4e901a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>ImuSensor::readInputMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>read input messages </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="47" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="162" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1aa9c7b685dd943568ccb690e28892c114" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::writeOutputMessages</definition>
+        <argsstring>(uint64_t Clock)</argsstring>
+        <name>writeOutputMessages</name>
+        <qualifiedname>ImuSensor::writeOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>Clock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>write output messages </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="48" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="181" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1ab5f32803743ca07217c6090f7ac5c939" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::setBodyToPlatformDCM</definition>
+        <argsstring>(double yaw, double pitch, double roll)</argsstring>
+        <name>setBodyToPlatformDCM</name>
+        <qualifiedname>ImuSensor::setBodyToPlatformDCM</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>yaw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>roll</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set body orientation DCM relative to platform </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="49" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="87" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a6d6819347e328f264c2b8ceed9bb2426" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::computePlatformDR</definition>
+        <argsstring>()</argsstring>
+        <name>computePlatformDR</name>
+        <qualifiedname>ImuSensor::computePlatformDR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function gathers actual spacecraft attitude from the spacecraft output message. It then differences the state attitude between this time and the last time the IMU was called to get a DR (delta radians or delta rotation) The angular rate is retrieved directly from the spacecraft output message and passed through to theother IMU functions which add noise, etc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="50" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="347" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a7c6f46b424f5961ace6d548976f75375" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::computePlatformDV</definition>
+        <argsstring>(uint64_t CurrentTime)</argsstring>
+        <name>computePlatformDV</name>
+        <qualifiedname>ImuSensor::computePlatformDV</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This functions gathers actual spacecraft velocity from the spacecraft output message. It then differences the velocity between this time and the last time the IMU was called to get a DV (delta velocity). The acceleration of the spacecraft in the body frame is gathered directly from the spacecraft output message. Then, it is converted to the platform frame and rotational terms are added to it to account for CoM offset of the platform frame. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="51" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="373" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a3722c6de7bc39eb96f66fae607bc4c43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::applySensorErrors</definition>
+        <argsstring>(uint64_t CurrentTime)</argsstring>
+        <name>applySensorErrors</name>
+        <qualifiedname>ImuSensor::applySensorErrors</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>apply sensor errors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="52" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="282" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a0ea8f642fa2ce9b9496ba8ae0957f77e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::applySensorDiscretization</definition>
+        <argsstring>(uint64_t CurrentTime)</argsstring>
+        <name>applySensorDiscretization</name>
+        <qualifiedname>ImuSensor::applySensorDiscretization</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>apply sensor direction <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="53" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="231" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a6a8c5958fdcecca1862027950dc5c9b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::applySensorSaturation</definition>
+        <argsstring>(uint64_t CurrentTime)</argsstring>
+        <name>applySensorSaturation</name>
+        <qualifiedname>ImuSensor::applySensorSaturation</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>apply sensor saturation </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="54" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="319" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a61538ed1a43671cf1c46cf2bced1713b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::computeSensorErrors</definition>
+        <argsstring>()</argsstring>
+        <name>computeSensorErrors</name>
+        <qualifiedname>ImuSensor::computeSensorErrors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>compute sensor errors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="55" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="304" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a8189fe1647277dd33b5187a4d66559d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::scaleTruth</definition>
+        <argsstring>()</argsstring>
+        <name>scaleTruth</name>
+        <qualifiedname>ImuSensor::scaleTruth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>scale truth method </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="56" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="270" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a9414c358e2125a2d5473eb255aff1d2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::setLSBs</definition>
+        <argsstring>(double LSBa, double LSBo)</argsstring>
+        <name>setLSBs</name>
+        <qualifiedname>ImuSensor::setLSBs</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>LSBa</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>LSBo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set LSB values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="198" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1ad547c166a3e00f60068bcf549f04b18b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::setCarryError</definition>
+        <argsstring>(bool aCarry, bool oCarry)</argsstring>
+        <name>setCarryError</name>
+        <qualifiedname>ImuSensor::setCarryError</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>aCarry</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>oCarry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set Carry error value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="58" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="209" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1ab4cfdba5b443ab773bbc7e82cc801c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::setRoundDirection</definition>
+        <argsstring>(roundDirection_t aRound, roundDirection_t oRound)</argsstring>
+        <name>setRoundDirection</name>
+        <qualifiedname>ImuSensor::setRoundDirection</qualifiedname>
+        <param>
+          <type>roundDirection_t</type>
+          <declname>aRound</declname>
+        </param>
+        <param>
+          <type>roundDirection_t</type>
+          <declname>oRound</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set round direction value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="59" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="219" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1a9737593635fbc870f04bc9ccf9ae7fc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::set_oSatBounds</definition>
+        <argsstring>(Eigen::MatrixXd oSatBounds)</argsstring>
+        <name>set_oSatBounds</name>
+        <qualifiedname>ImuSensor::set_oSatBounds</qualifiedname>
+        <param>
+          <type>Eigen::MatrixXd</type>
+          <declname>oSatBounds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set o saturation bounds <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>oSatBounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="60" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="255" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="class_imu_sensor_1aa45d292f9462d292fb3e5bb2291a0911" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImuSensor::set_aSatBounds</definition>
+        <argsstring>(Eigen::MatrixXd aSatBounds)</argsstring>
+        <name>set_aSatBounds</name>
+        <qualifiedname>ImuSensor::set_aSatBounds</qualifiedname>
+        <param>
+          <type>Eigen::MatrixXd</type>
+          <declname>aSatBounds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set a saturation bounds <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aSatBounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="61" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.cpp" bodystart="263" bodyend="265"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>IMU sensor class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ImuSensor</label>
+        <link refid="class_imu_sensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ImuSensor</label>
+        <link refid="class_imu_sensor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" line="40" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/imuSensor/imuSensor.h" bodystart="40" bodyend="117"/>
+    <listofallmembers>
+      <member refid="class_imu_sensor_1a8a3b9e45a441dc169f45e4788a752d6a" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>accel_SN_P_out</name></member>
+      <member refid="class_imu_sensor_1a2f63e763d1ce0c54f20613b41eeeb3d8" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>accelScale</name></member>
+      <member refid="class_imu_sensor_1a079ad19d25831b9fc9cb750dd138c243" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>aDisc</name></member>
+      <member refid="class_imu_sensor_1a462a84f02843d63909b9b133ccfed4ca" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>AMatrixAccel</name></member>
+      <member refid="class_imu_sensor_1abbde16b5703a13a1267f1487a57915ac" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>AMatrixGyro</name></member>
+      <member refid="class_imu_sensor_1a0ea8f642fa2ce9b9496ba8ae0957f77e" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>applySensorDiscretization</name></member>
+      <member refid="class_imu_sensor_1a3722c6de7bc39eb96f66fae607bc4c43" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>applySensorErrors</name></member>
+      <member refid="class_imu_sensor_1a6a8c5958fdcecca1862027950dc5c9b8" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>applySensorSaturation</name></member>
+      <member refid="class_imu_sensor_1ae21daf5927f97d379b79ac1e964b236f" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>aSat</name></member>
+      <member refid="class_imu_sensor_1a8dd854b62ed91731a7247186ea7f1cf8" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>bskLogger</name></member>
+      <member refid="class_imu_sensor_1a6d6819347e328f264c2b8ceed9bb2426" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>computePlatformDR</name></member>
+      <member refid="class_imu_sensor_1a7c6f46b424f5961ace6d548976f75375" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>computePlatformDV</name></member>
+      <member refid="class_imu_sensor_1a61538ed1a43671cf1c46cf2bced1713b" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>computeSensorErrors</name></member>
+      <member refid="class_imu_sensor_1a52242c9ce2a4d1e27e1fd539a464fe54" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>current_nonConservativeAccelpntB_B</name></member>
+      <member refid="class_imu_sensor_1ad3dd1c37ffeed2bdf107fbbbc1b2449d" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>current_omega_BN_B</name></member>
+      <member refid="class_imu_sensor_1a9010fc88bde216e94ced8cf32d1bc6df" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>current_omegaDot_BN_B</name></member>
+      <member refid="class_imu_sensor_1a54a6dab5104cdf6cfa0b6ba6b4592faf" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>current_sigma_BN</name></member>
+      <member refid="class_imu_sensor_1a09562e56d8a11f7b8ffbe3cbaae36b74" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>current_TotalAccumDV_BN_B</name></member>
+      <member refid="class_imu_sensor_1acbfdb4922ff27544818b8b4cc5771069" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>dcm_PB</name></member>
+      <member refid="class_imu_sensor_1a500ba84c83bbf27cd0079d827e60e94e" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>DV_SN_P_out</name></member>
+      <member refid="class_imu_sensor_1a6890696486a3134ca874a3184d85e56c" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>errorModelAccel</name></member>
+      <member refid="class_imu_sensor_1a9eb8b7f673e01ec6e587e4fc1b522150" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>errorModelGyro</name></member>
+      <member refid="class_imu_sensor_1a0391957c105db2db5e358e0578620afa" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>gyroScale</name></member>
+      <member refid="class_imu_sensor_1a4387ccc6fa677d913253683954efc9be" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>ImuSensor</name></member>
+      <member refid="class_imu_sensor_1aca1f6e58534b341e02882d5ac5b6b4eb" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>navErrorsAccel</name></member>
+      <member refid="class_imu_sensor_1a2714aa64b719d8402ce4480bace2f93d" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>navErrorsGyro</name></member>
+      <member refid="class_imu_sensor_1a1f0a73a035c51dd2b01c7db7ac94c3d1" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>NominalReady</name></member>
+      <member refid="class_imu_sensor_1a117ef5c4cf494a9c1207f1e76c79462e" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>numStates</name></member>
+      <member refid="class_imu_sensor_1a9e6c50c4fb04c556dfac1939d93eddd2" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>oDisc</name></member>
+      <member refid="class_imu_sensor_1a7404298d6a2e6647f85156ff5432b911" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>omega_PN_P_out</name></member>
+      <member refid="class_imu_sensor_1a8186405461fcc9de4e486269fa03b897" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>oSat</name></member>
+      <member refid="class_imu_sensor_1a163aee4a8c3631fa2cd5b8b77968451f" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>OutputBufferCount</name></member>
+      <member refid="class_imu_sensor_1a3bd5c36fa8cca513903d01a688c0fdbf" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>PMatrixAccel</name></member>
+      <member refid="class_imu_sensor_1a45b16624e18b471cd41da7172feb87b8" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>PMatrixGyro</name></member>
+      <member refid="class_imu_sensor_1aa964e47094ab0ebdfd58fc02072c9ea4" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>previous_omega_BN_B</name></member>
+      <member refid="class_imu_sensor_1a8b1c1cf44747e1837a88ee4b299ab7a3" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>previous_sigma_BN</name></member>
+      <member refid="class_imu_sensor_1afdf5da84adc3e534e2827e31b861e387" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>previous_TotalAccumDV_BN_B</name></member>
+      <member refid="class_imu_sensor_1a2d4aa3edede4a7c9a87ec5854d0b653e" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>PreviousTime</name></member>
+      <member refid="class_imu_sensor_1a4263fc15291a1fb310aa09576fc6b8af" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>prv_PN_out</name></member>
+      <member refid="class_imu_sensor_1ab8895587e902106f24e41863b4e901a1" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>readInputMessages</name></member>
+      <member refid="class_imu_sensor_1a3acaaf8724e7b003c5bc8e9a81d0c9dd" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>Reset</name></member>
+      <member refid="class_imu_sensor_1a8189fe1647277dd33b5187a4d66559d6" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>scaleTruth</name></member>
+      <member refid="class_imu_sensor_1ac9c5be0a49419b35b4af9b25543ca104" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>scStateInMsg</name></member>
+      <member refid="class_imu_sensor_1a487b939a2cd4be64abb8ff4c01f582db" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>senRotBias</name></member>
+      <member refid="class_imu_sensor_1a9cfd803aea067b13a7229cabb6c114af" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>senRotMax</name></member>
+      <member refid="class_imu_sensor_1a72cb4df124aa9426ddb5246807607b0c" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>sensedValues</name></member>
+      <member refid="class_imu_sensor_1a0e0e0f6392ab90693928b6cd54eae772" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>sensorOutMsg</name></member>
+      <member refid="class_imu_sensor_1a292f559c78121f56b0835a65b82a75a5" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>sensorPos_B</name></member>
+      <member refid="class_imu_sensor_1a562dd8eefd0dcb2a1a47de1e48f32622" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>senTransBias</name></member>
+      <member refid="class_imu_sensor_1a39ecdf0866972826ad5de815b46bab2c" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>senTransMax</name></member>
+      <member refid="class_imu_sensor_1aa45d292f9462d292fb3e5bb2291a0911" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>set_aSatBounds</name></member>
+      <member refid="class_imu_sensor_1a9737593635fbc870f04bc9ccf9ae7fc3" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>set_oSatBounds</name></member>
+      <member refid="class_imu_sensor_1ab5f32803743ca07217c6090f7ac5c939" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>setBodyToPlatformDCM</name></member>
+      <member refid="class_imu_sensor_1ad547c166a3e00f60068bcf549f04b18b" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>setCarryError</name></member>
+      <member refid="class_imu_sensor_1a9414c358e2125a2d5473eb255aff1d2e" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>setLSBs</name></member>
+      <member refid="class_imu_sensor_1ab4cfdba5b443ab773bbc7e82cc801c6a" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>setRoundDirection</name></member>
+      <member refid="class_imu_sensor_1ab837621a6d801c02efa4559b9be99f41" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>StateCurrent</name></member>
+      <member refid="class_imu_sensor_1a4d70d9bb35e69c8f5d37fafd9cbf3ae2" prot="private" virt="non-virtual"><scope>ImuSensor</scope><name>StatePrevious</name></member>
+      <member refid="class_imu_sensor_1aa230687eb7f3b40ed4b705b14683b3aa" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>trueValues</name></member>
+      <member refid="class_imu_sensor_1ac9f21753d436841421f808589f054665" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>UpdateState</name></member>
+      <member refid="class_imu_sensor_1ac67410610024b660765d2f534ab0c8f7" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>walkBoundsAccel</name></member>
+      <member refid="class_imu_sensor_1a9784d35940372613dd863aff698bbb18" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>walkBoundsGyro</name></member>
+      <member refid="class_imu_sensor_1aa9c7b685dd943568ccb690e28892c114" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>writeOutputMessages</name></member>
+      <member refid="class_imu_sensor_1a0c61d9b5c7b1950e8b63ce3570985785" prot="public" virt="non-virtual"><scope>ImuSensor</scope><name>~ImuSensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

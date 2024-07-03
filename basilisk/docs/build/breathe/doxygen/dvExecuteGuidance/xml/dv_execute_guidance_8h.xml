@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dv_execute_guidance_8h" kind="file" language="C++">
+    <compoundname>dvExecuteGuidance.h</compoundname>
+    <includes local="yes">cMsgCInterface/NavTransMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/DvBurnCmdMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/DvExecutionDataMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="dv_execute_guidance_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h</label>
+        <link refid="dv_execute_guidance_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/DvBurnCmdMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/DvExecutionDataMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structdv_execute_guidance_config" prot="public">dvExecuteGuidanceConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dv_execute_guidance_8h_1a3d39bfbaf4a723fcec90b7ec6fa9963e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_dvExecuteGuidance</definition>
+        <argsstring>(dvExecuteGuidanceConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_dvExecuteGuidance</name>
+        <param>
+          <type><ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the nominal delta-V maneuver guidance. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the delta-V maneuver guidance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" line="50" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.c" bodystart="34" bodyend="38" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" declline="50" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_execute_guidance_8h_1a215f7d25dddfafe1c3e1cabd02633d34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_dvExecuteGuidance</definition>
+        <argsstring>(dvExecuteGuidanceConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_dvExecuteGuidance</name>
+        <param>
+          <type><ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes its own internal variables and creates an output attitude command to use for burn execution. It also flags whether the burn should be happening or not. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the delta-V maneuver guidance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" line="51" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.c" bodystart="70" bodyend="121" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" declline="51" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_execute_guidance_8h_1a66723cfc51589dcae7c0ec83f0ec15fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_dvExecuteGuidance</definition>
+        <argsstring>(dvExecuteGuidanceConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_dvExecuteGuidance</name>
+        <param>
+          <type><ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+<para>This resets the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" line="53" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.c" bodystart="47" bodyend="57" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h" declline="53" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_DV_EXECUTE_GUIDANCE_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DV_EXECUTE_GUIDANCE_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavTransMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayOnTimeCmdMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/DvBurnCmdMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/DvExecutionDataMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structdv_execute_guidance_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35" refid="structdv_execute_guidance_config_1ae7e8be91acd4e7289efd1a712f69c5d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>DvExecutionDataMsg_C<sp/><ref refid="structdv_execute_guidance_config_1ae7e8be91acd4e7289efd1a712f69c5d3" kindref="member">burnExecOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="36" refid="structdv_execute_guidance_config_1a0fac533cc398a6f3cf3f93f7a12970ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsg_C<sp/><ref refid="structdv_execute_guidance_config_1a0fac533cc398a6f3cf3f93f7a12970ea" kindref="member">navDataInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="37" refid="structdv_execute_guidance_config_1aa992c243bbea1d698e692959b29aa95f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>DvBurnCmdMsg_C<sp/><ref refid="structdv_execute_guidance_config_1aa992c243bbea1d698e692959b29aa95f" kindref="member">burnDataInMsg</ref>;</highlight></codeline>
+<codeline lineno="38" refid="structdv_execute_guidance_config_1a49a5f577700fb0d535d2997eab5c2aca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayOnTimeCmdMsg_C<sp/><ref refid="structdv_execute_guidance_config_1a49a5f577700fb0d535d2997eab5c2aca" kindref="member">thrCmdOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="39" refid="structdv_execute_guidance_config_1ae3613972147efbabf804676df56c9548" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dvInit[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structdv_execute_guidance_config_1a95145e150dadbf51202231032714227b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structdv_execute_guidance_config_1a95145e150dadbf51202231032714227b" kindref="member">burnExecuting</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="structdv_execute_guidance_config_1a63a5ca2477b1df5f329a1cafde283f6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structdv_execute_guidance_config_1a63a5ca2477b1df5f329a1cafde283f6a" kindref="member">burnComplete</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="structdv_execute_guidance_config_1a5e1c188acf99ae92d1bd5518dc0498c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structdv_execute_guidance_config_1a5e1c188acf99ae92d1bd5518dc0498c7" kindref="member">bskLogger</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}<ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_dvExecuteGuidance(<ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_dvExecuteGuidance(<ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_dvExecuteGuidance(<ref refid="structdv_execute_guidance_config" kindref="compound">dvExecuteGuidanceConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/dvGuidance/dvExecuteGuidance/dvExecuteGuidance.h"/>
+  </compounddef>
+</doxygen>

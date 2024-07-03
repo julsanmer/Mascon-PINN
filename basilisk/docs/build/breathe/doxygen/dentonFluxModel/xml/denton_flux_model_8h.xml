@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="denton_flux_model_8h" kind="file" language="C++">
+    <compoundname>dentonFluxModel.h</compoundname>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/PlasmaFluxMsgPayload.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includedby refid="denton_flux_model_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h</label>
+        <link refid="denton_flux_model_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/PlasmaFluxMsgPayload.h</label>
+      </node>
+      <node id="3">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_denton_flux_model" prot="public">DentonFluxModel</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="denton_flux_model_8h_1a3193e4c69c839e5a8553701a82197bcb" prot="public" static="no">
+        <name>MAX_NUM_KPS</name>
+        <initializer>28</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" line="30" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="denton_flux_model_8h_1ad4560950c1590784df33053d509af5dc" prot="public" static="no">
+        <name>MAX_NUM_ENERGIES</name>
+        <initializer>40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" line="31" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="denton_flux_model_8h_1a215985ff3c62f4fdff78e0a5303fbde6" prot="public" static="no">
+        <name>MAX_NUM_LOCAL_TIMES</name>
+        <initializer>24</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" line="32" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="denton_flux_model_8h_1a5646072fee87aa3e7a3ea1c81fc6b736" prot="public" static="no">
+        <name>MAX_NUM_VALUE_TYPES</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" line="33" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2021,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DENTONFLUXMODEL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DENTONFLUXMODEL_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/PlasmaFluxMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NUM_KPS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>28</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NUM_ENERGIES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>40</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NUM_LOCAL_TIMES<sp/><sp/><sp/><sp/><sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NUM_VALUE_TYPES<sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="class_denton_flux_model" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_denton_flux_model" kindref="compound">DentonFluxModel</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>And<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_denton_flux_model_1a5604094c72474ec611175bae1f8538fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_denton_flux_model_1a5604094c72474ec611175bae1f8538fe" kindref="member">DentonFluxModel</ref>();</highlight></codeline>
+<codeline lineno="41" refid="class_denton_flux_model_1ad293aee41a107d81c93f45aae0922d3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_denton_flux_model_1ad293aee41a107d81c93f45aae0922d3b" kindref="member">~DentonFluxModel</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_denton_flux_model_1a588849fd8d0da428ac076b7a8da2eb98" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_denton_flux_model_1ad381a655ab2f50f5b8601b2c76eec2ae" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>public<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="class_denton_flux_model_1acd64d15d4f3555cda4eef704f1f276b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_denton_flux_model_1acd64d15d4f3555cda4eef704f1f276b4" kindref="member">numOutputEnergies</ref><sp/>=<sp/>-1;<sp/></highlight></codeline>
+<codeline lineno="49" refid="class_denton_flux_model_1aefe7fd1ae72e5c0383f4c85371f714e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_denton_flux_model_1aefe7fd1ae72e5c0383f4c85371f714e2" kindref="member">kpIndex</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="50" refid="class_denton_flux_model_1a09ee39c45d5b61ea470c719fe63ebe67" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_denton_flux_model_1a09ee39c45d5b61ea470c719fe63ebe67" kindref="member">dataPath</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="51" refid="class_denton_flux_model_1a6d0472920cb312698612e22f4cd4cb22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_denton_flux_model_1a6d0472920cb312698612e22f4cd4cb22" kindref="member">eDataFileName</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;model_e_array_all.txt&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="52" refid="class_denton_flux_model_1adea32a80b349a067fa38cdbf0d606fc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="class_denton_flux_model_1adea32a80b349a067fa38cdbf0d606fc3" kindref="member">iDataFileName</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;model_i_array_all.txt&quot;</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="class_denton_flux_model_1ad845e99c00c61c1a98c3e43a077a464e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SCStatesMsgPayload&gt;<sp/><ref refid="class_denton_flux_model_1ad845e99c00c61c1a98c3e43a077a464e" kindref="member">scStateInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="55" refid="class_denton_flux_model_1a68ad800acaf1e27bf02079ea6867fa93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_denton_flux_model_1a68ad800acaf1e27bf02079ea6867fa93" kindref="member">earthStateInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="56" refid="class_denton_flux_model_1ac4a5dd5879e9200625fde5a1e5b16d6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt;<sp/><ref refid="class_denton_flux_model_1ac4a5dd5879e9200625fde5a1e5b16d6f" kindref="member">sunStateInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="class_denton_flux_model_1ae734d1e6c4da7a3c19cf08cca69344ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;PlasmaFluxMsgPayload&gt;<sp/><ref refid="class_denton_flux_model_1ae734d1e6c4da7a3c19cf08cca69344ed" kindref="member">fluxOutMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="class_denton_flux_model_1acb81f3c1def27baa4e3a1a7b20344ebb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_denton_flux_model_1acb81f3c1def27baa4e3a1a7b20344ebb" kindref="member">bskLogger</ref>;<sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calcLocalTime(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v1[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v2[3]);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bilinear(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>readDentonDataFile(std::string<sp/>fileName,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data[MAX_NUM_KPS][MAX_NUM_ENERGIES][MAX_NUM_LOCAL_TIMES]);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kpIndexCounter;<sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>localTime;<sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logEnElec[MAX_NUM_ENERGIES];<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>logEnProt[MAX_NUM_ENERGIES];<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inputEnergies[MAX_NUM_ENERGIES];<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mean_e_flux[MAX_NUM_KPS][MAX_NUM_ENERGIES][MAX_NUM_LOCAL_TIMES];</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mean_i_flux[MAX_NUM_KPS][MAX_NUM_ENERGIES][MAX_NUM_LOCAL_TIMES];</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>enElec[40]<sp/>=<sp/>{1.034126,<sp/><sp/><sp/><sp/><sp/>1.346516,<sp/><sp/><sp/><sp/><sp/>1.817463,<sp/><sp/><sp/><sp/><sp/>2.399564,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>3.161048,<sp/><sp/><sp/><sp/><sp/>4.153217,<sp/><sp/><sp/><sp/><sp/>5.539430,<sp/><sp/><sp/><sp/><sp/>7.464148,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>9.836741,<sp/><sp/><sp/><sp/>12.543499,<sp/><sp/><sp/><sp/>16.062061,<sp/><sp/><sp/><sp/>20.876962,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>27.183572,<sp/><sp/><sp/><sp/>35.843437,<sp/><sp/><sp/><sp/>47.179073,<sp/><sp/><sp/><sp/>61.424732,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>80.120170,<sp/><sp/><sp/>104.563461,<sp/><sp/><sp/>136.914871,<sp/><sp/><sp/>179.740982,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>235.406829,<sp/><sp/><sp/>309.020721,<sp/><sp/><sp/>405.806213,<sp/><sp/><sp/>532.664123,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>699.243896,<sp/><sp/><sp/>917.146484,<sp/><sp/>1205.174438,<sp/><sp/>1582.510986,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>2069.619628,<sp/><sp/>2703.301269,<sp/><sp/>3540.124511,<sp/><sp/>4639.775390,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>6069.347656,<sp/><sp/>7957.457519,<sp/>10436.841796,<sp/>13677.195312,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>17923.560546,<sp/>23488.560546,<sp/>30782.000000,<sp/>40326.937500};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>enProt[40]<sp/>=<sp/>{<sp/>1.816424,<sp/><sp/><sp/><sp/><sp/>2.284231,<sp/><sp/><sp/><sp/><sp/>2.904752,<sp/><sp/><sp/><sp/><sp/>3.639589,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>4.483188,<sp/><sp/><sp/><sp/><sp/>5.671049,<sp/><sp/><sp/><sp/><sp/>7.343667,<sp/><sp/><sp/><sp/><sp/>9.450922,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>11.934194,<sp/><sp/><sp/><sp/>15.105951,<sp/><sp/><sp/><sp/>19.372854,<sp/><sp/><sp/><sp/>24.943658,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>32.053474,<sp/><sp/><sp/><sp/>41.142940,<sp/><sp/><sp/><sp/>53.239536,<sp/><sp/><sp/><sp/>68.940170,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>89.082473,<sp/><sp/><sp/>115.585487,<sp/><sp/><sp/>150.529022,<sp/><sp/><sp/>196.249755,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>256.610107,<sp/><sp/><sp/>335.709136,<sp/><sp/><sp/>439.549621,<sp/><sp/><sp/>574.766357,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>749.907531,<sp/><sp/><sp/>982.261108,<sp/><sp/>1278.967041,<sp/><sp/>1662.856079,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>2170.886474,<sp/><sp/>2829.989013,<sp/><sp/>3691.509765,<sp/><sp/>4822.499023,</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>6300.260742,<sp/><sp/>8217.569335,<sp/>10726.390625,<sp/>14001.280273,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>18276.244140,<sp/>23856.085937,<sp/>31140.962890,<sp/>40649.562500};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/dentonFluxModel/dentonFluxModel.h"/>
+  </compounddef>
+</doxygen>

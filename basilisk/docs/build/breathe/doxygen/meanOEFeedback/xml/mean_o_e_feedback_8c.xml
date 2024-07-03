@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="mean_o_e_feedback_8c" kind="file" language="C++">
+    <compoundname>meanOEFeedback.c</compoundname>
+    <includes refid="mean_o_e_feedback_8h" local="yes">meanOEFeedback.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/orbitalMotion.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c</label>
+        <link refid="mean_o_e_feedback_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>meanOEFeedback.h</label>
+        <link refid="mean_o_e_feedback_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/orbitalMotion.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/CmdForceInertialMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/NavTransMsg_C.h</label>
+      </node>
+      <node id="8">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1a30260c2907600fb34045593e86f7903a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void calc_LyapunovFeedback</definition>
+        <argsstring>(meanOEFeedbackConfig *configData, NavTransMsgPayload chiefTransMsg, NavTransMsgPayload deputyTransMsg, CmdForceInertialMsgPayload *forceMsg)</argsstring>
+        <name>calc_LyapunovFeedback</name>
+        <param>
+          <type><ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>NavTransMsgPayload</type>
+          <declname>chiefTransMsg</declname>
+        </param>
+        <param>
+          <type>NavTransMsgPayload</type>
+          <declname>deputyTransMsg</declname>
+        </param>
+        <param>
+          <type>CmdForceInertialMsgPayload *</type>
+          <declname>forceMsg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates Lyapunov Feedback Control output based on current orbital element difference and target orbital element difference. Mean orbital elements are used. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chiefTransMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Chief&apos;s position and velocity </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>deputyTransMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Deputy&apos;s position and velocity </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>forceMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>force output (3-axis) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="113" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="113" bodyend="175" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" declline="32" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1afb859b085e4feeb669359b1f5a24fe98" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void calc_B_cl</definition>
+        <argsstring>(double mu, classicElements oe_cl, double B[6][3])</argsstring>
+        <name>calc_B_cl</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type>classicElements</type>
+          <declname>oe_cl</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>B</declname>
+          <array>[6][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates Control Matrix (often called B matrix) derived from Gauss&apos; Planetary Equation. Especially, this function assumes using classic orbital elements. The B matrix description is provided in &quot;Analytical Mechanics of Space Systems by H. Schaub and J. L. Junkins&quot; <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>oe_cl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nonsingular orbital elements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="186" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="186" bodyend="227" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" declline="34" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1a273190e20249336571bf10028fc68439" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void calc_B_eq</definition>
+        <argsstring>(double mu, equinoctialElements oe_eq, double B[6][3])</argsstring>
+        <name>calc_B_eq</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type>equinoctialElements</type>
+          <declname>oe_eq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>B</declname>
+          <array>[6][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates Control Matrix (often called B matrix) derived from Gauss&apos; Planetary Equation. Especially, this function assumes using nonsingular orbital elements, which help to avoid singularity. The B matrix description is provided in &quot;Naasz, B. J., Karlgaard, C. D., &amp; Hall, C. D. (2002). Application of several control techniques for
+the ionospheric observation nanosatellite formation.&quot; Be careful, our definition of equinoctial orbital elements are different from the one used in this paper. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>oe_eq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nonsingular orbital elements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="240" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="240" bodyend="281" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" declline="35" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1a7bdfe13847c9317a0cb2c1f3a466b81d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>static double adjust_range</definition>
+        <argsstring>(double lower, double upper, double angle)</argsstring>
+        <name>adjust_range</name>
+        <param>
+          <type>double</type>
+          <declname>lower</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to adjust a certain value in a certain range between lower threshold and upper threshold. This function is particularily used to adjsut angles used in orbital motions such as True Anomaly, Mean Anomaly, and so on. <simplesect kind="return"><para>double </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lower threshold </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>upper threshold </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an angle which you want to be between lower and upper </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="290" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="290" bodyend="304" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" declline="36" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1a05e5206c33f0d7ec572ba34c064c0e22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_meanOEFeedback</definition>
+        <argsstring>(meanOEFeedbackConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_meanOEFeedback</name>
+        <param>
+          <type><ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for this module. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="45" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="45" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1a94444c260af9f181e17d0727d2a92f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_meanOEFeedback</definition>
+        <argsstring>(meanOEFeedbackConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_meanOEFeedback</name>
+        <param>
+          <type><ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. The local copy of the message output buffer should be cleared. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="58" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="58" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="mean_o_e_feedback_8c_1acee5d70ca3208dba75b357daabd01bd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_meanOEFeedback</definition>
+        <argsstring>(meanOEFeedbackConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_meanOEFeedback</name>
+        <param>
+          <type><ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Add a description of what this main Update() routine does for this module <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Basilisk module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>write the module output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" line="86" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c" bodystart="86" bodyend="103"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;meanOEFeedback.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/orbitalMotion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_LyapunovFeedback(<ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref><sp/>*configData,<sp/>NavTransMsgPayload<sp/>chiefTransMsg,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>deputyTransMsg,<sp/>CmdForceInertialMsgPayload<sp/>*forceMsg);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_B_cl(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/>classicElements<sp/>oe_cl,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B[6][3]);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_B_eq(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/>equinoctialElements<sp/>oe_eq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B[6][3]);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>adjust_range(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lower,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>upper,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_meanOEFeedback(<ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceInertialMsg_C_init(&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a851e7fa2e02b25583a5d9e796d1a5f49" kindref="member">forceOutMsg</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_meanOEFeedback(<ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavTransMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a752e8c831979731bf385de5085871a64" kindref="member">chiefTransInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ad4c01a1d2fc74b5bf9ba834d20079b8a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>meanOEFeedback.chiefTransInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavTransMsg_C_isLinked(&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a660e624bf78548db1c2f1be57937c22f" kindref="member">deputyTransInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ad4c01a1d2fc74b5bf9ba834d20079b8a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>meanOEFeedback.deputyTransInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a2c25e9c01606eab0dcaa4c04d2cfb3bd" kindref="member">mu</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ad4c01a1d2fc74b5bf9ba834d20079b8a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>in<sp/>meanOEFeedback:<sp/>mu<sp/>must<sp/>be<sp/>set<sp/>to<sp/>a<sp/>positive<sp/>value.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a55a46ee5b317ac99d7a060a3ce04e0e3" kindref="member">req</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ad4c01a1d2fc74b5bf9ba834d20079b8a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>in<sp/>meanOEFeedback:<sp/>req<sp/>must<sp/>be<sp/>set<sp/>to<sp/>a<sp/>positive<sp/>value.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ab4b3003e665b94a62f7aa4ab1fda88d6" kindref="member">J2</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ad4c01a1d2fc74b5bf9ba834d20079b8a" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>in<sp/>meanOEFeedback:<sp/>J2<sp/>must<sp/>be<sp/>set<sp/>to<sp/>a<sp/>positive<sp/>value.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_meanOEFeedback(<ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>chiefTransMsg;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>deputyTransMsg;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>out</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceInertialMsgPayload<sp/>forceMsg;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>chiefTransMsg<sp/>=<sp/>NavTransMsg_C_read(&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a752e8c831979731bf385de5085871a64" kindref="member">chiefTransInMsg</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>deputyTransMsg<sp/>=<sp/>NavTransMsg_C_read(&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a660e624bf78548db1c2f1be57937c22f" kindref="member">deputyTransInMsg</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>forceMsg<sp/>=<sp/>CmdForceInertialMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>calc_LyapunovFeedback(configData,<sp/>chiefTransMsg,<sp/>deputyTransMsg,<sp/>&amp;forceMsg);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdForceInertialMsg_C_write(&amp;forceMsg,<sp/>&amp;configData-&gt;<ref refid="structmean_o_e_feedback_config_1a851e7fa2e02b25583a5d9e796d1a5f49" kindref="member">forceOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_LyapunovFeedback(<ref refid="structmean_o_e_feedback_config" kindref="compound">meanOEFeedbackConfig</ref><sp/>*configData,<sp/>NavTransMsgPayload<sp/>chiefTransMsg,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NavTransMsgPayload<sp/>deputyTransMsg,<sp/>CmdForceInertialMsgPayload<sp/>*forceMsg)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>position&amp;velocity<sp/>to<sp/>osculating<sp/>classic<sp/>orbital<sp/>elements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>classicElements<sp/>oe_cl_osc_c,<sp/>oe_cl_osc_d;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>rv2elem(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a2c25e9c01606eab0dcaa4c04d2cfb3bd" kindref="member">mu</ref>,<sp/>chiefTransMsg.r_BN_N,<sp/>chiefTransMsg.v_BN_N,<sp/>&amp;oe_cl_osc_c);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>rv2elem(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a2c25e9c01606eab0dcaa4c04d2cfb3bd" kindref="member">mu</ref>,<sp/>deputyTransMsg.r_BN_N,<sp/>deputyTransMsg.v_BN_N,<sp/>&amp;oe_cl_osc_d);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>osculating<sp/>classic<sp/>oe<sp/>to<sp/>mean<sp/>classic<sp/>oe</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>classicElements<sp/>oe_cl_mean_c,<sp/>oe_cl_mean_d;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>clMeanOscMap(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a55a46ee5b317ac99d7a060a3ce04e0e3" kindref="member">req</ref>,<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1ab4b3003e665b94a62f7aa4ab1fda88d6" kindref="member">J2</ref>,<sp/>&amp;oe_cl_osc_c,<sp/>&amp;oe_cl_mean_c,<sp/>-1);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>clMeanOscMap(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a55a46ee5b317ac99d7a060a3ce04e0e3" kindref="member">req</ref>,<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1ab4b3003e665b94a62f7aa4ab1fda88d6" kindref="member">J2</ref>,<sp/>&amp;oe_cl_osc_d,<sp/>&amp;oe_cl_mean_d,<sp/>-1);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>necessary<sp/>Force<sp/>in<sp/>LVLH<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>oed[6];</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B[6][3];</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>force_LVLH[3];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ac8ba7f9f3695f5705e4eb3e9620a3721" kindref="member">oeType</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>classical<sp/>oed<sp/>(da,de,di,dOmega,domega,dM)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[0]<sp/>=<sp/>(oe_cl_mean_d.a<sp/>-<sp/>oe_cl_mean_c.a)<sp/>/<sp/>oe_cl_mean_c.a<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[0];</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[1]<sp/>=<sp/>oe_cl_mean_d.e<sp/>-<sp/>oe_cl_mean_c.e<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[1];</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[2]<sp/>=<sp/>oe_cl_mean_d.i<sp/>-<sp/>oe_cl_mean_c.i<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[2];</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[3]<sp/>=<sp/>oe_cl_mean_d.Omega<sp/>-<sp/>oe_cl_mean_c.Omega<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[3];</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[4]<sp/>=<sp/>oe_cl_mean_d.omega<sp/>-<sp/>oe_cl_mean_c.omega<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[4];</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>E_mean_c<sp/>=<sp/>f2E(oe_cl_mean_c.f,<sp/>oe_cl_mean_c.e);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>M_mean_c<sp/>=<sp/>E2M(E_mean_c,<sp/>oe_cl_mean_c.e);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>E_mean_d<sp/>=<sp/>f2E(oe_cl_mean_d.f,<sp/>oe_cl_mean_d.e);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>M_mean_d<sp/>=<sp/>E2M(E_mean_d,<sp/>oe_cl_mean_d.e);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[5]<sp/>=<sp/>M_mean_d<sp/>-<sp/>M_mean_c<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[5];</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[2]<sp/>=<sp/>adjust_range(-M_PI,<sp/>M_PI,<sp/>oed[2]);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[3]<sp/>=<sp/>adjust_range(-M_PI,<sp/>M_PI,<sp/>oed[3]);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[4]<sp/>=<sp/>adjust_range(-M_PI,<sp/>M_PI,<sp/>oed[4]);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[5]<sp/>=<sp/>adjust_range(-M_PI,<sp/>M_PI,<sp/>oed[5]);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>control<sp/>matrix<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>calc_B_cl(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a2c25e9c01606eab0dcaa4c04d2cfb3bd" kindref="member">mu</ref>,<sp/>oe_cl_mean_d,<sp/>B);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="structmean_o_e_feedback_config_1ac8ba7f9f3695f5705e4eb3e9620a3721" kindref="member">oeType</ref><sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mean<sp/>classic<sp/>oe<sp/>to<sp/>mean<sp/>equinoctial<sp/>oe</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>equinoctialElements<sp/>oe_eq_mean_c,<sp/>oe_eq_mean_d;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clElem2eqElem(&amp;oe_cl_mean_c,<sp/>&amp;oe_eq_mean_c);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clElem2eqElem(&amp;oe_cl_mean_d,<sp/>&amp;oe_eq_mean_d);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>equinoctial<sp/>oed<sp/>(da,dP1,dP2,dQ1,dQ2,dl)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[0]<sp/>=<sp/>(oe_eq_mean_d.a<sp/>-<sp/>oe_eq_mean_c.a)<sp/>/<sp/>oe_eq_mean_c.a<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[0];</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[1]<sp/>=<sp/>oe_eq_mean_d.P1<sp/>-<sp/>oe_eq_mean_c.P1<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[1];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[2]<sp/>=<sp/>oe_eq_mean_d.P2<sp/>-<sp/>oe_eq_mean_c.P2<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[2];</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[3]<sp/>=<sp/>oe_eq_mean_d.Q1<sp/>-<sp/>oe_eq_mean_c.Q1<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[3];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[4]<sp/>=<sp/>oe_eq_mean_d.Q2<sp/>-<sp/>oe_eq_mean_c.Q2<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[4];</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[5]<sp/>=<sp/>oe_eq_mean_d.l<sp/>-<sp/>oe_eq_mean_c.l<sp/>-<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1a604802bcef8d0e6ba3b877a78136dcbe" kindref="member">targetDiffOeMean</ref>[5];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oed[5]<sp/>=<sp/>adjust_range(-M_PI,<sp/>M_PI,<sp/>oed[5]);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>control<sp/>matrix<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>calc_B_eq(configData-&gt;<ref refid="structmean_o_e_feedback_config_1a2c25e9c01606eab0dcaa4c04d2cfb3bd" kindref="member">mu</ref>,<sp/>oe_eq_mean_d,<sp/>B);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>Lyapunov<sp/>Feedback<sp/>Control</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>K_oed[6];</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>m66MultV6(RECAST6X6<sp/>configData-&gt;<ref refid="structmean_o_e_feedback_config_1acfc39d692a1f3cb54ea20106b3cf7b34" kindref="member">K</ref>,<sp/>oed,<sp/>K_oed);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>mtMultV(B,<sp/>6,<sp/>3,<sp/>K_oed,<sp/>force_LVLH);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1,<sp/>force_LVLH,<sp/>force_LVLH);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>convert<sp/>force<sp/>to<sp/>Inertial<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_RN[3][3];</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h[3];</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(deputyTransMsg.r_BN_N,<sp/>deputyTransMsg.v_BN_N,<sp/>h);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(deputyTransMsg.r_BN_N,<sp/>dcm_RN[0]);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(h,<sp/>dcm_RN[2]);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(dcm_RN[2],<sp/>dcm_RN[0],<sp/>dcm_RN[1]);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>m33tMultV3(dcm_RN,<sp/>force_LVLH,<sp/>forceMsg-&gt;forceRequestInertial);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_B_cl(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/>classicElements<sp/>oe_cl,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B[6][3])<sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>define<sp/>parameters<sp/>necessary<sp/>to<sp/>calculate<sp/>Bmatrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>oe_cl.a;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e<sp/>=<sp/>oe_cl.e;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>oe_cl.i;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>double<sp/>Omega<sp/>=<sp/>oe_cl.Omega;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega<sp/>=<sp/>oe_cl.omega;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f<sp/>=<sp/>oe_cl.f;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theta<sp/>=<sp/>omega<sp/>+<sp/>f;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>eta<sp/>=<sp/>sqrt(1<sp/>-<sp/>e<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>a<sp/>*<sp/>sqrt(1<sp/>-<sp/>e<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>sqrt(mu<sp/>/<sp/>pow(a,<sp/>3));</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h<sp/>=<sp/>n<sp/>*<sp/>a<sp/>*<sp/>b;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>a<sp/>*<sp/>(1<sp/>-<sp/>e<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>p<sp/>/<sp/>(1<sp/>+<sp/>e<sp/>*<sp/>cos(f));</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sabstitute<sp/>into<sp/>Bmatrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][0]<sp/>=<sp/>2.0<sp/>*<sp/>pow(a,<sp/>2)<sp/>*<sp/>e<sp/>*<sp/>sin(f)<sp/>/<sp/>h<sp/>/<sp/>a;<sp/><sp/></highlight><highlight class="comment">//<sp/>nomalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][1]<sp/>=<sp/>2.0<sp/>*<sp/>pow(a,<sp/>2)<sp/>*<sp/>p<sp/>/<sp/>(h<sp/>*<sp/>r)<sp/>/<sp/>a;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>nomalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][0]<sp/>=<sp/>p<sp/>*<sp/>sin(f)<sp/>/<sp/>h;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][1]<sp/>=<sp/>((p<sp/>+<sp/>r)<sp/>*<sp/>cos(f)<sp/>+<sp/>r<sp/>*<sp/>e)<sp/>/<sp/>h;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][2]<sp/>=<sp/>r<sp/>*<sp/>cos(theta)<sp/>/<sp/>h;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][2]<sp/>=<sp/>r<sp/>*<sp/>sin(theta)<sp/>/<sp/>(h<sp/>*<sp/>sin(i));</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][0]<sp/>=<sp/>-p<sp/>*<sp/>cos(f)<sp/>/<sp/>(h<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][1]<sp/>=<sp/>(p<sp/>+<sp/>r)<sp/>*<sp/>sin(f)<sp/>/<sp/>(h<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][2]<sp/>=<sp/>-r<sp/>*<sp/>sin(theta)<sp/>*<sp/>cos(i)<sp/>/<sp/>(h<sp/>*<sp/>sin(i));</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][0]<sp/>=<sp/>eta<sp/>*<sp/>(p<sp/>*<sp/>cos(f)<sp/>-<sp/>2<sp/>*<sp/>r<sp/>*<sp/>e)<sp/>/<sp/>(h<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][1]<sp/>=<sp/>-eta<sp/>*<sp/>(p<sp/>+<sp/>r)<sp/>*<sp/>sin(f)<sp/>/<sp/>(h<sp/>*<sp/>e);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calc_B_eq(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/>equinoctialElements<sp/>oe_eq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B[6][3])<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>define<sp/>parameters<sp/>necessary<sp/>to<sp/>calculate<sp/>Bmatrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>oe_eq.a;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>P1<sp/>=<sp/>oe_eq.P1;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>P2<sp/>=<sp/>oe_eq.P2;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Q1<sp/>=<sp/>oe_eq.Q1;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Q2<sp/>=<sp/>oe_eq.Q2;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>L<sp/>=<sp/>oe_eq.L;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>a<sp/>*<sp/>sqrt(1<sp/>-<sp/>P1<sp/>*<sp/>P1<sp/>-<sp/>P2<sp/>*<sp/>P2);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>sqrt(mu<sp/>/<sp/>pow(a,<sp/>3));</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h<sp/>=<sp/>n<sp/>*<sp/>a<sp/>*<sp/>b;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p_r<sp/>=<sp/>1<sp/>+<sp/>P1<sp/>*<sp/>sin(L)<sp/>+<sp/>P2<sp/>*<sp/>cos(L);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r_h<sp/>=<sp/>h<sp/>/<sp/>(mu<sp/>*<sp/>p_r);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>r_h<sp/>*<sp/>h;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p<sp/>=<sp/>p_r<sp/>*<sp/>r;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sabstitute<sp/>into<sp/>Bmatrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][0]<sp/>=<sp/>2.0<sp/>*<sp/>pow(a,<sp/>2)<sp/>/<sp/>h<sp/>*<sp/>(P2<sp/>*<sp/>sin(L)<sp/>-<sp/>P1<sp/>*<sp/>cos(L))<sp/>/<sp/>a;<sp/><sp/></highlight><highlight class="comment">//<sp/>nomalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][1]<sp/>=<sp/>2.0<sp/>*<sp/>pow(a,<sp/>2)<sp/>*<sp/>p_r<sp/>/<sp/>h<sp/>/<sp/>a;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>nomalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>B[0][2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][0]<sp/>=<sp/>-p<sp/>*<sp/>cos(L)<sp/>/<sp/>h;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][1]<sp/>=<sp/>1.0<sp/>/<sp/>h<sp/>*<sp/>(r<sp/>*<sp/>P1<sp/>+<sp/>(r<sp/>+<sp/>p)<sp/>*<sp/>sin(L));</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>B[1][2]<sp/>=<sp/>r_h<sp/>*<sp/>P2<sp/>*<sp/>(Q2<sp/>*<sp/>sin(L)<sp/>-<sp/>Q1<sp/>*<sp/>cos(L));</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][0]<sp/>=<sp/>p<sp/>*<sp/>sin(L)<sp/>/<sp/>h;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][1]<sp/>=<sp/>1.0<sp/>/<sp/>h<sp/>*<sp/>(r<sp/>*<sp/>P2<sp/>+<sp/>(r<sp/>+<sp/>p)<sp/>*<sp/>cos(L));</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>B[2][2]<sp/>=<sp/>r_h<sp/>*<sp/>P1<sp/>*<sp/>(Q1<sp/>*<sp/>cos(L)<sp/>-<sp/>Q2<sp/>*<sp/>sin(L));</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>B[3][2]<sp/>=<sp/>1.0<sp/>/<sp/>2.0<sp/>*<sp/>r_h<sp/>*<sp/>(1<sp/>+<sp/>Q1<sp/>*<sp/>Q1<sp/>+<sp/>Q2<sp/>*<sp/>Q2)<sp/>*<sp/>sin(L);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>B[4][2]<sp/>=<sp/>1.0<sp/>/<sp/>2.0<sp/>*<sp/>r_h<sp/>*<sp/>(1<sp/>+<sp/>Q1<sp/>*<sp/>Q1<sp/>+<sp/>Q2<sp/>*<sp/>Q2)<sp/>*<sp/>cos(L);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][0]<sp/>=<sp/>-p<sp/>*<sp/>a<sp/>/<sp/>(h<sp/>*<sp/>(a<sp/>+<sp/>b))<sp/>*<sp/>((P1<sp/>*<sp/>sin(L)<sp/>+<sp/>P2<sp/>*<sp/>cos(L))<sp/>+<sp/>2.0<sp/>*<sp/>b<sp/>/<sp/>a);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][1]<sp/>=<sp/>r_h<sp/>*<sp/>a<sp/>*<sp/>(1.0<sp/>+<sp/>p_r)<sp/>/<sp/>(a<sp/>+<sp/>b)<sp/>*<sp/>(P2<sp/>*<sp/>sin(L)<sp/>-<sp/>P1<sp/>*<sp/>cos(L));</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>B[5][2]<sp/>=<sp/>r_h<sp/>*<sp/>(Q2<sp/>*<sp/>sin(L)<sp/>-<sp/>Q1<sp/>*<sp/>cos(L));</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>adjust_range(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lower,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>upper,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle)<sp/>{</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(upper<sp/>&lt;<sp/>lower)<sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;illegal<sp/>parameters\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>width<sp/>=<sp/>upper<sp/>-<sp/>lower;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>adjusted_angle<sp/>=<sp/>angle;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(adjusted_angle<sp/>&gt;<sp/>upper)<sp/>{</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>adjusted_angle<sp/>=<sp/>adjusted_angle<sp/>-<sp/>width;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(adjusted_angle<sp/>&lt;<sp/>lower)<sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>adjusted_angle<sp/>=<sp/>adjusted_angle<sp/>+<sp/>width;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>adjusted_angle;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/meanOEFeedback/meanOEFeedback.c"/>
+  </compounddef>
+</doxygen>

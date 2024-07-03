@@ -1,0 +1,944 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="inertial_u_k_f_8h" kind="file" language="C++">
+    <compoundname>inertialUKF.h</compoundname>
+    <includes local="yes">cMsgCInterface/RWSpeedMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/NavAttMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/InertialFilterMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/STAttMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/VehicleConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/RWArrayConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/AccDataMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/signalCondition.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">string.h</includes>
+    <includedby refid="inertial_u_k_f_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h</label>
+        <link refid="inertial_u_k_f_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/signalCondition.h</label>
+      </node>
+      <node id="8">
+        <label>cMsgCInterface/AccDataMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/InertialFilterMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/RWArrayConfigMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/RWSpeedMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/STAttMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="11">
+        <label>stdint.h</label>
+      </node>
+      <node id="12">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_s_t_message" prot="public">STMessage</innerclass>
+    <innerclass refid="struct_s_t_data_parsing" prot="public">STDataParsing</innerclass>
+    <innerclass refid="struct_inertial_u_k_f_config" prot="public">InertialUKFConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="inertial_u_k_f_8h_1aafd22d4af433ea66e0ebbaea2016311f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_inertialUKF</definition>
+        <argsstring>(InertialUKFConfig *configData, int64_t moduleId)</argsstring>
+        <name>SelfInit_inertialUKF</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates the two moduel output messages. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS WLS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="130" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="33" bodyend="37" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="130" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1a8d7a5389d7a61063ea1375c92a155218" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Read_STMessages</definition>
+        <argsstring>(InertialUKFConfig *configData)</argsstring>
+        <name>Read_STMessages</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads in the messages from all available star trackers and orders them with respect to time of measurement <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input parsed CSS sensor data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Only mark valid size if message isn&apos;t stale</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the time tag from the measured data is new compared to previous step, propagate and update the filter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Ensure that the time-tags we&apos;ve received are put in time order</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="131" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="144" bodyend="180" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="131" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1aac673f9e06ca4fc2c0b5b43a2be6800c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_inertialUKF</definition>
+        <argsstring>(InertialUKFConfig *configData, uint64_t callTime, int64_t moduleId)</argsstring>
+        <name>Update_inertialUKF</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+          <defname>moduleID</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the parsed CSS sensor data and outputs an estimate of the sun vector in the ADCS body frame <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Handle initializing time in filter and discard initial messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set wheel speeds so that acceleration can be safely computed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Loop through ordered time-tags and select largest valid one</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If any ST message is valid mark initialization complete</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If no ST messages were valid, return from filter and try again next frame</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the star tracker has provided a new message compared to last time, update the filter to the new measurement</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If current clock time is further ahead than the measured time, then propagate to this current time-step</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If no star tracker measurement was available, propagate the state on the gyro measurements received since the last ST update. Note that the rate estimate is just smoothed gyro data in this case</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the aggregrate rotation from the gyro buffer</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Propagate the attitude quaternion with the aggregate rotation</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Switch the MRPs if necessary</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Rate estimate in this case is simply the low-pass filtered gyro data. This is likely much noisier than the time-update solution</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If we are already at callTime just copy the states over without change</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the inertial estimate into the copy of the navigation message structure</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the filter states output buffer and write the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="132" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="188" bodyend="325" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="132" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1a662a3db3e00c5eff577a97aea91e8a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_inertialUKF</definition>
+        <argsstring>(InertialUKFConfig *configData, uint64_t callTime, int64_t moduleId)</argsstring>
+        <name>Reset_inertialUKF</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the inertial inertial filter to an initial state and initializes the internal estimation matrices. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read static RW config data message and store it in module variables</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Initialize filter parameters to max values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Ensure that all internal filter matrices are zeroed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set lambda/gamma to standard value for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>User a cholesky decomposition to obtain the sBar and sQnoise matrices for use in filter at runtime</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="134" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="47" bodyend="138" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="134" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1aebe0f61b4906081c21182e7db3552c6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void inertialUKFAggGyrData</definition>
+        <argsstring>(InertialUKFConfig *configData, double prevTime, double propTime, AccDataMsgPayload *gyrData)</argsstring>
+        <name>inertialUKFAggGyrData</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>prevTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>propTime</declname>
+        </param>
+        <param>
+          <type>AccDataMsgPayload *</type>
+          <declname>gyrData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method aggregates the input gyro data into a combined total quaternion rotation to push the state forward by. This information is stored in the main data structure for use in the propagation routines. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prevTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[s] Previous time step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>propTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gyrData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The gyro measurements that we are going to accumulate forward into time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Note that the math here is tortured to avoid the issues of adding PRVs together. That is numerically problematic, so we convert to euler parameters (quaternions) and add those</para>
+<para><itemizedlist>
+<listitem><para>Loop through the entire gyro buffer to find the first index that is in the future compared to prevTime</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Initialize the propagated euler parameters and time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Loop through buffer for all valid measurements to assemble the composite rotation since the previous time</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Treat rates scaled by dt as a PRV (small angle approximation)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Convert the PRV to euler parameters and add that delta-rotation to the running sum (ep_BpropB0)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Prepare for the next measurement and set time-tags for termination</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Apply low-pass filter to gyro measurements to get smoothed body rate</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Saved the measurement count and convert the euler parameters to MRP as that is our filter representation</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="136" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="553" bodyend="618" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="136" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1afd3b76c493d3604ae35155a52caa6cc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int inertialUKFTimeUpdate</definition>
+        <argsstring>(InertialUKFConfig *configData, double updateTime)</argsstring>
+        <name>inertialUKFTimeUpdate</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the time update for the inertial kalman filter. It propagates the sigma points forward in time and then gets the current covariance and state estimates. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Copy over the current state estimate into the 0th Sigma point and propagate by dt</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Scale that Sigma point by the appopriate scaling factor (Wm[0])</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the transpose of the sBar matrix because it is easier to extract Rows vs columns</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each Sigma point, apply sBar-based error, propagate forward, and scale by Wm just like 0th. Note that we perform +/- sigma points simultaneously in loop to save loop values.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Adding covariance columns from sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Subtracting covariance columns from sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the AT matrix prior to assembly</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the AT matrix. Note that this matrix is the internals of the qr decomposition call in the source design documentation. It is the inside of equation 20 in that document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Scale sQNoise matrix depending on the dt</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Pop the sQNoise matrix on to the end of AT prior to getting QR decomposition</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>QR decomposition (only R computed!) of the AT matrix provides the new sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the sBar matrix over by the xBar vector using the appropriate weight like in equation 21 in design document.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Save current sBar matrix, covariance, and state estimate off for further use</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="138" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="382" bodyend="496" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="138" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1a0884f2d6624e68174d2ede95ab66b0a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int inertialUKFMeasUpdate</definition>
+        <argsstring>(InertialUKFConfig *configData, int currentST)</argsstring>
+        <name>inertialUKFMeasUpdate</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>currentST</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the measurement update for the inertial kalman filter. It applies the observations in the obs vectors to the current state estimate and updates the state/covariance with that information. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentST</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current star tracker state </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the valid observations and the measurement model for all observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (note that this is equation 23 in the time update section of the reference document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the matrix that we perform the QR decomposition on in the measurement update section of the code. This is based on the differenence between the yBar parameter and the calculated measurement models. Equation 24 in driving doc.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>This is the square-root of the Rk matrix which we treat as the Cholesky decomposition of the observation variance matrix constructed for our number of observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Perform QR decomposition (only R again) of the above matrix to obtain the current Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the matrix over by the difference between the 0th SP-based measurement model and the yBar matrix (cholesky down-date again)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shifted matrix represents the Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Construct the Pxy matrix (equation 26) which multiplies the Sigma-point cloud by the measurement model cloud (weighted) to get the total Pxy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Then we need to invert the SyT*Sy matrix to get the Kalman gain factor. Since The Sy matrix is lower triangular, we can do a back-sub inversion instead of a full matrix inversion. That is the ukfUInv and ukfLInv calls below. Once that multiplication is done (equation 27), we have the Kalman Gain.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Difference the yBar and the observations to get the observed error and multiply by the Kalman Gain to get the state update. Add the state update to the state to get the updated state value (equation 27).</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the updated matrix U from equation 28. Note that I then transpose it so that I can extract &quot;columns&quot; from adjacent memory</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each column in the update matrix, perform a cholesky down-date on it to get the total shifted S matrix (called sBar in internal parameters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute equivalent covariance based on updated sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="139" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="627" bodyend="759" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="139" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1aa5fd91033bf0897aa0aa98163bbdf5f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void inertialUKFCleanUpdate</definition>
+        <argsstring>(InertialUKFConfig *configData)</argsstring>
+        <name>inertialUKFCleanUpdate</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method cleans the filter states after a bad upadate on the fly. It removes the potentially corrupted previous estimates and puts the filter back to a working state. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Reset the observations, state, and covariannces to a previous safe value</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Reset the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="140" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="767" bodyend="788" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="140" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1a68a475490cd669c915f266b974c8ef8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void inertialStateProp</definition>
+        <argsstring>(InertialUKFConfig *configData, double *stateInOut, double dt)</argsstring>
+        <name>inertialStateProp</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>stateInOut</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method propagates a inertial state vector forward in time. Note that the calling parameter is updated in place to save on data copies. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stateInOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state that is propagated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step (s) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Convert the state derivative (body rate) to sigmaDot and propagate the attitude MRPs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the total torque from the reaction wheels to get the forcing function from any wheels present</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the angular acceleration and propagate the state forward (euler prop)</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="141" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="334" bodyend="373" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="141" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="inertial_u_k_f_8h_1acf66f59d189357f2937fb99b413a949f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void inertialUKFMeasModel</definition>
+        <argsstring>(InertialUKFConfig *configData, int currentST)</argsstring>
+        <name>inertialUKFMeasModel</name>
+        <param>
+          <type><ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>currentST</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes what the expected measurement vector is for each CSS that is present on the spacecraft. All data is transacted from the main data structure for the model because there are many variables that would have to be updated otherwise. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the CSS estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>currentST</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>current star tracker state </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>This math seems more difficult than it should be, but there is a method. The input MRP may or may not be in the same &quot;shadow&quot; set as the state estimate. So, if they are different in terms of light/shadow, you have to get them to the same representation otherwise your residuals will show 360 degree errors. Which is not ideal. So that&apos;s why it is so blessed complicated. <linebreak/>
+ The measurement is shadowed into the same representation as the state.</para>
+<para><itemizedlist>
+<listitem><para>The measurement model is the same as the states since the star tracker measures the inertial attitude directly.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" line="142" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.c" bodystart="507" bodyend="542" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h" declline="142" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_INERTIAL_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_INERTIAL_UKF_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/RWSpeedMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/NavAttMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/InertialFilterMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/STAttMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/VehicleConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/RWArrayConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/AccDataMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/signalCondition.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="struct_s_t_message" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41" refid="struct_s_t_message_1a39c838b0d87e0401d021670c6e25a107" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>STAttMsg_C<sp/><ref refid="struct_s_t_message_1a39c838b0d87e0401d021670c6e25a107" kindref="member">stInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="struct_s_t_message_1a2226e73ca241ab30eb36b1d79b1780bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>noise[3*3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}<ref refid="struct_s_t_message" kindref="compound">STMessage</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="struct_s_t_data_parsing" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47" refid="struct_s_t_data_parsing_1a9956f94cf93f05a15870ab0246f98f9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_s_t_data_parsing_1a9956f94cf93f05a15870ab0246f98f9b" kindref="member">numST</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="struct_s_t_data_parsing_1a8544ef2b379901fe6419c30b58535460" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_s_t_message" kindref="compound">STMessage</ref><sp/>STMessages[MAX_ST_VEH_COUNT];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}<ref refid="struct_s_t_data_parsing" kindref="compound">STDataParsing</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="struct_inertial_u_k_f_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55" refid="struct_inertial_u_k_f_config_1a9a76bb9fdfafc5e6eb44cec96f2d9afa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1a9a76bb9fdfafc5e6eb44cec96f2d9afa" kindref="member">navStateOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="struct_inertial_u_k_f_config_1a93f1eebee7866914c605a3e7ed88b711" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>InertialFilterMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1a93f1eebee7866914c605a3e7ed88b711" kindref="member">filtDataOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="struct_inertial_u_k_f_config_1ae5efa0f6ec6f67fc2f0ff7fbafce1de3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>VehicleConfigMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1ae5efa0f6ec6f67fc2f0ff7fbafce1de3" kindref="member">massPropsInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="struct_inertial_u_k_f_config_1ae1c8e907dfd069f2c13c3c9d91e27029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RWArrayConfigMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1ae1c8e907dfd069f2c13c3c9d91e27029" kindref="member">rwParamsInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="struct_inertial_u_k_f_config_1a3971811eabbe302e65f9574dd70cf59d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RWSpeedMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1a3971811eabbe302e65f9574dd70cf59d" kindref="member">rwSpeedsInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60" refid="struct_inertial_u_k_f_config_1ae2a0b51aee3594a02b48a96d4ca7db79" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>AccDataMsg_C<sp/><ref refid="struct_inertial_u_k_f_config_1ae2a0b51aee3594a02b48a96d4ca7db79" kindref="member">gyrBuffInMsgName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="struct_inertial_u_k_f_config_1a48f7a85913da710eabadd70f7c42110b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a48f7a85913da710eabadd70f7c42110b" kindref="member">numStates</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="struct_inertial_u_k_f_config_1a3eb82663fee3071e96614bfdfc90a7d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a3eb82663fee3071e96614bfdfc90a7d8" kindref="member">countHalfSPs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="struct_inertial_u_k_f_config_1af81a53036b2e1fad1c3e7a6454876878" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1af81a53036b2e1fad1c3e7a6454876878" kindref="member">numObs</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="struct_inertial_u_k_f_config_1a9c3e83aa68961a4a7877e56b427236d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a9c3e83aa68961a4a7877e56b427236d7" kindref="member">beta</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="struct_inertial_u_k_f_config_1a3d8f16b7eaa499f7b2473bceaf9edf13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a3d8f16b7eaa499f7b2473bceaf9edf13" kindref="member">alpha</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="struct_inertial_u_k_f_config_1ae59100118174ee1b618986d1ed0ca129" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1ae59100118174ee1b618986d1ed0ca129" kindref="member">kappa</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69" refid="struct_inertial_u_k_f_config_1a9d03fac236e1f064a0c5dde97dfc9117" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a9d03fac236e1f064a0c5dde97dfc9117" kindref="member">lambdaVal</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="struct_inertial_u_k_f_config_1a31de60f6379d350edac110840817859c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a31de60f6379d350edac110840817859c" kindref="member">gamma</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="struct_inertial_u_k_f_config_1a23729f0f992039a315e96551eccc0361" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a23729f0f992039a315e96551eccc0361" kindref="member">switchMag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="struct_inertial_u_k_f_config_1aa97229f74fe21bb3665b96c416e9a655" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1aa97229f74fe21bb3665b96c416e9a655" kindref="member">dt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="struct_inertial_u_k_f_config_1ab7136be9f7441080b241d453a8bb6ebf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1ab7136be9f7441080b241d453a8bb6ebf" kindref="member">timeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="struct_inertial_u_k_f_config_1a08b5d74c8bd325adeab7b0201f65601b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a08b5d74c8bd325adeab7b0201f65601b" kindref="member">gyrAggTimeTag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="struct_inertial_u_k_f_config_1a5fb80f308c8ed1d66f1d55961ec71474" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>aggSigma_b2b1[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="struct_inertial_u_k_f_config_1a26787b700d6b7f3bc41c00c6fc034b54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BdyGyrpltf[3][3];<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="struct_inertial_u_k_f_config_1ae895b80bf62a090b21c6a81902cd923e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wM[2<sp/>*<sp/>AKF_N_STATES<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="79" refid="struct_inertial_u_k_f_config_1aad1404ffc5d7e9177a163501bb45692b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wC[2<sp/>*<sp/>AKF_N_STATES<sp/>+<sp/>1];<sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="struct_inertial_u_k_f_config_1a8600966a7e24561acd9a34ed28620256" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stateInit[AKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="struct_inertial_u_k_f_config_1aae797dfd024ac753cff48079d15f2bb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>state[AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83" refid="struct_inertial_u_k_f_config_1ae42ddbe7d1a93ce0555e222230906b60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>statePrev[AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84" refid="struct_inertial_u_k_f_config_1a03d23d93521aebd6f137a886bdb24a40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBar[AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85" refid="struct_inertial_u_k_f_config_1a9420efe1d5f9a2bda670d96040faa8dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBarPrev[AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="struct_inertial_u_k_f_config_1a7c72c34dac86cdc6ce73ff7e4b8086c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar[AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="struct_inertial_u_k_f_config_1a802ea0a6f398017f0c319f2ed7eb74c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarPrev[AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="struct_inertial_u_k_f_config_1a43161a6cdb8e5b755388ee37323d452c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covarInit[AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="struct_inertial_u_k_f_config_1aa2bd275ed7a7b94574ff5e8e9c4aadac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xBar[AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="struct_inertial_u_k_f_config_1ac036a9ca4753eade7d1901c2877dcd20" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>obs[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="struct_inertial_u_k_f_config_1a0c6e54cb934405ec82992f12cf5a6dbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yMeas[3*(2*AKF_N_STATES+1)];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="struct_inertial_u_k_f_config_1aafa918b51c1d31ae954b7bad13d3b4c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SP[(2*AKF_N_STATES+1)*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="struct_inertial_u_k_f_config_1af44579b7f799e24a275dace0dfb2ce7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>qNoise[MAX_ST_VEH_COUNT*AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="struct_inertial_u_k_f_config_1ac6bdafafc9c64c1c23ed0a0549f5ba0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sQnoise[MAX_ST_VEH_COUNT*AKF_N_STATES*AKF_N_STATES];<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="struct_inertial_u_k_f_config_1a3a0c90fdd8f70a7d5600bfaaaa134cc0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>IInv[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="struct_inertial_u_k_f_config_1aad9421f938e9b971a154f8019b294714" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_inertial_u_k_f_config_1aad9421f938e9b971a154f8019b294714" kindref="member">numUsedGyros</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102" refid="struct_inertial_u_k_f_config_1a6c724eee9a77d271aa86d43c9ae83c1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="struct_inertial_u_k_f_config_1a6c724eee9a77d271aa86d43c9ae83c1c" kindref="member">firstPassComplete</ref>;<sp/></highlight></codeline>
+<codeline lineno="103" refid="struct_inertial_u_k_f_config_1af0934aab4bf22800773c4243af0c5590" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_BNOut[3];<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104" refid="struct_inertial_u_k_f_config_1a324a1e24e8f9c710c4588232114c18e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_BN_BOut[3];<sp/></highlight></codeline>
+<codeline lineno="105" refid="struct_inertial_u_k_f_config_1a15ecbaa321de3597484fef890769e563" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a15ecbaa321de3597484fef890769e563" kindref="member">timeTagOut</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106" refid="struct_inertial_u_k_f_config_1a263eee9d8bc87bacfb43f9981f8fe77c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1a263eee9d8bc87bacfb43f9981f8fe77c" kindref="member">maxTimeJump</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="struct_inertial_u_k_f_config_1a368c5281e6dcdc233c65331e4794ffe5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>STAttMsgPayload<sp/>stSensorIn[MAX_ST_VEH_COUNT];<sp/></highlight></codeline>
+<codeline lineno="109" refid="struct_inertial_u_k_f_config_1ad073cad5f20265705a5e6aca242c80a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stSensorOrder[MAX_ST_VEH_COUNT];<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110" refid="struct_inertial_u_k_f_config_1a43f3ae4413cb6c26de1d3bd0d4a715f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>ClockTimeST[MAX_ST_VEH_COUNT];<sp/></highlight></codeline>
+<codeline lineno="111" refid="struct_inertial_u_k_f_config_1ae5ef067995ff2eeb47728203f4d12239" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isFreshST[MAX_ST_VEH_COUNT];<sp/></highlight></codeline>
+<codeline lineno="112" refid="struct_inertial_u_k_f_config_1a12c5577f664d31d656d3865d4c353a65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RWArrayConfigMsgPayload<sp/><ref refid="struct_inertial_u_k_f_config_1a12c5577f664d31d656d3865d4c353a65" kindref="member">rwConfigParams</ref>;<sp/></highlight></codeline>
+<codeline lineno="113" refid="struct_inertial_u_k_f_config_1a6b64e3ea15d2de523055d12010bbee8e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RWSpeedMsgPayload<sp/><ref refid="struct_inertial_u_k_f_config_1a6b64e3ea15d2de523055d12010bbee8e" kindref="member">rwSpeeds</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114" refid="struct_inertial_u_k_f_config_1abf859050eb71713bbbb2f6de758e44a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RWSpeedMsgPayload<sp/><ref refid="struct_inertial_u_k_f_config_1abf859050eb71713bbbb2f6de758e44a9" kindref="member">rwSpeedPrev</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115" refid="struct_inertial_u_k_f_config_1af43216985e94e289aba5f27f27657de5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_inertial_u_k_f_config_1af43216985e94e289aba5f27f27657de5" kindref="member">speedDt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116" refid="struct_inertial_u_k_f_config_1aa8c5cece73dacbda03d9dff56268d3cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><ref refid="struct_inertial_u_k_f_config_1aa8c5cece73dacbda03d9dff56268d3cb" kindref="member">timeWheelPrev</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117" refid="struct_inertial_u_k_f_config_1a82ddf2b96ca50d5e504f61bca39496c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>VehicleConfigMsgPayload<sp/><ref refid="struct_inertial_u_k_f_config_1a82ddf2b96ca50d5e504f61bca39496c4" kindref="member">localConfigData</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118" refid="struct_inertial_u_k_f_config_1ade7393e1081f937bcb02c525cec04c7e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>LowPassFilterData<sp/>gyroFilt[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="struct_inertial_u_k_f_config_1a6fa67ed43353db60b08546c355d94636" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_s_t_data_parsing" kindref="compound">STDataParsing</ref><sp/><ref refid="struct_inertial_u_k_f_config_1a6fa67ed43353db60b08546c355d94636" kindref="member">STDatasStruct</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="struct_inertial_u_k_f_config_1ae2f4f5f70c3232355e5c418f54d6239e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="struct_inertial_u_k_f_config_1ae2f4f5f70c3232355e5c418f54d6239e" kindref="member">bskLogger</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_inertialUKF(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Read_STMessages(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_inertialUKF(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_inertialUKF(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleId);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>inertialUKFAggGyrData(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>prevTime,</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>propTime,<sp/>AccDataMsgPayload<sp/>*gyrData);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>inertialUKFTimeUpdate(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>inertialUKFMeasUpdate(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentST);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>inertialUKFCleanUpdate(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>inertialStateProp(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateInOut,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>inertialUKFMeasModel(<ref refid="struct_inertial_u_k_f_config" kindref="compound">InertialUKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>currentST);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/InertialUKF/inertialUKF.h"/>
+  </compounddef>
+</doxygen>

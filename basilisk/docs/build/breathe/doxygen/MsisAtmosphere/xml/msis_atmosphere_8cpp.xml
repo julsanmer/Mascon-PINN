@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="msis_atmosphere_8cpp" kind="file" language="C++">
+    <compoundname>msisAtmosphere.cpp</compoundname>
+    <includes refid="msis_atmosphere_8h" local="yes">msisAtmosphere.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/geodeticConversion.h</includes>
+    <includes local="yes">simulation/dynamics/_GeneralModuleFiles/stateData.h</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/MsisAtmosphere/msisAtmosphere.cpp</label>
+        <link refid="msis_atmosphere_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>msisAtmosphere.h</label>
+        <link refid="msis_atmosphere_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>nrlmsise-00.h</label>
+        <link refid="nrlmsise-00_8h_source"/>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="7">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/SwDataMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/geodeticConversion.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="15">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="8">
+        <label>simulation/environment/_GeneralModuleFiles/atmosphereBase.h</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>time.h</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;msisAtmosphere.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/geodeticConversion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/dynamics/_GeneralModuleFiles/stateData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="class_msis_atmosphere_1a8b62d1647dada80c7d45557546e43b68" kindref="member">MsisAtmosphere::MsisAtmosphere</ref>()</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetRadius<sp/>=<sp/>REQ_EARTH*1000.;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>must<sp/>be<sp/>the<sp/>radius<sp/>of<sp/>Earth<sp/>for<sp/>MSIS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_msis_atmosphere_1a363336587991d3f1b329334a74b0018c" kindref="member">epochDoy</ref><sp/>=<sp/>-1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>negative<sp/>value<sp/>means<sp/>this<sp/>is<sp/>not<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;f107A<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;f107<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ap<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>apInd<sp/>=<sp/>0;<sp/>apInd<sp/>&lt;<sp/>7;<sp/>++apInd)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[apInd]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref><sp/>=<sp/>&amp;this-&gt;aph;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;updateInputParams();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisFlags.<ref refid="structnrlmsise__flags_1a08603cc3d19d7aec667d606e9541d62c" kindref="member">switches</ref>[0]<sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>switchInd<sp/>=<sp/>1;<sp/>switchInd<sp/>&lt;<sp/>24;<sp/>++switchInd){</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;msisFlags.<ref refid="structnrlmsise__flags_1a08603cc3d19d7aec667d606e9541d62c" kindref="member">switches</ref>[switchInd]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>other<sp/>required<sp/>interface<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>0;<sp/>c<sp/>&lt;<sp/>23;<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ReadFunctor&lt;SwDataMsgPayload&gt;<sp/>*msgIn;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msgIn<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ReadFunctor&lt;SwDataMsgPayload&gt;;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_msis_atmosphere_1a3422b0c8fad5ecc1b7f30dd1873f2bc6" kindref="member">swDataInMsgs</ref>.push_back(*msgIn);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>above<sp/>message<sp/>order<sp/>is</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/>-<sp/>ap_24_0</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/>-<sp/>ap_3_0</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/>-<sp/>ap_3_-3</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3<sp/>-<sp/>ap_3_-6</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/>-<sp/>ap_3_-9</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/>-<sp/>ap_3_-12</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6<sp/>-<sp/>ap_3_-15</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/>-<sp/>ap_3_-18</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8<sp/>-<sp/>ap_3_-21</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9<sp/>-<sp/>ap_3_-24</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/>-<sp/>ap_3_-27</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11<sp/>-<sp/>ap_3_-30</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12<sp/>-<sp/>ap_3_-33</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13<sp/>-<sp/>ap_3_-36</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>14<sp/>-<sp/>ap_3_-39</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15<sp/>-<sp/>ap_3_-42</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16<sp/>-<sp/>ap_3_-45</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>17<sp/>-<sp/>ap_3_-48</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>18<sp/>-<sp/>ap_3_-51</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>19<sp/>-<sp/>ap_3_-54</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>20<sp/>-<sp/>ap_3_-57</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>21<sp/>-<sp/>f107_1944_0</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>22<sp/>-<sp/>f107_24_-24</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"></highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><ref refid="class_msis_atmosphere_1ad1c4893527a8cb56eba31e146a6d00f4" kindref="member">MsisAtmosphere::~MsisAtmosphere</ref>()</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::customReset(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind<sp/>=<sp/>0;<sp/>ind<sp/>&lt;<sp/>23;<sp/>ind++)<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_msis_atmosphere_1a3422b0c8fad5ecc1b7f30dd1873f2bc6" kindref="member">swDataInMsgs</ref>[ind].isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_msis_atmosphere_1a91ec1e3bafae7536cfeac975964f65a9" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Required<sp/>MSIS<sp/>input<sp/>messages<sp/>No.<sp/>%d<sp/>are<sp/>not<sp/>connected.&quot;</highlight><highlight class="normal">,<sp/>ind);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::customSetEpochFromVariable()</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_msis_atmosphere_1a363336587991d3f1b329334a74b0018c" kindref="member">epochDoy</ref><sp/>&gt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>here<sp/>the<sp/>BSK<sp/>default<sp/>epoch<sp/>year<sp/>is<sp/>used<sp/>on<sp/>Jan<sp/>1,<sp/>mid-night,<sp/>and<sp/>the<sp/>requested<sp/>days<sp/>of<sp/>year<sp/>are<sp/>added<sp/>and<sp/>converted<sp/>to<sp/>a<sp/>proper<sp/>date-time<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;epochDateTime.tm_mday<sp/>=<sp/>this-&gt;<ref refid="class_msis_atmosphere_1a363336587991d3f1b329334a74b0018c" kindref="member">epochDoy</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>assumes<sp/>1<sp/>is<sp/>first<sp/>day<sp/>of<sp/>year</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mktime(&amp;this-&gt;epochDateTime);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::customWriteMessages(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[WIP]<sp/>-<sp/>Include<sp/>additional<sp/>outputs<sp/>for<sp/>other<sp/>MSISE<sp/>outputs<sp/>(species<sp/>count,<sp/>etc.)*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>MsisAtmosphere::customReadMessages(){</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>swRead<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>failCount<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>SwDataMsgPayload<sp/>tmpSwData;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;swDataList.clear();</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ind<sp/>=<sp/>0;<sp/>ind<sp/>&lt;<sp/>23;<sp/>ind++)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpSwData<sp/>=<sp/>this-&gt;<ref refid="class_msis_atmosphere_1a3422b0c8fad5ecc1b7f30dd1873f2bc6" kindref="member">swDataInMsgs</ref>.at(ind)();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>swRead<sp/>=<sp/>this-&gt;<ref refid="class_msis_atmosphere_1a3422b0c8fad5ecc1b7f30dd1873f2bc6" kindref="member">swDataInMsgs</ref>.at(ind).isWritten();</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(swRead)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;swDataList.push_back(tmpSwData);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>failCount<sp/>=<sp/>failCount<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(failCount<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>swRead<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(swRead);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::updateInputParams()</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a65c8e469eba33cd0661c438ab2aedcb6" kindref="member">ap</ref><sp/>=<sp/>this-&gt;ap;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[0]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[0];</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[1]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[1];</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[2]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[2];</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[3]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[3];</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[4]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[4];</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[5]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[5];</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a0b8480238d1b314fda577b3f5315a103" kindref="member">ap_a</ref>-&gt;<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[6]<sp/>=<sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[6];</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a067d86f0e8c35a6d2b3c9acf0d4a2b40" kindref="member">f107A</ref><sp/>=<sp/>this-&gt;f107A;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1aaf339ba3dc1807f2a606215c6ec99502" kindref="member">f107</ref><sp/>=<sp/>this-&gt;f107;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::updateSwIndices()</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ap<sp/>=<sp/>this-&gt;swDataList[0].dataValue;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[0]<sp/>=<sp/>this-&gt;swDataList[0].dataValue;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[1]<sp/>=<sp/>this-&gt;swDataList[1].dataValue;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[2]<sp/>=<sp/>this-&gt;swDataList[2].dataValue;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[3]<sp/>=<sp/>this-&gt;swDataList[3].dataValue;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[4]<sp/>=<sp/>this-&gt;swDataList[4].dataValue;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>mth;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tmp_avg<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(mth<sp/>=<sp/>5;<sp/>mth<sp/>&lt;<sp/>13;<sp/>mth++){</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp_avg<sp/>=<sp/>tmp_avg<sp/>+<sp/>this-&gt;swDataList[mth].dataValue;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[5]<sp/>=<sp/>tmp_avg/8.0;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>nth;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>tmp_avg<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(nth<sp/>=<sp/>13;<sp/>nth<sp/>&lt;<sp/>21;<sp/>nth++){</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp_avg<sp/>=<sp/>tmp_avg<sp/>+<sp/>this-&gt;swDataList[nth].dataValue;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aph.<ref refid="structap__array_1ad1605349092b6119aa5f8312dcf7a1c9" kindref="member">a</ref>[6]<sp/>=<sp/>tmp_avg/8.0;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;f107A<sp/>=<sp/>this-&gt;swDataList[21].dataValue;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;f107<sp/>=<sp/>this-&gt;swDataList[22].dataValue;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MsisAtmosphere::evaluateAtmosphereModel(AtmoPropsMsgPayload<sp/>*msg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime)</highlight></codeline>
+<codeline lineno="212"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;updateSwIndices();</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;updateInputParams();</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;currentLLA<sp/>=<sp/>PCI2LLA(this-&gt;r_BP_N,<sp/>this-&gt;planetState.J20002Pfix,<sp/>this-&gt;planetRadius);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1ae3919a79645584e3cf537a82a958b734" kindref="member">g_lat</ref><sp/>=<sp/>R2D*this-&gt;currentLLA[0];</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a7bd53a112c70d2ccbab37096541dd4bc" kindref="member">g_long</ref><sp/>=<sp/>R2D*this-&gt;currentLLA[1];</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a102b283f83c88896582614654330d4d7" kindref="member">alt</ref><sp/>=<sp/>this-&gt;currentLLA[2]/1000.0;<sp/></highlight><highlight class="comment">//<sp/>NRLMSISE<sp/>Altitude<sp/>input<sp/>must<sp/>be<sp/>in<sp/>kilometers!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm<sp/>localDateTime;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>date/time<sp/>structure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>localDateTime<sp/>=<sp/>this-&gt;epochDateTime;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>localDateTime.tm_sec<sp/>+=<sp/>(int)<sp/>currentTime;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sets<sp/>the<sp/>current<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>mktime(&amp;localDateTime);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a32893d62ceca558ccfb7e34789ea9536" kindref="member">year</ref><sp/>=<sp/>localDateTime.tm_year<sp/>+<sp/>1900;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a81329554920ba6f7180d427ab7a3b907" kindref="member">doy</ref><sp/>=<sp/>localDateTime.tm_yday<sp/>+<sp/>1;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Jan<sp/>1<sp/>is<sp/>the<sp/>1st<sp/>day<sp/>of<sp/>year,<sp/>not<sp/>0th</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fracSecond<sp/>=<sp/>currentTime<sp/>-<sp/>(int)<sp/>currentTime;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a696afdcb8f4f94993f5a88e29c1b7a68" kindref="member">sec</ref><sp/>=<sp/>localDateTime.tm_hour<sp/>*<sp/>3600.0<sp/>+<sp/>localDateTime.tm_min<sp/>*<sp/>60.0<sp/>+<sp/>localDateTime.tm_sec<sp/>+<sp/>fracSecond;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>WIP<sp/>-<sp/>need<sp/>to<sp/>actually<sp/>figure<sp/>out<sp/>how<sp/>to<sp/>pull<sp/>in<sp/>these<sp/>values.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1ac41fa549d9cfb5f0f4b93c744d9225ce" kindref="member">lst</ref><sp/>=<sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a696afdcb8f4f94993f5a88e29c1b7a68" kindref="member">sec</ref>/3600.0<sp/>+<sp/>this-&gt;msisInput.<ref refid="structnrlmsise__input_1a7bd53a112c70d2ccbab37096541dd4bc" kindref="member">g_long</ref>/15.0;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;msisInput.<ref refid="structnrlmsise__input_1a102b283f83c88896582614654330d4d7" kindref="member">alt</ref><sp/>&lt;<sp/>500.0){</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gtd7(&amp;this-&gt;msisInput,<sp/>\</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;this-&gt;msisFlags,<sp/>\</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;this-&gt;msisOutput);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>GTD7D<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>This<sp/>subroutine<sp/>provides<sp/>Effective<sp/>Total<sp/>Mass<sp/>Density<sp/>for<sp/>output</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>d[5]<sp/>which<sp/>includes<sp/>contributions<sp/>from<sp/>&quot;anomalous<sp/>oxygen&quot;<sp/>which<sp/>can</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>affect<sp/>satellite<sp/>drag<sp/>above<sp/>500<sp/>km.<sp/>See<sp/>the<sp/>section<sp/>&quot;output&quot;<sp/>for</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>additional<sp/>details.</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;msisInput.<ref refid="structnrlmsise__input_1a102b283f83c88896582614654330d4d7" kindref="member">alt</ref><sp/>&gt;=<sp/>500.0){</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gtd7d(&amp;this-&gt;msisInput,<sp/>\</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;this-&gt;msisFlags,<sp/>\</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;this-&gt;msisOutput);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>msg-&gt;neutralDensity<sp/>=<sp/>this-&gt;msisOutput.<ref refid="structnrlmsise__output_1a0fbe7cecfa980ddcb14158562bbecc23" kindref="member">d</ref>[5];</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>msg-&gt;localTemp<sp/>=<sp/>this-&gt;msisOutput.<ref refid="structnrlmsise__output_1a7493c9e5f3a257f33cec0eb5bbb2d745" kindref="member">t</ref>[1];</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/MsisAtmosphere/msisAtmosphere.cpp"/>
+  </compounddef>
+</doxygen>

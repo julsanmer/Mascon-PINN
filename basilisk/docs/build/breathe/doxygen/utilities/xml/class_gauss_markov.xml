@@ -1,0 +1,407 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_gauss_markov" kind="class" language="C++" prot="public">
+    <compoundname>GaussMarkov</compoundname>
+    <includes refid="gauss__markov_8h" local="no">gauss_markov.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_gauss_markov_1ac2f89fc01b969731d4bcf422759e089c" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd GaussMarkov::stateBounds</definition>
+        <argsstring></argsstring>
+        <name>stateBounds</name>
+        <qualifiedname>GaussMarkov::stateBounds</qualifiedname>
+        <briefdescription>
+<para><ndash/> Upper bounds to use for markov </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="69" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1a47515c59e3631cc0f28f94fd8715cc77" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd GaussMarkov::currentState</definition>
+        <argsstring></argsstring>
+        <name>currentState</name>
+        <qualifiedname>GaussMarkov::currentState</qualifiedname>
+        <briefdescription>
+<para><ndash/> State of the markov model </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="70" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1afe03833bdc5e43a6394870468e645726" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd GaussMarkov::propMatrix</definition>
+        <argsstring></argsstring>
+        <name>propMatrix</name>
+        <qualifiedname>GaussMarkov::propMatrix</qualifiedname>
+        <briefdescription>
+<para><ndash/> Matrix to propagate error state with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="71" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1a73009f39d3b4b2c97e937ee8887422ab" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd GaussMarkov::noiseMatrix</definition>
+        <argsstring></argsstring>
+        <name>noiseMatrix</name>
+        <qualifiedname>GaussMarkov::noiseMatrix</qualifiedname>
+        <briefdescription>
+<para><ndash/> Cholesky-decomposition or matrix square root of the covariance matrix to apply errors with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="72" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1a354e6ccc2332f93335e8b81d4bbc79d9" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger GaussMarkov::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>GaussMarkov::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="73" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_gauss_markov_1a107b9a36bb842c218220c528befaf173" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t GaussMarkov::RNGSeed</definition>
+        <argsstring></argsstring>
+        <name>RNGSeed</name>
+        <qualifiedname>GaussMarkov::RNGSeed</qualifiedname>
+        <briefdescription>
+<para><ndash/> Seed for random number generator </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="76" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1a559cef9d324a8b0a261d358d19f22095" prot="private" static="no" mutable="no">
+        <type>std::minstd_rand</type>
+        <definition>std::minstd_rand GaussMarkov::rGen</definition>
+        <argsstring></argsstring>
+        <name>rGen</name>
+        <qualifiedname>GaussMarkov::rGen</qualifiedname>
+        <briefdescription>
+<para><ndash/> Random number generator for model </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="77" column="22" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1aac11c1841ca5b57e7c0cc59ae7f782ac" prot="private" static="no" mutable="no">
+        <type>std::normal_distribution&lt; double &gt;</type>
+        <definition>std::normal_distribution&lt;double&gt; GaussMarkov::rNum</definition>
+        <argsstring></argsstring>
+        <name>rNum</name>
+        <qualifiedname>GaussMarkov::rNum</qualifiedname>
+        <briefdescription>
+<para><ndash/> Random number distribution for model </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="78" column="30" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gauss_markov_1a53bca4fd300212ae06e86cf83b4f8185" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t GaussMarkov::numStates</definition>
+        <argsstring></argsstring>
+        <name>numStates</name>
+        <qualifiedname>GaussMarkov::numStates</qualifiedname>
+        <briefdescription>
+<para><ndash/> Number of states to generate noise for </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="79" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_gauss_markov_1a2dbbd8931027f0679b08f538dcafbd09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GaussMarkov::GaussMarkov</definition>
+        <argsstring>()</argsstring>
+        <name>GaussMarkov</name>
+        <qualifiedname>GaussMarkov::GaussMarkov</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The constructor initialies the random number generator used for the walks </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="40" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.cpp" bodystart="26" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a4fd7cac938a3b9a02150f9c8a5c201d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GaussMarkov::GaussMarkov</definition>
+        <argsstring>(uint64_t size, uint64_t newSeed=0x1badcad1)</argsstring>
+        <name>GaussMarkov</name>
+        <qualifiedname>GaussMarkov::GaussMarkov</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>newSeed</declname>
+          <defval>0x1badcad1</defval>
+        </param>
+        <briefdescription>
+<para>class constructor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="41" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.cpp" bodystart="34" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a0cdb905c228b3754ef8e8b2ac57cb33e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GaussMarkov::~GaussMarkov</definition>
+        <argsstring>()</argsstring>
+        <name>~GaussMarkov</name>
+        <qualifiedname>GaussMarkov::~GaussMarkov</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The destructor is a placeholder for one that might do something </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="42" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.cpp" bodystart="49" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a4d86a8d558d36400b50a8452640c2499" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaussMarkov::computeNextState</definition>
+        <argsstring>()</argsstring>
+        <name>computeNextState</name>
+        <qualifiedname>GaussMarkov::computeNextState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs almost all of the work for the Gauss Markov random walk. It uses the current random walk configuration, propagates the current state, and then applies appropriate errors to the states to set the current error level. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Check for consistent sizes on all of the user-settable matrices. Quit if they don&apos;t match.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Propagate the state forward in time using the propMatrix and the currentState</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the random numbers used for each state. Note that the same generator is used for all</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Apply the noise matrix to the random numbers to get error values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Add the new errors to the currentState to get a good currentState</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.cpp" bodystart="59" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a99cef7a45bf96445db829d8f17de5894" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaussMarkov::setRNGSeed</definition>
+        <argsstring>(uint64_t newSeed)</argsstring>
+        <name>setRNGSeed</name>
+        <qualifiedname>GaussMarkov::setRNGSeed</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>newSeed</declname>
+        </param>
+        <briefdescription>
+<para>Method does just what it says, seeds the random number generator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newSeed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The seed to use in the random number generator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="48" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1aed2dbd2ef957e2086b0d2bea747eeaf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd GaussMarkov::getCurrentState</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentState</name>
+        <qualifiedname>GaussMarkov::getCurrentState</qualifiedname>
+        <briefdescription>
+<para>Method returns the current random walk state from model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The private currentState which is the vector of random walk values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="52" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a5d977bea3747c4f55a7edd1e0ed90002" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaussMarkov::setUpperBounds</definition>
+        <argsstring>(Eigen::VectorXd newBounds)</argsstring>
+        <name>setUpperBounds</name>
+        <qualifiedname>GaussMarkov::setUpperBounds</qualifiedname>
+        <param>
+          <type>Eigen::VectorXd</type>
+          <declname>newBounds</declname>
+        </param>
+        <briefdescription>
+<para>Set the upper bounds on the random walk to newBounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newBounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the bounds to put on the random walk states </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a89f0fb90efd06d38733f39935107cff8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaussMarkov::setNoiseMatrix</definition>
+        <argsstring>(Eigen::MatrixXd noise)</argsstring>
+        <name>setNoiseMatrix</name>
+        <qualifiedname>GaussMarkov::setNoiseMatrix</qualifiedname>
+        <param>
+          <type>Eigen::MatrixXd</type>
+          <declname>noise</declname>
+        </param>
+        <briefdescription>
+<para>Set the noiseMatrix that is used to define error sigmas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>noise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new value to use for the noiseMatrix variable (error sigmas) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="62" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gauss_markov_1a9b38c2c9093d6da873dd18e836cc04f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GaussMarkov::setPropMatrix</definition>
+        <argsstring>(Eigen::MatrixXd prop)</argsstring>
+        <name>setPropMatrix</name>
+        <qualifiedname>GaussMarkov::setPropMatrix</qualifiedname>
+        <param>
+          <type>Eigen::MatrixXd</type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Set the propagation matrix that is used to propagate the state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new value for the state propagation matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="67" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>This module is used to apply a second-order bounded Gauss-Markov random walk on top of an upper level process. The intent is that the caller will perform the set methods (setUpperBounds, setNoiseMatrix, setPropMatrix) as often as they need to, call computeNextState, and then call getCurrentState cyclically. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" line="36" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/gauss_markov.h" bodystart="37" bodyend="80"/>
+    <listofallmembers>
+      <member refid="class_gauss_markov_1a354e6ccc2332f93335e8b81d4bbc79d9" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>bskLogger</name></member>
+      <member refid="class_gauss_markov_1a4d86a8d558d36400b50a8452640c2499" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>computeNextState</name></member>
+      <member refid="class_gauss_markov_1a47515c59e3631cc0f28f94fd8715cc77" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>currentState</name></member>
+      <member refid="class_gauss_markov_1a2dbbd8931027f0679b08f538dcafbd09" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>GaussMarkov</name></member>
+      <member refid="class_gauss_markov_1a4fd7cac938a3b9a02150f9c8a5c201d3" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>GaussMarkov</name></member>
+      <member refid="class_gauss_markov_1aed2dbd2ef957e2086b0d2bea747eeaf6" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>getCurrentState</name></member>
+      <member refid="class_gauss_markov_1a73009f39d3b4b2c97e937ee8887422ab" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>noiseMatrix</name></member>
+      <member refid="class_gauss_markov_1a53bca4fd300212ae06e86cf83b4f8185" prot="private" virt="non-virtual"><scope>GaussMarkov</scope><name>numStates</name></member>
+      <member refid="class_gauss_markov_1afe03833bdc5e43a6394870468e645726" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>propMatrix</name></member>
+      <member refid="class_gauss_markov_1a559cef9d324a8b0a261d358d19f22095" prot="private" virt="non-virtual"><scope>GaussMarkov</scope><name>rGen</name></member>
+      <member refid="class_gauss_markov_1a107b9a36bb842c218220c528befaf173" prot="private" virt="non-virtual"><scope>GaussMarkov</scope><name>RNGSeed</name></member>
+      <member refid="class_gauss_markov_1aac11c1841ca5b57e7c0cc59ae7f782ac" prot="private" virt="non-virtual"><scope>GaussMarkov</scope><name>rNum</name></member>
+      <member refid="class_gauss_markov_1a89f0fb90efd06d38733f39935107cff8" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>setNoiseMatrix</name></member>
+      <member refid="class_gauss_markov_1a9b38c2c9093d6da873dd18e836cc04f7" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>setPropMatrix</name></member>
+      <member refid="class_gauss_markov_1a99cef7a45bf96445db829d8f17de5894" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>setRNGSeed</name></member>
+      <member refid="class_gauss_markov_1a5d977bea3747c4f55a7edd1e0ed90002" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>setUpperBounds</name></member>
+      <member refid="class_gauss_markov_1ac2f89fc01b969731d4bcf422759e089c" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>stateBounds</name></member>
+      <member refid="class_gauss_markov_1a0cdb905c228b3754ef8e8b2ac57cb33e" prot="public" virt="non-virtual"><scope>GaussMarkov</scope><name>~GaussMarkov</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

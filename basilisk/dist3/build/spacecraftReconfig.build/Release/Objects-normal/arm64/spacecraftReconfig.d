@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftReconfig/spacecraftReconfig.c \
+  /Users/julio/Desktop/basilisk/src/fswAlgorithms/formationFlying/spacecraftReconfig/spacecraftReconfig.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/NavTransMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/NavTransMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/msgHeader.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/THRArrayConfigMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/THRArrayConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/macroDefinitions.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/THRConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/AttRefMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/AttRefMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/THRArrayOnTimeCmdMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/THRArrayOnTimeCmdMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/VehicleConfigMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/VehicleConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/ReconfigBurnArrayInfoMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/ReconfigBurnArrayInfoMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/ReconfigBurnInfoMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/bskLogging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/ClassicElementsMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/linearAlgebra.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/astroConstants.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/rigidBodyKinematics.h

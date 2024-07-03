@@ -1,0 +1,704 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_fuel_tank" kind="class" language="C++" prot="public">
+    <compoundname>FuelTank</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">StateEffector</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="fuel_tank_8h" local="no">fuelTank.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_fuel_tank_1a48a0b222262a22c957aa86c6f21218b5" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string FuelTank::nameOfMassState</definition>
+        <argsstring></argsstring>
+        <name>nameOfMassState</name>
+        <qualifiedname>FuelTank::nameOfMassState</qualifiedname>
+        <briefdescription>
+<para><ndash/> name of mass state </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="255" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a14cd144b8f2b0c713dd73e9f8e3e6114" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; FuelSlosh * &gt;</type>
+        <definition>std::vector&lt;FuelSlosh*&gt; FuelTank::fuelSloshParticles</definition>
+        <argsstring></argsstring>
+        <name>fuelSloshParticles</name>
+        <qualifiedname>FuelTank::fuelSloshParticles</qualifiedname>
+        <briefdescription>
+<para><ndash/> vector of fuel slosh particles </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="256" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1ad8c0d14b72cee4a6998dd8974cf5e83c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; DynamicEffector * &gt;</type>
+        <definition>std::vector&lt;DynamicEffector*&gt; FuelTank::dynEffectors</definition>
+        <argsstring></argsstring>
+        <name>dynEffectors</name>
+        <qualifiedname>FuelTank::dynEffectors</qualifiedname>
+        <briefdescription>
+<para><ndash/> Vector of dynamic effectors for thrusters </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="257" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="257" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a0f220b34b394b311857339c6d2b5e69f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; StateEffector * &gt;</type>
+        <definition>std::vector&lt;StateEffector*&gt; FuelTank::stateEffectors</definition>
+        <argsstring></argsstring>
+        <name>stateEffectors</name>
+        <qualifiedname>FuelTank::stateEffectors</qualifiedname>
+        <briefdescription>
+<para><ndash/> Vector of state effectors for thrusters </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="258" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a374f11b1f9f9d56dac898dc561659d0a" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d FuelTank::dcm_TB</definition>
+        <argsstring></argsstring>
+        <name>dcm_TB</name>
+        <qualifiedname>FuelTank::dcm_TB</qualifiedname>
+        <briefdescription>
+<para><ndash/> DCM from body frame to tank frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="259" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a92b3cbb3baa7d7bf3e9680fc50b7706e" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTank::r_TB_B</definition>
+        <argsstring></argsstring>
+        <name>r_TB_B</name>
+        <qualifiedname>FuelTank::r_TB_B</qualifiedname>
+        <briefdescription>
+<para>[m] position of tank in B frame </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="260" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a1e002ef28598119d235f04bfd23393b1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool FuelTank::updateOnly</definition>
+        <argsstring></argsstring>
+        <name>updateOnly</name>
+        <qualifiedname>FuelTank::updateOnly</qualifiedname>
+        <briefdescription>
+<para><ndash/> Sets whether to use update only mass depletion </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="261" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="261" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a12f6672d8be27ff123582a13538c1bac" prot="public" static="no" mutable="no">
+        <type>Message&lt; FuelTankMsgPayload &gt;</type>
+        <definition>Message&lt;FuelTankMsgPayload&gt; FuelTank::fuelTankOutMsg</definition>
+        <argsstring></argsstring>
+        <name>fuelTankOutMsg</name>
+        <qualifiedname>FuelTank::fuelTankOutMsg</qualifiedname>
+        <briefdescription>
+<para><ndash/> fuel tank output message name </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="262" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a4ba35c6fd7d1d96c00eca65aba13f7c8" prot="public" static="no" mutable="no">
+        <type>FuelTankMsgPayload</type>
+        <definition>FuelTankMsgPayload FuelTank::fuelTankMassPropMsg</definition>
+        <argsstring></argsstring>
+        <name>fuelTankMassPropMsg</name>
+        <qualifiedname>FuelTank::fuelTankMassPropMsg</qualifiedname>
+        <briefdescription>
+<para>instance of messaging system message struct </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="263" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a5ba49df70e604093344ea500a20e9f6d" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger FuelTank::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>FuelTank::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="264" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="264" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_fuel_tank_1a2e7e09d5a5a98a7627af88b5299246a4" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* FuelTank::omegaState</definition>
+        <argsstring></argsstring>
+        <name>omegaState</name>
+        <qualifiedname>FuelTank::omegaState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for omega_BN of the hub </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="267" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1ae51ed21260c3d993abe1f42c94e59a66" prot="private" static="no" mutable="no">
+        <type>StateData *</type>
+        <definition>StateData* FuelTank::massState</definition>
+        <argsstring></argsstring>
+        <name>massState</name>
+        <qualifiedname>FuelTank::massState</qualifiedname>
+        <briefdescription>
+<para><ndash/> state data for mass state </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="268" column="11" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="268" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1ac02d866549c8c93c60a06af302b586e6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double FuelTank::fuelConsumption</definition>
+        <argsstring></argsstring>
+        <name>fuelConsumption</name>
+        <qualifiedname>FuelTank::fuelConsumption</qualifiedname>
+        <briefdescription>
+<para>[kg/s] rate of fuel being consumed </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="269" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="269" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a3856d27e354cb52aa6f306e5f89f0292" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double FuelTank::tankFuelConsumption</definition>
+        <argsstring></argsstring>
+        <name>tankFuelConsumption</name>
+        <qualifiedname>FuelTank::tankFuelConsumption</qualifiedname>
+        <briefdescription>
+<para>[kg/s] rate of fuel being consumed from tank </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="270" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="270" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1ac9f1d14ef26edba780d74114e570469b" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_fuel_tank_model" kindref="compound">FuelTankModel</ref> *</type>
+        <definition>FuelTankModel* FuelTank::fuelTankModel</definition>
+        <argsstring></argsstring>
+        <name>fuelTankModel</name>
+        <qualifiedname>FuelTank::fuelTankModel</qualifiedname>
+        <briefdescription>
+<para><ndash/> style of tank to simulate </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="271" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="271" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a71a89f435541b4b929e1f7c8ebd75312" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d FuelTank::ITankPntT_B</definition>
+        <argsstring></argsstring>
+        <name>ITankPntT_B</name>
+        <qualifiedname>FuelTank::ITankPntT_B</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="272" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_fuel_tank_1a628a08c8727059a8851ba5f09e3626d1" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTank::r_TcB_B</definition>
+        <argsstring></argsstring>
+        <name>r_TcB_B</name>
+        <qualifiedname>FuelTank::r_TcB_B</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="273" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="273" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_fuel_tank_1afadb10fe00a9ec88dd89485b4c8d943a" prot="private" static="yes" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t FuelTank::effectorID</definition>
+        <argsstring></argsstring>
+        <name>effectorID</name>
+        <qualifiedname>FuelTank::effectorID</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>[] ID number of this panel </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="274" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="274" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_fuel_tank_1a4bfec5f737e567e59a04ac576b6878c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FuelTank::FuelTank</definition>
+        <argsstring>()</argsstring>
+        <name>FuelTank</name>
+        <qualifiedname>FuelTank::FuelTank</qualifiedname>
+        <briefdescription>
+<para><ndash/> Contructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the constructor, setting variables to default values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="277" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="39" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a83355206bc3371dd41284355f6f48346" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FuelTank::~FuelTank</definition>
+        <argsstring>()</argsstring>
+        <name>~FuelTank</name>
+        <qualifiedname>FuelTank::~FuelTank</qualifiedname>
+        <briefdescription>
+<para><ndash/> Destructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the destructor, nothing to report here </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="278" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="61" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a101e60cd01d1f51e5bd705e7646a5f38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::WriteOutputMessages</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>WriteOutputMessages</name>
+        <qualifiedname>FuelTank::WriteOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the computed fuel tank mass properties and outputs them to the messaging system. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentClock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time (used for time stamping) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="279" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="229" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a7626aa8dc00c5c14e270f2e90cf668f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>FuelTank::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the fuel tank to write out its messages to the messaging system <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time in nanoseconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="280" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="242" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a81fd292a5e9222ab5fc6a938c10ebd95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::setTankModel</definition>
+        <argsstring>(FuelTankModelTypes model)</argsstring>
+        <name>setTankModel</name>
+        <qualifiedname>FuelTank::setTankModel</qualifiedname>
+        <param>
+          <type>FuelTankModelTypes</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>set fuel tank model <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>model</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fuel tank model type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="281" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="72" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1abecb586393dd13538c80b9b1a75402f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::pushFuelSloshParticle</definition>
+        <argsstring>(FuelSlosh *particle)</argsstring>
+        <name>pushFuelSloshParticle</name>
+        <qualifiedname>FuelTank::pushFuelSloshParticle</qualifiedname>
+        <param>
+          <type>FuelSlosh *</type>
+          <declname>particle</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to attach fuel slosh particle </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is a method to attach a fuel slosh particle to the tank </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="282" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="79" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1af8230fbe66aa3cfc22fe12428fdff74f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::registerStates</definition>
+        <argsstring>(DynParamManager &amp;states)</argsstring>
+        <name>registerStates</name>
+        <qualifiedname>FuelTank::registerStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>states</declname>
+          <defname>statesIn</defname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to register mass state with state manager </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Method for fuel tank to register states. The fuel tank has one state associated with it: mass, and it also has the responsibility to call register states for the fuel slosh particles </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="283" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="98" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a38ee1270ce468a773a3d2d4e009d6fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::linkInStates</definition>
+        <argsstring>(DynParamManager &amp;states)</argsstring>
+        <name>linkInStates</name>
+        <qualifiedname>FuelTank::linkInStates</qualifiedname>
+        <param>
+          <type>DynParamManager &amp;</type>
+          <declname>states</declname>
+          <defname>statesIn</defname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to give the tank access to other states </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Method for fuel tank to access the states that it needs, needs omega </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="284" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="88" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a892ce2469391c9b8f9016ce2909e105b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::updateEffectorMassProps</definition>
+        <argsstring>(double integTime)</argsstring>
+        <name>updateEffectorMassProps</name>
+        <qualifiedname>FuelTank::updateEffectorMassProps</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to add contribtution mass props from the tank </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method gives the fuel tank the ability to add its contributions the mass of the vehicle. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Mass depletion (call thrusters attached to this tank to get their mDot, and contributions)</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="285" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="110" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1ac9991729a3481c648a8930cae733c1ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::addThrusterSet</definition>
+        <argsstring>(DynamicEffector *NewdynEff)</argsstring>
+        <name>addThrusterSet</name>
+        <qualifiedname>FuelTank::addThrusterSet</qualifiedname>
+        <param>
+          <type>DynamicEffector *</type>
+          <declname>NewdynEff</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to add dynamic thruster </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="286" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a0011e764b78b3b9eedee47055589ba82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void FuelTank::addThrusterSet</definition>
+        <argsstring>(StateEffector *NewstateEff)</argsstring>
+        <name>addThrusterSet</name>
+        <qualifiedname>FuelTank::addThrusterSet</qualifiedname>
+        <param>
+          <type>StateEffector *</type>
+          <declname>NewstateEff</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method to add state thruster </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="287" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="287" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1aa174782290b6230ff6dfd82884582d83" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void FuelTank::updateContributions</definition>
+        <argsstring>(double integTime, BackSubMatrices &amp;backSubContr, Eigen::Vector3d sigma_BN, Eigen::Vector3d omega_BN_B, Eigen::Vector3d g_N)</argsstring>
+        <name>updateContributions</name>
+        <qualifiedname>FuelTank::updateContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>BackSubMatrices &amp;</type>
+          <declname>backSubContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>g_N</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Back-sub contributions </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the fuel tank to add its contributions to the matrices for the back-sub method. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="288" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="166" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a7224db83104f6dec425ce2f2fe089840" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void FuelTank::updateEnergyMomContributions</definition>
+        <argsstring>(double integTime, Eigen::Vector3d &amp;rotAngMomPntCContr_B, double &amp;rotEnergyContr, Eigen::Vector3d omega_BN_B)</argsstring>
+        <name>updateEnergyMomContributions</name>
+        <qualifiedname>FuelTank::updateEnergyMomContributions</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d &amp;</type>
+          <declname>rotAngMomPntCContr_B</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>rotEnergyContr</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omega_BN_B</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Energy and momentum calculations </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the fuel tank to contribute to the energy and momentum calculations </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="289" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="205" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="class_fuel_tank_1a0c52e8a3233ef3791a022fa9b026da3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void FuelTank::computeDerivatives</definition>
+        <argsstring>(double integTime, Eigen::Vector3d rDDot_BN_N, Eigen::Vector3d omegaDot_BN_B, Eigen::Vector3d sigma_BN)</argsstring>
+        <name>computeDerivatives</name>
+        <qualifiedname>FuelTank::computeDerivatives</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>integTime</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>rDDot_BN_N</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>omegaDot_BN_B</declname>
+        </param>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>sigma_BN</declname>
+        </param>
+        <briefdescription>
+<para><ndash/> Method for each stateEffector to calculate derivatives </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method allows the fuel tank to compute its derivative </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="291" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.cpp" bodystart="195" bodyend="202"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>fuel tank model class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FuelTank</label>
+        <link refid="class_fuel_tank"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>FuelTank</label>
+        <link refid="class_fuel_tank"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>StateEffector</label>
+      </node>
+      <node id="3">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="251" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="253" bodyend="292"/>
+    <listofallmembers>
+      <member refid="class_fuel_tank_1ac9991729a3481c648a8930cae733c1ff" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>addThrusterSet</name></member>
+      <member refid="class_fuel_tank_1a0011e764b78b3b9eedee47055589ba82" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>addThrusterSet</name></member>
+      <member refid="class_fuel_tank_1a5ba49df70e604093344ea500a20e9f6d" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>bskLogger</name></member>
+      <member refid="class_fuel_tank_1a0c52e8a3233ef3791a022fa9b026da3e" prot="public" virt="virtual"><scope>FuelTank</scope><name>computeDerivatives</name></member>
+      <member refid="class_fuel_tank_1a374f11b1f9f9d56dac898dc561659d0a" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>dcm_TB</name></member>
+      <member refid="class_fuel_tank_1ad8c0d14b72cee4a6998dd8974cf5e83c" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>dynEffectors</name></member>
+      <member refid="class_fuel_tank_1afadb10fe00a9ec88dd89485b4c8d943a" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>effectorID</name></member>
+      <member refid="class_fuel_tank_1ac02d866549c8c93c60a06af302b586e6" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>fuelConsumption</name></member>
+      <member refid="class_fuel_tank_1a14cd144b8f2b0c713dd73e9f8e3e6114" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>fuelSloshParticles</name></member>
+      <member refid="class_fuel_tank_1a4bfec5f737e567e59a04ac576b6878c9" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>FuelTank</name></member>
+      <member refid="class_fuel_tank_1a4ba35c6fd7d1d96c00eca65aba13f7c8" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>fuelTankMassPropMsg</name></member>
+      <member refid="class_fuel_tank_1ac9f1d14ef26edba780d74114e570469b" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>fuelTankModel</name></member>
+      <member refid="class_fuel_tank_1a12f6672d8be27ff123582a13538c1bac" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>fuelTankOutMsg</name></member>
+      <member refid="class_fuel_tank_1a71a89f435541b4b929e1f7c8ebd75312" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>ITankPntT_B</name></member>
+      <member refid="class_fuel_tank_1a38ee1270ce468a773a3d2d4e009d6fc1" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>linkInStates</name></member>
+      <member refid="class_fuel_tank_1ae51ed21260c3d993abe1f42c94e59a66" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>massState</name></member>
+      <member refid="class_fuel_tank_1a48a0b222262a22c957aa86c6f21218b5" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>nameOfMassState</name></member>
+      <member refid="class_fuel_tank_1a2e7e09d5a5a98a7627af88b5299246a4" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>omegaState</name></member>
+      <member refid="class_fuel_tank_1abecb586393dd13538c80b9b1a75402f4" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>pushFuelSloshParticle</name></member>
+      <member refid="class_fuel_tank_1a92b3cbb3baa7d7bf3e9680fc50b7706e" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>r_TB_B</name></member>
+      <member refid="class_fuel_tank_1a628a08c8727059a8851ba5f09e3626d1" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>r_TcB_B</name></member>
+      <member refid="class_fuel_tank_1af8230fbe66aa3cfc22fe12428fdff74f" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>registerStates</name></member>
+      <member refid="class_fuel_tank_1a81fd292a5e9222ab5fc6a938c10ebd95" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>setTankModel</name></member>
+      <member refid="class_fuel_tank_1a0f220b34b394b311857339c6d2b5e69f" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>stateEffectors</name></member>
+      <member refid="class_fuel_tank_1a3856d27e354cb52aa6f306e5f89f0292" prot="private" virt="non-virtual"><scope>FuelTank</scope><name>tankFuelConsumption</name></member>
+      <member refid="class_fuel_tank_1aa174782290b6230ff6dfd82884582d83" prot="public" virt="virtual"><scope>FuelTank</scope><name>updateContributions</name></member>
+      <member refid="class_fuel_tank_1a892ce2469391c9b8f9016ce2909e105b" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>updateEffectorMassProps</name></member>
+      <member refid="class_fuel_tank_1a7224db83104f6dec425ce2f2fe089840" prot="public" virt="virtual"><scope>FuelTank</scope><name>updateEnergyMomContributions</name></member>
+      <member refid="class_fuel_tank_1a1e002ef28598119d235f04bfd23393b1" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>updateOnly</name></member>
+      <member refid="class_fuel_tank_1a7626aa8dc00c5c14e270f2e90cf668f8" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>UpdateState</name></member>
+      <member refid="class_fuel_tank_1a101e60cd01d1f51e5bd705e7646a5f38" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>WriteOutputMessages</name></member>
+      <member refid="class_fuel_tank_1a83355206bc3371dd41284355f6f48346" prot="public" virt="non-virtual"><scope>FuelTank</scope><name>~FuelTank</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

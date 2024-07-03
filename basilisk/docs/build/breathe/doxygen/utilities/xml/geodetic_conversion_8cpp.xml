@@ -1,0 +1,533 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="geodetic_conversion_8cpp" kind="file" language="C++">
+    <compoundname>geodeticConversion.cpp</compoundname>
+    <includes refid="geodetic_conversion_8h" local="yes">geodeticConversion.h</includes>
+    <includes refid="rigid_body_kinematics_8h" local="yes">rigidBodyKinematics.h</includes>
+    <includes refid="avs_eigen_support_8h" local="yes">avsEigenSupport.h</includes>
+    <incdepgraph>
+      <node id="8">
+        <label>avsEigenMRP.h</label>
+        <link refid="avs_eigen_m_r_p_8h_source"/>
+      </node>
+      <node id="7">
+        <label>avsEigenSupport.h</label>
+        <link refid="avs_eigen_support_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+        <link refid="bsk_logging_8h_source"/>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp</label>
+        <link refid="geodetic_conversion_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>geodeticConversion.h</label>
+        <link refid="geodetic_conversion_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>rigidBodyKinematics.h</label>
+        <link refid="rigid_body_kinematics_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1a9b64d09d9abd12b1461c31dd7a278876" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCI2PCPF</definition>
+        <argsstring>(Eigen::Vector3d pciPosition, double J20002Pfix[3][3])</argsstring>
+        <name>PCI2PCPF</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pciPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+<para>Collection of utility functions for converting in/out of planet-centric reference frames. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered inertial position (i.e., J2000 ECI) to a planet-centered, planet-fixed position given a rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pciPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCI coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[-] 3x3 rotation matrix representing the rotation between PCPF and ECI frames </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pcpfPosition: [m] Position vector in PCPF coordinates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="29" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="29" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1a5cd804bd23caad586c8862e12bb29529" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCPF2LLA</definition>
+        <argsstring>(Eigen::Vector3d pcpfPosition, double planetEqRad, double planetPoRad)</argsstring>
+        <name>PCPF2LLA</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pcpfPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered, planet-fixed coordinates to latitude/longitude/altitude (LLA) coordinates given a planet radius. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcpfPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>llaPosition: Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="46" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="46" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1ac96c19770693f30639e25963660c5a98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCI2LLA</definition>
+        <argsstring>(Eigen::Vector3d pciPosition, double J20002Pfix[3][3], double planetEqRad, double planetPoRad)</argsstring>
+        <name>PCI2LLA</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pciPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered inertial coordinates to latitutde/longitude/altitude (LLA) coordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pciPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>planet DCM </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>llaPosition: Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="97" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="97" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1a0b2a3266c1bb3b772160ee87b29c4747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d LLA2PCPF</definition>
+        <argsstring>(Eigen::Vector3d llaPosition, double planetEqRad, double planetPoRad)</argsstring>
+        <name>LLA2PCPF</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>llaPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a Lat/Long/Altitude coordinates to planet-centered,planet-fixed coordinates given a planet radius. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>llaPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary equatorial radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pcpfPosition: [m] Final position in the planet-centered, planet-fixed frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="110" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="110" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1af1855ea272fa6aeb1516ac79f27c9d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCPF2PCI</definition>
+        <argsstring>(Eigen::Vector3d pcpfPosition, double J20002Pfix[3][3])</argsstring>
+        <name>PCPF2PCI</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pcpfPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a Lat/Long/Altitude coordinates to planet-centered inertialcoordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcpfPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in planet centered, planet fixed coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[-] Rotation between inertial and pcf coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pciPosition: [m] Final position in the planet-centered inertial frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="132" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="132" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1a16e3e4af40b5b6ff4eefa1cdfa6f0263" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d LLA2PCI</definition>
+        <argsstring>(Eigen::Vector3d llaPosition, double J20002Pfix[3][3], double planetEqRad, double planetPoRad)</argsstring>
+        <name>LLA2PCI</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>llaPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered inertial coordinates to latitutde/longitude/altitude (LLA) coordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>llaPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rotation matrix between inertial and PCPF frames </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pciPosition : [m] Position in inertial coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="151" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="151" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8cpp_1aa88712eb62c5a5bd6e7a9dc4dfb8e6ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d C_PCPF2SEZ</definition>
+        <argsstring>(double lat, double longitude)</argsstring>
+        <name>C_PCPF2SEZ</name>
+        <param>
+          <type>double</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>longitude</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" line="158" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="158" bodyend="168"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016-2017,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;geodeticConversion.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">Eigen::Vector3d<sp/>PCI2PCPF(Eigen::Vector3d<sp/>pciPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3]){</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cArray2EigenMatrixd<sp/>expects<sp/>a<sp/>column<sp/>major<sp/>input,<sp/>thus<sp/>the<sp/>result<sp/>is<sp/>transposed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>dcm_PN<sp/>=<sp/>cArray2EigenMatrixXd(*J20002Pfix,3,3).transpose();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>pcpfPosition<sp/>=<sp/>dcm_PN<sp/>*<sp/>pciPosition;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pcpfPosition;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Eigen::Vector3d<sp/>PCPF2LLA(Eigen::Vector3d<sp/>pcpfPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad){</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>llaPosition;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/>llaPosition.fill(0.0);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(planetPoRad<sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[2]<sp/>=</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcpfPosition.norm()<sp/>-<sp/>planetEqRad;<sp/></highlight><highlight class="comment">//<sp/><sp/>Altitude<sp/>is<sp/>the<sp/>height<sp/>above<sp/>assumed-spherical<sp/>planet<sp/>surface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[1]<sp/>=<sp/>atan2(pcpfPosition[1],<sp/>pcpfPosition[0]);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[0]<sp/>=<sp/>atan2(pcpfPosition[2],<sp/>sqrt(pow(pcpfPosition[0],<sp/>2.0)<sp/>+<sp/>pow(pcpfPosition[1],<sp/>2.0)));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nr_kapp_iter<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>good_kappa_acc<sp/>=<sp/>1.0E-13;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEcc2<sp/>=<sp/>1.0<sp/>-<sp/>planetPoRad*planetPoRad/(planetEqRad*planetEqRad);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kappa<sp/>=<sp/>1.0/(1.0-planetEcc2);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p2<sp/>=<sp/>pcpfPosition[0]*pcpfPosition[0]<sp/>+<sp/>pcpfPosition[1]*pcpfPosition[1];</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>z2<sp/>=<sp/>pcpfPosition[2]*pcpfPosition[2];</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;nr_kapp_iter;<sp/>i++)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cI<sp/>=<sp/>(p2<sp/>+<sp/>(1.0-planetEcc2)*z2*kappa*kappa);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cI<sp/>=<sp/>sqrt(cI*cI*cI)/(planetEqRad*planetEcc2);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kappaNext<sp/>=<sp/>1.0<sp/>+<sp/>(p2<sp/>+<sp/>(1.0-planetEcc2)*z2*kappa*kappa*kappa)/(cI-p2);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(std::abs(kappaNext-kappa)<sp/>&lt;<sp/>good_kappa_acc)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kappa<sp/>=<sp/>kappaNext;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pSingle<sp/>=<sp/>sqrt(p2);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[0]<sp/>=<sp/>atan2(kappa*pcpfPosition[2],<sp/>pSingle);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sPhi<sp/>=<sp/>sin(llaPosition[0]);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nVal<sp/>=<sp/>planetEqRad/sqrt(1.0<sp/>-<sp/>planetEcc2*sPhi*sPhi);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[2]<sp/>=<sp/>pSingle/(cos(llaPosition[0]))<sp/>-<sp/>nVal;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>llaPosition[1]<sp/>=<sp/>atan2(pcpfPosition[1],<sp/>pcpfPosition[0]);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>llaPosition;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">Eigen::Vector3d<sp/>PCI2LLA(Eigen::Vector3d<sp/>pciPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad){</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>pcpfVec<sp/>=<sp/>PCI2PCPF(pciPosition,<sp/>J20002Pfix);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>llaVec<sp/>=<sp/>PCPF2LLA(pcpfVec,<sp/>planetEqRad,<sp/>planetPoRad);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>llaVec;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">Eigen::Vector3d<sp/>LLA2PCPF(Eigen::Vector3d<sp/>llaPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad){</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>pcpfPosition;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>pcpfPosition.fill(0.0);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEcc2<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(planetPoRad<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetEcc2<sp/>=<sp/>1.0<sp/>-<sp/>planetPoRad*planetPoRad/(planetEqRad*planetEqRad);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sPhi<sp/>=<sp/>sin(llaPosition[0]);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nVal<sp/>=<sp/>planetEqRad/sqrt(1.0<sp/>-<sp/>planetEcc2*sPhi*sPhi);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>pcpfPosition[0]<sp/>=<sp/>(nVal+llaPosition[2])*cos(llaPosition[0])*cos(llaPosition[1]);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>pcpfPosition[1]<sp/>=<sp/>(nVal+llaPosition[2])*cos(llaPosition[0])*sin(llaPosition[1]);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>pcpfPosition[2]<sp/>=<sp/>((1.0-planetEcc2)*nVal<sp/>+<sp/>llaPosition[2])*sPhi;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pcpfPosition;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal">Eigen::Vector3d<sp/>PCPF2PCI(Eigen::Vector3d<sp/>pcpfPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3])</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cArray2EigenMatrixd<sp/>expects<sp/>a<sp/>column<sp/>major<sp/>input,<sp/>thus<sp/>the<sp/>result<sp/>is<sp/>transposed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>dcm_NP<sp/>=<sp/>cArray2EigenMatrixXd(*J20002Pfix,3,3);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>pciPosition<sp/>=<sp/>dcm_NP<sp/>*<sp/>pcpfPosition;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pciPosition;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal">Eigen::Vector3d<sp/>LLA2PCI(Eigen::Vector3d<sp/>llaPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>pcpfPosition<sp/>=<sp/>LLA2PCPF(llaPosition,<sp/>planetEqRad,<sp/>planetPoRad);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>Eigen::Vector3d<sp/>pciPosition<sp/>=<sp/>PCPF2PCI(pcpfPosition,<sp/>J20002Pfix);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pciPosition;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal">Eigen::Matrix3d<sp/>C_PCPF2SEZ(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lat,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>longitude)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m1[3][3];</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m2[3][3];</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>Euler2(M_PI_2-lat,<sp/>m1);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>Euler3(longitude,<sp/>m2);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>rot2<sp/>=<sp/>cArray2EigenMatrix3d(*m1);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>rot3<sp/>=<sp/>cArray2EigenMatrix3d(*m2);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rot2*rot3;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp"/>
+  </compounddef>
+</doxygen>

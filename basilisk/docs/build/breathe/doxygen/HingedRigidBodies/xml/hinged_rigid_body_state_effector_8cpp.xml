@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="hinged_rigid_body_state_effector_8cpp" kind="file" language="C++">
+    <compoundname>hingedRigidBodyStateEffector.cpp</compoundname>
+    <includes refid="hinged_rigid_body_state_effector_8h" local="yes">hingedRigidBodyStateEffector.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/HingedRigidBodies/hingedRigidBodyStateEffector.cpp</label>
+        <link refid="hinged_rigid_body_state_effector_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hingedRigidBodyStateEffector.h</label>
+        <link refid="hinged_rigid_body_state_effector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/ArrayMotorTorqueMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/HingedRigidBodyMsgPayload.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateEffector.h</label>
+      </node>
+      <node id="17">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hingedRigidBodyStateEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="class_hinged_rigid_body_state_effector_1a061383f27834283f3100923974923f46" kindref="member">HingedRigidBodyStateEffector::HingedRigidBodyStateEffector</ref>()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>zero<sp/>the<sp/>mass<sp/>props<sp/>and<sp/>mass<sp/>prop<sp/>rates<sp/>contributions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.mEff<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEff_CB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPntB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEffPrime_CB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPrimePntB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Initialize<sp/>variables<sp/>to<sp/>working<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3f5b0d36d704523eadda98481da60ef2" kindref="member">k</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ade3f91cdd272e7d7a4a455e8b6990ae8" kindref="member">c</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;u<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a6a0cdcd770751ef5f049b4e4358d4c23" kindref="member">thetaRef</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a8fa741880b9646281d37d652b4a8790d" kindref="member">thetaDotRef</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1af37fb8f261324e9e6b6d9a7776717dc2" kindref="member">thetaInit</ref><sp/>=<sp/>0.00;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a452e939a94f1dcd3bc05bab9c97575cf" kindref="member">thetaDotInit</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>.Identity();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ac35249667835ff1e2e93a8a44ff8e0c2" kindref="member">r_HB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a020a69036ebe71f17997f987614d1898" kindref="member">dcm_HB</ref>.Identity();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ada8e6dea29f3b491750394366675344c" kindref="member">nameOfThetaState</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hingedRigidBodyTheta&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(this-&gt;effectorID);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ac356cd86b86dfd156cb2a17aeb6930a7" kindref="member">nameOfThetaDotState</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hingedRigidBodyThetaDot&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(this-&gt;effectorID);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effectorID++;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">uint64_t<sp/>HingedRigidBodyStateEffector::effectorID<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><ref refid="class_hinged_rigid_body_state_effector_1a3a9e138b212cdbd2d4f1d54ce1c355ed" kindref="member">HingedRigidBodyStateEffector::~HingedRigidBodyStateEffector</ref>()</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effectorID<sp/>=<sp/>1;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>reset<sp/>the<sp/>panel<sp/>ID*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1ae1f1e32819708adae6af98dd88a06061" kindref="member">HingedRigidBodyStateEffector::writeOutputStateMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3a45c2bff9f1aa99f853c9c306d533f8" kindref="member">hingedRigidBodyOutMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ad1ceb7ab16de10c373d4d2dd9488a7f5" kindref="member">HRBoutputStates</ref><sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3a45c2bff9f1aa99f853c9c306d533f8" kindref="member">hingedRigidBodyOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ad1ceb7ab16de10c373d4d2dd9488a7f5" kindref="member">HRBoutputStates</ref>.theta<sp/>=<sp/>this-&gt;theta;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ad1ceb7ab16de10c373d4d2dd9488a7f5" kindref="member">HRBoutputStates</ref>.thetaDot<sp/>=<sp/>this-&gt;thetaDot;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3a45c2bff9f1aa99f853c9c306d533f8" kindref="member">hingedRigidBodyOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ad1ceb7ab16de10c373d4d2dd9488a7f5" kindref="member">HRBoutputStates</ref>,<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>write<sp/>out<sp/>the<sp/>panel<sp/>state<sp/>config<sp/>log<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a11eb386436203e097e550617324b4e16" kindref="member">hingedRigidBodyConfigLogOutMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>configLogMsg;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configLogMsg<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a11eb386436203e097e550617324b4e16" kindref="member">hingedRigidBodyConfigLogOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note,<sp/>logging<sp/>the<sp/>hinge<sp/>frame<sp/>S<sp/>is<sp/>the<sp/>body<sp/>frame<sp/>B<sp/>of<sp/>that<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;r_SN_N,<sp/>configLogMsg.r_BN_N);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;v_SN_N,<sp/>configLogMsg.v_BN_N);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;sigma_SN,<sp/>configLogMsg.sigma_BN);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;omega_SN_S,<sp/>configLogMsg.omega_BN_B);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a11eb386436203e097e550617324b4e16" kindref="member">hingedRigidBodyConfigLogOutMsg</ref>.write(&amp;configLogMsg,<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a486a871865541afba30030b824f4dda1" kindref="member">HingedRigidBodyStateEffector::prependSpacecraftNameToStates</ref>()</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ada8e6dea29f3b491750394366675344c" kindref="member">nameOfThetaState</ref><sp/>=<sp/>this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ada8e6dea29f3b491750394366675344c" kindref="member">nameOfThetaState</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ac356cd86b86dfd156cb2a17aeb6930a7" kindref="member">nameOfThetaDotState</ref><sp/>=<sp/>this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ac356cd86b86dfd156cb2a17aeb6930a7" kindref="member">nameOfThetaDotState</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a9d5012dcbecc649bab58c1fc02e1348e" kindref="member">HingedRigidBodyStateEffector::linkInStates</ref>(DynParamManager&amp;<sp/>statesIn)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>access<sp/>to<sp/>the<sp/>hubs<sp/>sigma,<sp/>omegaBN_B<sp/>and<sp/>velocity<sp/>needed<sp/>for<sp/>dynamic<sp/>coupling<sp/>and<sp/>gravity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>tmpMsgName;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>tmpMsgName<sp/>=<sp/>this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;centerOfMassSC&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;c_B<sp/>=<sp/>statesIn.getPropertyReference(tmpMsgName);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>tmpMsgName<sp/>=<sp/>this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;centerOfMassPrimeSC&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;cPrime_B<sp/>=<sp/>statesIn.getPropertyReference(tmpMsgName);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_BN<sp/>=<sp/>statesIn.getStateObject(this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hubSigma&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_BN_B<sp/>=<sp/>statesIn.getStateObject(this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;hubOmega&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;inertialPositionProperty<sp/>=<sp/>statesIn.getPropertyReference(this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;r_BN_N&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;inertialVelocityProperty<sp/>=<sp/>statesIn.getPropertyReference(this-&gt;nameOfSpacecraftAttachedTo<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;v_BN_N&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a802b34fec13d50af3223052e7e2879ef" kindref="member">HingedRigidBodyStateEffector::registerStates</ref>(DynParamManager&amp;<sp/>states)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Register<sp/>the<sp/>states<sp/>associated<sp/>with<sp/>hinged<sp/>rigid<sp/>bodies<sp/>-<sp/>theta<sp/>and<sp/>thetaDot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaState<sp/>=<sp/>states.registerState(1,<sp/>1,<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ada8e6dea29f3b491750394366675344c" kindref="member">nameOfThetaState</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>thetaInitMatrix(1,1);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>thetaInitMatrix(0,0)<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1af37fb8f261324e9e6b6d9a7776717dc2" kindref="member">thetaInit</ref>;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaState-&gt;setState(thetaInitMatrix);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaDotState<sp/>=<sp/>states.registerState(1,<sp/>1,<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ac356cd86b86dfd156cb2a17aeb6930a7" kindref="member">nameOfThetaDotState</ref>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>thetaDotInitMatrix(1,1);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>thetaDotInitMatrix(0,0)<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a452e939a94f1dcd3bc05bab9c97575cf" kindref="member">thetaDotInit</ref>;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaDotState-&gt;setState(thetaDotInitMatrix);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a892d5e4f26965addffacea4fed3e4697" kindref="member">HingedRigidBodyStateEffector::updateEffectorMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Convert<sp/>intial<sp/>variables<sp/>to<sp/>mother<sp/>craft<sp/>frame<sp/>relative<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_HP_P<sp/>=<sp/>this-&gt;r_BP_P<sp/>+<sp/>this-&gt;dcm_BP.transpose()*<ref refid="class_hinged_rigid_body_state_effector_1ac35249667835ff1e2e93a8a44ff8e0c2" kindref="member">r_HB_B</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_HP<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a020a69036ebe71f17997f987614d1898" kindref="member">dcm_HB</ref>*this-&gt;dcm_BP;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Give<sp/>the<sp/>mass<sp/>of<sp/>the<sp/>hinged<sp/>rigid<sp/>body<sp/>to<sp/>the<sp/>effProps<sp/>mass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.mEff<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>hinged<sp/>rigid<sp/>bodies&apos;<sp/>position<sp/>with<sp/>respect<sp/>to<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>First<sp/>need<sp/>to<sp/>grab<sp/>current<sp/>states</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;theta<sp/>=<sp/>this-&gt;thetaState-&gt;getState()(0,<sp/>0);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaDot<sp/>=<sp/>this-&gt;thetaDotState-&gt;getState()(0,<sp/>0);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Next<sp/>find<sp/>the<sp/>sHat<sp/>unit<sp/>vectors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_SH<sp/>=<sp/>eigenM2(this-&gt;theta);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_SP<sp/>=<sp/>this-&gt;dcm_SH*this-&gt;dcm_HP;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sHat1_P<sp/>=<sp/>this-&gt;dcm_SP.row(0);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sHat2_P<sp/>=<sp/>this-&gt;dcm_SP.row(1);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sHat3_P<sp/>=<sp/>this-&gt;dcm_SP.row(2);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_SP_P<sp/>=<sp/>this-&gt;r_HP_P<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>*this-&gt;sHat1_P;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEff_CB_B<sp/>=<sp/>this-&gt;r_SP_P;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>the<sp/>inertia<sp/>of<sp/>the<sp/>hinged<sp/>rigid<sp/>body<sp/>about<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>rTilde_SB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rTilde_SP_P<sp/>=<sp/>eigenTilde(this-&gt;r_SP_P);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPntB_B<sp/>=<sp/>this-&gt;dcm_SP.transpose()*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>*this-&gt;dcm_SP</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;rTilde_SP_P*this-&gt;rTilde_SP_P.transpose();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>rPrime_SB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrime_SP_P<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>*this-&gt;thetaDot*this-&gt;sHat3_P;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEffPrime_CB_B<sp/>=<sp/>this-&gt;rPrime_SP_P;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Next<sp/>find<sp/>the<sp/>body<sp/>time<sp/>derivative<sp/>of<sp/>the<sp/>inertia<sp/>about<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>tilde<sp/>matrix<sp/>of<sp/>rPrime_SB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrimeTilde_SP_P<sp/>=<sp/>eigenTilde(this-&gt;rPrime_SP_P);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>body<sp/>time<sp/>derivative<sp/>of<sp/>IPntS_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ISPrimePntS_P<sp/>=<sp/>this-&gt;thetaDot*(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(2,2)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(0,0))*(this-&gt;sHat1_P*this-&gt;sHat3_P.transpose()<sp/>+<sp/>this-&gt;sHat3_P*this-&gt;sHat1_P.transpose());</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>body<sp/>time<sp/>derivative<sp/>of<sp/>IPntB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPrimePntB_B<sp/>=<sp/>this-&gt;ISPrimePntS_P</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*(this-&gt;rPrimeTilde_SP_P*this-&gt;rTilde_SP_P<sp/>+<sp/>this-&gt;rTilde_SP_P*this-&gt;rPrimeTilde_SP_P);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a78b5014076be525f8b91d6a31392424e" kindref="member">HingedRigidBodyStateEffector::updateContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>BackSubMatrices<sp/>&amp;<sp/>backSubContr,<sp/>Eigen::Vector3d<sp/>sigma_BN,<sp/>Eigen::Vector3d<sp/>omega_BN_B,<sp/>Eigen::Vector3d<sp/>g_N)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>dcm_BN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigmaLocal_PN;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaLocal_PN<sp/>=<sp/>sigma_BN;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_PN;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_NP;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_NP<sp/>=<sp/>sigmaLocal_PN.toRotationMatrix();</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_PN<sp/>=<sp/>dcm_NP.transpose();</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Map<sp/>gravity<sp/>to<sp/>body<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>gLocal_N;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>g_P;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>gLocal_N<sp/>=<sp/>g_N;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>g_P<sp/>=<sp/>dcm_PN*gLocal_N;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>omega_BN_S</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaLoc_PN_P<sp/>=<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_PN_S<sp/>=<sp/>this-&gt;dcm_SP*this-&gt;omegaLoc_PN_P;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>omegaTildeLoc_BN_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaTildeLoc_PN_P<sp/>=<sp/>eigenTilde(this-&gt;omegaLoc_PN_P);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>aTheta</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;aTheta<sp/>=<sp/>-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>/(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>)*this-&gt;sHat3_P;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>bTheta</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rTilde_HP_P<sp/>=<sp/>eigenTilde(this-&gt;r_HP_P);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;bTheta<sp/>=<sp/>-1.0/(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>)*((this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;rTilde_HP_P*this-&gt;sHat3_P);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>cTheta</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>gravityTorquePntH_P;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>gravityTorquePntH_P<sp/>=<sp/>-this-&gt;d*this-&gt;sHat1_P.cross(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*g_P);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;cTheta<sp/>=<sp/>1.0/(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>)*(this-&gt;u<sp/>-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3f5b0d36d704523eadda98481da60ef2" kindref="member">k</ref>*(this-&gt;theta-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a6a0cdcd770751ef5f049b4e4358d4c23" kindref="member">thetaRef</ref>)<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ade3f91cdd272e7d7a4a455e8b6990ae8" kindref="member">c</ref>*(this-&gt;thetaDot-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a8fa741880b9646281d37d652b4a8790d" kindref="member">thetaDotRef</ref>)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;sHat2_P.dot(gravityTorquePntH_P)<sp/>+<sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(2,2)<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(0,0)</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1aae0b6610e347bc6c65d5206e22c5335a" kindref="member">d</ref>)*this-&gt;omega_PN_S(2)*this-&gt;omega_PN_S(0)<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sHat3_P.transpose()*this-&gt;omegaTildeLoc_PN_P*this-&gt;omegaTildeLoc_PN_P*this-&gt;r_HP_P);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Start<sp/>defining<sp/>them<sp/>good<sp/>old<sp/>contributions<sp/>-<sp/>start<sp/>with<sp/>translation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>For<sp/>documentation<sp/>on<sp/>contributions<sp/>see<sp/>Allard,<sp/>Diaz,<sp/>Schaub<sp/>flex/slosh<sp/>paper</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.matrixA<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;sHat3_P*this-&gt;aTheta.transpose();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.matrixB<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;sHat3_P*this-&gt;bTheta.transpose();</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.vecTrans<sp/>=<sp/>-(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot*this-&gt;thetaDot*this-&gt;sHat1_P</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;cTheta*this-&gt;sHat3_P);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>rotational<sp/>matrice<sp/>contributions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.matrixC<sp/>=<sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;rTilde_SP_P*this-&gt;sHat3_P)</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;aTheta.transpose();</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.matrixD<sp/>=<sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;rTilde_SP_P*this-&gt;sHat3_P)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;bTheta.transpose();</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>intermediateMatrix;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.vecRot<sp/>=<sp/>-((this-&gt;thetaDot*this-&gt;omegaTildeLoc_PN_P<sp/>+<sp/>this-&gt;cTheta*intermediateMatrix.Identity())</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;rTilde_SP_P*this-&gt;sHat3_P)</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot*this-&gt;thetaDot*this-&gt;rTilde_SP_P*this-&gt;sHat1_P);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a386f9f1390c6ab1ac4dc3159ab25b02f" kindref="member">HingedRigidBodyStateEffector::computeDerivatives</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>rDDot_BN_N,<sp/>Eigen::Vector3d<sp/>omegaDot_BN_B,<sp/>Eigen::Vector3d<sp/>sigma_BN)</highlight></codeline>
+<codeline lineno="248"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Grab<sp/>necessarry<sp/>values<sp/>from<sp/>manager<sp/>(these<sp/>have<sp/>been<sp/>previously<sp/>computed<sp/>in<sp/>hubEffector)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDDotLoc_PN_N<sp/>=<sp/>rDDot_BN_N;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigmaLocal_PN;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaDotLoc_PN_P;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaLocal_PN<sp/>=<sp/>sigma_BN;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>rDDotLoc_BN_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_PN;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDDotLoc_PN_P;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_PN<sp/>=<sp/>(sigmaLocal_PN.toRotationMatrix()).transpose();</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>rDDotLoc_PN_P<sp/>=<sp/>dcm_PN*rDDotLoc_PN_N;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Compute<sp/>Derivatives</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>First<sp/>is<sp/>trivial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaState-&gt;setDerivative(thetaDotState-&gt;getState());</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Second,<sp/>a<sp/>little<sp/>more<sp/>involved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>thetaDDot(1,1);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>thetaDDot(0,0)<sp/>=<sp/>this-&gt;aTheta.dot(rDDotLoc_PN_P)<sp/>+<sp/>this-&gt;bTheta.dot(omegaDot_BN_B)<sp/>+<sp/>this-&gt;cTheta;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;thetaDotState-&gt;setDerivative(thetaDDot);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a2cab7c4be01a735702eeead7cbb9714f" kindref="member">HingedRigidBodyStateEffector::updateEnergyMomContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>&amp;<sp/>rotAngMomPntCContr_B,</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>rotEnergyContr,<sp/>Eigen::Vector3d<sp/>omega_BN_B)</highlight></codeline>
+<codeline lineno="275"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>the<sp/>current<sp/>omega<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaLocal_PN_P;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaLocal_PN_P<sp/>=<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>rotational<sp/>angular<sp/>momentum<sp/>contribution<sp/>from<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omega_SP_P;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omega_SN_P;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>IPntS_P;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDot_SP_P;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>omega_SP_P<sp/>=<sp/>this-&gt;thetaDot*this-&gt;sHat2_P;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>omega_SN_P<sp/>=<sp/>omega_SP_P<sp/>+<sp/>omegaLocal_PN_P;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>IPntS_P<sp/>=<sp/>this-&gt;dcm_SP.transpose()*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>*this-&gt;dcm_SP;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>rDot_SP_P<sp/>=<sp/>this-&gt;rPrime_SP_P<sp/>+<sp/>omegaLocal_PN_P.cross(this-&gt;r_SP_P);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>rotAngMomPntCContr_B<sp/>=<sp/>IPntS_P*omega_SN_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;r_SP_P.cross(rDot_SP_P);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>rotational<sp/>energy<sp/>contribution<sp/>from<sp/>the<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>rotEnergyContr<sp/>=<sp/>1.0/2.0*omega_SN_P.dot(IPntS_P*omega_SN_P)<sp/>+<sp/>1.0/2.0*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*rDot_SP_P.dot(rDot_SP_P)</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>1.0/2.0*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a3f5b0d36d704523eadda98481da60ef2" kindref="member">k</ref>*(this-&gt;theta-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a6a0cdcd770751ef5f049b4e4358d4c23" kindref="member">thetaRef</ref>)*(this-&gt;theta-this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a6a0cdcd770751ef5f049b4e4358d4c23" kindref="member">thetaRef</ref>);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a47f2b21de5b3f895dd77a7aead610198" kindref="member">HingedRigidBodyStateEffector::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="302"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a04a3b8fcc034108c977576da6703cd06" kindref="member">motorTorqueInMsg</ref>.isLinked()<sp/>&amp;&amp;<sp/>this-&gt;motorTorqueInMsg.isWritten())<sp/>{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayMotorTorqueMsgPayload<sp/>incomingCmdBuffer;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incomingCmdBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a04a3b8fcc034108c977576da6703cd06" kindref="member">motorTorqueInMsg</ref>();</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;u<sp/>=<sp/>incomingCmdBuffer.motorTorque[0];</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a7d6b2d3109047fb71bdf485bee9e6806" kindref="member">hingedRigidBodyRefMsg</ref>.isLinked()<sp/>&amp;&amp;<sp/>this-&gt;hingedRigidBodyRefMsg.isWritten())<sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>HingedRigidBodyMsgPayload<sp/>incomingRefBuffer;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incomingRefBuffer<sp/>=<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a7d6b2d3109047fb71bdf485bee9e6806" kindref="member">hingedRigidBodyRefMsg</ref>();</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a6a0cdcd770751ef5f049b4e4358d4c23" kindref="member">thetaRef</ref><sp/>=<sp/>incomingRefBuffer.theta;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a8fa741880b9646281d37d652b4a8790d" kindref="member">thetaDotRef</ref><sp/>=<sp/>incomingRefBuffer.thetaDot;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>panel<sp/>inertial<sp/>states<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;computePanelInertialStates();</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ae1f1e32819708adae6af98dd88a06061" kindref="member">writeOutputStateMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hinged_rigid_body_state_effector_1a2549a9732bc557f9f4dd9722abccd139" kindref="member">HingedRigidBodyStateEffector::calcForceTorqueOnBody</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>omega_BN_B)</highlight></codeline>
+<codeline lineno="325"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>the<sp/>current<sp/>omega<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaLocal_PN_P<sp/>=<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>omegaLocalTilde_PN_P;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaLocalTilde_PN_P<sp/>=<sp/>eigenTilde(omegaLoc_PN_P);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>thetaDDot<sp/>from<sp/>last<sp/>integrator<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thetaDDotLocal;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>thetaDDotLocal<sp/>=<sp/>thetaDotState-&gt;getStateDeriv()(0,<sp/>0);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Calculate<sp/>force<sp/>that<sp/>the<sp/>HRB<sp/>is<sp/>applying<sp/>to<sp/>the<sp/>spacecraft</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;forceOnBody_B<sp/>=<sp/>-(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;sHat3_P*thetaDDotLocal<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;thetaDot*this-&gt;sHat1_P<sp/>+<sp/>2.0*omegaLocalTilde_PN_P*this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;sHat3_P);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Calculate<sp/>torque<sp/>that<sp/>the<sp/>HRB<sp/>is<sp/>applying<sp/>about<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;torqueOnBodyPntB_B<sp/>=<sp/>-((this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;rTilde_SP_P*this-&gt;sHat3_P)</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*thetaDDotLocal<sp/>+<sp/>(this-&gt;ISPrimePntS_P<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*(this-&gt;rPrimeTilde_SP_P*rTilde_SP_P</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;rTilde_SP_P*this-&gt;rPrimeTilde_SP_P))*omegaLocal_PN_P<sp/>+<sp/>this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*omegaLocalTilde_PN_P*(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;rTilde_SP_P*this-&gt;sHat3_P)<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot*this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*this-&gt;rTilde_SP_P*this-&gt;sHat1_P);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>values<sp/>needed<sp/>to<sp/>get<sp/>the<sp/>torque<sp/>about<sp/>point<sp/>C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>cLocal_B<sp/>=<sp/>*this-&gt;c_B;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>cPrimeLocal_B<sp/>=<sp/>*cPrime_B;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_SC_B<sp/>=<sp/>this-&gt;r_SP_P<sp/>-<sp/>cLocal_B;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rPrime_SC_B<sp/>=<sp/>this-&gt;rPrime_SP_P<sp/>-<sp/>cPrimeLocal_B;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>rTilde_SC_B<sp/>=<sp/>eigenTilde(r_SC_B);</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>rPrimeTilde_SC_B<sp/>=<sp/>eigenTilde(rPrime_SC_B);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Calculate<sp/>the<sp/>torque<sp/>about<sp/>point<sp/>C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;torqueOnBodyPntC_B<sp/>=<sp/>-((this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*rTilde_SC_B*this-&gt;sHat3_P)</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*thetaDDotLocal<sp/>+<sp/>(this-&gt;ISPrimePntS_P<sp/>-<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*(rPrimeTilde_SC_B*rTilde_SC_B</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>rTilde_SC_B*rPrimeTilde_SC_B))*omegaLocal_PN_P<sp/>+<sp/>this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*omegaLocalTilde_PN_P*(this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1ab63f97feb3c08e57e34963f4db633103" kindref="member">IPntS_S</ref>(1,1)*this-&gt;sHat2_P<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*rTilde_SC_B*this-&gt;sHat3_P)<sp/>+<sp/>this-&gt;<ref refid="class_hinged_rigid_body_state_effector_1a466459dbc544cb99ca73df534efe6251" kindref="member">mass</ref>*this-&gt;d*this-&gt;thetaDot*this-&gt;thetaDot</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*rTilde_SC_B*this-&gt;sHat1_P);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>HingedRigidBodyStateEffector::computePanelInertialStates()</highlight></codeline>
+<codeline lineno="372"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inertial<sp/>attitude</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigmaBN;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaBN<sp/>=<sp/>(Eigen::Vector3d)this-&gt;sigma_BN-&gt;getState();</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_NP<sp/>=<sp/>sigmaBN.toRotationMatrix();<sp/><sp/></highlight><highlight class="comment">//<sp/>assumes<sp/>P<sp/>and<sp/>B<sp/>are<sp/>idential</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_SN;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_SN<sp/>=<sp/>this-&gt;dcm_SP*dcm_NP.transpose();</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_SN<sp/>=<sp/>eigenMRPd2Vector3d(eigenC2MRP(dcm_SN));</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inertial<sp/>angular<sp/>velocity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>omega_BN_B<sp/>=<sp/>(Eigen::Vector3d)this-&gt;omega_BN_B-&gt;getState();</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_SN_S<sp/>=<sp/>this-&gt;dcm_SP<sp/>*<sp/>(<sp/>omega_BN_B<sp/>+<sp/>this-&gt;thetaDot*this-&gt;sHat2_P);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inertial<sp/>position<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_SN_N<sp/>=<sp/>(dcm_NP<sp/>*<sp/>this-&gt;r_SP_P)<sp/>+<sp/>(Eigen::Vector3d)(*this-&gt;inertialPositionProperty);</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>inertial<sp/>velocity<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;v_SN_N<sp/>=<sp/>(Eigen::Vector3d)(*this-&gt;inertialVelocityProperty)</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;d<sp/>*<sp/>this-&gt;thetaDot<sp/>*<sp/>this-&gt;sHat3_P<sp/>-<sp/>this-&gt;d<sp/>*<sp/>(omega_BN_B.cross(this-&gt;sHat1_P))</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>omega_BN_B.cross(this-&gt;r_HP_P);</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"></highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="396"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/HingedRigidBodies/hingedRigidBodyStateEffector.cpp"/>
+  </compounddef>
+</doxygen>

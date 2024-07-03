@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="thr_momentum_dumping_8h" kind="file" language="C++">
+    <compoundname>thrMomentumDumping.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayCmdForceMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CmdTorqueBodyMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="thr_momentum_dumping_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h</label>
+        <link refid="thr_momentum_dumping_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/THRArrayCmdForceMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/THRArrayConfigMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structthr_momentum_dumping_config" prot="public">thrMomentumDumpingConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="thr_momentum_dumping_8h_1a4cbbac6e09e35f20986946f2e483020d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_thrMomentumDumping</definition>
+        <argsstring>(thrMomentumDumpingConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_thrMomentumDumping</name>
+        <param>
+          <type><ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>embed:rst
+   This method initializes the configData for this module.  It creates a single output message of type :ref:`THRArrayOnTimeCmdMsgPayload`.
+</verbatim> <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" line="63" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.c" bodystart="39" bodyend="42" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" declline="63" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_momentum_dumping_8h_1ac7bd255e7bf9d2494495a86e6f3b0419" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_thrMomentumDumping</definition>
+        <argsstring>(thrMomentumDumpingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_thrMomentumDumping</name>
+        <param>
+          <type><ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads in the requested thruster impulse message. If it is a new message then a fresh thruster firing cycle is setup to achieve the desired RW momentum dumping. The the same message is read in, then the thrust continue to periodically fire to achieve the net thruster impuleses requested. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>zero the output array of on-time values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>check if this is the first call after reset. If yes, write zero output message and exit</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read the requester thruster impulse input message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>check if the thruster impulse input message time tag is identical to current values (continue with current momentum dumping)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>check for negative, saturated firing times or negative remaining times</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>write out the output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" line="64" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.c" bodystart="111" bodyend="201" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" declline="64" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_momentum_dumping_8h_1aa0f9bfff3ea687f89a858a2b769f4969" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_thrMomentumDumping</definition>
+        <argsstring>(thrMomentumDumpingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_thrMomentumDumping</name>
+        <param>
+          <type><ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>reset the prior time flag state. If set to zero, the control time step is not evaluated on the first function call</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>read in number of thrusters installed and maximum thrust values</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>reset dumping counter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>zero out thruster on time array</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>set the time tag of the last Delta_p message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>perform sanity check that the module maxCounterValue value is set to a positive value</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" line="65" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.c" bodystart="52" bodyend="101" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h" declline="65" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_THR_MOMENTUM_DUMPING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_THR_MOMENTUM_DUMPING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayCmdForceMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayOnTimeCmdMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CmdTorqueBodyMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structthr_momentum_dumping_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>private<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structthr_momentum_dumping_config_1a6770a0872a6c09802be0d1010ac39428" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/><sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1a6770a0872a6c09802be0d1010ac39428" kindref="member">thrDumpingCounter</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="structthr_momentum_dumping_config_1a344a1143c93781f0f79c494c9729ae66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Delta_p[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structthr_momentum_dumping_config_1af77156c11e4d7f24352ec576040c8dcd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1af77156c11e4d7f24352ec576040c8dcd" kindref="member">lastDeltaHInMsgTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="structthr_momentum_dumping_config_1aa722bdef4558e6a829e8e0034d1356c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>thrOnTimeRemaining[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structthr_momentum_dumping_config_1ade4c66d7d645d8eb87c30baefdf424ac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1ade4c66d7d645d8eb87c30baefdf424ac" kindref="member">priorTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="structthr_momentum_dumping_config_1a91012d06ca38282dbc210d364daca36c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1a91012d06ca38282dbc210d364daca36c" kindref="member">numThrusters</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="structthr_momentum_dumping_config_1a9c1fb3198388f57fb3e3aa3ad1c34ec4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>thrMaxForce[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>public<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="structthr_momentum_dumping_config_1a0774e823e8ad25617f23330cbea0d540" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1a0774e823e8ad25617f23330cbea0d540" kindref="member">maxCounterValue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="structthr_momentum_dumping_config_1aec77083be89ecbd76be998a1a18fc586" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structthr_momentum_dumping_config_1aec77083be89ecbd76be998a1a18fc586" kindref="member">thrMinFireTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>IO<sp/>interfaces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structthr_momentum_dumping_config_1a870cf91db55f2b27305a948108cf4c2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayOnTimeCmdMsg_C<sp/><ref refid="structthr_momentum_dumping_config_1a870cf91db55f2b27305a948108cf4c2a" kindref="member">thrusterOnTimeOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structthr_momentum_dumping_config_1ac20d76650aaf49a2b0497f05858d7de0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayCmdForceMsg_C<sp/><ref refid="structthr_momentum_dumping_config_1ac20d76650aaf49a2b0497f05858d7de0" kindref="member">thrusterImpulseInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="structthr_momentum_dumping_config_1abb6be363833aa2d123b131bbc87f5466" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayConfigMsg_C<sp/><ref refid="structthr_momentum_dumping_config_1abb6be363833aa2d123b131bbc87f5466" kindref="member">thrusterConfInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structthr_momentum_dumping_config_1a8a6a1fcee8b24909924dbf1a85102d4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C<sp/><ref refid="structthr_momentum_dumping_config_1a8a6a1fcee8b24909924dbf1a85102d4c" kindref="member">deltaHInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="structthr_momentum_dumping_config_1a1fc14482394492a7dc10b02159dba719" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structthr_momentum_dumping_config_1a1fc14482394492a7dc10b02159dba719" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}<ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_thrMomentumDumping(<ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_thrMomentumDumping(<ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_thrMomentumDumping(<ref refid="structthr_momentum_dumping_config" kindref="compound">thrMomentumDumpingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrMomentumDumping/thrMomentumDumping.h"/>
+  </compounddef>
+</doxygen>

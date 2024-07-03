@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>methodsParser &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation/index.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../externalTools/index.html">externalTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>methodsParser</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for methodsParser</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"> ISC License</span>
+
+<span class="sd"> Copyright (c) 2016-2018, Autonomous Vehicle Systems Lab, University of Colorado at Boulder</span>
+
+<span class="sd"> Permission to use, copy, modify, and/or distribute this software for any</span>
+<span class="sd"> purpose with or without fee is hereby granted, provided that the above</span>
+<span class="sd"> copyright notice and this permission notice appear in all copies.</span>
+
+<span class="sd"> THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES</span>
+<span class="sd"> WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF</span>
+<span class="sd"> MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR</span>
+<span class="sd"> ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES</span>
+<span class="sd"> WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN</span>
+<span class="sd"> ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF</span>
+<span class="sd"> OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">modulesParser</span> <span class="k">as</span> <span class="nn">dataParser</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getframeinfo</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())</span><span class="o">.</span><span class="n">filename</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="n">alg_contain</span>
+<span class="kn">from</span> <span class="nn">Basilisk.architecture</span> <span class="kn">import</span> <span class="n">sim_model</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="parseSimAlgorithms"><a class="viewcode-back" href="../externalTools/fswAuto/autosetter/methodsParser.html#methodsParser.parseSimAlgorithms">[docs]</a><span class="k">def</span> <span class="nf">parseSimAlgorithms</span><span class="p">(</span><span class="n">TheSim</span><span class="p">,</span> <span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">outputCFileName</span><span class="p">,</span> <span class="n">str_ConfigData</span><span class="p">,</span>
+    <span class="n">simTag</span><span class="o">=</span><span class="s1">&#39;TheSim&#39;</span><span class="p">,</span> <span class="n">localPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">filename</span><span class="p">))):</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This method finds the name of the four main algorithms (speaking generically: self-init, cross-init, update and</span>
+<span class="sd">    reset) for every module that needs to be auto-coded.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">areTasksInSimTaskList</span><span class="p">(</span><span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method checks for matches between the task names instantiated in TheSim and the names defined in the</span>
+<span class="sd">        taskActivityDir dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">taskIdxDir</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">taskOrderedList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">procLength</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">procIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">procLength</span><span class="p">):</span>
+            <span class="n">locProcList</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">[</span><span class="n">procIdx</span><span class="p">]</span><span class="o">.</span><span class="n">processTasks</span><span class="p">)):</span>
+                <span class="n">theTask</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">TotalSim</span><span class="o">.</span><span class="n">processList</span><span class="p">[</span><span class="n">procIdx</span><span class="p">]</span><span class="o">.</span><span class="n">processTasks</span><span class="p">[</span><span class="n">i_task</span><span class="p">]</span>
+                <span class="n">taskFound</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">ordIdx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">locProcList</span><span class="p">)):</span>
+                    <span class="n">locTask</span> <span class="o">=</span> <span class="n">locProcList</span><span class="p">[</span><span class="n">ordIdx</span><span class="p">]</span>
+                    <span class="c1"># locTask[0] = taskName</span>
+                    <span class="c1"># locTask[1] = taskPriority</span>
+                    <span class="k">if</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span> <span class="o">&gt;</span> <span class="n">locTask</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">locProcList</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">ordIdx</span><span class="p">,</span>
+                            <span class="p">[</span><span class="n">theTask</span><span class="o">.</span><span class="n">TaskPtr</span><span class="o">.</span><span class="n">TaskName</span><span class="p">,</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span><span class="p">])</span>
+                        <span class="n">taskFound</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="n">taskFound</span> <span class="o">!=</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">locProcList</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">theTask</span><span class="o">.</span><span class="n">TaskPtr</span><span class="o">.</span><span class="n">TaskName</span><span class="p">,</span> <span class="n">theTask</span><span class="o">.</span><span class="n">taskPriority</span><span class="p">,</span> <span class="n">theTask</span><span class="p">])</span>
+            <span class="n">taskOrderedList</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">locProcList</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">taskOrderedList</span><span class="p">)):</span>
+            <span class="c1"># taskOrderedList[i_task][0] = taskName</span>
+            <span class="c1"># taskOrderedList[i_task][1] = taskPriority</span>
+            <span class="c1"># taskOrderedList[i_task][2] = theTask</span>
+            <span class="n">taskName</span> <span class="o">=</span> <span class="n">taskOrderedList</span><span class="p">[</span><span class="n">i_task</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">taskName</span> <span class="ow">in</span> <span class="n">taskActivityDir</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">idxUse</span> <span class="o">=</span> <span class="n">getTaskIndex</span><span class="p">(</span><span class="n">TheSim</span><span class="p">,</span> <span class="n">taskOrderedList</span><span class="p">[</span><span class="n">i_task</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">TaskPtr</span><span class="p">)</span>
+                <span class="n">taskIdxDir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idxUse</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">i_task</span><span class="p">,</span> <span class="n">taskName</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">taskIdxDir</span>
+
+    <span class="k">def</span> <span class="nf">parseSwigVars</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        First Parsing Method. Function: get rid of all the variables that come after a built-in.</span>
+<span class="sd">        The methods SelfInit, CrossInit, Update and Restart will always come first, and so will do the variables that</span>
+<span class="sd">        are capitalized (this is based on how &quot;dir()&quot; command works in the Python interpreter).</span>
+<span class="sd">        :return: parsed array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parsed_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span><span class="p">:</span>
+                <span class="n">parsed_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parsed_array</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">parsed_array</span>
+
+
+    <span class="k">def</span> <span class="nf">evalParsedList</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Second Parsing Method: Collects all the SwigPyObjects present in the list.</span>
+<span class="sd">        Only the methods self-init, cross-init, update and reset methods are wrapped by SWIG in the .i files.</span>
+<span class="sd">        Therefore they are the only SwigPyObjects.</span>
+<span class="sd">        :return: dictionary addressDict = {method, address}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">addressDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">methodName</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">methodObject</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;sys.modules[&quot;&#39;</span> <span class="o">+</span> <span class="n">module</span> <span class="o">+</span> <span class="s1">&#39;&quot;].&#39;</span> <span class="o">+</span> <span class="n">methodName</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">methodObject</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;SwigPyObject&quot;</span><span class="p">:</span>
+                <span class="n">methodAddress</span> <span class="o">=</span> <span class="n">sim_model</span><span class="o">.</span><span class="n">getObjectAddress</span><span class="p">(</span><span class="n">methodObject</span><span class="p">)</span>
+                <span class="n">addressDict</span><span class="p">[</span><span class="n">methodName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">methodAddress</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">addressDict</span>
+
+
+    <span class="k">def</span> <span class="nf">checkMethodType</span><span class="p">(</span><span class="n">methodName</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function checks the method type of the input and returns the corresponding strings.</span>
+<span class="sd">        :param methodName: name of the model data algorithm</span>
+<span class="sd">        :return: corresponding function strings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">str_selfInit</span> <span class="o">=</span> <span class="s1">&#39;SelfInit&#39;</span>
+        <span class="n">str_crossInit</span> <span class="o">=</span> <span class="s1">&#39;CrossInit&#39;</span>
+        <span class="n">str_update</span> <span class="o">=</span> <span class="s1">&#39;Update&#39;</span>
+        <span class="n">str_reset</span> <span class="o">=</span> <span class="s1">&#39;Reset&#39;</span>
+
+        <span class="n">str_blank</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># the methods SelfInit and CrossInit don&#39;t need the callTime parameter</span>
+        <span class="n">str_callTime</span> <span class="o">=</span> <span class="s1">&#39;, callTime&#39;</span> <span class="c1"># the methods Reset and Update need an extra parameter for callTine</span>
+
+        <span class="k">if</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_selfInit</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_selfInit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">str_selfInit</span><span class="p">,</span> <span class="n">str_blank</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_crossInit</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_crossInit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">str_crossInit</span><span class="p">,</span> <span class="n">str_blank</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_update</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_update</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">str_update</span><span class="p">,</span> <span class="n">str_callTime</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">methodName</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">str_reset</span><span class="p">)]</span> <span class="o">==</span> <span class="n">str_reset</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">str_reset</span><span class="p">,</span> <span class="n">str_callTime</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot recognize the method. Parse better.&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">getTaskModelKey</span><span class="p">(</span><span class="n">i_task</span><span class="p">,</span> <span class="n">i_model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         This function returns the key name of the NameReplace dictionary according to the index of the task</span>
+<span class="sd">         and the index of the model inside the task</span>
+<span class="sd">        :param i_task: task index</span>
+<span class="sd">        :param i_model: model index</span>
+<span class="sd">        :return: key of NameReplace dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;self.TaskList[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i_task</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;].TaskModels[&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i_model</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span>
+        <span class="k">return</span> <span class="n">key</span>
+
+
+
+    <span class="k">def</span> <span class="nf">getTaskIndex</span><span class="p">(</span><span class="n">theSim</span><span class="p">,</span><span class="n">taskUse</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function returns the task index corresponding to the task name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">for</span> <span class="n">taskPy</span> <span class="ow">in</span> <span class="n">theSim</span><span class="o">.</span><span class="n">TaskList</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">taskUse</span><span class="o">.</span><span class="n">TaskName</span> <span class="o">==</span> <span class="n">taskPy</span><span class="o">.</span><span class="n">Name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">j</span>
+            <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">findAddressMatch</span><span class="p">(</span><span class="n">addressVal</span><span class="p">,</span> <span class="n">modelTagKey</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function makes sure that each algorithm in a data model is matched with the proper algorithm in</span>
+<span class="sd">        the corresponding model wrap. If there&#39;s a match, returns the ID of the model.</span>
+<span class="sd">        Otherwise, an ugly error is raised and the whole program quits.</span>
+<span class="sd">        :param addressVal: address of the model data algorithm</span>
+<span class="sd">        :param modelTagKey: modelTag name</span>
+<span class="sd">        :param dict: wrap-algorithms&#39; address dictionary in which to look for a match</span>
+<span class="sd">        dict[modelTagKey][0] = model wrap algorithm address</span>
+<span class="sd">        dict[modelTagKey][1] = model ID</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">address</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">modelTagKey</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="n">addressVal</span><span class="p">:</span>
+                <span class="n">IDVal</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">modelTagKey</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">IDVal</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">modelTagKey</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is not wrapping all the existing algorithms in &#39;</span>
+                                                <span class="s1">&#39;the corresponding data model. Fix it.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">writeTaskAlgs</span><span class="p">(</span><span class="n">algName</span><span class="p">,</span> <span class="n">algList</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function progressively creates a list with all the void definitions that will go in the output header file</span>
+<span class="sd">        and the algorithms names that will go in the output source file for SelfInit, CrossInit and Reset methods</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">void</span> <span class="o">=</span> <span class="s1">&#39;void &#39;</span> <span class="o">+</span> <span class="n">algName</span>
+        <span class="n">void_header</span> <span class="o">=</span> <span class="n">void</span> <span class="o">+</span> <span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">void_source</span> <span class="o">=</span> <span class="n">void</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">{</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="n">algList</span><span class="p">:</span>
+            <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">alg</span> <span class="o">+</span> <span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;}</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">theVoidList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">void_header</span><span class="p">)</span>
+        <span class="n">theAlgList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">void_source</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">writeUpdateTaskActivityAlg</span><span class="p">(</span><span class="n">algName</span><span class="p">,</span> <span class="n">globalAlgUpdate</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function progressively creates a list with all the void definitions that will go in the output header file</span>
+<span class="sd">        and the algorithms names that will go in the output source file for Update methods.</span>
+<span class="sd">        It adds an if-check to learn about the task activity flag. Only tasks that are active should be Updated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">void</span> <span class="o">=</span> <span class="s1">&#39;void &#39;</span> <span class="o">+</span> <span class="n">algName</span>
+        <span class="n">void_header</span> <span class="o">=</span> <span class="n">void</span> <span class="o">+</span> <span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">void_source</span> <span class="o">=</span> <span class="n">void</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">{</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">for</span> <span class="n">updateElem</span> <span class="ow">in</span> <span class="n">globalAlgUpdate</span><span class="p">:</span>
+            <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;if (data-&gt;&#39;</span> <span class="o">+</span> <span class="n">updateElem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;){&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">updateElem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;(data, callTime);&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">void_source</span> <span class="o">+=</span> <span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">theVoidList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">void_header</span><span class="p">)</span>
+        <span class="n">theAlgList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">void_source</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">writeTaskActivityVars</span><span class="p">(</span><span class="n">globalAlgUpdate</span><span class="p">,</span> <span class="n">varType</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function creates two lists for the activity flag variables: declaration(header) and initialization(source)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">theTaskActivity_declareList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">theTaskActivity_initList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">updateElem</span> <span class="ow">in</span> <span class="n">globalAlgUpdate</span><span class="p">:</span>
+            <span class="c1"># updateElem[0] = algNameUpdate</span>
+            <span class="c1"># updateElem[1] = [algNameTaskActivity, boolIsTaskActive]</span>
+            <span class="n">declare_str</span> <span class="o">=</span> <span class="n">varType</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">updateElem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">init_str</span> <span class="o">=</span> <span class="s1">&#39;data-&gt;&#39;</span> <span class="o">+</span> <span class="n">updateElem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span> <span class="o">+</span> <span class="n">updateElem</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="n">theTaskActivity_declareList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">declare_str</span><span class="p">)</span>
+            <span class="n">theTaskActivity_initList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">theTaskActivity_declareList</span><span class="p">,</span> <span class="n">theTaskActivity_initList</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">findFilePath</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function looks for the path of the required header files</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ADCSPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/../fswAlgorithms/&#39;</span>
+        <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">subdirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">ADCSPath</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">relDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+                    <span class="n">filePath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">relDir</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">filePath</span>
+
+    <span class="k">def</span> <span class="nf">createModuleHeaderName</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">headersList</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function appends a module&#39;s header string to the global headers list (only if it&#39;s not there)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#print(len(module))</span>
+        <span class="n">moduleName</span> <span class="o">=</span> <span class="n">module</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h&#39;</span>
+        <span class="n">headerPath</span> <span class="o">=</span> <span class="n">findFilePath</span><span class="p">(</span><span class="n">moduleName</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">headerPath</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+           <span class="k">return</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;#include &quot;&#39;</span> <span class="o">+</span> <span class="n">headerPath</span> <span class="o">+</span> <span class="s1">&#39;&quot;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">header</span> <span class="ow">in</span> <span class="n">headersList</span><span class="p">):</span>
+            <span class="n">headersList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">createConfigDataHeader</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">configData</span><span class="p">,</span> <span class="n">configlist</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function creates a list with the declaration of all config data structures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">configData</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">tag</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">string</span> <span class="ow">in</span> <span class="n">configlist</span><span class="p">):</span>
+            <span class="n">configlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+
+    <span class="c1"># Model Wraps</span>
+    <span class="n">SelfInit_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># dictionary D = {modelTag: SelfInit alg address, moduleID}</span>
+    <span class="n">Update_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># dictionary D = {modelTag: Update alg address, moduleID}</span>
+    <span class="n">Reset_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># dictionary D = {modelTag: Reset alg address, moduleID}</span>
+    <span class="n">TheSimList</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">simTag</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">elemName</span> <span class="ow">in</span> <span class="n">TheSimList</span><span class="p">:</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">simTag</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">elemName</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="o">==</span> <span class="n">alg_contain</span><span class="o">.</span><span class="n">AlgContain</span><span class="p">:</span>
+            <span class="n">SelfInit_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getSelfInitAddress</span><span class="p">()),</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">Update_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getUpdateAddress</span><span class="p">()),</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">hasResetAddress</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getResetAddress</span><span class="p">())</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">hasResetAddress</span><span class="p">):</span>
+                <span class="n">Reset_dict</span><span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">ModelTag</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">hasResetAddress</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Model Data</span>
+    <span class="n">NameReplaceList</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">NameReplace</span>
+    <span class="n">allAlgSelfInit</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># global list for all models&#39; SelfInit algorithms</span>
+    <span class="n">globalAllAlgReset</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># global list for all models&#39; Reset algorithms</span>
+    <span class="n">globalAlgUpdate</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#</span>
+    <span class="n">theConfigDataList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">theAlgList</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># global list for all source algorithms</span>
+    <span class="n">theVoidList</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># global list for all header void function definitions.</span>
+    <span class="n">theHeadersList</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># global list for all the module headers</span>
+    <span class="n">ConfigData</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39; *data)&#39;</span>
+    <span class="n">ConfigData_callTime</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39; *data, uint64_t callTime)&#39;</span>
+
+
+    <span class="n">taskIdxDir</span> <span class="o">=</span> <span class="n">areTasksInSimTaskList</span><span class="p">(</span><span class="n">taskActivityDir</span><span class="p">,</span> <span class="n">TheSim</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i_task</span> <span class="ow">in</span> <span class="n">taskIdxDir</span><span class="p">:</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">TheSim</span><span class="o">.</span><span class="n">TaskList</span><span class="p">[</span><span class="n">i_task</span><span class="p">]</span>
+        <span class="n">isTaskActive</span> <span class="o">=</span> <span class="n">taskActivityDir</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">Name</span><span class="p">]</span>
+        <span class="n">allAlgUpdate</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># local list for task models&#39; Update algorithms</span>
+        <span class="n">allAlgReset</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># local list for task model&#39;s Reset algorithms</span>
+        <span class="n">i_model</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">task</span><span class="o">.</span><span class="n">TaskModels</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">getTaskModelKey</span><span class="p">(</span><span class="n">i_task</span><span class="p">,</span> <span class="n">i_model</span><span class="p">)</span>
+            <span class="n">modelTag</span> <span class="o">=</span> <span class="n">NameReplaceList</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="vm">__module__</span>
+            <span class="n">modelConfigDataName</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="n">createConfigDataHeader</span><span class="p">(</span><span class="n">modelTag</span><span class="p">,</span> <span class="n">modelConfigDataName</span><span class="p">,</span> <span class="n">theConfigDataList</span><span class="p">)</span>
+            <span class="n">createModuleHeaderName</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">theHeadersList</span><span class="p">)</span>
+            <span class="n">sysMod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">module</span><span class="p">]</span>
+            <span class="n">dirList</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="n">sysMod</span><span class="p">)</span>
+            <span class="n">parsed_dirList</span> <span class="o">=</span> <span class="n">parseSwigVars</span><span class="p">(</span><span class="n">dirList</span><span class="p">)</span>
+            <span class="n">addressDict</span> <span class="o">=</span> <span class="n">evalParsedList</span><span class="p">(</span><span class="n">parsed_dirList</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">addressDict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="p">(</span><span class="n">methodType</span><span class="p">,</span> <span class="n">methodCallTime</span><span class="p">)</span> <span class="o">=</span> <span class="n">checkMethodType</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="n">dictUse</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">methodType</span> <span class="o">+</span> <span class="s1">&#39;_dict&#39;</span><span class="p">)</span>
+                <span class="n">modelID</span> <span class="o">=</span> <span class="n">findAddressMatch</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">modelTag</span><span class="p">,</span> <span class="n">dictUse</span><span class="p">)</span>
+                <span class="n">theString</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span><span class="s1">&#39;(&amp;(data-&gt;&#39;</span> <span class="o">+</span> <span class="n">modelTag</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> <span class="o">+</span> <span class="n">methodCallTime</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">modelID</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+                <span class="n">theList</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;allAlg&#39;</span> <span class="o">+</span> <span class="n">methodType</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">theString</span> <span class="ow">in</span> <span class="n">theList</span><span class="p">):</span>
+                    <span class="n">theList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theString</span><span class="p">)</span>
+            <span class="n">i_model</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">algNameUpdate</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">Name</span> <span class="o">+</span> <span class="s1">&#39;_Update&#39;</span>
+        <span class="n">algNameUpdateTaskActivity</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">Name</span> <span class="o">+</span> <span class="s1">&#39;_isActive&#39;</span>
+        <span class="n">globalAlgUpdate</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">algNameUpdate</span><span class="p">,</span> <span class="p">(</span><span class="n">algNameUpdateTaskActivity</span><span class="p">,</span><span class="n">isTaskActive</span><span class="p">)])</span>
+        <span class="n">algNameReset</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">Name</span> <span class="o">+</span> <span class="s1">&#39;_Reset&#39;</span>
+        <span class="n">writeTaskAlgs</span><span class="p">(</span><span class="n">algNameUpdate</span> <span class="o">+</span> <span class="n">ConfigData_callTime</span><span class="p">,</span> <span class="n">allAlgUpdate</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">allAlgReset</span><span class="p">):</span> <span class="c1"># check if there are any reset methods in the task models</span>
+            <span class="n">writeTaskAlgs</span><span class="p">(</span><span class="n">algNameReset</span> <span class="o">+</span> <span class="n">ConfigData_callTime</span><span class="p">,</span> <span class="n">allAlgReset</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">reset</span> <span class="ow">in</span> <span class="n">allAlgReset</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">reset</span> <span class="ow">in</span> <span class="n">globalAllAlgReset</span><span class="p">):</span>
+                    <span class="n">globalAllAlgReset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+    <span class="n">algNameAllSelfInit</span> <span class="o">=</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39;_AllAlg_SelfInit&#39;</span>
+    <span class="n">algNameAllReset</span> <span class="o">=</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39;_AllAlg_Reset&#39;</span>
+    <span class="n">taskNameUpdate</span> <span class="o">=</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39;_AllTasks_Update&#39;</span>
+    <span class="n">algNameDataInit</span> <span class="o">=</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39;_DataInit&#39;</span>
+
+    <span class="n">writeTaskAlgs</span><span class="p">(</span><span class="n">algNameAllSelfInit</span> <span class="o">+</span> <span class="n">ConfigData</span><span class="p">,</span> <span class="n">allAlgSelfInit</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">)</span>
+    <span class="n">writeTaskAlgs</span><span class="p">(</span><span class="n">algNameAllReset</span> <span class="o">+</span> <span class="n">ConfigData_callTime</span><span class="p">,</span> <span class="n">globalAllAlgReset</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">)</span>
+    <span class="n">writeUpdateTaskActivityAlg</span><span class="p">(</span><span class="n">taskNameUpdate</span>  <span class="o">+</span> <span class="n">ConfigData_callTime</span><span class="p">,</span> <span class="n">globalAlgUpdate</span><span class="p">,</span> <span class="n">theVoidList</span><span class="p">,</span> <span class="n">theAlgList</span><span class="p">)</span>
+    <span class="n">varType</span> <span class="o">=</span> <span class="s1">&#39;uint32_t&#39;</span>
+    <span class="p">(</span><span class="n">theTaskActivity_declareList</span><span class="p">,</span> <span class="n">theTaskActivity_initList</span><span class="p">)</span> <span class="o">=</span> <span class="n">writeTaskActivityVars</span><span class="p">(</span><span class="n">globalAlgUpdate</span><span class="p">,</span> <span class="n">varType</span><span class="p">)</span>
+
+    <span class="c1"># Open/Create C source&amp;header files and swig file</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getframeinfo</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">())</span><span class="o">.</span><span class="n">filename</span>
+    <span class="n">fileMode</span> <span class="o">=</span> <span class="s1">&#39;w+&#39;</span>  <span class="c1"># create file to be written if it doesn&#39;t exist</span>
+    <span class="n">alg_source</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">localPath</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.c&#39;</span><span class="p">,</span> <span class="n">fileMode</span><span class="p">)</span>  <span class="c1"># source file</span>
+    <span class="n">alg_header</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">localPath</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.h&#39;</span><span class="p">,</span> <span class="n">fileMode</span><span class="p">)</span>  <span class="c1"># header file</span>
+    <span class="n">alg_swig</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">localPath</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.i&#39;</span><span class="p">,</span> <span class="n">fileMode</span><span class="p">)</span>  <span class="c1"># header file</span>
+
+    <span class="c1"># Write source file</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#include &quot;&#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.h&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="n">theAlgList</span><span class="p">:</span>
+        <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">alg</span><span class="p">)</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">theDataVoid</span> <span class="o">=</span> <span class="s1">&#39;void &#39;</span> <span class="o">+</span> <span class="n">algNameDataInit</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39; *data)&#39;</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">theDataVoid</span> <span class="o">+</span> <span class="s1">&#39;{</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">memset(data, 0x0, sizeof(&#39;</span> <span class="o">+</span> <span class="n">str_ConfigData</span> <span class="o">+</span> <span class="s1">&#39;));</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">init</span> <span class="ow">in</span> <span class="n">theTaskActivity_initList</span><span class="p">:</span>
+        <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
+    <span class="n">dataParser</span><span class="o">.</span><span class="n">ParseConfigData</span><span class="p">(</span><span class="n">TheSim</span><span class="p">,</span> <span class="n">taskIdxDir</span><span class="p">,</span> <span class="s1">&#39;data-&gt;&#39;</span><span class="p">,</span> <span class="n">alg_source</span><span class="p">)</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Write header file</span>
+    <span class="c1"># begin header file</span>
+    <span class="n">defName</span> <span class="o">=</span> <span class="s1">&#39;_FSW_AUTOCODE_&#39;</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#ifndef &#39;</span> <span class="o">+</span> <span class="n">defName</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#define &#39;</span> <span class="o">+</span> <span class="n">defName</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># define auto-code init data</span>
+    <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">theHeadersList</span><span class="p">:</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;typedef struct{&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">configData</span> <span class="ow">in</span> <span class="n">theConfigDataList</span><span class="p">:</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">configData</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">declare</span> <span class="ow">in</span> <span class="n">theTaskActivity_declareList</span><span class="p">:</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">declare</span><span class="p">)</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="n">str_ConfigData</span> <span class="o">+</span><span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># define auto-code algorithms</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#ifdef &#39;</span> <span class="o">+</span> <span class="s1">&#39;__cplusplus&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;extern &quot;C&quot; {&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#endif&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">void</span> <span class="ow">in</span> <span class="n">theVoidList</span><span class="p">:</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">theDataVoid</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#ifdef &#39;</span> <span class="o">+</span> <span class="s1">&#39;__cplusplus&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#endif&#39;</span><span class="p">)</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#endif&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">writeSwigAlgCode</span><span class="p">(</span><span class="n">algNames</span><span class="p">,</span> <span class="n">swigFile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function writes the swig file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">endL</span> <span class="o">=</span> <span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">algNames</span><span class="p">:</span>
+            <span class="n">constant_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%c</span><span class="s1">onstant void &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="n">endL</span>
+            <span class="n">ignore_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%i</span><span class="s1">gnore &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="n">endL</span>
+            <span class="n">swigFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">constant_str</span> <span class="o">+</span> <span class="n">ignore_str</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="c1"># begin swig code</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;%module &#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;%{&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;#include &quot;&#39;</span> <span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.h&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;%}&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">nclude &quot;swig_conly_data.i&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># wrap C auto-code algorithms</span>
+    <span class="n">configData_paramsDefault</span> <span class="o">=</span> <span class="s1">&#39;(void*, unit64_t)&#39;</span>
+    <span class="n">configData_paramsCallTime</span> <span class="o">=</span>  <span class="s1">&#39;(void*, unit64_t, uint64_t)&#39;</span>
+    <span class="n">algNames</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">algNameDataInit</span> <span class="o">+</span><span class="n">configData_paramsDefault</span><span class="p">,</span>
+        <span class="n">algNameAllSelfInit</span> <span class="o">+</span> <span class="n">configData_paramsDefault</span><span class="p">,</span>
+        <span class="n">algNameAllReset</span> <span class="o">+</span> <span class="n">configData_paramsCallTime</span><span class="p">,</span>
+        <span class="n">taskNameUpdate</span> <span class="o">+</span> <span class="n">configData_paramsCallTime</span>
+    <span class="p">]</span>
+    <span class="n">writeSwigAlgCode</span><span class="p">(</span><span class="n">algNames</span><span class="p">,</span> <span class="n">alg_swig</span><span class="p">)</span>
+    <span class="c1"># end swig code</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">nclude &quot;&#39;</span><span class="o">+</span> <span class="n">outputCFileName</span> <span class="o">+</span> <span class="s1">&#39;.h&quot;&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;%pythoncode %{&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;import sys&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span>
+                   <span class="s1">&#39;protectAllClasses(sys.modules[__name__])&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;%}&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Close C source&amp;header files and swig file</span>
+    <span class="n">alg_source</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">alg_header</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">alg_swig</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

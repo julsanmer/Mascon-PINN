@@ -1,0 +1,704 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_magnetic_field_base" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>MagneticFieldBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="magnetic_field_base_8h" local="no">magneticFieldBase.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_magnetic_field_base_1adb226c8fade0ce102a795454bdee8385" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; ReadFunctor&lt; SCStatesMsgPayload &gt; &gt;</type>
+        <definition>std::vector&lt;ReadFunctor&lt;SCStatesMsgPayload&gt; &gt; MagneticFieldBase::scStateInMsgs</definition>
+        <argsstring></argsstring>
+        <name>scStateInMsgs</name>
+        <qualifiedname>MagneticFieldBase::scStateInMsgs</qualifiedname>
+        <briefdescription>
+<para>Vector of the spacecraft position/velocity input message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="59" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1aaaec5005757b94adc5caae3013d3e114" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; Message&lt; MagneticFieldMsgPayload &gt; * &gt;</type>
+        <definition>std::vector&lt;Message&lt;MagneticFieldMsgPayload&gt;*&gt; MagneticFieldBase::envOutMsgs</definition>
+        <argsstring></argsstring>
+        <name>envOutMsgs</name>
+        <qualifiedname>MagneticFieldBase::envOutMsgs</qualifiedname>
+        <briefdescription>
+<para>Vector of message names to be written out by the environment. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="60" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a3b132893bbc4016e216aceca4d5baa95" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SpicePlanetStateMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SpicePlanetStateMsgPayload&gt; MagneticFieldBase::planetPosInMsg</definition>
+        <argsstring></argsstring>
+        <name>planetPosInMsg</name>
+        <qualifiedname>MagneticFieldBase::planetPosInMsg</qualifiedname>
+        <briefdescription>
+<para>Message name for the planet&apos;s SPICE position message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="61" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1ac8a58816b1210ca4390c1bc39ad53ea4" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; EpochMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;EpochMsgPayload&gt; MagneticFieldBase::epochInMsg</definition>
+        <argsstring></argsstring>
+        <name>epochInMsg</name>
+        <qualifiedname>MagneticFieldBase::epochInMsg</qualifiedname>
+        <briefdescription>
+<para>(optional) epoch date/time input message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="62" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a0119c11d9efe20eda908827d45ca1673" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagneticFieldBase::envMinReach</definition>
+        <argsstring></argsstring>
+        <name>envMinReach</name>
+        <qualifiedname>MagneticFieldBase::envMinReach</qualifiedname>
+        <briefdescription>
+<para>[m] Minimum planet-relative position needed for the environment to work, default is off (neg. value) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="64" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a8849a54a204100ffbeb6a23b51cac3fb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagneticFieldBase::envMaxReach</definition>
+        <argsstring></argsstring>
+        <name>envMaxReach</name>
+        <qualifiedname>MagneticFieldBase::envMaxReach</qualifiedname>
+        <briefdescription>
+<para>[m] Maximum distance at which the environment will be calculated, default is off (neg. value) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="65" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a34ee2592c237ae7f2b8d203f68fc1cac" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagneticFieldBase::planetRadius</definition>
+        <argsstring></argsstring>
+        <name>planetRadius</name>
+        <qualifiedname>MagneticFieldBase::planetRadius</qualifiedname>
+        <briefdescription>
+<para>[m] Radius of the planet </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="66" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a1e42c193e8ab7810059b87ad9918b10b" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger MagneticFieldBase::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>MagneticFieldBase::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="67" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_magnetic_field_base_1a2cb1b4a08eedf7b1dd14ef3cccde31a1" prot="protected" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d MagneticFieldBase::r_BP_N</definition>
+        <argsstring></argsstring>
+        <name>r_BP_N</name>
+        <qualifiedname>MagneticFieldBase::r_BP_N</qualifiedname>
+        <briefdescription>
+<para>[m] sc position vector relative to planet in inertial N frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="70" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a925aa07594c2b0c82404bed6e6dc0331" prot="protected" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d MagneticFieldBase::r_BP_P</definition>
+        <argsstring></argsstring>
+        <name>r_BP_P</name>
+        <qualifiedname>MagneticFieldBase::r_BP_P</qualifiedname>
+        <briefdescription>
+<para>[m] sc position vector relative to planet in planet-fixed frame components </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="71" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1af3dfde77ff2faa81196b8213f6a46668" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagneticFieldBase::orbitRadius</definition>
+        <argsstring></argsstring>
+        <name>orbitRadius</name>
+        <qualifiedname>MagneticFieldBase::orbitRadius</qualifiedname>
+        <briefdescription>
+<para>[m] sc orbit radius about planet </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="72" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a7f39e372507e7ac3f7a4e9ee9dd570d9" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; MagneticFieldMsgPayload &gt;</type>
+        <definition>std::vector&lt;MagneticFieldMsgPayload&gt; MagneticFieldBase::magFieldOutBuffer</definition>
+        <argsstring></argsstring>
+        <name>magFieldOutBuffer</name>
+        <qualifiedname>MagneticFieldBase::magFieldOutBuffer</qualifiedname>
+        <briefdescription>
+<para><ndash/> Message buffer for magnetic field messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="74" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a9bf2ce0a6ce2d97cd16f78664c6e52d1" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; SCStatesMsgPayload &gt;</type>
+        <definition>std::vector&lt;SCStatesMsgPayload&gt; MagneticFieldBase::scStates</definition>
+        <argsstring></argsstring>
+        <name>scStates</name>
+        <qualifiedname>MagneticFieldBase::scStates</qualifiedname>
+        <briefdescription>
+<para>vector of the spacecraft state messages </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="75" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a5d8926ba6ee2ebf35170df1786d15706" prot="protected" static="no" mutable="no">
+        <type>SpicePlanetStateMsgPayload</type>
+        <definition>SpicePlanetStateMsgPayload MagneticFieldBase::planetState</definition>
+        <argsstring></argsstring>
+        <name>planetState</name>
+        <qualifiedname>MagneticFieldBase::planetState</qualifiedname>
+        <briefdescription>
+<para>planet state message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="76" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_magnetic_field_base_1a944388d7b745c705703568b1b1b23fce" prot="protected" static="no" mutable="no">
+        <type>struct tm</type>
+        <definition>struct tm MagneticFieldBase::epochDateTime</definition>
+        <argsstring></argsstring>
+        <name>epochDateTime</name>
+        <qualifiedname>MagneticFieldBase::epochDateTime</qualifiedname>
+        <briefdescription>
+<para>time/date structure containing the epoch information using a Gregorian calendar </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="77" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_magnetic_field_base_1a3b5ae1306b8df5adf61c2f9cf66977a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MagneticFieldBase::MagneticFieldBase</definition>
+        <argsstring>()</argsstring>
+        <name>MagneticFieldBase</name>
+        <qualifiedname>MagneticFieldBase::MagneticFieldBase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes some basic parameters for the module. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>zero class variables</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>turn off minimum and maximum reach features</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>set the default epoch information</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>zero the planet message, and set the DCM to an identity matrix</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="41" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="29" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1a0dcdbd6693934f3365448096029f8269" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MagneticFieldBase::~MagneticFieldBase</definition>
+        <argsstring>()</argsstring>
+        <name>~MagneticFieldBase</name>
+        <qualifiedname>MagneticFieldBase::~MagneticFieldBase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Destructor. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="42" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1aa0d3c4b1c278d0c1a6f49bb27c366782" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::Reset</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>MagneticFieldBase::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>call the custom environment module reset method</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="94" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1acbbff168aaff59a300a1ea9e7dbc76dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::addSpacecraftToModel</definition>
+        <argsstring>(Message&lt; SCStatesMsgPayload &gt; *tmpScMsg)</argsstring>
+        <name>addSpacecraftToModel</name>
+        <qualifiedname>MagneticFieldBase::addSpacecraftToModel</qualifiedname>
+        <param>
+          <type>Message&lt; SCStatesMsgPayload &gt; *</type>
+          <declname>tmpScMsg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds the spacecraft message name to a vector of sc message names and automatically creates an output message name. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tmpScMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A spacecraft state message name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="44" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="73" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1af951b8e4a53cdcd6d0663e16aee558b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>MagneticFieldBase::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the current local magnetic field for each spacecraft and writes their respective messages. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time in nanoseconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>clear the output buffer</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>update local neutral density information</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>write out neutral density message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="45" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="262" bodyend="280"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_magnetic_field_base_1a376b758f085962da0d9fd0781e2a40c5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::writeMessages</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>writeMessages</name>
+        <qualifiedname>MagneticFieldBase::writeMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to write the output magnetic field messages whose names are established in AddSpacecraftToModel. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentClock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current time used for time-stamping the message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>call the custom method to perform additional output message writing</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="48" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="139" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1abc931dd98d1440e750ec10dbc80aeb3a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MagneticFieldBase::readMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readMessages</name>
+        <qualifiedname>MagneticFieldBase::readMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to read the incoming command message and set the associated spacecraft positions for computing the atmosphere. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>read in the spacecraft state messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read in the optional planet message. if no planet message is set, then a zero planet position, velocity and orientation is assumed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>call the custom method to perform additional input reading</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="49" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="163" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1a2739ba8bda3482e60074651812d873c0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::updateLocalMagField</definition>
+        <argsstring>(double currentTime)</argsstring>
+        <name>updateLocalMagField</name>
+        <qualifiedname>MagneticFieldBase::updateLocalMagField</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to update the local magnetic field based on each spacecraft&apos;s position. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>loop over all the spacecraft</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Computes planet relative state vector</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>zero the output message for each spacecraft by default</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>check if radius is in permissible range</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute the local magnetic field. The evaluateMageticFieldModel() method must be implement for each model</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="50" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="213" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1a7de0eb8ef8859ffd812304d33c49378e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::updateRelativePos</definition>
+        <argsstring>(SpicePlanetStateMsgPayload *planetState, SCStatesMsgPayload *scState)</argsstring>
+        <name>updateRelativePos</name>
+        <qualifiedname>MagneticFieldBase::updateRelativePos</qualifiedname>
+        <param>
+          <type>SpicePlanetStateMsgPayload *</type>
+          <declname>planetState</declname>
+        </param>
+        <param>
+          <type>SCStatesMsgPayload *</type>
+          <declname>scState</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to determine the spacecraft position vector relative to the planet. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>planetState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A space planetstate message struct. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A spacecraft states message struct. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>compute spacecraft position vector relative to planet</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>convert spacecraft position vector in Earth-fixed vector components</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute orbit radius</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="51" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="244" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1ae3b22d9e6a5b8297049ca8376d396467" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void MagneticFieldBase::evaluateMagneticFieldModel</definition>
+        <argsstring>(MagneticFieldMsgPayload *msg, double currentTime)=0</argsstring>
+        <name>evaluateMagneticFieldModel</name>
+        <qualifiedname>MagneticFieldBase::evaluateMagneticFieldModel</qualifiedname>
+        <param>
+          <type>MagneticFieldMsgPayload *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <briefdescription>
+<para>class method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="52" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1ac7e3802de744e78890b37f1105f28582" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::customReset</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>customReset</name>
+        <qualifiedname>MagneticFieldBase::customReset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom <ref refid="class_magnetic_field_base_1aa0d3c4b1c278d0c1a6f49bb27c366782" kindref="member">Reset()</ref> method. This allows a child class to add additional functionality to the <ref refid="class_magnetic_field_base_1aa0d3c4b1c278d0c1a6f49bb27c366782" kindref="member">Reset()</ref> method <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="53" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="121" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1a074f092d558ff8831eb97e4bf443db73" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::customWriteMessages</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>customWriteMessages</name>
+        <qualifiedname>MagneticFieldBase::customWriteMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom output message writing method. This allows a child class to add additional functionality. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="54" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="154" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1ab5fa283ea19f1080101bb37c50067af3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool MagneticFieldBase::customReadMessages</definition>
+        <argsstring>()</argsstring>
+        <name>customReadMessages</name>
+        <qualifiedname>MagneticFieldBase::customReadMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom output input reading method. This allows a child class to add additional functionality. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="55" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="205" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="class_magnetic_field_base_1a3d7cafe7dd0b9d43b094f225b5462cd0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void MagneticFieldBase::customSetEpochFromVariable</definition>
+        <argsstring>()</argsstring>
+        <name>customSetEpochFromVariable</name>
+        <qualifiedname>MagneticFieldBase::customSetEpochFromVariable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Custom <ref refid="class_magnetic_field_base_1a3d7cafe7dd0b9d43b094f225b5462cd0" kindref="member">customSetEpochFromVariable()</ref> method. This allows a child class to specify how the module epoch information is set by a module variable. <simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="56" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.cpp" bodystart="130" bodyend="133"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>magnetic field base class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MagneticFieldBase</label>
+        <link refid="class_magnetic_field_base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MagneticFieldBase</label>
+        <link refid="class_magnetic_field_base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" line="39" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/environment/_GeneralModuleFiles/magneticFieldBase.h" bodystart="39" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_magnetic_field_base_1acbbff168aaff59a300a1ea9e7dbc76dc" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>addSpacecraftToModel</name></member>
+      <member refid="class_magnetic_field_base_1a1e42c193e8ab7810059b87ad9918b10b" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>bskLogger</name></member>
+      <member refid="class_magnetic_field_base_1ab5fa283ea19f1080101bb37c50067af3" prot="protected" virt="virtual"><scope>MagneticFieldBase</scope><name>customReadMessages</name></member>
+      <member refid="class_magnetic_field_base_1ac7e3802de744e78890b37f1105f28582" prot="protected" virt="virtual"><scope>MagneticFieldBase</scope><name>customReset</name></member>
+      <member refid="class_magnetic_field_base_1a3d7cafe7dd0b9d43b094f225b5462cd0" prot="protected" virt="virtual"><scope>MagneticFieldBase</scope><name>customSetEpochFromVariable</name></member>
+      <member refid="class_magnetic_field_base_1a074f092d558ff8831eb97e4bf443db73" prot="protected" virt="virtual"><scope>MagneticFieldBase</scope><name>customWriteMessages</name></member>
+      <member refid="class_magnetic_field_base_1a8849a54a204100ffbeb6a23b51cac3fb" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>envMaxReach</name></member>
+      <member refid="class_magnetic_field_base_1a0119c11d9efe20eda908827d45ca1673" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>envMinReach</name></member>
+      <member refid="class_magnetic_field_base_1aaaec5005757b94adc5caae3013d3e114" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>envOutMsgs</name></member>
+      <member refid="class_magnetic_field_base_1a944388d7b745c705703568b1b1b23fce" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>epochDateTime</name></member>
+      <member refid="class_magnetic_field_base_1ac8a58816b1210ca4390c1bc39ad53ea4" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>epochInMsg</name></member>
+      <member refid="class_magnetic_field_base_1ae3b22d9e6a5b8297049ca8376d396467" prot="protected" virt="pure-virtual"><scope>MagneticFieldBase</scope><name>evaluateMagneticFieldModel</name></member>
+      <member refid="class_magnetic_field_base_1a7f39e372507e7ac3f7a4e9ee9dd570d9" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>magFieldOutBuffer</name></member>
+      <member refid="class_magnetic_field_base_1a3b5ae1306b8df5adf61c2f9cf66977a6" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>MagneticFieldBase</name></member>
+      <member refid="class_magnetic_field_base_1af3dfde77ff2faa81196b8213f6a46668" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>orbitRadius</name></member>
+      <member refid="class_magnetic_field_base_1a3b132893bbc4016e216aceca4d5baa95" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>planetPosInMsg</name></member>
+      <member refid="class_magnetic_field_base_1a34ee2592c237ae7f2b8d203f68fc1cac" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>planetRadius</name></member>
+      <member refid="class_magnetic_field_base_1a5d8926ba6ee2ebf35170df1786d15706" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>planetState</name></member>
+      <member refid="class_magnetic_field_base_1a2cb1b4a08eedf7b1dd14ef3cccde31a1" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>r_BP_N</name></member>
+      <member refid="class_magnetic_field_base_1a925aa07594c2b0c82404bed6e6dc0331" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>r_BP_P</name></member>
+      <member refid="class_magnetic_field_base_1abc931dd98d1440e750ec10dbc80aeb3a" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>readMessages</name></member>
+      <member refid="class_magnetic_field_base_1aa0d3c4b1c278d0c1a6f49bb27c366782" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>Reset</name></member>
+      <member refid="class_magnetic_field_base_1adb226c8fade0ce102a795454bdee8385" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>scStateInMsgs</name></member>
+      <member refid="class_magnetic_field_base_1a9bf2ce0a6ce2d97cd16f78664c6e52d1" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>scStates</name></member>
+      <member refid="class_magnetic_field_base_1a2739ba8bda3482e60074651812d873c0" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>updateLocalMagField</name></member>
+      <member refid="class_magnetic_field_base_1a7de0eb8ef8859ffd812304d33c49378e" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>updateRelativePos</name></member>
+      <member refid="class_magnetic_field_base_1af951b8e4a53cdcd6d0663e16aee558b8" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>UpdateState</name></member>
+      <member refid="class_magnetic_field_base_1a376b758f085962da0d9fd0781e2a40c5" prot="protected" virt="non-virtual"><scope>MagneticFieldBase</scope><name>writeMessages</name></member>
+      <member refid="class_magnetic_field_base_1a0dcdbd6693934f3365448096029f8269" prot="public" virt="non-virtual"><scope>MagneticFieldBase</scope><name>~MagneticFieldBase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

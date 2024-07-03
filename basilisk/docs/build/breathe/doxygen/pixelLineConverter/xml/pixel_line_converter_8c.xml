@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="pixel_line_converter_8c" kind="file" language="C++">
+    <compoundname>pixelLineConverter.c</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="pixel_line_converter_8h" local="yes">pixelLineConverter.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c</label>
+        <link refid="pixel_line_converter_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>pixelLineConverter.h</label>
+        <link refid="pixel_line_converter_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="8">
+        <label>cMsgCInterface/CameraConfigMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/OpNavCirclesMsg_C.h</label>
+      </node>
+      <node id="9">
+        <label>cMsgCInterface/OpNavMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pixel_line_converter_8c_1a37bd9f974b718eac056f4bac2829439d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_pixelLineConverter</definition>
+        <argsstring>(PixelLineConvertData *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_pixelLineConverter</name>
+        <param>
+          <type><ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method transforms pixel, line, and diameter data into heading data for orbit determination or heading determination. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" line="32" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="pixel_line_converter_8c_1a910fbf17e71bbe62aab3c67503244ff0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_pixelLineConverter</definition>
+        <argsstring>(PixelLineConvertData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_pixelLineConverter</name>
+        <param>
+          <type><ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This resets the module to original states. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" line="44" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" bodystart="44" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="pixel_line_converter_8c_1a89fb0d1187308b607bb47ecb09737528" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_pixelLineConverter</definition>
+        <argsstring>(PixelLineConvertData *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_pixelLineConverter</name>
+        <param>
+          <type><ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method reads in the camera and circle messages and extracts navigation data from them. It outputs the heading (norm and direction) to the celestial body identified in the inertial frame. It provides the heading to the most robust circle identified by the image processing algorithm. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the ephemeris model </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identification integer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>read input messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Find pixel size using camera specs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the heading</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the uncertainty</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Changer the mapped covariance to inertial frame</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Changer the mapped covariance to body frame</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>write output message</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" line="65" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c" bodystart="65" bodyend="172"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pixelLineConverter.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_pixelLineConverter(<ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C_init(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a0e343151cb0fdea7d3f487810d67efc3" kindref="member">opNavOutMsg</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_pixelLineConverter(<ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>that<sp/>the<sp/>required<sp/>message<sp/>has<sp/>not<sp/>been<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!CameraConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a5941d1ff5efa96d22df8d640b7f45933" kindref="member">cameraConfigInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_pixel_line_convert_data_1addd54f4ab0b64026e23f0fe0bfe46cd2" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>pixelLineConverter.cameraConfigInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!OpNavCirclesMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a899475ebf71fd82886f03d3c3d9c17f1" kindref="member">circlesInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_pixel_line_convert_data_1addd54f4ab0b64026e23f0fe0bfe46cd2" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>pixelLineConverter.circlesInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!NavAttMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a105d63d6eb25abb57046f0a3dd1affba" kindref="member">attInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_pixel_line_convert_data_1addd54f4ab0b64026e23f0fe0bfe46cd2" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>pixelLineConverter.attInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_pixelLineConverter(<ref refid="struct_pixel_line_convert_data" kindref="compound">PixelLineConvertData</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_NC[3][3],<sp/>dcm_CB[3][3],<sp/>dcm_BN[3][3];</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>reCentered[2];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraConfigMsgPayload<sp/>cameraSpecs;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavCirclesMsgPayload<sp/>circlesIn;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsgPayload<sp/>opNavMsgOut;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>NavAttMsgPayload<sp/>attInfo;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>opNavMsgOut<sp/>=<sp/>OpNavMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>cameraSpecs<sp/>=<sp/>CameraConfigMsg_C_read(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a5941d1ff5efa96d22df8d640b7f45933" kindref="member">cameraConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>circlesIn<sp/>=<sp/>OpNavCirclesMsg_C_read(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a899475ebf71fd82886f03d3c3d9c17f1" kindref="member">circlesInMsg</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>attInfo<sp/>=<sp/>NavAttMsg_C_read(&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a105d63d6eb25abb57046f0a3dd1affba" kindref="member">attInMsg</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(circlesIn.valid<sp/>==<sp/>0){</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>opNavMsgOut.valid<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OpNavMsg_C_write(&amp;opNavMsgOut,<sp/>&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a0e343151cb0fdea7d3f487810d67efc3" kindref="member">opNavOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>reCentered[0]<sp/>=<sp/>circlesIn.circlesCenters[0]<sp/>-<sp/>cameraSpecs.resolution[0]/2<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>reCentered[1]<sp/>=<sp/>circlesIn.circlesCenters[1]<sp/>-<sp/>cameraSpecs.resolution[1]/2<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref><sp/>=<sp/>(int32_t)<sp/>circlesIn.planetIds[0];</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(cameraSpecs.sigma_CB,<sp/>dcm_CB);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>MRP2C(attInfo.sigma_BN,<sp/>dcm_BN);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultM33(dcm_CB,<sp/>dcm_BN,<sp/>dcm_NC);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Transpose(dcm_NC,<sp/>dcm_NC);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>X,<sp/>Y;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pX,<sp/>pY;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>sensorSize/focalLength<sp/>=<sp/>2*tan(FOV/2)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>pX<sp/>=<sp/>2.*tan(cameraSpecs.fieldOfView*cameraSpecs.resolution[0]/cameraSpecs.resolution[1]/2.0);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>pY<sp/>=<sp/>2.*tan(cameraSpecs.fieldOfView/2.0);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>X<sp/>=<sp/>pX/cameraSpecs.resolution[0];</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>Y<sp/>=<sp/>pY/cameraSpecs.resolution[1];</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rtilde_C[2];</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rHat_BN_C[3],<sp/>rHat_BN_N[3],<sp/>rHat_BN_B[3];</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rNorm<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetRad,<sp/>denom;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar_map_C[3*3],<sp/>covar_In_C[3*3],<sp/>covar_In_B[3*3];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>covar_In_N[3*3];</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x_map,<sp/>y_map,<sp/>rho_map;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>rtilde_C[0]<sp/>=<sp/>reCentered[0]*X;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>rtilde_C[1]<sp/>=<sp/>reCentered[1]*Y;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Set(rtilde_C[0],<sp/>rtilde_C[1],<sp/>1.0,<sp/>rHat_BN_C);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1,<sp/>rHat_BN_C,<sp/>rHat_BN_C);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(rHat_BN_C,<sp/>rHat_BN_C);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(dcm_NC,<sp/>rHat_BN_C,<sp/>rHat_BN_N);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>m33tMultV3(dcm_CB,<sp/>rHat_BN_C,<sp/>rHat_BN_B);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref><sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref><sp/>==1){</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetRad<sp/>=<sp/>REQ_EARTH;</highlight><highlight class="comment">//in<sp/>km</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>opNavMsgOut.planetID<sp/>=<sp/>configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref><sp/>==2){</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetRad<sp/>=<sp/>REQ_MARS;</highlight><highlight class="comment">//in<sp/>km</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>opNavMsgOut.planetID<sp/>=<sp/>configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref><sp/>==3){</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetRad<sp/>=<sp/>REQ_JUPITER;</highlight><highlight class="comment">//in<sp/>km</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>opNavMsgOut.planetID<sp/>=<sp/>configData-&gt;<ref refid="struct_pixel_line_convert_data_1abe467345d0d95931ad78c4a567f067d0" kindref="member">planetTarget</ref>;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>denom<sp/>=<sp/>sin(atan(X*circlesIn.circlesRadii[0]));</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rNorm<sp/>=<sp/>planetRad/denom;<sp/></highlight><highlight class="comment">//in<sp/>km</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x_map<sp/>=<sp/>planetRad/denom*(X);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y_map<sp/>=<sp/>planetRad/denom*(Y);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rho_map<sp/>=<sp/>planetRad*(X/(sqrt(1<sp/>+<sp/>pow(circlesIn.circlesRadii[0]*X,2)))-1.0/X*sqrt(1<sp/>+<sp/>pow(circlesIn.circlesRadii[0]*X,2))/pow(circlesIn.circlesRadii[0],<sp/>2));</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mSetIdentity(covar_map_C,<sp/>3,<sp/>3);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>covar_map_C[0]<sp/>=<sp/>x_map;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>covar_map_C[4]<sp/>=<sp/>y_map;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>covar_map_C[8]<sp/>=<sp/>rho_map;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mCopy(circlesIn.uncertainty,<sp/>3,<sp/>3,<sp/>covar_In_C);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultM(covar_map_C,<sp/>3,<sp/>3,<sp/>covar_In_C,<sp/>3,<sp/>3,<sp/>covar_In_C);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultMt(covar_In_C,<sp/>3,<sp/>3,<sp/>covar_map_C,<sp/>3,<sp/>3,<sp/>covar_In_C);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultM(dcm_NC,<sp/>3,<sp/>3,<sp/>covar_In_C,<sp/>3,<sp/>3,<sp/>covar_In_N);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultMt(covar_In_N,<sp/>3,<sp/>3,<sp/>dcm_NC,<sp/>3,<sp/>3,<sp/>covar_In_N);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mtMultM(dcm_CB,<sp/>3,<sp/>3,<sp/>covar_In_C,<sp/>3,<sp/>3,<sp/>covar_In_B);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultM(covar_In_B,<sp/>3,<sp/>3,<sp/>dcm_CB,<sp/>3,<sp/>3,<sp/>covar_In_B);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(rNorm*1E3,<sp/>rHat_BN_N,<sp/>opNavMsgOut.r_BN_N);<sp/></highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(rNorm*1E3,<sp/>rHat_BN_C,<sp/>opNavMsgOut.r_BN_C);<sp/></highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(rNorm*1E3,<sp/>rHat_BN_B,<sp/>opNavMsgOut.r_BN_B);<sp/></highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(covar_In_N,<sp/>3,<sp/>3,<sp/>opNavMsgOut.covar_N);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(1E6,<sp/>opNavMsgOut.covar_N,<sp/>3*3,<sp/>opNavMsgOut.covar_N);</highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(covar_In_C,<sp/>3,<sp/>3,<sp/>opNavMsgOut.covar_C);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(1E6,<sp/>opNavMsgOut.covar_C,<sp/>3*3,<sp/>opNavMsgOut.covar_C);</highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(covar_In_B,<sp/>3,<sp/>3,<sp/>opNavMsgOut.covar_B);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(1E6,<sp/>opNavMsgOut.covar_B,<sp/>3*3,<sp/>opNavMsgOut.covar_B);</highlight><highlight class="comment">//in<sp/>m</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>opNavMsgOut.timeTag<sp/>=<sp/>(double)<sp/>circlesIn.timeTag;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>opNavMsgOut.valid<sp/>=1;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C_write(&amp;opNavMsgOut,<sp/>&amp;configData-&gt;<ref refid="struct_pixel_line_convert_data_1a0e343151cb0fdea7d3f487810d67efc3" kindref="member">opNavOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/imageProcessing/pixelLineConverter/pixelLineConverter.c"/>
+  </compounddef>
+</doxygen>

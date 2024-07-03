@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="prescribed_motion_state_effector_8cpp" kind="file" language="C++">
+    <compoundname>prescribedMotionStateEffector.cpp</compoundname>
+    <includes refid="prescribed_motion_state_effector_8h" local="yes">prescribedMotionStateEffector.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp</label>
+        <link refid="prescribed_motion_state_effector_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>prescribedMotionStateEffector.h</label>
+        <link refid="prescribed_motion_state_effector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/PrescribedMotionMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="5">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateData.h</label>
+      </node>
+      <node id="3">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateEffector.h</label>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2023,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;prescribedMotionStateEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><ref refid="class_prescribed_motion_state_effector_1ab5f0193926e271a4839c863017abf053" kindref="member">PrescribedMotionStateEffector::PrescribedMotionStateEffector</ref>()</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Zero<sp/>the<sp/>mass<sp/>props<sp/>and<sp/>mass<sp/>prop<sp/>rate<sp/>contributions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.mEff<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEff_CB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPntB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEffPrime_CB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPrimePntB_B.fill(0.0);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>prescribed<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" kindref="member">r_FM_M</ref>.setZero();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" kindref="member">rPrime_FM_M</ref>.setZero();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" kindref="member">rPrimePrime_FM_M</ref>.setZero();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" kindref="member">omega_FM_F</ref>.setZero();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" kindref="member">omegaPrime_FM_F</ref>.setZero();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" kindref="member">sigma_FM</ref>.setIdentity();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>other<sp/>module<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3aba8beee9dbafd5df01fe6256da862" kindref="member">IPntFc_F</ref>.setIdentity();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1abe031f922f14724ba8058c551836cc00" kindref="member">r_MB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1aeb0ce1775f4f01355052ace7fade8bc6" kindref="member">r_FcF_F</ref>.setZero();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a752c64c0d5a21c6a0053c5fb33c3d494" kindref="member">omega_MB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac16d31c31ca5e8b36aa37c931a7b9ae7" kindref="member">omegaPrime_MB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a205e88ae7accc04bbcbbb21f21e3b692" kindref="member">sigma_MB</ref>.setIdentity();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1f075a1a64d9840d1999de9a4842bada" kindref="member">currentSimTimeSec</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>prescribed<sp/>states<sp/>at<sp/>epoch</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rEpoch_FM_M.setZero();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrimeEpoch_FM_M.setZero();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaEpoch_FM_F.setZero();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>sigma_FM<sp/>state<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1af0ca0129fba4383c9cb5dea9791bd8f6" kindref="member">nameOfsigma_FMState</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;prescribedMotionsigma_FM&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(this-&gt;effectorID);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>PrescribedMotionStateEffector::effectorID++;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">uint64_t<sp/>PrescribedMotionStateEffector::effectorID<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><ref refid="class_prescribed_motion_state_effector_1a8b494c74e15cabc96123d5ddafcb7609" kindref="member">PrescribedMotionStateEffector::~PrescribedMotionStateEffector</ref>()</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>PrescribedMotionStateEffector::effectorID<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a69f13d0a52abadb02e2d88f8fbc0b695" kindref="member">PrescribedMotionStateEffector::Reset</ref>(uint64_t<sp/>currentClock)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a5b8785daabc7ff5148620dd056426822" kindref="member">PrescribedMotionStateEffector::writeOutputStateMessages</ref>(uint64_t<sp/>currentClock)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>the<sp/>prescribed<sp/>motion<sp/>output<sp/>message<sp/>if<sp/>it<sp/>is<sp/>linked</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a7d30215be28706411ca5bb29c1d5fb25" kindref="member">prescribedMotionOutMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PrescribedMotionMsgPayload<sp/>prescribedMotionBuffer<sp/>=<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a7d30215be28706411ca5bb29c1d5fb25" kindref="member">prescribedMotionOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" kindref="member">r_FM_M</ref>,<sp/>prescribedMotionBuffer.r_FM_M);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" kindref="member">rPrime_FM_M</ref>,<sp/>prescribedMotionBuffer.rPrime_FM_M);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" kindref="member">rPrimePrime_FM_M</ref>,<sp/>prescribedMotionBuffer.rPrimePrime_FM_M);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" kindref="member">omega_FM_F</ref>,<sp/>prescribedMotionBuffer.omega_FM_F);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;<ref refid="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" kindref="member">omegaPrime_FM_F</ref>,<sp/>prescribedMotionBuffer.omegaPrime_FM_F);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_FM_loc<sp/>=<sp/>eigenMRPd2Vector3d(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" kindref="member">sigma_FM</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(sigma_FM_loc,<sp/>prescribedMotionBuffer.sigma_FM);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a7d30215be28706411ca5bb29c1d5fb25" kindref="member">prescribedMotionOutMsg</ref>.write(&amp;prescribedMotionBuffer,<sp/>this-&gt;moduleID,<sp/>currentClock);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Write<sp/>the<sp/>config<sp/>log<sp/>message<sp/>if<sp/>it<sp/>is<sp/>linked</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a5712b59c0ad8eecb9737346fb1e30d78" kindref="member">prescribedMotionConfigLogOutMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>configLogMsg<sp/>=<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a5712b59c0ad8eecb9737346fb1e30d78" kindref="member">prescribedMotionConfigLogOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Note<sp/>that<sp/>the<sp/>configLogMsg<sp/>B<sp/>frame<sp/>represents<sp/>the<sp/>effector<sp/>body<sp/>frame<sp/>(frame<sp/>F)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;r_FcN_N,<sp/>configLogMsg.r_BN_N);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;v_FcN_N,<sp/>configLogMsg.v_BN_N);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;sigma_FN,<sp/>configLogMsg.sigma_BN);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;omega_FN_F,<sp/>configLogMsg.omega_BN_B);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a5712b59c0ad8eecb9737346fb1e30d78" kindref="member">prescribedMotionConfigLogOutMsg</ref>.write(&amp;configLogMsg,<sp/>this-&gt;moduleID,<sp/>currentClock);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a65309b96baeb45c6d80518641a571bad" kindref="member">PrescribedMotionStateEffector::linkInStates</ref>(DynParamManager&amp;<sp/>statesIn)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>access<sp/>to<sp/>the<sp/>hub<sp/>states<sp/>needed<sp/>for<sp/>dynamic<sp/>coupling</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;hubSigma<sp/>=<sp/>statesIn.getStateObject(</highlight><highlight class="stringliteral">&quot;hubSigma&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;hubOmega<sp/>=<sp/>statesIn.getStateObject(</highlight><highlight class="stringliteral">&quot;hubOmega&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;inertialPositionProperty<sp/>=<sp/>statesIn.getPropertyReference(</highlight><highlight class="stringliteral">&quot;r_BN_N&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;inertialVelocityProperty<sp/>=<sp/>statesIn.getPropertyReference(</highlight><highlight class="stringliteral">&quot;v_BN_N&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a4d7e859e1994dd5ef0483e4b563e52ca" kindref="member">PrescribedMotionStateEffector::registerStates</ref>(DynParamManager&amp;<sp/>states)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sigma_FMState<sp/>=<sp/>states.registerState(3,<sp/>1,<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1af0ca0129fba4383c9cb5dea9791bd8f6" kindref="member">nameOfsigma_FMState</ref>);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_FM_loc<sp/>=<sp/>eigenMRPd2Vector3d(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" kindref="member">sigma_FM</ref>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_FMInitMatrix;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma_FMInitMatrix(0)<sp/>=<sp/>sigma_FM_loc[0];</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma_FMInitMatrix(1)<sp/>=<sp/>sigma_FM_loc[1];</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma_FMInitMatrix(2)<sp/>=<sp/>sigma_FM_loc[2];</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sigma_FMState-&gt;setState(sigma_FMInitMatrix);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a49784b562bc29cfcb6914c06bc11decd" kindref="member">PrescribedMotionStateEffector::updateEffectorMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>prescribed<sp/>states</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>integTime<sp/>-<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1f075a1a64d9840d1999de9a4842bada" kindref="member">currentSimTimeSec</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" kindref="member">r_FM_M</ref><sp/>=<sp/>this-&gt;rEpoch_FM_M<sp/>+<sp/>(this-&gt;rPrimeEpoch_FM_M<sp/>*<sp/>dt)<sp/>+<sp/>(0.5<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" kindref="member">rPrimePrime_FM_M</ref><sp/>*<sp/>dt<sp/>*<sp/>dt);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" kindref="member">rPrime_FM_M</ref><sp/>=<sp/>this-&gt;rPrimeEpoch_FM_M<sp/>+<sp/>(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" kindref="member">rPrimePrime_FM_M</ref><sp/>*<sp/>dt);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" kindref="member">omega_FM_F</ref><sp/>=<sp/>this-&gt;omegaEpoch_FM_F<sp/>+<sp/>(this-&gt;<ref refid="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" kindref="member">omegaPrime_FM_F</ref><sp/>*<sp/>dt);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a8ab66f0d0734cd583dab5fc59c847947" kindref="member">sigma_FM</ref><sp/>=<sp/>(Eigen::Vector3d)this-&gt;sigma_FMState-&gt;getState();</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Give<sp/>the<sp/>mass<sp/>of<sp/>the<sp/>prescribed<sp/>body<sp/>to<sp/>the<sp/>effProps<sp/>mass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.mEff<sp/>=<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>dcm_BM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_BM<sp/>=<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a205e88ae7accc04bbcbbb21f21e3b692" kindref="member">sigma_MB</ref>.toRotationMatrix();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>dcm_FM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_FM<sp/>=<sp/>(this-&gt;sigma_FM.toRotationMatrix()).transpose();</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>dcm_BF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_BF<sp/>=<sp/>this-&gt;dcm_BM<sp/>*<sp/>this-&gt;dcm_FM.transpose();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>omega_FB_B<sp/>given<sp/>the<sp/>user<sp/>inputs<sp/>omega_MB_M<sp/>and<sp/>omega_FM_F</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_FM_B<sp/>=<sp/>this-&gt;dcm_BF<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" kindref="member">omega_FM_F</ref>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_FB_B<sp/>=<sp/>this-&gt;omega_FM_B<sp/>+<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a752c64c0d5a21c6a0053c5fb33c3d494" kindref="member">omega_MB_B</ref>;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>omegaPrime_FB_B<sp/>given<sp/>the<sp/>user<sp/>inputs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaTilde_FB_B<sp/>=<sp/>eigenTilde(this-&gt;omega_FB_B);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaPrime_FM_B<sp/>=<sp/>this-&gt;dcm_BF<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1afaf2da952be0731721df2eb52498c45c" kindref="member">omegaPrime_FM_F</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaPrime_FB_B<sp/>=<sp/>this-&gt;omegaPrime_FM_B<sp/>+<sp/>this-&gt;omegaTilde_FB_B<sp/>*<sp/>this-&gt;omega_FM_B;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>the<sp/>prescribed<sp/>variables<sp/>to<sp/>the<sp/>B<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_FM_B<sp/>=<sp/>this-&gt;dcm_BM<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3a457be047bc91180ef9d42eee0fd99" kindref="member">r_FM_M</ref>;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrime_FM_B<sp/>=<sp/>this-&gt;dcm_BM<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1acf6e7deabda6a9812f5e1dfb004effc3" kindref="member">rPrime_FM_M</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrimePrime_FM_B<sp/>=<sp/>this-&gt;dcm_BM<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a3f029a3d4c0d2247eea6b9bf190df53b" kindref="member">rPrimePrime_FM_M</ref>;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>effector&apos;s<sp/>CoM<sp/>with<sp/>respect<sp/>to<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_FB_B<sp/>=<sp/>this-&gt;r_FM_B<sp/>+<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1abe031f922f14724ba8058c551836cc00" kindref="member">r_MB_B</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_FcF_B<sp/>=<sp/>this-&gt;dcm_BF<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1aeb0ce1775f4f01355052ace7fade8bc6" kindref="member">r_FcF_F</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_FcB_B<sp/>=<sp/>this-&gt;r_FcF_B<sp/>+<sp/>this-&gt;r_FB_B;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEff_CB_B<sp/>=<sp/>this-&gt;r_FcB_B;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>effector<sp/>inertia<sp/>about<sp/>point<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rTilde_FcB_B<sp/>=<sp/>eigenTilde(this-&gt;r_FcB_B);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;IPntFc_B<sp/>=<sp/>this-&gt;dcm_BF<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1ac3aba8beee9dbafd5df01fe6256da862" kindref="member">IPntFc_F</ref><sp/>*<sp/>this-&gt;dcm_BF.transpose();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPntB_B<sp/>=<sp/>this-&gt;IPntFc_B<sp/>-<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;rTilde_FcB_B<sp/>*<sp/>this-&gt;rTilde_FcB_B;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>B<sp/>frame<sp/>time<sp/>derivative<sp/>of<sp/>r_FcB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaTilde_FB_B<sp/>=<sp/>eigenTilde(this-&gt;omega_FB_B);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrime_FcB_B<sp/>=<sp/>this-&gt;omegaTilde_FB_B<sp/>*<sp/>this-&gt;r_FcF_B<sp/>+<sp/>this-&gt;rPrime_FM_B;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.rEffPrime_CB_B<sp/>=<sp/>this-&gt;rPrime_FcB_B;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>B<sp/>frame<sp/>time<sp/>derivative<sp/>of<sp/>IPntFc_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>rPrimeTilde_FcB_B<sp/>=<sp/>eigenTilde(this-&gt;rPrime_FcB_B);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;effProps.IEffPrimePntB_B<sp/>=<sp/>this-&gt;omegaTilde_FB_B<sp/>*<sp/>this-&gt;IPntFc_B</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;IPntFc_B<sp/>*<sp/>this-&gt;omegaTilde_FB_B</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>(rPrimeTilde_FcB_B<sp/>*<sp/>this-&gt;rTilde_FcB_B.transpose()</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;rTilde_FcB_B<sp/>*<sp/>rPrimeTilde_FcB_B.transpose());</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1ae6ec889b474e02bd8cbdaa6631ed9914" kindref="member">PrescribedMotionStateEffector::updateContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BackSubMatrices<sp/>&amp;<sp/>backSubContr,</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_BN,</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omega_BN_B,</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>g_N)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>dcm_BN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_BN<sp/>=<sp/>sigma_BN;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_BN<sp/>=<sp/>(this-&gt;sigma_BN.toRotationMatrix()).transpose();</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Define<sp/>omega_BN_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_BN_B<sp/>=<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaTilde_BN_B<sp/>=<sp/>eigenTilde(this-&gt;omega_BN_B);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Define<sp/>omegaPrimeTilde_FB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>omegaPrimeTilde_FB_B<sp/>=<sp/>eigenTilde(this-&gt;omegaPrime_FB_B);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>rPrimePrime_FcB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rPrimePrime_FcB_B<sp/>=<sp/>(omegaPrimeTilde_FB_B<sp/>+<sp/>this-&gt;omegaTilde_FB_B<sp/>*<sp/>this-&gt;omegaTilde_FB_B)<sp/>*<sp/>this-&gt;r_FcF_B<sp/>+<sp/>this-&gt;rPrimePrime_FM_B;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Translation<sp/>contributions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.vecTrans<sp/>=<sp/>-this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;rPrimePrime_FcB_B;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rotation<sp/>contributions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>IPrimePntFc_B<sp/>=<sp/>this-&gt;omegaTilde_FB_B<sp/>*<sp/>this-&gt;IPntFc_B<sp/>-<sp/>this-&gt;IPntFc_B<sp/>*<sp/>this-&gt;omegaTilde_FB_B;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>backSubContr.vecRot<sp/>=<sp/>-(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;rTilde_FcB_B<sp/>*<sp/>this-&gt;rPrimePrime_FcB_B)</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>(IPrimePntFc_B<sp/>+<sp/>this-&gt;omegaTilde_BN_B<sp/>*<sp/>this-&gt;IPntFc_B)<sp/>*<sp/>this-&gt;omega_FB_B</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;IPntFc_B<sp/>*<sp/>this-&gt;omegaPrime_FB_B</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;omegaTilde_BN_B<sp/>*<sp/>rTilde_FcB_B<sp/>*<sp/>this-&gt;rPrime_FcB_B;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1abd2755ebccbe9fa578a84bb6f91dcbf2" kindref="member">PrescribedMotionStateEffector::computeDerivatives</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDDot_BN_N,</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaDot_BN_B,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_BN)</highlight></codeline>
+<codeline lineno="261"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigma_FM_loc;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>sigma_FM_loc<sp/>=<sp/>(Eigen::Vector3d)this-&gt;sigma_FMState-&gt;getState();</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_FMState-&gt;setDerivative(0.25*sigma_FM_loc.Bmat()*this-&gt;<ref refid="class_prescribed_motion_state_effector_1ad1cab21c2fa9783c53bb2a56c8fa565a" kindref="member">omega_FM_F</ref>);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1a05c880db26b9076d37cb3daf9af504f4" kindref="member">PrescribedMotionStateEffector::updateEnergyMomContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>&amp;<sp/>rotAngMomPntCContr_B,</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>rotEnergyContr,</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omega_BN_B)</highlight></codeline>
+<codeline lineno="279"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>omega_BN_B<sp/>and<sp/>omega_FN_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_BN_B<sp/>=<sp/>omega_BN_B;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaTilde_BN_B<sp/>=<sp/>eigenTilde(this-&gt;omega_BN_B);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omega_FN_B<sp/>=<sp/>this-&gt;omega_FB_B<sp/>+<sp/>this-&gt;omega_BN_B;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>rDot_FcB_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rDot_FcB_B<sp/>=<sp/>this-&gt;rPrime_FcB_B<sp/>+<sp/>this-&gt;omegaTilde_BN_B<sp/>*<sp/>this-&gt;r_FcB_B;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>rotational<sp/>angular<sp/>momentum<sp/>contribution<sp/>from<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>rotAngMomPntCContr_B<sp/>=<sp/>this-&gt;IPntFc_B<sp/>*<sp/>this-&gt;omega_FN_B<sp/>+<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;rTilde_FcB_B<sp/>*<sp/>this-&gt;rDot_FcB_B;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Find<sp/>the<sp/>rotational<sp/>energy<sp/>contribution<sp/>from<sp/>the<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>rotEnergyContr<sp/>=<sp/>0.5<sp/>*<sp/>this-&gt;omega_FN_B.dot(this-&gt;IPntFc_B<sp/>*<sp/>this-&gt;omega_FN_B)</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>0.5<sp/>*<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a1406ee9900c0575da463cae550791680" kindref="member">mass</ref><sp/>*<sp/>this-&gt;rDot_FcB_B.dot(this-&gt;rDot_FcB_B);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1af246c61319b45facad3451aad54e5c81" kindref="member">PrescribedMotionStateEffector::computePrescribedMotionInertialStates</ref>()</highlight></codeline>
+<codeline lineno="300"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>effector&apos;s<sp/>attitude<sp/>with<sp/>respect<sp/>to<sp/>the<sp/>inertial<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_FN<sp/>=<sp/>(this-&gt;dcm_BF).transpose()<sp/>*<sp/>this-&gt;dcm_BN;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_FN<sp/>=<sp/>eigenMRPd2Vector3d(eigenC2MRP(dcm_FN));</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>effector&apos;s<sp/>inertial<sp/>position<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_FcN_N<sp/>=<sp/>(Eigen::Vector3d)*this-&gt;inertialPositionProperty<sp/>+<sp/>this-&gt;dcm_BN.transpose()<sp/>*<sp/>this-&gt;r_FcB_B;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>the<sp/>effector&apos;s<sp/>inertial<sp/>velocity<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;v_FcN_N<sp/>=<sp/>(Eigen::Vector3d)*this-&gt;inertialVelocityProperty<sp/>+<sp/>this-&gt;dcm_BN.transpose()<sp/>*<sp/>this-&gt;rDot_FcB_B;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_prescribed_motion_state_effector_1aefa3b7999a1e965b68326c841e35ec0c" kindref="member">PrescribedMotionStateEffector::UpdateState</ref>(uint64_t<sp/>currentSimNanos)</highlight></codeline>
+<codeline lineno="317"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Store<sp/>the<sp/>current<sp/>simulation<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;currentSimTimeSec<sp/>=<sp/>currentSimNanos<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Read<sp/>the<sp/>input<sp/>message<sp/>if<sp/>it<sp/>is<sp/>linked<sp/>and<sp/>written</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_prescribed_motion_state_effector_1a60e97b8b414e13dfee172dac69ea3b58" kindref="member">prescribedMotionInMsg</ref>.isLinked()<sp/>&amp;&amp;<sp/>this-&gt;prescribedMotionInMsg.isWritten())</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PrescribedMotionMsgPayload<sp/>incomingPrescribedStates<sp/>=<sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a60e97b8b414e13dfee172dac69ea3b58" kindref="member">prescribedMotionInMsg</ref>();</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;r_FM_M<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.r_FM_M);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;rPrime_FM_M<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.rPrime_FM_M);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;rPrimePrime_FM_M<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.rPrimePrime_FM_M);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;omega_FM_F<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.omega_FM_F);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;omegaPrime_FM_F<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.omegaPrime_FM_F);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sigma_FM<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.sigma_FM);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Save<sp/>off<sp/>the<sp/>prescribed<sp/>states<sp/>at<sp/>each<sp/>dynamics<sp/>time<sp/>step</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;rEpoch_FM_M<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.r_FM_M);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;rPrimeEpoch_FM_M<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.rPrime_FM_M);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;omegaEpoch_FM_F<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.omega_FM_F);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigma_FM_loc<sp/>=<sp/>cArray2EigenVector3d(incomingPrescribedStates.sigma_FM);</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sigma_FMState-&gt;setState(sigma_FM_loc);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Call<sp/>the<sp/>method<sp/>to<sp/>compute<sp/>the<sp/>effector&apos;s<sp/>inertial<sp/>states</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1af246c61319b45facad3451aad54e5c81" kindref="member">computePrescribedMotionInertialStates</ref>();</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Call<sp/>the<sp/>method<sp/>to<sp/>write<sp/>the<sp/>output<sp/>messages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_prescribed_motion_state_effector_1a5b8785daabc7ff5148620dd056426822" kindref="member">writeOutputStateMessages</ref>(currentSimNanos);</highlight></codeline>
+<codeline lineno="345"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/prescribedMotion/prescribedMotionStateEffector.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.c \
+  /Users/julio/Desktop/basilisk/src/fswAlgorithms/attControl/rateServoFullNonlinear/rateServoFullNonlinear.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/AttGuidMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/AttGuidMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/msgHeader.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/VehicleConfigMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/VehicleConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/RWArrayConfigMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/RWArrayConfigMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/macroDefinitions.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/RWAvailabilityMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/RWAvailabilityMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/fswAlgorithms/fswUtilities/fswDefinitions.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/RateCmdMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/RateCmdMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/RWSpeedMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/RWSpeedMsgPayload.h \
+  /Users/julio/Desktop/basilisk/dist3/autoSource/cMsgCInterface/CmdTorqueBodyMsg_C.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/CmdTorqueBodyMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/bskLogging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/linearAlgebra.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/rigidBodyKinematics.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/astroConstants.h

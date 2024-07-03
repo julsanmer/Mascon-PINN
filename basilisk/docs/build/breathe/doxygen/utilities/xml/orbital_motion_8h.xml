@@ -1,0 +1,799 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="orbital_motion_8h" kind="file" language="C++">
+    <compoundname>orbitalMotion.h</compoundname>
+    <includes refid="bsk_logging_8h" local="no">architecture/utilities/bskLogging.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/ClassicElementsMsgPayload.h</includes>
+    <includedby refid="keplerian_orbit_8h" local="no">/Users/julio/Desktop/basilisk/src/architecture/utilities/keplerianOrbit.h</includedby>
+    <includedby refid="orbital_motion_8c" local="yes">/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>architecture/utilities/bskLogging.h</label>
+        <link refid="bsk_logging_8h_source"/>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h</label>
+        <link refid="orbital_motion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>architecture/msgPayloadDefC/ClassicElementsMsgPayload.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/utilities/keplerianOrbit.h</label>
+        <link refid="keplerian_orbit_8h_source"/>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h</label>
+        <link refid="orbital_motion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structequinoctial_elements" prot="public">equinoctialElements</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="orbital_motion_8h_1a4b115c094f061686b6ce326caf9eee42" prot="public" static="no">
+        <name>N_DEBYE_PARAMETERS</name>
+        <initializer>37</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="25" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CelestialObject_t</name>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca649e464bd410ab63abc0303875b41749" prot="public">
+          <name>CELESTIAL_MERCURY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69cacebe0d79cbdc55009c20608fbfde96f7" prot="public">
+          <name>CELESTIAL_VENUS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69caca036c2a7f1251da17deb03e73deab0c" prot="public">
+          <name>CELESTIAL_EARTH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69cafad08cf750a252223786afcd47689744" prot="public">
+          <name>CELESTIAL_MOON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69caa93415d59b40b43c38f2c4b5d0c4b45a" prot="public">
+          <name>CELESTIAL_MARS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca33c61a29139f9fce57ec57cfaa3dcef2" prot="public">
+          <name>CELESTIAL_PHOBOS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69cad7cb6f3f6f17f49fbba8cc6820ea8b28" prot="public">
+          <name>CELESTIAL_DEIMOS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca2240bcc501eee293bb18c2df9dae86ef" prot="public">
+          <name>CELESTIAL_JUPITER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca68f6ae8bd65b71a99d31c5bbf18711ae" prot="public">
+          <name>CELESTIAL_SATURN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca647a494beb835fc6f095c909fa610ba5" prot="public">
+          <name>CELESTIAL_URANUS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69cafa04e9a1a84f7aed5f3886cc618ae15d" prot="public">
+          <name>CELESTIAL_NEPTUNE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69caa350a3e192e92475c14268fb07fed426" prot="public">
+          <name>CELESTIAL_PLUTO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca25afd603d26357511bfb9d64178bcc01" prot="public">
+          <name>CELESTIAL_SUN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="orbital_motion_8h_1a083e424d73ee7eb1754dce528593f69ca961827dc782f2a9a273f731bfc8ee2a9" prot="public">
+          <name>MAX_CELESTIAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="29" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" bodystart="29" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="orbital_motion_8h_1af7ca583f63a8f53803f6bd60bae31f8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double E2f</definition>
+        <argsstring>(double E, double e)</argsstring>
+        <name>E2f</name>
+        <param>
+          <type>double</type>
+          <declname>E</declname>
+          <defname>Ecc</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps eccentric anomaly angles into true anomaly angles. This function requires the orbit to be either circular or non-rectilinar elliptic orbit. Inputs: Ecc = eccentric anomaly (rad) e = eccentricity (0 &lt;= e &lt; 1) Outputs: f = true anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="72" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="152" bodyend="164" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="72" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1ae78f82590511c7e55bda09cdc57d1d82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double E2M</definition>
+        <argsstring>(double E, double e)</argsstring>
+        <name>E2M</name>
+        <param>
+          <type>double</type>
+          <declname>E</declname>
+          <defname>Ecc</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps the eccentric anomaly angle into the corresponding mean elliptic anomaly angle. Both 2D and 1D elliptic orbit are allowed. Inputs: Ecc = eccentric anomaly (rad) e = eccentricity (0 &lt;= e &lt; 1) Outputs: M = mean elliptic anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="73" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="176" bodyend="188" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="73" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a7f8981f0dfee045a691fe64f524fcff5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double f2E</definition>
+        <argsstring>(double f, double e)</argsstring>
+        <name>f2E</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps true anomaly angles into eccentric anomaly angles. This function requires the orbit to be either circular or non-rectilinar elliptic orbit. Inputs: f = true anomaly angle (rad) e = eccentricity (0 &lt;= e &lt; 1) Outputs: Ecc = eccentric anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="74" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="200" bodyend="212" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="74" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1ac4a07684425c297705a4c173f15afbfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double f2H</definition>
+        <argsstring>(double f, double e)</argsstring>
+        <name>f2H</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps true anomaly angles into hyperbolic anomaly angles. This function requires the orbit to be hyperbolic Inputs: f = true anomaly angle (rad) e = eccentricity (e &gt; 1) Outputs: H = hyperbolic anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="75" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="223" bodyend="235" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="75" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1af3b7f09bcdac83345decff823ac4be0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double H2f</definition>
+        <argsstring>(double H, double e)</argsstring>
+        <name>H2f</name>
+        <param>
+          <type>double</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps hyperbolic anomaly angles into true anomaly angles. This function requires the orbit to be hyperbolic Inputs: H = hyperbolic anomaly (rad) e = eccentricity (e &gt; 1) Outputs: f = true anomaly angle (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="76" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="246" bodyend="258" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="76" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1ac406aa432311b4981a039a7f76465747" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double H2N</definition>
+        <argsstring>(double H, double e)</argsstring>
+        <name>H2N</name>
+        <param>
+          <type>double</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps the hyperbolic anomaly angle H into the corresponding mean hyperbolic anomaly angle N. Inputs: H = hyperbolic anomaly (rad) e = eccentricity (e &gt; 1) Outputs: N = mean hyperbolic anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="77" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="269" bodyend="281" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="77" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1aa4732caf356b3aab0afc80e1352e12f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double M2E</definition>
+        <argsstring>(double M, double e)</argsstring>
+        <name>M2E</name>
+        <param>
+          <type>double</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps the mean elliptic anomaly angle into the corresponding eccentric anomaly angle. Both 2D and 1D elliptic orbit are allowed. Inputs: M = mean elliptic anomaly (rad) e = eccentricity (0 &lt;= e &lt; 1) Outputs: Ecc = eccentric anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="78" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="293" bodyend="316" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="78" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a4636a6951ee8e048b08cb1315a1104a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double N2H</definition>
+        <argsstring>(double N, double e)</argsstring>
+        <name>N2H</name>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Maps the mean hyperbolic anomaly angle N into the corresponding hyperbolic anomaly angle H. Inputs: N = mean hyperbolic anomaly (rad) e = eccentricity (e &gt; 1) Outputs: H = hyperbolic anomaly (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="79" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="327" bodyend="354" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="79" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a9c0b837e75b80f3a12c6de224eabd122" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void elem2rv</definition>
+        <argsstring>(double mu, classicElements *elements, double *rVec, double *vVec)</argsstring>
+        <name>elem2rv</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type>classicElements *</type>
+          <declname>elements</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rVec</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vVec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Translates the orbit elements a - semi-major axis (km) e - eccentricity i - inclination (rad) AN - ascending node (rad) AP - argument of periapses (rad) f - true anomaly angle (rad) to the inertial Cartesian position and velocity vectors. The attracting body is specified through the supplied gravitational constant mu (units of km^3/s^2).</para>
+<para>The code can handle the following cases: circular: e = 0 a &gt; 0 elliptical-2D: 0 &lt; e &lt; 1 a &gt; 0 elliptical-1D: e = 1 a &gt; 0 f = Ecc. Anom. here parabolic: e = 1 rp = -a hyperbolic: e &gt; 1 a &lt; 0</para>
+<para>Note: to handle the parabolic case and distinguish it form the rectilinear elliptical case, instead of passing along the semi-major axis a in the &quot;a&quot; input slot, the negative radius at periapses is supplied. Having &quot;a&quot; be negative and e = 1 is a then a unique identified for the code for the parabolic case. Inputs: mu = gravitational parameter elements = orbital elements Outputs: rVec = position vector vVec = velocity vector </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="80" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="388" bodyend="457" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="80" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a36a65619f36f0166d8117ef4a85be72e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rv2elem</definition>
+        <argsstring>(double mu, double *rVec, double *vVec, classicElements *elements)</argsstring>
+        <name>rv2elem</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rVec</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vVec</declname>
+        </param>
+        <param>
+          <type>classicElements *</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Translates the orbit elements inertial Cartesian position vector rVec and velocity vector vVec into the corresponding classical orbit elements where a - semi-major axis (zero if parabolic) e - eccentricity i - inclination (rad) AN - ascending node (rad) AP - argument of periapses (rad) f - true anomaly angle (rad) if the orbit is rectilinear, then this will be the eccentric or hyperbolic anomaly rp - radius at periapses ra - radius at apoapses (zero if parabolic) The attracting body is specified through the supplied gravitational constant mu (units of km^3/s^2). Inputs: mu = gravitational parameter rVec = position vector vVec = velocity vector Outputs: elements = orbital elements </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="81" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="483" bodyend="581" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="81" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a9feb12bcd89fbd84aad1e3d85bdffb96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clMeanOscMap</definition>
+        <argsstring>(double req, double J2, classicElements *elements, classicElements *elements_p, double sgn)</argsstring>
+        <name>clMeanOscMap</name>
+        <param>
+          <type>double</type>
+          <declname>req</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J2</declname>
+        </param>
+        <param>
+          <type>classicElements *</type>
+          <declname>elements</declname>
+        </param>
+        <param>
+          <type>classicElements *</type>
+          <declname>elements_p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sgn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>maps classical mean orbit elements to Osculating elements </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="82" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="933" bodyend="1012" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="82" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a7e61dea766cc170e079310fd036b1245" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clElem2eqElem</definition>
+        <argsstring>(classicElements *elements_cl, equinoctialElements *elements_eq)</argsstring>
+        <name>clElem2eqElem</name>
+        <param>
+          <type>classicElements *</type>
+          <declname>elements_cl</declname>
+        </param>
+        <param>
+          <type><ref refid="structequinoctial_elements" kindref="compound">equinoctialElements</ref> *</type>
+          <declname>elements_eq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>maps from classical orbit elements to equinoctial elements </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="83" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="1015" bodyend="1029" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="83" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a4fd2c4ccc9feab0d6f954b15e00f352a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hillFrame</definition>
+        <argsstring>(double *rc_N, double *vc_N, double HN[3][3])</argsstring>
+        <name>hillFrame</name>
+        <param>
+          <type>double *</type>
+          <declname>rc_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vc_N</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>HN</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: maps inertial position and velocity vectors in the Hill frame DCM HN Inputs: rc_N: inertial position vector vc_N: inertial velocity vector Outputs: HN: Hill frame DCM relative to inertial frame </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="85" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="40" bodyend="56" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="85" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a1f8b971382317c09ae30ac1671748e0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hill2rv</definition>
+        <argsstring>(double *rc_N, double *vc_N, double *rho_H, double *rhoPrime_H, double *rd_N, double *vd_N)</argsstring>
+        <name>hill2rv</name>
+        <param>
+          <type>double *</type>
+          <declname>rc_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vc_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rho_H</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rhoPrime_H</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rd_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vd_N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: maps Hill frame deputy states to inertial inertial position and velocity vectors Inputs: rc_N: chief inertial position vector vc_N: chief inertial velocity vector rho_H: deputy Hill position vector rhoPrime_H: deputy Hill velocity vector Outputs: rd_N: deputy inertial position vector vd_N: deputy inertial velocity vector </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="86" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="69" bodyend="97" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="86" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a5a03909809850208991c83c17812fa90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void rv2hill</definition>
+        <argsstring>(double *rc_N, double *vc_N, double *rd_N, double *vd_N, double *rho_H, double *rhoPrime_H)</argsstring>
+        <name>rv2hill</name>
+        <param>
+          <type>double *</type>
+          <declname>rc_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vc_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rd_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vd_N</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rho_H</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rhoPrime_H</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: maps inertial frame deputy states to Hill inertial position and velocity vectors Inputs: rc_N: chief inertial position vector vc_N: chief inertial velocity vector rd_N: deputy inertial position vector vd_N: deputy inertial velocity vector Outputs: rho_H: deputy Hill position vector rhoPrime_H: deputy Hill velocity vector </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="87" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="111" bodyend="139" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="87" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a751bda0fc8ac6707f36ad8466547fd0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double atmosphericDensity</definition>
+        <argsstring>(double alt)</argsstring>
+        <name>atmosphericDensity</name>
+        <param>
+          <type>double</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: This program computes the atmospheric density based on altitude supplied by user. This function uses a curve fit based on atmospheric data from the Standard Atmosphere 1976 Data. This function is valid for altitudes ranging from 100km to 1000km.</para>
+<para>Note: This code can only be applied to spacecraft orbiting the Earth Inputs: alt = altitude in km Outputs: density = density at the given altitude in kg/m^3 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="89" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="595" bodyend="617" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="89" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a64e8eb7c23b49cdd202a339b64f14536" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double debyeLength</definition>
+        <argsstring>(double alt)</argsstring>
+        <name>debyeLength</name>
+        <param>
+          <type>double</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: This program computes the Debye Length length for a given altitude and is valid for altitudes ranging from 200 km to GEO (35000km). However, all values above 1000 km are HIGHLY speculative at this point. Inputs: alt = altitude in km Outputs: debye = debye length given in m </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="90" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="629" bodyend="669" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="90" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1ae058f10e9ca166e38130e8e61d3276a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void atmosphericDrag</definition>
+        <argsstring>(double Cd, double A, double m, double *rvec, double *vvec, double *advec)</argsstring>
+        <name>atmosphericDrag</name>
+        <param>
+          <type>double</type>
+          <declname>Cd</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>rvec</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>vvec</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>advec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: This program computes the atmospheric drag acceleration vector acting on a spacecraft. Note the acceleration vector output is inertial, and is only valid for altitudes up to 1000 km. Afterwards the drag force is zero. Only valid for Earth. Inputs: Cd = drag coefficient of the spacecraft A = cross-sectional area of the spacecraft in m^2 m = mass of the spacecraft in kg rvec = Inertial position vector of the spacecraft in km [x;y;z] vvec = Inertial velocity vector of the spacecraft in km/s [vx;vy;vz] Outputs: advec = The inertial acceleration vector due to atmospheric drag in km/sec^2 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="91" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="687" bodyend="716" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="91" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a7b3831b0af1af024f193a94957b03655" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jPerturb</definition>
+        <argsstring>(double *rvec, int num, double *ajtot,...)</argsstring>
+        <name>jPerturb</name>
+        <param>
+          <type>double *</type>
+          <declname>rvec</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>ajtot</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Computes the J2_EARTH-J6_EARTH zonal graviational perturbation accelerations. Inputs: rvec = Cartesian Position vector in kilometers [x;y;z]. num = Corresponds to which J components to use, must be an integer between 2 and 6. (note: Additive- 2 corresponds to J2_EARTH while 3 will correspond to J2_EARTH + J3_EARTH) Outputs: ajtot = The total acceleration vector due to the J perturbations in km/sec^2 [accelx;accely;accelz] </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="92" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="731" bodyend="886" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="92" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="orbital_motion_8h_1a4e52cb9151edb75b6bf496c2a6fbc2b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void solarRad</definition>
+        <argsstring>(double A, double m, double *sunvec, double *arvec)</argsstring>
+        <name>solarRad</name>
+        <param>
+          <type>double</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sunvec</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>arvec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Purpose: Computes the inertial solar radiation force vectors based on cross-sectional Area and mass of the spacecraft and the position vector of the planet to the sun. Note: It is assumed that the solar radiation pressure decreases quadratically with distance from sun (in AU)</para>
+<para>Solar Radiation Equations obtained from Earth Space and Planets Journal Vol. 51, 1999 pp. 979-986 Inputs: A = Cross-sectional area of the spacecraft that is facing the sun in m^2. m = The mass of the spacecraft in kg. sunvec = Position vector to the Sun in units of AU. Earth has a distance of 1 AU. Outputs: arvec = The inertial acceleration vector due to the effects of Solar Radiation pressure in km/sec^2. The vector components of the output are the same as the vector components of the sunvec input vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" line="93" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.c" bodystart="909" bodyend="930" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h" declline="93" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_ORBITAL_MOTION_0_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ORBITAL_MOTION_0_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;architecture/utilities/bskLogging.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/ClassicElementsMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>N_DEBYE_PARAMETERS<sp/>37</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Celestial<sp/>object<sp/>being<sp/>orbited<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_MERCURY,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_VENUS,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_EARTH,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_MOON,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_MARS,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_PHOBOS,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_DEIMOS,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_JUPITER,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_SATURN,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_URANUS,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_NEPTUNE,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_PLUTO,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>CELESTIAL_SUN,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>MAX_CELESTIAL</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}<sp/>CelestialObject_t;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="structequinoctial_elements" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53" refid="structequinoctial_elements_1a920a62bff1062b7a1e9608a0f471b01b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1a920a62bff1062b7a1e9608a0f471b01b" kindref="member">a</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structequinoctial_elements_1a247c912aa5c4ecfa7aeca054f5481384" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1a247c912aa5c4ecfa7aeca054f5481384" kindref="member">P1</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="structequinoctial_elements_1ab94eae0c75b6f7e1bcdb5e61462d8848" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1ab94eae0c75b6f7e1bcdb5e61462d8848" kindref="member">P2</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="structequinoctial_elements_1a5b3d8b84a927e930d9ae9a68d3153033" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1a5b3d8b84a927e930d9ae9a68d3153033" kindref="member">Q1</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="57" refid="structequinoctial_elements_1a3355a5c52b4923065519acf8e8468882" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1a3355a5c52b4923065519acf8e8468882" kindref="member">Q2</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="structequinoctial_elements_1a18f6d0b81322a11da92ac0d915d6b389" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1a18f6d0b81322a11da92ac0d915d6b389" kindref="member">l</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="structequinoctial_elements_1ae0dbf5ed8452ef2afbba3a3acd09c9d3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structequinoctial_elements_1ae0dbf5ed8452ef2afbba3a3acd09c9d3" kindref="member">L</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}<sp/><ref refid="structequinoctial_elements" kindref="compound">equinoctialElements</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>E<sp/>=<sp/>eccentric<sp/>anomaly</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>f<sp/>=<sp/>true<sp/>anomaly</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>M<sp/>=<sp/>mean<sp/>anomaly</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>H<sp/>=<sp/>hyperbolic<sp/>anomaly</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>N<sp/>=<sp/>mean<sp/>hyperbolic<sp/>anomaly</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>E2f(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>E,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>E2M(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>E,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>f2E(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>f2H(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>H2f(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>H2N(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>M2E(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>M,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>N2H(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>e);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>elem2rv(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/>classicElements<sp/>*elements,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rVec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vVec);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>rv2elem(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mu,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rVec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vVec,<sp/>classicElements<sp/>*elements);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>clMeanOscMap(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>req,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J2,<sp/>classicElements<sp/>*elements,<sp/>classicElements<sp/>*elements_p,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sgn);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>clElem2eqElem(classicElements<sp/>*elements_cl,<sp/><ref refid="structequinoctial_elements" kindref="compound">equinoctialElements</ref><sp/>*elements_eq);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>hillFrame(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>HN[3][3]);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>hill2rv(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rho_H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rhoPrime_H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rd_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vd_N);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>rv2hill(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vc_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rd_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vd_N,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rho_H,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rhoPrime_H);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>atmosphericDensity(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>alt);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>debyeLength(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>alt);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>atmosphericDrag(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Cd,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>A,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rvec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*vvec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*advec);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>jPerturb(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*rvec,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>num,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*ajtot,<sp/>...);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>solarRad(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>A,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*sunvec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*arvec);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/orbitalMotion.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="heading_su_k_f_8c" kind="file" language="C++">
+    <compoundname>headingSuKF.c</compoundname>
+    <includes refid="heading_su_k_f_8h" local="yes">fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h</includes>
+    <includes local="yes">architecture/utilities/ukfUtilities.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c</label>
+        <link refid="heading_su_k_f_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h</label>
+        <link refid="heading_su_k_f_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/ukfUtilities.h</label>
+      </node>
+      <node id="7">
+        <label>cMsgCInterface/CameraConfigMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/HeadingFilterMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/NavAttMsg_C.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/OpNavMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="15">
+        <label>math.h</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="14">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="heading_su_k_f_8c_1ab78fdd0a81a4c0d40f63f32d1ee2c435" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the heading estimator. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Create filter states output message which is mostly for debug</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="35" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="35" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a2ab0dbf6078499d3acc2fa3aac16327f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the heading attitude filter to an initial state and initializes the internal estimation matrices. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Check input message connections</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the local configuration data structures and outputs</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Initialize filter parameters to max values</para>
+</listitem></itemizedlist>
+</para>
+<para>Initalize the filter to use b_1 of the body frame to make frame</para>
+<para><itemizedlist>
+<listitem><para>Ensure that all internal filter matrices are zeroed</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set lambda/gamma to standard value for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Set the wM/wC vectors to standard values for unscented kalman filters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>User a cholesky decomposition to obtain the sBar and sQnoise matrices for use in filter at runtime</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="50" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="50" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1adcc766c66544e9c28c0001d4fbc78512" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_headingSuKF</definition>
+        <argsstring>(HeadingSuKFConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_headingSuKF</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the parsed heading sensor data and outputs an estimate of the sun vector in the ADCS body frame <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The module identifier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input parsed heading sensor data message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Check for switching frames</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If the time tag from the measured data is new compared to previous step, propagate and update the filter</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>If current clock time is further ahead than the measured time, then propagate to this current time-step</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (equation 23)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>The post fits are y - ybar if a measurement was read, if observations are zero, do not compute post fit residuals</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the filter states output buffer and write the output message</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Write the heading estimate into the copy of the OpNav message structure</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="137" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="137" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a4d5533ecd4ddcaaa33ac42e8976e7f99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingStateProp</definition>
+        <argsstring>(double *stateInOut, double *b_Vec, double dt)</argsstring>
+        <name>headingStateProp</name>
+        <param>
+          <type>double *</type>
+          <declname>stateInOut</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>b_Vec</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method propagates a heading state vector forward in time. Note that the calling parameter is updated in place to save on data copies. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stateInOut</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state that is propagated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b_Vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to b vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time step </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Begin state update steps</para>
+<para>Take omega cross d</para>
+<para><itemizedlist>
+<listitem><para>Multiply omega cross d by dt and add to state to propagate</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="249" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="249" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a185f40b5b3eacf0baa88cabadc077829" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFTimeUpdate</definition>
+        <argsstring>(HeadingSuKFConfig *configData, double updateTime)</argsstring>
+        <name>headingSuKFTimeUpdate</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the time update for the heading kalman filter. It propagates the sigma points forward in time and then gets the current covariance and state estimates. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Copy over the current state estimate into the 0th Sigma point and propagate by dt</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Scale that Sigma point by the appopriate scaling factor (Wm[0])</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Get the transpose of the sBar matrix because it is easier to extract Rows vs columns</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each Sigma point, apply sBar-based error, propagate forward, and scale by Wm just like 0th. Note that we perform +/- sigma points simultaneously in loop to save loop values.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Zero the AT matrix prior to assembly</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Assemble the AT matrix. Note that this matrix is the internals of the qr decomposition call in the source design documentation. It is the inside of equation 20 in that document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Pop the sQNoise matrix on to the end of AT prior to getting QR decomposition</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>QR decomposition (only R computed!) of the AT matrix provides the new sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the sBar matrix over by the xBar vector using the appropriate weight like in equation 21 in design document.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Save current sBar matrix, covariance, and state estimate off for further use</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="283" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="283" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a5a3431565b170f09a30f651d539aa9a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFMeasModel</definition>
+        <argsstring>(HeadingSuKFConfig *configData)</argsstring>
+        <name>headingSuKFMeasModel</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes what the expected measurement vector is for each opnave measurement. All data is transacted from the main data structure for the model because there are many variables that would have to be updated otherwise. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Loop over sigma points</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>yMeas matrix was set backwards deliberately so we need to transpose it through</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="379" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="379" bodyend="398"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a2a75abb11b899796b57bf921d0477e30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFMeasUpdate</definition>
+        <argsstring>(HeadingSuKFConfig *configData, double updateTime)</argsstring>
+        <name>headingSuKFMeasUpdate</name>
+        <param>
+          <type><ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>updateTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs the measurement update for the heading kalman filter. It applies the observations in the obs vectors to the current state estimate and updates the state/covariance with that information. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the heading estimator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>updateTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time that we need to fix the filter to (seconds) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Compute the valid observations and the measurement model for all observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the value for the yBar parameter (note that this is equation 23 in the time update section of the reference document</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Populate the matrix that we perform the QR decomposition on in the measurement update section of the code. This is based on the differenence between the yBar parameter and the calculated measurement models. Equation 24 in driving doc.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>This is the square-root of the Rk matrix which we treat as the Cholesky decomposition of the observation variance matrix constructed for our number of observations</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Perform QR decomposition (only R again) of the above matrix to obtain the current Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shift the matrix over by the difference between the 0th SP-based measurement model and the yBar matrix (cholesky down-date again)</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Shifted matrix represents the Sy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Construct the Pxy matrix (equation 26) which multiplies the Sigma-point cloud by the measurement model cloud (weighted) to get the total Pxy matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Then we need to invert the SyT*Sy matrix to get the Kalman gain factor. Since The Sy matrix is lower triangular, we can do a back-sub inversion instead of a full matrix inversion. That is the ukfUInv and ukfLInv calls below. Once that multiplication is done (equation 27), we have the Kalman Gain.</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Difference the yBar and the observations to get the observed error and multiply by the Kalman Gain to get the state update. Add the state update to the state to get the updated state value (equation 27).</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute the updated matrix U from equation 28. Note that I then transpose it so that I can extract &quot;columns&quot; from adjacent memory</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>For each column in the update matrix, perform a cholesky down-date on it to get the total shifted S matrix (called sBar in internal parameters</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Compute equivalent covariance based on updated sBar matrix</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="407" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="407" bodyend="526"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1abb3d92fea7d929a048782b1bca13ce1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFSwitch</definition>
+        <argsstring>(double *bVec_B, double *states, double *covar)</argsstring>
+        <name>headingSuKFSwitch</name>
+        <param>
+          <type>double *</type>
+          <declname>bVec_B</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>states</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>covar</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the dcms necessary for the switch between the two frames. It the switches the states and the covariance, and sets s2 to be the new, different vector of the body frame. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bVec_B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to b-vector </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the states </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>covar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the covariance </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>Set the body frame vectors</para>
+<para>Populate the dcm_BS with the &quot;old&quot; S-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="537" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="537" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="heading_su_k_f_8c_1a1f2dfec053e19575ef48bd24520ac1f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void headingSuKFComputeDCM_BS</definition>
+        <argsstring>(double sunheading[HEAD_N_STATES], double bVec[HEAD_N_STATES], double *dcm)</argsstring>
+        <name>headingSuKFComputeDCM_BS</name>
+        <param>
+          <type>double</type>
+          <declname>sunheading</declname>
+          <array>[HEAD_N_STATES]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bVec</declname>
+          <array>[HEAD_N_STATES]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>dcm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Populate the dcm_BS with the &quot;new&quot; S-frame</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" line="583" column="6" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c" bodystart="583" bodyend="608"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016-2018,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/attDetermination/headingSuKF/headingSuKF.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/ukfUtilities.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C_init(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa5e41a41b725a82db19d184b43204b6e" kindref="member">opnavDataOutMsg</ref>);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>HeadingFilterMsg_C_init(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af5654529b6844ef78f655ea8c0ec5743" kindref="member">filtDataOutMsg</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>i;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tempMatrix[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>the<sp/>required<sp/>input<sp/>message<sp/>is<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!OpNavMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" kindref="member">opnavDataInMsg</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_bskLog(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8e3e6d03f43d2458b7d27209f8d2fc87" kindref="member">bskLogger</ref>,<sp/>BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>headingSuKF.opnavDataInMsg<sp/>wasn&apos;t<sp/>connected.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(CameraConfigMsg_C_isLinked(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a55304735e6be0a5a2f1cb3f4a4ecdac4" kindref="member">cameraConfigInMsg</ref>)){</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" kindref="member">putInCameraFrame</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" kindref="member">putInCameraFrame</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75f652c2b1311e34f12ad49ab898b54f" kindref="member">outputHeading</ref><sp/>=<sp/>NavAttMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref><sp/>=<sp/>callTime*NANO2SEC;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>=<sp/>HEAD_N_STATES_SWITCH;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>=<sp/>HEAD_N_STATES_SWITCH;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Set(1,<sp/>0,<sp/>0,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3d4d4176a25e1cb96edbbd4ce7329e02" kindref="member">switchTresh</ref><sp/>=<sp/>0.866;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>OPNAV_MEAS);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>*<sp/>2<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>*<sp/>2<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>*<sp/>2<sp/>+<sp/>1,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" kindref="member">sQnoise</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref><sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" kindref="member">alpha</ref>*configData-&gt;<ref refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" kindref="member">alpha</ref>*</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a2df367b4d0860fb23961529d42c2295e" kindref="member">kappa</ref>)<sp/>-<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9f7b0a1780b07872b610629e1ca5201e" kindref="member">gamma</ref><sp/>=<sp/>sqrt(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[0]<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref><sp/>/<sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[0]<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref><sp/>/<sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref>)<sp/>+<sp/>(1<sp/>-<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" kindref="member">alpha</ref>*configData-&gt;<ref refid="struct_heading_su_k_f_config_1aac23e1b061deb385b8e3acce27173393" kindref="member">alpha</ref><sp/>+<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1abc57b61cfcb771593a0133535c786fb3" kindref="member">beta</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>1;<sp/>i&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>*<sp/>2<sp/>+<sp/>1;<sp/>i++)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[i]<sp/>=<sp/>1.0<sp/>/<sp/>2.0*1.0<sp/>/<sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa72660c42734518adce2f711717d211c" kindref="member">lambdaVal</ref>);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[i]<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[i];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3e3b8331a4cec2e067d14ac1adc7c930" kindref="member">stateInit</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa68aa31becc79dc9121cbb35c1c08f7c" kindref="member">covarInit</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfCholDecomp(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>tempMatrix);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(tempMatrix,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfCholDecomp(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a5b0ef6f86e3beba7b28e72c2f91fb842" kindref="member">qNoise</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" kindref="member">sQnoise</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" kindref="member">sQnoise</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" kindref="member">sQnoise</ref>);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_headingSuKF(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newTimeTag;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yBar[OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tempYVec[OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading_hat[3];</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>states_BN[HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>uint64_t<sp/>ClockTime;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isWritten;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>HeadingFilterMsgPayload<sp/>headingDataOutBuffer;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsgPayload<sp/>opnavOutputBuffer;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>CameraConfigMsgPayload<sp/>cameraConfig;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>ClockTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>cameraConfig<sp/>=<sp/>CameraConfigMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>opnavOutputBuffer<sp/>=<sp/>OpNavMsg_C_zeroMsgPayload();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a76658e2ed9502895028d375b719190a1" kindref="member">postFits</ref>);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref><sp/>=<sp/>OpNavMsg_C_read(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" kindref="member">opnavDataInMsg</ref>);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>ClockTime<sp/>=<sp/>OpNavMsg_C_timeWritten(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" kindref="member">opnavDataInMsg</ref>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>isWritten<sp/>=<sp/>OpNavMsg_C_isWritten(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af59572084e390a3e64c3e435a9fabed3" kindref="member">opnavDataInMsg</ref>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" kindref="member">putInCameraFrame</ref><sp/>==<sp/>1){</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cameraConfig<sp/>=<sp/>CameraConfigMsg_C_read(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a55304735e6be0a5a2f1cb3f4a4ecdac4" kindref="member">cameraConfigInMsg</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>[0],<sp/>heading_hat);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(v3Dot(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>,<sp/>heading_hat))<sp/>&gt;<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3d4d4176a25e1cb96edbbd4ce7329e02" kindref="member">switchTresh</ref>)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFSwitch(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref><sp/>=<sp/>v3Norm(configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.r_BN_B);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref>&lt;1){</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref><sp/>=1;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>newTimeTag<sp/>=<sp/>ClockTime<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(newTimeTag<sp/>&gt;=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref><sp/>&amp;&amp;<sp/>isWritten<sp/>&amp;&amp;<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.valid<sp/>==1)</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFTimeUpdate(configData,<sp/>newTimeTag);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFMeasUpdate(configData,<sp/>newTimeTag);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>newTimeTag<sp/>=<sp/>callTime*NANO2SEC;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(newTimeTag<sp/>&gt;<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref>)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFTimeUpdate(configData,<sp/>newTimeTag);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(yBar,<sp/>OPNAV_MEAS);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+1;<sp/>i++)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vCopy(&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[i*OPNAV_MEAS]),<sp/>OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempYVec);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[i],<sp/>tempYVec,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(yBar,<sp/>OPNAV_MEAS,<sp/>tempYVec,<sp/>yBar);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!v3IsZero(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>1E-10)){</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mSubtract(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>OPNAV_MEAS,<sp/>1,<sp/>yBar,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a76658e2ed9502895028d375b719190a1" kindref="member">postFits</ref>);}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Switch<sp/>the<sp/>rates<sp/>back<sp/>to<sp/>omega_BN<sp/>instead<sp/>of<sp/>oemga_SB<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>HEAD_N_STATES_SWITCH,<sp/>states_BN);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1,<sp/>&amp;(states_BN[3]),<sp/>2,<sp/>&amp;(states_BN[3]));</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>headingDataOutBuffer.timeTag<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref>;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>headingDataOutBuffer.covar);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(states_BN,<sp/>HEAD_N_STATES_SWITCH,<sp/>headingDataOutBuffer.state);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a76658e2ed9502895028d375b719190a1" kindref="member">postFits</ref>,<sp/>headingDataOutBuffer.postFitRes);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>HeadingFilterMsg_C_write(&amp;headingDataOutBuffer,<sp/>&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1af5654529b6844ef78f655ea8c0ec5743" kindref="member">filtDataOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>opnavOutputBuffer.timeTag<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref>;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>m33Copy(RECAST3X3<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>RECAST3X3<sp/>opnavOutputBuffer.covar_B);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(&amp;states_BN[0],<sp/>opnavOutputBuffer.r_BN_B);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(opnavOutputBuffer.r_BN_B,<sp/>opnavOutputBuffer.r_BN_B);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref>,<sp/>opnavOutputBuffer.r_BN_B,<sp/>opnavOutputBuffer.r_BN_B);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a458aeb37ee9e849505388a4a12bd6f1c" kindref="member">putInCameraFrame</ref><sp/>==1){</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_CB[3][3],<sp/>tempCovar[3][3];</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MRP2C(cameraConfig.sigma_CB,<sp/>dcm_CB);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33tMultV3(dcm_CB,<sp/>opnavOutputBuffer.r_BN_B,<sp/>opnavOutputBuffer.r_BN_C);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33MultM33(dcm_CB,<sp/>RECAST3X3<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>tempCovar);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33MultM33t(tempCovar,<sp/>dcm_CB,<sp/>RECAST3X3<sp/>opnavOutputBuffer.covar_C);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>opnavOutputBuffer.valid<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.valid;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>opnavOutputBuffer.timeTag<sp/>=<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.timeTag;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>OpNavMsg_C_write(&amp;opnavOutputBuffer,<sp/>&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1aa5e41a41b725a82db19d184b43204b6e" kindref="member">opnavDataOutMsg</ref>,<sp/>moduleID,<sp/>callTime);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingStateProp(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*stateInOut,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*b_Vec,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt)</highlight></codeline>
+<codeline lineno="250"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>propagatedVel[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omegaCrossd[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_BN_S[HEAD_N_STATES]<sp/>=<sp/>{0,<sp/>-stateInOut[3],<sp/>-stateInOut[4]};</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>omega_BN_B[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BS[HEAD_N_STATES][HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(dcm_BS,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>headingSuKFComputeDCM_BS(stateInOut,<sp/>b_Vec,<sp/>&amp;dcm_BS[0][0]);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(dcm_BS,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>omega_BN_S,<sp/>omega_BN_B);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>local<sp/>variables<sp/>to<sp/>zero*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(propagatedVel,<sp/>HEAD_N_STATES);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(omega_BN_B,<sp/>stateInOut,<sp/>omegaCrossd);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-dt,<sp/>omegaCrossd,<sp/>propagatedVel);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(stateInOut,<sp/>propagatedVel,<sp/>stateInOut);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFTimeUpdate(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime)</highlight></codeline>
+<codeline lineno="284"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>Index;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBarT[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xComp[HEAD_N_STATES_SWITCH],<sp/>AT[(2<sp/>*<sp/>HEAD_N_STATES_SWITCH<sp/>+<sp/>HEAD_N_STATES_SWITCH)*HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>aRow[HEAD_N_STATES_SWITCH],<sp/>rAT[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH],<sp/>xErr[HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sBarUp[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*spPtr;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref><sp/>=<sp/>updateTime<sp/>-<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref>;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[0<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+<sp/>0]));</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>headingStateProp(&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[0<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+<sp/>0]),<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref>);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[0],<sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[0<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref><sp/>+<sp/>0]),</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sBarT);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Index<sp/>=<sp/>i<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spPtr<sp/>=<sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[Index*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>]);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vCopy(&amp;sBarT[i*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>],<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9f7b0a1780b07872b610629e1ca5201e" kindref="member">gamma</ref>,<sp/>spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingStateProp(spPtr,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref>);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[Index],<sp/>spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>xComp);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(xComp,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Index<sp/>=<sp/>i<sp/>+<sp/>1<sp/>+<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spPtr<sp/>=<sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[Index*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>]);</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vCopy(&amp;sBarT[i*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>],<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(-configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9f7b0a1780b07872b610629e1ca5201e" kindref="member">gamma</ref>,<sp/>spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>spPtr);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingStateProp(spPtr,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9efae7e9a0b5a00a6e976cf1f3256fdd" kindref="member">bVec_B</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a75bed919283a942c0df1c55bb7f0e8be" kindref="member">dt</ref>);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[Index],<sp/>spPtr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>xComp);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(xComp,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(AT,<sp/>(2<sp/>*<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>+<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>),</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i&lt;2<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>aRow);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(aRow,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[(i+1)*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>]),<sp/>aRow);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(sqrt(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[i+1]),<sp/>aRow,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>aRow);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy((</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)&amp;AT[i*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>],<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)aRow,</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;AT[2<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>],</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad1d1b209f054221a4721cf2734959b59" kindref="member">sQnoise</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>*<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfQRDJustR(AT,<sp/>2<sp/>*<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref><sp/>+<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>,<sp/>rAT);</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(rAT,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>sBarT);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(sBarT,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>);</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>xErr);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>vAdd(xErr,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>&amp;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[0],<sp/>xErr);</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfCholDownDate(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>xErr,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[0],</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>sBarUp);</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(sBarUp,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>);</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/>vCopy(&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[0]),<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref><sp/>);</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ab938765f9bf0bee5ebe6c16d9f2a4e6a" kindref="member">timeTag</ref><sp/>=<sp/>updateTime;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFMeasModel(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData)</highlight></codeline>
+<codeline lineno="380"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Copy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.r_BN_B,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>);</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(-1,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>);</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j=0;<sp/>j&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+1;<sp/>j++)</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;3;<sp/>i++)</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[i*(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+1)<sp/>+<sp/>j]<sp/>=</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[i<sp/>+<sp/>j*HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>,<sp/>OPNAV_MEAS,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+1,</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>);</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="398"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFMeasUpdate(<ref refid="struct_heading_su_k_f_config" kindref="compound">HeadingSuKFConfig</ref><sp/>*configData,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updateTime)</highlight></codeline>
+<codeline lineno="408"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yBar[OPNAV_MEAS],<sp/>syInv[OPNAV_MEAS*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>kMat[HEAD_N_STATES_SWITCH*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xHat[HEAD_N_STATES_SWITCH],<sp/>sBarT[HEAD_N_STATES_SWITCH*HEAD_N_STATES_SWITCH],<sp/>tempYVec[OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>AT[(2<sp/>*<sp/>HEAD_N_STATES_SWITCH<sp/>+<sp/>OPNAV_MEAS)*OPNAV_MEAS],<sp/>qChol[OPNAV_MEAS*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rAT[OPNAV_MEAS*OPNAV_MEAS],<sp/>syT[OPNAV_MEAS*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sy[OPNAV_MEAS*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>updMat[OPNAV_MEAS*OPNAV_MEAS],<sp/>pXY[HEAD_N_STATES_SWITCH*OPNAV_MEAS];</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/>headingSuKFMeasModel(configData);</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/>vSetZero(yBar,<sp/>OPNAV_MEAS);</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+1;<sp/>i++)</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vCopy(&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[i*OPNAV_MEAS]),<sp/>OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempYVec);</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ae000fde7b059fb926e4d55651c80f95c" kindref="member">wM</ref>[i],<sp/>tempYVec,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(yBar,<sp/>OPNAV_MEAS,<sp/>tempYVec,<sp/>yBar);</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(AT,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2+OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS);</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*2;<sp/>i++)</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>yBar,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(tempYVec,<sp/>OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[(i+1)*OPNAV_MEAS]),<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(sqrt(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[i+1]),<sp/>tempYVec,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy(&amp;(AT[i*OPNAV_MEAS]),<sp/>tempYVec,</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(configData-&gt;<ref refid="struct_heading_su_k_f_config_1afce7864ea941fc471ca558f67b9078a0" kindref="member">opnavInBuffer</ref>.covar_B,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a20f93a89178f6e47a9c2f124533b2c6b" kindref="member">qObs</ref>);</highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/>mScale(1/(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref>*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a83ec8750437122956d68893a78de5827" kindref="member">rNorm</ref>),<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a20f93a89178f6e47a9c2f124533b2c6b" kindref="member">qObs</ref>,<sp/>OPNAV_MEAS,OPNAV_MEAS,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a20f93a89178f6e47a9c2f124533b2c6b" kindref="member">qObs</ref>);</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfCholDecomp(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a20f93a89178f6e47a9c2f124533b2c6b" kindref="member">qObs</ref>,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>qChol);</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;(AT[2*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>*OPNAV_MEAS]),</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qChol,<sp/>OPNAV_MEAS*OPNAV_MEAS*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/>mScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a411077f20be769603e7db6d3f77d53fc" kindref="member">noiseSF</ref><sp/>,<sp/>AT,<sp/>2*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>,<sp/>OPNAV_MEAS,<sp/>AT);</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfQRDJustR(AT,<sp/>2*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>+OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>rAT);</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(rAT,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>syT);</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(syT,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>sy);</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>yBar,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/>vAdd(tempYVec,<sp/>OPNAV_MEAS,<sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[0]),<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfCholDownDate(sy,<sp/>tempYVec,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[0],</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>updMat);</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/>mCopy(updMat,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>sy);</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(sy,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>syT);</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"></highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(pXY,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS);</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;2*configData-&gt;<ref refid="struct_heading_su_k_f_config_1a9eb4669006a777191e2db69f051b7ad8" kindref="member">countHalfSPs</ref>+1;<sp/>i++)</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(-1.0,<sp/>yBar,<sp/>OPNAV_MEAS,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vAdd(tempYVec,<sp/>OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ad5eb188416ea68bf52b30886de53166b" kindref="member">yMeas</ref>[i*OPNAV_MEAS]),<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vSubtract(&amp;(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a54a449e4a6548632284ad2b4ff634dde" kindref="member">SP</ref>[i*<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>]),<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a88299e7471de09d37f4450f1219e870a" kindref="member">xBar</ref>,<sp/>xHat);</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vScale(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a948c70e6a52e663988f32e9dbcc2f986" kindref="member">wC</ref>[i],<sp/>xHat,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>xHat);</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mMultM(xHat,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>1,<sp/>tempYVec,<sp/>1,<sp/>OPNAV_MEAS,</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kMat);</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mAdd(pXY,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>kMat,<sp/>pXY);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfUInv(syT,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>syInv);</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(pXY,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>syInv,</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>kMat);</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>ukfLInv(sy,<sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>syInv);</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(kMat,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>syInv,</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>kMat);</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="502"><highlight class="normal"><sp/><sp/><sp/><sp/>vSubtract(configData-&gt;<ref refid="struct_heading_su_k_f_config_1aabf7f2fed48cbb451393ec91957a58e7" kindref="member">obs</ref>,<sp/>OPNAV_MEAS,<sp/>yBar,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(kMat,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>tempYVec,</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>1,<sp/>xHat);</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/>vAdd(configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>xHat,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a8654813bdcc388fc0623d15e825b72ce" kindref="member">state</ref>);</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(kMat,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>sy,</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OPNAV_MEAS,<sp/>OPNAV_MEAS,<sp/>pXY);</highlight></codeline>
+<codeline lineno="510"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(pXY,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>OPNAV_MEAS,<sp/>pXY);</highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;OPNAV_MEAS;<sp/>i++)</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vCopy(&amp;(pXY[i*<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>]),<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>tempYVec);</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ukfCholDownDate(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>tempYVec,<sp/>-1.0,<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>sBarT);</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mCopy(sBarT,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>);</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(configData-&gt;<ref refid="struct_heading_su_k_f_config_1ac8e3d9c229593d2845136ed72207710a" kindref="member">sBar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)<sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a3a50c64c93e5bedd0ff47f152444b21f" kindref="member">numStates</ref>,</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configData-&gt;<ref refid="struct_heading_su_k_f_config_1a1fca18f744be3e3cf9c43e925ecb2a47" kindref="member">covar</ref>);</highlight></codeline>
+<codeline lineno="526"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"></highlight></codeline>
+<codeline lineno="528"><highlight class="normal"></highlight></codeline>
+<codeline lineno="537"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFSwitch(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*bVec_B,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*states,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*covar)</highlight></codeline>
+<codeline lineno="538"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BSold[HEAD_N_STATES][HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_BSnew_T[HEAD_N_STATES][HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dcm_SnewSold[HEAD_N_STATES][HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>switchMatP[HEAD_N_STATES_SWITCH][HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>switchMat[HEAD_N_STATES_SWITCH][HEAD_N_STATES_SWITCH];</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sun_heading_norm[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b1[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b2[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Set(1,<sp/>0,<sp/>0,<sp/>b1);</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Set(0,<sp/>1,<sp/>0,<sp/>b2);</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(&amp;(states[0]),<sp/>sun_heading_norm);</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/>headingSuKFComputeDCM_BS(sun_heading_norm,<sp/>bVec_B,<sp/>&amp;dcm_BSold[0][0]);</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3IsEqual(bVec_B,<sp/>b1,<sp/>1e-10))</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFComputeDCM_BS(sun_heading_norm,<sp/>b2,<sp/>&amp;dcm_BSnew_T[0][0]);</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(b2,<sp/>bVec_B);</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>headingSuKFComputeDCM_BS(sun_heading_norm,<sp/>b1,<sp/>&amp;dcm_BSnew_T[0][0]);</highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3Copy(b1,<sp/>bVec_B);</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(dcm_BSnew_T,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>dcm_BSnew_T);</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(dcm_BSnew_T,<sp/>3,<sp/>3,<sp/>dcm_BSold,<sp/>3,<sp/>3,<sp/>dcm_SnewSold);</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetIdentity(switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH);</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetSubMatrix(&amp;dcm_SnewSold[1][1],<sp/>1,<sp/>2,<sp/>&amp;switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>3,<sp/>3);</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetSubMatrix(&amp;dcm_SnewSold[2][1],<sp/>1,<sp/>2,<sp/>&amp;switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>4,<sp/>3);</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultV(switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>states,<sp/>states);</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>covar,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>switchMatP);</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>switchMat);</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/>mMultM(switchMatP,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>switchMat,<sp/>HEAD_N_STATES_SWITCH,<sp/>HEAD_N_STATES_SWITCH,<sp/>covar);</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="580"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"></highlight></codeline>
+<codeline lineno="583"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>headingSuKFComputeDCM_BS(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sunheading[HEAD_N_STATES],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bVec[HEAD_N_STATES],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*dcm){</highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s1_B[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s2_B[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s3_B[HEAD_N_STATES];</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetZero(dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES);</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(s2_B);</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/>v3SetZero(s3_B);</highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(sunheading,<sp/>s1_B);</highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(sunheading,<sp/>bVec,<sp/>s2_B);</highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v3Norm(s2_B)<sp/>&lt;<sp/>1E-5){</highlight></codeline>
+<codeline lineno="595"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mSetIdentity(dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES);</highlight></codeline>
+<codeline lineno="596"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(s2_B,<sp/>s2_B);</highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetSubMatrix(s1_B,<sp/>1,<sp/>HEAD_N_STATES,<sp/>dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>0,<sp/>0);</highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetSubMatrix(&amp;(s2_B),<sp/>1,<sp/>HEAD_N_STATES,<sp/>dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>1,<sp/>0);</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Cross(sunheading,<sp/>s2_B,<sp/>s3_B);</highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Normalize(s3_B,<sp/>s3_B);</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"><sp/><sp/><sp/><sp/>mSetSubMatrix(&amp;(s3_B),<sp/>1,<sp/>HEAD_N_STATES,<sp/>dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>2,<sp/>0);</highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/>mTranspose(dcm,<sp/>HEAD_N_STATES,<sp/>HEAD_N_STATES,<sp/>dcm);</highlight></codeline>
+<codeline lineno="606"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="607"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="608"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/attDetermination/headingSuKF/headingSuKF.c"/>
+  </compounddef>
+</doxygen>

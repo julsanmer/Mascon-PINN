@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_extended_state_vector" kind="class" language="C++" prot="public">
+    <compoundname>ExtendedStateVector</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::unordered_map&lt; ExtendedStateId, Eigen::MatrixXd, ExtendedStateIdHash &gt;</basecompoundref>
+    <includes refid="extended_state_vector_8h" local="no">extendedStateVector.h</includes>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_extended_state_vector_1ade96a207c9dd26eab2714b6abc36e04f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::fromStates</definition>
+        <argsstring>(const std::vector&lt; DynamicObject * &gt; &amp;dynPtrs)</argsstring>
+        <name>fromStates</name>
+        <qualifiedname>ExtendedStateVector::fromStates</qualifiedname>
+        <param>
+          <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> std::vector&lt; <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> * &gt; &amp;</type>
+          <declname>dynPtrs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds a <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> from all states in the given dynamic objects </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="87" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1a1f9ff2051c9ba398c5293d93d59e8638" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::fromStateDerivs</definition>
+        <argsstring>(const std::vector&lt; DynamicObject * &gt; &amp;dynPtrs)</argsstring>
+        <name>fromStateDerivs</name>
+        <qualifiedname>ExtendedStateVector::fromStateDerivs</qualifiedname>
+        <param>
+          <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> std::vector&lt; <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> * &gt; &amp;</type>
+          <declname>dynPtrs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Builds a <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> from the derivatives of all states in the given dynamic objects </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="93" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::map</definition>
+        <argsstring>(std::function&lt; Eigen::MatrixXd(const size_t &amp;, const std::string &amp;, const Eigen::MatrixXd &amp;)&gt; functor) const</argsstring>
+        <name>map</name>
+        <qualifiedname>ExtendedStateVector::map</qualifiedname>
+        <param>
+          <type>std::function&lt; Eigen::MatrixXd(const size_t &amp;, const std::string &amp;, const Eigen::MatrixXd &amp;)&gt;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method will call the given std::function for every state in the <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref>. The arguments to the functor are the index of the <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> corresponding to the state, the name of the state, and the value of the state stored in <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref>. A new <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> is built from the results of each call of the functor. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="104" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="32" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1adcf63d1503aec1940c312896948b8a4c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">void</ref></type>
+        <definition>void ExtendedStateVector::apply</definition>
+        <argsstring>(std::function&lt; void(const size_t &amp;, const std::string &amp;, const Eigen::MatrixXd &amp;)&gt; functor) const</argsstring>
+        <name>apply</name>
+        <qualifiedname>ExtendedStateVector::apply</qualifiedname>
+        <param>
+          <type>std::function&lt; <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">void</ref>(<ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">size_t</ref> &amp;, <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> std::string &amp;, <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> Eigen::MatrixXd &amp;)&gt;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Similar to the map method, except that no <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> is returned because the given functor does not produce any values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="112" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="47" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1a01a050cbaf03b6ecaac6dac86b2a1d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">void</ref></type>
+        <definition>void ExtendedStateVector::modify</definition>
+        <argsstring>(std::function&lt; void(const size_t &amp;, const std::string &amp;, Eigen::MatrixXd &amp;)&gt; functor)</argsstring>
+        <name>modify</name>
+        <qualifiedname>ExtendedStateVector::modify</qualifiedname>
+        <param>
+          <type>std::function&lt; <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">void</ref>(<ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">size_t</ref> &amp;, <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> std::string &amp;, Eigen::MatrixXd &amp;)&gt;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Modifies each Eigen::MatrixXd stored in this object according to the given functor </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="119" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="56" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1a0023fb1d3a0bc38f2944c7487311e550" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::operator+=</definition>
+        <argsstring>(const ExtendedStateVector &amp;rhs)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>ExtendedStateVector::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds the values of <computeroutput>rhs</computeroutput> to this</para>
+<para>This functions as a state-wise addition operation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="125" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="65" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1a69226a43e8356d1b590bd309717f45a5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::operator*</definition>
+        <argsstring>(const double rhs) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>ExtendedStateVector::operator*</qualifiedname>
+        <param>
+          <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> <ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">double</ref></type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns a new <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> that is the result of multiplying each state by a constant </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="129" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="76" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_extended_state_vector_1a4c85ff51b5ec2be545d8658fb07d46ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">void</ref></type>
+        <definition>void ExtendedStateVector::setStates</definition>
+        <argsstring>(std::vector&lt; DynamicObject * &gt; &amp;dynPtrs) const</argsstring>
+        <name>setStates</name>
+        <qualifiedname>ExtendedStateVector::setStates</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> * &gt; &amp;</type>
+          <declname>dynPtrs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calls <ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">StateData::setState</ref> for every entry in in this </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="132" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="83" bodyend="92"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_extended_state_vector_1a5e8fef27aaf64e234472768b49c490f2" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector ExtendedStateVector::fromStateData</definition>
+        <argsstring>(const std::vector&lt; DynamicObject * &gt; &amp;dynPtrs, std::function&lt; Eigen::MatrixXd(const StateData &amp;)&gt;)</argsstring>
+        <name>fromStateData</name>
+        <qualifiedname>ExtendedStateVector::fromStateData</qualifiedname>
+        <param>
+          <type><ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> std::vector&lt; <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> * &gt; &amp;</type>
+          <declname>dynPtrs</declname>
+        </param>
+        <param>
+          <type>std::function&lt; Eigen::MatrixXd(<ref refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" kindref="member">const</ref> <ref refid="class_state_data" kindref="compound">StateData</ref> &amp;)&gt;</type>
+          <defname>functor</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="135" column="32" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.cpp" bodystart="95" bodyend="108"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Conceptually similar to <ref refid="class_state_vector" kindref="compound">StateVector</ref>, this class allows us to handle the states of multiple <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> with a single object.</para>
+<para>It also supports several utility functions. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ExtendedStateVector</label>
+        <link refid="class_extended_state_vector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::unordered_map&lt; ExtendedStateId, Eigen::MatrixXd, ExtendedStateIdHash &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ExtendedStateVector</label>
+        <link refid="class_extended_state_vector"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::unordered_map&lt; ExtendedStateId, Eigen::MatrixXd, ExtendedStateIdHash &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" line="80" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/extendedStateVector.h" bodystart="81" bodyend="137"/>
+    <listofallmembers>
+      <member refid="class_extended_state_vector_1adcf63d1503aec1940c312896948b8a4c" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>apply</name></member>
+      <member refid="class_extended_state_vector_1a5e8fef27aaf64e234472768b49c490f2" prot="private" virt="non-virtual"><scope>ExtendedStateVector</scope><name>fromStateData</name></member>
+      <member refid="class_extended_state_vector_1a1f9ff2051c9ba398c5293d93d59e8638" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>fromStateDerivs</name></member>
+      <member refid="class_extended_state_vector_1ade96a207c9dd26eab2714b6abc36e04f" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>fromStates</name></member>
+      <member refid="class_extended_state_vector_1a740442ebfb8c8ad84fd18a9f340a0a83" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>map</name></member>
+      <member refid="class_extended_state_vector_1a01a050cbaf03b6ecaac6dac86b2a1d4f" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>modify</name></member>
+      <member refid="class_extended_state_vector_1a69226a43e8356d1b590bd309717f45a5" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>operator*</name></member>
+      <member refid="class_extended_state_vector_1a0023fb1d3a0bc38f2944c7487311e550" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>operator+=</name></member>
+      <member refid="class_extended_state_vector_1a4c85ff51b5ec2be545d8658fb07d46ce" prot="public" virt="non-virtual"><scope>ExtendedStateVector</scope><name>setStates</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

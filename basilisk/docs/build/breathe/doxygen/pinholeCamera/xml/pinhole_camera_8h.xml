@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="pinhole_camera_8h" kind="file" language="C++">
+    <compoundname>pinholeCamera.h</compoundname>
+    <includes local="no">Eigen/Dense</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">string</includes>
+    <includes local="yes">architecture/_GeneralModuleFiles/sys_model.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/EphemerisMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/SCStatesMsgPayload.h</includes>
+    <includes local="yes">architecture/msgPayloadDefC/LandmarkMsgPayload.h</includes>
+    <includes local="yes">architecture/messaging/messaging.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="pinhole_camera_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/simulation/navigation/pinholeCamera/pinholeCamera.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/navigation/pinholeCamera/pinholeCamera.h</label>
+        <link refid="pinhole_camera_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="5">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/EphemerisMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/LandmarkMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_pinhole_camera" prot="public">PinholeCamera</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2023,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PINHOLE_CAMERA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PINHOLE_CAMERA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/_GeneralModuleFiles/sys_model.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/EphemerisMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/SCStatesMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/msgPayloadDefC/LandmarkMsgPayload.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/messaging/messaging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="class_pinhole_camera" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_pinhole_camera" kindref="compound">PinholeCamera</ref>:<sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>SysModel<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_pinhole_camera_1a85197f8901712c4766083bd38177d7ff" kindref="member">PinholeCamera</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_pinhole_camera_1a699d18b6eff230cc56f33add593f7cdf" kindref="member">~PinholeCamera</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1ae36ff5197d77b417c3e71abe2067e162" kindref="member">UpdateState</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a65cc33ec1640f54451381aa98ec0cc5c" kindref="member">Reset</ref>(uint64_t<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a5d1dad5bc190c26c2179d6422d626f30" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1af59cb161d76803824a0939be287b1b4d" kindref="member">writeOutputMessages</ref>(uint64_t<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a0c7037b96c8299d74728409b0d31d15e" kindref="member">addLandmark</ref>(Eigen::Vector3d&amp;<sp/>pos,<sp/>Eigen::Vector3d&amp;<sp/>normal);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a0c9397d0bcc5e732511a44657b74e095" kindref="member">processBatch</ref>(Eigen::MatrixXd<sp/>rBatch_BP_P,<sp/>Eigen::MatrixXd<sp/>mrpBatch_BP,<sp/>Eigen::MatrixXd<sp/>eBatch_SP_P,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>show_progress);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>processInputs();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>loopLandmarks();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>checkLighting(Eigen::Vector3d<sp/>nLmk);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>checkFOV(Eigen::Vector2i<sp/>pLmk,<sp/>Eigen::Vector3d<sp/>rLmk,<sp/>Eigen::Vector3d<sp/>nLmk);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector2i<sp/>computePixel(Eigen::Vector3d<sp/>rLmk);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pinhole<sp/>camera<sp/>properties<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="class_pinhole_camera_1a76df6139e471d338749e4d58ea4dfde0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a76df6139e471d338749e4d58ea4dfde0" kindref="member">f</ref>;<sp/></highlight></codeline>
+<codeline lineno="58" refid="class_pinhole_camera_1ac1eae69332e2b0a4fafcbef37f0f5efd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1ac1eae69332e2b0a4fafcbef37f0f5efd" kindref="member">FOVx</ref>;<sp/></highlight></codeline>
+<codeline lineno="59" refid="class_pinhole_camera_1af77e8e9065c6cb319be9c833a9c3c21f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1af77e8e9065c6cb319be9c833a9c3c21f" kindref="member">FOVy</ref>;<sp/></highlight></codeline>
+<codeline lineno="60" refid="class_pinhole_camera_1aae4cfacf533705c457ffd9ad7965d5ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1aae4cfacf533705c457ffd9ad7965d5ef" kindref="member">nxPixel</ref>;<sp/></highlight></codeline>
+<codeline lineno="61" refid="class_pinhole_camera_1ae2ec4a2486652cd33c806e485f3a5f43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1ae2ec4a2486652cd33c806e485f3a5f43" kindref="member">nyPixel</ref>;<sp/></highlight></codeline>
+<codeline lineno="62" refid="class_pinhole_camera_1abf30ddb1966b4d12f8407319539bb039" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1abf30ddb1966b4d12f8407319539bb039" kindref="member">wPixel</ref>;<sp/></highlight></codeline>
+<codeline lineno="63" refid="class_pinhole_camera_1a8adc8227389cc1effdd5574c97e8fecb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="class_pinhole_camera_1a8adc8227389cc1effdd5574c97e8fecb" kindref="member">dcm_CB</ref>;<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Module<sp/>outputs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="class_pinhole_camera_1ae1e75658cc7a193a5a26795940fb0e95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::VectorXi<sp/><ref refid="class_pinhole_camera_1ae1e75658cc7a193a5a26795940fb0e95" kindref="member">isvisibleLmk</ref>;<sp/></highlight></codeline>
+<codeline lineno="67" refid="class_pinhole_camera_1ab2c86fdc674f3689e6bd930488452b40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXi<sp/><ref refid="class_pinhole_camera_1ab2c86fdc674f3689e6bd930488452b40" kindref="member">pixelLmk</ref>;<sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Landmark<sp/>distribution<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="class_pinhole_camera_1a09a725531be5ada55562b1e54442bdde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="class_pinhole_camera_1a09a725531be5ada55562b1e54442bdde" kindref="member">r_LP_P</ref>;<sp/></highlight></codeline>
+<codeline lineno="71" refid="class_pinhole_camera_1a3f2d75a5a118dc942d8f339d7e4ae27c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Eigen::Vector3d&gt;<sp/><ref refid="class_pinhole_camera_1a3f2d75a5a118dc942d8f339d7e4ae27c" kindref="member">nL_P</ref>;<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="class_pinhole_camera_1af2d4bd2a39ac72299cf7465316e5067c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1af2d4bd2a39ac72299cf7465316e5067c" kindref="member">maskCam</ref>;<sp/></highlight></codeline>
+<codeline lineno="74" refid="class_pinhole_camera_1a1f36a15ea031b313aa470474bdb8cc3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_pinhole_camera_1a1f36a15ea031b313aa470474bdb8cc3f" kindref="member">maskSun</ref>;<sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Messages<sp/>definition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="class_pinhole_camera_1a0e2a657d3ded73cd701e955781e04688" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;EphemerisMsgPayload&gt;<sp/><ref refid="class_pinhole_camera_1a0e2a657d3ded73cd701e955781e04688" kindref="member">ephemerisInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="78" refid="class_pinhole_camera_1a71076bc051cb05a58fdfcffff1307514" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ReadFunctor&lt;SCStatesMsgPayload&gt;<sp/><ref refid="class_pinhole_camera_1a71076bc051cb05a58fdfcffff1307514" kindref="member">scStateInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="class_pinhole_camera_1a300df83722901e664c70ab2139b5caec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/><ref refid="class_pinhole_camera_1a300df83722901e664c70ab2139b5caec" kindref="member">spacecraftState</ref>;<sp/></highlight></codeline>
+<codeline lineno="81" refid="class_pinhole_camera_1af46568089c993e2a2e0171b3cb6789e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>EphemerisMsgPayload<sp/><ref refid="class_pinhole_camera_1af46568089c993e2a2e0171b3cb6789e3" kindref="member">ephemerisPlanet</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="class_pinhole_camera_1abc462f3d50973ac91e4c7cc2bcb04f7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Message&lt;LandmarkMsgPayload&gt;*&gt;<sp/><ref refid="class_pinhole_camera_1abc462f3d50973ac91e4c7cc2bcb04f7f" kindref="member">landmarkOutMsgs</ref>;<sp/></highlight></codeline>
+<codeline lineno="83" refid="class_pinhole_camera_1a15045d72a0b61d938bb52f9af7f03c58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;LandmarkMsgPayload&gt;<sp/><ref refid="class_pinhole_camera_1a15045d72a0b61d938bb52f9af7f03c58" kindref="member">landmarkMsgBuffer</ref>;<sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="class_pinhole_camera_1af5f76d1e2cbc77d7c70a900dc78aa570" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/><ref refid="class_pinhole_camera_1af5f76d1e2cbc77d7c70a900dc78aa570" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Batch<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="class_pinhole_camera_1ac2c0268d1ee30901044d9c0c886e479a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXi<sp/><ref refid="class_pinhole_camera_1ac2c0268d1ee30901044d9c0c886e479a" kindref="member">pixelBatchLmk</ref>;<sp/></highlight></codeline>
+<codeline lineno="89" refid="class_pinhole_camera_1a4c30f583cf2574319f169f41c63b0405" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXi<sp/><ref refid="class_pinhole_camera_1a4c30f583cf2574319f169f41c63b0405" kindref="member">isvisibleBatchLmk</ref>;<sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n;<sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Positions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_PN_N;<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_BP_P;<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Direction<sp/>cosine<sp/>matrices<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_BP;<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_PN;<sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Unit-vectors<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>e_SP_P;<sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>eC_C;<sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>eC_P;<sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/navigation/pinholeCamera/pinholeCamera.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,456 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="thr_force_mapping_8h" kind="file" language="C++">
+    <compoundname>thrForceMapping.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/VehicleConfigMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayCmdForceMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/CmdTorqueBodyMsg_C.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includedby refid="thr_force_mapping_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h</label>
+        <link refid="thr_force_mapping_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="6">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="5">
+        <label>cMsgCInterface/THRArrayCmdForceMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/THRArrayConfigMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>cMsgCInterface/VehicleConfigMsg_C.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structthr_force_mapping_config" prot="public">thrForceMappingConfig</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="thr_force_mapping_8h_1abb2077cc763233d156c0e3275939de75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>self init method <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with this module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="65" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="35" bodyend="38" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="65" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8h_1a9b8dd68aabba0b5a1a2079093ee00286" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The module takes a body frame torque vector and projects it onto available RCS or DV thrusters. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>zero all output message copies</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>clear arrays of the thruster mapping algorithm</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Read the input messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the request 3D attitude control torque vector</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute thruster locations relative to COM</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>compute general thruster force mapping matrix</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the control axes into [C]</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>map the control torque onto the control axes</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>1st iteration of finding a set of force vectors to implement the control torque</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>Remove forces components that are contributing to the RCS Null space (this is due to the geometry of the thrusters)</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="66" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="108" bodyend="244" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="66" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8h_1a5667991a10cd532d897e91b458c90bed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_thrForceMapping</definition>
+        <argsstring>(thrForceMappingConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_thrForceMapping</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method performs a complete reset of the module. Local module variables that retain time varying states between function calls are reset to their default values. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the module </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>configure the number of axes that are controlled</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>read in the support thruster and vehicle configuration messages</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>copy the thruster position and thruster force heading information into the module configuration data</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="67" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="48" bodyend="100" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="67" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8h_1a7dbdd0083ddbd1626d60405070a1d265" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void substractMin</definition>
+        <argsstring>(double *F, uint32_t size)</argsstring>
+        <name>substractMin</name>
+        <param>
+          <type>double *</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Take a stack of force values find the smallest value, and subtract if from all force values. Here the smallest values will become zero, while other forces increase. This assumes that the thrusters are aligned such that if all thrusters are firing, then no torque or force is applied. This ensures only positive force values are computed. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="69" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="251" bodyend="264" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="69" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8h_1ac738f26c9fa95f8f422c80b02a2ea9b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void findMinimumNormForce</definition>
+        <argsstring>(thrForceMappingConfig *configData, double D[3][MAX_EFF_CNT], double Lr_B[3], uint32_t numForces, double F[MAX_EFF_CNT])</argsstring>
+        <name>findMinimumNormForce</name>
+        <param>
+          <type><ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>D</declname>
+          <array>[3][MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Lr_B</declname>
+          <defname>Lr_B_Bar</defname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numForces</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>F</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Use a least square inverse to determine the smallest set of thruster forces that yield the desired torque vector. Note that this routine does not constrain yet the forces to be either positive or negative </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>copy the control axes into [C]</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="70" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="271" bodyend="312" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="70" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="thr_force_mapping_8h_1a654337d0d932770c2760250dd5479a5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double computeTorqueAngErr</definition>
+        <argsstring>(double D[3][MAX_EFF_CNT], double BLr[3], uint32_t numForces, double epsilon, double F[MAX_EFF_CNT], double FMag[MAX_EFF_CNT])</argsstring>
+        <name>computeTorqueAngErr</name>
+        <param>
+          <type>double</type>
+          <declname>D</declname>
+          <array>[3][MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>BLr</declname>
+          <defname>BLr_B</defname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>numForces</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>epsilon</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>F</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>FMag</declname>
+          <array>[MAX_EFF_CNT]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Determine the angle between the desired torque vector and the actual torque vector. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>make sure a control torque is requested, otherwise just return a zero angle error</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>loop over all thrusters and compute the actual torque to be applied</para>
+</listitem></itemizedlist>
+</para>
+<para><itemizedlist>
+<listitem><para>evaluate the angle between the requested and thruster implemented torque vector</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" line="72" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.c" bodystart="317" bodyend="351" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h" declline="72" declcolumn="12"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_THRUSTER_FORCE_MAPPING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_THRUSTER_FORCE_MAPPING_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/VehicleConfigMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayCmdForceMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CmdTorqueBodyMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structthr_force_mapping_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>public<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structthr_force_mapping_config_1a3c89e043cd55a82879f0ae24cd0e0858" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/>controlAxes_B[3*3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="structthr_force_mapping_config_1a030a0e25d93f7499bfe517761edb0c3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/>rThruster_B[MAX_EFF_CNT][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="structthr_force_mapping_config_1a43aafab92b73a287dde8fe17ead3cc68" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/>gtThruster_B[MAX_EFF_CNT][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/><sp/><ref refid="structthr_force_mapping_config_1a718991f4d453866504ed445c902e67f8" kindref="member">thrForceSign</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structthr_force_mapping_config_1a64d3912009b4d7ffd9905f34fb85b616" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structthr_force_mapping_config_1a64d3912009b4d7ffd9905f34fb85b616" kindref="member">angErrThresh</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structthr_force_mapping_config_1ab81af19fd0ad4c53e7c63ea6dbc0eddf" kindref="member">epsilon</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structthr_force_mapping_config_1a7b228496e06e6f6fb62f77afa6d1f35f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structthr_force_mapping_config_1a7b228496e06e6f6fb62f77afa6d1f35f" kindref="member">use2ndLoop</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>private<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structthr_force_mapping_config_1abd5b2a40949903738c94fef117b5b633" kindref="member">numControlAxes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structthr_force_mapping_config_1a910235a7921687eebd5590ceeadd01d1" kindref="member">numThrusters</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="structthr_force_mapping_config_1a222b11f0a99155286d7751678084c798" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structthr_force_mapping_config_1a222b11f0a99155286d7751678084c798" kindref="member">outTorqAngErr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="structthr_force_mapping_config_1a21fdd9f40eea1a1e48aa17a2075fa32b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>thrForcMag[MAX_EFF_CNT];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>declare<sp/>module<sp/>IO<sp/>interfaces<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structthr_force_mapping_config_1a8f7902a61ae46505bf3196db583cf966" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayCmdForceMsg_C<sp/><ref refid="structthr_force_mapping_config_1a8f7902a61ae46505bf3196db583cf966" kindref="member">thrForceCmdOutMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structthr_force_mapping_config_1a602b2198cbb414a167adc5739b538658" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C<sp/><ref refid="structthr_force_mapping_config_1a602b2198cbb414a167adc5739b538658" kindref="member">cmdTorqueInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="structthr_force_mapping_config_1a2477b35d5e7960c56229ebf1b794813f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>THRArrayConfigMsg_C<sp/><ref refid="structthr_force_mapping_config_1a2477b35d5e7960c56229ebf1b794813f" kindref="member">thrConfigInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structthr_force_mapping_config_1a7df4c295976feef6b15ac8c9012069ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>VehicleConfigMsg_C<sp/><ref refid="structthr_force_mapping_config_1a7df4c295976feef6b15ac8c9012069ce" kindref="member">vehConfigInMsg</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="structthr_force_mapping_config_1abaf273686fe564876e83bf9a601e69c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>VehicleConfigMsgPayload<sp/><sp/><sp/><ref refid="structthr_force_mapping_config_1abaf273686fe564876e83bf9a601e69c8" kindref="member">sc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structthr_force_mapping_config_1af398b3a2d1bf077c58bfac44ed0eb59a" kindref="member">bskLogger</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_thrForceMapping(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>substractMin(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*F,<sp/>uint32_t<sp/>size);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>findMinimumNormForce(<ref refid="structthr_force_mapping_config" kindref="compound">thrForceMappingConfig</ref><sp/>*configData,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>D[3][MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Lr_B[3],<sp/>uint32_t<sp/>numForces,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>F[MAX_EFF_CNT]);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>computeTorqueAngErr(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>D[3][MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>BLr[3],<sp/>uint32_t<sp/>numForces,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epsilon,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>F[MAX_EFF_CNT],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FMag[MAX_EFF_CNT]);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/thrForceMapping/thrForceMapping.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="hub_effector_8cpp" kind="file" language="C++">
+    <compoundname>hubEffector.cpp</compoundname>
+    <includes refid="hub_effector_8h" local="yes">hubEffector.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>dynParamManager.h</label>
+        <link refid="dyn_param_manager_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/hubEffector.cpp</label>
+        <link refid="hub_effector_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hubEffector.h</label>
+        <link refid="hub_effector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>stateData.h</label>
+        <link refid="state_data_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>simulation/dynamics/_GeneralModuleFiles/stateEffector.h</label>
+        <link refid="state_effector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="8">
+        <label>map</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hubEffector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="class_hub_effector_1ac53bfd13edca98404ae50cc13aed7be9" kindref="member">HubEffector::HubEffector</ref>()</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>zero<sp/>certain<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ab555481c3f1cd395639dc8aa72beecf1" kindref="member">MRPSwitchCount</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1aa41cd9c15ee194e8f0c835e3ffa4806d" kindref="member">mEff</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1aabddaf397db331a8d1532be3bd87d345" kindref="member">rEff_CB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a3a0b04d9806d75d91fc3a06b5301085e" kindref="member">IEffPntB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a720c863f0ad5efa396de592af9c690f9" kindref="member">rEffPrime_CB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a9d5079370d30a7b37290902aef9c69be" kindref="member">IEffPrimePntB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1aacc6a7e5162ed435ec19ae02b4179cf3" kindref="member">r_CN_NInit</ref>.setZero();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1add5bdedffcca5fd74bb1c6f7c1d20562" kindref="member">v_CN_NInit</ref>.setZero();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a8f8e3b46c53df592114fb98db613138d" kindref="member">sigma_BNInit</ref>.setZero();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1afa7df251ddfe15703c3eea62fc33a3e8" kindref="member">omega_BN_BInit</ref>.setZero();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>define<sp/>default<sp/>names<sp/>for<sp/>the<sp/>hub<sp/>states</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a4ea5383023a17c5b7baaa3145f9c90c8" kindref="member">nameOfHubPosition</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hubPosition&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ae92dae9188b44ad82c9ba8acb02a4264" kindref="member">nameOfHubVelocity</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hubVelocity&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a184f707c39b77212403443a2a2ced7a4" kindref="member">nameOfHubSigma</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hubSigma&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ab3fec7520e9531df83b76e046b1c8143" kindref="member">nameOfHubOmega</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hubOmega&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1afd4a06c259d07002093368234e033cc6" kindref="member">nameOfHubGravVelocity</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hubGravVelocity&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a6ae7bb06dbaebbd705e1604e3d17b4c2" kindref="member">nameOfBcGravVelocity</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;BcGravVelocity&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>define<sp/>a<sp/>default<sp/>mass<sp/>of<sp/>1kg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a5ea8ee17fb60e2b50b8c5016e2ea822a" kindref="member">mHub</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ab419bc108ffb734c7e8a67bf0dffa588" kindref="member">IHubPntBc_B</ref>.setIdentity();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ae8950c8aff903d3d3cc7bd13856d6edb" kindref="member">r_BcB_B</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><ref refid="class_hub_effector_1ac5c5827a4d961e0861cca69b82e74609" kindref="member">HubEffector::~HubEffector</ref>()</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1a4b1c0ca2bd95b25e31818a890847d37d" kindref="member">HubEffector::linkInStates</ref>(<ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref>&amp;<sp/>statesIn)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;g_N<sp/>=<sp/>statesIn.<ref refid="class_dyn_param_manager_1a61e96d12fd7b123c9a7ae356b54ef381" kindref="member">getPropertyReference</ref>(this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/></highlight><highlight class="stringliteral">&quot;g_N&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1adb315b3b25828c6bbd878294237dd914" kindref="member">HubEffector::prependSpacecraftNameToStates</ref>()</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a4ea5383023a17c5b7baaa3145f9c90c8" kindref="member">nameOfHubPosition</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1a4ea5383023a17c5b7baaa3145f9c90c8" kindref="member">nameOfHubPosition</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ae92dae9188b44ad82c9ba8acb02a4264" kindref="member">nameOfHubVelocity</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1ae92dae9188b44ad82c9ba8acb02a4264" kindref="member">nameOfHubVelocity</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a184f707c39b77212403443a2a2ced7a4" kindref="member">nameOfHubSigma</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1a184f707c39b77212403443a2a2ced7a4" kindref="member">nameOfHubSigma</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ab3fec7520e9531df83b76e046b1c8143" kindref="member">nameOfHubOmega</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1ab3fec7520e9531df83b76e046b1c8143" kindref="member">nameOfHubOmega</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1afd4a06c259d07002093368234e033cc6" kindref="member">nameOfHubGravVelocity</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1afd4a06c259d07002093368234e033cc6" kindref="member">nameOfHubGravVelocity</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1a6ae7bb06dbaebbd705e1604e3d17b4c2" kindref="member">nameOfBcGravVelocity</ref><sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a86bd3f9c9a1d2d9e0fc7df095ee7d17c" kindref="member">nameOfSpacecraftAttachedTo</ref><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1a6ae7bb06dbaebbd705e1604e3d17b4c2" kindref="member">nameOfBcGravVelocity</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1a198a93c8b81ebc638cb298eebfe0b829" kindref="member">HubEffector::registerStates</ref>(<ref refid="class_dyn_param_manager" kindref="compound">DynParamManager</ref>&amp;<sp/>states)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Register<sp/>the<sp/>hub<sp/>states<sp/>and<sp/>set<sp/>with<sp/>initial<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;posState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1a4ea5383023a17c5b7baaa3145f9c90c8" kindref="member">nameOfHubPosition</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;velocityState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1ae92dae9188b44ad82c9ba8acb02a4264" kindref="member">nameOfHubVelocity</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigmaState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1a184f707c39b77212403443a2a2ced7a4" kindref="member">nameOfHubSigma</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1ab3fec7520e9531df83b76e046b1c8143" kindref="member">nameOfHubOmega</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1afd4a06c259d07002093368234e033cc6" kindref="member">nameOfHubGravVelocity</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityBcState<sp/>=<sp/>states.<ref refid="class_dyn_param_manager_1accc2b0dd278e6eccca0d79955b07ce37" kindref="member">registerState</ref>(3,<sp/>1,<sp/>this-&gt;<ref refid="class_hub_effector_1a6ae7bb06dbaebbd705e1604e3d17b4c2" kindref="member">nameOfBcGravVelocity</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-<sp/>r_BN_N<sp/>and<sp/>v_BN_N<sp/>of<sp/>the<sp/>hub<sp/>is<sp/>first<sp/>set<sp/>to<sp/>r_CN_N<sp/>and<sp/>v_CN_N<sp/>and<sp/>then<sp/>is<sp/>corrected<sp/>in<sp/>spacecraft</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>initializeDynamics<sp/>to<sp/>incorporate<sp/>the<sp/>fact<sp/>that<sp/>point<sp/>B<sp/>and<sp/>point<sp/>C<sp/>are<sp/>not<sp/>necessarily<sp/>coincident<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;posState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1aacc6a7e5162ed435ec19ae02b4179cf3" kindref="member">r_CN_NInit</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;velocityState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1add5bdedffcca5fd74bb1c6f7c1d20562" kindref="member">v_CN_NInit</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigmaState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1a8f8e3b46c53df592114fb98db613138d" kindref="member">sigma_BNInit</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;omegaState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1afa7df251ddfe15703c3eea62fc33a3e8" kindref="member">omega_BN_BInit</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1add5bdedffcca5fd74bb1c6f7c1d20562" kindref="member">v_CN_NInit</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityBcState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;<ref refid="class_hub_effector_1add5bdedffcca5fd74bb1c6f7c1d20562" kindref="member">v_CN_NInit</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1a69b5a03b4d59f36dfa3a84dd6936b3c4" kindref="member">HubEffector::updateEffectorMassProps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Give<sp/>the<sp/>mass<sp/>to<sp/>mass<sp/>props</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1aa41cd9c15ee194e8f0c835e3ffa4806d" kindref="member">mEff</ref><sp/>=<sp/>this-&gt;<ref refid="class_hub_effector_1a5ea8ee17fb60e2b50b8c5016e2ea822a" kindref="member">mHub</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Provide<sp/>information<sp/>about<sp/>multi-spacecraft<sp/>origin<sp/>if<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_BcP_P<sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a5b1d4ed95d416ef2d9ceace566a4a428" kindref="member">r_BP_P</ref><sp/>+<sp/>this-&gt;<ref refid="class_state_effector_1a3f453bbbbdfba52651c489dfc2370148" kindref="member">dcm_BP</ref>.transpose()*(this-&gt;<ref refid="class_hub_effector_1ae8950c8aff903d3d3cc7bd13856d6edb" kindref="member">r_BcB_B</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;IHubPntBc_P<sp/>=<sp/>this-&gt;<ref refid="class_state_effector_1a3f453bbbbdfba52651c489dfc2370148" kindref="member">dcm_BP</ref>.transpose()*this-&gt;<ref refid="class_hub_effector_1ab419bc108ffb734c7e8a67bf0dffa588" kindref="member">IHubPntBc_B</ref>*this-&gt;<ref refid="class_state_effector_1a3f453bbbbdfba52651c489dfc2370148" kindref="member">dcm_BP</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Give<sp/>inertia<sp/>of<sp/>hub<sp/>about<sp/>point<sp/>B<sp/>to<sp/>mass<sp/>props</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a3a0b04d9806d75d91fc3a06b5301085e" kindref="member">IEffPntB_B</ref><sp/>=<sp/>this-&gt;IHubPntBc_P</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>this-&gt;<ref refid="class_hub_effector_1a5ea8ee17fb60e2b50b8c5016e2ea822a" kindref="member">mHub</ref>*eigenTilde(this-&gt;r_BcP_P)*eigenTilde(this-&gt;r_BcP_P).transpose();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Give<sp/>position<sp/>of<sp/>center<sp/>of<sp/>mass<sp/>of<sp/>hub<sp/>with<sp/>respect<sp/>to<sp/>point<sp/>B<sp/>to<sp/>mass<sp/>props</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1aabddaf397db331a8d1532be3bd87d345" kindref="member">rEff_CB_B</ref><sp/>=<sp/>this-&gt;r_BcP_P;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Zero<sp/>body<sp/>derivatives<sp/>for<sp/>position<sp/>and<sp/>inertia;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a720c863f0ad5efa396de592af9c690f9" kindref="member">rEffPrime_CB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_state_effector_1ab1eb41263c1288325f979b4382a7b6aa" kindref="member">effProps</ref>.<ref refid="struct_effector_mass_props_1a9d5079370d30a7b37290902aef9c69be" kindref="member">IEffPrimePntB_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1a061c0c95cc304e6826614293b704f4ed" kindref="member">HubEffector::computeDerivatives</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>rDDot_BN_N,<sp/>Eigen::Vector3d<sp/>omegaDot_BN_B,<sp/>Eigen::Vector3d<sp/>sigma_BN)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>variables<sp/>from<sp/>state<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDotLocal_BN_N;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/>sigmaLocal_BN;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaLocal_BN_B;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>cLocal_B;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>cPrimeLocal_B;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>gLocal_N;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>rDotLocal_BN_N<sp/>=<sp/>velocityState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaLocal_BN<sp/>=<sp/>(Eigen::Vector3d<sp/>)sigmaState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaLocal_BN_B<sp/>=<sp/>omegaState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>gLocal_N<sp/>=<sp/>*this-&gt;g_N;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Set<sp/>kinematic<sp/>derivative</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(1.0/4.0*sigmaLocal_BN.Bmat()*omegaLocal_BN_B);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Define<sp/>dcm&apos;s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_NB;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_BN;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_NB<sp/>=<sp/>sigmaLocal_BN.toRotationMatrix();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>dcm_BN<sp/>=<sp/>dcm_NB.transpose();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Solve<sp/>for<sp/>omegaDot_BN_B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaDotLocal_BN_B;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>intermediateMatrix;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>intermediateVector;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>intermediateVector<sp/>=<sp/>this-&gt;<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1af0010d9b57072064c4ad5c287fce5efd" kindref="member">vecRot</ref><sp/>-<sp/>this-&gt;<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1ad25b72d7ae4dd7aeb3cd05abc500256c" kindref="member">matrixC</ref>*this-&gt;<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1a6114ee23aef48be0728b39c51547bfb8" kindref="member">matrixA</ref>.inverse()*this-&gt;<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1aff54b7d92e2cd20f4ad18e2ef5770bd6" kindref="member">vecTrans</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>intermediateMatrix<sp/>=<sp/><ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1aab9282b8811200ed1bf8f62ea92625bf" kindref="member">matrixD</ref><sp/>-<sp/><ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1ad25b72d7ae4dd7aeb3cd05abc500256c" kindref="member">matrixC</ref>*<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1a6114ee23aef48be0728b39c51547bfb8" kindref="member">matrixA</ref>.inverse()*<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1acaccbb6a7b6cf423a41ed8e6140b5853" kindref="member">matrixB</ref>;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaDotLocal_BN_B<sp/>=<sp/>intermediateMatrix.inverse()*intermediateVector;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(omegaDotLocal_BN_B);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Solve<sp/>for<sp/>rDDot_BN_N</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>velocityState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(dcm_NB*<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1a6114ee23aef48be0728b39c51547bfb8" kindref="member">matrixA</ref>.inverse()*(<ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1aff54b7d92e2cd20f4ad18e2ef5770bd6" kindref="member">vecTrans</ref><sp/>-<sp/><ref refid="class_hub_effector_1a43d933871466e0fcfa35722b85a225f8" kindref="member">hubBackSubMatrices</ref>.<ref refid="struct_back_sub_matrices_1acaccbb6a7b6cf423a41ed8e6140b5853" kindref="member">matrixB</ref>*omegaDotLocal_BN_B));</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Set<sp/>gravity<sp/>velocity<sp/>derivatives</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>gravVelocityState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(gLocal_N);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>gravVelocityBcState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(gLocal_N);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Set<sp/>kinematic<sp/>derivative</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>posState-&gt;<ref refid="class_state_data_1a84e48adf7374c0a03caf5332a8fa5dc7" kindref="member">setDerivative</ref>(rDotLocal_BN_N);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1a64a8e9caeb7dcae98cf604a08eb68d56" kindref="member">HubEffector::updateEnergyMomContributions</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime,<sp/>Eigen::Vector3d<sp/>&amp;<sp/>rotAngMomPntCContr_B,</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>rotEnergyContr,<sp/>Eigen::Vector3d<sp/>omega_BN_B)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Get<sp/>variables<sp/>needed<sp/>for<sp/>energy<sp/>momentum<sp/>calcs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>omegaLocal_BN_B;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>omegaLocal_BN_B<sp/>=<sp/>omegaState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>-<sp/>Find<sp/>rotational<sp/>angular<sp/>momentum<sp/>contribution<sp/>from<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rDot_BcB_B;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>rDot_BcB_B<sp/>=<sp/>omegaLocal_BN_B.cross(r_BcP_P);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>rotAngMomPntCContr_B<sp/>=<sp/>IHubPntBc_P*omegaLocal_BN_B<sp/>+<sp/><ref refid="class_hub_effector_1a5ea8ee17fb60e2b50b8c5016e2ea822a" kindref="member">mHub</ref>*r_BcP_P.cross(rDot_BcB_B);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Find<sp/>rotational<sp/>energy<sp/>contribution<sp/>from<sp/>the<sp/>hub</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>rotEnergyContr<sp/>=<sp/>1.0/2.0*omegaLocal_BN_B.dot(IHubPntBc_P*omegaLocal_BN_B)<sp/>+<sp/>1.0/2.0*<ref refid="class_hub_effector_1a5ea8ee17fb60e2b50b8c5016e2ea822a" kindref="member">mHub</ref>*rDot_BcB_B.dot(rDot_BcB_B);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1afac7a9b3652fef43121b1d03ea39b88e" kindref="member">HubEffector::modifyStates</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integTime)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Lets<sp/>switch<sp/>those<sp/>MRPs!!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>sigmaBNLoc;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>sigmaBNLoc<sp/>=<sp/>(Eigen::Vector3d)<sp/>this-&gt;sigmaState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>();</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sigmaBNLoc.norm()<sp/>&gt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigmaBNLoc<sp/>=<sp/>-sigmaBNLoc/(sigmaBNLoc.dot(sigmaBNLoc));</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;sigmaState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(sigmaBNLoc);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_hub_effector_1ab555481c3f1cd395639dc8aa72beecf1" kindref="member">MRPSwitchCount</ref>++;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_hub_effector_1ab66d646c3cae36d0422b889dd5c6eb9b" kindref="member">HubEffector::matchGravitytoVelocityState</ref>(Eigen::Vector3d<sp/>v_CN_N)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(this-&gt;velocityState-&gt;<ref refid="class_state_data_1af81773dcf8371149e6ad3389f7a4e866" kindref="member">getState</ref>());</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gravVelocityBcState-&gt;<ref refid="class_state_data_1ac15afb78420f106083b2f1bfe45db13e" kindref="member">setState</ref>(v_CN_N);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/hubEffector.cpp"/>
+  </compounddef>
+</doxygen>

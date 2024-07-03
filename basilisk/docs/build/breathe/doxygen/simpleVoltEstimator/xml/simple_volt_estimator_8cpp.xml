@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="simple_volt_estimator_8cpp" kind="file" language="C++">
+    <compoundname>simpleVoltEstimator.cpp</compoundname>
+    <includes refid="simple_volt_estimator_8h" local="yes">simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp</label>
+        <link refid="simple_volt_estimator_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h</label>
+        <link refid="simple_volt_estimator_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="4">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/msgPayloadDefC/VoltMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/gauss_markov.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="11">
+        <label>cstring</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2022,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><ref refid="class_simple_volt_estimator_1a0a41603401b169068c85a69d7991386c" kindref="member">SimpleVoltEstimator::SimpleVoltEstimator</ref>()</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a3034ef523dad1d8f24fd02c0becdc35f" kindref="member">estVoltState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a50953c08fde35b7a2c0ab4f7946df500" kindref="member">voltOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a1d2458b48cfd32e18cd88f798d0f58db" kindref="member">trueVoltState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a50953c08fde35b7a2c0ab4f7946df500" kindref="member">voltOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" kindref="member">PMatrix</ref>.resize(1,1);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" kindref="member">PMatrix</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" kindref="member">walkBounds</ref>.resize(1);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" kindref="member">walkBounds</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel<sp/>=<sp/><sp/>GaussMarkov(1,<sp/>this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><ref refid="class_simple_volt_estimator_1ac2919c3e6bb60a1777b506af88e21697" kindref="member">SimpleVoltEstimator::~SimpleVoltEstimator</ref>()</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1a1d870c94a9ede6ca98a9a450b53fe72d" kindref="member">SimpleVoltEstimator::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>input<sp/>message<sp/>has<sp/>not<sp/>been<sp/>included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_simple_volt_estimator_1a80cffe69659d96258d5012ab842828f1" kindref="member">voltInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_volt_estimator_1ab6aab4096b68a72acdca5265f6de3378" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;SimpleVoltEstimator.voltInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>numStates<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix.setIdentity(numStates,<sp/>numStates);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" kindref="member">PMatrix</ref>.size()<sp/>!=<sp/>numStates*numStates)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_volt_estimator_1ab6aab4096b68a72acdca5265f6de3378" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>process<sp/>noise<sp/>matrix<sp/>(PMatrix)<sp/>is<sp/>not<sp/>%ld*%ld.<sp/>Size<sp/>is<sp/>%ld.<sp/><sp/>Quitting&quot;</highlight><highlight class="normal">,<sp/>numStates,<sp/>numStates,<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" kindref="member">PMatrix</ref>.size());</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setNoiseMatrix(this-&gt;<ref refid="class_simple_volt_estimator_1afef5c23c53f81bbe9040f318f71a79e9" kindref="member">PMatrix</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setRNGSeed(this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" kindref="member">walkBounds</ref>.size()<sp/>!=<sp/>numStates)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_simple_volt_estimator_1ab6aab4096b68a72acdca5265f6de3378" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>walkbounds<sp/>vector<sp/><sp/>is<sp/>not<sp/>%ld<sp/>elements.<sp/>Quitting&quot;</highlight><highlight class="normal">,<sp/>numStates);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setUpperBounds(this-&gt;<ref refid="class_simple_volt_estimator_1a806f9c07cb4652d875495b2ecbc7b812" kindref="member">walkBounds</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1a0cb7d10e510757fbd77abaa22917a612" kindref="member">SimpleVoltEstimator::readInputMessages</ref>()</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a1d2458b48cfd32e18cd88f798d0f58db" kindref="member">trueVoltState</ref><sp/>=<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a80cffe69659d96258d5012ab842828f1" kindref="member">voltInMsg</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1a8c540f7f8d0d9173004353956e19519e" kindref="member">SimpleVoltEstimator::writeOutputMessages</ref>(uint64_t<sp/>Clock)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a50953c08fde35b7a2c0ab4f7946df500" kindref="member">voltOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_simple_volt_estimator_1a3034ef523dad1d8f24fd02c0becdc35f" kindref="member">estVoltState</ref>,<sp/>this-&gt;moduleID,<sp/>Clock);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1af3784e9cf9689ac3e656bb01d3500333" kindref="member">SimpleVoltEstimator::applyErrors</ref>()</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a3034ef523dad1d8f24fd02c0becdc35f" kindref="member">estVoltState</ref>.voltage<sp/>=<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a1d2458b48cfd32e18cd88f798d0f58db" kindref="member">trueVoltState</ref>.voltage<sp/>+<sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a15e7387191609422d681d87b1723ef43" kindref="member">voltErrors</ref>.data()[0];</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1a2ec17f1cbfe293d28d31870866695c15" kindref="member">SimpleVoltEstimator::computeErrors</ref>()</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>localProp<sp/>=<sp/>this-&gt;AMatrix;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setPropMatrix(localProp);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.computeNextState();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a15e7387191609422d681d87b1723ef43" kindref="member">voltErrors</ref><sp/>=<sp/>this-&gt;errorModel.getCurrentState();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_simple_volt_estimator_1ad4fe1162958c62cd99c1623329ec8bfa" kindref="member">SimpleVoltEstimator::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a0cb7d10e510757fbd77abaa22917a612" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a2ec17f1cbfe293d28d31870866695c15" kindref="member">computeErrors</ref>();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1af3784e9cf9689ac3e656bb01d3500333" kindref="member">applyErrors</ref>();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_simple_volt_estimator_1a8c540f7f8d0d9173004353956e19519e" kindref="member">writeOutputMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/simpleVoltEstimator/simpleVoltEstimator.cpp"/>
+  </compounddef>
+</doxygen>

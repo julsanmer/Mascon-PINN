@@ -1,0 +1,35 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-all.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-assertion-result.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-message.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-port.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-port.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-port-arch.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-death-test.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-matchers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-printers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-internal.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-filepath.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-string.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-type-util.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest-printers.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-param-test.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/gtest-param-util.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-test-part.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-typed-test.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest_pred_impl.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest_prod.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-assertion-result.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-death-test.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/internal/custom/gtest.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-internal-inl.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/include/gtest/gtest-spi.h \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-filepath.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-matchers.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-port.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-printers.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-test-part.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest-typed-test.cc \
+  /Users/julio/Desktop/basilisk/dist3/_deps/googletest-src/googletest/src/gtest.cc

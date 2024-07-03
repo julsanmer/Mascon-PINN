@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="magnetic_field_w_m_m_8cpp" kind="file" language="C++">
+    <compoundname>magneticFieldWMM.cpp</compoundname>
+    <includes refid="magnetic_field_w_m_m_8h" local="yes">magneticFieldWMM.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">EGM9615.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>GeomagnetismHeader.h</label>
+        <link refid="_geomagnetism_header_8h_source"/>
+      </node>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/magneticFieldWMM/magneticFieldWMM.cpp</label>
+        <link refid="magnetic_field_w_m_m_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>magneticFieldWMM.h</label>
+        <link refid="magnetic_field_w_m_m_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>EGM9615.h</label>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="11">
+        <label>ctime</label>
+      </node>
+      <node id="7">
+        <label>simulation/environment/_GeneralModuleFiles/magneticFieldBase.h</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;magneticFieldWMM.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;EGM9615.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="class_magnetic_field_w_m_m_1a81b2edbeda3e7418eb9ad2a6324413f4" kindref="member">MagneticFieldWMM::MagneticFieldWMM</ref>()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetRadius<sp/>=<sp/>REQ_EARTH*1000.;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>must<sp/>be<sp/>the<sp/>radius<sp/>of<sp/>Earth<sp/>for<sp/>WMM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;magneticModels[0]<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>nullptr<sp/>means<sp/>no<sp/>WMM<sp/>coefficients<sp/>have<sp/>been<sp/>loaded</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_magnetic_field_w_m_m_1a06addda6ed98fef8c07545fe88d2f851" kindref="member">epochDateFractionalYear</ref><sp/>=<sp/>-1;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>negative<sp/>value<sp/>means<sp/>this<sp/>variable<sp/>has<sp/>not<sp/>been<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><ref refid="class_magnetic_field_w_m_m_1a42dd76ae283cbaf3851573bfdeb9b310" kindref="member">MagneticFieldWMM::~MagneticFieldWMM</ref>()</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;magneticModels[0]<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupEarthMagFieldModel();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::customReset(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;magneticModels[0]<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>clean<sp/>up<sp/>the<sp/>prior<sp/>initialization<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cleanupEarthMagFieldModel();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;magneticModels[0]<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_magnetic_field_w_m_m_1a28c632d2ec6e1e4a465643d9e0d9d5f0" kindref="member">dataPath</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_magnetic_field_w_m_m_1ad7d362ff7e7501ee3e4c96c780bead18" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;WMM<sp/>data<sp/>path<sp/>was<sp/>not<sp/>set.<sp/><sp/>No<sp/>WMM.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>initializeWmm();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::customSetEpochFromVariable()</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_magnetic_field_w_m_m_1a06addda6ed98fef8c07545fe88d2f851" kindref="member">epochDateFractionalYear</ref><sp/>&gt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>decimalYear2Gregorian(this-&gt;<ref refid="class_magnetic_field_w_m_m_1a06addda6ed98fef8c07545fe88d2f851" kindref="member">epochDateFractionalYear</ref>,<sp/>&amp;this-&gt;epochDateTime);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::decimalYear2Gregorian(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fractionalYear,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>tm<sp/>*gregorian)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___date" kindref="compound">MAGtype_Date</ref><sp/>calendar;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>Error[255];</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>calendar.<ref refid="struct_m_a_gtype___date_1a0af719c1215235e08aab3385981d778d" kindref="member">DecimalYear</ref><sp/>=<sp/>this-&gt;<ref refid="class_magnetic_field_w_m_m_1a06addda6ed98fef8c07545fe88d2f851" kindref="member">epochDateFractionalYear</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_YearToDate(&amp;calendar);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>gregorian-&gt;tm_year<sp/>=<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>-<sp/>1900;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>gregorian-&gt;tm_mon<sp/>=<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a69079b9fa12e483b3f28c7ecd36da5cb" kindref="member">Month</ref><sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>gregorian-&gt;tm_mday<sp/>=<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a899d19621a117ee8378ecd985d151ba3" kindref="member">Day</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>daysInYear<sp/>=<sp/>365;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>4<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>100<sp/>!=<sp/>0)<sp/>||<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>400<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>daysInYear<sp/>=<sp/>366;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_DateToYear(&amp;calendar,<sp/>Error);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>diff<sp/>=<sp/>this-&gt;<ref refid="class_magnetic_field_w_m_m_1a06addda6ed98fef8c07545fe88d2f851" kindref="member">epochDateFractionalYear</ref><sp/>-<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a0af719c1215235e08aab3385981d778d" kindref="member">DecimalYear</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;epochDateTime.tm_hour<sp/>=<sp/>(int)<sp/>round(diff<sp/>*<sp/>(24.<sp/>*<sp/>daysInYear));</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>diff<sp/>-=<sp/>this-&gt;epochDateTime.tm_hour<sp/>/<sp/>(<sp/>24.<sp/>*<sp/>daysInYear);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;epochDateTime.tm_min<sp/>=<sp/>(int)<sp/>round(diff<sp/>*<sp/>(24.<sp/>*<sp/>60<sp/>*<sp/>daysInYear));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>diff<sp/>-=<sp/>this-&gt;epochDateTime.tm_min<sp/>/<sp/>(24.<sp/>*<sp/>60<sp/>*<sp/>daysInYear);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;epochDateTime.tm_sec<sp/>=<sp/>(int)<sp/>round(diff<sp/>*<sp/>(24.<sp/>*<sp/>60<sp/>*<sp/>60<sp/>*<sp/>daysInYear));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;epochDateTime.tm_isdst<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>mktime(&amp;this-&gt;epochDateTime);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MagneticFieldWMM::gregorian2DecimalYear(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>decimalYear;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[years]<sp/><sp/>fraction<sp/>year<sp/>date/time<sp/>format</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm<sp/>localDateTime{};<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>date/time<sp/>structure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___date" kindref="compound">MAGtype_Date</ref><sp/>calendar;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>Error_Message[255];</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>localDateTime<sp/>=<sp/>this-&gt;epochDateTime;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>localDateTime.tm_sec<sp/>+=<sp/>(int)<sp/>round(currentTime);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sets<sp/>the<sp/>current<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>mktime(&amp;localDateTime);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>=<sp/>localDateTime.tm_year<sp/>+<sp/>1900;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>calendar.<ref refid="struct_m_a_gtype___date_1a69079b9fa12e483b3f28c7ecd36da5cb" kindref="member">Month</ref><sp/>=<sp/>localDateTime.tm_mon<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>calendar.<ref refid="struct_m_a_gtype___date_1a899d19621a117ee8378ecd985d151ba3" kindref="member">Day</ref><sp/>=<sp/>localDateTime.tm_mday;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!MAG_DateToYear(&amp;calendar,<sp/>Error_Message)){</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_magnetic_field_w_m_m_1ad7d362ff7e7501ee3e4c96c780bead18" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>convert<sp/>date<sp/>to<sp/>decimal<sp/>year.<sp/>\nError<sp/>message:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>Error_Message);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>daysInYear<sp/>=<sp/>365;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>4<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>100<sp/>!=<sp/>0)<sp/>||<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a9e3eb8779d924f6381dde3a348e45390" kindref="member">Year</ref><sp/>%<sp/>400<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>daysInYear<sp/>=<sp/>366;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>decimalYear<sp/>=<sp/>calendar.<ref refid="struct_m_a_gtype___date_1a0af719c1215235e08aab3385981d778d" kindref="member">DecimalYear</ref>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>decimalYear<sp/>+=<sp/>localDateTime.tm_hour<sp/>/<sp/>(24.<sp/>*<sp/>daysInYear);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>decimalYear<sp/>+=<sp/>localDateTime.tm_min<sp/>/<sp/>(24.<sp/>*<sp/>60.<sp/>*<sp/>daysInYear);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>decimalYear<sp/>+=<sp/>localDateTime.tm_sec<sp/>/<sp/>(24.<sp/>*<sp/>60.<sp/>*<sp/>60.<sp/>*<sp/>daysInYear);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>decimalYear;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::evaluateMagneticFieldModel(MagneticFieldMsgPayload<sp/>*msg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rHat_P;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/>normalized<sp/>position<sp/>vector<sp/>in<sp/>E<sp/>frame<sp/>components</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[rad]<sp/>latitude</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lambda;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[rad]<sp/>longitude</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]<sp/><sp/><sp/>height<sp/>above<sp/>geoid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>PM[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/>DCM<sp/>from<sp/>magnetic<sp/>field<sp/>frame<sp/>to<sp/>planet<sp/>frame<sp/>P</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>NM[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/>DCM<sp/>from<sp/>magnetic<sp/>field<sp/>frame<sp/>to<sp/>inertial<sp/>frame<sp/>N</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_M[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[T]<sp/><sp/><sp/>magnetic<sp/>field<sp/>in<sp/>Magnetic<sp/>field<sp/>aligned<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>M2[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/>2nd<sp/>axis<sp/>rotation<sp/>DCM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>M3[3][3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[]<sp/><sp/><sp/><sp/>3rd<sp/>axis<sp/>rotation<sp/>DCM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;magneticModels[0]<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>magnetic<sp/>field<sp/>was<sp/>setup,<sp/>set<sp/>field<sp/>to<sp/>zero<sp/>and<sp/>return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(msg-&gt;magField_N);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>rHat_P<sp/>=<sp/>this-&gt;r_BP_P.normalized();</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>phi<sp/>=<sp/>safeAsin(rHat_P[2]);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>lambda<sp/>=<sp/>atan2(rHat_P[1],<sp/>rHat_P[0]);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>h<sp/>=<sp/>(this-&gt;orbitRadius<sp/>-<sp/>this-&gt;planetRadius)/1000.;<sp/></highlight><highlight class="comment">/*<sp/>must<sp/>be<sp/>in<sp/>km<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>computeWmmField(gregorian2DecimalYear(currentTime),<sp/>phi,<sp/>lambda,<sp/>h,<sp/>B_M);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>Euler2(phi<sp/>+<sp/>M_PI_2,<sp/>M2);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>Euler3(-lambda,<sp/>M3);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultM33(M3,<sp/>M2,<sp/>PM);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>m33tMultM33(this-&gt;planetState.J20002Pfix,<sp/>PM,<sp/>NM);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>m33MultV3(NM,<sp/>B_M,<sp/>msg-&gt;magField_N);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::cleanupEarthMagFieldModel()</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_FreeMagneticModelMemory(timedMagneticModel);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_FreeMagneticModelMemory(magneticModels[0]);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::computeWmmField(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>decimalYear,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phi,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lambda,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>B_M[3])</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___coord_spherical" kindref="compound">MAGtype_CoordSpherical</ref><sp/><sp/><sp/><sp/><sp/><sp/>coordSpherical{};</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___coord_geodetic" kindref="compound">MAGtype_CoordGeodetic</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coordGeodetic{};</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___geo_magnetic_elements" kindref="compound">MAGtype_GeoMagneticElements</ref><sp/>geoMagneticElements{};</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_m_a_gtype___geo_magnetic_elements" kindref="compound">MAGtype_GeoMagneticElements</ref><sp/>errors{};</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;userDate.<ref refid="struct_m_a_gtype___date_1a0af719c1215235e08aab3385981d778d" kindref="member">DecimalYear</ref><sp/>=<sp/>decimalYear;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>set<sp/>the<sp/>Geodetic<sp/>coordinates<sp/>of<sp/>the<sp/>satellite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>coordGeodetic.phi<sp/>=<sp/>phi<sp/>*<sp/>R2D;<sp/></highlight><highlight class="comment">/*<sp/>degrees<sp/>North<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>coordGeodetic.lambda<sp/>=<sp/>lambda<sp/>*<sp/>R2D;<sp/></highlight><highlight class="comment">/*<sp/>degrees<sp/>East<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>height<sp/>is<sp/>given<sp/>above<sp/>WGS-84<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>coordGeodetic.HeightAboveEllipsoid<sp/>=<sp/>h;<sp/></highlight><highlight class="comment">/*<sp/>km<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;geoid.<ref refid="struct_m_a_gtype___geoid_1a69a997c6d8a588c501efeb2452b5a7c7" kindref="member">UseGeoid</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Convert<sp/>from<sp/>geodetic<sp/>to<sp/>Spherical<sp/>Equations:<sp/>17-18,<sp/>WMM<sp/>Technical<sp/>report<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_GeodeticToSpherical(this-&gt;ellip,<sp/>coordGeodetic,<sp/>&amp;coordSpherical);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Time<sp/>adjust<sp/>the<sp/>coefficients,<sp/>Equation<sp/>19,<sp/>WMM<sp/>Technical<sp/>report<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_TimelyModifyMagneticModel(this-&gt;userDate,<sp/>this-&gt;magneticModels[0],<sp/>this-&gt;timedMagneticModel);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Computes<sp/>the<sp/>geoMagnetic<sp/>field<sp/>elements<sp/>and<sp/>their<sp/>time<sp/>change<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_Geomag(this-&gt;ellip,<sp/>coordSpherical,<sp/>coordGeodetic,<sp/>this-&gt;timedMagneticModel,<sp/>&amp;geoMagneticElements);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_CalculateGridVariation(coordGeodetic,<sp/>&amp;geoMagneticElements);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_WMMErrorCalc(geoMagneticElements.H,<sp/>&amp;errors);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Set(geoMagneticElements.X,<sp/>geoMagneticElements.Y,<sp/>geoMagneticElements.Z,<sp/>B_M);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Scale(1e-9,<sp/>B_M,<sp/>B_M);<sp/></highlight><highlight class="comment">/*<sp/>convert<sp/>nano-Tesla<sp/>to<sp/>Tesla<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MagneticFieldWMM::initializeWmm()</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nMax<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nTerms;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fileName<sp/>=<sp/>this-&gt;<ref refid="class_magnetic_field_w_m_m_1a28c632d2ec6e1e4a465643d9e0d9d5f0" kindref="member">dataPath</ref><sp/>+<sp/></highlight><highlight class="stringliteral">&quot;WMM.COF&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!MAG_robustReadMagModels(</highlight><highlight class="keyword">const_cast&lt;</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(fileName.c_str()),</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(this-&gt;magneticModels),</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1))<sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_magnetic_field_w_m_m_1ad7d362ff7e7501ee3e4c96c780bead18" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;WMM<sp/>unable<sp/>to<sp/>load<sp/>file<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>fileName.c_str());</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nMax<sp/>&lt;<sp/>magneticModels[0]-&gt;nMax)<sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nMax<sp/>=<sp/>magneticModels[0]-&gt;<ref refid="struct_m_a_gtype___magnetic_model_1abde866ad9a6b7e7fd4ca30553991393d" kindref="member">nMax</ref>;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>nTerms<sp/>=<sp/>((nMax<sp/>+<sp/>1)<sp/>*<sp/>(nMax<sp/>+<sp/>2)<sp/>/<sp/>2);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>storing<sp/>the<sp/>time<sp/>modified<sp/>WMM<sp/>Model<sp/>parameters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;timedMagneticModel<sp/>=<sp/>MAG_AllocateModelMemory(nTerms);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;magneticModels[0]<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal"><sp/>||<sp/>this-&gt;timedMagneticModel<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MAG_Error(2);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>default<sp/>values<sp/>and<sp/>constants<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>MAG_SetDefaults(&amp;this-&gt;ellip,<sp/>&amp;this-&gt;geoid);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;geoid.<ref refid="struct_m_a_gtype___geoid_1a328d2fc474e170e18af1e7607159f743" kindref="member">GeoidHeightBuffer</ref><sp/>=<sp/>GeoidHeightBuffer;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;geoid.<ref refid="struct_m_a_gtype___geoid_1a18137948ba90128ee1e4107608315443" kindref="member">Geoid_Initialized</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/magneticFieldWMM/magneticFieldWMM.cpp"/>
+  </compounddef>
+</doxygen>

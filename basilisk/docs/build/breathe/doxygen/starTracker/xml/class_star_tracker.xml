@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_star_tracker" kind="class" language="C++" prot="public">
+    <compoundname>StarTracker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SysModel</basecompoundref>
+    <includes refid="star_tracker_8h" local="no">starTracker.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_star_tracker_1ab11eb1071e41550f931b6d9e46b5b8f2" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t StarTracker::sensorTimeTag</definition>
+        <argsstring></argsstring>
+        <name>sensorTimeTag</name>
+        <qualifiedname>StarTracker::sensorTimeTag</qualifiedname>
+        <briefdescription>
+<para>[ns] Current time tag for sensor out </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="53" column="14" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1aa93294d3a53b64fc631167bfbb7e14fa" prot="public" static="no" mutable="no">
+        <type>ReadFunctor&lt; SCStatesMsgPayload &gt;</type>
+        <definition>ReadFunctor&lt;SCStatesMsgPayload&gt; StarTracker::scStateInMsg</definition>
+        <argsstring></argsstring>
+        <name>scStateInMsg</name>
+        <qualifiedname>StarTracker::scStateInMsg</qualifiedname>
+        <briefdescription>
+<para>[-] sc input state message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="54" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1aa67dc48679d32be212c95a7f682c6c7f" prot="public" static="no" mutable="no">
+        <type>Message&lt; STSensorMsgPayload &gt;</type>
+        <definition>Message&lt;STSensorMsgPayload&gt; StarTracker::sensorOutMsg</definition>
+        <argsstring></argsstring>
+        <name>sensorOutMsg</name>
+        <qualifiedname>StarTracker::sensorOutMsg</qualifiedname>
+        <briefdescription>
+<para>[-] sensor output state message </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="55" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a1c5fc3098b40389f6d10186254e0c959" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d StarTracker::PMatrix</definition>
+        <argsstring></argsstring>
+        <name>PMatrix</name>
+        <qualifiedname>StarTracker::PMatrix</qualifiedname>
+        <briefdescription>
+<para>[-] Cholesky-decomposition or matrix square root of the covariance matrix to apply errors with </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="57" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a01a71019104991b76797451b55143941" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StarTracker::walkBounds</definition>
+        <argsstring></argsstring>
+        <name>walkBounds</name>
+        <qualifiedname>StarTracker::walkBounds</qualifiedname>
+        <briefdescription>
+<para>[-] &quot;3-sigma&quot; errors to permit for states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="58" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a30a0ae3119b53a7e4b71966f5820d59f" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d StarTracker::navErrors</definition>
+        <argsstring></argsstring>
+        <name>navErrors</name>
+        <qualifiedname>StarTracker::navErrors</qualifiedname>
+        <briefdescription>
+<para>[-] Current navigation errors applied to truth </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="59" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a75d0a127c7a5e0fdaa7d64a356c448af" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double StarTracker::dcm_CB[3][3]</definition>
+        <argsstring>[3][3]</argsstring>
+        <name>dcm_CB</name>
+        <qualifiedname>StarTracker::dcm_CB</qualifiedname>
+        <briefdescription>
+<para>[-] Transformation matrix from body to case </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="61" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a86f57e03073156351e80038e0e89b495" prot="public" static="no" mutable="no">
+        <type>STSensorMsgPayload</type>
+        <definition>STSensorMsgPayload StarTracker::trueValues</definition>
+        <argsstring></argsstring>
+        <name>trueValues</name>
+        <qualifiedname>StarTracker::trueValues</qualifiedname>
+        <briefdescription>
+<para>[-] total measurement without perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="62" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a3dce0faf87593b34d6ebdff16d971832" prot="public" static="no" mutable="no">
+        <type>STSensorMsgPayload</type>
+        <definition>STSensorMsgPayload StarTracker::sensedValues</definition>
+        <argsstring></argsstring>
+        <name>sensedValues</name>
+        <qualifiedname>StarTracker::sensedValues</qualifiedname>
+        <briefdescription>
+<para>[-] total measurement including perturbations </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="63" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a0d2562621a821bea85794757bc1648c3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double StarTracker::mrpErrors[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>mrpErrors</name>
+        <qualifiedname>StarTracker::mrpErrors</qualifiedname>
+        <briefdescription>
+<para>[-] Errors to be applied to the input MRP set indicating whether </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="64" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a1bb3e61a557f6b36932c6766f571feec" prot="public" static="no" mutable="no">
+        <type>SCStatesMsgPayload</type>
+        <definition>SCStatesMsgPayload StarTracker::scState</definition>
+        <argsstring></argsstring>
+        <name>scState</name>
+        <qualifiedname>StarTracker::scState</qualifiedname>
+        <briefdescription>
+<para>[-] Module variable where the input State Data message is stored </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="65" column="24" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1ae60ef6dbc52ec2f59fe242514b447ead" prot="public" static="no" mutable="no">
+        <type>BSKLogger</type>
+        <definition>BSKLogger StarTracker::bskLogger</definition>
+        <argsstring></argsstring>
+        <name>bskLogger</name>
+        <qualifiedname>StarTracker::bskLogger</qualifiedname>
+        <briefdescription>
+<para><ndash/> BSK Logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="66" column="15" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_star_tracker_1a8ee8bbcce3c6d6d2e6b79becaa6f542c" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d StarTracker::AMatrix</definition>
+        <argsstring></argsstring>
+        <name>AMatrix</name>
+        <qualifiedname>StarTracker::AMatrix</qualifiedname>
+        <briefdescription>
+<para>[-] AMatrix that we use for error propagation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="72" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_star_tracker_1a1041e0cb89a4580c51f21d616801b653" prot="private" static="no" mutable="no">
+        <type>GaussMarkov</type>
+        <definition>GaussMarkov StarTracker::errorModel</definition>
+        <argsstring></argsstring>
+        <name>errorModel</name>
+        <qualifiedname>StarTracker::errorModel</qualifiedname>
+        <briefdescription>
+<para>[-] Gauss-markov error states </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="73" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_star_tracker_1a6bfcf306429c53e7a82f91fb20a337f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>StarTracker::StarTracker</definition>
+        <argsstring>()</argsstring>
+        <name>StarTracker</name>
+        <qualifiedname>StarTracker::StarTracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="39" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="28" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a563a58094cb14d0d628e936561e3e266" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>StarTracker::~StarTracker</definition>
+        <argsstring>()</argsstring>
+        <name>~StarTracker</name>
+        <qualifiedname>StarTracker::~StarTracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="40" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a1e8c23bb7af37f4b643ab7849499a438" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::UpdateState</definition>
+        <argsstring>(uint64_t CurrentSimNanos)</argsstring>
+        <name>UpdateState</name>
+        <qualifiedname>StarTracker::UpdateState</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentSimNanos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>update module states </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="139" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a8bf8e110c448aad1d292df154fea0ead" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::Reset</definition>
+        <argsstring>(uint64_t CurrentClock)</argsstring>
+        <name>Reset</name>
+        <qualifiedname>StarTracker::Reset</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>CurrentClock</declname>
+          <defname>CurrentSimNanos</defname>
+        </param>
+        <briefdescription>
+<para>Method for reseting the module. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method is used to reset the module. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>CurrentSimNanos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current simulation time from the architecture </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Alert the user if the noise matrix was not the right size. That&apos;d be bad.</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="48" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1ae92a145b84958e494ae3867befd0fe5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::readInputMessages</definition>
+        <argsstring>()</argsstring>
+        <name>readInputMessages</name>
+        <qualifiedname>StarTracker::readInputMessages</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>read input messages </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="44" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="77" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a3e73646aa5efa1dae64778da863af757" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::writeOutputMessages</definition>
+        <argsstring>(uint64_t Clock)</argsstring>
+        <name>writeOutputMessages</name>
+        <qualifiedname>StarTracker::writeOutputMessages</qualifiedname>
+        <param>
+          <type>uint64_t</type>
+          <declname>Clock</declname>
+          <defname>CurrentSimNanos</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>write output messages </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="45" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="131" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a95122a38f5d5a1f2d0c8a4e3e5d3d6d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::computeSensorErrors</definition>
+        <argsstring>()</argsstring>
+        <name>computeSensorErrors</name>
+        <qualifiedname>StarTracker::computeSensorErrors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>compute sensor errors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="46" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="86" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a0917fb4a9905310fba22b9cb5246e43f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::applySensorErrors</definition>
+        <argsstring>()</argsstring>
+        <name>applySensorErrors</name>
+        <qualifiedname>StarTracker::applySensorErrors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>apply sensor errors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="47" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="96" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a91749f415eca30bed3dad3cc6f7241e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::computeTrueOutput</definition>
+        <argsstring>()</argsstring>
+        <name>computeTrueOutput</name>
+        <qualifiedname>StarTracker::computeTrueOutput</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>compute true output values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="48" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_star_tracker_1a77e43b3604a0070f4368caae3dacae8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void StarTracker::computeQuaternion</definition>
+        <argsstring>(double *sigma, STSensorMsgPayload *sensorValue)</argsstring>
+        <name>computeQuaternion</name>
+        <qualifiedname>StarTracker::computeQuaternion</qualifiedname>
+        <param>
+          <type>double *</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>STSensorMsgPayload *</type>
+          <declname>sensorValue</declname>
+          <defname>sensorValues</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>compute quaternion from MRPs <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sensorValues</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="49" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.cpp" bodystart="110" bodyend="117"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>star tracker class </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>StarTracker</label>
+        <link refid="class_star_tracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>StarTracker</label>
+        <link refid="class_star_tracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SysModel</label>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" line="37" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/sensors/starTracker/starTracker.h" bodystart="37" bodyend="74"/>
+    <listofallmembers>
+      <member refid="class_star_tracker_1a8ee8bbcce3c6d6d2e6b79becaa6f542c" prot="private" virt="non-virtual"><scope>StarTracker</scope><name>AMatrix</name></member>
+      <member refid="class_star_tracker_1a0917fb4a9905310fba22b9cb5246e43f" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>applySensorErrors</name></member>
+      <member refid="class_star_tracker_1ae60ef6dbc52ec2f59fe242514b447ead" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>bskLogger</name></member>
+      <member refid="class_star_tracker_1a77e43b3604a0070f4368caae3dacae8b" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>computeQuaternion</name></member>
+      <member refid="class_star_tracker_1a95122a38f5d5a1f2d0c8a4e3e5d3d6d3" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>computeSensorErrors</name></member>
+      <member refid="class_star_tracker_1a91749f415eca30bed3dad3cc6f7241e6" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>computeTrueOutput</name></member>
+      <member refid="class_star_tracker_1a75d0a127c7a5e0fdaa7d64a356c448af" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>dcm_CB</name></member>
+      <member refid="class_star_tracker_1a1041e0cb89a4580c51f21d616801b653" prot="private" virt="non-virtual"><scope>StarTracker</scope><name>errorModel</name></member>
+      <member refid="class_star_tracker_1a0d2562621a821bea85794757bc1648c3" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>mrpErrors</name></member>
+      <member refid="class_star_tracker_1a30a0ae3119b53a7e4b71966f5820d59f" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>navErrors</name></member>
+      <member refid="class_star_tracker_1a1c5fc3098b40389f6d10186254e0c959" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>PMatrix</name></member>
+      <member refid="class_star_tracker_1ae92a145b84958e494ae3867befd0fe5e" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>readInputMessages</name></member>
+      <member refid="class_star_tracker_1a8bf8e110c448aad1d292df154fea0ead" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>Reset</name></member>
+      <member refid="class_star_tracker_1a1bb3e61a557f6b36932c6766f571feec" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>scState</name></member>
+      <member refid="class_star_tracker_1aa93294d3a53b64fc631167bfbb7e14fa" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>scStateInMsg</name></member>
+      <member refid="class_star_tracker_1a3dce0faf87593b34d6ebdff16d971832" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>sensedValues</name></member>
+      <member refid="class_star_tracker_1aa67dc48679d32be212c95a7f682c6c7f" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>sensorOutMsg</name></member>
+      <member refid="class_star_tracker_1ab11eb1071e41550f931b6d9e46b5b8f2" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>sensorTimeTag</name></member>
+      <member refid="class_star_tracker_1a6bfcf306429c53e7a82f91fb20a337f6" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>StarTracker</name></member>
+      <member refid="class_star_tracker_1a86f57e03073156351e80038e0e89b495" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>trueValues</name></member>
+      <member refid="class_star_tracker_1a1e8c23bb7af37f4b643ab7849499a438" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>UpdateState</name></member>
+      <member refid="class_star_tracker_1a01a71019104991b76797451b55143941" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>walkBounds</name></member>
+      <member refid="class_star_tracker_1a3e73646aa5efa1dae64778da863af757" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>writeOutputMessages</name></member>
+      <member refid="class_star_tracker_1a563a58094cb14d0d628e936561e3e266" prot="public" virt="non-virtual"><scope>StarTracker</scope><name>~StarTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

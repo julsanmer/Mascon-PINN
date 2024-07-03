@@ -1,0 +1,35 @@
+dependencies: \
+  /Users/julio/Desktop/basilisk/src/simulation/environment/spiceInterface/spiceInterface.cpp \
+  /Users/julio/Desktop/basilisk/src/simulation/environment/spiceInterface/spiceInterface.h \
+  /Users/julio/Desktop/basilisk/src/architecture/_GeneralModuleFiles/sys_model.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/bskLogging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/linearAlgebra.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenSupport.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/avsEigenMRP.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/SpiceTimeMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/EpochMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/SCStatesMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/AttRefMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/msgPayloadDefC/TransRefMsgPayload.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/messaging.h \
+  /Users/julio/Desktop/basilisk/src/architecture/messaging/msgHeader.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceUsr.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceZpl.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceZdf.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceErr.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceEK.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceFrm.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceCel.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceCK.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceSPK.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceGF.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceOccult.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceZpr.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpicePln.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceEll.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceZim.h \
+  /Users/julio/Desktop/basilisk/src/../libs/cspice/include/SpiceZrnm.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/simDefinitions.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/macroDefinitions.h \
+  /Users/julio/Desktop/basilisk/src/architecture/utilities/rigidBodyKinematics.h

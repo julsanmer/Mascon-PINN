@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="struct_fuel_tank_model" kind="struct" language="C++" prot="public" abstract="yes">
+    <compoundname>FuelTankModel</compoundname>
+    <derivedcompoundref refid="struct_fuel_tank_model_centrifugal_burn__t" prot="public" virt="non-virtual">FuelTankModelCentrifugalBurn_t</derivedcompoundref>
+    <derivedcompoundref refid="struct_fuel_tank_model_constant_density__t" prot="public" virt="non-virtual">FuelTankModelConstantDensity_t</derivedcompoundref>
+    <derivedcompoundref refid="struct_fuel_tank_model_constant_volume__t" prot="public" virt="non-virtual">FuelTankModelConstantVolume_t</derivedcompoundref>
+    <derivedcompoundref refid="struct_fuel_tank_model_emptying__t" prot="public" virt="non-virtual">FuelTankModelEmptying_t</derivedcompoundref>
+    <derivedcompoundref refid="struct_fuel_tank_model_uniform_burn__t" prot="public" virt="non-virtual">FuelTankModelUniformBurn_t</derivedcompoundref>
+    <includes refid="fuel_tank_8h" local="no">fuelTank.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a8818c918b1bbd61ed36f83c0f793e8ef" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double FuelTankModel::propMassInit</definition>
+        <argsstring></argsstring>
+        <name>propMassInit</name>
+        <qualifiedname>FuelTankModel::propMassInit</qualifiedname>
+        <briefdescription>
+<para>[kg] Initial propellant mass in tank </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="46" column="8" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1ad4a05de61e1fb3c006d38b9b6ae7c0ba" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double FuelTankModel::maxFuelMass</definition>
+        <argsstring></argsstring>
+        <name>maxFuelMass</name>
+        <qualifiedname>FuelTankModel::maxFuelMass</qualifiedname>
+        <initializer>= 1.0</initializer>
+        <briefdescription>
+<para>[kg] maximum tank mass </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="47" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a42d8d25727b4533751f52d5ae7898c13" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTankModel::r_TcT_TInit</definition>
+        <argsstring></argsstring>
+        <name>r_TcT_TInit</name>
+        <qualifiedname>FuelTankModel::r_TcT_TInit</qualifiedname>
+        <briefdescription>
+<para>[m] Initial position vector from B to tank point in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="48" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a7a3b3f3e6135be2a8db99b2111500c84" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d FuelTankModel::ITankPntT_T</definition>
+        <argsstring></argsstring>
+        <name>ITankPntT_T</name>
+        <qualifiedname>FuelTankModel::ITankPntT_T</qualifiedname>
+        <briefdescription>
+<para>[kg m^2] Inertia of tank about pnt T in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="49" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1aa24ffb1be34a6774b6fdf1281acade51" prot="public" static="no" mutable="no">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d FuelTankModel::IPrimeTankPntT_T</definition>
+        <argsstring></argsstring>
+        <name>IPrimeTankPntT_T</name>
+        <qualifiedname>FuelTankModel::IPrimeTankPntT_T</qualifiedname>
+        <briefdescription>
+<para>[kg m^2/s] Derivative of inertia of tank about pnt T in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="50" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a976f4fc9dec3a887ff7c53a67d8a3c67" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTankModel::r_TcT_T</definition>
+        <argsstring></argsstring>
+        <name>r_TcT_T</name>
+        <qualifiedname>FuelTankModel::r_TcT_T</qualifiedname>
+        <briefdescription>
+<para>[m] position vector from B to tank point in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="51" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a1ba2401f63b26112b76caec1803dbfd5" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTankModel::rPrime_TcT_T</definition>
+        <argsstring></argsstring>
+        <name>rPrime_TcT_T</name>
+        <qualifiedname>FuelTankModel::rPrime_TcT_T</qualifiedname>
+        <briefdescription>
+<para>[m/s] Derivative of position vector from B to tank point in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="52" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_fuel_tank_model_1a9fe2268c73ed2350757ac0eff926fd23" prot="public" static="no" mutable="no">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d FuelTankModel::rPPrime_TcT_T</definition>
+        <argsstring></argsstring>
+        <name>rPPrime_TcT_T</name>
+        <qualifiedname>FuelTankModel::rPPrime_TcT_T</qualifiedname>
+        <briefdescription>
+<para>[m/s^2] Second derivative of position vector from B to tank point in B frame comp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="53" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_fuel_tank_model_1a4a130500069929d902786cdaf42857ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void FuelTankModel::computeTankProps</definition>
+        <argsstring>(double mFuel)=0</argsstring>
+        <name>computeTankProps</name>
+        <qualifiedname>FuelTankModel::computeTankProps</qualifiedname>
+        <reimplementedby refid="struct_fuel_tank_model_constant_volume__t_1a7314ec3dbe58a1db224f93637c2ac6e3">computeTankProps</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_constant_density__t_1a12cbde2dd4076ec3d28778cda7a0f8b2">computeTankProps</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_emptying__t_1a43c8d49ae4dabff26ff22d4067f4bd17">computeTankProps</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_uniform_burn__t_1adac96e43e11c666106b20acad7f7e46c">computeTankProps</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_centrifugal_burn__t_1aed6efcb1fada1423d1221aad4b60f050">computeTankProps</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>mFuel</declname>
+        </param>
+        <briefdescription>
+<para>class method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="54" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_fuel_tank_model_1a1cf071ba79dbe70073dcdbe5f414b393" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void FuelTankModel::computeTankPropDerivs</definition>
+        <argsstring>(double mFuel, double mDotFuel)=0</argsstring>
+        <name>computeTankPropDerivs</name>
+        <qualifiedname>FuelTankModel::computeTankPropDerivs</qualifiedname>
+        <reimplementedby refid="struct_fuel_tank_model_constant_volume__t_1a140fd996539d374ec05fc88b53a724a2">computeTankPropDerivs</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_constant_density__t_1adc0b8b182178f084a0e685b2a673e37d">computeTankPropDerivs</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_emptying__t_1a4aacf657775c2e6e521da28ff5a69757">computeTankPropDerivs</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_uniform_burn__t_1a0eda658f4bf420a5aec37ab4386ba638">computeTankPropDerivs</reimplementedby>
+        <reimplementedby refid="struct_fuel_tank_model_centrifugal_burn__t_1a0bde490d4a7fa99b6d4a1e225782dda1">computeTankPropDerivs</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>mFuel</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>mDotFuel</declname>
+        </param>
+        <briefdescription>
+<para>class method </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="55" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_fuel_tank_model_1a5c374fe3b8432d510f69fe4c4060d631" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>FuelTankModel::FuelTankModel</definition>
+        <argsstring>()</argsstring>
+        <name>FuelTankModel</name>
+        <qualifiedname>FuelTankModel::FuelTankModel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="56" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_fuel_tank_model_1a4303d47f521fd9e06b7f7e03554dfe94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual FuelTankModel::~FuelTankModel</definition>
+        <argsstring>()</argsstring>
+        <name>~FuelTankModel</name>
+        <qualifiedname>FuelTankModel::~FuelTankModel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="60" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="60" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>fuel tank model structure </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>FuelTankModel</label>
+        <link refid="struct_fuel_tank_model"/>
+      </node>
+      <node id="2">
+        <label>FuelTankModelCentrifugalBurn_t</label>
+        <link refid="struct_fuel_tank_model_centrifugal_burn__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>FuelTankModelConstantDensity_t</label>
+        <link refid="struct_fuel_tank_model_constant_density__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>FuelTankModelConstantVolume_t</label>
+        <link refid="struct_fuel_tank_model_constant_volume__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>FuelTankModelEmptying_t</label>
+        <link refid="struct_fuel_tank_model_emptying__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>FuelTankModelUniformBurn_t</label>
+        <link refid="struct_fuel_tank_model_uniform_burn__t"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" line="45" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/FuelTank/fuelTank.h" bodystart="45" bodyend="62"/>
+    <listofallmembers>
+      <member refid="struct_fuel_tank_model_1a1cf071ba79dbe70073dcdbe5f414b393" prot="public" virt="pure-virtual"><scope>FuelTankModel</scope><name>computeTankPropDerivs</name></member>
+      <member refid="struct_fuel_tank_model_1a4a130500069929d902786cdaf42857ef" prot="public" virt="pure-virtual"><scope>FuelTankModel</scope><name>computeTankProps</name></member>
+      <member refid="struct_fuel_tank_model_1a5c374fe3b8432d510f69fe4c4060d631" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>FuelTankModel</name></member>
+      <member refid="struct_fuel_tank_model_1aa24ffb1be34a6774b6fdf1281acade51" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>IPrimeTankPntT_T</name></member>
+      <member refid="struct_fuel_tank_model_1a7a3b3f3e6135be2a8db99b2111500c84" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>ITankPntT_T</name></member>
+      <member refid="struct_fuel_tank_model_1ad4a05de61e1fb3c006d38b9b6ae7c0ba" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>maxFuelMass</name></member>
+      <member refid="struct_fuel_tank_model_1a8818c918b1bbd61ed36f83c0f793e8ef" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>propMassInit</name></member>
+      <member refid="struct_fuel_tank_model_1a976f4fc9dec3a887ff7c53a67d8a3c67" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>r_TcT_T</name></member>
+      <member refid="struct_fuel_tank_model_1a42d8d25727b4533751f52d5ae7898c13" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>r_TcT_TInit</name></member>
+      <member refid="struct_fuel_tank_model_1a9fe2268c73ed2350757ac0eff926fd23" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>rPPrime_TcT_T</name></member>
+      <member refid="struct_fuel_tank_model_1a1ba2401f63b26112b76caec1803dbfd5" prot="public" virt="non-virtual"><scope>FuelTankModel</scope><name>rPrime_TcT_T</name></member>
+      <member refid="struct_fuel_tank_model_1a4303d47f521fd9e06b7f7e03554dfe94" prot="public" virt="virtual"><scope>FuelTankModel</scope><name>~FuelTankModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

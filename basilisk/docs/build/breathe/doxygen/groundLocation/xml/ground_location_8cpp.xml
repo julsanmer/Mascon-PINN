@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="ground_location_8cpp" kind="file" language="C++">
+    <compoundname>groundLocation.cpp</compoundname>
+    <includes refid="ground_location_8h" local="yes">simulation/environment/groundLocation/groundLocation.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="no">iostream</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/groundLocation/groundLocation.cpp</label>
+        <link refid="ground_location_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/environment/groundLocation/groundLocation.h</label>
+        <link refid="ground_location_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/msgPayloadDefC/AccessMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/GroundStateMsgPayload.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="7">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/geodeticConversion.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="17">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/environment/groundLocation/groundLocation.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="class_ground_location_1aac5505581b417e6904cda1a165388324" kindref="member">GroundLocation::GroundLocation</ref>()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1ae6bdd767c820bc0fb637d37e99d43f8d" kindref="member">minimumElevation</ref><sp/>=<sp/>10.*D2R;<sp/></highlight><highlight class="comment">//<sp/>[rad]<sp/>minimum<sp/>elevation<sp/>above<sp/>the<sp/>local<sp/>horizon<sp/>needed<sp/>to<sp/>see<sp/>a<sp/>spacecraft;<sp/>defaults<sp/>to<sp/>10<sp/>degrees</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a96d6920442e7c4d251c39b32dda91541" kindref="member">maximumRange</ref><sp/>=<sp/>-1;<sp/></highlight><highlight class="comment">//<sp/>[m]<sp/>Maximum<sp/>range<sp/>for<sp/>the<sp/>groundLocation<sp/>to<sp/>compute<sp/>access.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;currentGroundStateBuffer<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1ad4c89b667982eeac2495272ccf8eb477" kindref="member">currentGroundStateOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1ad8a04c1ef00d921fa2575edf4a5b3f56" kindref="member">planetRadius</ref><sp/>=<sp/>REQ_EARTH*1e3;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_LP_P.fill(0.0);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetState<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1a6f73f8207cb41ce2a9222815c4c18d92" kindref="member">planetInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetState.J20002Pfix[0][0]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetState.J20002Pfix[1][1]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetState.J20002Pfix[2][2]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_North_N<sp/>&lt;&lt;<sp/>0,<sp/>0,<sp/>1;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><ref refid="class_ground_location_1a7746aece18157811555749e33a2a4dba" kindref="member">GroundLocation::~GroundLocation</ref>()</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;this-&gt;<ref refid="class_ground_location_1a991a8eb4879fea3725024054bdf21a5a" kindref="member">accessOutMsgs</ref>.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_ground_location_1a991a8eb4879fea3725024054bdf21a5a" kindref="member">accessOutMsgs</ref>.at(c);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1a8b78deca30557353977a796e75964bbd" kindref="member">GroundLocation::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_LP_P<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_ground_location_1ad8a04c1ef00d921fa2575edf4a5b3f56" kindref="member">planetRadius</ref><sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_ground_location_1ac4a11826ad84c0fa1d0ca71ccc6c2de5" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;GroundLocation<sp/>module<sp/>must<sp/>have<sp/>planetRadius<sp/>set.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1a90892b1b2dadfcbe6976be485b5ad58a" kindref="member">GroundLocation::specifyLocation</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lat,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>longitude,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>alt)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>tmpLLAPosition(lat,<sp/>longitude,<sp/>alt);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref><sp/>=<sp/>LLA2PCPF(tmpLLAPosition,<sp/>this-&gt;<ref refid="class_ground_location_1ad8a04c1ef00d921fa2575edf4a5b3f56" kindref="member">planetRadius</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_LP<sp/>=<sp/>C_PCPF2SEZ(lat,<sp/>longitude);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1a1a70007255fde3f9ec5387dcece462fd" kindref="member">GroundLocation::specifyLocationPCPF</ref>(Eigen::Vector3d&amp;<sp/>r_LP_P_Loc){</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Assign<sp/>to<sp/>r_LP_P_Init<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref><sp/>=<sp/>r_LP_P_Loc;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Convert<sp/>to<sp/>LLA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>tmpLLAPosition<sp/>=<sp/>PCPF2LLA(this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref>,<sp/>this-&gt;<ref refid="class_ground_location_1ad8a04c1ef00d921fa2575edf4a5b3f56" kindref="member">planetRadius</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compute<sp/>dcm_LP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_LP<sp/>=<sp/>C_PCPF2SEZ(tmpLLAPosition[0],<sp/>tmpLLAPosition[1]);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1aa4f95fccc8c87aa1f807647eda6372e9" kindref="member">GroundLocation::addSpacecraftToModel</ref>(Message&lt;SCStatesMsgPayload&gt;<sp/>*tmpScMsg)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a289e68daf2cbec9f11a7f2ccdbb52fd1" kindref="member">scStateInMsgs</ref>.push_back(tmpScMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>output<sp/>message<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;AccessMsgPayload&gt;<sp/>*msg;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>msg<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Message&lt;AccessMsgPayload&gt;;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a991a8eb4879fea3725024054bdf21a5a" kindref="member">accessOutMsgs</ref>.push_back(msg);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>expand<sp/>the<sp/>buffer<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>AccessMsgPayload<sp/>accMsg;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;accessMsgBuffer.push_back(accMsg);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1abc8655b637320eb22ccb63f29ac48e7e" kindref="member">GroundLocation::ReadMessages</ref>()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>SCStatesMsgPayload<sp/>scMsg;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>clear<sp/>out<sp/>the<sp/>vector<sp/>of<sp/>spacecraft<sp/>states.<sp/><sp/>This<sp/>is<sp/>created<sp/>freshly<sp/>below.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;scStatesBuffer.clear();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>scRead;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!this-&gt;<ref refid="class_ground_location_1a289e68daf2cbec9f11a7f2ccdbb52fd1" kindref="member">scStateInMsgs</ref>.empty())</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>0;<sp/>c<sp/>&lt;<sp/>this-&gt;<ref refid="class_ground_location_1a289e68daf2cbec9f11a7f2ccdbb52fd1" kindref="member">scStateInMsgs</ref>.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scMsg<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1a289e68daf2cbec9f11a7f2ccdbb52fd1" kindref="member">scStateInMsgs</ref>.at(c)();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/>scRead<sp/>&amp;&amp;<sp/>this-&gt;<ref refid="class_ground_location_1a289e68daf2cbec9f11a7f2ccdbb52fd1" kindref="member">scStateInMsgs</ref>.at(c).isWritten();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;scStatesBuffer.push_back(scMsg);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_ground_location_1ac4a11826ad84c0fa1d0ca71ccc6c2de5" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Ground<sp/>location<sp/>has<sp/>no<sp/>spacecraft<sp/>to<sp/>track.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scRead<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>planetRead<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_ground_location_1a6f73f8207cb41ce2a9222815c4c18d92" kindref="member">planetInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetRead<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1a6f73f8207cb41ce2a9222815c4c18d92" kindref="member">planetInMsg</ref>.isWritten();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;planetState<sp/>=<sp/>this-&gt;<ref refid="class_ground_location_1a6f73f8207cb41ce2a9222815c4c18d92" kindref="member">planetInMsg</ref>();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(planetRead<sp/>&amp;&amp;<sp/>scRead);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1ac0c58d6959c092c616963e4bc9c10c28" kindref="member">GroundLocation::WriteMessages</ref>(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;<sp/>this-&gt;accessMsgBuffer.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1a991a8eb4879fea3725024054bdf21a5a" kindref="member">accessOutMsgs</ref>.at(c)-&gt;write(&amp;this-&gt;accessMsgBuffer.at(c),<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1ad4c89b667982eeac2495272ccf8eb477" kindref="member">currentGroundStateOutMsg</ref>.write(&amp;this-&gt;currentGroundStateBuffer,<sp/>this-&gt;moduleID,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GroundLocation::updateInertialPositions()</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>First,<sp/>get<sp/>the<sp/>rotation<sp/>matrix<sp/>from<sp/>the<sp/>inertial<sp/>to<sp/>planet<sp/>frame<sp/>from<sp/>SPICE:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_PN<sp/>=<sp/>cArray2EigenMatrix3d(*this-&gt;planetState.J20002Pfix);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dcm_PN_dot<sp/>=<sp/>cArray2EigenMatrix3d(*this-&gt;planetState.J20002Pfix_dot);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_PN_N<sp/>=<sp/>cArray2EigenVector3d(this-&gt;planetState.PositionVector);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Then,<sp/>transpose<sp/>it<sp/>to<sp/>get<sp/>the<sp/>planet<sp/>to<sp/>inertial<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_LP_N<sp/>=<sp/>this-&gt;dcm_PN.transpose()<sp/>*<sp/>this-&gt;<ref refid="class_ground_location_1a7a3a856e9876bc9b5662fc1444bfe798" kindref="member">r_LP_P_Init</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rhat_LP_N<sp/>=<sp/>this-&gt;r_LP_N/this-&gt;r_LP_N.norm();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_LN_N<sp/>=<sp/>this-&gt;r_PN_N<sp/>+<sp/>this-&gt;r_LP_N;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>planet<sp/>frame<sp/>angular<sp/>velocity<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>w_tilde_PN<sp/>=<sp/>-<sp/>this-&gt;dcm_PN_dot<sp/>*<sp/>this-&gt;dcm_PN.transpose();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;w_PN<sp/>&lt;&lt;<sp/>w_tilde_PN(2,1),<sp/>w_tilde_PN(0,2),<sp/>w_tilde_PN(1,0);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>Stash<sp/>updated<sp/>position<sp/>in<sp/>the<sp/>groundState<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;r_LN_N,<sp/>this-&gt;currentGroundStateBuffer.r_LN_N);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>eigenVector3d2CArray(this-&gt;r_LP_N,<sp/>this-&gt;currentGroundStateBuffer.r_LP_N);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GroundLocation::computeAccess()</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>groundLocation&apos;s<sp/>inertial<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;updateInertialPositions();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Iterate<sp/>over<sp/>spacecraft<sp/>position<sp/>messages<sp/>and<sp/>compute<sp/>the<sp/>access<sp/>for<sp/>each<sp/>one</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;AccessMsgPayload&gt;::iterator<sp/>accessMsgIt;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SCStatesMsgPayload&gt;::iterator<sp/>scStatesMsgIt;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(scStatesMsgIt<sp/>=<sp/>this-&gt;scStatesBuffer.begin(),<sp/>accessMsgIt<sp/>=<sp/>accessMsgBuffer.begin();<sp/>scStatesMsgIt<sp/>!=<sp/>scStatesBuffer.end();<sp/>scStatesMsgIt++,<sp/>accessMsgIt++){</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_BP_N<sp/>=<sp/>cArray2EigenVector3d(scStatesMsgIt-&gt;r_BN_N)<sp/>-<sp/>this-&gt;r_PN_N;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_BL_N<sp/>=<sp/>r_BP_N<sp/>-<sp/>this-&gt;r_LP_N;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_BL_mag<sp/>=<sp/>r_BL_N.norm();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>relativeHeading_N<sp/>=<sp/>r_BL_N<sp/>/<sp/>r_BL_mag;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>viewAngle<sp/>=<sp/>(M_PI_2-safeAcos(this-&gt;rhat_LP_N.dot(relativeHeading_N)));</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;slantRange<sp/>=<sp/>r_BL_mag;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;elevation<sp/>=<sp/>viewAngle;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_BL_L<sp/>=<sp/>this-&gt;dcm_LP<sp/>*<sp/>this-&gt;dcm_PN<sp/>*<sp/>r_BL_N;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(r_BL_L,<sp/>accessMsgIt-&gt;r_BL_L);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cos_az<sp/>=<sp/>-r_BL_L[0]/(sqrt(pow(r_BL_L[0],2)<sp/>+<sp/>pow(r_BL_L[1],2)));</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sin_az<sp/>=<sp/>r_BL_L[1]/(sqrt(pow(r_BL_L[0],2)<sp/>+<sp/>pow(r_BL_L[1],2)));</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;azimuth<sp/>=<sp/>atan2(sin_az,<sp/>cos_az);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>v_BL_L<sp/>=<sp/>this-&gt;dcm_LP<sp/>*<sp/>this-&gt;dcm_PN<sp/>*<sp/>(cArray2EigenVector3d(scStatesMsgIt-&gt;v_BN_N)<sp/>-<sp/>this-&gt;w_PN.cross(r_BP_N));<sp/></highlight><highlight class="comment">//<sp/>V<sp/>observed<sp/>from<sp/>gL<sp/>wrt<sp/>P<sp/>frame,<sp/>expressed<sp/>in<sp/>L<sp/>frame<sp/>coords<sp/>(SEZ)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eigenVector3d2CArray(v_BL_L,<sp/>accessMsgIt-&gt;v_BL_L);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;range_dot<sp/>=<sp/>v_BL_L.dot(r_BL_L)/r_BL_mag;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xy_norm<sp/>=<sp/>sqrt(pow(r_BL_L[0],2)+pow(r_BL_L[1],2));</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;az_dot<sp/>=<sp/>(-r_BL_L[0]*v_BL_L[1]<sp/>+<sp/>r_BL_L[1]*v_BL_L[0])/pow(xy_norm,2);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;el_dot<sp/>=<sp/>(v_BL_L[2]/xy_norm<sp/>-<sp/>r_BL_L[2]*(r_BL_L[0]*v_BL_L[0]<sp/>+<sp/>r_BL_L[1]*v_BL_L[1])/pow(xy_norm,3))/(1+pow(r_BL_L[2]/xy_norm,2));</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(viewAngle<sp/>&gt;<sp/>this-&gt;<ref refid="class_ground_location_1ae6bdd767c820bc0fb637d37e99d43f8d" kindref="member">minimumElevation</ref>)<sp/>&amp;&amp;<sp/>(r_BL_mag<sp/>&lt;=<sp/>this-&gt;<ref refid="class_ground_location_1a96d6920442e7c4d251c39b32dda91541" kindref="member">maximumRange</ref><sp/>||<sp/>this-&gt;<ref refid="class_ground_location_1a96d6920442e7c4d251c39b32dda91541" kindref="member">maximumRange</ref><sp/>&lt;<sp/>0)){</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;hasAccess<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>accessMsgIt-&gt;hasAccess<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_ground_location_1a8a0197cfa96957ceb1a2615852949979" kindref="member">GroundLocation::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1abc8655b637320eb22ccb63f29ac48e7e" kindref="member">ReadMessages</ref>();</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;computeAccess();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_ground_location_1ac0c58d6959c092c616963e4bc9c10c28" kindref="member">WriteMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/groundLocation/groundLocation.cpp"/>
+  </compounddef>
+</doxygen>

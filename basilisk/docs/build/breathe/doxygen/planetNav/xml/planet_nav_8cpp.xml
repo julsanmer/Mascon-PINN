@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="planet_nav_8cpp" kind="file" language="C++">
+    <compoundname>planetNav.cpp</compoundname>
+    <includes refid="planet_nav_8h" local="yes">simulation/navigation/planetNav/planetNav.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/navigation/planetNav/planetNav.cpp</label>
+        <link refid="planet_nav_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>simulation/navigation/planetNav/planetNav.h</label>
+        <link refid="planet_nav_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="3">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="8">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="5">
+        <label>architecture/msgPayloadDefC/EphemerisMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="6">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="4">
+        <label>architecture/utilities/gauss_markov.h</label>
+      </node>
+      <node id="9">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="14">
+        <label>cstring</label>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2021,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;simulation/navigation/planetNav/planetNav.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="class_planet_nav_1a94eea10a9163d1e03e02d232d88f5aa4" kindref="member">PlanetNav::PlanetNav</ref>()</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a80980ea35bb545aee01ab98e4f915e56" kindref="member">crossTrans</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1aac677d2b56a1d46866023cd784ba7ccd" kindref="member">crossAtt</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ad81e06a84dff50da081244b612c9a257" kindref="member">noisePlanetState</ref><sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1ae6f50073402fea99a69843dc2a4c56b1" kindref="member">ephemerisOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref><sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1ae6f50073402fea99a69843dc2a4c56b1" kindref="member">ephemerisOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ae40587fd0ffabd9daaaf9c4b3ff0b4f4" kindref="member">PMatrix</ref>.resize(12,12);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ae40587fd0ffabd9daaaf9c4b3ff0b4f4" kindref="member">PMatrix</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a0f6e4dc6bf2263569605f270f8919c84" kindref="member">walkBounds</ref>.resize(12);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a0f6e4dc6bf2263569605f270f8919c84" kindref="member">walkBounds</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel<sp/>=<sp/><sp/>GaussMarkov(12,<sp/>this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><ref refid="class_planet_nav_1ac043541f22cb6acbf8666fe9f65e9172" kindref="member">PlanetNav::~PlanetNav</ref>()</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1aa64cfd1310af56c0e2c2b57a0ac3587c" kindref="member">PlanetNav::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>that<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_planet_nav_1a4a462feb8360393696ff155c24e57063" kindref="member">ephemerisInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_planet_nav_1a48a621419bcad6bb3c8905b4f2c0651a" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;PlanetNav.ephemerisInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>numStates<sp/>=<sp/>12;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix.setIdentity(numStates,<sp/>numStates);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix(0,3)<sp/>=<sp/>this-&gt;AMatrix(1,4)<sp/>=<sp/>this-&gt;AMatrix(2,5)<sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1a80980ea35bb545aee01ab98e4f915e56" kindref="member">crossTrans</ref><sp/>?<sp/>1.0<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AMatrix(6,9)<sp/>=<sp/>this-&gt;AMatrix(7,10)<sp/>=<sp/>this-&gt;AMatrix(8,<sp/>11)<sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1aac677d2b56a1d46866023cd784ba7ccd" kindref="member">crossAtt</ref><sp/>?<sp/>1.0<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_planet_nav_1ae40587fd0ffabd9daaaf9c4b3ff0b4f4" kindref="member">PMatrix</ref>.size()<sp/>!=<sp/>numStates*numStates)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_planet_nav_1a48a621419bcad6bb3c8905b4f2c0651a" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>process<sp/>noise<sp/>matrix<sp/>(PMatrix)<sp/>is<sp/>not<sp/>12*12.<sp/>Size<sp/>is<sp/>%ld.<sp/><sp/>Quitting&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_planet_nav_1ae40587fd0ffabd9daaaf9c4b3ff0b4f4" kindref="member">PMatrix</ref>.size());</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setNoiseMatrix(this-&gt;<ref refid="class_planet_nav_1ae40587fd0ffabd9daaaf9c4b3ff0b4f4" kindref="member">PMatrix</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setRNGSeed(this-&gt;RNGSeed);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_planet_nav_1a0f6e4dc6bf2263569605f270f8919c84" kindref="member">walkBounds</ref>.size()<sp/>!=<sp/>numStates)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_planet_nav_1a48a621419bcad6bb3c8905b4f2c0651a" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Your<sp/>walkbounds<sp/>vector<sp/><sp/>is<sp/>not<sp/>12<sp/>elements.<sp/>Quitting&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setUpperBounds(this-&gt;<ref refid="class_planet_nav_1a0f6e4dc6bf2263569605f270f8919c84" kindref="member">walkBounds</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1a9a535f0ecd5ec2b0bb2efc0666d1198e" kindref="member">PlanetNav::readInputMessages</ref>()</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref><sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1a4a462feb8360393696ff155c24e57063" kindref="member">ephemerisInMsg</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1a9ea630daee172eb7e221bfe7366db058" kindref="member">PlanetNav::writeOutputMessages</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ad81e06a84dff50da081244b612c9a257" kindref="member">noisePlanetState</ref>.timeTag<sp/>=<sp/>(double)<sp/>CurrentSimNanos<sp/>*<sp/>NANO2SEC;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ae6f50073402fea99a69843dc2a4c56b1" kindref="member">ephemerisOutMsg</ref>.write(&amp;this-&gt;<ref refid="class_planet_nav_1ad81e06a84dff50da081244b612c9a257" kindref="member">noisePlanetState</ref>,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1a11cdab126a47ea226cfbc5661f09715d" kindref="member">PlanetNav::applyErrors</ref>()</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref>.r_BdyZero_N,<sp/>&amp;(this-&gt;navErrors.data()[0]),<sp/>this-&gt;noisePlanetState.r_BdyZero_N);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref>.v_BdyZero_N,<sp/>&amp;(this-&gt;navErrors.data()[3]),<sp/>this-&gt;noisePlanetState.v_BdyZero_N);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>addMRP(this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref>.sigma_BN,<sp/>&amp;(this-&gt;navErrors.data()[6]),<sp/>this-&gt;noisePlanetState.sigma_BN);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>v3Add(this-&gt;<ref refid="class_planet_nav_1a3f67a547010e0a15466151aa2c72257c" kindref="member">truePlanetState</ref>.omega_BN_B,<sp/>&amp;(this-&gt;navErrors.data()[9]),<sp/>this-&gt;noisePlanetState.omega_BN_B);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1a87a4c27bae844076c46010cd990097cd" kindref="member">PlanetNav::computeErrors</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>timeStep;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MatrixXd<sp/>localProp<sp/>=<sp/>this-&gt;AMatrix;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>timeStep<sp/>=<sp/>(CurrentSimNanos<sp/>-<sp/>this-&gt;prevTime)*1.0E-9;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(0,3)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(1,4)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(2,5)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//postion/velocity<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(6,9)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(7,10)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>localProp(8,11)<sp/>*=<sp/>timeStep;<sp/></highlight><highlight class="comment">//attitude/attitude<sp/>rate<sp/>cross<sp/>correlation<sp/>terms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.setPropMatrix(localProp);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;errorModel.computeNextState();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a4cae3f1b0a470a61a772c0b9e9edd955" kindref="member">navErrors</ref><sp/>=<sp/>this-&gt;errorModel.getCurrentState();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_planet_nav_1ae7bcbd59a643a85238cc66f2143da516" kindref="member">PlanetNav::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>the<sp/>output<sp/>msg<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1ad81e06a84dff50da081244b612c9a257" kindref="member">noisePlanetState</ref><sp/>=<sp/>this-&gt;<ref refid="class_planet_nav_1ae6f50073402fea99a69843dc2a4c56b1" kindref="member">ephemerisOutMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a9a535f0ecd5ec2b0bb2efc0666d1198e" kindref="member">readInputMessages</ref>();</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a87a4c27bae844076c46010cd990097cd" kindref="member">computeErrors</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a11cdab126a47ea226cfbc5661f09715d" kindref="member">applyErrors</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_planet_nav_1a9ea630daee172eb7e221bfe7366db058" kindref="member">writeOutputMessages</ref>(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;prevTime<sp/>=<sp/>CurrentSimNanos;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/navigation/planetNav/planetNav.cpp"/>
+  </compounddef>
+</doxygen>

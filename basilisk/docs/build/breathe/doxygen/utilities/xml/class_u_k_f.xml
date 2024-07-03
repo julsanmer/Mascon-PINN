@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_u_k_f" kind="class" language="C++" prot="public">
+    <compoundname>UKF</compoundname>
+    <includes refid="ukf_8h" local="no">ukf.h</includes>
+    <innerclass refid="class_u_k_f_1_1_dist" prot="private">UKF::Dist</innerclass>
+    <innerclass refid="class_u_k_f_1_1_sigma" prot="private">UKF::Sigma</innerclass>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="class_u_k_f_1aba5780d62b81aff6343230cb02b74bd9" prot="public" static="no">
+        <type>Eigen::VectorXd(*</type>
+        <definition>typedef Eigen::VectorXd(* UKF::CallbackFunction) (Eigen::VectorXd)</definition>
+        <argsstring>)(Eigen::VectorXd)</argsstring>
+        <name>CallbackFunction</name>
+        <qualifiedname>UKF::CallbackFunction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="34" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_u_k_f_1a24471a19984635c50bd1848ca62900c0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UKF::nx</definition>
+        <argsstring></argsstring>
+        <name>nx</name>
+        <qualifiedname>UKF::nx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="47" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1ae3c65c32bf2414dc51db21625cf5ec54" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UKF::nz</definition>
+        <argsstring></argsstring>
+        <name>nz</name>
+        <qualifiedname>UKF::nz</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="48" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a1362fa83fffe303f29bd0f3e9b23fb96" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::xhat_k</definition>
+        <argsstring></argsstring>
+        <name>xhat_k</name>
+        <qualifiedname>UKF::xhat_k</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="50" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a8b51374fb8a386bea78e94549ca42865" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd UKF::Pxx_k</definition>
+        <argsstring></argsstring>
+        <name>Pxx_k</name>
+        <qualifiedname>UKF::Pxx_k</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="51" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a359d69aaecd77a7bfe448c9d0990f31d" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::xhat_k1_</definition>
+        <argsstring></argsstring>
+        <name>xhat_k1_</name>
+        <qualifiedname>UKF::xhat_k1_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="53" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1ab688bbabd0b320b224a98aad0c43a9d6" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd UKF::Pxx_k1_</definition>
+        <argsstring></argsstring>
+        <name>Pxx_k1_</name>
+        <qualifiedname>UKF::Pxx_k1_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="54" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a82cbcd6d017328cefee4ba45cee408f7" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <qualifiedname>UKF::z</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="56" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1ab3b23521169159be4359300013a165f3" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd UKF::Pww</definition>
+        <argsstring></argsstring>
+        <name>Pww</name>
+        <qualifiedname>UKF::Pww</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="58" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1af1ac6939080e630b8d7c23570d691c0f" prot="public" static="no" mutable="no">
+        <type>Eigen::MatrixXd</type>
+        <definition>Eigen::MatrixXd UKF::Pvv</definition>
+        <argsstring></argsstring>
+        <name>Pvv</name>
+        <qualifiedname>UKF::Pvv</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="59" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a2e1688add0a153f6f39397ea921e45bf" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::wgt_m</definition>
+        <argsstring></argsstring>
+        <name>wgt_m</name>
+        <qualifiedname>UKF::wgt_m</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="61" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a8a8b1479b1666ec75d8c47ee7f30d447" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::wgt_c</definition>
+        <argsstring></argsstring>
+        <name>wgt_c</name>
+        <qualifiedname>UKF::wgt_c</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="62" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1af60b92fa9718246ea12f20c131bdfa2b" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::cx</definition>
+        <argsstring></argsstring>
+        <name>cx</name>
+        <qualifiedname>UKF::cx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="63" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a3a9fe05344603bd342554e675c7c0cfb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double UKF::alpha</definition>
+        <argsstring></argsstring>
+        <name>alpha</name>
+        <qualifiedname>UKF::alpha</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="65" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1a54868c4d9b6429060efa5c38cd051086" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double UKF::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <qualifiedname>UKF::beta</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="66" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_k_f_1ab0510927a49d34e8b583b835f84a7d75" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double UKF::kappa</definition>
+        <argsstring></argsstring>
+        <name>kappa</name>
+        <qualifiedname>UKF::kappa</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="67" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_u_k_f_1aed34b3a01f8985a602b680dbb06e4471" prot="private" static="no" mutable="no">
+        <type>CallbackFunction</type>
+        <definition>CallbackFunction UKF::callback_</definition>
+        <argsstring></argsstring>
+        <name>callback_</name>
+        <qualifiedname>UKF::callback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="94" column="22" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_u_k_f_1aa5f9e529068a2cf933b6cc304f75f4fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UKF::UKF</definition>
+        <argsstring>()</argsstring>
+        <name>UKF</name>
+        <qualifiedname>UKF::UKF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The constructor initialies the random number generator used for the walks </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="31" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="34" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1aebf50d27d280b3f1fb105bbe0338b0ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>UKF::~UKF</definition>
+        <argsstring>()</argsstring>
+        <name>~UKF</name>
+        <qualifiedname>UKF::~UKF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Generic destructor </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="32" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1a0bbbe93352c20e96342957fe1c2cad6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UKF::registerCallback</definition>
+        <argsstring>(CallbackFunction callback)</argsstring>
+        <name>registerCallback</name>
+        <qualifiedname>UKF::registerCallback</qualifiedname>
+        <param>
+          <type>CallbackFunction</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="35" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1a3c559865729ebf48196fa53e84b19b0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UKF::executeCallback</definition>
+        <argsstring>()</argsstring>
+        <name>executeCallback</name>
+        <qualifiedname>UKF::executeCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="36" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1a186e406d49c5dc2a7b78945ef7907942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd UKF::ukf_test</definition>
+        <argsstring>(const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;f)</argsstring>
+        <name>ukf_test</name>
+        <qualifiedname>UKF::ukf_test</qualifiedname>
+        <param>
+          <type>const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+<para>solves for the zero of the provided function </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="39" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="144" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1afadbd4bac85e8c98c505534e76e78acb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UKF::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>UKF::initialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="42" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="61" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_k_f_1a42500cebe4b0578febddbaf5c113a20b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void UKF::ukf_step</definition>
+        <argsstring>(const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;f_proc, const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;f_meas)</argsstring>
+        <name>ukf_step</name>
+        <qualifiedname>UKF::ukf_step</qualifiedname>
+        <param>
+          <type>const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;</type>
+          <declname>f_proc</declname>
+        </param>
+        <param>
+          <type>const std::function&lt; Eigen::VectorXd(Eigen::VectorXd)&gt; &amp;</type>
+          <declname>f_meas</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="43" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.cpp" bodystart="83" bodyend="142"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="class_input_data_set" kindref="compound">InputDataSet</ref> class contains the information about the points that must be interpolated. It is used as a data structure to intialize the inputs that are passed to the interpolating function. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" line="29" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/ukf.h" bodystart="29" bodyend="97"/>
+    <listofallmembers>
+      <member refid="class_u_k_f_1a3a9fe05344603bd342554e675c7c0cfb" prot="public" virt="non-virtual"><scope>UKF</scope><name>alpha</name></member>
+      <member refid="class_u_k_f_1a54868c4d9b6429060efa5c38cd051086" prot="public" virt="non-virtual"><scope>UKF</scope><name>beta</name></member>
+      <member refid="class_u_k_f_1aed34b3a01f8985a602b680dbb06e4471" prot="private" virt="non-virtual"><scope>UKF</scope><name>callback_</name></member>
+      <member refid="class_u_k_f_1aba5780d62b81aff6343230cb02b74bd9" prot="public" virt="non-virtual"><scope>UKF</scope><name>CallbackFunction</name></member>
+      <member refid="class_u_k_f_1af60b92fa9718246ea12f20c131bdfa2b" prot="public" virt="non-virtual"><scope>UKF</scope><name>cx</name></member>
+      <member refid="class_u_k_f_1a3c559865729ebf48196fa53e84b19b0b" prot="public" virt="non-virtual"><scope>UKF</scope><name>executeCallback</name></member>
+      <member refid="class_u_k_f_1afadbd4bac85e8c98c505534e76e78acb" prot="public" virt="non-virtual"><scope>UKF</scope><name>initialize</name></member>
+      <member refid="class_u_k_f_1ab0510927a49d34e8b583b835f84a7d75" prot="public" virt="non-virtual"><scope>UKF</scope><name>kappa</name></member>
+      <member refid="class_u_k_f_1a24471a19984635c50bd1848ca62900c0" prot="public" virt="non-virtual"><scope>UKF</scope><name>nx</name></member>
+      <member refid="class_u_k_f_1ae3c65c32bf2414dc51db21625cf5ec54" prot="public" virt="non-virtual"><scope>UKF</scope><name>nz</name></member>
+      <member refid="class_u_k_f_1af1ac6939080e630b8d7c23570d691c0f" prot="public" virt="non-virtual"><scope>UKF</scope><name>Pvv</name></member>
+      <member refid="class_u_k_f_1ab3b23521169159be4359300013a165f3" prot="public" virt="non-virtual"><scope>UKF</scope><name>Pww</name></member>
+      <member refid="class_u_k_f_1a8b51374fb8a386bea78e94549ca42865" prot="public" virt="non-virtual"><scope>UKF</scope><name>Pxx_k</name></member>
+      <member refid="class_u_k_f_1ab688bbabd0b320b224a98aad0c43a9d6" prot="public" virt="non-virtual"><scope>UKF</scope><name>Pxx_k1_</name></member>
+      <member refid="class_u_k_f_1a0bbbe93352c20e96342957fe1c2cad6d" prot="public" virt="non-virtual"><scope>UKF</scope><name>registerCallback</name></member>
+      <member refid="class_u_k_f_1aa5f9e529068a2cf933b6cc304f75f4fa" prot="public" virt="non-virtual"><scope>UKF</scope><name>UKF</name></member>
+      <member refid="class_u_k_f_1a42500cebe4b0578febddbaf5c113a20b" prot="public" virt="non-virtual"><scope>UKF</scope><name>ukf_step</name></member>
+      <member refid="class_u_k_f_1a186e406d49c5dc2a7b78945ef7907942" prot="public" virt="non-virtual"><scope>UKF</scope><name>ukf_test</name></member>
+      <member refid="class_u_k_f_1a8a8b1479b1666ec75d8c47ee7f30d447" prot="public" virt="non-virtual"><scope>UKF</scope><name>wgt_c</name></member>
+      <member refid="class_u_k_f_1a2e1688add0a153f6f39397ea921e45bf" prot="public" virt="non-virtual"><scope>UKF</scope><name>wgt_m</name></member>
+      <member refid="class_u_k_f_1a1362fa83fffe303f29bd0f3e9b23fb96" prot="public" virt="non-virtual"><scope>UKF</scope><name>xhat_k</name></member>
+      <member refid="class_u_k_f_1a359d69aaecd77a7bfe448c9d0990f31d" prot="public" virt="non-virtual"><scope>UKF</scope><name>xhat_k1_</name></member>
+      <member refid="class_u_k_f_1a82cbcd6d017328cefee4ba45cee408f7" prot="public" virt="non-virtual"><scope>UKF</scope><name>z</name></member>
+      <member refid="class_u_k_f_1aebf50d27d280b3f1fb105bbe0338b0ca" prot="public" virt="non-virtual"><scope>UKF</scope><name>~UKF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

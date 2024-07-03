@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sensor_thermal_8cpp" kind="file" language="C++">
+    <compoundname>sensorThermal.cpp</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">algorithm</includes>
+    <includes refid="sensor_thermal_8h" local="yes">sensorThermal.h</includes>
+    <includes local="yes">architecture/utilities/rigidBodyKinematics.h</includes>
+    <includes local="yes">architecture/utilities/linearAlgebra.h</includes>
+    <includes local="yes">architecture/utilities/astroConstants.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenSupport.h</includes>
+    <includes local="yes">architecture/utilities/macroDefinitions.h</includes>
+    <includes local="yes">architecture/utilities/avsEigenMRP.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/thermal/sensorThermal/sensorThermal.cpp</label>
+        <link refid="sensor_thermal_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sensorThermal.h</label>
+        <link refid="sensor_thermal_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="5">
+        <label>algorithm</label>
+      </node>
+      <node id="9">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/msgPayloadDefC/DeviceStatusMsgPayload.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/msgPayloadDefC/EclipseMsgPayload.h</label>
+      </node>
+      <node id="10">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/msgPayloadDefC/TemperatureMsgPayload.h</label>
+      </node>
+      <node id="18">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="21">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="19">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="20">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="4">
+        <label>cstring</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sensorThermal.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/rigidBodyKinematics.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/linearAlgebra.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/astroConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenSupport.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/macroDefinitions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/avsEigenMRP.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><ref refid="class_sensor_thermal_1a9792a4680114614cb190e94587d3445a" kindref="member">SensorThermal::SensorThermal</ref>(){</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>the<sp/>required<sp/>parameters<sp/>from<sp/>the<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a58f0fc12f3b9a2eb40c085d6eec11d06" kindref="member">nHat_B</ref>.setZero();</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1acd835266e28058bde4f59e11c0807bcf" kindref="member">sensorArea</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sensorAbsorptivity</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1adac459ca1370b0b7709ce078f9209bd3" kindref="member">sensorEmissivity</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>optional<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1ad2093ae40f8e06cd49dd16a5bd8e3d3c" kindref="member">sensorMass</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1acc26a3aa6ce02afca19f0e6987eca74e" kindref="member">sensorSpecificHeat</ref><sp/>=<sp/>890;<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a9ded122df5f3fc4cafb4e804f87278e7" kindref="member">T_0</ref><sp/>=<sp/>30;<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a463332ac04ae16d001620cd837707056" kindref="member">sensorPowerDraw</ref><sp/>=<sp/>0.0;<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;S<sp/>=<sp/>1366;<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;boltzmannConst<sp/>=<sp/>5.76051e-8;<sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;CurrentSimSecondsOld<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a19e635f00e1d99e63828c3b3adab8605" kindref="member">sensorPowerStatus</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">SensorThermal::~SensorThermal(){</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_thermal_1a0aa83ce61102d1051b9b32843c3d1cfc" kindref="member">SensorThermal::Reset</ref>(uint64_t<sp/>CurrentClock)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1acd835266e28058bde4f59e11c0807bcf" kindref="member">sensorArea</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>sensorArea<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>value&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1ad2093ae40f8e06cd49dd16a5bd8e3d3c" kindref="member">sensorMass</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>sensorMass<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>value&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1acc26a3aa6ce02afca19f0e6987eca74e" kindref="member">sensorSpecificHeat</ref><sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>sensorSpecificHeat<sp/>must<sp/>be<sp/>a<sp/>positive<sp/>value&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sensorAbsorptivity &lt;= 0.0 || this-&gt;</ref><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sensorAbsorptivity</ref><sp/>&gt;<sp/>1.0)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>sensor<sp/>absorptivity<sp/>must<sp/>be<sp/>between<sp/>0<sp/>and<sp/>1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sensorEmissivity &lt;= 0.0 || this-&gt;</ref><ref refid="class_sensor_thermal_1adac459ca1370b0b7709ce078f9209bd3" kindref="member">sensorEmissivity</ref><sp/>&gt;<sp/>1.0)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>sensor<sp/>emissivity<sp/>must<sp/>be<sp/>between<sp/>0<sp/>and<sp/>1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_sensor_thermal_1a58f0fc12f3b9a2eb40c085d6eec11d06" kindref="member">nHat_B</ref>.norm()<sp/>&gt;<sp/>0.1)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a58f0fc12f3b9a2eb40c085d6eec11d06" kindref="member">nHat_B</ref>.normalize();</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>nHat_B<sp/>must<sp/>be<sp/>set<sp/>to<sp/>a<sp/>non-zero<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>check<sp/>if<sp/>required<sp/>input<sp/>messages<sp/>are<sp/>connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_sensor_thermal_1ac37e5c4b73c991997c7928b0507c0070" kindref="member">sunInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;sensorThermal.sunInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_sensor_thermal_1a22b33a039629942d2619fc834fab436c" kindref="member">stateInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1af639609c10ac64d19a03452ca1075272" kindref="member">bskLogger</ref>.bskLog(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">BSK_ERROR</ref>,<sp/></highlight><highlight class="stringliteral">&quot;sensorThermal.stateInMsg<sp/>was<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sensorTemp<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1a9ded122df5f3fc4cafb4e804f87278e7" kindref="member">T_0</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensorThermal::readMessages()</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sunData<sp/>=<sp/><ref refid="class_sensor_thermal_1ac37e5c4b73c991997c7928b0507c0070" kindref="member">sunInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;stateCurrent<sp/>=<sp/><ref refid="class_sensor_thermal_1a22b33a039629942d2619fc834fab436c" kindref="member">stateInMsg</ref>.zeroMsgPayload;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sunData<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1ac37e5c4b73c991997c7928b0507c0070" kindref="member">sunInMsg</ref>();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;stateCurrent<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1a22b33a039629942d2619fc834fab436c" kindref="member">stateInMsg</ref>();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_sensor_thermal_1ada242887ccba67ff4f80a858762bee92" kindref="member">sunEclipseInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">EclipseMsgPayload</ref><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sunVisibilityFactor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sun<sp/>visiblity<sp/>input<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sunVisibilityFactor<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1ada242887ccba67ff4f80a858762bee92" kindref="member">sunEclipseInMsg</ref>();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;shadowFactor<sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sunVisibilityFactor</ref>.shadowFactor;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;<ref refid="class_sensor_thermal_1a17815862533f92f4600e6dd76d92c8b1" kindref="member">sensorStatusInMsg</ref>.isLinked())</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">DeviceStatusMsgPayload</ref><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">statusMsg</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>statusMsg<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1a17815862533f92f4600e6dd76d92c8b1" kindref="member">sensorStatusInMsg</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a19e635f00e1d99e63828c3b3adab8605" kindref="member">sensorPowerStatus</ref><sp/>=<sp/>statusMsg.deviceStatus;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_sensor_thermal_1a1724cca3944ec8312b224eccbb252090" kindref="member">SensorThermal::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;readMessages();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;evaluateThermalModel(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">CurrentSimNanos</ref>*<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">NANO2SEC</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;writeMessages(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">CurrentSimNanos</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensorThermal::writeMessages(uint64_t<sp/>CurrentClock)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_sensor_thermal_1a9da1807f156f469b8989742ab2d1ac9e" kindref="member">temperatureOutMsg</ref>.write(&amp;this-&gt;temperatureMsgBuffer,<sp/>this-&gt;<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">moduleID</ref>,<sp/>CurrentClock);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensorThermal::computeSunData()</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SB_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sHat_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">dcm_BN</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_BN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SN_N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::MRPd<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sigma_BN</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sHat_B</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_BN_N</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">cArray2EigenVector3d</ref>(this-&gt;stateCurrent.r_BN_N);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SN_N</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">cArray2EigenVector3d</ref>(this-&gt;sunData.PositionVector);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sigma_BN</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">cArray2EigenVector3d</ref>(this-&gt;stateCurrent.sigma_BN);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SB_N</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SN_N</ref><sp/>-<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_BN_N</ref>;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sHat_N</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">r_SB_N</ref>.normalized();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">dcm_BN</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sigma_BN</ref>.toRotationMatrix().transpose();</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sHat_B</ref><sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">dcm_BN</ref><sp/>*<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sHat_N</ref>;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;projectedArea<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1acd835266e28058bde4f59e11c0807bcf" kindref="member">sensorArea</ref><sp/>*<sp/>(sHat_B.dot(this-&gt;<ref refid="class_sensor_thermal_1a58f0fc12f3b9a2eb40c085d6eec11d06" kindref="member">nHat_B</ref>));</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(this-&gt;projectedArea&lt;0){</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;projectedArea<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SensorThermal::evaluateThermalModel(uint64_t<sp/>CurrentSimSeconds)<sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;computeSunData();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;Q_in<sp/>=<sp/>this-&gt;shadowFactor<sp/>*<sp/>this-&gt;S<sp/>*<sp/>this-&gt;projectedArea<sp/>*<sp/>this-&gt;<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">sensorAbsorptivity</ref><sp/>+<sp/>this-&gt;<ref refid="class_sensor_thermal_1a463332ac04ae16d001620cd837707056" kindref="member">sensorPowerDraw</ref><sp/>*<sp/>this-&gt;<ref refid="class_sensor_thermal_1a19e635f00e1d99e63828c3b3adab8605" kindref="member">sensorPowerStatus</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;Q_out<sp/>=<sp/>this-&gt;<ref refid="class_sensor_thermal_1acd835266e28058bde4f59e11c0807bcf" kindref="member">sensorArea</ref><sp/>*<sp/>this-&gt;<ref refid="class_sensor_thermal_1adac459ca1370b0b7709ce078f9209bd3" kindref="member">sensorEmissivity</ref><sp/>*<sp/>this-&gt;boltzmannConst<sp/>*<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">pow</ref>((this-&gt;sensorTemp<sp/>+<sp/>273.15),<sp/>4);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">dT</ref><sp/>=<sp/>(this-&gt;Q_in<sp/>-<sp/>this-&gt;Q_out)/(this-&gt;<ref refid="class_sensor_thermal_1acc26a3aa6ce02afca19f0e6987eca74e" kindref="member">sensorSpecificHeat</ref>*this-&gt;<ref refid="class_sensor_thermal_1ad2093ae40f8e06cd49dd16a5bd8e3d3c" kindref="member">sensorMass</ref>);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sensorTemp<sp/>=<sp/>this-&gt;sensorTemp<sp/>+<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">dT</ref>*(<ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">CurrentSimSeconds</ref><sp/>-<sp/>this-&gt;CurrentSimSecondsOld);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;CurrentSimSecondsOld<sp/>=<sp/><ref refid="class_sensor_thermal_1a48e199ee586a3baa05ea024b3c99ec7f" kindref="member">CurrentSimSeconds</ref>;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;temperatureMsgBuffer.temperature<sp/>=<sp/>this-&gt;sensorTemp;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/thermal/sensorThermal/sensorThermal.cpp"/>
+  </compounddef>
+</doxygen>

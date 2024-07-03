@@ -1,0 +1,731 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="albedo_8cpp" kind="file" language="C++">
+    <compoundname>albedo.cpp</compoundname>
+    <includes refid="albedo_8h" local="yes">albedo.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/simulation/environment/albedo/albedo.cpp</label>
+        <link refid="albedo_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>albedo.h</label>
+        <link refid="albedo_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="10">
+        <label>architecture/_GeneralModuleFiles/sys_model.h</label>
+      </node>
+      <node id="20">
+        <label>architecture/messaging/messaging.h</label>
+      </node>
+      <node id="19">
+        <label>architecture/msgPayloadDefC/AlbedoMsgPayload.h</label>
+      </node>
+      <node id="17">
+        <label>architecture/msgPayloadDefC/SCStatesMsgPayload.h</label>
+      </node>
+      <node id="18">
+        <label>architecture/msgPayloadDefC/SpicePlanetStateMsgPayload.h</label>
+      </node>
+      <node id="11">
+        <label>architecture/utilities/astroConstants.h</label>
+      </node>
+      <node id="14">
+        <label>architecture/utilities/avsEigenMRP.h</label>
+      </node>
+      <node id="13">
+        <label>architecture/utilities/avsEigenSupport.h</label>
+      </node>
+      <node id="15">
+        <label>architecture/utilities/geodeticConversion.h</label>
+      </node>
+      <node id="16">
+        <label>architecture/utilities/linearAlgebra.h</label>
+      </node>
+      <node id="21">
+        <label>architecture/utilities/macroDefinitions.h</label>
+      </node>
+      <node id="12">
+        <label>architecture/utilities/rigidBodyKinematics.h</label>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="7">
+        <label>inttypes.h</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="9">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2020,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;albedo.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><ref refid="class_albedo_1a2f054f6a7ae6097f4c462a1ae942666d" kindref="member">Albedo::Albedo</ref>()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.clear();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetMsgData.clear();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dataPaths.clear();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fileNames.clear();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;modelNames.clear();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB_avgs.clear();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.clear();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;RP_planets.clear();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLats.clear();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLons.clear();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_IB_Bs.clear();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;nHat_Bs.clear();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fovs.clear();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albOutData.clear();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gdlat.clear();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gdlon.clear();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;latDiff.clear();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;lonDiff.clear();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB.clear();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albArray.clear();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;readFile<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AfluxAtInstrumentMax<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;AfluxAtInstrument<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albedoAtInstrumentMax<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albedoAtInstrument<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a2f4be16c91477defd6b2169ae08213f0" kindref="member">defaultNumLon</ref><sp/>=<sp/>360;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a4b4b26626a2dff713e0d9433d79b4750" kindref="member">defaultNumLat</ref><sp/>=<sp/>180;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a5beff6566937157f991940ae4cebd35c" kindref="member">nHat_B_default</ref><sp/>=<sp/>{<sp/>1.0,<sp/>0.0,<sp/>0.0<sp/>};</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a095b29020feff3cf573c026d34afe483" kindref="member">fov_default</ref><sp/>=<sp/>90.<sp/>*<sp/>D2R;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a76c79dbbac60620d3d657f0020139f54" kindref="member">eclipseCase</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a726d96056905eba81732e6de5f5984b5" kindref="member">altitudeRateLimit</ref><sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><ref refid="class_albedo_1a528820507d5df5b966010057bf2aea6d" kindref="member">Albedo::~Albedo</ref>()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.at(c);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">Config::Config()<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_config_1ae2c65457312b8c6ebad9b7c5bf0996b1" kindref="member">fov</ref><sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_config_1a060c18d1c5381cc055116238b82216ed" kindref="member">nHat_B</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_config_1ad0a6a8920251fd8f6287148779e09d15" kindref="member">r_IB_B</ref>.fill(0.0);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">Config::~Config()<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1a7549512fcc7f06927a4be51e4415c0fa" kindref="member">Albedo::addInstrumentConfig</ref>(instConfig_t<sp/>configMsg)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>add<sp/>a<sp/>albedo<sp/>output<sp/>message<sp/>for<sp/>this<sp/>instrument</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;AlbedoMsgPayload&gt;<sp/>*msg;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>msg<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Message&lt;AlbedoMsgPayload&gt;;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.push_back(msg);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>a<sp/>sanity<sp/>check<sp/>and<sp/>push<sp/>fov<sp/>back<sp/>to<sp/>the<sp/>vector<sp/>(if<sp/>not<sp/>defined,<sp/>use<sp/>the<sp/>default<sp/>value.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(configMsg.fov<sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fovs.push_back(this-&gt;<ref refid="class_albedo_1a095b29020feff3cf573c026d34afe483" kindref="member">fov_default</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(addInstrumentConfig):<sp/>For<sp/>the<sp/>instrument<sp/>(%lu)&apos;s<sp/>half<sp/>field<sp/>of<sp/>view<sp/>angle<sp/>(fov),<sp/>the<sp/>default<sp/>value<sp/>is<sp/>used.&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)<sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size()-1);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fovs.push_back(configMsg.fov);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Push<sp/>r_IB_B<sp/>back<sp/>to<sp/>the<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_IB_Bs.push_back(configMsg.r_IB_B);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>a<sp/>sanity<sp/>check<sp/>and<sp/>push<sp/>nHat_B<sp/>back<sp/>to<sp/>the<sp/>vector<sp/>(if<sp/>not<sp/>defined,<sp/>use<sp/>the<sp/>default<sp/>value.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!configMsg.nHat_B.isZero())<sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;nHat_Bs.push_back(configMsg.nHat_B<sp/>/<sp/>configMsg.nHat_B.norm());</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;nHat_Bs.push_back(<ref refid="class_albedo_1a5beff6566937157f991940ae4cebd35c" kindref="member">nHat_B_default</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(addInstrumentConfig):<sp/>For<sp/>the<sp/>instrument<sp/>(%lu)&apos;s<sp/>unit<sp/>normal<sp/>vector<sp/>(nHat_B),<sp/>the<sp/>default<sp/>vector<sp/>is<sp/>used.&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size()-1);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1a7549512fcc7f06927a4be51e4415c0fa" kindref="member">Albedo::addInstrumentConfig</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fov,<sp/>Eigen::Vector3d<sp/>nHat_B,<sp/>Eigen::Vector3d<sp/>r_IB_B)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>add<sp/>a<sp/>albedo<sp/>output<sp/>message<sp/>for<sp/>this<sp/>instrument</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>Message&lt;AlbedoMsgPayload&gt;<sp/>*msg;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>msg<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Message&lt;AlbedoMsgPayload&gt;;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.push_back(msg);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>a<sp/>sanity<sp/>check<sp/>and<sp/>push<sp/>fov<sp/>back<sp/>to<sp/>the<sp/>vector<sp/>(if<sp/>not<sp/>defined,<sp/>use<sp/>the<sp/>default<sp/>value.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fov<sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fovs.push_back(this-&gt;<ref refid="class_albedo_1a095b29020feff3cf573c026d34afe483" kindref="member">fov_default</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(addInstrumentConfig):<sp/>Instrument<sp/>(%lu)&apos;s<sp/>half<sp/>field<sp/>of<sp/>view<sp/>angle<sp/>(fov)<sp/>cannot<sp/>be<sp/>negative,<sp/>the<sp/>default<sp/>value<sp/>is<sp/>used<sp/>instead.&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size()-1);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;fovs.push_back(fov);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Push<sp/>r_IB_B<sp/>back<sp/>to<sp/>the<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_IB_Bs.push_back(r_IB_B);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>a<sp/>sanity<sp/>check<sp/>and<sp/>push<sp/>nHat_B<sp/>back<sp/>to<sp/>the<sp/>vector<sp/>(if<sp/>not<sp/>defined,<sp/>use<sp/>the<sp/>default<sp/>value.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!nHat_B.isZero())<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;nHat_Bs.push_back(nHat_B<sp/>/<sp/>nHat_B.norm());</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;nHat_Bs.push_back(<ref refid="class_albedo_1a5beff6566937157f991940ae4cebd35c" kindref="member">nHat_B_default</ref>);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(addInstrumentConfig):<sp/>Instrument<sp/>(%lu)&apos;s<sp/>unit<sp/>normal<sp/>vector<sp/>(nHat_B)<sp/>cannot<sp/>be<sp/>composed<sp/>of<sp/>all<sp/>zeros,<sp/>the<sp/>default<sp/>vector<sp/>is<sp/>used<sp/>instead.&quot;</highlight><highlight class="normal">,<sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size()-1);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1aa4c469aa3263ddd40be382a0ebce10d0" kindref="member">Albedo::addPlanetandAlbedoAverageModel</ref>(Message&lt;SpicePlanetStateMsgPayload&gt;<sp/>*planetSpiceMsg)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>modelName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ALBEDO_AVG&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;modelNames.push_back(modelName);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fileNames.push_back(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dataPaths.push_back(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLats.push_back(-1);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLons.push_back(-1);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ALB_avg<sp/>=<sp/>-1;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>value<sp/>will<sp/>be<sp/>set<sp/>in<sp/>Reset()<sp/>when<sp/>we<sp/>can<sp/>determine<sp/>the<sp/>planet<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB_avgs.push_back(ALB_avg);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albArray.push_back(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.push_back(planetSpiceMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>expand<sp/>the<sp/>planet<sp/>state<sp/>buffer<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>plMsg;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetMsgData.push_back(plMsg);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1aa4c469aa3263ddd40be382a0ebce10d0" kindref="member">Albedo::addPlanetandAlbedoAverageModel</ref>(Message&lt;SpicePlanetStateMsgPayload&gt;<sp/>*planetSpiceMsg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ALB_avg,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numLat,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numLon)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>modelName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ALBEDO_AVG&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;modelNames.push_back(modelName);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fileNames.push_back(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dataPaths.push_back(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLats.push_back(numLat);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLons.push_back(numLon);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB_avgs.push_back(ALB_avg);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albArray.push_back(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.push_back(planetSpiceMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>expand<sp/>the<sp/>planet<sp/>state<sp/>buffer<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>plMsg;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetMsgData.push_back(plMsg);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1ab8b9ab99a2252af1ee82a1b4edb3a0f9" kindref="member">Albedo::addPlanetandAlbedoDataModel</ref>(Message&lt;SpicePlanetStateMsgPayload&gt;<sp/>*planetSpiceMsg,<sp/>std::string<sp/>dataPath,<sp/>std::string<sp/>fileName)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>modelName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ALBEDO_DATA&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;modelNames.push_back(modelName);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;fileNames.push_back(fileName);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;dataPaths.push_back(dataPath);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLats.push_back(-1);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLons.push_back(-1);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB_avgs.push_back(-1.0);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albArray.push_back(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.push_back(planetSpiceMsg-&gt;addSubscriber());</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>expand<sp/>the<sp/>planet<sp/>state<sp/>buffer<sp/>vector<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>plMsg;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;planetMsgData.push_back(plMsg);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1ab5f85fc47f541b48f22c7a4fd5c35633" kindref="member">Albedo::UpdateState</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;readMessages();</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;albOutData.clear();</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SpicePlanetStateMsgPayload&gt;::iterator<sp/>planetIt;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>instIdx<sp/>=<sp/>0;<sp/>instIdx<sp/>&lt;<sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size();<sp/>instIdx++)</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tmpTot[4]<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>outData[4]<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(planetIt<sp/>=<sp/>this-&gt;planetMsgData.begin();<sp/>planetIt<sp/>!=<sp/>this-&gt;planetMsgData.end();<sp/>planetIt++)</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;computeAlbedo(idx,<sp/>instIdx,<sp/>*planetIt,<sp/>albArray.at(idx),<sp/>outData);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpTot[0]<sp/>+=<sp/>outData[0];<sp/>tmpTot[1]<sp/>+=<sp/>outData[1];</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmpTot[2]<sp/>+=<sp/>outData[2];<sp/>tmpTot[3]<sp/>+=<sp/>outData[3];</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx++;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;albOutData.push_back(cArray2EigenMatrixXd(tmpTot,<sp/>4,<sp/>1));</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;writeMessages(CurrentSimNanos);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1a708c146efb9a01fb07ddf0b0a2e07efb" kindref="member">Albedo::Reset</ref>(uint64_t<sp/>CurrentSimNanos)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;modelNames.empty())<sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(Reset):<sp/>Albedo<sp/>model<sp/>was<sp/>not<sp/>set.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(Reset):<sp/>Planet<sp/>message<sp/>vector<sp/>(planetInMsgs)<sp/>is<sp/>empty.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_albedo_1a6d56e7e49179d450b778dd7fb7585512" kindref="member">sunPositionInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(Reset):<sp/>Sun<sp/>message<sp/>(sunPositionInMsg)<sp/>is<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!this-&gt;<ref refid="class_albedo_1a3bebe65b37ba5e9965a106f407652a7f" kindref="member">spacecraftStateInMsg</ref>.isLinked())<sp/>{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(Reset):<sp/>Spacecraft<sp/>message<sp/>(spacecraftStateInMsg)<sp/>is<sp/>not<sp/>linked.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;ALB.clear();</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gdlat.clear();<sp/>this-&gt;gdlon.clear();</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;latDiff.clear();<sp/>this-&gt;lonDiff.clear();</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.clear();<sp/><sp/>this-&gt;RP_planets.clear();</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;SpicePlanetStateMsgPayload&gt;::iterator<sp/>planetIt;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(planetIt<sp/>=<sp/>this-&gt;planetMsgData.begin();<sp/>planetIt<sp/>!=<sp/>this-&gt;planetMsgData.end();<sp/>planetIt++)</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>in<sp/>planet<sp/>information<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*planetIt<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.at(idx)();</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>plName(planetIt-&gt;PlanetName);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;getPlanetRadius(plName);<sp/><sp/></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;evaluateAlbedoModel(idx);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx++;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="276"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Albedo::readMessages()<sp/>{</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.size();<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;planetMsgData.at(c)<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.at(c)();</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m33Determinant(this-&gt;planetMsgData.at(c).J20002Pfix)<sp/>==<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m33SetIdentity(this-&gt;planetMsgData.at(c).J20002Pfix);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sunMsgData<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a6d56e7e49179d450b778dd7fb7585512" kindref="member">sunPositionInMsg</ref>();</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;scStatesMsgData<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a3bebe65b37ba5e9965a106f407652a7f" kindref="member">spacecraftStateInMsg</ref>();</highlight></codeline>
+<codeline lineno="295"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Albedo::writeMessages(uint64_t<sp/>CurrentSimNanos)<sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>AlbedoMsgPayload<sp/>localMessage;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;localMessage,<sp/>0x0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(localMessage));</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx=0;<sp/>idx&lt;this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.size();<sp/>idx++)<sp/>{</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>localMessage.albedoAtInstrumentMax<sp/>=<sp/>this-&gt;albOutData.at(idx)[0];</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>localMessage.albedoAtInstrument<sp/>=<sp/>this-&gt;albOutData.at(idx)[1];</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>localMessage.AfluxAtInstrumentMax<sp/>=<sp/>this-&gt;albOutData.at(idx)[2];</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>localMessage.AfluxAtInstrument<sp/>=<sp/>this-&gt;albOutData.at(idx)[3];</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_albedo_1a8e3233da0fb9b43d8730a365fa1006ac" kindref="member">albOutMsgs</ref>.at(idx)-&gt;write(&amp;localMessage,<sp/>this-&gt;moduleID,<sp/>CurrentSimNanos);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Albedo::getPlanetRadius(std::string<sp/>planetSpiceName)</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mercury&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_MERCURY<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;venus&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_VENUS<sp/>*<sp/>1000.0);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;earth&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_EARTH<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(RP_EARTH<sp/>*<sp/>1000.0);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;moon&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_MOON<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mars&quot;</highlight><highlight class="normal"><sp/>||<sp/>planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mars<sp/>barycenter&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_MARS<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(RP_MARS<sp/>*<sp/>1000.0);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;jupiter&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_JUPITER<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;saturn&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_SATURN<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;uranus&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_URANUS<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;neptune&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;REQ_planets.push_back(REQ_NEPTUNE<sp/>*<sp/>1000.0);<sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;RP_planets.push_back(-1.0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>[m]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(getPlanetRadius):<sp/>The<sp/>planet&apos;s<sp/>radius<sp/>cannot<sp/>be<sp/>obtained.<sp/>The<sp/>planet<sp/>(%s)<sp/>is<sp/>not<sp/>found.&quot;</highlight><highlight class="normal">,<sp/>planetSpiceName.c_str());</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1ac7117eb91b5554b06937930b9ed2f572" kindref="member">Albedo::getAlbedoAverage</ref>(std::string<sp/>planetSpiceName)</highlight></codeline>
+<codeline lineno="365"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mercury&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.119;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;venus&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.75;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;earth&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.29;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;moon&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.123;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mars&quot;</highlight><highlight class="normal"><sp/>||<sp/>planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;mars<sp/>barycenter&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.16;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;jupiter&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.34;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;saturn&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.34;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;uranus&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.29;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(planetSpiceName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;neptune&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ALB_avg<sp/>=<sp/>0.31;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ALB_avg;</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(getAlbedoAverage):<sp/>The<sp/>average<sp/>albedo<sp/>value<sp/>is<sp/>not<sp/>defined<sp/>for<sp/>the<sp/>specified<sp/>planet<sp/>(%s).&quot;</highlight><highlight class="normal">,<sp/>planetSpiceName.c_str());<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.;</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="397"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"></highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Albedo::evaluateAlbedoModel(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)</highlight></codeline>
+<codeline lineno="403"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;readFile<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>modelName<sp/>=<sp/>this-&gt;modelNames.at(idx);</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fileName<sp/>=<sp/>this-&gt;fileNames.at(idx);</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dataPath<sp/>=<sp/>this-&gt;dataPaths.at(idx);</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>numLat<sp/>=<sp/>this-&gt;numLats.at(idx);</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>numLon<sp/>=<sp/>this-&gt;numLons.at(idx);</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(modelName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;ALBEDO_AVG&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(numLat<sp/>&lt;<sp/>0.0)<sp/>{<sp/>numLat<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a4b4b26626a2dff713e0d9433d79b4750" kindref="member">defaultNumLat</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(numLon<sp/>&lt;<sp/>0.0)<sp/>{<sp/>numLon<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a2f4be16c91477defd6b2169ae08213f0" kindref="member">defaultNumLon</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>albAvg<sp/>=<sp/>this-&gt;ALB_avgs.at(idx);</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(albAvg<sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>the<sp/>albedo<sp/>average<sp/>automatically<sp/>based<sp/>on<sp/>the<sp/>planet&apos;s<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SpicePlanetStateMsgPayload<sp/>planetInfo;</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>planetInfo<sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a2f2b2e9533e8c0017f076ac3a0e35d0b" kindref="member">planetInMsgs</ref>.at(idx)();</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>plName(planetInfo.PlanetName);</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;ALB_avgs.at(idx)<sp/>=<sp/><ref refid="class_albedo_1ac7117eb91b5554b06937930b9ed2f572" kindref="member">getAlbedoAverage</ref>(plName);</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(modelName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;ALBEDO_DATA&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fileName<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(evaluateAlbedoModel):<sp/>Albedo<sp/>fileName<sp/>was<sp/>not<sp/>set.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;readFile<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileName<sp/>=<sp/>dataPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>fileName;</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(evaluateAlbedoModel):<sp/>Check<sp/>the<sp/>model<sp/>name<sp/>(%s).&quot;</highlight><highlight class="normal">,<sp/>modelName.c_str());</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;readFile)<sp/>{</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dataPath<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(evaluateAlbedoModel):<sp/>Albedo<sp/>data<sp/>path<sp/>was<sp/>not<sp/>set.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::ifstream<sp/>input(fileName);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!input)<sp/>{</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(evaluateAlbedoModel):<sp/>Albedo<sp/>module<sp/>is<sp/>unable<sp/>to<sp/>load<sp/>file<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>fileName.c_str());</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>line,<sp/>field;</highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::vector&lt;std::string&gt;<sp/>&gt;<sp/>array;<sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>2D<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>v;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>array<sp/>of<sp/>values<sp/>for<sp/>one<sp/>line<sp/>only</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(getline(input,<sp/>line))</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v.clear();</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>ss(line);</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(std::getline(ss,<sp/>field,<sp/></highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal">))<sp/><sp/></highlight><highlight class="comment">//<sp/>break<sp/>line<sp/>into<sp/>comma<sp/>delimitted<sp/>fields</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v.push_back(field);</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>array.push_back(v);</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numLat<sp/>=<sp/>(int)<sp/>array.size();</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numLon<sp/>=<sp/>(int)<sp/>array[0].size();</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!numLat<sp/>||<sp/>!numLon)<sp/>{</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_ERROR,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(evaluateAlbedoModel):<sp/>There<sp/>has<sp/>been<sp/>an<sp/>error<sp/>in<sp/>reading<sp/>albedo<sp/>data<sp/>from<sp/>(%s).&quot;</highlight><highlight class="normal">,<sp/>fileName.c_str());</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;ALB[idx]<sp/>=<sp/>std::vector<sp/>&lt;<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;<sp/>&gt;(numLat,<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;(numLon,<sp/>0.0));</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"></highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>numLat;<sp/>++i)</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>numLon;<sp/>++j)</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;ALB[idx][i][j]<sp/>=<sp/>atof(array[i][j].c_str());<sp/></highlight><highlight class="comment">//<sp/>Lat:<sp/>-90<sp/>to<sp/>+90<sp/>deg,<sp/>Lon:<sp/>-180<sp/>to<sp/>+180<sp/>deg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<sp/>this-&gt;ALB[idx]<sp/>=<sp/>std::vector<sp/>&lt;<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;<sp/>&gt;(1,<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;(1,<sp/>0.0));<sp/>}</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ilat<sp/>=<sp/>0.0;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ilon<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>halfLat<sp/>=<sp/>numLat<sp/>/<sp/>2;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>halfLon<sp/>=<sp/>numLon<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gdlat[idx]<sp/>=<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;(numLat,<sp/>0.0);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;gdlon[idx]<sp/>=<sp/>std::vector<sp/>&lt;<sp/>double<sp/>&gt;(numLon,<sp/>0.0);</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;latDiff[idx]<sp/>=<sp/>(180.0<sp/>/<sp/>numLat)<sp/>*<sp/>M_PI<sp/>/<sp/>180.0;</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;lonDiff[idx]<sp/>=<sp/>(360.0<sp/>/<sp/>numLon)<sp/>*<sp/>M_PI<sp/>/<sp/>180.0;</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ilat<sp/>=<sp/>-halfLat;<sp/>ilat<sp/>&lt;<sp/>halfLat;<sp/>ilat++)<sp/>{</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;gdlat[idx][(int64_t)<sp/>(ilat<sp/>+<sp/>halfLat)]<sp/>=<sp/>(ilat<sp/>+<sp/>0.5)<sp/>*<sp/>this-&gt;latDiff[idx];</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ilon<sp/>=<sp/>-halfLon;<sp/>ilon<sp/>&lt;<sp/>halfLon;<sp/>ilon++)<sp/>{</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;gdlon[idx][(int64_t)(ilon<sp/>+<sp/>halfLon)]<sp/>=<sp/>(ilon<sp/>+<sp/>0.5)<sp/>*<sp/>this-&gt;lonDiff[idx];</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLons.at(idx)<sp/>=<sp/>numLon;</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;numLats.at(idx)<sp/>=<sp/>numLat;</highlight></codeline>
+<codeline lineno="497"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"></highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Albedo::computeAlbedo(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>instIdx,<sp/>SpicePlanetStateMsgPayload<sp/>planetMsg,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>albArray,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>outData[])<sp/>{</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fov<sp/>=<sp/>this-&gt;fovs[instIdx];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="510"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>nHat_B<sp/>=<sp/>this-&gt;nHat_Bs[instIdx];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_IB_B<sp/>=<sp/>this-&gt;r_IB_Bs[instIdx];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_PN_N<sp/>=<sp/>Eigen::Vector3d(planetMsg.PositionVector);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_SN_N<sp/>=<sp/>Eigen::Vector3d(this-&gt;sunMsgData.PositionVector);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;r_BN_N<sp/>=<sp/>Eigen::Vector3d(this-&gt;scStatesMsgData.r_BN_N);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sigma_BN<sp/>=<sp/>Eigen::Vector3d(this-&gt;scStatesMsgData.sigma_BN);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/>Eigen::Matrix3d<sp/>dcm_BN<sp/>=<sp/>this-&gt;sigma_BN.toRotationMatrix().transpose();<sp/></highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;nHat_N<sp/>=<sp/>dcm_BN.transpose()<sp/>*<sp/>nHat_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_SP_N<sp/>=<sp/>this-&gt;r_SN_N<sp/>-<sp/>this-&gt;r_PN_N;</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_BP_N<sp/>=<sp/>this-&gt;r_BN_N<sp/>-<sp/>this-&gt;r_PN_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_IB_N<sp/>=<sp/>dcm_BN.transpose()<sp/>*<sp/>r_IB_B;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_IP_N<sp/>=<sp/>r_IB_N<sp/>+<sp/>r_BP_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;rHat_PI_N<sp/>=<sp/>-r_IP_N<sp/>/<sp/>r_IP_N.norm();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_SI_N<sp/>=<sp/>r_SP_N<sp/>-<sp/>r_IP_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t[3],<sp/>t_aut[3],<sp/>e,<sp/>RA_planet,<sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref>;</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;RP_planets.at(idx)<sp/>&gt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>e<sp/>=<sp/>sqrt(1<sp/>-<sp/>pow(this-&gt;RP_planets.at(idx),<sp/>2)<sp/>/<sp/>pow(this-&gt;REQ_planets.at(idx),<sp/>2));</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t[0]<sp/>=<sp/>pow(this-&gt;REQ_planets.at(idx),<sp/>2)<sp/>*<sp/>0.5;</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t[1]<sp/>=<sp/>(1<sp/>-<sp/>e<sp/>*<sp/>e)<sp/>/<sp/>2.0<sp/>/<sp/>e;</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t[2]<sp/>=<sp/>log((1<sp/>+<sp/>e)<sp/>/<sp/>(1<sp/>-<sp/>e));</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RA_planet<sp/>=<sp/>sqrt(t[0]<sp/>*<sp/>(1<sp/>+<sp/>t[1]<sp/>*<sp/>t[2]));<sp/><sp/></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t_aut[0]<sp/>=<sp/>pow(e,<sp/>2)<sp/>/<sp/>3.0<sp/>+<sp/>31.0<sp/>*<sp/>pow(e,<sp/>4)<sp/>/<sp/>180.0<sp/>+<sp/>59.0<sp/>*<sp/>pow(e,<sp/>6)<sp/>/<sp/>560.0;</highlight></codeline>
+<codeline lineno="537"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t_aut[1]<sp/>=<sp/>17.0<sp/>*<sp/>pow(e,<sp/>4)<sp/>/<sp/>360.0<sp/>+<sp/>61.0<sp/>*<sp/>pow(e,<sp/>6)<sp/>/<sp/>1260.0;</highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t_aut[2]<sp/>=<sp/>383.0<sp/>*<sp/>pow(e,<sp/>6)<sp/>/<sp/>45360.0;</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RA_planet<sp/>=<sp/>this-&gt;REQ_planets.at(idx);</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v3SetZero(t_aut);</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>LLA_B<sp/>=<sp/>PCI2LLA(r_BP_N,<sp/>planetMsg.J20002Pfix,<sp/>RA_planet);</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;scLat<sp/>=<sp/>LLA_B[0]<sp/>*<sp/>180<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;scLon<sp/>=<sp/>LLA_B[1]<sp/>*<sp/>180<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>alti_I<sp/>=<sp/>r_IP_N.norm()<sp/>-<sp/>RA_planet;</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>zeross<sp/>if<sp/>the<sp/>rate<sp/>of<sp/>the<sp/>instrument&apos;s<sp/>altitude</highlight></codeline>
+<codeline lineno="551"><highlight class="comment"><sp/><sp/><sp/><sp/>to<sp/>the<sp/>planet&apos;s<sp/>radius<sp/>exceeds<sp/>the<sp/>specified<sp/>limit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_albedo_1a726d96056905eba81732e6de5f5984b5" kindref="member">altitudeRateLimit</ref><sp/>&gt;=0<sp/>&amp;&amp;<sp/>alti_I<sp/>/<sp/>RA_planet<sp/>&gt;<sp/>this-&gt;<ref refid="class_albedo_1a726d96056905eba81732e6de5f5984b5" kindref="member">altitudeRateLimit</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a4af0fca78fd859acaa58f66704ed4c0f" kindref="member">bskLogger</ref>.bskLog(BSK_WARNING,<sp/></highlight><highlight class="stringliteral">&quot;Albedo<sp/>Module<sp/>(computeAlbedo):<sp/>The<sp/>rate<sp/>(altitude<sp/>to<sp/>planet&apos;s<sp/>radii)<sp/>limit<sp/>is<sp/>exceeded<sp/>for<sp/>the<sp/>planet<sp/>(%s)<sp/>and<sp/>albedo<sp/>set<sp/>to<sp/>zero.&quot;</highlight><highlight class="normal">,<sp/>planetMsg.PlanetName);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[0]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[3]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>gdlla;</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>r_dAP_N,<sp/>r_SdA_N,<sp/>r_IdA_N;</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Vector3d<sp/>rHat_dAP_N,<sp/>sHat_SdA_N,<sp/>rHat_IdA_N;</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ilat<sp/>=<sp/>0,<sp/>ilon<sp/>=<sp/>0,<sp/>IIdx<sp/>=<sp/>0;<sp/><sp/></highlight><highlight class="comment">//<sp/>index</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lon1<sp/>=<sp/>0.0,<sp/>lon2<sp/>=<sp/>0.0,<sp/>lat1<sp/>=<sp/>0.0,<sp/>lat2<sp/>=<sp/>0.0,<sp/>tempmax<sp/>=<sp/>0.0,<sp/>tempfov<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f1<sp/>=<sp/>0.0,<sp/>f2<sp/>=<sp/>0.0,<sp/>f3<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dArea<sp/>=<sp/>0.0,<sp/>alb_I<sp/>=<sp/>0.0,<sp/>alb_Imax<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>double<sp/>&gt;<sp/>albLon1,<sp/>albLat1;</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ilon<sp/>=<sp/>0;<sp/>ilon<sp/>&lt;<sp/>this-&gt;numLons.at(idx);<sp/>ilon++)<sp/>{</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lon1<sp/>=<sp/>this-&gt;gdlon[idx][ilon]<sp/>+<sp/>0.5<sp/>*<sp/>this-&gt;lonDiff[idx];</highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lon2<sp/>=<sp/>this-&gt;gdlon[idx][ilon]<sp/>-<sp/>0.5<sp/>*<sp/>this-&gt;lonDiff[idx];</highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ilat<sp/>=<sp/>0;<sp/>ilat<sp/>&lt;<sp/>this-&gt;numLats.at(idx);<sp/>ilat++)<sp/>{</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lat1<sp/>=<sp/>this-&gt;gdlat[idx][ilat]<sp/>+<sp/>0.5<sp/>*<sp/>this-&gt;latDiff[idx];</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lat2<sp/>=<sp/>this-&gt;gdlat[idx][ilat]<sp/>-<sp/>0.5<sp/>*<sp/>this-&gt;latDiff[idx];</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;RP_planets.at(idx)<sp/>&gt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lat1<sp/>-=<sp/>t_aut[0]<sp/>*<sp/>sin(2.0<sp/>*<sp/>lat1)<sp/>-<sp/>t_aut[1]<sp/>*<sp/>sin(4.0<sp/>*<sp/>lat1)<sp/>+<sp/>t_aut[2]<sp/>*<sp/>sin(6.0<sp/>*<sp/>lat1);</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lat2<sp/>-=<sp/>t_aut[0]<sp/>*<sp/>sin(2.0<sp/>*<sp/>lat2)<sp/>-<sp/>t_aut[1]<sp/>*<sp/>sin(4.0<sp/>*<sp/>lat2)<sp/>+<sp/>t_aut[2]<sp/>*<sp/>sin(6.0<sp/>*<sp/>lat2);</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gdlla[0]<sp/>=<sp/>this-&gt;gdlat[idx][ilat];<sp/>gdlla[1]<sp/>=<sp/>this-&gt;gdlon[idx][ilon];<sp/>gdlla[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="583"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r_dAP_N<sp/>=<sp/>LLA2PCI(gdlla,<sp/>planetMsg.J20002Pfix,<sp/>RA_planet);<sp/></highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r_SdA_N<sp/>=<sp/>r_SP_N<sp/>-<sp/>r_dAP_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r_IdA_N<sp/>=<sp/>r_IP_N<sp/>-<sp/>r_dAP_N;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rHat_dAP_N<sp/>=<sp/>r_dAP_N<sp/>/<sp/>r_dAP_N.norm();<sp/></highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sHat_SdA_N<sp/>=<sp/>r_SdA_N<sp/>/<sp/>r_SdA_N.norm();<sp/></highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rHat_IdA_N<sp/>=<sp/>r_IdA_N<sp/>/<sp/>r_IdA_N.norm();<sp/></highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f1<sp/>=<sp/>rHat_dAP_N.dot(sHat_SdA_N);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f2<sp/>=<sp/>rHat_dAP_N.dot(rHat_IdA_N);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f3<sp/>=<sp/>this-&gt;nHat_N.dot(-rHat_IdA_N);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f1<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>f2<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>this-&gt;<ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref>;</highlight></codeline>
+<codeline lineno="598"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_albedo_1a76c79dbbac60620d3d657f0020139f54" kindref="member">eclipseCase</ref>)<sp/>{<sp/>shadowFactorAtdA<sp/>=<sp/>computeEclipseAtdA(RA_planet,<sp/>r_dAP_N,<sp/>r_SP_N);<sp/>}</highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dArea<sp/>=<sp/>(fabs(lon1<sp/>-<sp/>lon2)<sp/>*<sp/>fabs(sin(lat1)<sp/>-<sp/>sin(lat2))<sp/>*<sp/>pow(r_dAP_N.norm(),<sp/>2));</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempmax<sp/>=<sp/>f1<sp/>*<sp/>f2<sp/>*<sp/>dArea<sp/>/<sp/>(pow(r_IdA_N.norm(),<sp/>2)<sp/>*<sp/>M_PI);</highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>(this-&gt;ALB_data<sp/>&gt;=<sp/>0.0)<sp/>{<sp/>tempmax<sp/>=<sp/>this-&gt;ALB_data<sp/>*<sp/>tempmax;<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="604"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(albArray<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempmax<sp/>=<sp/>this-&gt;ALB_avgs.at(idx)<sp/>*<sp/>tempmax;</highlight></codeline>
+<codeline lineno="606"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="607"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="608"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempmax<sp/>=<sp/>this-&gt;ALB[idx][ilat][ilon]<sp/>*<sp/>tempmax;</highlight></codeline>
+<codeline lineno="609"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="610"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>alb_Imax<sp/>=<sp/>alb_Imax<sp/>+<sp/>tempmax<sp/>*<sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref>;</highlight></codeline>
+<codeline lineno="611"><highlight class="normal"></highlight></codeline>
+<codeline lineno="612"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f3<sp/>&gt;=<sp/>cos(fov))<sp/>{</highlight></codeline>
+<codeline lineno="615"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempfov<sp/>=<sp/>f1<sp/>*<sp/>f2<sp/>*<sp/>f3<sp/>*<sp/>dArea<sp/>/<sp/>(pow(r_IdA_N.norm(),<sp/>2)<sp/>*<sp/>M_PI);</highlight></codeline>
+<codeline lineno="616"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(albArray<sp/>==<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="617"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempfov<sp/>=<sp/>this-&gt;ALB_avgs.at(idx)<sp/>*<sp/>tempfov;</highlight></codeline>
+<codeline lineno="618"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="619"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="620"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tempfov<sp/>=<sp/>this-&gt;ALB[idx][ilat][ilon]<sp/>*<sp/>tempfov;</highlight></codeline>
+<codeline lineno="621"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="622"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>alb_I<sp/>=<sp/>alb_I<sp/>+<sp/>tempfov<sp/>*<sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref>;</highlight></codeline>
+<codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>albLon1.push_back(this-&gt;gdlon[idx][ilon]<sp/>*<sp/>180<sp/>/<sp/>M_PI);</highlight></codeline>
+<codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>albLat1.push_back(this-&gt;gdlat[idx][ilat]<sp/>*<sp/>180<sp/>/<sp/>M_PI);</highlight></codeline>
+<codeline lineno="625"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>IIdx++;</highlight></codeline>
+<codeline lineno="626"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="627"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="628"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="629"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="631"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>num1<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">[IIdx];</highlight></codeline>
+<codeline lineno="632"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>num2<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">[IIdx];</highlight></codeline>
+<codeline lineno="633"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>IIdx;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="634"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>num1[i]<sp/>=<sp/>albLon1[i];</highlight></codeline>
+<codeline lineno="635"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>num2[i]<sp/>=<sp/>albLat1[i];</highlight></codeline>
+<codeline lineno="636"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="637"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;albLon<sp/>=<sp/>cArray2EigenMatrixXd(num1,<sp/>1,<sp/>IIdx);</highlight></codeline>
+<codeline lineno="638"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;albLat<sp/>=<sp/>cArray2EigenMatrixXd(num2,<sp/>1,<sp/>IIdx);</highlight></codeline>
+<codeline lineno="640"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>albedoAtInstrumentMax<sp/>=<sp/>alb_Imax;</highlight></codeline>
+<codeline lineno="641"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>albedoAtInstrument<sp/>=<sp/>alb_I;</highlight></codeline>
+<codeline lineno="643"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;SfluxAtInstrument<sp/>=<sp/>SOLAR_FLUX_EARTH<sp/>*<sp/>pow(AU<sp/>*<sp/>1000,<sp/>2)<sp/>/<sp/>pow((r_SI_N.norm()),<sp/>2);</highlight></codeline>
+<codeline lineno="645"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>AfluxAtInstrumentMax<sp/>=<sp/>(this-&gt;SfluxAtInstrument)<sp/>*<sp/>alb_Imax;</highlight></codeline>
+<codeline lineno="646"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>AfluxAtInstrument<sp/>=<sp/>(this-&gt;SfluxAtInstrument)<sp/>*<sp/>alb_I;</highlight></codeline>
+<codeline lineno="647"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[0]<sp/>=<sp/>(albedoAtInstrumentMax);</highlight></codeline>
+<codeline lineno="648"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[1]<sp/>=<sp/>(albedoAtInstrument);</highlight></codeline>
+<codeline lineno="649"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[2]<sp/>=<sp/>(AfluxAtInstrumentMax);</highlight></codeline>
+<codeline lineno="650"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>outData[3]<sp/>=<sp/>(AfluxAtInstrument);</highlight></codeline>
+<codeline lineno="651"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="652"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="653"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="654"><highlight class="normal"></highlight></codeline>
+<codeline lineno="658"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Albedo::computeEclipseAtdA(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Rplanet,<sp/>Eigen::Vector3d<sp/>r_dAP_N,<sp/>Eigen::Vector3d<sp/>r_SP_N)</highlight></codeline>
+<codeline lineno="659"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="662"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>r_SdA_N<sp/>=<sp/>r_SP_N<sp/>-<sp/>r_dAP_N;<sp/></highlight></codeline>
+<codeline lineno="663"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>s<sp/>=<sp/>r_dAP_N.norm();</highlight></codeline>
+<codeline lineno="664"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>f_1<sp/>=<sp/>safeAsin((REQ_SUN<sp/>*<sp/>1000<sp/>+<sp/>Rplanet)<sp/>/<sp/>r_SP_N.norm());</highlight></codeline>
+<codeline lineno="665"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>f_2<sp/>=<sp/>safeAsin((REQ_SUN<sp/>*<sp/>1000<sp/>-<sp/>Rplanet)<sp/>/<sp/>r_SP_N.norm());</highlight></codeline>
+<codeline lineno="666"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>s_0<sp/>=<sp/>(-r_dAP_N.dot(r_SP_N))<sp/>/<sp/>r_SP_N.norm();</highlight></codeline>
+<codeline lineno="667"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>c_1<sp/>=<sp/>s_0<sp/>+<sp/>Rplanet<sp/>/<sp/>sin(f_1);</highlight></codeline>
+<codeline lineno="668"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>c_2<sp/>=<sp/>s_0<sp/>-<sp/>Rplanet<sp/>/<sp/>sin(f_2);</highlight></codeline>
+<codeline lineno="669"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>l<sp/>=<sp/>sqrt(s<sp/>*<sp/>s<sp/>-<sp/>s_0<sp/>*<sp/>s_0);</highlight></codeline>
+<codeline lineno="670"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>l_1<sp/>=<sp/>c_1<sp/>*<sp/>tan(f_1);</highlight></codeline>
+<codeline lineno="671"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>l_2<sp/>=<sp/>c_2<sp/>*<sp/>tan(f_2);</highlight></codeline>
+<codeline lineno="672"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>area<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="673"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>1.0;<sp/></highlight></codeline>
+<codeline lineno="674"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>safeAsin(REQ_SUN<sp/>*<sp/>1000<sp/>/<sp/>r_SdA_N.norm());<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="675"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>safeAsin(Rplanet<sp/>/<sp/>r_dAP_N.norm());<sp/></highlight></codeline>
+<codeline lineno="676"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>safeAcos((-r_dAP_N.dot(r_SdA_N))<sp/>/<sp/>(r_dAP_N.norm()<sp/>*<sp/>r_SdA_N.norm()));</highlight></codeline>
+<codeline lineno="677"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(l)<sp/>&lt;<sp/>fabs(l_2)<sp/>||<sp/>fabs(l)<sp/>&lt;<sp/>fabs(l_1))</highlight></codeline>
+<codeline lineno="678"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="679"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>order<sp/>of<sp/>the<sp/>conditionals<sp/>is<sp/>important.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="680"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>particular<sp/>(c<sp/>&lt;<sp/>a<sp/>+<sp/>b)<sp/>must<sp/>check<sp/>last<sp/>to<sp/>avoid<sp/>testing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="681"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>with<sp/>implausible<sp/>a,<sp/>b<sp/>and<sp/>c<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="682"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>b<sp/>-<sp/>a)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>total<sp/>eclipse,<sp/>implying<sp/>a<sp/>&lt;<sp/>b</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="683"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="684"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="685"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>a<sp/>-<sp/>b)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>partial<sp/>maximum<sp/>eclipse,<sp/>implying<sp/>a<sp/>&gt;<sp/>b</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="686"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>areaSun<sp/>=<sp/>M_PI<sp/>*<sp/>a<sp/>*<sp/>a;</highlight></codeline>
+<codeline lineno="687"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>areaBody<sp/>=<sp/>M_PI<sp/>*<sp/>b<sp/>*<sp/>b;</highlight></codeline>
+<codeline lineno="688"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>area<sp/>=<sp/>areaSun<sp/>-<sp/>areaBody;</highlight></codeline>
+<codeline lineno="689"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>1<sp/>-<sp/>area<sp/>/<sp/>(M_PI<sp/>*<sp/>a<sp/>*<sp/>a);</highlight></codeline>
+<codeline lineno="690"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="691"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>a<sp/>+<sp/>b)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>partial<sp/>eclipse</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="692"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>(c<sp/>*<sp/>c<sp/>+<sp/>a<sp/>*<sp/>a<sp/>-<sp/>b<sp/>*<sp/>b)<sp/>/<sp/>(2<sp/>*<sp/>c);</highlight></codeline>
+<codeline lineno="693"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/>=<sp/>sqrt(a<sp/>*<sp/>a<sp/>-<sp/>x<sp/>*<sp/>x);</highlight></codeline>
+<codeline lineno="694"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>area<sp/>=<sp/>a<sp/>*<sp/>a<sp/>*<sp/>safeAcos(x<sp/>/<sp/>a)<sp/>+<sp/>b<sp/>*<sp/>b<sp/>*<sp/>safeAcos((c<sp/>-<sp/>x)<sp/>/<sp/>b)<sp/>-<sp/>c<sp/>*<sp/>y;</highlight></codeline>
+<codeline lineno="695"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>1<sp/>-<sp/>area<sp/>/<sp/>(M_PI<sp/>*<sp/>a<sp/>*<sp/>a);</highlight></codeline>
+<codeline lineno="696"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="697"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="698"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>&lt;<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="699"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="700"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="701"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>&gt;<sp/>1.0)<sp/>{</highlight></codeline>
+<codeline lineno="702"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref><sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="703"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="704"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_albedo_1a267a6dbab1697fdba531ae63f5883a09" kindref="member">shadowFactorAtdA</ref>;</highlight></codeline>
+<codeline lineno="705"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/environment/albedo/albedo.cpp"/>
+  </compounddef>
+</doxygen>

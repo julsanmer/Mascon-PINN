@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classsv_integrator_runge_kutta" kind="class" language="C++" prot="public">
+    <compoundname>svIntegratorRungeKutta</compoundname>
+    <basecompoundref refid="class_state_vec_integrator" prot="public" virt="non-virtual">StateVecIntegrator</basecompoundref>
+    <derivedcompoundref refid="classsv_integrator_adaptive_runge_kutta" prot="public" virt="non-virtual">svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;</derivedcompoundref>
+    <includes refid="sv_integrator_runge_kutta_8h" local="no">svIntegratorRungeKutta.h</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>numberStages</declname>
+        <defname>numberStages</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" prot="protected" static="no">
+        <type>std::array&lt; <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref>, numberStages &gt;</type>
+        <definition>using svIntegratorRungeKutta&lt; numberStages &gt;::KCoefficientsValues =  std::array&lt;ExtendedStateVector, numberStages&gt;</definition>
+        <argsstring></argsstring>
+        <name>KCoefficientsValues</name>
+        <qualifiedname>svIntegratorRungeKutta::KCoefficientsValues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>For an s-stage RK method, s number of &quot;k&quot; coefficients are needed, where each &quot;k&quot; coefficient has the same size as the state. This type allows us to store these &quot;k&quot; coefficients. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="94" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsv_integrator_runge_kutta_1a763727e6cdcf680e858e9581f697e80d" prot="protected" static="no" mutable="no">
+        <type>const std::unique_ptr&lt; <ref refid="struct_r_k_coefficients" kindref="compound">RKCoefficients</ref>&lt; numberStages &gt; &gt;</type>
+        <definition>const std::unique_ptr&lt;RKCoefficients&lt;numberStages&gt; &gt; svIntegratorRungeKutta&lt; numberStages &gt;::coefficients</definition>
+        <argsstring></argsstring>
+        <name>coefficients</name>
+        <qualifiedname>svIntegratorRungeKutta::coefficients</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Coefficients to be used in the method </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="124" column="27" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1a90234d943b842610076074c81be7277b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>svIntegratorRungeKutta&lt; numberStages &gt;::svIntegratorRungeKutta</definition>
+        <argsstring>(DynamicObject *dynIn, const RKCoefficients&lt; numberStages &gt; &amp;coefficients)</argsstring>
+        <name>svIntegratorRungeKutta</name>
+        <qualifiedname>svIntegratorRungeKutta::svIntegratorRungeKutta</qualifiedname>
+        <param>
+          <type><ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> *</type>
+          <declname>dynIn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="struct_r_k_coefficients" kindref="compound">RKCoefficients</ref>&lt; numberStages &gt; &amp;</type>
+          <declname>coefficients</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates an explicit RK integrator for the given <ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> using the passed coefficients. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="75" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="128" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1a299b2b5e9f03976644e00d7163c3b474" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void svIntegratorRungeKutta&lt; numberStages &gt;::integrate</definition>
+        <argsstring>(double currentTime, double timeStep) override</argsstring>
+        <name>integrate</name>
+        <qualifiedname>svIntegratorRungeKutta::integrate</qualifiedname>
+        <reimplements refid="class_state_vec_integrator_1a2a89bf5fec4255af0b0c4297c9b1bb81">integrate</reimplements>
+        <reimplementedby refid="classsv_integrator_adaptive_runge_kutta_1ac54e8dd56af98026909ca9c4afd3be58">integrate</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Performs the integration of the associated dynamic objects up to time currentTime+timeStep </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="79" column="18" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="145" bodyend="151"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1aa7621899fdc1b4509f8210d10154f25b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>svIntegratorRungeKutta&lt; numberStages &gt;::svIntegratorRungeKutta</definition>
+        <argsstring>(DynamicObject *dynIn, std::unique_ptr&lt; RKCoefficients&lt; numberStages &gt; &gt; &amp;&amp;coefficients)</argsstring>
+        <name>svIntegratorRungeKutta</name>
+        <qualifiedname>svIntegratorRungeKutta::svIntegratorRungeKutta</qualifiedname>
+        <param>
+          <type><ref refid="class_dynamic_object" kindref="compound">DynamicObject</ref> *</type>
+          <declname>dynIn</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; <ref refid="struct_r_k_coefficients" kindref="compound">RKCoefficients</ref>&lt; numberStages &gt; &gt; &amp;&amp;</type>
+          <declname>coefficients</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be used by subclasses to support passing coefficients that are subclasses of <ref refid="struct_r_k_coefficients" kindref="compound">RKCoefficients</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="86" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="137" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1a35e64be6c861273e448df8b42440aaca" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector svIntegratorRungeKutta&lt; numberStages &gt;::computeDerivatives</definition>
+        <argsstring>(double time, double timeStep, const ExtendedStateVector &amp;states)</argsstring>
+        <name>computeDerivatives</name>
+        <qualifiedname>svIntegratorRungeKutta::computeDerivatives</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> &amp;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the derivatives of every state given a time and current states.</para>
+<para>Internally, this sets the states on the dynamic objects and calls the equationsOfMotion methods. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="103" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="155" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1a7cd97c7a3ab60f334e686b13360cb7dd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" kindref="member">KCoefficientsValues</ref></type>
+        <definition>auto svIntegratorRungeKutta&lt; numberStages &gt;::computeKCoefficients</definition>
+        <argsstring>(double currentTime, double timeStep, const ExtendedStateVector &amp;currentStates)</argsstring>
+        <name>computeKCoefficients</name>
+        <qualifiedname>svIntegratorRungeKutta::computeKCoefficients</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>currentTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> &amp;</type>
+          <declname>currentStates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the &quot;k&quot; coefficients of the Runge-Kutta method for a time and state. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="109" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="169" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classsv_integrator_runge_kutta_1a6124dcfe390c304e7dea78da2f329014" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref></type>
+        <definition>ExtendedStateVector svIntegratorRungeKutta&lt; numberStages &gt;::computeNextState</definition>
+        <argsstring>(double timeStep, const ExtendedStateVector &amp;currentStates, const KCoefficientsValues &amp;kVectors)</argsstring>
+        <name>computeNextState</name>
+        <qualifiedname>svIntegratorRungeKutta::computeNextState</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>timeStep</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_extended_state_vector" kindref="compound">ExtendedStateVector</ref> &amp;</type>
+          <declname>currentStates</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" kindref="member">KCoefficientsValues</ref> &amp;</type>
+          <declname>kVectors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds the &quot;k&quot; coefficients, weighted by the &quot;c&quot; coefficients to find the state after the time step. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="117" column="25" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="203" bodyend="214"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classsv_integrator_runge_kutta" kindref="compound">svIntegratorRungeKutta</ref> class implements a state integrator based on the family of explicit Runge-Kutta numerical integrators.</para>
+<para>A Runge-Kutta method is defined by its stage number and its coefficients. The stage number drives the computational cost of the method: an RK method of stage 4 requires 4 dynamics evaluations (FSAL optimizations are not done).</para>
+<para>Note that the order of the integrator is lower or equal to the stage number. A RK method of order 5, for example, requires 7 stages. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>StateVecIntegrator</label>
+        <link refid="class_state_vec_integrator"/>
+      </node>
+      <node id="3">
+        <label>svIntegratorAdaptiveRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_adaptive_runge_kutta"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>svIntegratorRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_runge_kutta"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>StateVecIntegrator</label>
+        <link refid="class_state_vec_integrator"/>
+      </node>
+      <node id="1">
+        <label>svIntegratorRungeKutta&lt; numberStages &gt;</label>
+        <link refid="classsv_integrator_runge_kutta"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" line="69" column="12" bodyfile="/Users/julio/Desktop/basilisk/src/simulation/dynamics/_GeneralModuleFiles/svIntegratorRungeKutta.h" bodystart="69" bodyend="125"/>
+    <listofallmembers>
+      <member refid="classsv_integrator_runge_kutta_1a763727e6cdcf680e858e9581f697e80d" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>coefficients</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a35e64be6c861273e448df8b42440aaca" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>computeDerivatives</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a7cd97c7a3ab60f334e686b13360cb7dd" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>computeKCoefficients</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a6124dcfe390c304e7dea78da2f329014" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>computeNextState</name></member>
+      <member refid="class_state_vec_integrator_1a20cd61469ea25ab82542bc11013e84a9" prot="public" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>dynPtrs</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a299b2b5e9f03976644e00d7163c3b474" prot="public" virt="virtual"><scope>svIntegratorRungeKutta</scope><name>integrate</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a671c7762e5b7b4537fe01286b3bbee02" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>KCoefficientsValues</name></member>
+      <member refid="class_state_vec_integrator_1a2e71bdc71d4d62fd8f7661ce3c1484df" prot="public" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>StateVecIntegrator</name></member>
+      <member refid="classsv_integrator_runge_kutta_1a90234d943b842610076074c81be7277b" prot="public" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>svIntegratorRungeKutta</name></member>
+      <member refid="classsv_integrator_runge_kutta_1aa7621899fdc1b4509f8210d10154f25b" prot="protected" virt="non-virtual"><scope>svIntegratorRungeKutta</scope><name>svIntegratorRungeKutta</name></member>
+      <member refid="class_state_vec_integrator_1a74d21f7c5bd9fc35b445a82e11587a80" prot="public" virt="virtual"><scope>svIntegratorRungeKutta</scope><name>~StateVecIntegrator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

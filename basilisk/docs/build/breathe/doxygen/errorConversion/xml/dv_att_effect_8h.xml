@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dv_att_effect_8h" kind="file" language="C++">
+    <compoundname>dvAttEffect.h</compoundname>
+    <includes local="yes">cMsgCInterface/CmdTorqueBodyMsg_C.h</includes>
+    <includes local="yes">cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</includes>
+    <includes local="yes">fswAlgorithms/effectorInterfaces/_GeneralModuleFiles/thrustGroupData.h</includes>
+    <includes local="yes">architecture/utilities/bskLogging.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includedby refid="dv_att_effect_8c" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c</includedby>
+    <includedby refid="sun_safe_a_c_s_8h" local="yes">/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/sunSafeACS.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h</label>
+        <link refid="dv_att_effect_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>architecture/utilities/bskLogging.h</label>
+      </node>
+      <node id="2">
+        <label>cMsgCInterface/CmdTorqueBodyMsg_C.h</label>
+      </node>
+      <node id="3">
+        <label>cMsgCInterface/THRArrayOnTimeCmdMsg_C.h</label>
+      </node>
+      <node id="4">
+        <label>fswAlgorithms/effectorInterfaces/_GeneralModuleFiles/thrustGroupData.h</label>
+      </node>
+      <node id="6">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>stdlib.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h</label>
+        <link refid="dv_att_effect_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/sunSafeACS.h</label>
+        <link refid="sun_safe_a_c_s_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structeff_pairs" prot="public">effPairs</innerclass>
+    <innerclass refid="structdv_att_effect_config" prot="public">dvAttEffectConfig</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="dv_att_effect_8h_1a850f9cbcabb599a9a237ecb4cf3a1202" prot="public" static="no">
+        <name>MAX_NUM_THR_GROUPS</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="34" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dv_att_effect_8h_1a1fd54c4395a3b829f2496236f22e3f69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelfInit_dvAttEffect</definition>
+        <argsstring>(dvAttEffectConfig *configData, int64_t moduleID)</argsstring>
+        <name>SelfInit_dvAttEffect</name>
+        <param>
+          <type><ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method initializes the configData for the sun safe ACS control. It checks to ensure that the inputs are sane and then creates the output message <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the sun safe control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Loop over number of thruster blocks and create output messages</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c" bodystart="33" bodyend="44" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" declline="57" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_att_effect_8h_1a0cc133f5f434b1e007cebf692c82bbdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Update_dvAttEffect</definition>
+        <argsstring>(dvAttEffectConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Update_dvAttEffect</name>
+        <param>
+          <type><ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method takes the estimated body-observed sun vector and computes the current attitude/attitude rate errors to pass on to control. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the sun safe ACS control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para><itemizedlist>
+<listitem><para>Read the input requested torque from the feedback controller</para>
+</listitem></itemizedlist>
+</para>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="58" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c" bodystart="75" bodyend="91" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" declline="58" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_att_effect_8h_1ad41bc91e780ab430ad3054acd6070054" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reset_dvAttEffect</definition>
+        <argsstring>(dvAttEffectConfig *configData, uint64_t callTime, int64_t moduleID)</argsstring>
+        <name>Reset_dvAttEffect</name>
+        <param>
+          <type><ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref> *</type>
+          <declname>configData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This method resets the module. <simplesect kind="return"><para>void </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The configuration data associated with the sun safe ACS control </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The clock time at which the function was called (nanoseconds) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>moduleID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID associated with the configData </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="60" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c" bodystart="52" bodyend="66" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" declline="60" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_att_effect_8h_1a1148e77204d8341eb5965f3a1f9b2bbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void effectorVSort</definition>
+        <argsstring>(effPairs *Input, effPairs *Output, size_t dim)</argsstring>
+        <name>effectorVSort</name>
+        <param>
+          <type><ref refid="structeff_pairs" kindref="compound">effPairs</ref> *</type>
+          <declname>Input</declname>
+        </param>
+        <param>
+          <type><ref refid="structeff_pairs" kindref="compound">effPairs</ref> *</type>
+          <declname>Output</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="62" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c" bodystart="134" bodyend="157" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" declline="62" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="dv_att_effect_8h_1ac01554e4a5fb733e7252e83067f12e90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void computeSingleThrustBlock</definition>
+        <argsstring>(ThrustGroupData *thrData, uint64_t callTime, CmdTorqueBodyMsgPayload *contrReq, int64_t moduleID)</argsstring>
+        <name>computeSingleThrustBlock</name>
+        <param>
+          <type>ThrustGroupData *</type>
+          <declname>thrData</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>callTime</declname>
+        </param>
+        <param>
+          <type>CmdTorqueBodyMsgPayload *</type>
+          <declname>contrReq</declname>
+        </param>
+        <param>
+          <type>int64_t</type>
+          <declname>moduleID</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" line="63" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.c" bodystart="93" bodyend="132" declfile="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h" declline="63" declcolumn="10"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>Copyright<sp/>(c)<sp/>2016,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_DV_ATT_EFFECT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_DV_ATT_EFFECT_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/CmdTorqueBodyMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cMsgCInterface/THRArrayOnTimeCmdMsg_C.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fswAlgorithms/effectorInterfaces/_GeneralModuleFiles/thrustGroupData.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;architecture/utilities/bskLogging.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NUM_THR_GROUPS<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structeff_pairs" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="structeff_pairs_1a8e8cbdeb2d981a678104506eeb48bb34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structeff_pairs_1a8e8cbdeb2d981a678104506eeb48bb34" kindref="member">onTime</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structeff_pairs_1acb82643b5822636face02e38d27b7011" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structeff_pairs_1acb82643b5822636face02e38d27b7011" kindref="member">thrustIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}<ref refid="structeff_pairs" kindref="compound">effPairs</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structdv_att_effect_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46" refid="structdv_att_effect_config_1ad4425734ee2155ef761b447d8d442879" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>CmdTorqueBodyMsg_C<sp/><ref refid="structdv_att_effect_config_1ad4425734ee2155ef761b447d8d442879" kindref="member">cmdTorqueBodyInMsg</ref>;<sp/></highlight></codeline>
+<codeline lineno="48" refid="structdv_att_effect_config_1a1a0f5b2812180960f7ac8e13cd83d8c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structdv_att_effect_config_1a1a0f5b2812180960f7ac8e13cd83d8c7" kindref="member">numThrGroups</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="structdv_att_effect_config_1a97f1a9a1bb94dedac641768fb0f6eedb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ThrustGroupData<sp/>thrGroups[MAX_NUM_THR_GROUPS];<sp/></highlight></codeline>
+<codeline lineno="50" refid="structdv_att_effect_config_1a3cb35879739754a1eda8549771dec163" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BSKLogger<sp/>*<ref refid="structdv_att_effect_config_1a3cb35879739754a1eda8549771dec163" kindref="member">bskLogger</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}<ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SelfInit_dvAttEffect(<ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref><sp/>*configData,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update_dvAttEffect(<ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset_dvAttEffect(<ref refid="structdv_att_effect_config" kindref="compound">dvAttEffectConfig</ref><sp/>*configData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>effectorVSort(<ref refid="structeff_pairs" kindref="compound">effPairs</ref><sp/>*Input,<sp/><ref refid="structeff_pairs" kindref="compound">effPairs</ref><sp/>*Output,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>dim);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>computeSingleThrustBlock(ThrustGroupData<sp/>*thrData,<sp/>uint64_t<sp/>callTime,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CmdTorqueBodyMsgPayload<sp/>*contrReq,<sp/>int64_t<sp/>moduleID);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/fswAlgorithms/effectorInterfaces/errorConversion/dvAttEffect.h"/>
+  </compounddef>
+</doxygen>

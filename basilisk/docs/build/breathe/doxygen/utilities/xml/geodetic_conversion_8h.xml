@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="geodetic_conversion_8h" kind="file" language="C++">
+    <compoundname>geodeticConversion.h</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">Eigen/Dense</includes>
+    <includedby refid="geodetic_conversion_8cpp" local="yes">/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h</label>
+        <link refid="geodetic_conversion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="geodetic_conversion_8h_1a525335710b53cb064ca56b936120431e" prot="public" static="no">
+        <name>_USE_MATH_DEFINES</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="24" column="9" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="geodetic_conversion_8h_1a9b64d09d9abd12b1461c31dd7a278876" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCI2PCPF</definition>
+        <argsstring>(Eigen::Vector3d pciPosition, double J20002Pfix[3][3])</argsstring>
+        <name>PCI2PCPF</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pciPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+<para>Collection of utility functions for converting in/out of planet-centric reference frames. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The geodeticConversion library contains simple transformations between inertial coordinates and planet-fixed coordinates in a general way.</para>
+<para>No support is provided for non-spherical bodies. Transformations are scripted from Vallado.</para>
+<para>Converts from a planet-centered inertial position (i.e., J2000 ECI) to a planet-centered, planet-fixed position given a rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pciPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCI coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[-] 3x3 rotation matrix representing the rotation between PCPF and ECI frames </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pcpfPosition: [m] Position vector in PCPF coordinates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="39" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="29" bodyend="35" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="39" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1a783aa84193520b96303265fa8e453f45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCPF2LLA</definition>
+        <argsstring>(Eigen::Vector3d pciPosition, double planetEqRadius, double planetPoRad=-1.0)</argsstring>
+        <name>PCPF2LLA</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pciPosition</declname>
+          <defname>pcpfPosition</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRadius</declname>
+          <defname>planetEqRad</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+          <defval>-1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered, planet-fixed coordinates to latitude/longitude/altitude (LLA) coordinates given a planet radius. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcpfPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>llaPosition: Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="40" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="46" bodyend="85" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="40" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1a98b6cd9ea47c01b1fbd5a3b023164339" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCI2LLA</definition>
+        <argsstring>(Eigen::Vector3d pciPosition, double J20002Pfix[3][3], double planetEqRad, double planetPoRad=-1.0)</argsstring>
+        <name>PCI2LLA</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pciPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+          <defval>-1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered inertial coordinates to latitutde/longitude/altitude (LLA) coordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pciPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>planet DCM </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>llaPosition: Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="41" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="97" bodyend="102" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="41" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1a1183c3a5779b3af539c640a516bf77e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d LLA2PCPF</definition>
+        <argsstring>(Eigen::Vector3d llaPosition, double planetEqRad, double planetPoRad=-1.0)</argsstring>
+        <name>LLA2PCPF</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>llaPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+          <defval>-1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a Lat/Long/Altitude coordinates to planet-centered,planet-fixed coordinates given a planet radius. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>llaPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in PCPF coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary equatorial radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pcpfPosition: [m] Final position in the planet-centered, planet-fixed frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="42" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="110" bodyend="125" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="42" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1af1855ea272fa6aeb1516ac79f27c9d41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d PCPF2PCI</definition>
+        <argsstring>(Eigen::Vector3d pcpfPosition, double J20002Pfix[3][3])</argsstring>
+        <name>PCPF2PCI</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>pcpfPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a Lat/Long/Altitude coordinates to planet-centered inertialcoordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcpfPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Position vector in planet centered, planet fixed coordinates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[-] Rotation between inertial and pcf coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pciPosition: [m] Final position in the planet-centered inertial frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="43" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="132" bodyend="139" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="43" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1afbf0df3aa7d575a0a643bb54667bb6f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d LLA2PCI</definition>
+        <argsstring>(Eigen::Vector3d llaPosition, double J20002Pfix[3][3], double planetEqRad, double planetPoRad=-1.0)</argsstring>
+        <name>LLA2PCI</name>
+        <param>
+          <type>Eigen::Vector3d</type>
+          <declname>llaPosition</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>J20002Pfix</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetEqRad</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>planetPoRad</declname>
+          <defval>-1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts from a planet-centered inertial coordinates to latitutde/longitude/altitude (LLA) coordinates given a planet radius and rotation matrix. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>llaPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Final position in latitude/longitude/altitude coordinates [0] : [rad] latitude above planetary equator [1] : [rad] longitude across planetary meridian [2] : [alt] altitude above planet radius </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>J20002Pfix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rotation matrix between inertial and PCPF frames </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetEqRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary radius, assumed to be constant (i.e., spherical) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>planetPoRad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[m] Planetary polar used for elliptical surfaces if provided, otherwise spherical, </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pciPosition : [m] Position in inertial coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="44" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="151" bodyend="156" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="44" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="geodetic_conversion_8h_1aa88712eb62c5a5bd6e7a9dc4dfb8e6ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Matrix3d</type>
+        <definition>Eigen::Matrix3d C_PCPF2SEZ</definition>
+        <argsstring>(double lat, double longitude)</argsstring>
+        <name>C_PCPF2SEZ</name>
+        <param>
+          <type>double</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>longitude</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" line="45" column="17" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.cpp" bodystart="158" bodyend="168" declfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h" declline="45" declcolumn="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">ISC<sp/>License</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"></highlight></codeline>
+<codeline lineno="4"><highlight class="comment">Copyright<sp/>(c)<sp/>2016-2017,<sp/>Autonomous<sp/>Vehicle<sp/>Systems<sp/>Lab,<sp/>University<sp/>of<sp/>Colorado<sp/>at<sp/>Boulder</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment">Permission<sp/>to<sp/>use,<sp/>copy,<sp/>modify,<sp/>and/or<sp/>distribute<sp/>this<sp/>software<sp/>for<sp/>any</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">purpose<sp/>with<sp/>or<sp/>without<sp/>fee<sp/>is<sp/>hereby<sp/>granted,<sp/>provided<sp/>that<sp/>the<sp/>above</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">copyright<sp/>notice<sp/>and<sp/>this<sp/>permission<sp/>notice<sp/>appear<sp/>in<sp/>all<sp/>copies.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment">THE<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>THE<sp/>AUTHOR<sp/>DISCLAIMS<sp/>ALL<sp/>WARRANTIES</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">WITH<sp/>REGARD<sp/>TO<sp/>THIS<sp/>SOFTWARE<sp/>INCLUDING<sp/>ALL<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">MERCHANTABILITY<sp/>AND<sp/>FITNESS.<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>AUTHOR<sp/>BE<sp/>LIABLE<sp/>FOR</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">ANY<sp/>SPECIAL,<sp/>DIRECT,<sp/>INDIRECT,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>OR<sp/>ANY<sp/>DAMAGES</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">WHATSOEVER<sp/>RESULTING<sp/>FROM<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA<sp/>OR<sp/>PROFITS,<sp/>WHETHER<sp/>IN<sp/>AN</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">ACTION<sp/>OF<sp/>CONTRACT,<sp/>NEGLIGENCE<sp/>OR<sp/>OTHER<sp/>TORTIOUS<sp/>ACTION,<sp/>ARISING<sp/>OUT<sp/>OF</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">OR<sp/>IN<sp/>CONNECTION<sp/>WITH<sp/>THE<sp/>USE<sp/>OR<sp/>PERFORMANCE<sp/>OF<sp/>THIS<sp/>SOFTWARE.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_GEODETIC_CONV_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_GEODETIC_CONV_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_USE_MATH_DEFINES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_USE_MATH_DEFINES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">Eigen::Vector3d<sp/>PCI2PCPF(Eigen::Vector3d<sp/>pciPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3]);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">Eigen::Vector3d<sp/>PCPF2LLA(Eigen::Vector3d<sp/>pciPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRadius,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad=-1.0);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">Eigen::Vector3d<sp/>PCI2LLA(Eigen::Vector3d<sp/>pciPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad=-1.0);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">Eigen::Vector3d<sp/>LLA2PCPF(Eigen::Vector3d<sp/>llaPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad=-1.0);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">Eigen::Vector3d<sp/>PCPF2PCI(Eigen::Vector3d<sp/>pcpfPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3]);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">Eigen::Vector3d<sp/>LLA2PCI(Eigen::Vector3d<sp/>llaPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>J20002Pfix[3][3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetEqRad,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>planetPoRad=-1.0);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">Eigen::Matrix3d<sp/>C_PCPF2SEZ(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lat,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>longitude);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/geodeticConversion.h"/>
+  </compounddef>
+</doxygen>

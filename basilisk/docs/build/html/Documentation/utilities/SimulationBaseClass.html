@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>SimulationBaseClass &mdash; Basilisk 2.2.1b0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SpherePlot" href="SpherePlot.html" />
+    <link rel="prev" title="RigidBodyKinematics" href="RigidBodyKinematics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #CFB87C" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Basilisk
+          
+
+          
+            
+            <img src="../../_static/Basilisk-Logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                version 2.2.1b0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Basilisk:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Learn.html">Learning Basilisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Support.html">Support</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../architecture/index.html">architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fswAlgorithms/index.html">fswAlgorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../moduleTemplates/index.html">moduleTemplates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../report/index.html">report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simulation/index.html">simulation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="RigidBodyKinematics.html">RigidBodyKinematics</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SimulationBaseClass</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="SpherePlot.html">SpherePlot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="astroFunctions.html">astroFunctions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasheet_RW.html">datasheet_RW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deprecated.html">deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fswSetupRW.html">fswSetupRW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fswSetupThrusters.html">fswSetupThrusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="macros.html">macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="makeDraftModule.html">makeDraftModule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="orbitalMotion.html">orbitalMotion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overwriteSwig.html">overwriteSwig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="planetStates.html">planetStates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyswice_ck_utilities.html">pyswice_ck_utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyswice_spk_utilities.html">pyswice_spk_utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readAtmTable.html">readAtmTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simIncludeGravBody.html">simIncludeGravBody</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simIncludeRW.html">simIncludeRW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simIncludeThruster.html">simIncludeThruster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simSetPlanetEnvironment.html">simSetPlanetEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulationArchTypes.html">simulationArchTypes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulationProgessBar.html">simulationProgessBar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tabulate.html">tabulate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unitTestSupport.html">unitTestSupport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vizSupport.html">vizSupport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MonteCarlo/index.html">MonteCarlo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vizProtobuffer/index.html">vizProtobuffer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Forum.html">News and Discussions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vizard:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/Vizard.html">About Vizard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/VizardDownload.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/VizardReleaseNotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/VizardGUI.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/vizardAdvanced/index.html">Advanced Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vizard/vizardGallery.html">Video Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Basilisk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Documentation</a> &raquo;</li>
+        
+          <li><a href="index.html">utilities</a> &raquo;</li>
+        
+      <li>SimulationBaseClass</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/Documentation/utilities/SimulationBaseClass.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="simulationbaseclass">
+<span id="id1"></span><h1>SimulationBaseClass<a class="headerlink" href="#simulationbaseclass" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-SimulationBaseClass"></span><dl class="py class">
+<dt class="sig sig-object py" id="SimulationBaseClass.EventHandlerClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SimulationBaseClass.</span></span><span class="sig-name descname"><span class="pre">EventHandlerClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eventName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventRate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventActive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditionList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actionList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#EventHandlerClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.EventHandlerClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Event Handler Class</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SimulationBaseClass.LogBaseClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SimulationBaseClass.</span></span><span class="sig-name descname"><span class="pre">LogBaseClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ReplaceName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LogPeriod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RefFunction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DataCols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#LogBaseClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.LogBaseClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Logging Base class</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SimulationBaseClass.</span></span><span class="sig-name descname"><span class="pre">SimBaseClass</span></span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulation Base Class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.AddModelToTask">
+<span class="sig-name descname"><span class="pre">AddModelToTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TaskName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">NewModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ModelData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ModelPriority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.AddModelToTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.AddModelToTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is responsible for passing on the logger to a module instance (model), adding the
+model to a particular task, and defining
+the order/priority that the model gets updated within the task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>TaskName</em>) – Name of the task</p></li>
+<li><p><strong>(</strong><strong>obj</strong><strong>)</strong> (<em>NewModel</em>) – Model to add to the task</p></li>
+<li><p><strong>ModelData</strong> – None or struct containing, only used for C BSK modules</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> (<em>ModelPriority</em>) – Priority that determines when the model gets updated. (Higher number = Higher priority)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.AddVariableForLogging">
+<span class="sig-name descname"><span class="pre">AddVariableForLogging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">VarName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LogPeriod</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">StartIndex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">StopIndex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">VarType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.AddVariableForLogging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.AddVariableForLogging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Informs the sim to log a particular variable within a message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>VarName</strong> – must be module tag string + period + variable name</p></li>
+<li><p><strong>LogPeriod</strong> – update rate at which to record the variable [ns]</p></li>
+<li><p><strong>StartIndex</strong> – starting index if the variable is an array</p></li>
+<li><p><strong>StopIndex</strong> – end index if the variable is an idea</p></li>
+<li><p><strong>VarType</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.ConfigureStopTime">
+<span class="sig-name descname"><span class="pre">ConfigureStopTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TimeStop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.ConfigureStopTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.ConfigureStopTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the simulation stop time in nano-seconds.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.CreateNewProcess">
+<span class="sig-name descname"><span class="pre">CreateNewProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">procName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.CreateNewProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.CreateNewProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a process and adds it to the sim</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>procName</em>) – Name of process</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> (<em>priority</em>) – Priority that determines when the model gets updated. (Higher number = Higher priority)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>simulationArchTypes.ProcessBaseClass object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.CreateNewTask">
+<span class="sig-name descname"><span class="pre">CreateNewTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TaskName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TaskRate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">InputDelay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FirstStart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.CreateNewTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.CreateNewTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a simulation task on the C-level with a specific update-frequency (TaskRate), an optional delay, and
+an optional start time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>TaskName</em>) – Name of Task</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> (<em>FirstStart</em>) – Number of nanoseconds to elapse before update() is called</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> – Number of nanoseconds simulating a lag of the particular task# TODO: Check that this is [ns]</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>)</strong> – Number of nanoseconds to elapse before task is officially enabled</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>simulationArchTypes.TaskBaseClass object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.ExecuteSimulation">
+<span class="sig-name descname"><span class="pre">ExecuteSimulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.ExecuteSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.ExecuteSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>run the simulation until the prescribed stop time or termination.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.GetLogVariableData">
+<span class="sig-name descname"><span class="pre">GetLogVariableData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LogName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.GetLogVariableData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.GetLogVariableData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pull the recorded module recorded variable.  The first column is the variable recording time in
+nano-seconds, the additional column(s) are the message data columns.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.InitializeSimulation">
+<span class="sig-name descname"><span class="pre">InitializeSimulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.InitializeSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.InitializeSimulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the BSK simulation.  This runs the SelfInit() and Reset() methods on each module.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.SetProgressBar">
+<span class="sig-name descname"><span class="pre">SetProgressBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.SetProgressBar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.SetProgressBar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows a dynamic progress in the terminal while the simulation is executing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.ShowExecutionFigure">
+<span class="sig-name descname"><span class="pre">ShowExecutionFigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show_plots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.ShowExecutionFigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.ShowExecutionFigure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows in what order the Basilisk processes, task lists and modules are executed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.ShowExecutionOrder">
+<span class="sig-name descname"><span class="pre">ShowExecutionOrder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.ShowExecutionOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.ShowExecutionOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows in what order the Basilisk processes, task lists and modules are executed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.createNewEvent">
+<span class="sig-name descname"><span class="pre">createNewEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eventName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventRate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventActive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conditionList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actionList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.createNewEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.createNewEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an event sequence that contains a series of tasks to be executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.disableTask">
+<span class="sig-name descname"><span class="pre">disableTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TaskName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.disableTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.disableTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable this particular task from being executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.enableTask">
+<span class="sig-name descname"><span class="pre">enableTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TaskName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.enableTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.enableTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable this particular task to be executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.setAllButCurrentEventActivity">
+<span class="sig-name descname"><span class="pre">setAllButCurrentEventActivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currentEventName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activityCommand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">useIndex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.setAllButCurrentEventActivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.setAllButCurrentEventActivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all event activity variables except for the currentEventName event. The <code class="docutils literal notranslate"><span class="pre">useIndex</span></code> flag can be used to
+prevent enabling or disabling every task, and instead only alter the ones that belong to the same group (for
+example, the same spacecraft). The distinction is made through an index set after the <code class="docutils literal notranslate"><span class="pre">_</span></code> symbol in the event
+name. All events of the same group must have the same index.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SimulationBaseClass.SimBaseClass.setModelDataWrap">
+<span class="sig-name descname"><span class="pre">setModelDataWrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modelData</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#SimBaseClass.setModelDataWrap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.SimBaseClass.setModelDataWrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a module and returns an object that provides access to said module’s SelfInit, Update, and Reset
+methods.</p>
+<p>Takes the module instance, collects all SwigPyObjects generated from the .i file (SelfInit,
+Update and Reset), and attaches it to a alg_contain model instance so the modules standard functions can be
+run at the python level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>modelData</strong> – model to gather functions for</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An alg_contain model that provides access to the original model’s core functions</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SimulationBaseClass.StructDocData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SimulationBaseClass.</span></span><span class="sig-name descname"><span class="pre">StructDocData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/SimulationBaseClass.html#StructDocData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#SimulationBaseClass.StructDocData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Structure data documentation class</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="SpherePlot.html" class="btn btn-neutral float-right" title="SpherePlot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="RigidBodyKinematics.html" class="btn btn-neutral float-left" title="RigidBodyKinematics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Autonomous Vehicle Systems (AVS) Laboratory.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

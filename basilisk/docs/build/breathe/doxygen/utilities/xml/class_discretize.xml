@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="class_discretize" kind="class" language="C++" prot="public">
+    <compoundname>Discretize</compoundname>
+    <includes refid="discretize_8h" local="no">discretize.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_discretize_1aca954db4f4b1eb6e67a12b748392a878" prot="public" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd Discretize::LSB</definition>
+        <argsstring></argsstring>
+        <name>LSB</name>
+        <qualifiedname>Discretize::LSB</qualifiedname>
+        <briefdescription>
+<para><ndash/> size of bin, bit value, least significant bit </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="68" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_discretize_1a80aeabff2d182dc47380821262c4fead" prot="private" static="no" mutable="no">
+        <type>roundDirection_t</type>
+        <definition>roundDirection_t Discretize::roundDirection</definition>
+        <argsstring></argsstring>
+        <name>roundDirection</name>
+        <qualifiedname>Discretize::roundDirection</qualifiedname>
+        <briefdescription>
+<para><ndash/> Direction to round when discretizing. &quot;toZero&quot;, &quot;fromZero&quot;, and &quot;near&quot; are the options. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="71" column="22" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_discretize_1a284dfab2edfb6ca591566c367f650c48" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t Discretize::numStates</definition>
+        <argsstring></argsstring>
+        <name>numStates</name>
+        <qualifiedname>Discretize::numStates</qualifiedname>
+        <briefdescription>
+<para><ndash/> Number of states to be discretized (length of vector fed in) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="72" column="13" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_discretize_1a29d386aa57be97ab06ae10e9f82daeaf" prot="private" static="no" mutable="no">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd Discretize::discErrors</definition>
+        <argsstring></argsstring>
+        <name>discErrors</name>
+        <qualifiedname>Discretize::discErrors</qualifiedname>
+        <briefdescription>
+<para><ndash/> Errors from discretization. Can be returned to adjusted integrated values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="73" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_discretize_1a49264a952454a34b18938a39ae010d65" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Discretize::carryError</definition>
+        <argsstring></argsstring>
+        <name>carryError</name>
+        <qualifiedname>Discretize::carryError</qualifiedname>
+        <briefdescription>
+<para><ndash/> true if discError should be added next time around, false if not. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="74" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_discretize_1ab7083b4d7fd2ae24d211340665a891d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discretize::Discretize</definition>
+        <argsstring>()</argsstring>
+        <name>Discretize</name>
+        <qualifiedname>Discretize::Discretize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The constructor initialies the random number generator used for the walks </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="40" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.cpp" bodystart="27" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a66e57ce693eac4a3f8cbe12382b9843b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discretize::Discretize</definition>
+        <argsstring>(uint8_t numStates)</argsstring>
+        <name>Discretize</name>
+        <qualifiedname>Discretize::Discretize</qualifiedname>
+        <param>
+          <type>uint8_t</type>
+          <declname>numStates</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This lets the user initialized the discretization model to the right size </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="41" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.cpp" bodystart="35" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a33c77eb20bd7fc63f5d144646beea901" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discretize::~Discretize</definition>
+        <argsstring>()</argsstring>
+        <name>~Discretize</name>
+        <qualifiedname>Discretize::~Discretize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The destructor is a placeholder for one that might do something </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="42" column="5" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.cpp" bodystart="44" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a63c4f2eafc0bd5c565bd6a73413f721d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretize::setLSB</definition>
+        <argsstring>(Eigen::VectorXd givenLSB)</argsstring>
+        <name>setLSB</name>
+        <qualifiedname>Discretize::setLSB</qualifiedname>
+        <param>
+          <type>Eigen::VectorXd</type>
+          <declname>givenLSB</declname>
+        </param>
+        <briefdescription>
+<para>Method determines the size of an output data bin (bit-value) making sure that zero is a possible output and giving proportionate numbers of bits to the size of max and min void*<zwj/>/. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>/*!@brief Avoid calculating bit value (bin size) and just set it because a resolution is known
+   @param givenLSB
+   @return void
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="50" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a620c42a70dbb78ecd288e8c762ae75fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretize::setRoundDirection</definition>
+        <argsstring>(roundDirection_t direction)</argsstring>
+        <name>setRoundDirection</name>
+        <qualifiedname>Discretize::setRoundDirection</qualifiedname>
+        <param>
+          <type>roundDirection_t</type>
+          <declname>direction</declname>
+        </param>
+        <briefdescription>
+<para>Sets the round direction (toZero, fromZero, near) for discretization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method calculates the least significant bit size given the maximum state value, minimum state value, and number of bits to use.. <simplesect kind="return"><para>void *<zwj/>/ void setLSBByBits(uint8_t numBits, double min, double max);</para>
+</simplesect>
+/*!<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="52" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.cpp" bodystart="56" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1ad3b5bab645399c865ddd16597a0a4a20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretize::setCarryError</definition>
+        <argsstring>(bool carryErrorIn)</argsstring>
+        <name>setCarryError</name>
+        <qualifiedname>Discretize::setCarryError</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>carryErrorIn</declname>
+        </param>
+        <briefdescription>
+<para>Sets the round direction (toZero, fromZero, near) for discretization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>carryErrorIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="57" column="10" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a13eedb5a1699a38e5d7890b4b3ba199d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd Discretize::discretize</definition>
+        <argsstring>(Eigen::VectorXd undiscretizedVector)</argsstring>
+        <name>discretize</name>
+        <qualifiedname>Discretize::discretize</qualifiedname>
+        <param>
+          <type>Eigen::VectorXd</type>
+          <declname>undiscretizedVector</declname>
+        </param>
+        <briefdescription>
+<para>Discretizes the given truth vector according to a least significant bit (binSize) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>undiscretizedVector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vector of discretized values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="62" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.cpp" bodystart="67" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_discretize_1a7cfc1f193685c7bc5e1aaf18627188df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::VectorXd</type>
+        <definition>Eigen::VectorXd Discretize::getDiscretizationErrors</definition>
+        <argsstring>()</argsstring>
+        <name>getDiscretizationErrors</name>
+        <qualifiedname>Discretize::getDiscretizationErrors</qualifiedname>
+        <briefdescription>
+<para>Get the discretization errors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the errors due to discretization in a corresponding vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="66" column="21" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="66" bodyend="66"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This module discretizes data for output. It has the option to carry over discretization error or not. </para>
+    </detaileddescription>
+    <location file="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" line="36" column="1" bodyfile="/Users/julio/Desktop/basilisk/src/architecture/utilities/discretize.h" bodystart="37" bodyend="75"/>
+    <listofallmembers>
+      <member refid="class_discretize_1a49264a952454a34b18938a39ae010d65" prot="private" virt="non-virtual"><scope>Discretize</scope><name>carryError</name></member>
+      <member refid="class_discretize_1a29d386aa57be97ab06ae10e9f82daeaf" prot="private" virt="non-virtual"><scope>Discretize</scope><name>discErrors</name></member>
+      <member refid="class_discretize_1a13eedb5a1699a38e5d7890b4b3ba199d" prot="public" virt="non-virtual"><scope>Discretize</scope><name>discretize</name></member>
+      <member refid="class_discretize_1ab7083b4d7fd2ae24d211340665a891d5" prot="public" virt="non-virtual"><scope>Discretize</scope><name>Discretize</name></member>
+      <member refid="class_discretize_1a66e57ce693eac4a3f8cbe12382b9843b" prot="public" virt="non-virtual"><scope>Discretize</scope><name>Discretize</name></member>
+      <member refid="class_discretize_1a7cfc1f193685c7bc5e1aaf18627188df" prot="public" virt="non-virtual"><scope>Discretize</scope><name>getDiscretizationErrors</name></member>
+      <member refid="class_discretize_1aca954db4f4b1eb6e67a12b748392a878" prot="public" virt="non-virtual"><scope>Discretize</scope><name>LSB</name></member>
+      <member refid="class_discretize_1a284dfab2edfb6ca591566c367f650c48" prot="private" virt="non-virtual"><scope>Discretize</scope><name>numStates</name></member>
+      <member refid="class_discretize_1a80aeabff2d182dc47380821262c4fead" prot="private" virt="non-virtual"><scope>Discretize</scope><name>roundDirection</name></member>
+      <member refid="class_discretize_1ad3b5bab645399c865ddd16597a0a4a20" prot="public" virt="non-virtual"><scope>Discretize</scope><name>setCarryError</name></member>
+      <member refid="class_discretize_1a63c4f2eafc0bd5c565bd6a73413f721d" prot="public" virt="non-virtual"><scope>Discretize</scope><name>setLSB</name></member>
+      <member refid="class_discretize_1a620c42a70dbb78ecd288e8c762ae75fb" prot="public" virt="non-virtual"><scope>Discretize</scope><name>setRoundDirection</name></member>
+      <member refid="class_discretize_1a33c77eb20bd7fc63f5d144646beea901" prot="public" virt="non-virtual"><scope>Discretize</scope><name>~Discretize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
