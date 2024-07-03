@@ -2,111 +2,106 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pickle as pck
 import os
-
 from timeit import default_timer as timer
 
 from Basilisk import __path__
 bsk_path = __path__[0] + '/supportData/LocalGravData/'
 
 # Change working path
-os.chdir('/Users/julio/Desktop/python_scripts/THOR/scripts')
+current_path = os.getcwd()
+new_path = os.path.dirname(current_path)
+os.chdir(new_path)
 
-file_path = 'Results/eros/results/poly/ideal/dense_alt50km_100000samples/'
-file_pinn = file_path + 'pinn6x40SIREN_linear_mascon1000.pck'
-filepoly_path = 'Results/eros/groundtruth/poly/'
-file_poly = filepoly_path + 'dense_alt50km_100000samples.pck'
+# PINN and polyhedron paths
+results_path = 'Results/eros/results/poly200700faces/ideal/dense_alt50km_100000samples/'
+file_pinn = results_path + 'pinn6x40SIREN_linear_mascon1000.pck'
+gt_path1 = 'Results/eros/groundtruth/poly200700faces/'
+file_poly1 = gt_path1 + 'dense_alt50km_100000samples.pck'
+gt_path2 = 'Results/eros/groundtruth/poly7790faces/'
+file_poly2 = gt_path2 + 'dense_alt50km_100000samples.pck'
 
-inputs = pck.load(open(file_poly, "rb"))
-asteroid_poly = inputs.groundtruth.asteroid
-asteroid_poly.gravity[0].file = bsk_path + 'ver128q.tab'
-asteroid_poly.gravity[0].create_gravity()
+# Load groundtruth asteroids
+inputs = pck.load(open(file_poly1, "rb"))
+asteroid_poly1 = inputs.groundtruth.asteroid
+asteroid_poly1.shape.create_shape()
+asteroid_poly1.gravity[0].create_gravity()
 
+inputs = pck.load(open(file_poly2, "rb"))
+asteroid_poly2 = inputs.groundtruth.asteroid
+asteroid_poly2.gravity[0].create_gravity()
+
+# Load mascon-pinn asteroid
 inputs = pck.load(open(file_pinn, "rb"))
-asteroid = inputs.estimation.asteroid
-asteroid.shape.create_shape()
+asteroid_masconpinn = inputs.estimation.asteroid
+asteroid_masconpinn.gravity[0].create_gravity()
+asteroid_masconpinn.gravity[1].create_gravity()
 
-asteroid.gravity[0].create_gravity()
-asteroid.gravity[1].create_gravity()
-
+# Create evaluation grid
 n_samples = 1000
-
 xyz_low = np.array([-40, -40, -40])*1e3
 xyz_sup = np.array([40, 40, 40])*1e3
 pos = np.zeros((n_samples, 3))
 idx = 0
 while idx < n_samples:
     pos_test = np.random.uniform(xyz_low, xyz_sup)
-    is_exterior = asteroid.shape.check_exterior(pos_test)
-
+    is_exterior = asteroid_poly1.shape.check_exterior(pos_test)
     if is_exterior:
         pos[idx, 0:3] = pos_test
         idx += 1
 
-t_bsk = np.zeros(n_samples)
-t_bsk2 = np.zeros(n_samples)
-t_grad = np.zeros(n_samples)
-t_mascon = np.zeros(n_samples)
-t_poly = np.zeros(n_samples)
+# Preallocate cpu times
+t_bsk = np.zeros(n_samples) #
+t_bsk2 = np.zeros(n_samples) #
+t_grad = np.zeros(n_samples) # PINN in python layer
+t_mascon = np.zeros(n_samples) # Mascon
+t_poly1 = np.zeros(n_samples) # Polyhedron high
+t_poly2 = np.zeros(n_samples) # Polyhedron low
 
+# Loop evaluation samples
 for i in range(n_samples):
-    # Start measuring cpu time
+    # Polyhedron evaluation (200700 faces)
     t_start = timer()
-
-    # BSK acceleration
-    acc = asteroid_poly.compute_gravity(pos[i, 0:3])
-
-    # End measuring cpu time
+    acc = asteroid_poly1.compute_gravity(pos[i, 0:3])
     t_end = timer()
-    t_poly[i] = t_end - t_start
+    t_poly1[i] = t_end - t_start
 
-for i in range(n_samples):
-    # Start measuring cpu time
+    # Polyhedron evaluation (7790 faces)
     t_start = timer()
+    acc = asteroid_poly2.compute_gravity(pos[i, 0:3])
+    t_end = timer()
+    t_poly2[i] = t_end - t_start
 
-    # BSK acceleration
-    acc = asteroid.gravity[0].compute_acc(pos[i, 0:3])
-
-    # End measuring cpu time
+    # Only PINN evaluation (from BSK)
+    t_start = timer()
+    acc = asteroid_masconpinn.gravity[0].compute_acc(pos[i, 0:3])
     t_end = timer()
     t_bsk[i] = t_end - t_start
 
-for i in range(n_samples):
-    # Start measuring cpu time
+    # Only mascon evaluation (from BSK)
     t_start = timer()
-
-    # BSK acceleration
-    acc = asteroid.gravity[1].compute_acc(pos[i, 0:3])
-
-    # End measuring cpu time
+    acc = asteroid_masconpinn.gravity[1].compute_acc(pos[i, 0:3])
     t_end = timer()
     t_mascon[i] = t_end - t_start
 
-for i in range(n_samples):
-    # Start measuring cpu time
+    # Mascon+PINN evaluation (from BSK)
     t_start = timer()
-
-    # BSK acceleration
-    acc = asteroid.compute_gravity(pos[i, 0:3])
-
-    # End measuring cpu time
+    acc = asteroid_masconpinn.compute_gravity(pos[i, 0:3])
     t_end = timer()
     t_bsk2[i] = t_end - t_start
 
-for i in range(n_samples):
-    # Start measuring cpu time
+    # PINN evaluation (from Python)
     t_start = timer()
-
-    # Autograd acceleration
-    acc = asteroid.gravity[0].network_eval.gradient(np.array([pos[i, 0:3]]))
-
-    # End measuring cpu time
+    acc = asteroid_masconpinn.gravity[0].network_eval.gradient(np.array([pos[i, 0:3]]))
     t_end = timer()
     t_grad[i] = t_end - t_start
 
-plt.plot(t_poly, marker='.')
-plt.plot(t_bsk, marker='.')
-plt.plot(t_bsk2, marker='.')
-plt.plot(t_grad, marker='.')
-plt.plot(t_mascon, marker='.')
+# Do plots in miliseconds
+plt.plot(t_poly1*1e3, marker='.', label='Poly. 200700 faces')
+plt.plot(t_poly2*1e3, marker='.', label='Poly. 7790 faces')
+plt.plot(t_bsk*1e3, marker='.', label='PINN BSK')
+plt.plot(t_bsk2*1e3, marker='.', label='Mascon+PINN BSK')
+plt.plot(t_grad*1e3, marker='.', label='PINN Python')
+plt.plot(t_mascon*1e3, marker='.', label='Mascon')
 plt.semilogy()
+plt.legend()
 plt.show()
