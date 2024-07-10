@@ -14,11 +14,11 @@ km2m = 1e3
 def configuration():
     # Set configuration file
     config = {
-        'oe': {#'a': np.linspace(28, 46, 4) * 1e3,
-               'a': np.array([34]) * km2m,
+        'oe': {'a': np.linspace(28, 46, 4) * 1e3,
+               #'a': np.array([34]) * km2m,
                'ecc': 0,
-               'inc': np.array([0]),
-               #'inc': np.array([0, 45, 90, 135, 180]) * np.pi/180,
+               #'inc': np.array([0]),
+               'inc': np.array([0, 45, 90, 135, 180]) * np.pi/180,
                'omega': 48.2 * np.pi/180,
                'RAAN': 347.8 * np.pi/180,
                'f': 85.3 * np.pi/180},
@@ -35,8 +35,8 @@ def configuration():
                                    'xyz_M': np.array([[10, 0, 0],
                                                       [-10, 0, 0]]) * 1e3},
                         'dt_sample': 60},
-        'estimation': {'file': '',
-                        #'file': 'mascon1000_muxyz_quadratic_octantrand0',
+        'estimation': {#'file': '',
+                       'file': 'mascon100_muxyz_quadratic_octantrand0',
                        'model_path': '/ideal/dense_alt50km_100000samples/'}
     }
 

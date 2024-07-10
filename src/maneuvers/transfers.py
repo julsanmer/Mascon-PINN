@@ -29,6 +29,13 @@ class Transfers:
 
         # Initialize list of solutions
         self.sol_list = []
+        self.t0_list = []
+        self.y0_list = []
+
+        # Initialize list of truth
+        self.t_list = []
+        self.pos_list = []
+        self.vel_list = []
 
     # Initialize solver
     def init_solver(self, t_span, pos0, posf):
@@ -43,27 +50,34 @@ class Transfers:
         # Get number of transfers
         n = len(self.pos0)
 
-        # Initialize solver list
-        sol_list = []
+        # List of solutions
+        if not self.sol_list:
+            self.sol_list = [[] for _ in range(n)]
 
-        # Loop through
+        # Loop through maneuvers
         for i in range(n):
             # Initialize solver
             self.init_solver((0, self.tf[i]),
                              self.pos0[i, 0:3],
                              self.posf[i, 0:3])
 
-            # Solve warm start
-            sol_kep = self.solver.solve_bvp_kepler()
+            # Warm start if x0, y0 not available
+            if not self.sol_list[i]:
+                # Solve Kepler transfer
+                sol_kep = self.solver.solve_bvp_kepler()
+
+                # Store only if there is not collision
+                if sol_kep.has_collide:
+                    sol_kep = None
+                self.sol_list[i] = sol_kep
 
             # Solve with full asteroid
-            if not sol_kep.has_collide:
-                sol = self.solver.solve_bvp(sol_kep.x, sol_kep.y)
-            else:
-                sol = None
+            if self.sol_list[i] is not None:
+                sol = self.solver.solve_bvp(self.sol_list[i].x,
+                                            self.sol_list[i].y)
 
-            # Append to list
-            self.sol_list.append(sol)
+                # Store in list
+                self.sol_list[i] = sol
 
     # This method initializes propagator instance
     def init_propagator(self):
@@ -75,25 +89,26 @@ class Transfers:
         # Get number of transfers
         n = len(self.pos0)
 
+        # Initialize propagator
         self.init_propagator()
 
+        # Create times, positions and
+        # velocities lists
         self.t_list = []
         self.pos_list = []
         self.vel_list = []
 
+        # Loop through maneuvers
         for i in range(n):
             if self.sol_list[i] is not None:
-                vel0 = self.sol_list[i].y[3:6, 0]
+                vel0 = self.sol_list[i].vel0
                 t, pos, vel = self.propagator.propagate([0, self.tf[i]],
                                                         self.pos0[i, 0:3],
                                                         vel0)
             else:
                 t, pos, vel = None, None, None
 
-        a = 4
-
-
-
-
-
-
+            # Save into list
+            self.t_list.append(t)
+            self.pos_list.append(pos)
+            self.vel_list.append(vel)

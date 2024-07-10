@@ -158,8 +158,11 @@ class Orbits:
     # Sets results file
     @staticmethod
     def set_fileresults(config):
+        # Retrieve groundtruth config
+        config_gt = config['groundtruth']
+
         # Set asteroid name and groundtruth gravity
-        asteroid_name = config['groundtruth']['asteroid_name']
+        asteroid_name = config_gt['asteroid_name']
 
         # Create asteroid folder if it does not exist
         path_asteroid = 'Results/' + asteroid_name
@@ -168,12 +171,17 @@ class Orbits:
             os.makedirs(path_asteroid)
 
         # Retrieve groundtruth parameters
-        grav_groundtruth = config['groundtruth']['grav_model']
-        if config['groundtruth']['mascon']['add']:
-            grav_groundtruth += 'heterogeneous'
+        grav_gt = config_gt['grav_model']
+        if config_gt['mascon']['add']:
+            grav_gt += 'heterogeneous'
+
+        # Obtain number of faces
+        _, _, _, n_face = \
+            gravityEffector.loadPolyFromFileToList(config_gt['file_poly'])
+        config_gt['n_face'] = n_face
 
         # Set results file
-        path = path_asteroid + '/results/' + grav_groundtruth
+        path = path_asteroid + '/results/' + grav_gt + str(n_face) + 'faces'
         file = path + config['estimation']['model_path'] \
                + config['estimation']['file'] + '_orbits.pck'
         file_model = path + config['estimation']['model_path'] \

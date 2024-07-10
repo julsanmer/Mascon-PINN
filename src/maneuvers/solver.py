@@ -121,18 +121,15 @@ class Solver:
                         self._bc,
                         t0,
                         y0,
-                        verbose=0,
+                        verbose=2,
                         max_nodes=400,
                         tol=1e-4)
-        t, y = sol.x, sol.y.T
 
         # Check if solution has collided
-        has_collide = self.check_collision(y[:, 0:3]*self.r_ad)
+        has_collide = self.check_collision(sol.y[:, 0:3]*self.r_ad)
         sol.has_collide = has_collide
 
         # Dimensionalize variables
-        sol.x *= self.t_ad
-        sol.y[0:3, :] *= self.r_ad
-        sol.y[3:6, :] *= self.r_ad / self.t_ad
+        sol.vel0 = sol.y[3:6, 0] * (self.r_ad/self.t_ad)
 
         return sol

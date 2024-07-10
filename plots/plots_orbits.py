@@ -19,13 +19,14 @@ font = 20
 font_legend = 15
 font_map = 15
 color_asteroid = [105/255, 105/255, 105/255]
-colors = ['#ffd700',
-          '#ffb14e',
-          '#fa8775',
-          '#ea5f94',
-          '#cd34b5',
-          '#9d02d7',
-          '#0000ff']
+# colors = ['#ffd700',
+#           '#ffb14e',
+#           '#fa8775',
+#           '#ea5f94',
+#           '#cd34b5',
+#           '#9d02d7',
+#           '#0000ff']
+colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 colorsGray = ['#FFFFFF',
               '#B2BEB5',
               '#676767']
@@ -43,15 +44,17 @@ def plot_orb(orbits):
     ax = fig.add_subplot(1, 1, 1, projection='3d')
     ax.plot_trisurf(xyz_vert[:, 0] * m2km, xyz_vert[:, 1] * m2km, xyz_vert[:, 2] * m2km,
                     triangles=order_face-1, color=color_asteroid, zorder=0)
-    for i in range(orbits.n_a):
-        for j in range(orbits.n_inc):
+
+    # Get orbits length
+    n1 = len(orbits.orbits)
+
+    # Loop through orbits
+    for i in range(n1):
+        n2 = len(orbits.orbits[i])
+        for j in range(n2):
             pos = orbits.orbits[i][j].data.pos_BP_P
-            # ax.plot(pos[0, 0] * m2km, pos[0, 1] * m2km, pos[0, 2] * m2km,
-            #         color=colors[2*j], marker='.')
             ax.plot(pos[:, 0] * m2km, pos[:, 1] * m2km, pos[:, 2] * m2km,
-                    color=colors[2*j], zorder=20, linewidth=0.5)
-            # ax.plot(pos[-1, 0] * m2km, pos[-1, 1] * m2km, pos[-1, 2] * m2km,
-            #         'b', marker='s')
+                    zorder=20, linewidth=0.5, color=colors[j])
 
     # Set limits
     ax.set_xlim(-50, 50)

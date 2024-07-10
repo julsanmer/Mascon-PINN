@@ -145,7 +145,6 @@ if __name__ == "__main__":
              marker='s')
     plt.plot(posf[0]*m2km, posf[1]*m2km, posf[2]*m2km,
              marker='o')
-    print(np.linalg.norm(pos[-1, :] - posf))
 
     # Plot asteroid
     ax.plot_trisurf(asteroid.shape.xyz_vert[:, 0]*m2km,

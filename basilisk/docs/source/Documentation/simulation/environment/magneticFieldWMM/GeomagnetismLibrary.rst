@@ -1,5 +1,0 @@
-.. _GeomagnetismLibrary:
-
-Module: GeomagnetismLibrary
-===========================
-
