@@ -33,6 +33,15 @@ class PolyhedronGrav(Gravity):
 
         # Create polyhedron model
         gravity = gravFactory.createCustomGravObject('poly', mu=self.mu)
+
+        # if self.file has /Desktop/basilisk in it's path, then replace with 
+        # basilisk's module path
+        if '/Desktop/basilisk' in self.file:
+            import Basilisk
+            basilisk_path = Basilisk.__path__[0] 
+            suffix = self.file.split('/Desktop/basilisk/dist3/Basilisk')[-1]
+            self.file = basilisk_path + suffix
+            
         gravity.usePolyhedralGravityModel(self.file)
 
         # Set polyhedron model and initialize it

@@ -12,12 +12,19 @@ current_path = os.getcwd()
 new_path = os.path.dirname(current_path)
 os.chdir(new_path)
 
+# get directory of this file
+current_path = os.path.dirname(os.path.realpath(__file__)) 
+THOR_PATH = os.path.abspath(current_path + '/../..')
+
+import sys
+sys.path.append(THOR_PATH)
+
 # PINN and polyhedron paths
-results_path = 'Results/eros/results/poly200700faces/ideal/dense_alt50km_100000samples/'
+results_path = f'{THOR_PATH}/scripts/Results/eros/results/poly200700faces/ideal/dense_alt50km_100000samples/'
 file_pinn = results_path + 'pinn6x40SIREN_linear_mascon1000.pck'
-gt_path1 = 'Results/eros/groundtruth/poly200700faces/'
+gt_path1 = f'{THOR_PATH}/scripts/Results/eros/groundtruth/poly200700faces/'
 file_poly1 = gt_path1 + 'dense_alt50km_100000samples.pck'
-gt_path2 = 'Results/eros/groundtruth/poly7790faces/'
+gt_path2 = f'{THOR_PATH}/scripts/Results/eros/groundtruth/poly7790faces/'
 file_poly2 = gt_path2 + 'dense_alt50km_100000samples.pck'
 
 # Load groundtruth asteroids

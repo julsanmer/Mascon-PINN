@@ -119,7 +119,11 @@ class PINNGrav(Gravity):
         # Set mascon model and initialize it
         gravity.usePINN2GravityModel()
         self.gravity_bsk = gravity.pinn2
-        self.gravity_bsk.PINNPath = self.file_torch
+        # add THOR path + /scripts/ to the file_torch path
+        current_path = os.path.dirname(os.path.realpath(__file__))
+        THOR_PATH = os.path.abspath(current_path + '/../../..')
+
+        self.gravity_bsk.PINNPath = f"{THOR_PATH}/scripts/{self.file_torch}"
         self.gravity_bsk.initializeParameters()
 
     # This method computes PINN gravity
