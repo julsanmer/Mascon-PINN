@@ -205,6 +205,7 @@ class PINNeval(nn.Module):
         self.r_bc = input_pinn.r_bc
         self.k_bc = input_pinn.k_bc
 
+
     # This forwards the pinn
     def forward(self, pos):
         # This is the switch function
@@ -274,6 +275,61 @@ class PINNeval(nn.Module):
         U = w_nn * U_pinn
 
         return U
+   
+    def branchless_forward(self, pos):
+
+        # Preallocate pinn inputs
+        input = torch.zeros(pos.shape[0], self.layers[0]).to(
+            self.device, dtype=torch.float32)
+
+        # Normalise inputs
+        r = torch.norm(pos)
+        x_ad = pos[:, 0] / r
+        y_ad = pos[:, 1] / r
+        z_ad = pos[:, 2] / r
+
+        # Set r_ad/r    
+        input[:, 3] = torch.clamp(self.rad_bc/r, max=1.0)
+        input[:, 4] = torch.clamp(r/self.rad_bc, max=1.0)
+
+        # Set input
+        input[:, 0] = x_ad
+        input[:, 1] = y_ad
+        input[:, 2] = z_ad
+
+        # Forward layers
+        for i in range(len(self.layers)-2):
+            # Apply weight and biases
+            z = self.linears[i](input)
+
+            # Apply activation function
+            input = torch.sin(z)
+
+        # Get pinn proxy potential
+        U_prx = self.linears[-1](input)
+
+        # Rescale proxy potential
+        U_prx *= self.Uprx_ad
+
+        # U_pinn = rescale_proxy(U_prx,
+        #                        r/self.rad_bc,
+        #                        l_bc=self.l_bc)
+        U_pinn = U_prx / ((r/self.rad_bc)**self.l_bc)
+        # Assign weights
+        # H_nn = compute_switch(r/self.rad_bc,
+        #                       k_bc=self.k_bc,
+        #                       r_bc=self.r_bc/self.rad_bc)
+        
+        h = self.k_bc * ((r/self.rad_bc)-(self.r_bc/self.rad_bc))
+        H_nn = (1 + torch.tanh(h))/2
+
+
+        w_nn = 1 - H_nn
+
+        # Weight pinn potential
+        U = w_nn * U_pinn
+
+        return U
 
     # Compute gradient
     def gradient(self, pos):
@@ -293,4 +349,73 @@ class PINNeval(nn.Module):
                            create_graph=True)[0]
         dU = dU.detach().numpy().squeeze()
 
+        return dU
+
+    def gradient_II(self, pos):
+
+        # Track gradient w.r.t. position
+        pos.requires_grad = True
+
+        # Compute potentials
+        U = self.forward(pos)
+
+        # Compute gradient
+        dU = autograd.grad(U, pos,
+                           torch.ones([pos.shape[0], 1]).to(self.device),
+                           create_graph=True)[0]
+        dU = dU.detach()
+        return dU
+
+    def gradient_III(self, pos):
+
+        # Track gradient w.r.t. position
+        pos.requires_grad = True
+
+        # Compute potentials
+        U = self.forward(pos)
+
+        # Compute gradient
+        dU = autograd.grad(U, pos,
+                           torch.ones([pos.shape[0], 1]).to(self.device),
+                           create_graph=False)[0]
+        dU = dU.detach()
+        return dU
+
+    def gradient_IV(self, pos):
+
+        # Track gradient w.r.t. position
+        pos.requires_grad = True
+
+        # Compute potentials
+        U = self.forward(pos)
+
+        # Compute gradient
+        dU = autograd.grad(U, pos, self.ones, create_graph=False)[0]
+        dU = dU.detach()
+        return dU
+
+    def gradient_V(self, pos):
+
+        # Track gradient w.r.t. position
+        pos.requires_grad = True
+
+        # Compute potentials
+        U = self.branchless_forward(pos)
+
+        # Compute gradient
+        dU = autograd.grad(U, pos, self.ones, create_graph=False)[0]
+        dU = dU.detach()
+        return dU
+
+    def gradient_VI(self, pos):
+
+        # Track gradient w.r.t. position
+        pos.requires_grad = True
+
+        # Compute potentials
+        U = self.branchless_forward(pos)
+
+        # Compute gradient
+        dU = autograd.grad(U, pos, self.ones, create_graph=False, is_grads_batched=False)[0]
+        dU = dU.detach()
         return dU
