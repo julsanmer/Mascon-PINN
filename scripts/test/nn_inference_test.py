@@ -15,7 +15,9 @@ def main():
 
     # PINN and polyhedron paths
     results_path = f'{THOR_PATH}/scripts/Results/eros/results/poly200700faces/ideal/dense_alt50km_100000samples/'
-    file_pinn = results_path + 'pinn6x40SIREN_linear_mascon1000.pck'
+    file_pinn, size = results_path + 'pinn6x40SIREN_linear_mascon1000.pck', 40
+    # file_pinn, size = results_path + 'pinn6x40SIREN_linear_mascon100.pck', 40
+    # file_pinn, size = results_path + 'pinn6x20SIREN_linear_mascon100.pck', 20
 
     # Load mascon-pinn asteroid
     inputs = pck.load(open(file_pinn, "rb"))
@@ -37,6 +39,8 @@ def main():
     t_JIT_IV = np.zeros(n_samples) # PINN in python layer
     t_JIT_V = np.zeros(n_samples) # PINN in python layer
     t_JIT_VI = np.zeros(n_samples) # PINN in python layer
+    t_JIT_VII = np.zeros(n_samples) # PINN in python layer
+    t_JIT_no_gradient = np.zeros(n_samples) # PINN in python layer
     t_mascon = np.zeros(n_samples) # Mascon
 
     # generate a JIT compiled PINN
@@ -101,16 +105,28 @@ def main():
         t_end = timer()
         t_JIT_V[i] = t_end - t_start
 
-        torch.tensor(pos[i, 0:3])
         t_start = timer()
         pinn_JIT.gradient_VI(tensor)
         t_end = timer()
         t_JIT_VI[i] = t_end - t_start
 
+        tensor = torch.tensor([pos[i, 0:3]], dtype=torch.float32)
+        t_start = timer()
+        pinn_JIT.gradient_VII(tensor)
+        t_end = timer()
+        t_JIT_VII[i] = t_end - t_start
+
+        torch.tensor(pos[i, 0:3])
+        t_start = timer()
+        pinn_JIT.no_gradient(tensor)
+        t_end = timer()
+        t_JIT_no_gradient[i] = t_end - t_start
+
     # Do plots in miliseconds
     # plt.plot(t_bsk*1e3, marker='.', label='PINN BSK')
     # plt.plot(t_bsk2*1e3, marker='.', label='Mascon+PINN BSK')
     # plt.plot(t_mascon*1e3, marker='.', label='Mascon')
+    plt.figure(figsize=(6, 3))
     plt.plot(t_grad*1e3, marker='.', label='PINN Python')
     plt.plot(t_JIT*1e3, marker='.', linestyle = '--', label='PINN JIT I')
     plt.plot(t_JIT_II*1e3, marker='.', linestyle = '--', label='PINN JIT II')
@@ -118,10 +134,15 @@ def main():
     plt.plot(t_JIT_IV*1e3, marker='.', linestyle = '--', label='PINN JIT IV')
     plt.plot(t_JIT_V*1e3, marker='.', linestyle = '--', label='PINN JIT V')
     plt.plot(t_JIT_VI*1e3, marker='.', linestyle = '--', label='PINN JIT VI')
+    plt.plot(t_JIT_VII*1e3, marker='.', linestyle = '--', label='PINN JIT VII')
+    plt.plot(t_JIT_no_gradient*1e3, marker='.', linestyle = '--', label='PINN JIT No Gradient')
     plt.semilogy()
-    plt.ylim(None, 1)
+    plt.ylim(0.05, 1)
     plt.legend()
+    plt.grid(True, which='both', axis='both')
 
+    # save the file to the scripts/Plots directory
+    plt.savefig(f'{current_path}/../Plots/nn_inference_test_{size}.png')
 
     a_JIT_I = pinn_JIT.gradient(tensor)
     a_JIT_II = pinn_JIT.gradient_II(tensor)
