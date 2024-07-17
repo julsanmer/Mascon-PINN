@@ -137,7 +137,7 @@ def main():
     plt.plot(t_JIT_VII*1e3, marker='.', linestyle = '--', label='PINN JIT VII')
     plt.plot(t_JIT_no_gradient*1e3, marker='.', linestyle = '--', label='PINN JIT No Gradient')
     plt.semilogy()
-    plt.ylim(0.05, 1)
+    # plt.ylim(0.05, 1)
     plt.legend()
     plt.grid(True, which='both', axis='both')
 
@@ -147,6 +147,18 @@ def main():
     a_JIT_I = pinn_JIT.gradient(tensor)
     a_JIT_II = pinn_JIT.gradient_II(tensor)
     a_JIT_III = pinn_JIT.gradient_III(tensor)
+
+    # average across each of the data
+    plt.figure()
+    plt.scatter(1, np.mean(t_grad)*1e3, marker='.', label='PINN Python')
+    plt.scatter(2, np.mean(t_JIT)*1e3, marker='.', linestyle = '--', label='PINN JIT I')
+    plt.scatter(3, np.mean(t_JIT_II)*1e3, marker='.', linestyle = '--', label='PINN JIT II')
+    plt.scatter(4, np.mean(t_JIT_III)*1e3, marker='.', linestyle = '--', label='PINN JIT III')
+    plt.scatter(5, np.mean(t_JIT_IV)*1e3, marker='.', linestyle = '--', label='PINN JIT IV')
+    plt.scatter(6, np.mean(t_JIT_V)*1e3, marker='.', linestyle = '--', label='PINN JIT V')
+    plt.scatter(7, np.mean(t_JIT_VI)*1e3, marker='.', linestyle = '--', label='PINN JIT VI')
+    plt.scatter(8, np.mean(t_JIT_VII)*1e3, marker='.', linestyle = '--', label='PINN JIT VII')
+    plt.scatter(9, np.mean(t_JIT_no_gradient)*1e3, marker='.', linestyle = '--', label='PINN JIT No Gradient')
 
 
     assert np.allclose(a_JIT_I, a_JIT_II)

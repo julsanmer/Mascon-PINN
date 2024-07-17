@@ -3,7 +3,7 @@ import numpy as np
 import pickle as pck
 import os
 from timeit import default_timer as timer
-
+import torch
 from Basilisk import __path__
 bsk_path = __path__[0] + '/supportData/LocalGravData/'
 
@@ -64,6 +64,14 @@ t_mascon = np.zeros(n_samples) # Mascon
 t_poly1 = np.zeros(n_samples) # Polyhedron high
 t_poly2 = np.zeros(n_samples) # Polyhedron low
 
+# generate a JIT compiled PINN
+PINN_model = asteroid_masconpinn.gravity[0]
+
+# WARNING: There is not a trivial way to re-run init from the trained network
+pinn = PINN_model.network_eval
+pinn.ones = torch.ones([1, 1]).to("cpu")
+pinn_JIT = torch.compile(pinn)
+
 # Loop evaluation samples
 for i in range(n_samples):
     # Polyhedron evaluation (200700 faces)
@@ -97,8 +105,9 @@ for i in range(n_samples):
     t_bsk2[i] = t_end - t_start
 
     # PINN evaluation (from Python)
+    tensor = torch.tensor([pos[i, 0:3]])
     t_start = timer()
-    acc = asteroid_masconpinn.gravity[0].network_eval.gradient(np.array([pos[i, 0:3]]))
+    acc = pinn_JIT.gradient_VII(tensor)
     t_end = timer()
     t_grad[i] = t_end - t_start
 
