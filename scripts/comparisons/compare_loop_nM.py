@@ -18,18 +18,21 @@ err2perc = 1e2
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 
-font = 20
-font_legend = 15
-font_map = 15
+font = 25
+font_label = 27
+font_legend = 21
+font_map = 19
+font_maplabel = 20
 color_asteroid = [105/255, 105/255, 105/255]
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+dpi = 600
 
 
 # This function plots gravity errors w.r.t. altitude
 def plot_gravity3D(h_bins, aErrAlt_mascon, aErrAlt_pinn, title=''):
     # Make figure
     plt.gcf()
-    fig = plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(14, 6))
     ax = fig.add_subplot(1, 1, 1)
 
     # Plots list
@@ -39,9 +42,9 @@ def plot_gravity3D(h_bins, aErrAlt_mascon, aErrAlt_pinn, title=''):
     # Plots
     for i in range(len(aErrAlt_mascon)):
         mascon_line, = ax.plot(h_bins/R, aErrAlt_mascon[i] * err2perc,
-                               linestyle='--', color=colors[i], linewidth=1.0)
+                               linestyle='--', color=colors[i], linewidth=2.5)
         pinn_line, = ax.plot(h_bins/R, aErrAlt_pinn[i] * err2perc,
-                             linestyle='-', color=colors[i], linewidth=1.5,
+                             linestyle='-', color=colors[i], linewidth=3.0,
                              label='$n_M$=' + str(n_M[i]))
         mascon_lines.append(mascon_line)
         pinn_lines.append(pinn_line)
@@ -49,9 +52,12 @@ def plot_gravity3D(h_bins, aErrAlt_mascon, aErrAlt_pinn, title=''):
     ax.set_yscale('log')
 
     # Make addons
-    plt.xlabel('$h/R$ [-]', fontsize=font)
-    plt.ylabel('Average gravity error [\%]', fontsize=font)
+    plt.xlabel('$h/R$ [-]', fontsize=font_label)
+    plt.ylabel('Average gravity error [\%]', fontsize=font_label)
     ax.set_xlim(h_bins[0]/R, h_bins[-1]/R)
+    ax.set_ylim([1e-5, 1.5*1e1])
+    ax.set_xticks([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    ax.set_yticks([1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1])
     legend1 = plt.legend(pinn_lines, [f'$n_M$={n}' for n in n_M],
                          loc='upper right', fontsize=font_legend)
     ax.add_artist(legend1)
@@ -59,10 +65,11 @@ def plot_gravity3D(h_bins, aErrAlt_mascon, aErrAlt_pinn, title=''):
                          loc='upper left', fontsize=font_legend)
     ax.tick_params(axis='both', labelsize=font)
     ax.grid()
-    ax.set_title(title, fontsize=font_map)
+    ax.set_title(title, fontsize=font)
 
     # Save figure
-    plt.savefig('Plots/gravityerror_nM_' + model + '.pdf', format='pdf')
+    plt.savefig('Plots/gravityerror_nM_' + model + '.png', format='png',
+                dpi=dpi)
 
 
 # This function plots a error map of the surface
@@ -94,24 +101,24 @@ def plot_surfacemap(mapsurf_mascon, mapsurf_pinn):
         ax.set_xticks([-180, -135, -90, -45, 0,
                        45, 90, 135, 180])
         ax.set_yticks([-90, -45, 0, 45, 90])
-        ax.tick_params(axis='both', labelsize=font_map)
+        ax.tick_params(axis='both', labelsize=font_maplabel)
         ax.set_title(title, fontsize=font_map)
 
         # Add a textbox to the first subplot
-        textstr = 'Mean:' + f'{aErr_mean*err2perc:.2f}' + '\%' + '\n' \
-                  + 'Max.:' + f'{aErr_max*err2perc:.2f}' + '\%'
-        props = dict(boxstyle='round', facecolor='black', alpha=0.4)
-        ax.text(0.85, 0.25, textstr, transform=ax.transAxes, fontsize=font_map,
+        textstr = 'Mean: ' + f'{aErr_mean*err2perc:.2f}' + '\%' + '\n' \
+                  + 'Max: ' + f'{aErr_max*err2perc:.2f}' + '\%'
+        props = dict(boxstyle='round', facecolor='black', alpha=0.8)
+        ax.text(0.825, 0.29, textstr, transform=ax.transAxes, fontsize=font_map,
                 verticalalignment='top', bbox=props, color='white')
 
         # Plot xlabel
         if idx == 1:
-            ax.set_xlabel('Longitude [$^{\circ}$]', fontsize=font)
-            fig.supylabel('Latitude [$^{\circ}$]', fontsize=font)
+            ax.set_xlabel('Longitude [$^{\circ}$]', fontsize=font_maplabel)
+            fig.supylabel('Latitude [$^{\circ}$]', fontsize=font_maplabel)
             fig.tight_layout()
             cbar = fig.colorbar(surf, ax=axs, shrink=1, pad=0.05)
             cbar.ax.tick_params(labelsize=font_map)
-            cbar.set_label('Gravity error [\%]', rotation=90, fontsize=font)
+            cbar.set_label('Gravity error [\%]', rotation=90, fontsize=font_maplabel)
 
     # Min and max
     aErrmin_plot = 1.00000001 * 1e-4
@@ -135,7 +142,8 @@ def plot_surfacemap(mapsurf_mascon, mapsurf_pinn):
     plot_map(mapsurf_pinn, 1, title='Mascon $n_M=100$ + PINN SIREN 6x40')
 
     # Save figure
-    plt.savefig('Plots/gravityerror_surface_' + model + '.pdf', format='pdf')
+    plt.savefig('Plots/gravityerror_surface_' + model + '.png', format='png',
+                dpi=dpi)
 
 
 # Load files

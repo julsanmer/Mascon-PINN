@@ -24,6 +24,7 @@ font_map = 15
 color_asteroid = [105/255, 105/255, 105/255]
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
+
 # Plot gravity errors w.r.t. altitude
 def plot_tcpu(tcpu_gt, tcpu_mascon, tcpu_pinn):
     def remove_nan(t_cpu):
@@ -88,7 +89,8 @@ def plot_tcpu(tcpu_gt, tcpu_mascon, tcpu_pinn):
     ax.legend(fontsize=font_legend, ncol=3, loc='upper right')
     ax.grid()
 
-    plt.savefig('Plots/tcpugravity.pdf', format='pdf')
+    plt.savefig('Plots/tcpugravity.png', format='png',
+                dpi=400)
 
 
 # Load files

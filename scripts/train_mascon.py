@@ -110,7 +110,7 @@ def launch_training(config):
     #                            pos_ejecta))
     # acc_data = np.concatenate((acc_data,
     #                           acc_ejecta))
-
+    print(np.max(np.linalg.norm(pos_data, axis=1)))
     # Train mascon distribution
     print('------- Initiating mascon fit -------')
     mascon.train(pos_data, acc_data)

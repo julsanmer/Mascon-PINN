@@ -73,13 +73,13 @@ def copy_gravity(asteroid, asteroid_orig):
 # Set configuration file
 config = {
     'groundtruth': {'asteroid_name': 'eros',  # 'eros'
-                    'grav_model': 'polyheterogeneous',
+                    'grav_model': 'poly',
                     #'file_poly': bsk_path + 'eros007790.tab',
                     'file_poly': bsk_path + 'eros200700.tab',
                     'n_eval': 100},
     'estimation': {'model_path': '/ideal/dense_alt50km_100000samples/',
-                   #'file': 'pinn6x40SIREN_linear_mascon100'
-                   'file': 'mascon100_muxyz_quadratic_octantrand0'
+                   'file': 'pinn6x40SIREN_linear_mascon100'
+                   #'file': 'mascon100_muxyz_quadratic_octantrand0'
                    },
     'transfer': {'t_span': [0, 4*h2sec],
                  'oe0': np.array([34*km2m, 0, 0*deg2rad, 0*deg2rad, 0*deg2rad]),
@@ -92,15 +92,25 @@ os.chdir('/Users/julio/Desktop/python_scripts/THOR/scripts')
 
 # Set type of transfer
 #transfer_name = 'polar'
-transfer_name = 'equatorial'
+transfer_name = 'equatorial2'
 if transfer_name == 'equatorial':
     # Set initial inclination and final position
     config['transfer']['oe0'][2] = 0 * deg2rad
     config['transfer']['posf'] = np.array([0, -3.75, 0]) * km2m
+# elif transfer_name == 'equatorial2':
+#     # Set initial inclination and final position
+#     config['transfer']['oe0'][2] = 0 * deg2rad
+#     config['transfer']['posf'] = np.array([15.47936666666667,
+#                                            -3582.2866666666664,
+#                                            -136.7515])
 elif transfer_name == 'polar':
     # Set initial inclination and final position
     config['transfer']['oe0'][2] = 90 * deg2rad
-    config['transfer']['posf'] = np.array([0, 0, 6]) * km2m
+    config['transfer']['posf'] = np.array([0, 0, 5.75]) * km2m
+# elif transfer_name == 'polar2':
+#     # Set initial inclination and final position
+#     config['transfer']['oe0'][2] = 90 * deg2rad
+#     config['transfer']['posf'] = np.array([38.61526666666666, 208.34900000000002, [5475.706666666668]) * km2m
 
 # Obtain number of faces
 config_gt = config['groundtruth']
@@ -134,6 +144,7 @@ gravity = scenario.estimation.asteroid.gravity
 asteroid = Asteroid()
 asteroid.set_properties('eros',
                         file_shape=config['groundtruth']['file_poly'])
+print(asteroid.shape.shape_bsk.closestPoint([0,0,6*1e3]))
 for i in range(len(gravity)):
     if gravity[i].name == 'mascon':
         asteroid.add_mascon(gravity[i].mu_M,
