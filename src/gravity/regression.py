@@ -1,16 +1,13 @@
 import numpy as np
 import os
 
-from Basilisk.utilities import macros as mc
-from Basilisk import __path__
-bsk_path = __path__[0]
-
 # Conversion constants
 deg2rad = np.pi/180
 km2m = 1e3
 
 
-class Estimation:
+# This is the gravity regression class
+class Regression:
     def __init__(self):
         # File
         self.file = []
@@ -96,7 +93,7 @@ class Estimation:
             elif data == 'dense':
                 type = config['groundtruth']['dense']['dist']
                 rmax = config['groundtruth']['dense']['rmax'] / 1e3
-                n_data = config['estimation']['data']['n_data']
+                n_data = config['regression']['data']['n_data']
 
                 file_path += '/ideal' + '/dense_' + type \
                              + str(int(rmax)) + 'km_' + str(n_data) + 'samples'
@@ -116,13 +113,14 @@ class Estimation:
             # If model is mascon
             if grav_results == 'mascon':
                 # Retrieve loss
-                loss = config['estimation']['grad_descent']['loss']
+                loss = config['regression']['grad_descent']['loss']
 
                 # Retrieve mascon parameters
-                n_M = config['estimation']['mascon']['n_M']
-                init = config['estimation']['mascon']['init']
-                seed_M = config['estimation']['mascon']['seed_M']
-                if config['estimation']['mascon']['train_xyz']:
+                config_mascon = config['regression']['mascon']
+                n_M = config_mascon['n_M']
+                init = config_mascon['init']
+                seed_M = config_mascon['seed_M']
+                if config_mascon['train_xyz']:
                     mascon_train = 'muxyz'
                 else:
                     mascon_train = 'mu'
@@ -134,14 +132,15 @@ class Estimation:
             # If model is pinn
             elif grav_results == 'pinn':
                 # Retrieve loss
-                loss = config['estimation']['grad_descent']['loss']
+                loss = config['regression']['grad_descent']['loss']
 
                 # Set bc model
-                bc_model = config['estimation']['pinn']['model_bc']['type']
-                n_M = config['estimation']['pinn']['model_bc']['n_M']
-                layers = config['estimation']['pinn']['layers']
-                n_layer = config['estimation']['pinn']['neurons']
-                activation = config['estimation']['pinn']['activation']
+                config_pinn = config['regression']['pinn']
+                bc_model = config_pinn['model_bc']['type']
+                n_M = config_pinn['model_bc']['n_M']
+                layers = config_pinn['layers']
+                n_layer = config_pinn['neurons']
+                activation = config_pinn['activation']
 
                 # Set pinn results file
                 file_path += '/pinn' + str(layers) + 'x' + str(n_layer) \
@@ -162,7 +161,7 @@ class Estimation:
         file_path = 'Results/' + asteroid_name
 
         # Define Adam gradient descent variables
-        grav_results = config['estimation']['grav_model']
+        grav_results = config['regression']['grav_model']
 
         # Set groundtruth extension
         file_path = _pathgroundtruth(file_path)

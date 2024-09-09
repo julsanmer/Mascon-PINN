@@ -488,7 +488,7 @@ def all_gravityplots(scenario):
         groundtruth.asteroid.shape.order_face
 
     # Extract gravity error maps
-    gravmap = scenario.estimation.gravmap
+    gravmap = scenario.regression.gravmap
 
     # Conversion factor
     global km2R
@@ -503,12 +503,12 @@ def all_gravityplots(scenario):
     plot_gravitysurf2D(gravmap.map_surf2D)
     plot_gravitysurf3D(gravmap.map_surf3D, xyz_vert, order_face)
 
-    if scenario.config['estimation']['grav_model'] == 'mascon':
-        mascon = scenario.estimation.asteroid.gravity[0]
+    if scenario.config['regression']['grav_model'] == 'mascon':
+        mascon = scenario.regression.asteroid.gravity[0]
         plot_mascon(mascon.xyz_M, mascon.mu_M,
                     xyz_vert, order_face)
 
-    if scenario.config['estimation']['grav_model'] == 'pinn':
+    if scenario.config['regression']['grav_model'] == 'pinn':
         pinn = scenario.estimation.asteroid.gravity[0]
         plot_loss(pinn.loss)
         # plot_Uproxy(pinn.r_data, pinn.Uproxy,

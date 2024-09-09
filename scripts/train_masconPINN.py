@@ -31,7 +31,7 @@ def configuration():
                                   'n_data': 100000},
                         'gravmap': {'nr_3D': 40, 'nlat_3D': 40, 'nlon_3D': 40, 'rmax_3D': 160 * km2m,
                                     'n_2D': 160, 'rmax_2D': 60 * km2m}},
-        'estimation': {'file': '',
+        'regression': {'file': '',
                        'algorithm': 'ideal',  # 'simultaneous' / 'ideal'
                        'grav_model': 'pinn',  # 'mascon' / 'pinn' / 'spherharm'
                        'data': {'n_data': 100000},
@@ -59,28 +59,28 @@ def configuration():
 
 # This loads data and train mascon based on config
 def launch_training(config):
-    config_pinn = config['estimation']['pinn']
-    config_gd = config['estimation']['grad_descent']
+    config_pinn = config['regression']['pinn']
+    config_gd = config['regression']['grad_descent']
 
     # Create scenario instance
     scenario = Scenario(config)
 
     # Import groundtruth
-    groundtruth = scenario.groundtruth
-    groundtruth.set_file(config['groundtruth'])
-    groundtruth.import_data(n_data=config['estimation']['data']['n_data'])
+    gt = scenario.groundtruth
+    gt.set_file(config['groundtruth'])
+    gt.import_data(n_data=config['regression']['data']['n_data'])
 
     # Initialize estimation
-    scenario.init_estimation()
-    asteroid = scenario.estimation.asteroid
+    scenario.init_regression()
+    asteroid = scenario.regression.asteroid
 
     # Import mascon model
-    file_mascon = '/'.join(scenario.estimation.file.split('/')[:-1]) \
+    file_mascon = '/'.join(scenario.regression.file.split('/')[:-1]) \
                   + '/' + config_pinn['model_bc']['file']
     #file_mascon = 'Results/eros/results/polyheterogeneous/ideal/dense_alt50km_100000samples/mascon100_muxyzquadratic_octant_rand0.pck'
     inputs = pck.load(open(file_mascon, "rb"))
-    mu_M = inputs.estimation.asteroid.gravity[0].mu_M
-    xyz_M = inputs.estimation.asteroid.gravity[0].xyz_M
+    mu_M = inputs.regression.asteroid.gravity[0].mu_M
+    xyz_M = inputs.regression.asteroid.gravity[0].xyz_M
 
     # Add pinn model in training mode
     asteroid.add_pinn(training=True)
@@ -108,9 +108,9 @@ def launch_training(config):
     # acc_data = groundtruth.spacecraft.data.acc_BP_P
 
     # Retrieve data to train
-    pos_data = groundtruth.spacecraft.data.pos_BP_P
-    acc_data = groundtruth.spacecraft.data.acc_BP_P
-    U_data = groundtruth.spacecraft.data.U
+    pos_data = gt.spacecraft.data.pos_BP_P
+    acc_data = gt.spacecraft.data.acc_BP_P
+    U_data = gt.spacecraft.data.U
     # pos_ejecta = groundtruth.ejecta.data.pos_BP_P
     # acc_ejecta = groundtruth.ejecta.data.acc_BP_P
     # U_ejecta = groundtruth.ejecta.data.U
