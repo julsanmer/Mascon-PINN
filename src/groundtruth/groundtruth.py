@@ -6,8 +6,6 @@ from src.bskObjects.propagator import Propagator
 from src.groundtruth.dense_dataset import generate_dense_dataset
 
 from Basilisk.simulation import gravityEffector
-from Basilisk import __path__
-bsk_path = __path__[0]
 
 # Conversion constants
 deg2rad = np.pi/180
@@ -32,13 +30,13 @@ class Groundtruth:
         self.n_ejecta = []
         self.rmax_ejecta = []
 
-        # Preallocate asteroid, ejecta
+        # Declare asteroid, ejecta
         # and spacecraft objects
         self.asteroid = None
         self.ejecta = None
         self.spacecraft = None
 
-        # Preallocate gravity map
+        # Declare gravity map
         self.gravmap = None
 
     # This method generates groundtruth data
@@ -46,19 +44,19 @@ class Groundtruth:
         # Set type of ground truth data creation
         if self.data_type == 'dense':
             # Create dense data
-            self._create_dense_data(self.spacecraft,
-                                    self.asteroid,
-                                    n_data=self.n_data,
-                                    rmax=self.rmax_dense,
-                                    type=self.dense_type)
+            generate_dense_dataset(self.spacecraft,
+                                   self.asteroid,
+                                   n_data=self.n_data,
+                                   rmax=self.rmax_dense,
+                                   type=self.dense_type)
 
             # Create ejecta data (the idea is to have
             # a very low altitude dataset)
-            self._create_dense_data(self.ejecta,
-                                    self.asteroid,
-                                    n_data=self.n_ejecta,
-                                    rmax=self.rmax_ejecta,
-                                    type=self.ejecta_type)
+            generate_dense_dataset(self.ejecta,
+                                   self.asteroid,
+                                   n_data=self.n_ejecta,
+                                   rmax=self.rmax_ejecta,
+                                   type=self.ejecta_type)
 
     # This imports groundtruth data
     def import_data(self, n_data=None):
@@ -67,31 +65,34 @@ class Groundtruth:
 
         # Load groundtruth gravity map, asteroid
         # and spacecraft
-        gt_input = inputs.groundtruth
-        self.gravmap = gt_input.gravmap
-        self.asteroid = gt_input.asteroid
-        self.spacecraft = gt_input.spacecraft
-        self.ejecta = gt_input.ejecta
+        gt_in = inputs.groundtruth
+        self.gravmap = gt_in.gravmap
+        self.asteroid = gt_in.asteroid
+        self.spacecraft = gt_in.spacecraft
+        self.ejecta = gt_in.ejecta
 
         # Determine indexes to prune data
         if n_data is not None:
             # Number of data and indexes
             idx = np.linspace(0, n_data-1, n_data).astype(int)
 
-        # Prune dataset related variables
-        sc_input = gt_input.spacecraft
-        self.spacecraft.data.pos_BP_P = sc_input.data.pos_BP_P[idx, :]
-        self.spacecraft.data.acc_BP_P = sc_input.data.acc_BP_P[idx, :]
-        self.spacecraft.data.r_BP = sc_input.data.r_BP[idx]
-        self.spacecraft.data.h_BP = sc_input.data.h_BP[idx]
-        self.spacecraft.data.U = sc_input.data.U[idx]
+        # Spacecraft with pruning
+        sc_in = gt_in.spacecraft
+        sc_out = self.spacecraft
+        sc_out.data.pos_BP_P = sc_in.data.pos_BP_P[idx, :]
+        sc_out.data.acc_BP_P = sc_in.data.acc_BP_P[idx, :]
+        sc_out.data.r_BP = sc_in.data.r_BP[idx]
+        sc_out.data.h_BP = sc_in.data.h_BP[idx]
+        sc_out.data.U = sc_in.data.U[idx]
 
-        ej_input = gt_input.ejecta
-        self.ejecta.data.pos_BP_P = ej_input.data.pos_BP_P[idx, :]
-        self.ejecta.data.acc_BP_P = ej_input.data.acc_BP_P[idx, :]
-        self.ejecta.data.r_BP = ej_input.data.r_BP[idx]
-        self.ejecta.data.h_BP = ej_input.data.h_BP[idx]
-        self.ejecta.data.U = ej_input.data.U[idx]
+        # Ejecta with pruning
+        ej_in = gt_in.ejecta
+        ej_out = self.ejecta
+        ej_out.data.pos_BP_P = ej_in.data.pos_BP_P[idx, :]
+        ej_out.data.acc_BP_P = ej_in.data.acc_BP_P[idx, :]
+        ej_out.data.r_BP = ej_in.data.r_BP[idx]
+        ej_out.data.h_BP = ej_in.data.h_BP[idx]
+        ej_out.data.U = ej_in.data.U[idx]
 
     # This method sets groundtruth file based on config
     def set_file(self, config_gt):
@@ -110,6 +111,7 @@ class Groundtruth:
             grav_gt += 'heterogeneous'
 
         # Obtain number of faces
+
         _, _, _, n_face = \
             gravityEffector.loadPolyFromFileToList(config_gt['file_poly'])
         config_gt['n_face'] = n_face
@@ -135,13 +137,6 @@ class Groundtruth:
 
         # Set groundtruth file in its class
         self.file = file_gt
-
-    # This internal method creates dense data
-    # around the asteroid
-    def _create_dense_data(self, sc, asteroid, n_data=1000,
-                    rmax=None, type='alt'):
-        # Get gravity and shape objects
-        generate_dense_dataset(sc, asteroid, n_data, rmax, type)
 
     # This internal method creates orbit data
     # around the asteroid

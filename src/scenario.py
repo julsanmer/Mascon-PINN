@@ -1,10 +1,12 @@
 import numpy as np
 
-from src.spaceObjects.asteroid import Asteroid
-from src.spaceObjects.spacecraft import Spacecraft
-from src.gravity.gravityMaps import GravityMap
 from src.groundtruth.groundtruth import Groundtruth
-from src.gravity.regression import Regression
+from src.gravRegression.mascon.masconOptimizer import MasconOptimizer
+from src.gravRegression.pinn.pinnOptimizer import PINNOptimizer
+
+from src.celestialBodies.asteroid import Asteroid
+from src.orbiters.spacecraft import Spacecraft
+from src.gravMaps.gravityMaps import GravityMap
 
 # Conversion constants
 deg2rad = np.pi/180
@@ -17,8 +19,8 @@ class Scenario:
         # Groundtruth subclass
         self.groundtruth = Groundtruth()
 
-        # Gravity estimation subclass
-        self.regression = None
+        # Gravity regression attributes
+        self.grav_optimizer = None
 
         # Saves configuration
         self.config = config
@@ -62,17 +64,20 @@ class Scenario:
 
     # This method initializes gravity regression
     def init_regression(self):
-        # Create estimation instance and store it
-        self.regression = Regression()
-        reg = self.regression
+        # Declare optimizer, asteroid and gravity map
+        if self.config['regression']['grav_model'] == 'mascon':
+            self.grav_optimizer = MasconOptimizer()
+        elif self.config['regression']['grav_model'] == 'pinn':
+            self.grav_optimizer = PINNOptimizer()
+
+        # Declare asteroid and gravity map
+        self.grav_optimizer.asteroid = Asteroid()
+        self.grav_optimizer.gravmap = GravityMap()
 
         # Set file
-        reg.set_file(self.config)
+        self.grav_optimizer.set_file(self.config)
 
-        # Create asteroid in estimation
-        reg.asteroid = Asteroid()
-        reg.asteroid.set_properties(self.config['groundtruth']['asteroid_name'],
-                                    file_shape=self.config['groundtruth']['file_poly'])
-
-        # Initialize gravity maps
-        reg.gravmap = GravityMap()
+        # Declare asteroid under consideration
+        config_gt = self.config['groundtruth']
+        self.grav_optimizer.asteroid.set_properties(config_gt['asteroid_name'],
+                                                    file_shape=config_gt['file_poly'])

@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle as pck
+import os
 
 from src.scenario import Scenario
 from plots.plots_gravity import plot_dataset
 
-from Basilisk import __path__
-bsk_path = __path__[0] + '/supportData/LocalGravData/'
+# Import current directory
+current_dir = os.getcwd()
 
 # Conversion constants
 deg2rad = np.pi/180
@@ -21,7 +22,8 @@ def configuration():
                         'asteroid_name': 'eros',  # 'eros'
                         'grav_model': 'poly',
                         #'file_poly': bsk_path + 'eros200700.tab',
-                        'file_poly': bsk_path + 'eros007790.tab',
+                        'file_poly': current_dir + '/Polyhedron_files/eros/'
+                                     + 'eros007790.tab',
                         'n_face': [],  # to be filled later
                         'data': 'dense',  # 'dense' / 'orbit'
                         'mascon': {'add': False,
