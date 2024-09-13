@@ -67,8 +67,12 @@ class Orbits:
             # Append the row to the 2D list
             self.orbits.append(row)
 
+    # Create propagator
+    def prepare_propagator(self):
+
+
     # Propagate different orbits
-    def propagate(self):
+    def propagate(self, oe):
         print('------- Initiating propagation -------')
 
         # Loop semi-major axis

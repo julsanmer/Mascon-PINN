@@ -1,10 +1,7 @@
 import numpy as np
 
-from src.celestialBodies.gravityModels.masconGravity import MasconGrav
-from src.celestialBodies.gravityModels.pinnGravity import PINNGrav
-from src.celestialBodies.gravityModels.polyhedronGravity import PolyhedronGrav
-from src.celestialBodies.shapeModels.polyhedronShape import PolyhedronShape
-#from src.celestialBodies.gravityModels. import PINNGrav
+from src.celestialBodies.gravityModels import MasconGrav, PINNGrav, PolyhedronGrav
+from src.celestialBodies.shapeModels import PolyhedronShape
 
 from Basilisk.utilities import RigidBodyKinematics as rbk
 

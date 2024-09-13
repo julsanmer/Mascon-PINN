@@ -3,7 +3,6 @@ import pickle as pck
 import os
 
 from src.scenario import Scenario
-from src.gravRegression.pinn.pinnOptimizer import PINNOptimizer
 
 from plots.plots_gravity import all_gravityplots
 

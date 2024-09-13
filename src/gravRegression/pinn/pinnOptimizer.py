@@ -6,8 +6,8 @@ from timeit import default_timer as timer
 
 from src.gravRegression.gravityOptimizer import GravityOptimizer
 from src.gravRegression.pinn.trainer import Optimizer
-from src.gravRegression.pinn.pinn_eval import PINNeval
 from src.gravRegression.pinn.pinn_train import PINNtrain
+from src.celestialBodies.gravityModels.pinn.pinn_eval import PINNeval
 
 # Conversion constants
 deg2rad = np.pi/180

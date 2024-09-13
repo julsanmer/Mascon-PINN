@@ -33,9 +33,9 @@ colorsGray = ['#FFFFFF',
 
 
 # ------------------------------------- MAIN PLOT HANDLING ------------------------------------------------------ #
-def plot_orb(orbits):
+def plot_orb(sc_orbits):
     # Get polyhedron
-    shape = orbits.asteroid.shape
+    shape = sc_orbits[0][0].grav_body.shape
     xyz_vert = shape.xyz_vert
     order_face = shape.order_face
 
@@ -46,13 +46,13 @@ def plot_orb(orbits):
                     triangles=order_face-1, color=color_asteroid, zorder=0)
 
     # Get orbits length
-    n1 = len(orbits.orbits)
+    n1 = len(sc_orbits)
 
     # Loop through orbits
     for i in range(n1):
-        n2 = len(orbits.orbits[i])
+        n2 = len(sc_orbits[i])
         for j in range(n2):
-            pos = orbits.orbits[i][j].data.pos_BP_P
+            pos = sc_orbits[i][j].data.pos_BP_P
             ax.plot(pos[:, 0] * m2km, pos[:, 1] * m2km, pos[:, 2] * m2km,
                     zorder=20, linewidth=0.5, color=colors[j])
 

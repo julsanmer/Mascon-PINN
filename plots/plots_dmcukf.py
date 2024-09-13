@@ -31,7 +31,7 @@ def plot_orb(asteroid, pos, frame='inertial'):
     ax = fig.add_subplot(1, 1, 1, projection='3d')
     ax.plot_trisurf(xyz_vert[:, 0]*m2km, xyz_vert[:, 1]*m2km, xyz_vert[:, 2]*m2km,
                     triangles=order_face-1, color=color_asteroid, zorder=0)
-    ax.plot(pos[:, 0]*m2km, pos[:, 1]*m2km, pos[:, 2]*m2km, 'b', zorder=20, linewidth=0.5)
+    ax.plot(pos[:, 0]*m2km, pos[:, 1]*m2km, pos[:, 2]*m2km, 'b', zorder=20, linewidth=2)
     #ax.plot(xyz_lmk[:, 0]*m2km, xyz_lmk[:, 1]*m2km, xyz_lmk[:, 2]*m2km,
     #        'k', linestyle='', marker='s', markersize=2.25, zorder=10)
 

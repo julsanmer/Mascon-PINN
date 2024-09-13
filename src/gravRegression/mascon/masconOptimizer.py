@@ -5,7 +5,7 @@ from timeit import default_timer as timer
 
 import src.gravRegression.mascon.initializers as place_positions
 from src.gravRegression.gravityOptimizer import GravityOptimizer
-from src.celestialBodies.shapeModels.polyhedronShape import PolyhedronShape
+from src.celestialBodies.shapeModels import PolyhedronShape
 
 from Basilisk.fswAlgorithms import masconFit
 
