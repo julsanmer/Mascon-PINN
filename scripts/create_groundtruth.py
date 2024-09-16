@@ -69,7 +69,7 @@ if __name__ == "__main__":
     gt.gravmap.generate_maps(asteroid)
 
     # Delete asteroid swigpy objects
-    asteroid.delete_swigpy()
+    asteroid.grav_body.delete_swigpy()
 
     # Save simulation outputs
     with open(gt.file, "wb") as f:

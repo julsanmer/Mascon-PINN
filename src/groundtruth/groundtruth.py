@@ -2,7 +2,6 @@ import numpy as np
 import os
 import pickle as pck
 
-from src.bskObjects.propagator import Propagator
 from src.groundtruth.dense_dataset import generate_dense_dataset
 
 from Basilisk.simulation import gravityEffector
