@@ -57,7 +57,7 @@ class Spacecraft:
     class Data:
         def __init__(self):
             # Preallocate sampling and time
-            self.dt_sample = []
+            self.dt_sample = 1
             self.t = []
 
             # Preallocate position and velocity

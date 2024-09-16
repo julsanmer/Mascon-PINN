@@ -42,10 +42,8 @@ def configuration():
     return config
 
 
-if __name__ == "__main__":
-    # Obtain configuration dict
-    config = configuration()
-
+# This function launches orbital propagation
+def launch_propagation(config):
     # Number of semi-major axes and
     # orbital inclinations
     n_a = len(config['oe']['a'])
@@ -55,10 +53,11 @@ if __name__ == "__main__":
     tf = config['tf']
 
     # Create asteroid from a previously regressed model
-    scenario_mascon = pck.load(open('Results/eros/results/'
-                                    + config['regression']['model_path']
-                                    + config['regression']['file'], "rb"))
-    asteroid = scenario_mascon.grav_optimizer.asteroid
+    file_mascon = current_dir + '/Results/eros/results/' \
+                  + config['regression']['model_path'] \
+                  + config['regression']['file']
+    inputs = pck.load(open(file_mascon, "rb"))
+    asteroid = inputs.grav_optimizer.asteroid
     asteroid.shape.create_shape()
 
     # Create a 2D list to store spacecraft objects
@@ -82,8 +81,21 @@ if __name__ == "__main__":
             oe0[2] = config['oe']['inc'][j]
 
             # Propagate
-            sc_orbits[i][j].data.dt_sample = 1
             sc_orbits[i][j].propagate(oe0, tf)
+
+    # Save file
+    with open(mascon_optim.file, "wb") as f:
+              pck.dump(scenario, f)
+
+    return sc_orbits
+
+
+if __name__ == "__main__":
+    # Obtain configuration dict
+    config = configuration()
+
+    # Launch orbital propagation
+    sc_orbits = launch_propagation(config)
 
     # Plot orbits
     plot_orb(sc_orbits)
