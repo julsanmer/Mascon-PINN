@@ -35,6 +35,28 @@ class Mascon_BC:
 
         return U
 
+    # This method computes potential
+    def compute_acc(self, pos):
+        # If it is not a tensor
+        if not torch.is_tensor(pos):
+            pos = torch.from_numpy(pos)
+
+        # Preallocate potential
+        acc = torch.zeros_like(pos)
+
+        # Loop through masses
+        for k in range(self.n_M):
+            # Compute distance vector to the k-th mass
+            dpos_k = pos - self.xyz_M[k, 0:3].t()  # Shape: [n, 3]
+
+            # Compute the distance (norm of the distance vector)
+            dr_k = torch.norm(dpos_k, dim=1)  # Shape: [n]
+
+            # Add to potential
+            acc += -self.mu_M[k] * dpos_k / dr_k[:, None] ** 3  # dr_k[:, None] makes it [n, 1]
+
+        return acc
+
 
 # This is the spherical harmonics gravity as a boundary model
 class Spherharm_BC:

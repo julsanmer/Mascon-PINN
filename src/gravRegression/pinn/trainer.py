@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
+from src.gravRegression.pinn.dataset import TrainDataset
+from torch.utils.data import DataLoader
 
 
 # This class manages the optimization
@@ -26,6 +27,7 @@ class Optimizer:
         self.pos, self.acc = [], []
         self.acc_norm = []
         self.acc_ad = []
+        self.acc_bc = []
 
         # Mini-batch
         self.batch_size = []
@@ -50,7 +52,7 @@ class Optimizer:
         print("Total parameters:", total_params)
 
     # This method computes loss
-    def compute_loss(self, pos, acc):
+    def compute_loss(self, pos, acc, acc_bc):
         # Get data
         n = self.batch_size
         acc_norm = torch.norm(acc, dim=1).unsqueeze(1)
@@ -65,8 +67,10 @@ class Optimizer:
 
         # Compute gradient of the potential
         dU = self.model.gradient(pos)
-        dU_perc = dU / acc_norm
-        dU_ad = dU / self.model.acc_ad
+        #pos_nograd = pos.detach().clone()
+        #acc_M = self.model.model_bc.compute_acc(pos_nograd)
+        dU_perc = (dU + acc_bc) / acc_norm
+        dU_ad = (dU + acc_bc) / self.model.acc_ad
 
         # Compute loss function
         if self.loss_type == 'linear':
@@ -90,8 +94,11 @@ class Optimizer:
             self.device, dtype=torch.float32)
 
         # Set training dataset and loader
-        self.train_dataset = TensorDataset(self.pos,
-                                           self.acc)
+        # self.train_dataset = TensorDataset(self.pos,
+        #                                    self.acc)
+        self.train_dataset = TrainDataset(self.pos,
+                                          self.acc,
+                                          self.acc_bc)
         self.train_loader = DataLoader(self.train_dataset,
                                        batch_size=self.batch_size,
                                        shuffle=True)
@@ -117,9 +124,10 @@ class Optimizer:
             loss_sum = 0
 
             # Loop through data batches
-            for pos, acc in self.train_loader:
+            for pos, acc, acc_bc in self.train_loader:
+            #for pos, acc in self.train_loader:
                 # Compute loss and reset optimizer gradient
-                loss = self.compute_loss(pos, acc)
+                loss = self.compute_loss(pos, acc, acc_bc)
                 self.trainer.zero_grad()
 
                 # Backpropagate and do gradient step

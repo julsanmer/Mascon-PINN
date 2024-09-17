@@ -125,13 +125,9 @@ class PINNtrain(nn.Module):
         # Compute PINN potential
         U_prx = self.forward(pos, r)
 
-        # Compute boundary potential
-        U_bc = self.model_bc.compute_potential(pos)
-
         # For further computations we need
         # to unsqueeze these variables
         r = torch.unsqueeze(r, dim=1)
-        U_bc = torch.unsqueeze(U_bc, dim=1)
 
         # Rescale proxy potential
         U_prx *= self.Uprx_ad
@@ -144,7 +140,7 @@ class PINNtrain(nn.Module):
         w_nn = 1 - H_nn
 
         # Do total potential
-        U = w_nn*U_pinn + U_bc
+        U = w_nn*U_pinn
 
         return U
 

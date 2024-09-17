@@ -87,6 +87,7 @@ class PINNOptimizer(GravityOptimizer):
         t_start = timer()
 
         # Call optimizer
+        self.optimizer.acc_bc = self.acc_bc
         self.optimizer.train(pos_data, acc_data)
 
         # End measuring cpu time
@@ -164,6 +165,8 @@ class PINNOptimizer(GravityOptimizer):
     def bc_potential(self, pos_data):
         U_bc = self.network.model_bc.compute_potential(pos_data)
         U_bc = U_bc.cpu().detach().numpy()
+
+        self.acc_bc = self.network.model_bc.compute_acc(pos_data)
 
         return U_bc
 
