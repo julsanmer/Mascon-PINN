@@ -1,20 +1,20 @@
 import numpy as np
 import torch
 import torch.optim as optim
-from src.gravRegression.pinn.dataset import TrainDataset
-from torch.utils.data import DataLoader
+from src.gravRegression.nn.dataset import TrainDataset
+from torch.utils.data import DataLoader, random_split
 
 
 # This class manages the optimization
 # of a physics-informed neural network
 class Optimizer:
-    def __init__(self, model):
+    def __init__(self, grav_nn):
         # Declare model to be trained
-        self.model = model
+        self.grav_nn = grav_nn
 
         # Declare empty trainer and
         # its parameters
-        self.trainer = []
+        self.trainer = None
         self.beta1 = 0.9
         self.beta2 = 0.999
         self.lr = 1e-3
@@ -31,8 +31,9 @@ class Optimizer:
 
         # Mini-batch
         self.batch_size = []
-        self.train_loader = []
-        self.train_dataset = []
+        self.train_loader = None
+        self.val_loader = None
+        self.train_dataset = None
 
         # Set loss type
         self.loss = []
@@ -43,44 +44,47 @@ class Optimizer:
     # This method initializes trainer
     def initialize(self):
         # Declare Adam gradient descent
-        self.trainer = optim.Adam([{'params': self.model.parameters()}],
+        self.trainer = optim.Adam([{'params': self.grav_nn.parameters()}],
                                   lr=self.lr,
                                   betas=(self.beta1, self.beta2),
                                   eps=self.eps,
                                   weight_decay=0)
-        total_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+        total_params = sum(p.numel() for p in self.grav_nn.parameters() if p.requires_grad)
         print("Total parameters:", total_params)
 
     # This method computes loss
-    def compute_loss(self, pos, acc, acc_bc):
+    def compute_loss(self, pos_data, acc_data, acc_bc):
         # Get data
         n = self.batch_size
-        acc_norm = torch.norm(acc, dim=1).unsqueeze(1)
+        accdata_norm = torch.norm(acc_data, dim=1).unsqueeze(1)
 
         # Compute adimensional acceleration
-        acc_perc = acc / acc_norm
-        acc_ad = acc / self.model.acc_ad
+        accdata_perc = acc_data / accdata_norm
+        accdata_abs = acc_data / self.grav_nn.acc_ad
 
         # Extract components and track derivatives
-        pos = pos.clone().to(self.device,
-                             dtype=torch.float32)
+        pos_data = pos_data.clone().to(self.device,
+                                       dtype=torch.float32)
+
+        # # Compute gradient of the potential
+        # acc_nn = self.grav_nn.compute_acc(pos_data)
+        # acc_perc = (acc_nn + acc_bc) / accdata_norm
+        # acc_abs = (acc_nn + acc_bc) / self.grav_nn.acc_ad
 
         # Compute gradient of the potential
-        dU = self.model.gradient(pos)
-        #pos_nograd = pos.detach().clone()
-        #acc_M = self.model.model_bc.compute_acc(pos_nograd)
-        dU_perc = (dU + acc_bc) / acc_norm
-        dU_ad = (dU + acc_bc) / self.model.acc_ad
+        acc = self.grav_nn.compute_acc(pos_data)
+        acc_perc = acc / accdata_norm
+        acc_abs = acc / self.grav_nn.acc_ad
 
         # Compute loss function
         if self.loss_type == 'linear':
-            loss_MAE = torch.sum(torch.norm(dU_perc - acc_perc, dim=1))
-            loss_MSE = torch.sum(torch.norm(dU_ad - acc_ad, dim=1))
+            loss_rel = torch.sum(torch.norm(acc_perc - accdata_perc, dim=1))
+            loss_abs = torch.sum(torch.norm(acc_abs - accdata_abs, dim=1))
         elif self.loss_type == 'quadratic':
-            loss_MAE = torch.sum(torch.norm(dU_perc - acc_perc, dim=1)**2)
-            loss_MSE = torch.sum(torch.norm(dU_ad - acc_ad, dim=1)**2)
+            loss_rel = torch.sum(torch.norm(acc_perc - accdata_perc, dim=1)**2)
+            loss_abs = torch.sum(torch.norm(acc_abs - accdata_abs, dim=1)**2)
 
-        loss = (loss_MAE + loss_MSE) / n
+        loss = (loss_abs + loss_rel) / n
 
         return loss
 
@@ -93,15 +97,29 @@ class Optimizer:
         self.acc = torch.from_numpy(acc_data).float().to(
             self.device, dtype=torch.float32)
 
-        # Set training dataset and loader
-        # self.train_dataset = TensorDataset(self.pos,
-        #                                    self.acc)
-        self.train_dataset = TrainDataset(self.pos,
-                                          self.acc,
-                                          self.acc_bc)
-        self.train_loader = DataLoader(self.train_dataset,
+        # Custom dataset
+        self.dataset = TrainDataset(self.pos,
+                                    self.acc,
+                                    self.acc_bc)
+
+        # Define the split ratio (80/20 in this case)
+        train_ratio = 0.8
+        train_size = int(train_ratio * len(self.dataset))
+        val_size = len(self.dataset) - train_size
+
+        # Split the dataset into training and validation sets
+        train_dataset, val_dataset = \
+            random_split(self.dataset, [train_size, val_size])
+
+        # Create DataLoader for the training dataset
+        self.train_loader = DataLoader(train_dataset,
                                        batch_size=self.batch_size,
                                        shuffle=True)
+
+        # Create DataLoader for the validation dataset
+        self.val_loader = DataLoader(val_dataset,
+                                     batch_size=val_size,
+                                     shuffle=False)
 
     # This method trains a PINN based on a
     # position-gravity dataset
@@ -134,15 +152,20 @@ class Optimizer:
                 loss.backward()
                 self.trainer.step()
 
-                # Add data batch loss
-                loss_sum += loss / len(self.train_loader)
+            ## Set model to evaluation mode
+            ##self.trainer.eval()
+
+            # Loop through validation data batches
+            for pos_val, acc_val, acc_bc_val in self.val_loader:
+                # Compute validation loss
+                loss_val = self.compute_loss(pos_val, acc_val, acc_bc_val)
 
             # Apply lr scheduler
-            scheduler.step(loss_sum)
+            scheduler.step(loss_val)
 
             # Save loss
-            loss_np[k] = loss_sum
-            print(k, loss_sum*1e2)
+            loss_np[k] = loss_val
+            print(k, loss_val*1e2)
 
         # Save loss
         self.loss = loss_np

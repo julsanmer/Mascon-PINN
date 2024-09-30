@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import matplotlib as mpl
-from matplotlib.cm import get_cmap
 import matplotlib.colors as colors
 from matplotlib import rc
 
@@ -478,33 +477,32 @@ def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
 
 
 # This function plots all gravity
-def all_gravityplots(scenario):
+def all_gravityplots(gt, grav_optimizer):
     # Extract data and asteroid
-    groundtruth = scenario.groundtruth
-    pos_data = groundtruth.spacecraft.data.pos_BP_P
+    pos_data = gt.spacecraft.data.pos_BP_P
     xyz_vert = \
-        groundtruth.asteroid.shape.xyz_vert
+        gt.asteroid.shape.xyz_vert
     order_face = \
-        groundtruth.asteroid.shape.order_face
+        gt.asteroid.shape.order_face
 
     # Extract gravity error maps
-    gravmap = scenario.grav_optimizer.gravmap
+    gravmap = grav_optimizer.gravmap
 
     # Conversion factor
     global km2R
-    km2R = 1 / (groundtruth.asteroid.shape.axes[0] * m2km)
+    km2R = 1 / (gt.asteroid.shape.axes[0] * m2km)
 
     # Plot dataset
     plot_dataset(pos_data, xyz_vert, order_face)
 
     # Plot gravity errors
-    plot_gravity2D(gravmap.map_2D, groundtruth.asteroid.shape)
+    plot_gravity2D(gravmap.map_2D, gt.asteroid.shape)
     plot_gravity3D(gravmap.map_3D, gravmap.intervals, [])
     plot_gravitysurf2D(gravmap.map_surf2D)
     plot_gravitysurf3D(gravmap.map_surf3D, xyz_vert, order_face)
 
-    if scenario.config['regression']['grav_model'] == 'mascon':
-        mascon = scenario.grav_optimizer.asteroid.gravity[0]
+    if grav_optimizer.config['grav_model'] == 'mascon':
+        mascon = grav_optimizer.asteroid.gravity[0]
         plot_mascon(mascon.xyz_M, mascon.mu_M,
                     xyz_vert, order_face)
 
@@ -516,6 +514,6 @@ def all_gravityplots(scenario):
 
     # Plot execution times
     plot_tcpu(np.ravel(gravmap.map_3D.t_cpu),
-              np.ravel(groundtruth.gravmap.map_3D.t_cpu))
+              np.ravel(gt.gravmap.map_3D.t_cpu))
 
     plt.show()

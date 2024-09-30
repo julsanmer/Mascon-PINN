@@ -1,3 +1,3 @@
 from .mascon.masconGravity import MasconGrav
-from .pinn.pinnGravity import PINNGrav
+from .nn.nnGravity import NNGrav
 from .polyhedron.polyhedronGravity import PolyhedronGrav

@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.celestialBodies.gravityModels import MasconGrav, PINNGrav, PolyhedronGrav
+from src.celestialBodies.gravityModels import MasconGrav, NNGrav, PolyhedronGrav
 from src.celestialBodies.shapeModels import PolyhedronShape
 
 from Basilisk.utilities import RigidBodyKinematics as rbk
@@ -64,10 +64,10 @@ class Asteroid:
                                        xyz_M=xyz_M))
 
     # This method adds a pinn gravity model
-    def add_pinn(self, file_torch=None):
+    def add_nn(self, file_torch=None):
         # Set name and append pinn model
         self.gravity_names.append('pinn')
-        self.gravity.append(PINNGrav(file_torch=file_torch))
+        self.gravity.append(NNGrav(file_torch=file_torch))
 
     # This method adds a polyhedron gravity model
     def add_poly(self, file_poly):

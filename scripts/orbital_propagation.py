@@ -17,31 +17,34 @@ km2m = 1e3
 
 # This function defines a configuration dict
 def configuration():
-    # Set configuration file
-    config = {
+    # Orbits configuration
+    config_orb = {
         'oe': {'a': np.linspace(28, 46, 4) * 1e3,
                'ecc': 0,
                'inc': np.array([0, 45, 90, 135, 180]) * np.pi/180,
                'omega': 48.2 * np.pi / 180,
                'RAAN': 347.8 * np.pi / 180,
                'f': 85.3 * np.pi / 180},
-        'tf': 24 * 3600,
-        'groundtruth': {'file': '',
-                        'asteroid_name': 'eros',  # 'eros'
-                        'grav_model': 'poly',  # 'poly'
-                        'file_poly': current_dir + '/Polyhedron_files/eros/'
-                                     + 'eros007790.tab',
-                        'mascon': {'add': False,
-                                   'mu_M': np.array([0.1,
-                                                     -0.1]) * 4.46275472004 * 1e5,
-                                   'xyz_M': np.array([[10, 0, 0],
-                                                      [-10, 0, 0]]) * 1e3},
-                        'dt_sample': 60},
-        'regression': {'file': 'mascon100_muxyz_quadratic_octantrand0',
-                       'model_path': '/ideal/dense_alt50km_100000samples/'}
-    }
+        'tf': 24 * 3600}
 
-    return config
+    # Groundtruth configuration
+    config_gt = {'file': '',
+                 'asteroid_name': 'eros',  # 'eros'
+                 'grav_model': 'poly',  # 'poly'
+                 'file_poly': current_dir + '/Polyhedron_files/eros/'
+                              + 'eros007790.tab',
+                 'mascon': {'add': False,
+                            'mu_M': np.array([0.1,
+                                              -0.1]) * 4.46275472004 * 1e5,
+                            'xyz_M': np.array([[10, 0, 0],
+                                               [-10, 0, 0]]) * 1e3},
+                 'dt_sample': 60}
+
+    # Gravity regression configuration
+    config_regression = {'file': 'mascon100_muxyz_quadratic_octantrand0',
+                         'model_path': '/ideal/dense_alt50km_100000samples/'}
+
+    return config_orb, config_gt, config_regression
 
 
 # Sets groundtruth file
@@ -76,10 +79,7 @@ def set_filegroundtruth(config_gt):
 
 
 # Sets results file
-def set_fileresults(config):
-    # Retrieve groundtruth config
-    config_gt = config['groundtruth']
-
+def set_fileresults(config_gt, config_regression):
     # Set asteroid name and groundtruth gravity
     asteroid_name = config_gt['asteroid_name']
 
@@ -100,31 +100,31 @@ def set_fileresults(config):
     config_gt['n_face'] = n_face
 
     # Set results file
-    path = path_asteroid + '/results/' + grav_gt + str(n_face) + 'faces'
-    file = path + config['regression']['model_path'] \
-           + config['regression']['file'] + '_orbits.pck'
-    file_model = path + config['regression']['model_path'] \
-                 + config['regression']['file'] + '.pck'
+    path = path_asteroid + '/regression/' + grav_gt + str(n_face) + 'faces'
+    file = path + config_regression['model_path'] \
+           + config_regression['file'] + '_orbits.pck'
+    file_model = path + config_regression['model_path'] \
+                 + config_regression['file'] + '.pck'
 
     return file, file_model
 
 
 # This function launches orbital propagation
-def launch_propagation(config):
+def launch_propagation(config_orb, config_gt, config_regression):
     # Number of semi-major axes and
     # orbital inclinations
-    n_a = len(config['oe']['a'])
-    n_inc = len(config['oe']['inc'])
+    n_a = len(config_orb['oe']['a'])
+    n_inc = len(config_orb['oe']['inc'])
 
     # Retrieve propagation time
-    tf = config['tf']
+    tf = config_orb['tf']
 
     # Files
-    file, file_model = set_fileresults(config)
+    file, file_model = set_fileresults(config_gt, config_regression)
 
     # Create asteroid from a previously regressed model
-    inputs = pck.load(open(file_model, "rb"))
-    asteroid = inputs.grav_optimizer.asteroid
+    _, grav_optimized = pck.load(open(file_model, "rb"))
+    asteroid = grav_optimized.asteroid
     asteroid.shape.create_shape()
 
     # Create a 2D list to store spacecraft objects
@@ -132,20 +132,20 @@ def launch_propagation(config):
 
     # Prepare initial orbital element
     oe0 = np.array([np.nan,
-                    config['oe']['ecc'],
+                    config_orb['oe']['ecc'],
                     np.nan,
-                    config['oe']['omega'],
-                    config['oe']['RAAN'],
-                    config['oe']['f']])
+                    config_orb['oe']['omega'],
+                    config_orb['oe']['RAAN'],
+                    config_orb['oe']['f']])
 
     # Propagation loop
     for i in range(n_a):
         # Change semi-major axis
-        oe0[0] = config['oe']['a'][i]
+        oe0[0] = config_orb['oe']['a'][i]
 
         for j in range(n_inc):
             # Change inclination
-            oe0[2] = config['oe']['inc'][j]
+            oe0[2] = config_orb['oe']['inc'][j]
 
             # Propagate
             sc_orbits[i][j].propagate(oe0, tf)
@@ -165,10 +165,10 @@ def launch_propagation(config):
 
 if __name__ == "__main__":
     # Obtain configuration dict
-    config = configuration()
+    config_orb, config_gt, config_regression = configuration()
 
     # Launch orbital propagation
-    sc_orbits = launch_propagation(config)
+    sc_orbits = launch_propagation(config_orb, config_gt, config_regression)
 
     # Plot orbits
     plot_orb(sc_orbits)

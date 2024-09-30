@@ -2,25 +2,36 @@ import torch
 import torch.autograd as autograd
 import torch.nn as nn
 
-from src.gravRegression.pinn.model_bc import Mascon_BC
-
 
 # This defines the PINN class for training
-class PINNtrain(nn.Module):
-    def __init__(self, params, device='cpu'):
+class PINNeval(nn.Module):
+    def __init__(self, n_layers,
+                 n_neurons,
+                 activation,
+                 device='cpu'):
         super().__init__()
 
         # Set device
         self.device = device
 
-        # Set number of layers and activation function
-        self.layers = params.layers
+        # Set layers, neurons and activation
+        layers = []
+        for i in range(n_layers + 2):
+            if i == 0:
+                layers.append(5)
+            elif i == n_layers + 1:
+                layers.append(1)
+            else:
+                layers.append(n_neurons)
+        self.layers = layers
+
+        # Set activation function
         self.is_SIREN = False
-        if params.activation == 'GELU':
+        if activation == 'GELU':
             self.activation = nn.GELU()
-        elif params.activation == 'SiLU':
+        elif activation == 'SiLU':
             self.activation = nn.SiLU()
-        elif params.activation == 'SIREN':
+        elif activation == 'SIREN':
             self.is_SIREN = True
 
         # Initialise neural network as a list
@@ -32,22 +43,18 @@ class PINNtrain(nn.Module):
         self.initialise_weights_biases()
 
         # Set adimensional parameters
-        self.r_ad = params.r_ad
-        self.Uprx_ad = params.Uprx_ad
+        self.R = []
+        self.Uprx_ad = []
 
         # Set boundary condition transition
-        self.l_bc = params.l_bc
-        self.r_bc = params.r_bc
-        self.k_bc = params.k_bc
+        self.l_bc = []
 
-        # Set boundary model
-        #self.bc_type = params.model_bc.type
-        self.model_bc = Mascon_BC(mu_M=params.model_bc.mu_M,
-                                  xyz_M=params.model_bc.xyz_M,
-                                  device='cpu')
+        # Switch models
+        self.w_nn = None
+        self.w_lf = None
 
-        # Initialize data
-        self.U_bc = []
+        # Set if create graph is necessary
+        self.graph = True
 
     # This method initialises weights and biases
     def initialise_weights_biases(self):
@@ -74,12 +81,9 @@ class PINNtrain(nn.Module):
         y_ad = pos[:, 1] / r
         z_ad = pos[:, 2] / r
 
-        # Set r_ad/r
-        if self.layers[0] == 4:
-            input[:, 3] = self.r_ad / r
-        elif self.layers[0] == 5:
-            input[:, 3] = torch.clamp(self.r_ad/r, max=1.0)
-            input[:, 4] = torch.clamp(r/self.r_ad, max=1.0)
+        # Set r_e and r_i
+        input[:, 3] = torch.clamp(self.R/r, max=1.0)
+        input[:, 4] = torch.clamp(r/self.R, max=1.0)
 
         # Set input
         input[:, 0] = x_ad
@@ -98,26 +102,20 @@ class PINNtrain(nn.Module):
                 input = self.activation(z)
 
         # Get pinn proxy potential
-        U = self.linears[-1](input)
+        U_prx = self.linears[-1](input)
 
-        return U
+        return U_prx
 
     # This method computes the potential
-    def potential(self, pos):
-        # This is the switch function
-        def compute_switch(r_ad, k_bc=2., r_bc=1.):
-            # Compute switch function
-            h = k_bc * (r_ad-r_bc)
-            H = (1 + torch.tanh(h))/2
-
-            return H
-
+    def compute_U(self, pos):
         # This is the proxy transform
-        def rescale_proxy(U_prx, r_ad, l_bc=1.):
+        def rescale_Uprx(U_prx, r_ad, l_bc=1.):
             # Rescale proxy potential
-            U_pinn = U_prx / (r_ad**l_bc)
+            U_nn = torch.where(r_ad > 1,
+                               U_prx / (r_ad**l_bc),
+                               U_prx)
 
-            return U_pinn
+            return U_nn
 
         # Compute radius
         r = torch.norm(pos, dim=1)
@@ -131,34 +129,39 @@ class PINNtrain(nn.Module):
 
         # Rescale proxy potential
         U_prx *= self.Uprx_ad
-        U_pinn = rescale_proxy(U_prx, r/self.r_ad, l_bc=self.l_bc)
+        U_nn = rescale_Uprx(U_prx,
+                            r/self.R,
+                            l_bc=self.l_bc)
 
-        # Assign weights
-        H_nn = compute_switch(r/self.r_ad,
-                              k_bc=self.k_bc,
-                              r_bc=self.r_bc/self.r_ad)
-        w_nn = 1 - H_nn
+        # Compute nn and bc weights
+        w_bc, w_nn = self.w_nn.compute_w(r)
+        w_lf, _ = self.w_lf.compute_w(r)
+
+        #
+        U_bc = self.model_bc.compute_U(pos).unsqueeze(1)
 
         # Do total potential
-        U = w_nn*U_pinn
+        U = w_nn*(U_nn+U_bc) + w_bc*U_bc
 
         return U
 
     # This computes the gradient of the potential
-    def gradient(self, pos):
-        # If it is not a tensor
-        if not torch.is_tensor(pos):
-            pos = torch.from_numpy(pos)
-
+    def compute_acc(self, pos):
         # Track gradient w.r.t. position
         pos.requires_grad = True
 
         # Compute potentials
-        U = self.potential(pos)
+        U = self.compute_U(pos)
 
         # Compute gradient
-        dU = autograd.grad(U, pos,
-                           torch.ones([pos.shape[0], 1]).to(self.device),
-                           create_graph=True)[0]
+        # acc_nn = autograd.grad(U, pos,
+        #                        torch.ones([pos.shape[0], 1]).to(self.device),
+        #                        create_graph=True,
+        #                        retain_graph=True)[0]
+        acc = autograd.grad(U, pos,
+                            torch.ones([pos.shape[0], 1]).to(self.device),
+                            create_graph=self.graph,
+                            retain_graph=self.graph)[0]
+        #acc_bc = self.model_bc.compute_acc(pos)
 
-        return dU
+        return acc

@@ -5,8 +5,8 @@ from src.celestialBodies.gravityModels.gravity import Gravity
 from Basilisk.utilities import simIncludeGravBody
 
 
-# This is the PINN class
-class PINNGrav(Gravity):
+# This is the NN gravity class
+class NNGrav(Gravity):
     def __init__(self, file_torch):
         super().__init__()
 

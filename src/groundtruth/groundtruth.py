@@ -2,6 +2,9 @@ import numpy as np
 import os
 import pickle as pck
 
+from src.celestialBodies.asteroid import Asteroid
+from src.orbiters.spacecraft import Spacecraft
+from src.gravMaps.gravityMaps import GravityMap
 from src.groundtruth.dense_dataset import generate_dense_dataset
 
 from Basilisk.simulation import gravityEffector
@@ -14,8 +17,9 @@ km2m = 1e3
 # Groundtruth class
 class Groundtruth:
     def __init__(self):
-        # Groundtruth file
+        # Groundtruth file and configuration
         self.file = []
+        self.config = []
 
         self.data_type = []
 
@@ -37,6 +41,41 @@ class Groundtruth:
 
         # Declare gravity map
         self.gravmap = None
+
+    # This method initializes groundtruth based
+    # on a configuration dictionary
+    def initialize (self, config_gt):
+        # Create groundtruth file
+        self.config = config_gt
+        self.set_file(config_gt)
+
+        # Initialize asteroid and spacecraft objects
+        self.asteroid = Asteroid()
+        self.asteroid.set_properties(config_gt['asteroid_name'],
+                                     file_shape=config_gt['file_poly'])
+        self.spacecraft = Spacecraft()
+
+        # Dense dataset is defined by distribution type,
+        # number of data and maximum radius
+        self.data_type = 'dense'
+        self.dense_type = config_gt['dense']['dist']
+        self.n_data = config_gt['dense']['n_data']
+        self.rmax_dense = config_gt['dense']['rmax']
+
+        # We'll add ejecta for low altitude samples
+        self.ejecta = Spacecraft()
+        self.ejecta_type = config_gt['ejecta']['dist']
+        self.n_ejecta = config_gt['ejecta']['n_data']
+        self.rmax_ejecta = config_gt['ejecta']['rmax']
+
+        # Initialize gravity maps
+        config_gravmap = config_gt['gravmap']
+        self.gravmap = GravityMap(config_gravmap['rmax_2D'],
+                                  config_gravmap['rmax_3D'],
+                                  n_2D=config_gravmap['n_2D'],
+                                  nr_3D=config_gravmap['nr_3D'],
+                                  nlat_3D=config_gravmap['nlat_3D'],
+                                  nlon_3D=config_gravmap['nlon_3D'])
 
     # This method generates groundtruth data
     def generate_data(self):
@@ -60,11 +99,10 @@ class Groundtruth:
     # This imports groundtruth data
     def import_data(self, n_data=None):
         # Import groundtruth data from file
-        inputs = pck.load(open(self.file, "rb"))
+        gt_in = pck.load(open(self.file, "rb"))
 
         # Load groundtruth gravity map, asteroid
         # and spacecraft
-        gt_in = inputs.groundtruth
         self.gravmap = gt_in.gravmap
         self.asteroid = gt_in.asteroid
         self.spacecraft = gt_in.spacecraft
@@ -104,7 +142,6 @@ class Groundtruth:
 
         # Collect groundtruth parameters: data type
         # and asteroid gravity model
-        data = config_gt['data']
         grav_gt = config_gt['grav_model']
         if config_gt['mascon']['add']:
             grav_gt += 'heterogeneous'
@@ -120,6 +157,9 @@ class Groundtruth:
         exist = os.path.exists(path_gt)
         if not exist:
             os.makedirs(path_gt)
+
+        # According to data type
+        data = config_gt['data']
 
         # Define groundtruth file
         if data == 'dense':
@@ -137,17 +177,17 @@ class Groundtruth:
         # Set groundtruth file in its class
         self.file = file_gt
 
-    # This internal method creates orbit data
-    # around the asteroid
-    def _orbit_data(self):
-        # Create the scenario and initialize
-        propagator = Propagator(self.asteroid,
-                                self.spacecraft)
-        propagator.init_sim()
-
-        # Propagate
-        propagator.simulate(self.t_prop)
-
-        # Save data
-        propagator.save_outputs(self.asteroid,
-                                self.spacecraft)
+    # # This internal method creates orbit data
+    # # around the asteroid
+    # def _orbit_data(self):
+    #     # Create the scenario and initialize
+    #     propagator = Propagator(self.asteroid,
+    #                             self.spacecraft)
+    #     propagator.init_sim()
+    #
+    #     # Propagate
+    #     propagator.simulate(self.t_prop)
+    #
+    #     # Save data
+    #     propagator.save_outputs(self.asteroid,
+    #                             self.spacecraft)
