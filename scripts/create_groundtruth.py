@@ -4,7 +4,7 @@ import pickle as pck
 import os
 
 from src.groundtruth.groundtruth import Groundtruth
-from plots.plots_gravity import plot_dataset
+from plots.plots_groundtruth import all_groundtruth_plots
 
 # Import current directory
 current_dir = os.getcwd()
@@ -20,7 +20,8 @@ def configuration():
     config_gt = {'file': '',  # filled automatically
                  'asteroid_name': 'eros',  # 'eros'
                  'grav_model': 'poly',
-                 #'file_poly': bsk_path + 'eros200700.tab',
+                 #'file_poly': current_dir + '/Polyhedron_files/eros/'
+                 #             + 'eros200700.tab',
                  'file_poly': current_dir + '/Polyhedron_files/eros/'
                               + 'eros007790.tab',
                  'n_face': [],  # to be filled later
@@ -34,7 +35,7 @@ def configuration():
                            'n_data': 100000},
                  'ejecta': {'dist': 'alt',  # 'alt', 'rad', 'ell'
                             'rmax': 1e-3 * km2m,
-                            'n_data': 200000},
+                            'n_data': 100000},
                  'gravmap': {'nr_3D': 40, 'nlat_3D': 40, 'nlon_3D': 40, 'rmax_3D': 160*km2m,
                              'n_2D': 160, 'rmax_2D': 60*km2m}}
 
@@ -71,11 +72,5 @@ if __name__ == "__main__":
     with open(gt.file, "wb") as f:
         pck.dump(gt, f)
 
-    # Plot dataset
-    plot_dataset(gt.spacecraft.data.pos_BP_P,
-                 asteroid.shape.xyz_vert,
-                 asteroid.shape.order_face)
-    plot_dataset(gt.ejecta.data.pos_BP_P,
-                 asteroid.shape.xyz_vert,
-                 asteroid.shape.order_face)
-    plt.show()
+    # Plot groundtruth plots
+    all_groundtruth_plots(gt)
