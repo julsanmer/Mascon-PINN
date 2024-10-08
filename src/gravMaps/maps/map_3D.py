@@ -11,7 +11,7 @@ class Map3D:
         self.rmax = rmax
         self.nr, self.nlat, self.nlon = nr, nlat, nlon
         self.X, self.Y, self.Z = [], [], []
-        self.rXYZ, self.hXYZ = [], []
+        self.r, self.h = [], []
         self.ext_XYZ = []
         self.acc_XYZ = []
         self.aErrXYZ = []
@@ -117,6 +117,30 @@ class Map3D:
                     else:
                         self.acc_XYZ[i, j, k, :] = np.nan * np.ones(3)
                         self.t_cpu[i, j, k] = np.nan
+
+    # This computes 3D gravity potential
+    def generate_U(self, grav_model):
+        # Preallocate gravity 3D map
+        nr = self.nr
+        nlat = self.nlat
+        nlon = self.nlon
+        self.U_XYZ = np.zeros((nr, nlat, nlon))
+
+        # Fill gravity 3D map
+        for i in range(nr):
+            for j in range(nlat):
+                for k in range(nlon):
+                    # Compute gravity
+                    if self.ext_XYZ[i, j, k]:
+                        pos = [self.X[i, j, k],
+                               self.Y[i, j, k],
+                               self.Z[i, j, k]]
+
+                        # Evaluate gravity
+                        self.U_XYZ[i, j, k] = \
+                            grav_model.compute_potential(pos)
+                    else:
+                        self.U_XYZ[i, j, k] = np.nan
 
     # This computes 3D error map
     def compute_errors(self, refmap_3D):

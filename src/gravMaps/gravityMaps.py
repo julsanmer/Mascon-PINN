@@ -30,7 +30,9 @@ class GravityMap:
     def generate_maps(self, grav_model):
         # Create 2D and 3D maps
         self.map_2D.generate_acc(grav_model)
+        self.map_2D.generate_U(grav_model)
         self.map_3D.generate_acc(grav_model)
+        self.map_3D.generate_U(grav_model)
         self.map_surf2D.generate_acc(grav_model)
         self.map_surf3D.generate_acc(grav_model)
 

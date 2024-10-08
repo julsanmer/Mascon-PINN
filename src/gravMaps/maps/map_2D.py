@@ -120,9 +120,9 @@ class Map2D:
     def generate_U(self, grav_model):
         # Preallocate gravity 2D map
         n = self.n
-        self.U_XY = np.zeros((n, n, 3))
-        self.U_XZ = np.zeros((n, n, 3))
-        self.U_YZ = np.zeros((n, n, 3))
+        self.U_XY = np.zeros((n, n))
+        self.U_XZ = np.zeros((n, n))
+        self.U_YZ = np.zeros((n, n))
 
         # Loop through 2D map points
         for i in range(n):
@@ -137,35 +137,32 @@ class Map2D:
                     xy = [self.Xy[i, j],
                           self.Yx[i, j],
                           0]
-                    U_xy = grav_model.compute_gravity(xy)
+                    U_xy = grav_model.compute_potential(xy)
                 else:
-                    U_xy = np.nan * np.ones(3)
+                    U_xy = np.nan
 
                 # Compute gravity for xz plane
                 if ext_xz:
                     xz = [self.Xz[i, j],
                           0,
                           self.Zx[i, j]]
-                    U_xz = grav_model.compute_gravity(xz)
+                    U_xz = grav_model.compute_potential(xz)
                 else:
-                    U_xz = np.nan * np.ones(3)
+                    U_xz = np.nan
 
                 # Compute gravity for yz plane
                 if ext_yz:
                     yz = [0,
                           self.Yz[i, j],
                           self.Zy[i, j]]
-                    U_yz = grav_model.compute_gravity(yz)
+                    U_yz = grav_model.compute_potential(yz)
                 else:
-                    U_yz = np.nan * np.ones(3)
+                    U_yz = np.nan
 
                 # Save gravity
-                self.U_XY[i, j, :] = \
-                    np.array(U_xy).reshape(3)
-                self.U_XZ[i, j, :] = \
-                    np.array(U_xz).reshape(3)
-                self.acc_YZ[i, j, :] = \
-                    np.array(U_yz).reshape(3)
+                self.U_XY[i, j] = U_xy
+                self.U_XZ[i, j] = U_xz
+                self.U_YZ[i, j] = U_yz
 
     # This method computes 2D acceleration error map
     def compute_acc_error(self, refmap_2D):

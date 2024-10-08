@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib as mpl
-import matplotlib.colors as colors
 from matplotlib import rc
 
 from plots.utils import set_axes_equal
@@ -58,19 +57,25 @@ def plot_acc2D(gt):
             col = 0
             x_vert = xyz_vert[:, 0]
             y_vert = xyz_vert[:, 1]
+            xlabel = '$x/R [-]$'
+            ylabel = '$y/R [-]$'
         elif map == 'xz':
             col = 1
             x_vert = xyz_vert[:, 0]
             y_vert = xyz_vert[:, 2]
+            xlabel = '$x/R [-]$'
+            ylabel = '$z/R [-]$'
         elif map == 'yz':
             col = 2
             x_vert = xyz_vert[:, 1]
             y_vert = xyz_vert[:, 2]
+            xlabel = '$y/R [-]$'
+            ylabel = '$z/R [-]$'
 
         # Plot contour
-        cs = ax[col].contourf(X * m2km*km2R, Y * m2km*km2R, normacc,
+        cs = ax[col].contourf(X * m2km*km2R, Y * m2km*km2R, normacc * m2mm,
                               cmap=mpl.colormaps['viridis'])
-        clines = ax[col].contour(Xy * m2km*km2R, Yx * m2km*km2R, normacc,
+        clines = ax[col].contour(Xy * m2km*km2R, Yx * m2km*km2R, normacc * m2mm,
                                  colors='white',
                                  linewidths=0.25)
         ax[col].clabel(clines,
@@ -79,30 +84,21 @@ def plot_acc2D(gt):
                        fontsize=8)
         ax[col].plot(x_vert * m2km*km2R, y_vert * m2km*km2R,
                      color=color_asteroid, linestyle='', marker='.')
-        # if map == 1:
-        #     ax[col].plot(-10*1e3 * m2km*km2R, 0,
-        #                  marker='.', markersize=10, color='b')
-        #     ax[col].plot(10*1e3 * m2km*km2R, 0,
-        #                  marker='.', markersize=10, color='r')
         ax[col].set_xlim([x_min * m2km*km2R, x_max * m2km*km2R])
         ax[col].set_ylim([x_min * m2km*km2R, x_max * m2km*km2R])
-        #ax[col].set_title(title, fontsize=font_map)
-
-        if col == 0:
-            ax[col].set_ylabel('$y/R$ [-]', fontsize=font)
+        ax[col].set_xlabel(xlabel, fontsize=font)
+        ax[col].set_ylabel(ylabel, fontsize=font)
         ax[col].tick_params(axis='both', labelsize=font)
-
-        if col == 2:
-            cbar = fig.colorbar(cs, ax=ax[col], shrink=0.95,
-                                ticks=[0, 200, 400, 600, 800])
+        if map == 'yz':
+            cbar = fig.colorbar(cs, ax=ax[col], shrink=0.95)
             cbar.ax.tick_params(labelsize=font)
-            cbar.set_label('Gravity [mGal]', rotation=90, fontsize=font)
+            cbar.set_label('Gravity [mm/s$^2$]', rotation=90, fontsize=font)
 
     # Plot the global gravity results
     plt.gcf()
     fig, ax = plt.subplots(1, 3,
                            sharex=True,
-                           figsize=(7.5, 3.6),
+                           figsize=(12.0, 3.6),
                            gridspec_kw={'width_ratios': [1, 1, 1.25]})
 
     # Conversion factor
@@ -137,8 +133,149 @@ def plot_acc2D(gt):
     normacc_YZ = np.linalg.norm(acc_YZ, axis=2)
     plot_map(Yz, Zy, normacc_YZ, 'yz')
 
-    # Plot maps
-    fig.supxlabel('$x/R$ [-]', fontsize=font, x=0.5, y=0.1)
+
+def plot_acc3D(gt):
+    # Retrieve variables
+    r = np.ravel(gt.gravmap.map_3D.r)
+    acc = gt.gravmap.map_3D.acc_XYZ
+    normacc = np.ravel(np.linalg.norm(acc, axis=3))
+
+    # Make figure
+    plt.gcf()
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(1, 1, 1)
+
+    # Plot
+    ax.plot(r * m2km * km2R, normacc * m2mm,
+            marker='o',
+            linestyle='',
+            markersize=2.5,
+            alpha=0.05,
+            zorder=5)
+
+    # Set logarithmic scale
+    ax.set_yscale('log')
+
+    # Set labels
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
+    ax.set_ylabel('Gravity [mm/s$^2$]', fontsize=font)
+
+    # Set ticks, grid and legend
+    ax.tick_params(axis='both', labelsize=font)
+    ax.grid()
+    ax.legend(loc='upper right', fontsize=font_legend)
+
+
+# This function plots the gravity potential
+def plot_U2D(gt):
+    def plot_map(X, Y, U, map):
+        if map == 'xy':
+            col = 0
+            x_vert = xyz_vert[:, 0]
+            y_vert = xyz_vert[:, 1]
+            xlabel = '$x/R [-]$'
+            ylabel = '$y/R [-]$'
+        elif map == 'xz':
+            col = 1
+            x_vert = xyz_vert[:, 0]
+            y_vert = xyz_vert[:, 2]
+            xlabel = '$x/R [-]$'
+            ylabel = '$z/R [-]$'
+        elif map == 'yz':
+            col = 2
+            x_vert = xyz_vert[:, 1]
+            y_vert = xyz_vert[:, 2]
+            xlabel = '$y/R [-]$'
+            ylabel = '$z/R [-]$'
+
+        # Plot contour
+        cs = ax[col].contourf(X * m2km*km2R, Y * m2km*km2R, U,
+                              cmap=mpl.colormaps['viridis'])
+        clines = ax[col].contour(Xy * m2km*km2R, Yx * m2km*km2R, U,
+                                 colors='white',
+                                 linewidths=0.25)
+        ax[col].clabel(clines,
+                       levels=clines.levels,
+                       inline=True,
+                       fontsize=8)
+        ax[col].plot(x_vert * m2km*km2R, y_vert * m2km*km2R,
+                     color=color_asteroid, linestyle='', marker='.')
+        ax[col].set_xlim([x_min * m2km*km2R, x_max * m2km*km2R])
+        ax[col].set_ylim([x_min * m2km*km2R, x_max * m2km*km2R])
+        ax[col].set_xlabel(xlabel, fontsize=font)
+        ax[col].set_ylabel(ylabel, fontsize=font)
+        ax[col].tick_params(axis='both', labelsize=font)
+        if map == 'yz':
+            cbar = fig.colorbar(cs, ax=ax[col], shrink=0.95)
+            cbar.ax.tick_params(labelsize=font)
+            cbar.set_label('Potential [m$^2$/s$^2$]', rotation=90, fontsize=font)
+
+    # Plot the global gravity results
+    plt.gcf()
+    fig, ax = plt.subplots(1, 3,
+                           sharex=True,
+                           figsize=(12, 3.6),
+                           gridspec_kw={'width_ratios': [1, 1, 1.25]})
+
+    # Conversion factor
+    global km2R
+    km2R = 1 / (gt.asteroid.shape.axes[0] * m2km)
+
+    # Retrieve polyhedron shape
+    xyz_vert = gt.asteroid.shape.xyz_vert
+
+    # Obtain trajectory and mesh bounds
+    x_min = -1.5 * 16 * 1e3
+    x_max = 1.5 * 16 * 1e3
+
+    # Plot XY
+    Xy = gt.gravmap.map_2D.Xy
+    Yx = gt.gravmap.map_2D.Yx
+    U_XY = gt.gravmap.map_2D.U_XY
+    plot_map(Xy, Yx, U_XY, 'xy')
+
+    # Plot XZ
+    Xz = gt.gravmap.map_2D.Xz
+    Zx = gt.gravmap.map_2D.Zx
+    U_XZ = gt.gravmap.map_2D.U_XZ
+    plot_map(Xz, Zx, U_XZ, 'xz')
+
+    # Plot YZ
+    Yz = gt.gravmap.map_2D.Yz
+    Zy = gt.gravmap.map_2D.Zy
+    U_YZ = gt.gravmap.map_2D.U_YZ
+    plot_map(Yz, Zy, U_YZ, 'yz')
+
+
+def plot_U3D(gt):
+    # Retrieve variables
+    r = np.ravel(gt.gravmap.map_3D.r)
+    U = np.ravel(gt.gravmap.map_3D.U_XYZ)
+
+    # Make figure
+    plt.gcf()
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(1, 1, 1)
+
+    # Plot
+    ax.plot(r * m2km * km2R, U,
+            marker='o',
+            linestyle='',
+            markersize=2.5,
+            alpha=0.05,
+            zorder=5)
+
+    # Set logarithmic scale
+    ax.set_yscale('log')
+
+    # Set labels
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
+    ax.set_ylabel('Gravity potential [m/s$^2$]', fontsize=font)
+
+    # Set ticks, grid and legend
+    ax.tick_params(axis='both', labelsize=font)
+    ax.grid()
+    ax.legend(loc='upper right', fontsize=font_legend)
 
 
 def all_groundtruth_plots(groundtruth):
@@ -155,7 +292,12 @@ def all_groundtruth_plots(groundtruth):
                  gt.asteroid.shape.xyz_vert,
                  gt.asteroid.shape.order_face)
 
-    # Plot acceleration contour
+    # Plot acc-U contours
     plot_acc2D(gt)
+    plot_U2D(gt)
+
+    # Plot acc-U w.r.t. r
+    plot_acc3D(gt)
+    plot_U3D(gt)
 
     plt.show()
