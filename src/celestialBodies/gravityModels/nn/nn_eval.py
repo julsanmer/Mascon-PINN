@@ -118,7 +118,7 @@ class NNeval(nn.Module):
 
     # This method computes the potential
     def compute_U(self, pos):
-        pass
+        return 0
 
     # This computes the gradient of the potential
     def compute_acc(self, pos):

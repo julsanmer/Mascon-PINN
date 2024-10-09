@@ -37,7 +37,7 @@ def configuration():
     config_regression = {'file': '',
                          'grav_model': 'pinn',  # 'mascon' / 'pinn' / 'spherharm'
                          'data': {'n_data': 50000},
-                         'grad_descent': {'maxiter': 2000,
+                         'grad_descent': {'maxiter': 5000,
                                           'lr': 4*1e-3,
                                           'batch_size': 1000,
                                           'loss': 'linear'},
@@ -45,7 +45,7 @@ def configuration():
                                 'neurons': 40,
                                 'layers': 6,
                                 'activation': 'GELU',  # 'GELU' / 'SiLU' / 'SIREN'
-                                'R': 16 * km2m,
+                                'R': 16*2 * km2m,
                                 'switch': {'r_bc': 30. * km2m,
                                            'k_bc': 0.5,
                                            'l_bc': 1},

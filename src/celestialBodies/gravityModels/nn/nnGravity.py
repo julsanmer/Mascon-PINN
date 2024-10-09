@@ -33,12 +33,19 @@ class NNGrav(Gravity):
         self.gravity_bsk.PINNPath = self.file_torch
         self.gravity_bsk.initializeParameters()
 
-    # This method computes PINN gravity
+    # This method computes NN gravity
     def compute_acc(self, pos):
-        # Evaluate pinn
+        # Evaluate nn
         acc = np.array(self.gravity_bsk.computeField(pos)).reshape(3)
 
         return acc
+
+    # This method computes NN potential
+    def compute_U(self, pos):
+        # Evaluate nn
+        U = 0
+
+        return U
 
     # This method eliminates PINN gravity
     def delete_gravity(self):
