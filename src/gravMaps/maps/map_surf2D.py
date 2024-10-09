@@ -20,7 +20,7 @@ class MapSurface2D:
         self.h_surf = []
         self.xyz_surf = []
         self.acc_surf = []
-        self.aErr_surf = []
+        self.accerr_surf = []
 
     # This method creates surface grid
     def create_grid(self, shape):
@@ -106,14 +106,14 @@ class MapSurface2D:
                     grav_model.compute_gravity(self.xyz_surf[i, j, 0:3])
 
     # This computes surface error map
-    def compute_errors(self, refmap_surf):
+    def compute_accerr(self, refmap_surf):
         # Preallocate errors
-        self.aErr_surf = np.zeros((self.nlon, self.nlat))
+        self.accerr_surf = np.zeros((self.nlon, self.nlat))
 
         # Loop through surface
         for i in range(self.nlon):
             for j in range(self.nlat):
-                self.aErr_surf[i, j] = \
+                self.accerr_surf[i, j] = \
                     np.linalg.norm(self.acc_surf[i, j, 0:3] - refmap_surf.acc_surf[i, j, 0:3]) \
                     / np.linalg.norm(refmap_surf.acc_surf[i, j, 0:3])
 

@@ -21,13 +21,13 @@ class Map2D:
         # Acceleration and error maps
         self.acc_XY, self.acc_XZ, self.acc_YZ = \
             [], [], []
-        self.aErrXY, self.aErrXZ, self.aErrYZ = \
+        self.accerr_XY, self.accerr_XZ, self.accerr_YZ = \
             [], [], []
 
         # Potential and error maps
         self.U_XY, self.U_XZ, self.U_YZ = \
             [], [], []
-        self.UErrXY, self.UErrXZ, self.UErrYZ = \
+        self.Uerr_XY, self.Uerr_XZ, self.Uerr_YZ = \
             [], [], []
 
     # This method creates 2D grid
@@ -165,37 +165,37 @@ class Map2D:
                 self.U_YZ[i, j] = U_yz
 
     # This method computes 2D acceleration error map
-    def compute_acc_error(self, refmap_2D):
+    def compute_accerr(self, refmap_2D):
         # Compute xy plane errors
-        aErrXY = self.acc_XY - refmap_2D.acc_XY
-        self.aErrXY = np.linalg.norm(aErrXY, axis=2) \
-                      / np.linalg.norm(refmap_2D.acc_XY, axis=2)
+        accerr_XY = self.acc_XY - refmap_2D.acc_XY
+        self.accerr_XY = np.linalg.norm(accerr_XY, axis=2) \
+                         / np.linalg.norm(refmap_2D.acc_XY, axis=2)
 
         # Compute xz plane errors
-        aErrXZ = self.acc_XZ - refmap_2D.acc_XZ
-        self.aErrXZ = np.linalg.norm(aErrXZ, axis=2) \
+        accerr_XZ = self.acc_XZ - refmap_2D.acc_XZ
+        self.accerr_XZ = np.linalg.norm(accerr_XZ, axis=2) \
                       / np.linalg.norm(refmap_2D.acc_XZ, axis=2)
 
         # Compute yz plane errors
-        aErrYZ = self.acc_YZ - refmap_2D.acc_YZ
-        self.aErrYZ = np.linalg.norm(aErrYZ, axis=2) \
-                      / np.linalg.norm(refmap_2D.acc_YZ, axis=2)
+        accerr_YZ = self.acc_YZ - refmap_2D.acc_YZ
+        self.accerr_YZ = np.linalg.norm(accerr_YZ, axis=2) \
+                         / np.linalg.norm(refmap_2D.acc_YZ, axis=2)
 
     # This method computes 2D potential error map
-    def compute_U_error(self, refmap_2D):
+    def compute_Uerr(self, refmap_2D):
         # Compute xy plane errors
-        UErrXY = self.U_XY - refmap_2D.U_XY
-        self.UErrXY = np.linalg.norm(UErrXY, axis=2) \
-                      / np.linalg.norm(refmap_2D.U_XY, axis=2)
+        Uerr_XY = self.U_XY - refmap_2D.U_XY
+        self.Uerr_XY = np.linalg.norm(Uerr_XY, axis=2) \
+                       / np.linalg.norm(refmap_2D.U_XY, axis=2)
 
         # Compute xz plane errors
-        UErrXZ = self.U_XZ - refmap_2D.U_XZ
-        self.UErrXZ = np.linalg.norm(UErrXZ, axis=2) \
-                      / np.linalg.norm(refmap_2D.U_XZ, axis=2)
+        Uerr_XZ = self.U_XZ - refmap_2D.U_XZ
+        self.Uerr_XZ = np.linalg.norm(Uerr_XZ, axis=2) \
+                       / np.linalg.norm(refmap_2D.U_XZ, axis=2)
 
         # Compute yz plane errors
-        UErrYZ = self.U_YZ - refmap_2D.U_YZ
-        self.UErrYZ = np.linalg.norm(UErrYZ, axis=2) \
+        Uerr_YZ = self.U_YZ - refmap_2D.U_YZ
+        self.Uerr_YZ = np.linalg.norm(Uerr_YZ, axis=2) \
                       / np.linalg.norm(refmap_2D.U_YZ, axis=2)
 
     # This method imports 2D map

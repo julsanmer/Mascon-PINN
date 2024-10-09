@@ -9,9 +9,9 @@ class Intervals:
         self.n_bins = 100
         self.r_bins, self.h_bins = [], []
         self.N_rad, self.N_alt = [], []
-        self.aErrRad_bins = []
-        self.aErrAlt_bins = []
-        self.aErrTotal = []
+        self.accerr_rad_bins = []
+        self.accerr_alt_bins = []
+        self.accerr_total = []
 
     # This method computes rad-alt error intervals
     def compute_errors(self, map_3D):
@@ -43,11 +43,11 @@ class Intervals:
         self.N_alt = np.zeros(n_bins)
 
         # Preallocate mean error
-        self.aErrRad_bins = np.zeros(n_bins)
-        self.aErrAlt_bins = np.zeros(n_bins)
+        self.accerr_rad_bins = np.zeros(n_bins)
+        self.accerr_alt_bins = np.zeros(n_bins)
 
         # Reshape gravity errors
-        aErr = np.ravel(map_3D.aErrXYZ)
+        accerr = np.ravel(map_3D.accerr_XYZ)
 
         # Loop through bins
         for i in range(n_bins):
@@ -57,8 +57,8 @@ class Intervals:
             idx = np.where(np.logical_and(r >= rmin_i,
                                           r < rmax_i))[0]
             self.N_rad[i] = len(idx)
-            self.aErrRad_bins[i] =\
-                np.sum(aErr[idx]) / len(idx)
+            self.accerr_rad_bins[i] =\
+                np.sum(accerr[idx]) / len(idx)
 
             # Compute mean gravity error per altitude range
             hmin_i = self.h_bins[i] - dh
@@ -66,9 +66,9 @@ class Intervals:
             idx = np.where(np.logical_and(h >= hmin_i,
                                           h < hmax_i))[0]
             self.N_alt[i] = len(idx)
-            self.aErrAlt_bins[i] =\
-                np.sum(aErr[idx]) / len(idx)
+            self.accerr_alt_bins[i] =\
+                np.sum(accerr[idx]) / len(idx)
 
         # Compute total error
-        n_samples = np.count_nonzero(~np.isnan(aErr))
-        self.aErrTotal = np.nansum(aErr) / n_samples
+        n_samples = np.count_nonzero(~np.isnan(accerr))
+        self.accerr_total = np.nansum(accerr) / n_samples

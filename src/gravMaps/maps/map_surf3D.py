@@ -10,7 +10,7 @@ class MapSurface3D:
         # Preallocate evaluation and acceleration
         self.xyz_surf = []
         self.acc_surf = []
-        self.aErr_surf = []
+        self.accerr_surf = []
 
     # This method creates surface grid
     def create_grid(self, shape):
@@ -30,10 +30,10 @@ class MapSurface3D:
                 grav_model.compute_gravity(self.xyz_surf[i, 0:3])
 
     # This computes surface error map
-    def compute_errors(self, refmap_surf):
+    def compute_accerr(self, refmap_surf):
         # Compute 3D gravity map error
-        self.aErr_surf = np.linalg.norm(self.acc_surf - refmap_surf.acc_surf, axis=1) \
-                         / np.linalg.norm(refmap_surf.acc_surf, axis=1)
+        self.accerr_surf = np.linalg.norm(self.acc_surf - refmap_surf.acc_surf, axis=1) \
+                           / np.linalg.norm(refmap_surf.acc_surf, axis=1)
 
     # This method imports surface map
     def import_grid(self, refmap_surf):

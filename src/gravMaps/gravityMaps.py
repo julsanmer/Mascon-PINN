@@ -47,10 +47,13 @@ class GravityMap:
     # This method computes errors maps w.r.t. reference
     def error_maps(self, refmaps):
         # Compute 2D and 3D error maps
-        self.map_2D.compute_acc_error(refmaps.map_2D)
-        self.map_3D.compute_errors(refmaps.map_3D)
-        self.map_surf2D.compute_errors(refmaps.map_surf2D)
-        self.map_surf3D.compute_errors(refmaps.map_surf3D)
+        self.map_2D.compute_accerr(refmaps.map_2D)
+        self.map_3D.compute_accerr(refmaps.map_3D)
+        self.map_surf2D.compute_accerr(refmaps.map_surf2D)
+        self.map_surf3D.compute_accerr(refmaps.map_surf3D)
+
+        # Compute potential error
+        self.map_3D.compute_Uerr(refmaps.map_3D)
 
         # Compute rad-alt error intervals
         self.intervals.compute_errors(self.map_3D)

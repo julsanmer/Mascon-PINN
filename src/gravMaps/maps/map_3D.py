@@ -14,7 +14,9 @@ class Map3D:
         self.r, self.h = [], []
         self.ext_XYZ = []
         self.acc_XYZ = []
-        self.aErrXYZ = []
+        self.accerr_XYZ = []
+        self.U_XYZ = []
+        self.Uerr_XYZ = []
         self.t_cpu = []
 
     # This creates 3D grid
@@ -131,10 +133,10 @@ class Map3D:
             for j in range(nlat):
                 for k in range(nlon):
                     # Compute gravity
-                    if self.ext_XYZ[i, j, k]:
-                        pos = [self.X[i, j, k],
-                               self.Y[i, j, k],
-                               self.Z[i, j, k]]
+                    if self.ext_XYZ[i,j,k]:
+                        pos = [self.X[i,j,k],
+                               self.Y[i,j,k],
+                               self.Z[i,j,k]]
 
                         # Evaluate gravity
                         self.U_XYZ[i, j, k] = \
@@ -143,11 +145,18 @@ class Map3D:
                         self.U_XYZ[i, j, k] = np.nan
 
     # This computes 3D error map
-    def compute_errors(self, refmap_3D):
+    def compute_accerr(self, refmap_3D):
         # Compute 3D gravity map error
-        self.aErrXYZ = \
+        self.accerr_XYZ = \
             np.linalg.norm(self.acc_XYZ - refmap_3D.acc_XYZ, axis=3) \
             / np.linalg.norm(refmap_3D.acc_XYZ, axis=3)
+
+    # This computes 3D error map
+    def compute_Uerr(self, refmap_3D):
+        # Compute 3D gravity map error
+        self.Uerr_XYZ = \
+            abs(self.U_XYZ - refmap_3D.U_XYZ) \
+            / abs(refmap_3D.U_XYZ)
 
     # This function imports 3D grid
     def import_grid(self, refmap_3D):

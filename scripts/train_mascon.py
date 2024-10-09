@@ -4,7 +4,7 @@ import os
 
 from src.groundtruth.groundtruth import Groundtruth
 from src.gravRegression.mascon.masconOptimizer import MasconOptimizer
-from plots.plots_gravity import all_gravityplots
+from plots.plots_regression import all_regression_plots
 
 # Import current directory
 current_dir = os.getcwd()
@@ -38,7 +38,7 @@ def configuration():
                                   'n_ejecta': 50,
                                   'dev_ejecta': 0,
                                   'n_data': 50000},
-                         'grad_descent': {'maxiter': 5000,
+                         'grad_descent': {'maxiter': 500,
                                           'lr': 1e-3,
                                           'batch_size': 5000,
                                           'loss': 'quadratic'},
@@ -132,4 +132,4 @@ if __name__ == "__main__":
     gt, mascon_optim = launch_training(config_gt, config_regression)
 
     # Plot gravity
-    all_gravityplots(gt, mascon_optim)
+    all_regression_plots(gt, mascon_optim)
