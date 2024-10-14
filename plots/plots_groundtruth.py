@@ -32,18 +32,19 @@ def plot_dataset(pos_data, xyz_vert, order_face):
                     triangles=order_face-1, color=color_asteroid, zorder=0, alpha=0.5)
     if type(pos_data) is np.ndarray:
         ax.plot(pos_data[:, 0]*m2km, pos_data[:, 1]*m2km, pos_data[:, 2]*m2km,
-                'b', zorder=20, linewidth=0.5, linestyle='', marker='.', markersize=1.5)
+                'b', zorder=20, linewidth=0.5, linestyle='', marker='.',
+                markersize=1.5, alpha=0.1)
 
     # Commands for fanciness
     ax.set_xlabel('$x$ [km]', fontsize=font, labelpad=15)
     ax.set_ylabel('$y$ [km]', fontsize=font, labelpad=15)
     ax.set_zlabel('$z$ [km]', fontsize=font, labelpad=15)
-    ax.set_xlim(-40, 40)
-    ax.set_ylim(-40, 40)
-    ax.set_zlim(-40, 40)
-    ax.set_xticks([-30, -15, 0, 15, 30])
-    ax.set_yticks([-30, -15, 0, 15, 30])
-    ax.set_zticks([-30, 0, 30])
+    ax.set_xlim(-50, 50)
+    ax.set_ylim(-50, 50)
+    ax.set_zlim(-50, 50)
+    # ax.set_xticks([-30, -15, 0, 15, 30])
+    # ax.set_yticks([-30, -15, 0, 15, 30])
+    # ax.set_zticks([-30, 0, 30])
     ax.tick_params(axis='both', labelsize=font)
     ax.set_facecolor('white')
     set_axes_equal(ax)

@@ -20,7 +20,7 @@ class NNeval(nn.Module):
         for i in range(n_layers + 2):
             # Input layer
             if i == 0:
-                layers.append(5)
+                layers.append(4)
             # Output layer
             elif i == n_layers + 1:
                 layers.append(3)
@@ -81,8 +81,7 @@ class NNeval(nn.Module):
         z_ad = pos[:, 2] / r
 
         # Set r_e and r_i
-        input[:, 3] = torch.clamp(self.R/r, max=1.0)
-        input[:, 4] = torch.clamp(r/self.R, max=1.0)
+        input[:, 3] = self.R/r
 
         # Set input
         input[:, 0] = x_ad

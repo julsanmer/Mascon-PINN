@@ -28,13 +28,15 @@ class GravityMap:
 
     # This method generates 2D and 3D maps
     def generate_maps(self, grav_model):
-        # Create 2D and 3D maps
+        # Create 2D and 3D gravity maps
         self.map_2D.generate_acc(grav_model)
-        self.map_2D.generate_U(grav_model)
         self.map_3D.generate_acc(grav_model)
-        self.map_3D.generate_U(grav_model)
         self.map_surf2D.generate_acc(grav_model)
         self.map_surf3D.generate_acc(grav_model)
+
+        # Create 2D and 3D potential maps
+        self.map_2D.generate_U(grav_model)
+        self.map_3D.generate_U(grav_model)
 
     # This method imports 2D and 3D grids
     def import_grids(self, refmaps):
@@ -56,4 +58,5 @@ class GravityMap:
         self.map_3D.compute_Uerr(refmaps.map_3D)
 
         # Compute rad-alt error intervals
-        self.intervals.compute_errors(self.map_3D)
+        self.intervals.compute_accerr(self.map_3D)
+        self.intervals.compute_Uerr(self.map_3D)

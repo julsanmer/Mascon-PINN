@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib as mpl
-import matplotlib.colors as colors
 from matplotlib import rc
 
 from plots.plots_groundtruth import plot_dataset
@@ -26,7 +25,7 @@ font_map = 15
 color_asteroid = [105/255, 105/255, 105/255]
 
 
-# This function plots the 2D gravity map
+# This function plots the 2D gravity error map
 def plot_accerr2D(map_2D, shape):
     def plot_map(plane, XY, err, colorbar=False):
         # Unfold
@@ -133,9 +132,11 @@ def plot_accerr3D(map_3D, intervals):
                 marker='o',
                 linestyle='',
                 markersize=2.5,
-                alpha=0.05,
+                alpha=0.5,
                 zorder=5)
         ax.plot(r_bins * m2km*km2R, accerr_bins * err2perc,
+                linewidth=2,
+                color='k',
                 marker=marker,
                 markersize=5,
                 zorder=10,
@@ -160,7 +161,7 @@ def plot_accerr3D(map_3D, intervals):
     ax.set_yscale('log')
 
     # Set labels
-    ax.set_xlabel('r/$R$ [-]', fontsize=font)
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
     ax.set_ylabel('Gravity error [\%]', fontsize=font)
 
     # Set ticks, grid and legend
@@ -172,25 +173,27 @@ def plot_accerr3D(map_3D, intervals):
 # This function plots the potential error w.r.t. radius
 def plot_Uerr3D(map_3D, intervals):
     def plot_map3D(r, Uerr, r_bins, Uerr_bins, marker='', label=''):
-        # Plot 3D gravity error and their average
+        # Plot 3D potential error and their average
         ax.plot(r * m2km*km2R, Uerr * err2perc,
                 marker='o',
                 linestyle='',
                 markersize=2.5,
-                alpha=0.05,
+                alpha=0.5,
                 zorder=5)
-        # ax.plot(r_bins * m2km*km2R, Uerr_bins * err2perc,
-        #         marker=marker,
-        #         markersize=5,
-        #         zorder=10,
-        #         linestyle='--',
-        #         label=label)
+        ax.plot(r_bins * m2km*km2R, Uerr_bins * err2perc,
+                linewidth=2,
+                color='k',
+                marker=marker,
+                markersize=5,
+                zorder=10,
+                linestyle='--',
+                label=label)
 
     # Retrieve variables
     r = np.ravel(map_3D.r)
     Uerr = np.ravel(map_3D.Uerr_XYZ)
     rbins = intervals.r_bins
-    #Uerr_bins = intervals.Uerr_rad_bins
+    Uerr_bins = intervals.Uerr_rad_bins
 
     # Make figure
     plt.gcf()
@@ -198,13 +201,13 @@ def plot_Uerr3D(map_3D, intervals):
     ax = fig.add_subplot(1, 1, 1)
 
     # Plot
-    plot_map3D(r, Uerr, rbins, [])
+    plot_map3D(r, Uerr, rbins, Uerr_bins)
 
     # Set logarithmic scale
     ax.set_yscale('log')
 
     # Set labels
-    ax.set_xlabel('r/$R$ [-]', fontsize=font)
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
     ax.set_ylabel('Potential error [\%]', fontsize=font)
 
     # Set ticks, grid and legend
@@ -213,7 +216,7 @@ def plot_Uerr3D(map_3D, intervals):
     ax.legend(loc='upper right', fontsize=font_legend)
 
 
-# This function plots gravity error at surface
+# This function plots gravity error at 2D surface
 def plot_accerrsurf2D(map_surf):
     lon_grid = map_surf.lon
     lat_grid = map_surf.lat
@@ -270,7 +273,7 @@ def plot_accerrsurf2D(map_surf):
     ax.set_ylabel('Latitude [$^{\circ}$]', fontsize=font)
 
 
-# This function plots gravity error at surface
+# This function plots gravity error at 3D surface
 def plot_accerrsurf3D(map_surf, xyz_vert, order_face):
     # Switch to error percentage
     accerr_low = 1e-2
@@ -313,6 +316,123 @@ def plot_accerrsurf3D(map_surf, xyz_vert, order_face):
     set_axes_equal(ax)
 
 
+# This plots absolute gravity error
+def plot_accerrabs3D(map_3D, mapgt_3D, type='rad'):
+    # Retrieve variables
+    r = np.ravel(map_3D.r)
+    lat = np.ravel(map_3D.Z / map_3D.r)
+    acc = map_3D.acc_XYZ
+    acc_gt = mapgt_3D.acc_XYZ
+    dacc = acc - acc_gt
+    normacc_gt = np.ravel(np.linalg.norm(acc_gt, axis=3))
+    dnormacc = np.ravel(np.linalg.norm(dacc, axis=3))
+    dacc_x = np.ravel(dacc[:, :, :, 0])
+    dacc_y = np.ravel(dacc[:, :, :, 1])
+    dacc_z = np.ravel(dacc[:, :, :, 2])
+
+    # Make figure
+    plt.gcf()
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(1, 1, 1)
+
+    # Plot absolute potential error
+    # ax.plot(r * m2km * km2R, dnormacc * m2mm,
+    #         marker='o',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+    # ax.plot(r * m2km * km2R, normacc_gt * m2mm,
+    #         marker='o',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+    ax.plot(lat, dnormacc * m2mm,
+            marker='o',
+            linestyle='',
+            markersize=2.5,
+            alpha=0.5,
+            zorder=5)
+    # ax.plot(lat, normacc_gt * m2mm,
+    #         marker='o',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+    # ax.plot(r * m2km * km2R, dacc_x * m2mm,
+    #         marker='x',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+    # ax.plot(r * m2km * km2R, dacc_y * m2mm,
+    #         marker='^',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+    # ax.plot(r * m2km * km2R, dacc_z * m2mm,
+    #         marker='s',
+    #         linestyle='',
+    #         markersize=2.5,
+    #         alpha=0.5,
+    #         zorder=5)
+
+    # Set logarithmic scale
+    ax.set_yscale('log')
+
+    # Set labels
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
+    ax.set_ylabel('Absolute gravity error [mm/s$^2$]', fontsize=font)
+
+    # Set ticks, grid and legend
+    ax.tick_params(axis='both', labelsize=font)
+    ax.grid()
+    ax.legend(loc='upper right', fontsize=font_legend)
+
+
+# This plots absolute potential error
+def plot_Uerrabs3D(map_3D, mapgt_3D):
+    # Retrieve variables
+    r = np.ravel(map_3D.r)
+    U = np.ravel(map_3D.U_XYZ)
+    U_gt = np.ravel(mapgt_3D.U_XYZ)
+    dU = U - U_gt
+
+    # Make figure
+    plt.gcf()
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(1, 1, 1)
+
+    # Plot absolute potential error
+    ax.plot(r * m2km * km2R, dU,
+            marker='o',
+            linestyle='',
+            markersize=2.5,
+            alpha=0.5,
+            zorder=5)
+    ax.plot(r * m2km * km2R, U_gt,
+            marker='o',
+            linestyle='',
+            markersize=2.5,
+            alpha=0.5,
+            zorder=5)
+
+    # Set logarithmic scale
+    ax.set_yscale('log')
+
+    # Set labels
+    ax.set_xlabel('$r/R$ [-]', fontsize=font)
+    ax.set_ylabel('Absolute potential error [m$^2$/s$^2$]', fontsize=font)
+
+    # Set ticks, grid and legend
+    ax.tick_params(axis='both', labelsize=font)
+    ax.grid()
+    ax.legend(loc='upper right', fontsize=font_legend)
+
+
+# This plots computational times computing acceleration
 def plot_tcpu(tcpu, tcpu_ref):
     tcpu = tcpu[~np.isnan(tcpu)]
     tcpu_ref = tcpu_ref[~np.isnan(tcpu_ref)]
@@ -342,10 +462,8 @@ def plot_tcpu(tcpu, tcpu_ref):
 def all_regression_plots(gt, grav_optimizer):
     # Extract data and asteroid
     pos_data = gt.spacecraft.data.pos_BP_P
-    xyz_vert = \
-        gt.asteroid.shape.xyz_vert
-    order_face = \
-        gt.asteroid.shape.order_face
+    xyz_vert = gt.asteroid.shape.xyz_vert
+    order_face = gt.asteroid.shape.order_face
 
     # Extract gravity error maps
     gravmap = grav_optimizer.gravmap
@@ -362,18 +480,16 @@ def all_regression_plots(gt, grav_optimizer):
     plot_accerr3D(gravmap.map_3D, gravmap.intervals)
     plot_accerrsurf2D(gravmap.map_surf2D)
     plot_accerrsurf3D(gravmap.map_surf3D, xyz_vert, order_face)
+    plot_accerrabs3D(gravmap.map_3D, gt.gravmap.map_3D)
+
+    # Plot potential error
     plot_Uerr3D(gravmap.map_3D, gravmap.intervals)
+    plot_Uerrabs3D(gravmap.map_3D, gt.gravmap.map_3D)
 
-    if grav_optimizer.config['grav_model'] == 'mascon':
-        mascon = grav_optimizer.asteroid.gravity[0]
-        plot_mascon(mascon.xyz_M, mascon.mu_M,
-                    xyz_vert, order_face)
-
-    # if scenario.config['regression']['grav_model'] == 'pinn':
-    #     pinn = scenario.regression.asteroid.gravity[0]
-    #     plot_loss(pinn.loss)
-    #     # plot_Uproxy(pinn.r_data, pinn.Uproxy,
-    #     #             pinn.Uproxy_data)
+    # Plot mascon errors
+    mascon = grav_optimizer.asteroid.gravity[0]
+    plot_mascon(mascon.xyz_M, mascon.mu_M,
+                xyz_vert, order_face)
 
     # Plot execution times
     plot_tcpu(np.ravel(gravmap.map_3D.t_cpu),
