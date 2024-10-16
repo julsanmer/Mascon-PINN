@@ -27,13 +27,13 @@ class Map3D:
         nr, nlat, nlon = self.nr, self.nlat, self.nlon
 
         # Create 3D exterior meshgrids
-        r = np.linspace(rmax / nr, rmax, nr)
-        lat = np.linspace(-np.pi / 2 * (1 - 2 / nlat),
-                          np.pi / 2 * (1 - 2 / nlat),
-                          nlat)
+        r = np.linspace(rmax/nr, rmax, nr)
+        lat = np.linspace(-np.pi/2,
+                          np.pi/2,
+                          nlat+1)
         lon = np.linspace(0,
-                          2 * np.pi * (1 - 1 / nlon),
-                          nlon)
+                          2 * np.pi,
+                          nlon+1)
         self.X = np.zeros((nr, nlat, nlon))
         self.Y = np.zeros((nr, nlat, nlon))
         self.Z = np.zeros((nr, nlat, nlon))
@@ -49,17 +49,24 @@ class Map3D:
         # Loop through spherical grid points
         for i in range(nr):
             for j in range(nlat):
+                # Get new latitude range
+                lat0, latf = lat[j], lat[j+1]
                 for k in range(nlon):
-                    # Sample random radius within range
+                    # Get new longitude range
+                    lon0, lonf = lon[k], lon[k+1]
+
+                    # Sample randomly
+                    lon_k = np.random.uniform(lon0, lonf)
+                    lat_jk = np.random.uniform(lat0, latf)
                     r_jk = np.random.uniform(r0, rf)
 
                     # Fill xyz spherical grid
                     self.X[i, j, k] = \
-                        r_jk * np.cos(lat[j]) * np.cos(lon[k])
+                        r_jk * np.cos(lat_jk) * np.cos(lon_k)
                     self.Y[i, j, k] = \
-                        r_jk * np.cos(lat[j]) * np.sin(lon[k])
+                        r_jk * np.cos(lat_jk) * np.sin(lon_k)
                     self.Z[i, j, k] = \
-                        r_jk * np.sin(lat[j])
+                        r_jk * np.sin(lat_jk)
 
                     # Fill radius and altitude
                     self.r[i, j, k] = r_jk

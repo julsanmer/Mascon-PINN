@@ -320,7 +320,7 @@ def plot_accerrsurf3D(map_surf, xyz_vert, order_face):
 def plot_accerrabs3D(map_3D, mapgt_3D, type='rad'):
     # Retrieve variables
     r = np.ravel(map_3D.r)
-    lat = np.ravel(map_3D.Z / map_3D.r)
+    lat = np.ravel(np.arcsin(map_3D.Z/map_3D.r))
     acc = map_3D.acc_XYZ
     acc_gt = mapgt_3D.acc_XYZ
     dacc = acc - acc_gt
